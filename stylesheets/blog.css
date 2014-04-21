@@ -15,7 +15,7 @@ a:focus {
 
 /* LAYOUT CSS */
 #layout {
-    padding-left: 20%; /* "left col (nav + list)" width */
+    padding-left: 15%; /* "left col (nav + list)" width */
     position: relative;
 }
 
@@ -23,9 +23,9 @@ a:focus {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 20%;
-    margin-left: -20%;
-    background: rgb(50, 255, 146);
+    width: 15%;
+    margin-left: -15%;
+    background: rgb( 38, 167, 255);
     color: #fff;
 }
 
@@ -59,14 +59,14 @@ a:focus {
 }
 .nav-item a {
     background: transparent;
-    border: 3px solid rgb(103, 103, 180);
+    border: 3px solid white;
     color: #fff;
     margin-top: 1em;
 }
 .nav-item a:hover,
 .nav-item a:focus {
-    border: 3px solid rgb(142, 142, 214);
-    color: rgb(142, 142, 214);
+    border: 3px solid rgb(176, 202, 219);
+    /*color: rgb(142, 142, 214);*/
     text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ a:focus {
 .post-avatar {
     border-radius: 50px;
     margin-left: 1em;
-    margin-top: 70%
+    margin-top: 100%;
 }
 .post-description {
     font-family: Georgia, "Cambria", serif;
