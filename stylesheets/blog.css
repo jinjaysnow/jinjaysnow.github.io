@@ -12,7 +12,10 @@ a:hover,
 a:focus {
     text-decoration: underline;
 }
-
+/* font css*/
+body{
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
+}
 /* LAYOUT CSS */
 #layout {
     padding-left: 15%; /* "left col (nav + list)" width */
@@ -40,9 +43,10 @@ a:focus {
 }
 .brand-title {
     /*text-transform: uppercase;*/
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
 }
 .brand-tagline {
-    font-family: FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
     font-weight: 280;
     color: white;
 }
@@ -98,7 +102,7 @@ a:focus {
     margin-top: 100%;
 }
 .post-description {
-    font-family: Georgia, "Cambria", serif;
+    font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", sans-serif;
     color: #444;
     line-height: 1.8em;
 }
