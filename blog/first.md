@@ -9,10 +9,24 @@
  
 here is code`printf`
 
-	void main() {
-		printf("To beautiful you");
-	}
+```javascript
+for (var i = 0; i < items.length; i++) {
+    console.log(items[i], i); // log them
+}
+```
 
 1. printf
 2. cout
 3. print
+
+
+```
+http://jinjaysnow.github.com
+```
+<http://jinjaysnow.github.com/>
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
