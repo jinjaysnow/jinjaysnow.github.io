@@ -1,4 +1,54 @@
-body { font-size:62.5%; margin:1em; background:#232425 }
+/*body { font-size:62.5%; margin:1em; background:#232425 }*/
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 40px;
+  background-color: #222;
+  border: 1px solid transparent;
+  border-width: 0 0 1px;
+  z-index: 1023;
+  margin-bottom: 20px;
+
+  display: block;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  overflow: visible;
+  -webkit-appearance: button;
+  cursor: pointer;
+
+}
+
+#left_info {
+  position: fixed;
+  left: 75%;
+  top: 12%;
+  background-color: rgb(224, 224, 224);
+}
 ul { list-style:none; margin:0; padding:0 }
 #watch { font-size:1em; position:relative }
 #watch .frame-face {
