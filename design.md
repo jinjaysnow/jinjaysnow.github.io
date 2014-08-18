@@ -37,26 +37,6 @@ img {
 	clear: both !important; // 在元素左右两边都不能出现浮动元素
 }
 ```
-## Nav-bar
-```
-.nav {
-	background: rgb();
-	z-index: 1023;
-	position: fixed; //固定
-	height: 10%;
-	width: 100%;
-	margin: 0;
-	border:
-}
-```
-
-## Right-side
-```
-.right-side {
-	position: fixed;
-	left: 61.8%;
-}
-```
 
 ## Typography
 ```
@@ -91,11 +71,62 @@ p li, ul li, ol li {
 }
 ```
 
+## Links
+```
+a {
+	color: white;
+	text-decoration: none;
+}
+```
+
+## Nav-bar
+```
+.nav {
+	background: rgb();
+	z-index: 1023;
+	position: fixed; //固定
+	height: 10%;
+	width: 100%;
+	margin: 0;
+	border: solid; // 待定
+}
+```
+
+## Right-side
+```
+.right-side {
+	position: fixed;
+	left: 61.8%;
+}
+```
+
 ## Button&Select
 ```
 button, select {
 	background: transparent; // 透明
 	min-height: 40px;
 	position: absolute; // 相对于包含它的元素的坐标，通过left、top、right、bottom设定。
+}
+```
+
+## Responsive and mobile friendly styles
+```
+@media only screen and (max-width: 640px) {
+	h1, h2, h3, h4 {
+		font-weight: 600 !important;
+		margin: 20px 0 5px !important;
+	}
+	h1 {
+		font-size: 22px !important;
+	}
+	h2 {
+		font-size: 18px !important;
+	}
+	h3 {
+		font-size: 16px !important;
+	}
+	.container {
+		width: 100% !important;
+	}
 }
 ```
