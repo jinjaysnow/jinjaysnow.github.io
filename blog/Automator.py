@@ -12,19 +12,35 @@
 
 
 import markdown2
-import os, datetime, string
+import os, datetime, sys
 
-createTime = os.path.getctime("first.md")
-dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%M")
-datetime.datetime.fromtimestamp(os.path.getmtime("first.md"))
+def generateFile(filePath):
+	if not os.path.isfile(filePath):
+		print "filepath is not reasonable"
+		return
+	createTime = os.path.getctime(filePath)
+	dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%M")
+	modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime("first.md"))
+	# generate html file
+	html = markdown2.markdown_path(filePath, extras = ["footnotes", "code-color"])
+	num = html.find("</h1>")
+	if num == -1:
+		print "Cannot get the title"
+		return
+	title = html[0 : (num + 5)]
 
-html = markdown2.markdown_path("first.md")
-num = string.find(html, "</h1>")
-title = html[0:(num+6)]
-print title
+	html = html[(num + 7):]
+	fileName = title[4:(len(title) - 5)]
 
-if os.path.isdir(dateFolder):
-	pass
-else:
-	os.mkdir(dateFolder)
+	if not os.path.isdir(dateFolder):
+		os.mkdir(dateFolder)
 
+	f = open(dateFolder + "/" + fileName + ".html", "w")
+	f.write(html.encode('utf-8'))
+	f.write("<p>" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "</p>\r\n")
+	f.close()
+
+# if __name__ == '__main__':
+	# sys.exit(generateFile("getFile.md"))
+
+generateFile("first.md")

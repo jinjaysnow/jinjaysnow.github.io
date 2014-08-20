@@ -1,0 +1,74 @@
+<h2>二级标题</h2>
+
+<p><a href="http://www.baidu.com">百度</a></p>
+
+<p><a href="http://jinjaysnow.github.io"><img src="../images/snow.jpg" width="50px"></a></p>
+
+<blockquote>
+  <p>一盏灯， 一片昏黄； 一简书， 一杯淡茶。 守着那一份淡定， <strong>品读</strong>属于自己的寂寞。 保持淡定， 才能欣赏到最美丽的风景！ <em>保持淡定</em>， *人生从此不再寂寞*。</p>
+</blockquote>
+
+<p>here is code<code>printf</code></p>
+
+<p><code>javascript
+for (var i = 0; i &lt; items.length; i++) {
+    console.log(items[i], i); // log them
+}
+</code></p>
+
+<p>```python
+import markdown2
+import os, datetime, sys</p>
+
+<p>def generateFile(filePath):
+    if not os.path.isfile(filePath):
+        print "filepath is not reasonable"
+        return
+    createTime = os.path.getctime(filePath)
+    dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%M")
+    modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime("first.md"))
+    # generate html file
+    html = markdown2.markdown_path(filePath, extras = ["footnotes", "code-color"])
+    num = html.find("</h1>")
+    if num == -1:
+        print "Cannot get the title"
+        return
+    title = html[0 : (num + 5)]</p>
+
+<pre><code>html = html[(num + 7):]
+fileName = title[4:(len(title) - 5)]
+
+if not os.path.isdir(dateFolder):
+    os.mkdir(dateFolder)
+
+f = open(dateFolder + "/" + fileName + ".html", "w")
+f.write(html.encode('utf-8'))
+f.write("&lt;p&gt;" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "&lt;/p&gt;\r\n")
+f.close()
+</code></pre>
+
+<h1>if <strong>name</strong> == '<strong>main</strong>':</h1>
+
+<pre><code># sys.exit(generateFile("getFile.md"))
+</code></pre>
+
+<p>generateFile("first.md")
+```</p>
+
+<ol>
+<li>printf</li>
+<li>cout</li>
+<li>print</li>
+</ol>
+
+<p><code>
+http://jinjaysnow.github.com
+</code>
+<a href="http://jinjaysnow.github.com/">http://jinjaysnow.github.com/</a></p>
+
+<p>| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |</p>
+<p>2014-08-20 19:07:03</p>
