@@ -11,7 +11,7 @@
 # # 				use_file_vars=False)
 
 
-import markdown2
+# import markdown2
 import markdown, codecs
 import os, datetime, sys
 
@@ -26,6 +26,7 @@ def generateFile(filePath):
 	# html = markdown2.markdown_path(filePath, extras = ["footnotes", "code-color"])
 	text = codecs.open(filePath, mode="r", encoding="utf-8")
 	text = text.read()
+
 	md = markdown.Markdown(extensions = ['codehilite', 'extra', 'meta'])
 	html = md.convert(text)
 	meta = md.Meta
@@ -33,18 +34,35 @@ def generateFile(filePath):
 	try:
 		fileName = meta["title"][0]
 		dateFolder = meta["date"][0]
+		brief = meta["brief"][0]
 	except Exception, e:
 		print "there is no essential meta"
 		return
 
+	if not os.path.isdir("../brief"):
+		os.mkdir("../brief")
+
+	briefFile = codecs.open("../brief" + "/" + fileName, "w", encoding="utf-8", errors="xmlcharrefreplace")	
+	if meta.has_key("image"):
+		# TODO: generate the imagebox css
+		briefFile.write("<div class=\"imagebox\"><h1>" + fileName + "</h1>")
+		briefFile.write("<img src=\""+ meta["image"][0] + "\">")
+	else:
+		briefFile.write("<div class=\"wordbox\"><h1>" + fileName + "</h1>")
+
+	briefFile.write(markdown.markdown(brief))
+	briefFile.write("</div>")
+	briefFile.close()
 
 	if not os.path.isdir(dateFolder):
 		os.mkdir(dateFolder)
 
-	f = open(dateFolder + "/" + fileName + ".html", "w")
-	f.write(html.encode('utf-8'))
-	f.write("<p>" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "</p>\r\n")
-	f.close()
+	output_file = codecs.open(dateFolder + "/" + fileName + ".html", "w",
+                          encoding="utf-8", 
+                          errors="xmlcharrefreplace")
+	output_file.write(html)
+	output_file.write("<p>" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "</p>\r\n")
+	output_file.close()
 # if __name__ == '__main__':
 	# sys.exit(generateFile("getFile.md"))
 

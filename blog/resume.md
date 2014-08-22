@@ -1,4 +1,9 @@
-# resume
+Title: Resume
+Brief:   This is a file introducing me.
+Authors: Jin Jay
+Date:    2014-08
+base_url: http://jinjaysnow.github.io
+
 
 ### **个人信息：**
 

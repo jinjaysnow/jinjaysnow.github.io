@@ -1,6 +1,7 @@
 Title:   test
-Summary: A brief description of my document.
-Authors: Waylan Limberg
+Brief:   This is a file for testing my blog.
+Image:	 images/snow.jpg
+Authors: Jin Jay
 Date:    2014-08
 base_url: http://jinjaysnow.github.io
 
@@ -61,6 +62,14 @@ here is code`printf`
 2. cout
 3. print
 
+%We could also consider situations such as:%
+
+$ \begin{tabular}{|c|c|c|c|} Name & Age & Degree & Happy \ \hline \ Justin & 21 & Electrical Engineering & Yes \ Miuche & 39 & None & No \ \hline \ \end{tabular} $
+
+Or even: $y = mx + b$
+Or even: $e^{\imath x} = \cos{x} + \imath\sin{x}$
+
+<math>\int ^{1}_{0}\int ^{x}_{0}\dfrac {xf_{x}+yf_{y}}{x^{2}+y{2}}dxdy</math>
 
 ```
 http://jinjaysnow.github.com

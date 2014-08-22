@@ -112,6 +112,20 @@ button, select {
 }
 ```
 
+## ImageBox
+```
+.imagebox {
+	background: transparent;
+}
+```
+
+## Wordbox
+```
+.wordbox {
+	background: transparent;
+}
+```
+
 ## Responsive and mobile friendly styles
 ```
 @media only screen and (max-width: 640px) {
