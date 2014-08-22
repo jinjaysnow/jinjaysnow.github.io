@@ -5,7 +5,17 @@ Date:    2014-08
 base_url: http://jinjaysnow.github.io
 
 ## pygmentize 产生代码高亮的css文件
- pygmentize -S default -f html > default.css
+```
+pygmentize -S default -f html > default.css
+```
 
 ## markdown_py 产生html文件
+```
 markdown_py/markdown2 \*\*.md > \*\*.html
+```
+
+## mako 将template变为最终的文件
+```
+from mako.template import Template
+print Template("hello ${data}!").render(data="world")
+```

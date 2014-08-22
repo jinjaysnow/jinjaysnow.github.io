@@ -1,19 +1,13 @@
-# import markdown2
-# # markdown(text, html4tags=False, tab_width=4, safe_mode=None, extras=None, link_patterns=None, use_file_vars=False)
+##########################
+# Author: Jinjay
+# Created On: 201408
+# Vision: v0.1
+# Used to generate my blog html file
+##########################
 
-# # markdown_path(path, 
-# # 				encoding='utf-8', 
-# # 				html4tags=False, 
-# # 				tab_width=4, 
-# # 				safe_mode=None, 
-# # 				extras=None, 
-# # 				link_patterns=None, 
-# # 				use_file_vars=False)
-
-
-# import markdown2
 import markdown, codecs
 import os, datetime, sys
+from mako.template import Template
 
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
@@ -26,7 +20,7 @@ def generateFile(filePath):
 	text = codecs.open(filePath, mode="r", encoding="utf-8")
 	text = text.read()
 	# markdown extensions
-	md = markdown.Markdown(extensions = ['codehilite', 'extra', 'meta'])
+	md = markdown.Markdown(extensions = ['codehilite', 'extra', 'meta', 'fenced_code', 'tables'])
 	html = md.convert(text)
 	meta = md.Meta
 
@@ -58,12 +52,13 @@ def generateFile(filePath):
 	if not os.path.isdir(dateFolder):
 		os.mkdir(dateFolder)
 
+	mytempFile = Template(codecs.open("../templates/head.tm.html", "r", encoding="utf-8").read())
+	finalHtml = mytempFile.render(title=fileName, blogbody=html, modifydate=modifyTime.strftime("%Y-%m-%d %H:%I:%S"))
+
 	output_file = codecs.open(dateFolder + "/" + fileName + ".html", "w",
                           encoding="utf-8", 
                           errors="xmlcharrefreplace")
-	output_file.write(codecs.open("../templates/head.tm.html", "r", encoding="utf-8").read())
-	output_file.write(html)
-	output_file.write("<p>" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "</p>\r\n\t<body>\r\n</html>")
+	output_file.write(finalHtml)
 	output_file.close()
 
 if __name__ == '__main__':
