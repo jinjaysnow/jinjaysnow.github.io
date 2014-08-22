@@ -1,3 +1,9 @@
+Title: 	 Editorial
+Brief:   This is a document about *Free Software Movement*.
+Authors: Jin Jay
+Date:    2014-08
+base_url: http://jinjaysnow.github.io
+
 ##### Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375
 Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today's topic - *Intellectual Property and the Free Software Movement*.
 

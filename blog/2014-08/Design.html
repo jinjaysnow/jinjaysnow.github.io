@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Jinjaysnow.github.io : created for blog" />
+    <link rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/blog.css">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css">
+    <title>{{title}}</title>
+    <link rel="shortcut icon" href="../../images/bitbug_favicon.ico" />
+  </head>
+  <body><h2>Universal</h2>
+<div class="codehilite"><pre><span class="o">*</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> <span class="o">//</span> <span class="err">外部边距</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> <span class="o">//</span> <span class="err">内部边距</span>
+    <span class="k">font-family</span><span class="o">:</span> <span class="s2">&quot;Helvetica Neue&quot;</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="k">sans-serif</span><span class="p">;</span>
+    <span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="o">//</span> <span class="err">允许以特定的方式定义某个区域的特定元素</span><span class="o">,</span><span class="err">元素的任何内边距和边框都将在已设定的宽度和高度内绘制。</span>
+                <span class="o">//</span> <span class="err">通过已设定的宽度和高度减去边框和内编剧才能得到内容的宽度和高度。</span>
+    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="o">//</span> <span class="n">Firefox</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">box</span><span class="o">-</span><span class="n">sizing</span><span class="o">:</span> <span class="k">border</span><span class="o">-</span><span class="n">box</span><span class="p">;</span> <span class="o">//</span> <span class="n">Safari</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">14px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Body</h2>
+<div class="codehilite"><pre><span class="n">body</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">foot</span><span class="o">-</span><span class="n">smoothing</span><span class="o">:</span> <span class="n">antialiaseda</span><span class="p">;</span> <span class="c1">// 设置字体抗锯齿</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">size</span><span class="o">-</span><span class="n">adjust</span><span class="o">:</span> <span class="n">none</span><span class="p">;</span>
+    <span class="nl">width:</span> <span class="mi">100</span><span class="o">%</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="nl">height:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+    <span class="n">line</span><span class="o">-</span><span class="n">height</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">;</span> <span class="c1">// 行高</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Image</h2>
+<div class="codehilite"><pre><span class="n">img</span> <span class="p">{</span>
+    <span class="n">max</span><span class="o">-</span><span class="n">width</span><span class="o">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Container</h2>
+<div class="codehilite"><pre><span class="p">.</span><span class="n">container</span> <span class="p">{</span>
+    <span class="nl">display:</span> <span class="n">block</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span> <span class="c1">// 显示为块级元素，元素前后带有换行符</span>
+    <span class="nl">margin:</span> <span class="mi">0</span> <span class="k">auto</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="nl">clear:</span> <span class="n">both</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span> <span class="c1">// 在元素左右两边都不能出现浮动元素</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Typography</h2>
+<div class="codehilite"><pre><span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span> <span class="p">{</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">family</span><span class="o">:</span> <span class="s">&quot;Helvetica Neue&quot;</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="s">&quot;Lucida Grande&quot;</span><span class="p">,</span> <span class="n">sans</span><span class="o">-</span><span class="n">serif</span><span class="p">;</span>
+    <span class="nl">color:</span> <span class="err">#</span><span class="mo">000</span><span class="p">;</span> <span class="c1">// 黑色</span>
+    <span class="nl">margin:</span> <span class="mi">40</span><span class="n">px</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">line</span><span class="o">-</span><span class="n">height</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="o">:</span> <span class="mi">400</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">h1</span> <span class="p">{</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">32</span><span class="n">px</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="o">:</span> <span class="mi">500</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">h2</span> <span class="p">{</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">24</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">h3</span> <span class="p">{</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">18</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">h4</span> <span class="p">{</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">14</span><span class="n">px</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="o">:</span> <span class="mi">600</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">p</span><span class="p">,</span> <span class="n">ul</span><span class="p">,</span> <span class="n">ol</span><span class="p">{</span>
+    <span class="n">marigin</span><span class="o">-</span><span class="n">bottom</span><span class="o">:</span> <span class="mi">10</span><span class="n">px</span><span class="p">;</span>
+    <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="o">:</span> <span class="n">normal</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">p</span> <span class="n">li</span><span class="p">,</span> <span class="n">ul</span> <span class="n">li</span><span class="p">,</span> <span class="n">ol</span> <span class="n">li</span> <span class="p">{</span>
+    <span class="n">margin</span><span class="o">-</span><span class="n">left</span><span class="o">:</span> <span class="mi">5</span><span class="n">px</span><span class="p">;</span>
+    <span class="n">list</span><span class="o">-</span><span class="n">style</span><span class="o">-</span><span class="n">position</span><span class="o">:</span> <span class="n">inside</span><span class="p">;</span> <span class="c1">// 列表项标记放置在文本以内，且环绕文本根据标记对齐</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Links</h2>
+<div class="codehilite"><pre><span class="n">a</span> <span class="p">{</span>
+    <span class="nl">color:</span> <span class="n">white</span><span class="p">;</span>
+    <span class="n">text</span><span class="o">-</span><span class="n">decoration</span><span class="o">:</span> <span class="n">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Nav-bar</h2>
+<div class="codehilite"><pre><span class="p">.</span><span class="n">nav</span> <span class="p">{</span>
+    <span class="nl">background:</span> <span class="n">rgb</span><span class="p">();</span>
+    <span class="n">z</span><span class="o">-</span><span class="n">index</span><span class="o">:</span> <span class="mi">1023</span><span class="p">;</span>
+    <span class="nl">position:</span> <span class="n">fixed</span><span class="p">;</span> <span class="c1">// 固定</span>
+    <span class="nl">height:</span> <span class="mi">10</span><span class="o">%</span><span class="p">;</span>
+    <span class="nl">width:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>
+    <span class="nl">margin:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nl">border:</span> <span class="n">solid</span><span class="p">;</span> <span class="c1">// 待定</span>
+    <span class="nl">filter:</span> <span class="n">alpha</span><span class="p">(</span><span class="n">Opacity</span><span class="o">=</span><span class="mi">80</span><span class="p">);</span><span class="c1">// 半透明</span>
+    <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">opacity</span><span class="o">:</span><span class="mf">0.5</span><span class="p">;</span>
+    <span class="nl">opacity:</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Right-side</h2>
+<div class="codehilite"><pre><span class="p">.</span><span class="n">right</span><span class="o">-</span><span class="n">side</span> <span class="p">{</span>
+    <span class="nl">position:</span> <span class="n">fixed</span><span class="p">;</span>
+    <span class="nl">left:</span> <span class="mf">61.8</span><span class="o">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Button&amp;Select</h2>
+<div class="codehilite"><pre><span class="n">button</span><span class="p">,</span> <span class="n">select</span> <span class="p">{</span>
+    <span class="nl">background:</span> <span class="n">transparent</span><span class="p">;</span> <span class="c1">// 透明</span>
+    <span class="n">min</span><span class="o">-</span><span class="n">height</span><span class="o">:</span> <span class="mi">40</span><span class="n">px</span><span class="p">;</span>
+    <span class="nl">position:</span> <span class="n">absolute</span><span class="p">;</span> <span class="c1">// 相对于包含它的元素的坐标，通过left、top、right、bottom设定。</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>ImageBox</h2>
+<div class="codehilite"><pre><span class="p">.</span><span class="n">imagebox</span> <span class="p">{</span>
+    <span class="nl">background:</span> <span class="n">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Wordbox</h2>
+<div class="codehilite"><pre><span class="p">.</span><span class="n">wordbox</span> <span class="p">{</span>
+    <span class="nl">background:</span> <span class="n">transparent</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Responsive and mobile friendly styles</h2>
+<div class="codehilite"><pre><span class="err">@</span><span class="n">media</span> <span class="n">only</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max</span><span class="o">-</span><span class="n">width</span><span class="o">:</span> <span class="mi">640</span><span class="n">px</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span> <span class="n">h3</span><span class="p">,</span> <span class="n">h4</span> <span class="p">{</span>
+        <span class="n">font</span><span class="o">-</span><span class="n">weight</span><span class="o">:</span> <span class="mi">600</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+        <span class="nl">margin:</span> <span class="mi">20</span><span class="n">px</span> <span class="mi">0</span> <span class="mi">5</span><span class="n">px</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">h1</span> <span class="p">{</span>
+        <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">22</span><span class="n">px</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">h2</span> <span class="p">{</span>
+        <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">18</span><span class="n">px</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">h3</span> <span class="p">{</span>
+        <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="o">:</span> <span class="mi">16</span><span class="n">px</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">.</span><span class="n">container</span> <span class="p">{</span>
+        <span class="nl">width:</span> <span class="mi">100</span><span class="o">%</span> <span class="o">!</span><span class="n">important</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><p>2014-08-22 18:06:44</p>
+	<body>
+</html>

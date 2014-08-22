@@ -1,3 +1,9 @@
+Title: 	 Design
+Brief:   This is a design file of my blog.
+Authors: Jin Jay
+Date:    2014-08
+base_url: http://jinjaysnow.github.io
+
 ## Universal
 ```
 * {
@@ -13,6 +19,7 @@
 ```
 
 ## Body
+```
 body {
 	-webkit-foot-smoothing: antialiaseda; // 设置字体抗锯齿
 	-webkit-text-size-adjust: none;
