@@ -12,6 +12,7 @@
 
 
 import markdown2
+import markdown, codecs
 import os, datetime, sys
 
 def generateFile(filePath):
@@ -19,18 +20,23 @@ def generateFile(filePath):
 		print "filepath is not reasonable"
 		return
 	createTime = os.path.getctime(filePath)
-	dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%M")
+	# dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%m")
 	modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime("first.md"))
 	# generate html file
-	html = markdown2.markdown_path(filePath, extras = ["footnotes", "code-color"])
-	num = html.find("</h1>")
-	if num == -1:
-		print "Cannot get the title"
-		return
-	title = html[0 : (num + 5)]
+	# html = markdown2.markdown_path(filePath, extras = ["footnotes", "code-color"])
+	text = codecs.open(filePath, mode="r", encoding="utf-8")
+	text = text.read()
+	md = markdown.Markdown(extensions = ['codehilite', 'extra', 'meta'])
+	html = md.convert(text)
+	meta = md.Meta
 
-	html = html[(num + 7):]
-	fileName = title[4:(len(title) - 5)]
+	try:
+		fileName = meta["title"][0]
+		dateFolder = meta["date"][0]
+	except Exception, e:
+		print "there is no essential meta"
+		return
+
 
 	if not os.path.isdir(dateFolder):
 		os.mkdir(dateFolder)
@@ -39,7 +45,6 @@ def generateFile(filePath):
 	f.write(html.encode('utf-8'))
 	f.write("<p>" + modifyTime.strftime("%Y-%m-%d %H:%I:%S") + "</p>\r\n")
 	f.close()
-
 # if __name__ == '__main__':
 	# sys.exit(generateFile("getFile.md"))
 

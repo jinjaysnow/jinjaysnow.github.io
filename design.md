@@ -84,11 +84,14 @@ a {
 .nav {
 	background: rgb();
 	z-index: 1023;
-	position: fixed; //固定
+	position: fixed; // 固定
 	height: 10%;
 	width: 100%;
 	margin: 0;
 	border: solid; // 待定
+	filter: alpha(Opacity=80);// 半透明
+	-moz-opacity:0.5;
+	opacity: 0.5;
 }
 ```
 
