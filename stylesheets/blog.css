@@ -12,7 +12,7 @@
 
 /* body */
 body{
-    background: rgb(242, 242, 242);
+    background: #eee;
     -webkit-foot-smoothing: antialiaseda; /* 设置字体抗锯齿 */
     -webkit-text-size-adjust: none;
     width: 100% !important;
