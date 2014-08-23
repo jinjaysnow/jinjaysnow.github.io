@@ -6,23 +6,22 @@
     <meta name="description" content="Jinjaysnow.github.io : created for blog" />
     <link rel="shortcut icon" href="images/bitbug_favicon.ico" />
     <link rel="stylesheet" type="text/css" href="stylesheets/blog.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
     <title>Jin Jay's Blog</title>
   </head>
+
   <body>
-  	<nav>
-  		<div class="nav">Jin Jay</div>
-  		<div class="nav"><button></button>
-  			% for x in ${dateFolder}:
-			    <select>${x}</select>
-			% endfor
-		</div>
-  		<div class="nav"><button></button>
-  			% for x in ${keywordsFolder}:
-  				<select>${keywordsFolder}</select>
-  			% endfor
-  		</div>
-  	</nav>
+    
+    <header>
+      <div class="container"></div>
+        <ul>
+          <li id="home"><a href="/">首页</a></li>
+          <li id="blogDate"><a href="/blog/">日期</a></li>
+          <li id="blogKeyword" onclick="keyword()"><a href="#">分类</a></li>
+          <li id="about" onclick="togglemenu()"></li>
+        </ul>    
+      </div>
+    </header>
+
   	${body}
   </body>
 </html>

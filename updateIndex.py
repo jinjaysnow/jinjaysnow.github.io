@@ -21,6 +21,10 @@ for x in datedir:
 with open("blog/keywords.json", mode='r') as f:
 	keywords = json.load(f)
 
+
 mytempFile = Template(codecs.open("templates/index.tm.html", "r", encoding="utf-8").read())
 html = mytempFile.render(dateFolder = dateFolder, keywordsFolder = keywords.keys(), body="I am desiging...")
-print html
+
+indexFile = codecs.open("index.html", "w", encoding="utf-8")
+indexFile.write(html)
+indexFile.close()

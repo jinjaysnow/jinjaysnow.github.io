@@ -1,4 +1,4 @@
-Title: 	 Use MarDownPy
+Title: 	 Use MarkDownPy
 Brief:   This is a file introducing how to use python-makdown.
 Authors: Jin Jay
 Date:    2014-08
@@ -19,4 +19,11 @@ markdown_py/markdown2 \*\*.md > \*\*.html
 ```
 from mako.template import Template
 print Template("hello ${data}!").render(data="world")
+```
+
+## mako Template 使用
+```
+% for x in SomeList: // SomeList 不需要用${}括起来
+	print ${x}
+% endfor
 ```
