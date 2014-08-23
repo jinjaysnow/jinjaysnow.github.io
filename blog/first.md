@@ -3,6 +3,8 @@ Brief:   This is a file for testing my blog.
 Image:	 images/snow.jpg
 Authors: Jin Jay
 Date:    2014-08
+keywords: code
+		markdown
 base_url: http://jinjaysnow.github.io
 
 # 一级标题

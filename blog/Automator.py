@@ -8,6 +8,7 @@
 import markdown, codecs
 import os, datetime, sys
 from mako.template import Template
+import json
 
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
@@ -46,6 +47,32 @@ def generateFile(filePath):
 	briefFile.write(markdown.markdown(brief))
 	briefFile.write("</div>")
 	briefFile.close()
+
+	# generate Keywords files
+	if not meta.has_key("keywords"):
+		keywords = ["default"]
+	else:
+		keywords = meta["keywords"]
+	print keywords
+	for keyword in keywords:
+		print "write keywords file w+"
+		if not os.path.isfile("keywords.json"):
+			element = {keyword: [ dateFolder + "/" + fileName + ".html" ]}
+			f = open("keywords.json","w+")
+			json.dump(element, f)
+			f.close()
+		else:
+			with open("keywords.json") as f:
+				fc = json.load(f)
+			if not fc.has_key(keyword):
+				fc[keyword] = [dateFolder + "/" +fileName + ".html"]
+			else:
+				if not (dateFolder + "/" +fileName + ".html") in fc[keyword]:
+					fc[keyword].append(dateFolder + "/" +fileName + ".html")
+			# delete duplicate elements in the list
+			f = open("keywords.json","w+")
+			json.dump(fc, f)
+			f.close()
 
 	# generate full blog html file
 	# TODO: add the blog css
