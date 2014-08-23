@@ -162,9 +162,23 @@ next    # 在断电时，继续执行但不进入函数内部
 ### 系统编程
 `系统编程：`从操作系统获得服务或资源而向内核发起的函数调用。
 #### 文件和文件系统  
+在Linux系统中一切皆是文件，很多交互工作是通过读取和写入文件件来完成的。  
+文件通过inode（信息节点）访问，inode使用唯一的数值（inode编号）进行标识。一个inode存储文件关联的元数据，如它的修改时间戳、所有者、类型、长度以及文件的数据的地址--不包含文件名。目录将易读的文件名与inode编号进行映射。文件名与inode的配对也成为链接（link）。  
+用户请求打开一个文件时，内核打开包含指定文件名的目录然后搜索该文件。内核通过文件名获得inode编号，然后根据inode编号找到对应的inode。
 
+```
+// open() 系统调用
+#include <fcntl.h>
+int open (const char *name, int flags, ...);
+// flags: O_RDONLY, O_WRONLY, O_RDWR
+// 打开文件错误是会返回-1
+```
 
-
+```
+// read() 读取文件
+#include <unistd.h>
+ssize_t read (int fd, void *buf, size_t len);
+```
 ## 项目开发
 
 # 在实习中收获最大与体会最深的内容
