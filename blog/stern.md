@@ -1,4 +1,4 @@
-Texampleitle: Stern Report
+Title: Stern Report
 Author: Jin Jay
 Date: 2014-08
 brief: Stern Report in NEUSOFT东软.
