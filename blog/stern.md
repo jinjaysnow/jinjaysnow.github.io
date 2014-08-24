@@ -309,6 +309,7 @@ int recv(int socket, void *buffer, size_t length, int flags); // 接收数据
 ## 项目开发
 小组选择了聊天软件项目。第一天完成了软件需求分析，产生了需求分析矩阵。大体分成服务器端和客户端。小组人员分为服务器编程人员，客户端编程人员还有UI设计人员。  
 接着进入了概要设计阶段，作为评审负责人，我主要完成了概要设计文档的评审工作。
+![概要设计结构图](http://jinjaysnow.github.io/images/design.png)
 
 # 在实习中收获最大与体会最深的内容
 
