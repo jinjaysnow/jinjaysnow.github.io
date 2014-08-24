@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Jinjaysnow.github.io : created for blog" />
+    <link rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/blog.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment1.css">
+    <title>Stern Report</title>
+    <link rel="shortcut icon" href="../../images/bitbug_favicon.ico" />
+  </head>
+  <body>
+  	<h1>实习内容记述</h1>
+<p>2014年 6月 17号到7月 11号，在大连东软集团实习。</p>
+<h2>实习任务</h2>
+<p>经过30多个小时的车程后，在18号下午到达了东软集团，路途比较长，下午在安排的员工宿舍休息。在到达东软集团的第二天，见到了实习经理，他给我们介绍了一下此次实习的日程安排：</p>
+<div class="codehilite"><pre><span class="err">前期学习</span> <span class="n">Linux</span><span class="err">环境编程和系统编程。</span>
+<span class="err">根据所学制作一款局域网聊天软件或邮件系统。</span>
+</pre></div>
+
+
+<h2>实习过程</h2>
+<p>从到东软的第二天开始，先是学习在 Windows电脑上的 Vmware虚拟机软件中安装 Ubuntu系统。然后是熟悉Linux环境编程。接触到了一些常用命令<code>ls</code>, <code>ps</code>, <code>top</code>, <code>kill</code>, <code>grep</code>, <code>find</code>, <code>man</code>, <code>cd</code>, <code>rm</code>, <code>cp</code>, <code>locate</code>, <code>which</code>, <code>what</code>, <code>whatis</code>, <code>where</code>, <code>whereis</code>... 还有管道操作<code>|</code>，重定向操作<code>&lt;</code>和<code>&gt;</code>等等。每一个命令都会使用好几遍以达到熟悉的程度。<br />
+Linux系统编程从介绍 Vim编辑器开始，然后是 gcc编译器的使用， gdb调试工具的使用， makefile的编写，最后是系统函数调用(系统编程)的学习。<br />
+6月 28号开始了小组分配和项目编写。我们小组总共8个人，其中一个项目经理，一个评审负责人，一个配置管理员。我是小组评审负责人，主要负责项目的设计评审、技术点分析，同时还是服务器端的编程人员。小组选择了聊天软件项目。</p>
+<h1>专题内容分析</h1>
+<h2>Linux环境编程学习</h2>
+<h3>Shell脚本与常用命令</h3>
+<blockquote>
+<p>man命令<br />
+格式化显示在线操作手册。在实习中遇到不会用的命令还有系统编程时不会使用的函数时，通过man命令能够很快速的找到有用的信息，十分好用。例如：</p>
+</blockquote>
+<div class="codehilite"><pre><span class="n">man</span> <span class="n">ls</span> <span class="err">#</span> <span class="err">查看</span><span class="n">ls</span><span class="err">命令的帮助信息</span>
+</pre></div>
+
+
+<p><img src="../images/manls.png"></p>
+<blockquote>
+<p>其他常用命令</p>
+</blockquote>
+<div class="codehilite"><pre><span class="n">cd</span> <span class="p">..</span>           <span class="err">#</span> <span class="err">改变位置到父目录</span>
+<span class="n">cd</span> <span class="o">~</span>            <span class="err">#</span> <span class="err">改变位置到用户工作目录</span>
+<span class="n">cp</span> <span class="n">file1</span> <span class="n">file2</span>  <span class="err">#</span> <span class="err">将文件</span><span class="n">file1</span><span class="err">复制到</span><span class="n">file2</span>
+<span class="n">mv</span> <span class="n">file1</span> <span class="n">file2</span>  <span class="err">#</span> <span class="err">将文件</span><span class="n">file1</span><span class="err">更名为</span><span class="n">file2</span>
+<span class="n">mkdir</span> <span class="n">dir1</span>      <span class="err">#</span> <span class="err">建立一个目录</span><span class="n">dir1</span>
+<span class="n">rm</span> <span class="n">f</span><span class="o">*</span>           <span class="err">#</span> <span class="err">删除当前所有以</span><span class="n">f</span><span class="err">开头的文件</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">r</span> <span class="n">dir1</span>      <span class="err">#</span> <span class="err">删除目录</span><span class="n">dir1</span><span class="err">及其子目录下所有文件</span>
+<span class="n">cat</span> <span class="n">file1</span>       <span class="err">#</span> <span class="err">打印文件内容到屏幕</span>
+<span class="n">pwd</span>             <span class="err">#</span> <span class="err">列出当前所在的目录信息</span>
+<span class="n">chmod</span> <span class="n">mode</span> <span class="n">file</span> <span class="err">#</span> <span class="err">改变文件的读写执行权限</span>
+</pre></div>
+
+
+<h3>管道 <code>|</code></h3>
+<p><em>语法：</em> 命令1 | 命令2<br />
+将命令1的执行结果送给命令2，作为命令2的输入。<br />
+管道使得两个及多个命令可以相互通信，带来了很多的便利。</p>
+<div class="codehilite"><pre><span class="n">ls</span> <span class="o">-</span><span class="n">R1</span> <span class="o">|</span> <span class="n">more</span>   <span class="err">#</span> <span class="err">以分页的方式列出当前目录及其子目录下所有文件的名称</span>
+</pre></div>
+
+
+<h3>输入输出重定向<code>&lt;</code> &amp; <code>&gt;</code></h3>
+<p><em>语法：</em> 命令 <code>&lt;</code> 文件<br />
+将文件作为命令的输入。
+<em>语法：</em> 命令 <code>&gt;</code> 文件<br />
+将命令的结果送至指定的文件。<br />
+输入输出重定向便于将操作的结果送入文件或读取文件作为操作的输入。</p>
+<div class="codehilite"><pre><span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="s">&quot;theme&quot;</span> <span class="n">xx</span><span class="err">@</span><span class="n">email</span><span class="p">.</span><span class="n">com</span> <span class="o">&lt;</span> <span class="n">file1</span> <span class="err">#</span> <span class="err">将文件</span><span class="n">file1</span><span class="err">当做信件内容发给收件人</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">list</span>    <span class="err">#</span> <span class="err">将”</span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span><span class="err">“的结果写入文件</span><span class="n">list</span>
+</pre></div>
+
+
+<h2>Linux系统编程</h2>
+<h3>Vim编辑器</h3>
+<p>Vim是从vi发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富。Vim拥有多种模式，常用有三种：</p>
+<blockquote>
+<p>普通模式<br />
+在普通模式中，用的编辑器命令，比如移动光标，删除文本等等。这是Vim启动后的默认模式。常用命令有：</p>
+</blockquote>
+<div class="codehilite"><pre><span class="n">j</span>   <span class="err">#</span> <span class="err">光标向上移动一行</span>
+<span class="n">k</span>   <span class="err">#</span> <span class="err">光标向下移动一行</span>
+<span class="n">h</span>   <span class="err">#</span> <span class="err">光标向左移动一个字符</span>
+<span class="n">l</span>   <span class="err">#</span> <span class="err">光标向右移动一个字符</span>
+<span class="n">w</span>   <span class="err">#</span> <span class="err">光标移到下一个单词词首</span>
+<span class="n">e</span>   <span class="err">#</span> <span class="err">光标移到单词末尾或下一个单词末尾</span>
+<span class="n">b</span>   <span class="err">#</span> <span class="err">光标回退到词首或回退到上一个单词词首</span>
+<span class="n">dd</span>  <span class="err">#</span> <span class="err">删除一行</span>
+<span class="n">daw</span> <span class="err">#</span> <span class="err">删除当前光标所在单词</span>
+<span class="n">r</span>   <span class="err">#</span> <span class="err">替换一个字符</span>
+<span class="n">x</span>   <span class="err">#</span> <span class="err">删除当前光标所在的一个字符</span>
+<span class="n">G</span>   <span class="err">#</span> <span class="err">跳转到文章末尾</span>
+<span class="n">gg</span>  <span class="err">#</span> <span class="err">跳转到文章开头</span>
+</pre></div>
+
+
+<blockquote>
+<p>插入模式<br />
+在普通模式中，有很多方法可以进入插入模式。常用的方式是按"a"（append／追加）键或者"i"（insert／插入）键。在这个模式中，大多数按键都会向文本缓冲中插入文本。在插入模式中，可以按ESC键回到普通模式。</p>
+<p>可视模式<br />
+这个模式与普通模式比较相似。但是移动命令会扩大高亮的文本区域。高亮区域可以是字符、行或者是一块文本。当执行一个非移动命令时，命令会被执行到这块高亮的区域上。Vim的"文本对象"也能和移动命令一样用在这个模式中。</p>
+</blockquote>
+<div class="codehilite"><pre><span class="n">y</span>   <span class="err">#</span> <span class="err">复制高亮选中的文本</span>
+<span class="n">p</span>   <span class="err">#</span> <span class="err">粘贴复制在缓冲区的文本</span>
+</pre></div>
+
+
+<blockquote>
+<p>Vim文件配置</p>
+</blockquote>
+<div class="codehilite"><pre><span class="err">#</span> <span class="err">定义</span><span class="nx">F5</span><span class="err">键用于构建并运行</span><span class="nx">c</span><span class="err">文件</span>
+<span class="kt">map</span> <span class="o">&lt;</span><span class="nx">F5</span><span class="o">&gt;</span> <span class="p">:</span><span class="nb">call</span> <span class="nx">Compilerungcc</span><span class="p">()</span> <span class="o">&lt;</span><span class="nx">CR</span><span class="o">&gt;</span>
+<span class="nx">func</span><span class="o">!</span> <span class="nx">Compilerungcc</span><span class="p">()</span>
+<span class="nx">exec</span> <span class="s2">&quot;w&quot;</span>
+<span class="nx">exec</span> <span class="s2">&quot;!gcc % -o %c&quot;</span>
+<span class="nx">exec</span> <span class="s2">&quot;! ./%&lt;&quot;</span>
+<span class="nx">endfunc</span>
+</pre></div>
+
+
+<h3>GCC</h3>
+<p>GCC（GNU Compiler Collection，GNU编译器套装），是一套由GNU开发的编程语言编译器。</p>
+<div class="codehilite"><pre><span class="n">gcc</span> <span class="o">-</span><span class="n">E</span> <span class="n">hello</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span><span class="p">.</span><span class="n">i</span>   <span class="err">#</span> <span class="err">预处理</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">S</span> <span class="n">hello</span><span class="p">.</span><span class="n">i</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span><span class="p">.</span><span class="n">s</span>   <span class="err">#</span> <span class="err">编译</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">c</span> <span class="n">hello</span><span class="p">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span><span class="p">.</span><span class="n">o</span>   <span class="err">#</span> <span class="err">汇编</span>
+<span class="n">gcc</span> <span class="n">hello</span><span class="p">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span>        <span class="err">#</span> <span class="err">链接</span>
+</pre></div>
+
+
+<p><em>gcc参数</em><br />
+<code>gcc -I目录 -l链接库 -L链接库路径</code></p>
+<blockquote>
+<p>gcc生成链接库  </p>
+</blockquote>
+<div class="codehilite"><pre><span class="cp"># 静态链接库</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">c</span> <span class="n">source</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="p">.</span><span class="n">o</span>             <span class="err">#</span> <span class="err">生成</span><span class="p">.</span><span class="n">o</span><span class="err">文件</span>
+<span class="n">ar</span> <span class="n">rcs</span> <span class="o">-</span><span class="n">o</span> <span class="n">libsource</span><span class="p">.</span><span class="n">a</span> <span class="n">source</span><span class="p">.</span><span class="n">o</span>          <span class="err">#</span> <span class="n">ar</span><span class="err">命令将</span><span class="p">.</span><span class="n">o</span><span class="err">文件打包成静态库文件</span>
+<span class="n">ar</span> <span class="n">t</span> <span class="n">libsource</span><span class="p">.</span><span class="n">a</span>                        <span class="err">#</span> <span class="err">查看</span><span class="n">libsource</span><span class="p">.</span><span class="n">a</span><span class="err">包含哪些文件</span> 
+<span class="cp"># 动态链接库</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">c</span> <span class="n">source</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">fpic</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span><span class="p">.</span><span class="n">o</span>       <span class="err">#</span> <span class="err">添加</span><span class="o">-</span><span class="n">fpic</span><span class="err">选项生成</span><span class="p">.</span><span class="n">o</span><span class="err">文件</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">shared</span> <span class="n">source</span><span class="p">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">libsource</span><span class="p">.</span><span class="n">so</span>    <span class="err">#</span> <span class="err">生成动态链接库</span>
+</pre></div>
+
+
+<h3>Makefile</h3>
+<blockquote>
+<p>在软件开发中，make是一个工具程序（Utility software），它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。大多数情况下，make被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。<em>makefile</em>便是make用来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行的文件。</p>
+</blockquote>
+<div class="codehilite"><pre><span class="cp"># makefile预定义变量</span>
+<span class="err">$@</span> <span class="err">目标名称</span>
+<span class="err">$</span><span class="o">^</span> <span class="err">所有被依赖的对象</span>
+<span class="err">$</span><span class="o">&lt;</span> <span class="err">第一个被依赖的文件</span>
+<span class="cp"># 模式规则</span>
+<span class="o">%</span><span class="p">.</span><span class="n">o</span><span class="o">:</span> <span class="o">%</span><span class="p">.</span><span class="n">c</span>  <span class="err">#</span> <span class="err">将所有的</span><span class="p">.</span><span class="n">c</span><span class="err">文件生成</span><span class="p">.</span><span class="n">o</span><span class="err">文件，</span> <span class="o">%</span><span class="err">是通配符</span>
+<span class="cp"># 使用</span>
+<span class="n">cc</span> <span class="err">$</span><span class="p">(</span><span class="n">CCFLAGS</span><span class="p">)</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="err">$@</span> <span class="err">$</span><span class="o">&lt;</span>
+</pre></div>
+
+
+<h3>GDB调试工具</h3>
+<p>GNU调试器(Debugger，缩写：GDB)，是GNU软件系统中的标准调试器。</p>
+<div class="codehilite"><pre><span class="n">gcc</span> <span class="o">-</span><span class="n">c</span> <span class="n">source</span><span class="p">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">source</span> <span class="o">-</span><span class="n">g</span>    <span class="err">#</span> <span class="err">在编译时使用</span><span class="o">-</span><span class="n">g</span><span class="err">选项</span>
+<span class="n">list</span>    <span class="err">#</span> <span class="err">显示代码</span>
+<span class="k">break</span>   <span class="err">#</span> <span class="err">设置断点</span>
+<span class="n">watch</span>   <span class="err">#</span> <span class="err">观察变量，变量值改变时输出值</span>
+<span class="n">print</span>   <span class="err">#</span> <span class="err">查看变量信息</span>
+<span class="n">step</span>    <span class="err">#</span> <span class="err">在断点时，用于一步一步继续执行，进入函数内部</span>
+<span class="n">next</span>    <span class="err">#</span> <span class="err">在断电时，继续执行但不进入函数内部</span>
+</pre></div>
+
+
+<h3>系统编程</h3>
+<p><code>系统编程：</code>从操作系统获得服务或资源而向内核发起的函数调用。</p>
+<h4>文件和文件系统</h4>
+<p>在Linux系统中一切皆是文件，很多交互工作是通过读取和写入文件件来完成的。<br />
+文件通过inode（信息节点）访问，inode使用唯一的数值（inode编号）进行标识。一个inode存储文件关联的元数据，如它的修改时间戳、所有者、类型、长度以及文件的数据的地址--不包含文件名。目录将易读的文件名与inode编号进行映射。文件名与inode的配对也成为链接（link）。<br />
+用户请求打开一个文件时，内核打开包含指定文件名的目录然后搜索该文件。内核通过文件名获得inode编号，然后根据inode编号找到对应的inode。</p>
+<div class="codehilite"><pre><span class="c1">// open() 系统调用</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">fcntl</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">open</span> <span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">,</span> <span class="p">...);</span>
+<span class="c1">// flags: O_RDONLY, O_WRONLY, O_RDWR</span>
+<span class="c1">// 打开文件错误是会返回-1</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// read() 读取文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">ssize_t</span> <span class="n">read</span> <span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="k">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">len</span><span class="p">);</span>
+</pre></div>
+
+
+<h2>项目开发</h2>
+<h1>在实习中收获最大与体会最深的内容</h1>
+<h1>对实习工作的改进意见</h1>
+  	<div class="date">2014-08-22 23:11:34</div>
+  </body>
+</html>
