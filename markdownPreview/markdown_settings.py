@@ -149,6 +149,6 @@ class Settings(object):
                 self._overrides["meta"][unicode_str(key)] = value
 
 
-sets = Settings("MarkdownPreview.sublime-settings", "../first.md")
-print sets._sub_settings
-print sets._overrides
+# sets = Settings("MarkdownPreview.sublime-settings", "../first.md")
+# print sets._sub_settings
+# print sets._overrides

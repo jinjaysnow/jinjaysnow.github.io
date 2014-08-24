@@ -55,13 +55,7 @@ def get_style_by_name(name):
         cls = name.title() + "Style"
 
     try:
-        import sublime
-        if int(sublime.version()) >= 3000:
-            import importlib
-            from .....helper import INSTALLED_DIRECTORY
-            mod = importlib.import_module(INSTALLED_DIRECTORY + '.lib.markdown_preview_lib.pygments.styles.' + mod)
-        else:
-            mod = __import__('lib.markdown_preview_lib.pygments.styles.' + mod, None, None, [cls])
+        mod = __import__('lib.markdown_preview_lib.pygments.styles.' + mod, None, None, [cls])
     except ImportError:
         raise ClassNotFound("Could not find style module %r" % mod +
                          (builtin and ", though it should be builtin") + ".")

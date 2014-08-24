@@ -242,7 +242,7 @@ class Compiler(object):
     def get_contents(self, filename):
         ''' Get contents or selection from view and optionally strip the YAML front matter '''
         # TODO: 获取文件内容，从这里开始
-        contents = load_resource("../first.md")
+        contents = load_resource(filename)
 
         # Remove yaml front matter
         if self.settings.get('strip_yaml_front_matter') and contents.startswith('---'):
@@ -814,6 +814,6 @@ class MarkdownCompiler(Compiler):
     #         else:
     #             print('Markdown preview launched in %s' % browser)
 
-mdc = MarkdownCompiler("../first.md")
-html ,body = mdc.run();
-print html
+# mdc = MarkdownCompiler("../blog/first.md")
+# html ,body = mdc.run();
+# print html

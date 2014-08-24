@@ -1,20 +1,411 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'/>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Jinjaysnow.github.io : created for blog" />
-    <link rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/blog.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css"> -->
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment1.css">
-    <title>Editorial</title>
-    <link rel="shortcut icon" href="../../images/bitbug_favicon.ico" />
-  </head>
-  <body>
-  	<h5>Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375</h5>
-<p>Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today's topic - <em>Intellectual Property and the Free Software Movement</em>.</p>
-<p>Free software movement is a social movement with the goal of obtaining and guaranteeing certain freedoms for software users, namely the freedom to run the software, to study and change the software, and to redistribute copies with or without changes. Although drawing on traditions and philosophies among members of the 1970s hacker culture, Richard Stallman formally founded the movement in 1983 by launching the GNU Project. And Stallman also founded the Free Software Foundation in 1985 to support the movement. What should be mentioned is that the word "free" does not refer to price, it refers to freedom. In the early times, Stallman defined free software as two points: </p>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="brief" content="This is a document about *Free Software Movement*.">
+<meta name="base_url" content="http://jinjaysnow.github.io">
+<meta name="date" content="2014-08">
+<meta name="authors" content="Jin Jay">
+<meta name="keywords" content="Free-Software-Movement"><style>/* Fonts */
+@font-face{
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face{
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+/* Body */
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#4d4d4c;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #f8f8f8;
+}
+
+/* Links */
+a{ color: #06d; text-decoration:none; }
+a:hover{ color: #06e; text-decoration: underline; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+::-moz-selection { background:#a8d1ff; color:#000 }
+::selection { background:#a8d1ff; color:#000 }
+
+a::-moz-selection { background:#a8d1ff; color:#0645ad }
+a::selection { background:#a8d1ff; color:#0645ad }
+
+/* Header Anchor Links*/
+.headeranchor-link {
+  color:#111;
+  border: 0;
+  margin-left: -20px;
+  padding-right: 6px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor-link:hover,
+.headeranchor-link:visited,
+.headeranchor-link:active
+{ text-decoration: none; color:#4d4d4c; }
+.headeranchor-link:hover .headeranchor:before,
+h1:hover .headeranchor:before,
+h2:hover .headeranchor:before,
+h3:hover .headeranchor:before,
+h4:hover .headeranchor:before,
+h5:hover .headeranchor:before,
+h6:hover .headeranchor:before
+{ content: '\f05c'; }
+
+abbr { cursor: pointer; }
+
+/* Paragraphs */
+p { margin:1em 0; }
+
+/* Images */
+img {
+  max-width:100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6 {
+  font-weight:normal;
+  color:#111;
+  line-height: 1.7;
+  position: relative;
+}
+h4,h5,h6{ font-weight: bold; }
+h1 { font-size:2.5em; border-bottom: 1px solid #ddd;}
+h2 { font-size:2em; border-bottom:1px solid #eee; padding-bottom: 5px; }
+h3 { font-size:1.5em; }
+h4 { font-size:1.2em; }
+h5 { font-size:1em; }
+h6 { font-size:0.9em; }
+
+/* Block Quotes */
+blockquote {
+  color:#666666;
+  margin:0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+/* Raw Blocks */
+pre, code, kbd, samp {
+  color: #000;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC;
+}
+
+pre {
+  padding: 10px;
+  overflow: auto;
+}
+
+code { padding: 0 3px 0 3px; }
+pre code { border: 0; padding: 0; }
+
+/* Admonition */
+.admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 10px auto;
+  color: #888888;
+  background-color: #F8F8F8;
+  border: 1px solid #888888;
+}
+
+.admonition p { padding: 0; margin: 0; }
+.admonition-title { font-weight: bold; margin: 0; }
+
+.admonition-icon {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float: left;
+}
+
+.admonition.attention { color: #4F8A10; background-color: #DFF2BF; border: 1px solid #4F8A10; }
+.admonition.caution { color: #D63301; background-color: #FFCCBA; border: 1px solid #D63301; }
+.admonition.hint { color: #00529B; background-color: #BDE5F8; border: 1px solid #00529B; }
+.admonition.danger { color: #D8000C; background-color: #FFBABA; border: 1px solid #D8000C; }
+.admonition.question { color: #00049b; background-color: #BDC8F8; border: 1px solid #00049b; }
+.admonition.note { color: #9F6000; background-color: #FEEFB3; border: 1px solid #9F6000; }
+
+.attention > .admonition-icon:before { content: "\f058\00a0"; }
+.caution > .admonition-icon:before { content: "\f06a\00a0"; }
+.hint > .admonition-icon:before { content: "\f05a\00a0"; }
+.danger > .admonition-icon:before { content: "\f056\00a0"; }
+.question > .admonition-icon:before { content: "\f059\00a0"; }
+.note > .admonition-icon:before { content: "\f040\00a0"; }
+
+/* progress bar*/
+.progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow:
+    1px 1px 0px #fefefe,
+    -1px -1px 0px #fefefe,
+    -1px 1px 0px #fefefe,
+    1px -1px 0px #fefefe,
+    0px 1px 0px #fefefe,
+    0px -1px 0px #fefefe,
+    1px 0px 0px #fefefe,
+    -1px 0px 0px #fefefe,
+    1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 24px;
+  float: left;
+  border-right: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #34c2e3;
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, .5);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.progress-100plus .progress-bar { background-color: #1ee038; }
+.progress-80plus .progress-bar { background-color: #86e01e; }
+.progress-60plus .progress-bar { background-color: #f2d31b; }
+.progress-40plus .progress-bar { background-color: #f2b01e; }
+.progress-20plus .progress-bar { background-color: #f27011; }
+.progress-0plus .progress-bar { background-color: #f63a0f; }
+
+.gloss .progress-bar {
+  box-shadow:
+    inset -1px 1px 0px rgba(255, 255, 255, .5),
+    inset 0 -4px 12px rgba(255, 255, 255, .7),
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0px rgba(0, 0, 0, .05),
+    inset 1px -1px 0px rgba(255, 255, 255, .2);
+}
+
+.candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@-moz-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+
+/* Inlines */
+b, strong { font-weight: bold; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+dfn { font-style: italic; }
+
+/* Lists */
+ul, ol { padding-left: 30px; }
+li p:last-child { margin:0 }
+.task-list-item { list-style-type: none; }
+.task-list-item input { float:left; margin-left: -20px; margin-top: 6px; }
+dt { font-weight: bold; font-style: italic;}
+dd { margin: 0 0 0 2em; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; overflow-x: auto; overflow-y: hidden; display: block;}
+table tr { background-color: #fefefe; }
+table tr:nth-child(2n) { background-color: #f8f8f8; }
+td, th { border: 1px solid #ddd; padding: 6px 13px; }
+
+/* Codehilite Tables */
+.codehilitetable { border: 0; border-spacing: 0; }
+.linenos, .code, .codehilitetable td { border: 0; padding: 0; }
+td:not(.linenos) .linenodiv { padding: 0 !important; }
+.code { width: 100%; }
+.linenos div pre, .linenodiv pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.code div pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  body{ font-size:14px; }
+}
+
+@media only screen and (min-width: 768px) {
+  body{ font-size:16px; }
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{ font-size:12pt; max-width:100%; outline:none; border: 0;}
+  a, a:visited { text-decoration: underline; }
+  .headeranchor-link { display: none; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  .progress, .progress-bar { box-shadow: none; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>Editorial</title></head><body><h5 id="jin-jie-se1102u201112375"><a name="user-content-jin-jie-se1102u201112375" href="#jin-jie-se1102u201112375" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375</h5>
+<p>Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today&rsquo;s topic - <em>Intellectual Property and the Free Software Movement</em>.</p>
+<p>Free software movement is a social movement with the goal of obtaining and guaranteeing certain freedoms for software users, namely the freedom to run the software, to study and change the software, and to redistribute copies with or without changes. Although drawing on traditions and philosophies among members of the 1970s hacker culture, Richard Stallman formally founded the movement in 1983 by launching the GNU Project. And Stallman also founded the Free Software Foundation in 1985 to support the movement. What should be mentioned is that the word &ldquo;free&rdquo; does not refer to price, it refers to freedom. In the early times, Stallman defined free software as two points: </p>
 <blockquote>
 <ul>
 <li>First, the freedom to copy a program and redistribute it to your neighbors, so that they can use it as well as you. </li>
@@ -30,60 +421,54 @@
 <li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.</li>
 </ul>
 </blockquote>
-<p>Recently many people get confused with "open source" software and free software. Indeed these two concepts are different. Here is what Free Software Foundation says:</p>
+<p>Recently many people get confused with &ldquo;open source&rdquo; software and free software. Indeed these two concepts are different. Here is what Free Software Foundation says:</p>
 <blockquote>
 <p>The term “open source” software is used by some people to mean more or less the same category as free software. It is not exactly the same class of software: they accept some licences that we consider too restrictive, and there are free software licences they have not accepted. However, the differences in extension of the category are small: nearly all free software is open source, and nearly all open source software is free.</p>
 </blockquote>
 <p>So what can we benefit from free software?</p>
-<div class="codehilite"><pre><span class="err">●</span> <span class="n">First</span><span class="p">,</span> <span class="n">Free</span> <span class="n">software</span> <span class="n">lowers</span> <span class="n">the</span> <span class="n">production</span> <span class="n">cost</span><span class="p">.</span> <span class="n">It</span><span class="err">&#39;</span><span class="n">s</span> <span class="nb">true</span> <span class="n">that</span> <span class="n">lots</span> <span class="n">of</span> <span class="n">free</span> <span class="n">software</span> <span class="n">is</span> <span class="n">free</span><span class="p">.</span> 
-<span class="err">●</span> <span class="n">Second</span><span class="p">,</span> <span class="n">Auditability</span><span class="p">,</span> <span class="n">when</span> <span class="n">closed</span><span class="o">-</span><span class="n">source</span> <span class="n">software</span> <span class="n">manufacturers</span> <span class="n">claim</span> <span class="n">that</span> <span class="n">they</span> <span class="n">made</span> <span class="n">improvements</span> <span class="n">in</span> <span class="n">the</span> <span class="n">program</span><span class="p">,</span> <span class="n">improved</span> <span class="n">security</span> <span class="n">and</span> <span class="k">restricted</span> <span class="n">backdoors</span><span class="p">,</span> <span class="n">users</span> <span class="n">are</span> <span class="n">forced</span> <span class="n">to</span> <span class="n">believe</span> <span class="n">it</span><span class="p">.</span> <span class="n">Since</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">is</span> <span class="n">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">there</span> <span class="n">is</span> <span class="n">no</span> <span class="n">evidence</span> <span class="k">for</span> <span class="n">such</span> <span class="n">claims</span><span class="p">,</span> <span class="n">which</span> <span class="s">&quot;open-source&quot;</span> <span class="n">free</span> <span class="n">software</span> <span class="n">won</span><span class="err">&#39;</span><span class="n">t</span><span class="p">.</span> 
-<span class="err">●</span> <span class="n">Third</span><span class="p">,</span> <span class="n">provides</span> <span class="n">better</span> <span class="n">security</span> <span class="n">It</span> <span class="n">is</span> <span class="n">a</span> <span class="n">commonly</span> <span class="n">known</span> <span class="n">fact</span> <span class="n">that</span> <span class="n">proprietary</span> <span class="n">software</span> <span class="n">threatens</span> <span class="n">users</span><span class="err">&#39;</span> <span class="n">security</span><span class="p">.</span> <span class="n">There</span> <span class="n">is</span> <span class="n">a</span> <span class="kt">long</span> <span class="n">history</span> <span class="n">of</span> <span class="n">security</span> <span class="n">vulnerabilities</span><span class="p">.</span> <span class="n">Proprietary</span> <span class="n">software</span> <span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">necessarily</span> <span class="n">stop</span> <span class="n">the</span> <span class="n">spreading</span> <span class="n">of</span> <span class="n">viruses</span> <span class="n">and</span> <span class="n">letting</span> <span class="n">hackers</span> <span class="n">to</span> <span class="n">take</span> <span class="n">over</span> <span class="n">people</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">computers</span> <span class="k">for</span> <span class="n">sending</span> <span class="n">spam</span><span class="p">.</span> <span class="n">Because</span> <span class="n">the</span> <span class="n">software</span> <span class="n">is</span> <span class="n">secret</span><span class="p">,</span> <span class="n">all</span> <span class="n">users</span> <span class="n">are</span> <span class="n">dependent</span> <span class="n">on</span> <span class="n">the</span> <span class="n">corporation</span> <span class="n">to</span> <span class="n">fix</span> <span class="n">these</span> <span class="n">kinds</span> <span class="n">of</span> <span class="n">problems</span><span class="p">.</span> 
-<span class="err">●</span> <span class="n">Fourth</span><span class="p">,</span> <span class="n">no</span> <span class="n">spying</span> <span class="n">on</span> <span class="n">users</span><span class="p">.</span> <span class="n">For</span> <span class="n">free</span> <span class="n">software</span> <span class="n">must</span> <span class="n">be</span> <span class="n">open</span><span class="o">-</span><span class="n">source</span><span class="p">.</span>
-<span class="err">●</span> <span class="n">Fifth</span><span class="p">,</span> <span class="n">no</span> <span class="n">monopolies</span><span class="p">.</span> <span class="n">It</span> <span class="n">is</span> <span class="n">easier</span> <span class="n">and</span> <span class="n">cheaper</span> <span class="n">to</span> <span class="k">switch</span> <span class="n">from</span> <span class="n">one</span> <span class="n">free</span> <span class="n">software</span> <span class="n">to</span> <span class="n">another</span> <span class="n">compared</span> <span class="n">to</span> <span class="n">switching</span> <span class="n">proprietary</span> <span class="n">software</span><span class="p">.</span> <span class="n">Free</span> <span class="n">software</span> <span class="n">does</span> <span class="n">not</span> <span class="n">tie</span> <span class="n">you</span> <span class="n">down</span> <span class="n">to</span> <span class="n">any</span> <span class="n">corporation</span><span class="p">.</span>
-<span class="err">●</span> <span class="n">Sixth</span><span class="p">,</span> <span class="n">no</span> <span class="n">lock</span><span class="o">-</span><span class="n">in</span> <span class="n">standards</span> <span class="n">Proprietary</span> <span class="n">vendors</span> <span class="n">lock</span><span class="o">-</span><span class="n">in</span> <span class="n">proprietary</span> <span class="n">standards</span> <span class="n">to</span> <span class="n">ensure</span> <span class="n">that</span> <span class="n">their</span> <span class="n">users</span> <span class="n">will</span> <span class="n">become</span> <span class="n">returning</span> <span class="n">customers</span><span class="p">.</span> <span class="n">Free</span> <span class="n">software</span> <span class="n">works</span> <span class="n">in</span> <span class="n">open</span> <span class="n">standards</span><span class="p">.</span>
-<span class="err">●</span> <span class="n">Final</span><span class="p">,</span> <span class="n">part</span> <span class="n">of</span> <span class="n">social</span> <span class="n">movement</span> <span class="n">Free</span> <span class="n">software</span> <span class="n">is</span> <span class="n">not</span> <span class="n">just</span> <span class="k">for</span> <span class="n">the</span> <span class="n">individual</span> <span class="n">user</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">sake</span><span class="p">.</span> <span class="n">It</span> <span class="n">promotes</span> <span class="n">social</span> <span class="n">solidarity</span> <span class="n">and</span> <span class="n">represents</span> <span class="n">society</span> <span class="n">as</span> <span class="n">a</span> <span class="n">whole</span> <span class="n">through</span> <span class="n">sharing</span> <span class="n">and</span> <span class="n">cooperation</span><span class="p">.</span> <span class="n">Since</span> <span class="n">our</span> <span class="n">activities</span> <span class="n">are</span> <span class="n">progressively</span> <span class="n">digitized</span><span class="p">,</span> <span class="n">free</span> <span class="n">software</span> <span class="n">is</span> <span class="n">becoming</span> <span class="n">an</span> <span class="n">even</span> <span class="n">more</span> <span class="n">essential</span> <span class="n">part</span> <span class="n">of</span> <span class="n">our</span> <span class="n">culture</span> <span class="n">and</span> <span class="n">life</span> <span class="n">activities</span><span class="p">.</span>
-</pre></div>
+<pre><code>● First, Free software lowers the production cost. It's true that lots of free software is free. 
+● Second, Auditability, when closed-source software manufacturers claim that they made improvements in the program, improved security and restricted backdoors, users are forced to believe it. Since the source code is not provided, there is no evidence for such claims, which &quot;open-source&quot; free software won't. 
+● Third, provides better security It is a commonly known fact that proprietary software threatens users' security. There is a long history of security vulnerabilities. Proprietary software doesn't necessarily stop the spreading of viruses and letting hackers to take over people's computers for sending spam. Because the software is secret, all users are dependent on the corporation to fix these kinds of problems. 
+● Fourth, no spying on users. For free software must be open-source.
+● Fifth, no monopolies. It is easier and cheaper to switch from one free software to another compared to switching proprietary software. Free software does not tie you down to any corporation.
+● Sixth, no lock-in standards Proprietary vendors lock-in proprietary standards to ensure that their users will become returning customers. Free software works in open standards.
+● Final, part of social movement Free software is not just for the individual user's sake. It promotes social solidarity and represents society as a whole through sharing and cooperation. Since our activities are progressively digitized, free software is becoming an even more essential part of our culture and life activities.
+</code></pre>
 
+<p>Having known free software, let&rsquo;s discuss something opposite: proprietary software. Proprietary software or closed source software is computer software licensed under exclusive legal right of the copyright holder with the intent that the license is given the right to use the software only under certain conditions, and restricted from other uses, such as modification, sharing, studying, redistribution, or reverse engineering.Usually the source code of proprietary software is not made available. Usually, proprietray software is covered by copyright which, along with contract law, patents, and trade secrets, provides legal basis for its owner to establish exclusive rights. And in most occasions, it costs much money. Abviously, the venfor of the software benefits a lot.</p>
+<p>Richard Stallman says that proprietary software is harmful. He means that digital technology can give you freedom, it can also take your freedom away. You cannot control a proprietary software because the owner (a company such as Apple or Microsoft) controls it. He thinks it&rsquo;s a threat. He also says that proprietary software is ofen malware, such as trojan horses, rootkits, and backdoors. Of these, backdoors are most easily to be used. And lots of personal privacy can be uploaded to the vendors&rsquo; server and can be got by hackers which can be a very serious problem, just like the PRISM. So recently I am much more worried about my privacy when I use proprietary software. Nevertheless, I believe that proprietary is more helpful than harmful, and here are some advantages of Proprietary Software over free software:</p>
+<pre><code>● Get Started with Ease. Getting a software package up and running can often be a frustrating task especially if you don't have the technical expertise needed. Vendors generally take care of this, making the process as smooth as possible, saving hours of potentially wasted time which can be spent on more important tasks.
+● Support and Documentation. Most vendors provide user guides and training to ensure any problems you encounter with your software can be resolved quickly. If you can't find the answer to your question in the guide, help is usually just an email or phone call away. In the world of open source software there is generally nobody to call for help meaning you could end up trudging through endless forums in search of an answer which you may never find.
+● Better User Experience. Vendors are continually working with and listening to the needs of their customers. By including the customer’s feedback in the development cycle results in the better user experiences making for a more user-friendly product that the customer will actually use and love!
+● Accountability.There is inevitably going to be &quot;bugs&quot; and defects with any software product but vendors usually provide a warranty to protect you from any impact these bugs have on your organisation. With open source software there is lack of accountability and you will have to log a bug and then wait for enough users to complain before it is fixed.
+</code></pre>
 
-<p>Having known free software, let's discuss something opposite: proprietary software. Proprietary software or closed source software is computer software licensed under exclusive legal right of the copyright holder with the intent that the license is given the right to use the software only under certain conditions, and restricted from other uses, such as modification, sharing, studying, redistribution, or reverse engineering.Usually the source code of proprietary software is not made available. Usually, proprietray software is covered by copyright which, along with contract law, patents, and trade secrets, provides legal basis for its owner to establish exclusive rights. And in most occasions, it costs much money. Abviously, the venfor of the software benefits a lot.</p>
-<p>Richard Stallman says that proprietary software is harmful. He means that digital technology can give you freedom, it can also take your freedom away. You cannot control a proprietary software because the owner (a company such as Apple or Microsoft) controls it. He thinks it's a threat. He also says that proprietary software is ofen malware, such as trojan horses, rootkits, and backdoors. Of these, backdoors are most easily to be used. And lots of personal privacy can be uploaded to the vendors' server and can be got by hackers which can be a very serious problem, just like the PRISM. So recently I am much more worried about my privacy when I use proprietary software. Nevertheless, I believe that proprietary is more helpful than harmful, and here are some advantages of Proprietary Software over free software:</p>
-<div class="codehilite"><pre><span class="err">●</span> <span class="n">Get</span> <span class="n">Started</span> <span class="n">with</span> <span class="n">Ease</span><span class="p">.</span> <span class="n">Getting</span> <span class="n">a</span> <span class="n">software</span> <span class="n">package</span> <span class="n">up</span> <span class="n">and</span> <span class="n">running</span> <span class="n">can</span> <span class="n">often</span> <span class="n">be</span> <span class="n">a</span> <span class="n">frustrating</span> <span class="n">task</span> <span class="n">especially</span> <span class="k">if</span> <span class="n">you</span> <span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">have</span> <span class="n">the</span> <span class="n">technical</span> <span class="n">expertise</span> <span class="n">needed</span><span class="p">.</span> <span class="n">Vendors</span> <span class="n">generally</span> <span class="n">take</span> <span class="n">care</span> <span class="n">of</span> <span class="n">this</span><span class="p">,</span> <span class="n">making</span> <span class="n">the</span> <span class="n">process</span> <span class="n">as</span> <span class="n">smooth</span> <span class="n">as</span> <span class="n">possible</span><span class="p">,</span> <span class="n">saving</span> <span class="n">hours</span> <span class="n">of</span> <span class="n">potentially</span> <span class="n">wasted</span> <span class="n">time</span> <span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">spent</span> <span class="n">on</span> <span class="n">more</span> <span class="n">important</span> <span class="n">tasks</span><span class="p">.</span>
-<span class="err">●</span> <span class="n">Support</span> <span class="n">and</span> <span class="n">Documentation</span><span class="p">.</span> <span class="n">Most</span> <span class="n">vendors</span> <span class="n">provide</span> <span class="n">user</span> <span class="n">guides</span> <span class="n">and</span> <span class="n">training</span> <span class="n">to</span> <span class="n">ensure</span> <span class="n">any</span> <span class="n">problems</span> <span class="n">you</span> <span class="n">encounter</span> <span class="n">with</span> <span class="n">your</span> <span class="n">software</span> <span class="n">can</span> <span class="n">be</span> <span class="n">resolved</span> <span class="n">quickly</span><span class="p">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">find</span> <span class="n">the</span> <span class="n">answer</span> <span class="n">to</span> <span class="n">your</span> <span class="n">question</span> <span class="n">in</span> <span class="n">the</span> <span class="n">guide</span><span class="p">,</span> <span class="n">help</span> <span class="n">is</span> <span class="n">usually</span> <span class="n">just</span> <span class="n">an</span> <span class="n">email</span> <span class="n">or</span> <span class="n">phone</span> <span class="n">call</span> <span class="n">away</span><span class="p">.</span> <span class="n">In</span> <span class="n">the</span> <span class="n">world</span> <span class="n">of</span> <span class="n">open</span> <span class="n">source</span> <span class="n">software</span> <span class="n">there</span> <span class="n">is</span> <span class="n">generally</span> <span class="n">nobody</span> <span class="n">to</span> <span class="n">call</span> <span class="k">for</span> <span class="n">help</span> <span class="n">meaning</span> <span class="n">you</span> <span class="n">could</span> <span class="n">end</span> <span class="n">up</span> <span class="n">trudging</span> <span class="n">through</span> <span class="n">endless</span> <span class="n">forums</span> <span class="n">in</span> <span class="n">search</span> <span class="n">of</span> <span class="n">an</span> <span class="n">answer</span> <span class="n">which</span> <span class="n">you</span> <span class="n">may</span> <span class="n">never</span> <span class="n">find</span><span class="p">.</span>
-<span class="err">●</span> <span class="n">Better</span> <span class="n">User</span> <span class="n">Experience</span><span class="p">.</span> <span class="n">Vendors</span> <span class="n">are</span> <span class="n">continually</span> <span class="n">working</span> <span class="n">with</span> <span class="n">and</span> <span class="n">listening</span> <span class="n">to</span> <span class="n">the</span> <span class="n">needs</span> <span class="n">of</span> <span class="n">their</span> <span class="n">customers</span><span class="p">.</span> <span class="n">By</span> <span class="n">including</span> <span class="n">the</span> <span class="n">customer</span><span class="err">’</span><span class="n">s</span> <span class="n">feedback</span> <span class="n">in</span> <span class="n">the</span> <span class="n">development</span> <span class="n">cycle</span> <span class="n">results</span> <span class="n">in</span> <span class="n">the</span> <span class="n">better</span> <span class="n">user</span> <span class="n">experiences</span> <span class="n">making</span> <span class="k">for</span> <span class="n">a</span> <span class="n">more</span> <span class="n">user</span><span class="o">-</span><span class="n">friendly</span> <span class="n">product</span> <span class="n">that</span> <span class="n">the</span> <span class="n">customer</span> <span class="n">will</span> <span class="n">actually</span> <span class="n">use</span> <span class="n">and</span> <span class="n">love</span><span class="o">!</span>
-<span class="err">●</span> <span class="n">Accountability</span><span class="p">.</span><span class="n">There</span> <span class="n">is</span> <span class="n">inevitably</span> <span class="n">going</span> <span class="n">to</span> <span class="n">be</span> <span class="s">&quot;bugs&quot;</span> <span class="n">and</span> <span class="n">defects</span> <span class="n">with</span> <span class="n">any</span> <span class="n">software</span> <span class="n">product</span> <span class="n">but</span> <span class="n">vendors</span> <span class="n">usually</span> <span class="n">provide</span> <span class="n">a</span> <span class="n">warranty</span> <span class="n">to</span> <span class="n">protect</span> <span class="n">you</span> <span class="n">from</span> <span class="n">any</span> <span class="n">impact</span> <span class="n">these</span> <span class="n">bugs</span> <span class="n">have</span> <span class="n">on</span> <span class="n">your</span> <span class="n">organisation</span><span class="p">.</span> <span class="n">With</span> <span class="n">open</span> <span class="n">source</span> <span class="n">software</span> <span class="n">there</span> <span class="n">is</span> <span class="n">lack</span> <span class="n">of</span> <span class="n">accountability</span> <span class="n">and</span> <span class="n">you</span> <span class="n">will</span> <span class="n">have</span> <span class="n">to</span> <span class="n">log</span> <span class="n">a</span> <span class="n">bug</span> <span class="n">and</span> <span class="n">then</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">enough</span> <span class="n">users</span> <span class="n">to</span> <span class="n">complain</span> <span class="n">before</span> <span class="n">it</span> <span class="n">is</span> <span class="n">fixed</span><span class="p">.</span>
-</pre></div>
-
-
-<p>What's more, I want to mention another concept: Service as a Software Substitute(SaaSS).Software as a service is a software delivery model in which software and associated data are centrally hosted on the cloud by independent software vendors (ISVs) or application service providers (ASPs). It is sometimes referred to as "service(s) as a software substitute" or "on-demand software". And here is what Richard Stallman said about SaaSS:</p>
+<p>What&rsquo;s more, I want to mention another concept: Service as a Software Substitute(SaaSS).Software as a service is a software delivery model in which software and associated data are centrally hosted on the cloud by independent software vendors (ISVs) or application service providers (ASPs). It is sometimes referred to as &ldquo;service(s) as a software substitute&rdquo; or &ldquo;on-demand software&rdquo;. And here is what Richard Stallman said about SaaSS:</p>
 <blockquote>
-<p>On the Internet, proprietary software isn't the only way to lose your freedom. Service as a Software Substitute, or SaaSS, is another way to let someone else have power over your computing.</p>
+<p>On the Internet, proprietary software isn&rsquo;t the only way to lose your freedom. Service as a Software Substitute, or SaaSS, is another way to let someone else have power over your computing.</p>
 </blockquote>
 <p>Ok, a question: if a program is available as both proprietary and free software, which one will you choose? What if the proprietary software has more features, such as Microsoft Office versus OpenOffice? Are you willing to pay for Microsoft Office? On my personl note, no, I use free software, as a programmer. </p>
 <p>So how can one make money from free software? Here comes different ways:</p>
-<div class="codehilite"><pre><span class="err">●</span> <span class="mf">1.</span> <span class="n">Sell</span> <span class="n">Support</span> <span class="n">Contracts</span> 
+<pre><code>● 1. Sell Support Contracts 
 
-<span class="n">A</span> <span class="n">sophisticated</span> <span class="n">open</span> <span class="n">source</span> <span class="n">application</span> <span class="n">like</span> <span class="n">Zimbra</span> <span class="n">may</span> <span class="n">be</span> <span class="n">free</span> <span class="n">to</span> <span class="n">download</span> <span class="n">and</span> <span class="n">install</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">is</span> <span class="n">a</span> <span class="n">complex</span> <span class="n">piece</span> <span class="n">of</span> <span class="n">software</span><span class="p">.</span> <span class="n">Setting</span> <span class="n">it</span> <span class="n">up</span> <span class="n">requires</span> <span class="n">some</span> <span class="n">expert</span> <span class="n">knowledge</span><span class="p">.</span> <span class="n">Maintaining</span> <span class="n">the</span> <span class="n">server</span> <span class="n">over</span> <span class="n">time</span> <span class="n">can</span> <span class="n">also</span> <span class="n">need</span> <span class="n">someone</span> <span class="n">with</span> <span class="n">know</span><span class="o">-</span><span class="n">how</span><span class="p">.</span> <span class="n">Who</span> <span class="n">better</span> <span class="n">to</span> <span class="n">turn</span> <span class="n">to</span> <span class="k">for</span> <span class="n">this</span> <span class="n">kind</span> <span class="n">of</span> <span class="n">support</span> <span class="n">than</span> <span class="n">the</span> <span class="n">people</span> <span class="n">who</span> <span class="n">created</span> <span class="n">the</span> <span class="n">software</span><span class="o">?</span> <span class="n">Many</span> <span class="n">open</span> <span class="n">source</span> <span class="n">businesses</span> <span class="n">sell</span> <span class="n">their</span> <span class="n">own</span> <span class="n">support</span> <span class="n">services</span> <span class="n">and</span> <span class="n">contracts</span><span class="p">.</span> <span class="n">Much</span> <span class="n">like</span> <span class="n">commercial</span> <span class="n">software</span> <span class="n">support</span><span class="p">,</span> <span class="n">these</span> <span class="n">service</span> <span class="n">contracts</span> <span class="n">can</span> <span class="n">provide</span> <span class="n">varying</span> <span class="n">levels</span> <span class="n">of</span> <span class="n">support</span><span class="p">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">charge</span> <span class="n">the</span> <span class="n">highest</span> <span class="n">rates</span> <span class="k">for</span> <span class="n">immediate</span> <span class="n">phone</span> <span class="n">support</span> <span class="n">and</span> <span class="n">offer</span> <span class="n">lower</span> <span class="n">rate</span> <span class="n">plans</span> <span class="k">for</span> <span class="n">slower</span> <span class="n">e</span><span class="o">-</span><span class="n">mail</span> <span class="n">based</span> <span class="n">support</span><span class="p">.</span>
+A sophisticated open source application like Zimbra may be free to download and install, but it is a complex piece of software. Setting it up requires some expert knowledge. Maintaining the server over time can also need someone with know-how. Who better to turn to for this kind of support than the people who created the software? Many open source businesses sell their own support services and contracts. Much like commercial software support, these service contracts can provide varying levels of support. You can charge the highest rates for immediate phone support and offer lower rate plans for slower e-mail based support.
 
-<span class="err">●</span> <span class="mf">2.</span> <span class="n">Sell</span> <span class="n">Value</span><span class="o">-</span><span class="n">Added</span> <span class="n">Enhancements</span>
+● 2. Sell Value-Added Enhancements
 
-<span class="n">Although</span> <span class="n">the</span> <span class="n">basic</span> <span class="n">open</span> <span class="n">source</span> <span class="n">software</span> <span class="n">may</span> <span class="n">be</span> <span class="n">free</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">create</span> <span class="n">and</span> <span class="n">sell</span> <span class="n">add</span><span class="o">-</span><span class="n">ons</span> <span class="n">that</span> <span class="n">provide</span> <span class="n">additional</span> <span class="n">value</span><span class="p">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">the</span> <span class="n">open</span> <span class="n">source</span> <span class="n">WordPress</span> <span class="n">blogging</span> <span class="n">platform</span> <span class="n">includes</span> <span class="n">support</span> <span class="k">for</span> <span class="s">&quot;themes&quot;</span> <span class="n">or</span> <span class="n">visual</span> <span class="n">layouts</span><span class="p">.</span> <span class="n">There</span> <span class="n">are</span> <span class="n">many</span> <span class="n">free</span> <span class="n">themes</span> <span class="n">available</span> <span class="n">of</span> <span class="n">varying</span> <span class="n">quality</span><span class="p">.</span> <span class="n">Several</span> <span class="n">businesses</span> <span class="n">have</span> <span class="n">come</span> <span class="n">along</span><span class="p">,</span> <span class="n">such</span> <span class="n">as</span> <span class="n">WooThemes</span> <span class="n">and</span> <span class="n">AppThemes</span><span class="p">,</span> <span class="n">who</span> <span class="n">sell</span> <span class="n">highly</span><span class="o">-</span><span class="n">polished</span> <span class="n">themes</span> <span class="k">for</span> <span class="n">WordPress</span><span class="p">.</span> <span class="n">Either</span> <span class="n">the</span> <span class="n">original</span> <span class="n">creators</span> <span class="n">or</span> <span class="n">third</span><span class="o">-</span><span class="n">parties</span> <span class="n">can</span> <span class="n">make</span> <span class="n">and</span> <span class="n">sell</span> <span class="n">enhancements</span> <span class="k">for</span> <span class="n">open</span> <span class="n">source</span> <span class="n">projects</span><span class="p">,</span> <span class="n">making</span> <span class="n">this</span> <span class="n">option</span> <span class="n">a</span> <span class="n">great</span> <span class="n">opportunity</span> <span class="k">for</span> <span class="n">making</span> <span class="n">money</span><span class="p">.</span>
+Although the basic open source software may be free, you can create and sell add-ons that provide additional value. For example, the open source WordPress blogging platform includes support for &quot;themes&quot; or visual layouts. There are many free themes available of varying quality. Several businesses have come along, such as WooThemes and AppThemes, who sell highly-polished themes for WordPress. Either the original creators or third-parties can make and sell enhancements for open source projects, making this option a great opportunity for making money.
 
-<span class="err">●</span> <span class="mf">3.</span> <span class="n">Sell</span> <span class="n">Documentation</span>
+● 3. Sell Documentation
 
-<span class="n">A</span> <span class="n">variation</span> <span class="n">on</span> <span class="n">commercial</span> <span class="n">support</span><span class="p">,</span> <span class="n">some</span> <span class="n">software</span> <span class="n">projects</span> <span class="n">can</span> <span class="n">be</span> <span class="n">difficult</span> <span class="n">to</span> <span class="n">use</span> <span class="n">without</span> <span class="n">documentation</span><span class="p">.</span> <span class="n">Making</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">available</span> <span class="k">for</span> <span class="n">free</span> <span class="n">does</span> <span class="n">not</span> <span class="n">obligate</span> <span class="n">you</span> <span class="n">to</span> <span class="n">give</span> <span class="n">away</span> <span class="n">the</span> <span class="n">documentation</span><span class="p">,</span> <span class="n">as</span> <span class="n">well</span><span class="p">.</span> <span class="n">Consider</span> <span class="n">the</span> <span class="n">example</span> <span class="n">of</span> <span class="n">Shopp</span><span class="p">,</span> <span class="n">an</span> <span class="n">e</span><span class="o">-</span><span class="n">commerce</span> <span class="n">plugin</span> <span class="k">for</span> <span class="n">WordPress</span><span class="p">.</span> <span class="n">Shopp</span> <span class="n">is</span> <span class="n">an</span> <span class="n">open</span> <span class="n">source</span> <span class="n">project</span><span class="p">,</span> <span class="n">but</span> <span class="n">to</span> <span class="n">access</span> <span class="n">the</span> <span class="n">documentation</span> <span class="n">you</span> <span class="n">need</span> <span class="n">to</span> <span class="n">pay</span> <span class="k">for</span> <span class="n">a</span> <span class="n">license</span> <span class="n">that</span> <span class="n">provides</span> <span class="n">entry</span> <span class="n">into</span> <span class="n">the</span> <span class="n">web</span> <span class="n">site</span><span class="p">.</span> <span class="n">It</span> <span class="n">is</span> <span class="n">possible</span><span class="p">,</span> <span class="n">and</span> <span class="n">perfectly</span> <span class="n">legal</span><span class="p">,</span> <span class="n">to</span> <span class="n">setup</span> <span class="n">a</span> <span class="n">Shopp</span> <span class="n">store</span> <span class="n">using</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">without</span> <span class="n">documentation</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span> <span class="n">will</span> <span class="n">take</span> <span class="n">longer</span> <span class="n">and</span> <span class="n">you</span> <span class="n">won</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">know</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">features</span> <span class="n">available</span><span class="p">.</span> <span class="n">Even</span> <span class="k">if</span> <span class="n">you</span> <span class="n">did</span> <span class="n">not</span> <span class="n">create</span> <span class="n">the</span> <span class="n">open</span> <span class="n">source</span> <span class="n">software</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">author</span> <span class="n">a</span> <span class="n">manual</span> <span class="n">sharing</span> <span class="n">your</span> <span class="n">expertise</span> <span class="n">and</span> <span class="n">then</span> <span class="n">sell</span> <span class="n">that</span> <span class="n">book</span> <span class="n">either</span> <span class="n">through</span> <span class="n">e</span><span class="o">-</span><span class="n">publishing</span> <span class="n">channels</span> <span class="n">or</span> <span class="n">traditional</span> <span class="n">book</span> <span class="n">publishers</span><span class="p">.</span>
+A variation on commercial support, some software projects can be difficult to use without documentation. Making the source code available for free does not obligate you to give away the documentation, as well. Consider the example of Shopp, an e-commerce plugin for WordPress. Shopp is an open source project, but to access the documentation you need to pay for a license that provides entry into the web site. It is possible, and perfectly legal, to setup a Shopp store using the source code without documentation, but it will take longer and you won't know all of the features available. Even if you did not create the open source software, you can author a manual sharing your expertise and then sell that book either through e-publishing channels or traditional book publishers.
 
-<span class="err">●</span> <span class="mf">4.</span> <span class="n">Sell</span> <span class="n">Binaries</span>
+● 4. Sell Binaries
 
-<span class="n">Open</span> <span class="n">source</span> <span class="n">code</span> <span class="n">is</span> <span class="n">just</span> <span class="n">that</span><span class="o">-</span><span class="n">source</span> <span class="n">code</span><span class="p">.</span> <span class="n">In</span> <span class="n">some</span> <span class="n">computer</span> <span class="n">languages</span><span class="p">,</span> <span class="n">such</span> <span class="n">as</span> <span class="n">C</span><span class="o">++</span><span class="p">,</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">run</span> <span class="n">directly</span><span class="p">.</span> <span class="n">It</span> <span class="n">must</span> <span class="n">first</span> <span class="n">be</span> <span class="n">compiled</span> <span class="n">into</span> <span class="n">what</span> <span class="n">is</span> <span class="n">called</span> <span class="n">a</span> <span class="s">&quot;binary&quot;</span> <span class="n">or</span> <span class="n">machine</span> <span class="n">code</span><span class="p">.</span> <span class="n">Binaries</span> <span class="n">are</span> <span class="n">specific</span> <span class="n">to</span> <span class="n">each</span> <span class="n">operating</span> <span class="n">system</span><span class="p">.</span> <span class="n">Depending</span> <span class="n">on</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span> <span class="n">and</span> <span class="n">the</span> <span class="n">operating</span> <span class="n">system</span><span class="p">,</span> <span class="n">compiling</span> <span class="n">into</span> <span class="n">a</span> <span class="n">binary</span> <span class="n">may</span> <span class="n">range</span> <span class="n">in</span> <span class="n">difficulty</span> <span class="n">from</span> <span class="n">easy</span> <span class="n">to</span> <span class="n">very</span> <span class="n">difficult</span><span class="p">.</span> <span class="n">Most</span> <span class="n">open</span> <span class="n">source</span> <span class="n">licenses</span> <span class="k">do</span> <span class="n">not</span> <span class="n">require</span> <span class="n">the</span> <span class="n">creator</span> <span class="n">to</span> <span class="n">give</span> <span class="n">away</span> <span class="n">free</span> <span class="n">access</span> <span class="n">to</span> <span class="n">compiled</span> <span class="n">binaries</span><span class="p">,</span> <span class="n">only</span> <span class="n">to</span> <span class="n">the</span> <span class="n">source</span> <span class="n">code</span><span class="p">.</span> <span class="n">While</span> <span class="n">anyone</span> <span class="n">can</span> <span class="n">download</span> <span class="n">your</span> <span class="n">source</span> <span class="n">code</span> <span class="n">and</span> <span class="n">create</span> <span class="n">their</span> <span class="n">own</span> <span class="n">binary</span><span class="p">,</span> <span class="n">many</span> <span class="n">people</span> <span class="n">either</span> <span class="n">won</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">know</span> <span class="n">how</span> <span class="n">or</span> <span class="n">won</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">want</span> <span class="n">to</span> <span class="n">take</span> <span class="n">the</span> <span class="n">time</span><span class="p">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">have</span> <span class="n">the</span> <span class="n">expertise</span> <span class="n">to</span> <span class="n">create</span> <span class="n">compiled</span> <span class="n">binaries</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">legally</span> <span class="n">sell</span> <span class="n">access</span> <span class="n">to</span> <span class="n">these</span> <span class="n">binaries</span> <span class="k">for</span> <span class="n">different</span> <span class="n">operating</span> <span class="n">systems</span><span class="p">,</span> <span class="n">like</span> <span class="n">Windows</span> <span class="n">and</span> <span class="n">OS</span> <span class="n">X</span><span class="p">.</span>
+Open source code is just that-source code. In some computer languages, such as C++, the source code cannot be run directly. It must first be compiled into what is called a &quot;binary&quot; or machine code. Binaries are specific to each operating system. Depending on the source code and the operating system, compiling into a binary may range in difficulty from easy to very difficult. Most open source licenses do not require the creator to give away free access to compiled binaries, only to the source code. While anyone can download your source code and create their own binary, many people either won't know how or won't want to take the time. If you have the expertise to create compiled binaries, you can legally sell access to these binaries for different operating systems, like Windows and OS X.
 
-<span class="err">●</span> <span class="mf">5.</span> <span class="n">Sell</span> <span class="n">Your</span> <span class="n">Expertise</span> <span class="n">as</span> <span class="n">a</span> <span class="n">Consultant</span>
+● 5. Sell Your Expertise as a Consultant
 
-<span class="n">Sell</span> <span class="n">your</span> <span class="n">own</span> <span class="n">expertise</span><span class="o">!</span> <span class="n">If</span> <span class="n">you</span> <span class="n">are</span> <span class="n">a</span> <span class="n">developer</span> <span class="n">with</span> <span class="n">experience</span> <span class="n">installing</span> <span class="n">or</span> <span class="n">customizing</span> <span class="n">any</span> <span class="n">open</span> <span class="n">source</span> <span class="n">application</span> <span class="n">then</span> <span class="n">you</span> <span class="n">have</span> <span class="n">marketable</span> <span class="n">skills</span><span class="p">.</span> <span class="n">There</span> <span class="n">are</span> <span class="n">always</span> <span class="n">businesses</span> <span class="n">looking</span> <span class="k">for</span> <span class="n">project</span><span class="o">-</span><span class="n">basis</span> <span class="n">help</span><span class="p">.</span> <span class="n">Sites</span> <span class="n">like</span> <span class="n">Elance</span> <span class="n">and</span> <span class="n">Guru</span><span class="p">.</span><span class="n">com</span> <span class="n">are</span> <span class="n">freelance</span> <span class="n">markets</span> <span class="n">that</span> <span class="n">can</span> <span class="n">put</span> <span class="n">you</span> <span class="n">in</span> <span class="n">touch</span> <span class="n">with</span> <span class="n">employers</span> <span class="n">who</span> <span class="n">will</span> <span class="n">pay</span> <span class="k">for</span> <span class="n">your</span> <span class="n">expertise</span><span class="p">.</span> <span class="n">You</span> <span class="k">do</span> <span class="n">not</span> <span class="n">need</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">author</span> <span class="n">of</span> <span class="n">open</span> <span class="n">source</span> <span class="n">software</span> <span class="n">to</span> <span class="n">make</span> <span class="n">money</span> <span class="n">with</span> <span class="n">it</span><span class="p">.</span>
-</pre></div>
+Sell your own expertise! If you are a developer with experience installing or customizing any open source application then you have marketable skills. There are always businesses looking for project-basis help. Sites like Elance and Guru.com are freelance markets that can put you in touch with employers who will pay for your expertise. You do not need to be the author of open source software to make money with it.
+</code></pre>
 
-
-<p>Since there are so many ways earning money from free software, I think it helps the software industry develop more rapidly. And it also inpires rather than discourages innovation, for programmers like to pursue the ultimate. Since I have benefited a lot from free software, it doesn't discourage me from choosing a career in software engineering, on the contrary, I'd like to dedicate myself to the develpment of software industry. But I don't approve of Stallman's belief that people should reject all proprietary software, because intellecture property should be protected and can be used in any legal form that the owner like.</p>
-<p>So what do you think?</p>
-  	<div class="date">2014-08-22 23:11:34</div>
-  </body>
-</html>
+<p>Since there are so many ways earning money from free software, I think it helps the software industry develop more rapidly. And it also inpires rather than discourages innovation, for programmers like to pursue the ultimate. Since I have benefited a lot from free software, it doesn&rsquo;t discourage me from choosing a career in software engineering, on the contrary, I&rsquo;d like to dedicate myself to the develpment of software industry. But I don&rsquo;t approve of Stallman&rsquo;s belief that people should reject all proprietary software, because intellecture property should be protected and can be used in any legal form that the owner like.</p>
+<p>So what do you think?</p></body></html>
