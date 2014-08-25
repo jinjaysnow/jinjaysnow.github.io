@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0;">
 	<meta name="date" content="2014-08">
 <meta name="keywords" content="Stern">
 <meta name="brief" content="Stern Report in NEUSOFT东软.">
@@ -554,15 +555,19 @@ footer {
 }
 
 /* Media */
-@media (max-width: 480px) {
+@media only screen and (max-width: 480px) {
   body{ font-size:14px; }
   #blog {width: 100% !important;}
-  #side {display: none !important;}
+  #side {display: none!important;}
   #markdown{max-width: 98% !important;}
   footer{margin-left:10%; width: 80%;}
 }
 
-@media (max-width: 768px) {
+@media 
+only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait), 
+only screen and (max-width: 800px) ,
+only screen and (width: 768px),
+only screen and (max-width: 768px){
   body{ font-size:16px; }
   #blog {width: 100% !important;}
   #side {display: none !important;}
@@ -570,23 +575,6 @@ footer {
   footer{margin-left: 10%; width: 80%;}
 }
 
-@media print {
-  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
-  body{ font-size:12pt; max-width:100%; outline:none; border: 0;}
-  a, a:visited { text-decoration: underline; }
-  .headeranchor-link { display: none; }
-  hr { height: 1px; border:0; border-bottom:1px solid black; }
-  a[href]:after { content: " (" attr(href) ")"; }
-  abbr[title]:after { content: " (" attr(title) ")"; }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
-  pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
-  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
-  .progress, .progress-bar { box-shadow: none; }
-  tr, img { page-break-inside: avoid; }
-  img { max-width: 100% !important; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; }
-}
 </style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
