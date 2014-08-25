@@ -22,6 +22,7 @@ def generateFile(filePath):
 	# TODO: add the changedTime
 
 	mdc = MarkdownCompiler(filePath)
+	mdc.default_css = "mymarkdown.css"
 	finalHtml, body = mdc.run()
 
 	meta = mdc.settings.get("meta", {})

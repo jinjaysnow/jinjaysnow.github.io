@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="date" content="2014-08">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="date" content="2014-08">
 <meta name="keywords" content="Stern">
 <meta name="brief" content="Stern Report in NEUSOFT东软.">
 <meta name="author" content="Jin Jay"><style>/* Fonts */
@@ -14,19 +17,42 @@
 
 /* Body */
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+body {
   color:#4d4d4c;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
   font-size:12px;
   line-height:1.5em;
   background:#fefefe;
-  width: 45em;
+  width: 100% !important;
+}
+
+#side {
+  background-color: #fff;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 0 !important;
+  top:0 !important;
+  left: 80%;
+  width: 20% !important;
+}
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  top: 0 !important;
+  width: 70% !important;
+}
+
+#markdown {
+  width: 55em;
   margin: 10px auto;
   padding: 30px;
   border: 1px solid #ddd;
-  outline: 1300px solid #f8f8f8;
+  /*outline: 1300px solid #f8f8f8;*/
 }
 
 /* Links */
@@ -402,7 +428,12 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>Stern Report</title></head><body><h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习内容记述</h1>
+<title>Stern Report</title>
+</head>
+<body>
+	<div id="blog">
+		<div id="markdown" >
+			<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习内容记述</h1>
 <p>2014年 6月 17号到7月 11号，在大连东软集团实习。</p>
 <h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习任务</h2>
 <p>经过30多个小时的车程后，在18号下午到达了东软集团，路途比较长，下午在安排的员工宿舍休息。在到达东软集团的第二天，见到了实习经理，他给我们介绍了一下此次实习的日程安排：</p>
@@ -720,4 +751,24 @@ int sqlite3_exec(sqlite3*, const char *sql, int(*callback)(void*,int,char**,char
 <li>实习能够安排达到一个月的时间。</li>
 <li>对公司文化并没有太多接触，如果公司能够让学员们与正式员工多接触，多参与到他们的项目讨论中更有益于了解软件公司项目运作过程。</li>
 <li>因为软件学院的实习（应该叫做实训）与其他学院不同，实训并没有见识到很多实际的问题，都是一些自己在学校里做项目能够遇到的，如果能够接触到工业界的项目肯定很有意义。比如服务器访问量达到百万级的应用、分布式计算程序设计等等。</li>
-</ol></body></html>
+</ol>
+		</div>
+	</div>
+	<div id="side">
+	<p>
+		这里是右侧id
+	</p>
+	</div>
+	<footer class="container">
+		<p class="text-muted text-center">
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+	</footer>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready( function() {
+	$('table').addClass('table table-bordered');
+});
+</script>

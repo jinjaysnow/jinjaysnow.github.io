@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="date" content="2014-08">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="date" content="2014-08">
 <meta name="brief" content="This is a problem.">
 <meta name="base_url" content="http://jinjaysnow.github.io">
 <meta name="authors" content="Jin Jay"><style>/* Fonts */
@@ -14,19 +17,42 @@
 
 /* Body */
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+body {
   color:#4d4d4c;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
   font-size:12px;
   line-height:1.5em;
   background:#fefefe;
-  width: 45em;
+  width: 100% !important;
+}
+
+#side {
+  background-color: #fff;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 0 !important;
+  top:0 !important;
+  left: 80%;
+  width: 20% !important;
+}
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  top: 0 !important;
+  width: 70% !important;
+}
+
+#markdown {
+  width: 55em;
   margin: 10px auto;
   padding: 30px;
   border: 1px solid #ddd;
-  outline: 1300px solid #f8f8f8;
+  /*outline: 1300px solid #f8f8f8;*/
 }
 
 /* Links */
@@ -402,7 +428,12 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>eidtorial</title></head><body><h1 id="question"><a name="user-content-question" href="#question" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Question</h1>
+<title>eidtorial</title>
+</head>
+<body>
+	<div id="blog">
+		<div id="markdown" >
+			<h1 id="question"><a name="user-content-question" href="#question" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Question</h1>
 <p>Richard Stallman, the founder of the GNU Project, supports “free” software and believes that<br />
 proprietary software (like Microsoft Windows) is harmful. Do you agree with his views? In your<br />
 editorial, please include answers to the following questions. For questions that ask for your opinion,<br />
@@ -474,4 +505,24 @@ One of proprietary software&rsquo;s major claims is that free software is not us
 Proprietary vendors lock-in proprietary standards to ensure that their users will become returning customers. Free software works in open standards.</p>
 <p>10) Part of social movement<br />
 Free software is not just for the individual user&rsquo;s sake. It promotes social solidarity and represents society as a whole through sharing and cooperation. Since our activities are progressively digitized, free software is becoming an even more essential part of our culture and life activities.</p>
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a></h3></body></html>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a></h3>
+		</div>
+	</div>
+	<div id="side">
+	<p>
+		这里是右侧id
+	</p>
+	</div>
+	<footer class="container">
+		<p class="text-muted text-center">
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+	</footer>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready( function() {
+	$('table').addClass('table table-bordered');
+});
+</script>

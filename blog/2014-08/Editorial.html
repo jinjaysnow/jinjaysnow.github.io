@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="brief" content="This is a document about *Free Software Movement*.">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="brief" content="This is a document about *Free Software Movement*.">
 <meta name="base_url" content="http://jinjaysnow.github.io">
 <meta name="date" content="2014-08">
 <meta name="authors" content="Jin Jay">
@@ -15,19 +18,42 @@
 
 /* Body */
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+body {
   color:#4d4d4c;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
   font-size:12px;
   line-height:1.5em;
   background:#fefefe;
-  width: 45em;
+  width: 100% !important;
+}
+
+#side {
+  background-color: #fff;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 0 !important;
+  top:0 !important;
+  left: 80%;
+  width: 20% !important;
+}
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  top: 0 !important;
+  width: 70% !important;
+}
+
+#markdown {
+  width: 55em;
   margin: 10px auto;
   padding: 30px;
   border: 1px solid #ddd;
-  outline: 1300px solid #f8f8f8;
+  /*outline: 1300px solid #f8f8f8;*/
 }
 
 /* Links */
@@ -403,7 +429,12 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>Editorial</title></head><body><h5 id="jin-jie-se1102u201112375"><a name="user-content-jin-jie-se1102u201112375" href="#jin-jie-se1102u201112375" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375</h5>
+<title>Editorial</title>
+</head>
+<body>
+	<div id="blog">
+		<div id="markdown" >
+			<h5 id="jin-jie-se1102u201112375"><a name="user-content-jin-jie-se1102u201112375" href="#jin-jie-se1102u201112375" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375</h5>
 <p>Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today&rsquo;s topic - <em>Intellectual Property and the Free Software Movement</em>.</p>
 <p>Free software movement is a social movement with the goal of obtaining and guaranteeing certain freedoms for software users, namely the freedom to run the software, to study and change the software, and to redistribute copies with or without changes. Although drawing on traditions and philosophies among members of the 1970s hacker culture, Richard Stallman formally founded the movement in 1983 by launching the GNU Project. And Stallman also founded the Free Software Foundation in 1985 to support the movement. What should be mentioned is that the word &ldquo;free&rdquo; does not refer to price, it refers to freedom. In the early times, Stallman defined free software as two points: </p>
 <blockquote>
@@ -471,4 +502,24 @@ Sell your own expertise! If you are a developer with experience installing or cu
 </code></pre>
 
 <p>Since there are so many ways earning money from free software, I think it helps the software industry develop more rapidly. And it also inpires rather than discourages innovation, for programmers like to pursue the ultimate. Since I have benefited a lot from free software, it doesn&rsquo;t discourage me from choosing a career in software engineering, on the contrary, I&rsquo;d like to dedicate myself to the develpment of software industry. But I don&rsquo;t approve of Stallman&rsquo;s belief that people should reject all proprietary software, because intellecture property should be protected and can be used in any legal form that the owner like.</p>
-<p>So what do you think?</p></body></html>
+<p>So what do you think?</p>
+		</div>
+	</div>
+	<div id="side">
+	<p>
+		这里是右侧id
+	</p>
+	</div>
+	<footer class="container">
+		<p class="text-muted text-center">
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+	</footer>
+</body>
+</html>
+
+<script type="text/javascript">
+$(document).ready( function() {
+	$('table').addClass('table table-bordered');
+});
+</script>

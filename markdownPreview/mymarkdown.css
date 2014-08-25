@@ -11,19 +11,42 @@
 
 /* Body */
 html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+body {
   color:#4d4d4c;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
   font-size:12px;
   line-height:1.5em;
   background:#fefefe;
-  width: 68%;
-  /*margin: 10px auto;*/
+  width: 100% !important;
+}
+
+#side {
+  background-color: #fff;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 0 !important;
+  top:0 !important;
+  left: 80%;
+  width: 20% !important;
+}
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  top: 0 !important;
+  width: 70% !important;
+}
+
+#markdown {
+  width: 55em;
+  margin: 10px auto;
   padding: 30px;
   border: 1px solid #ddd;
-  outline: 1300px solid #f8f8f8;
+  /*outline: 1300px solid #f8f8f8;*/
 }
 
 /* Links */
