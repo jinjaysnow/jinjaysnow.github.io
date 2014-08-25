@@ -575,7 +575,72 @@ only screen and (max-width: 768px){
   footer{margin-left: 10%; width: 80%;}
 }
 
-</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f8f8f8; color: #333333 }
+.codehilite pre .c { color: #999988; font-style: italic } /* Comment */
+.codehilite pre .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.codehilite pre .k { font-weight: bold } /* Keyword */
+.codehilite pre .n { color: #333333 } /* Name */
+.codehilite pre .o { font-weight: bold } /* Operator */
+.codehilite pre .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.codehilite pre .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #aa0000 } /* Generic.Error */
+.codehilite pre .gh { color: #999999 } /* Generic.Heading */
+.codehilite pre .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.codehilite pre .go { color: #888888 } /* Generic.Output */
+.codehilite pre .gp { color: #555555 } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #aa0000 } /* Generic.Traceback */
+.codehilite pre .kc { font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { font-weight: bold } /* Keyword.Pseudo */
+.codehilite pre .kr { font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #009999 } /* Literal.Number */
+.codehilite pre .s { color: #dd1144 } /* Literal.String */
+.codehilite pre .na { color: #008080 } /* Name.Attribute */
+.codehilite pre .nb { color: #0086b3 } /* Name.Builtin */
+.codehilite pre .nc { color: #445588; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #008080 } /* Name.Constant */
+.codehilite pre .nd { color: #333333 } /* Name.Decorator */
+.codehilite pre .ni { color: #800080 } /* Name.Entity */
+.codehilite pre .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #990000; font-weight: bold } /* Name.Function */
+.codehilite pre .nl { color: #333333 } /* Name.Label */
+.codehilite pre .nn { color: #555555 } /* Name.Namespace */
+.codehilite pre .nx { color: #333333 } /* Name.Other */
+.codehilite pre .py { color: #333333 } /* Name.Property */
+.codehilite pre .nt { color: #000080 } /* Name.Tag */
+.codehilite pre .nv { color: #008080 } /* Name.Variable */
+.codehilite pre .ow { font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #009999 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #009999 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #009999 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #009999 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #009999 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #dd1144 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #dd1144 } /* Literal.String.Char */
+.codehilite pre .sd { color: #dd1144 } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #dd1144 } /* Literal.String.Double */
+.codehilite pre .se { color: #dd1144 } /* Literal.String.Escape */
+.codehilite pre .sh { color: #dd1144 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #dd1144 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #dd1144 } /* Literal.String.Other */
+.codehilite pre .sr { color: #009926 } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #dd1144 } /* Literal.String.Single */
+.codehilite pre .ss { color: #990073 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #008080 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #008080 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #008080 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #009999 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
   config: ["MMLorHTML.js"],
@@ -602,6 +667,7 @@ MathJax.Hub.Config({
 });
 </script>
 <title>Stern Report</title>
+	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
 </head>
 <body>
 	<div id="blog">
@@ -610,9 +676,10 @@ MathJax.Hub.Config({
 <p>2014年 6月 17号到7月 11号，在大连东软集团实习。</p>
 <h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习任务</h2>
 <p>经过30多个小时的车程后，在18号下午到达了东软集团，路途比较长，下午在安排的员工宿舍休息。在到达东软集团的第二天，见到了实习经理，他给我们介绍了一下此次实习的日程安排：</p>
-<pre><code>前期学习 Linux环境编程和系统编程。
-根据所学制作一款局域网聊天软件或邮件系统软件。
-</code></pre>
+<div class="codehilite"><pre><span class="err">前期学习</span><span class="w"> </span><span class="vg">Linux</span><span class="err">环境编程和系统编程。</span>
+<span class="err">根据所学制作一款局域网聊天软件或邮件系统软件。</span>
+</pre></div>
+
 
 <h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习过程</h2>
 <p>从到东软的第二天开始，先是学习在 Windows电脑上的 Vmware虚拟机软件中安装 Ubuntu系统。然后是熟悉Linux环境编程。接触到了一些常用命令<code>ls</code>, <code>ps</code>, <code>top</code>, <code>kill</code>, <code>grep</code>, <code>find</code>, <code>man</code>, <code>cd</code>, <code>rm</code>, <code>cp</code>, <code>locate</code>, <code>which</code>, <code>what</code>, <code>whatis</code>, <code>where</code>, <code>whereis</code>&hellip; 还有管道操作<code>|</code>，重定向操作<code>&lt;</code>和<code>&gt;</code>等等。每一个命令都会练习使用好几遍以达到熟悉的程度。<br />
@@ -625,31 +692,34 @@ Linux系统编程从介绍 Vim编辑器开始，然后是 gcc编译器的使用�
 <p>man命令<br />
 格式化显示在线操作手册。在实习中遇到不会用的命令还有系统编程时不会使用的函数时，通过man命令能够很快速的找到有用的信息，十分好用。例如：</p>
 </blockquote>
-<pre><code>man ls # 查看ls命令的帮助信息
-</code></pre>
+<div class="codehilite"><pre><span class="vg">man</span><span class="w"> </span><span class="vg">ls</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">查看</span><span class="vg">ls</span><span class="err">命令的帮助信息</span>
+</pre></div>
+
 
 <p><img src="http://jinjaysnow.github.io/images/manls.png"></p>
 <blockquote>
 <p>其他常用命令</p>
 </blockquote>
-<pre><code>cd ..           # 改变位置到父目录
-cd ~            # 改变位置到用户工作目录
-cp file1 file2  # 将文件file1复制到file2
-mv file1 file2  # 将文件file1更名为file2
-mkdir dir1      # 建立一个目录dir1
-rm f*           # 删除当前所有以f开头的文件
-rm -r dir1      # 删除目录dir1及其子目录下所有文件
-cat file1       # 打印文件内容到屏幕
-pwd             # 列出当前所在的目录信息
-chmod mode file # 改变文件的读写执行权限
-</code></pre>
+<div class="codehilite"><pre><span class="vg">cd</span><span class="w"> </span><span class="o">..</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">改变位置到父目录</span>
+<span class="vg">cd</span><span class="w"> </span><span class="o">~</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="err">改变位置到用户工作目录</span>
+<span class="vg">cp</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="vg">file2</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">复制到</span><span class="vg">file2</span>
+<span class="vg">mv</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="vg">file2</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">更名为</span><span class="vg">file2</span>
+<span class="vg">mkdir</span><span class="w"> </span><span class="vg">dir1</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">建立一个目录</span><span class="vg">dir1</span>
+<span class="vg">rm</span><span class="w"> </span><span class="vg">f</span><span class="o">*</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前所有以</span><span class="vg">f</span><span class="err">开头的文件</span>
+<span class="vg">rm</span><span class="w"> </span><span class="o">-</span><span class="vg">r</span><span class="w"> </span><span class="vg">dir1</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">删除目录</span><span class="vg">dir1</span><span class="err">及其子目录下所有文件</span>
+<span class="vg">cat</span><span class="w"> </span><span class="vg">file1</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="err">打印文件内容到屏幕</span>
+<span class="vg">pwd</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="err">列出当前所在的目录信息</span>
+<span class="vg">chmod</span><span class="w"> </span><span class="vg">mode</span><span class="w"> </span><span class="vg">file</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">改变文件的读写执行权限</span>
+</pre></div>
+
 
 <h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>管道 <code>|</code></h3>
 <p><em>语法：</em> 命令1 | 命令2<br />
 将命令1的执行结果送给命令2，作为命令2的输入。<br />
 管道使得两个及多个命令可以相互通信，带来了很多的便利。</p>
-<pre><code>ls -R1 | more   # 以分页的方式列出当前目录及其子目录下所有文件的名称
-</code></pre>
+<div class="codehilite"><pre><span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">R1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="vg">more</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">以分页的方式列出当前目录及其子目录下所有文件的名称</span>
+</pre></div>
+
 
 <h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>输入输出重定向<code>&lt;</code> &amp; <code>&gt;</code></h3>
 <p><em>语法：</em> 命令 <code>&lt;</code> 文件<br />
@@ -657,9 +727,10 @@ chmod mode file # 改变文件的读写执行权限
 <em>语法：</em> 命令 <code>&gt;</code> 文件<br />
 将命令的结果送至指定的文件。<br />
 输入输出重定向便于将操作的结果送入文件或读取文件作为操作的输入。</p>
-<pre><code>mail -s &quot;theme&quot; xx@email.com &lt; file1 # 将文件file1当做信件内容发给收件人
-ls -l &gt; list    # 将”ls -l“的结果写入文件list
-</code></pre>
+<div class="codehilite"><pre><span class="vg">mail</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="s2">&quot;theme&quot;</span><span class="w"> </span><span class="vg">xx@email</span><span class="o">.</span><span class="vg">com</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">当做信件内容发给收件人</span>
+<span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">l</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="vg">list</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">将”</span><span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">l</span><span class="err">“的结果写入文件</span><span class="vg">list</span>
+</pre></div>
+
 
 <h2 id="linux_1"><a name="user-content-linux_1" href="#linux_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Linux系统编程</h2>
 <h3 id="vim"><a name="user-content-vim" href="#vim" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Vim编辑器</h3>
@@ -668,20 +739,21 @@ ls -l &gt; list    # 将”ls -l“的结果写入文件list
 <p>普通模式<br />
 在普通模式中，用的是编辑器命令，比如移动光标，删除文本等等。这是Vim启动后的默认模式。常用命令有：</p>
 </blockquote>
-<pre><code>j   # 光标向上移动一行
-k   # 光标向下移动一行
-h   # 光标向左移动一个字符
-l   # 光标向右移动一个字符
-w   # 光标移到下一个单词词首
-e   # 光标移到单词末尾或下一个单词末尾
-b   # 光标回退到词首或回退到上一个单词词首
-dd  # 删除一行
-daw # 删除当前光标所在单词
-r   # 替换一个字符
-x   # 删除当前光标所在的一个字符
-G   # 跳转到文章末尾
-gg  # 跳转到文章开头
-</code></pre>
+<div class="codehilite"><pre><span class="vg">j</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向上移动一行</span>
+<span class="vg">k</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向下移动一行</span>
+<span class="vg">h</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向左移动一个字符</span>
+<span class="vg">l</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向右移动一个字符</span>
+<span class="vg">w</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标移到下一个单词词首</span>
+<span class="vg">e</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标移到单词末尾或下一个单词末尾</span>
+<span class="vg">b</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标回退到词首或回退到上一个单词词首</span>
+<span class="vg">dd</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">删除一行</span>
+<span class="vg">daw</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前光标所在单词</span>
+<span class="vg">r</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">替换一个字符</span>
+<span class="vg">x</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前光标所在的一个字符</span>
+<span class="vg">G</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">跳转到文章末尾</span>
+<span class="vg">gg</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">跳转到文章开头</span>
+</pre></div>
+
 
 <blockquote>
 <p>插入模式<br />
@@ -689,66 +761,72 @@ gg  # 跳转到文章开头
 <p>可视模式<br />
 这个模式与普通模式比较相似。但是移动命令会扩大高亮的文本区域。高亮区域可以是字符、行或者是一块文本。当执行一个非移动命令时，命令会被执行到这块高亮的区域上。Vim的&rdquo;文本对象&rdquo;也能和移动命令一样用在这个模式中。</p>
 </blockquote>
-<pre><code>y   # 复制高亮选中的文本
-p   # 粘贴复制在缓冲区的文本
-</code></pre>
+<div class="codehilite"><pre><span class="vg">y</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">复制高亮选中的文本</span>
+<span class="vg">p</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">粘贴复制在缓冲区的文本</span>
+</pre></div>
+
 
 <blockquote>
 <p>Vim文件配置</p>
 </blockquote>
-<pre><code># 定义F5键用于构建并运行c文件
-map &lt;F5&gt; :call Compilerungcc() &lt;CR&gt;
-func! Compilerungcc()
-exec &quot;w&quot;
-exec &quot;!gcc % -o %c&quot;
-exec &quot;! ./%&lt;&quot;
-endfunc
-</code></pre>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">定义</span><span class="vg">F5</span><span class="err">键用于构建并运行</span><span class="vg">c</span><span class="err">文件</span>
+<span class="vg">map</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">F5</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="vg">call</span><span class="w"> </span><span class="vg">Compilerungcc</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">CR</span><span class="o">&gt;</span>
+<span class="vg">func!</span><span class="w"> </span><span class="vg">Compilerungcc</span><span class="p">()</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;w&quot;</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;!gcc % -o %c&quot;</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;! ./%&lt;&quot;</span>
+<span class="vg">endfunc</span>
+</pre></div>
+
 
 <h3 id="gcc"><a name="user-content-gcc" href="#gcc" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>GCC</h3>
 <p>GCC（GNU Compiler Collection，GNU编译器套装），是一套由GNU开发的编程语言编译器。</p>
-<pre><code>gcc -E hello.c -o hello.i   # 预处理
-gcc -S hello.i -o hello.s   # 编译
-gcc -c hello.s -o hello.o   # 汇编
-gcc hello.o -o hello        # 链接
-</code></pre>
+<div class="codehilite"><pre><span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">E</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">i</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">预处理</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">S</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">i</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">s</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">编译</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">s</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">o</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">汇编</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">o</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">链接</span>
+</pre></div>
+
 
 <p><strong>gcc参数</strong><br />
 <code>gcc -I目录 -l链接库 -L链接库路径</code></p>
 <p><strong>gcc生成链接库</strong>  </p>
-<pre><code># 静态链接库
-gcc -c source.c -o source.o             # 生成.o文件
-ar rcs -o libsource.a source.o          # ar命令将.o文件打包成静态库文件
-ar t libsource.a                        # 查看libsource.a包含哪些文件 
-# 动态链接库
-gcc -c source.c -fpic -o source.o       # 添加-fpic选项生成.o文件
-gcc -shared source.o -o libsource.so    # 生成动态链接库
-</code></pre>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">静态链接库</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="err">生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件</span>
+<span class="vg">ar</span><span class="w"> </span><span class="vg">rcs</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="vg">ar</span><span class="err">命令将</span><span class="o">.</span><span class="vg">o</span><span class="err">文件打包成静态库文件</span>
+<span class="vg">ar</span><span class="w"> </span><span class="vg">t</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="w">                        </span><span class="err">#</span><span class="w"> </span><span class="err">查看</span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="err">包含哪些文件</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="err">动态链接库</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">fpic</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="err">添加</span><span class="o">-</span><span class="vg">fpic</span><span class="err">选项生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">shared</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">so</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">生成动态链接库</span>
+</pre></div>
+
 
 <h3 id="makefile"><a name="user-content-makefile" href="#makefile" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Makefile</h3>
 <blockquote>
 <p>在软件开发中，make是一个工具程序（Utility software），它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。大多数情况下，make被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。<em>makefile</em>便是make用来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行的文件。</p>
 </blockquote>
-<pre><code># makefile预定义变量
-$@ 目标名称
-$^ 所有被依赖的对象
-$&lt; 第一个被依赖的文件
-# 模式规则
-%.o: %.c  # 将所有的.c文件生成.o文件， %是通配符
-# 使用
-cc $(CCFLAGS) -c -o $@ $&lt;
-</code></pre>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="vg">makefile</span><span class="err">预定义变量</span>
+<span class="err">$@</span><span class="w"> </span><span class="err">目标名称</span>
+<span class="err">$</span><span class="o">^</span><span class="w"> </span><span class="err">所有被依赖的对象</span>
+<span class="err">$</span><span class="o">&lt;</span><span class="w"> </span><span class="err">第一个被依赖的文件</span>
+<span class="err">#</span><span class="w"> </span><span class="err">模式规则</span>
+<span class="o">%.</span><span class="nl">o:</span><span class="w"> </span><span class="o">%.</span><span class="vg">c</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将所有的</span><span class="o">.</span><span class="vg">c</span><span class="err">文件生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件，</span><span class="w"> </span><span class="o">%</span><span class="err">是通配符</span>
+<span class="err">#</span><span class="w"> </span><span class="err">使用</span>
+<span class="vg">cc</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="vg">CCFLAGS</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="err">$@</span><span class="w"> </span><span class="err">$</span><span class="o">&lt;</span>
+</pre></div>
+
 
 <h3 id="gdb"><a name="user-content-gdb" href="#gdb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>GDB调试工具</h3>
 <p>GNU调试器(Debugger，缩写：GDB)，是GNU软件系统中的标准调试器。</p>
-<pre><code>gcc -c source.c -o source -g    # 在编译时使用-g选项
-list    # 显示代码
-break   # 设置断点
-watch   # 观察变量，变量值改变时输出值
-print   # 查看变量信息
-step    # 在断点时，用于一步一步继续执行，进入函数内部
-next    # 在断电时，继续执行但不进入函数内部
-</code></pre>
+<div class="codehilite"><pre><span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w"> </span><span class="o">-</span><span class="vg">g</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在编译时使用</span><span class="o">-</span><span class="vg">g</span><span class="err">选项</span>
+<span class="vg">list</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">显示代码</span>
+<span class="vg">break</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">设置断点</span>
+<span class="vg">watch</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">观察变量，变量值改变时输出值</span>
+<span class="vg">print</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">查看变量信息</span>
+<span class="vg">step</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在断点时，用于一步一步继续执行，进入函数内部</span>
+<span class="vg">next</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在断电时，继续执行但不进入函数内部</span>
+</pre></div>
+
 
 <h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>系统编程</h3>
 <blockquote>
@@ -758,42 +836,47 @@ next    # 在断电时，继续执行但不进入函数内部
 <p>在Linux系统中一切皆是文件，很多交互工作是通过读取和写入文件件来完成的。<br />
 文件通过inode（信息节点）访问，inode使用唯一的数值（inode编号）进行标识。一个inode存储文件关联的元数据，如它的修改时间戳、所有者、类型、长度以及文件的数据的地址&ndash;不包含文件名。目录将易读的文件名与inode编号进行映射。文件名与inode的配对也称为链接（link）。<br />
 用户请求打开一个文件时，内核打开包含指定文件名的目录然后搜索该文件。内核通过文件名获得inode编号，然后根据inode编号找到对应的inode。</p>
-<pre><code>// open() 打开文件
-#include &lt;fcntl.h&gt;
-int open (const char *name, int flags, ...);
-// flags: O_RDONLY, O_WRONLY, O_RDWR
-// 打开文件错误时会返回-1，成功则返回文件描述符
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// open() 打开文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">fcntl</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">open</span> <span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">,</span> <span class="p">...);</span>
+<span class="c1">// flags: O_RDONLY, O_WRONLY, O_RDWR</span>
+<span class="c1">// 打开文件错误时会返回-1，成功则返回文件描述符</span>
+</pre></div>
 
-<pre><code>// read() 读取文件
-#include &lt;unistd.h&gt;
-ssize_t read (int fd, void *buf, size_t len);
-// 从文件fd的当前偏移量至多读取len个字节到buf中，成功时返回写入buf中的字节数，出错返回-1
-</code></pre>
 
-<pre><code>// write() 写入文件
-#include &lt;unistd.h&gt;
-ssize_t write (int fd, const void *buf, size_t count);
-// 从文件fd当前位置开始将buf中至多count个字节写入文件中
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// read() 读取文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">ssize_t</span> <span class="n">read</span> <span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="k">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">len</span><span class="p">);</span>
+<span class="c1">// 从文件fd的当前偏移量至多读取len个字节到buf中，成功时返回写入buf中的字节数，出错返回-1</span>
+</pre></div>
 
-<pre><code>// close() 关闭文件
-#include &lt;unistd.h&gt;
-int close(int fd);
-// 解除文件描述符的关联，并分离进程和文件的关联
-</code></pre>
 
-<pre><code>// 其他调用
-off_t lseek(int fd, off_t pos, int origin);     // 移动读写指针
-#include &lt;sys/stat.h&gt;                           // 查看文件属性
-int fstat(int fildes, struct stat *buf);
-int lstat(const char *restrict path, struct stat *restrict buf);
-int stat(const char *restrict path, struct stat *restrict buf);
-// 制作文件硬链接
-int link(const char *path1, const char *path2);
-// 制作符号链接
-int symlink(const char *path1, const char *path2);
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// write() 写入文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">ssize_t</span> <span class="n">write</span> <span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="k">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">count</span><span class="p">);</span>
+<span class="c1">// 从文件fd当前位置开始将buf中至多count个字节写入文件中</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// close() 关闭文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">close</span><span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">);</span>
+<span class="c1">// 解除文件描述符的关联，并分离进程和文件的关联</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// 其他调用</span>
+<span class="n">off_t</span> <span class="n">lseek</span><span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="n">off_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">int</span> <span class="n">origin</span><span class="p">);</span>     <span class="c1">// 移动读写指针</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">stat</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>                           <span class="c1">// 查看文件属性</span>
+<span class="k">int</span> <span class="n">fstat</span><span class="p">(</span><span class="k">int</span> <span class="n">fildes</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">lstat</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">path</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">restrict</span> <span class="k">buf</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">stat</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">path</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">restrict</span> <span class="k">buf</span><span class="p">);</span>
+<span class="c1">// 制作文件硬链接</span>
+<span class="k">int</span> <span class="n">link</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path1</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path2</span><span class="p">);</span>
+<span class="c1">// 制作符号链接</span>
+<span class="k">int</span> <span class="n">symlink</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path1</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path2</span><span class="p">);</span>
+</pre></div>
+
 
 <h4 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>信号与信号处理</h4>
 <p>信号是提供处理异步事件机制的软件终端。信号有一个明确的生命周期：首先，产生信号；然后内核存储信号直到可以发送它；最后，一旦有空闲，内核会适当的处理信号。信号处理通常有三种情况：</p>
@@ -802,45 +885,48 @@ int symlink(const char *path1, const char *path2);
 <li><strong>捕获并处理信号</strong>  内核会暂停该进程正在执行的代码，并跳转到先前注册过的函数。接下来进程执行该函数，执行完后再跳回先前捕获信号的地方继续执行。常见的有SIGINT和SIGTERM。</li>
 <li><strong>执行默认操作</strong>  取决于被发送的信号。默认操作通常是终止进程。</li>
 </ol>
-<pre><code>#include &lt;signal.h&gt;
-void (*signal(int sig, void (*func)(int)))(int);
-typedef void (*sig_t) (int);
-sig_t signal(int sig, sig_t func);
-// sig: 信号种类 func: 接收到信号后调用的函数，参数是被处理信号的标识符
-int sigaction(int sig, const struct sigaction *restrict act, struct sigaction *restrict oact);
-// 设置信号处理动作，signal()不带信号信息，sigaction()带有额外的信号信息
-</code></pre>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">signal</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">signal</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">func</span><span class="p">)(</span><span class="vg">int</span><span class="p">)))(</span><span class="vg">int</span><span class="p">);</span>
+<span class="vg">typedef</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">sig_t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="vg">int</span><span class="p">);</span>
+<span class="vg">sig_t</span><span class="w"> </span><span class="vg">signal</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">sig_t</span><span class="w"> </span><span class="vg">func</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="nl">sig:</span><span class="w"> </span><span class="err">信号种类</span><span class="w"> </span><span class="nl">func:</span><span class="w"> </span><span class="err">接收到信号后调用的函数，参数是被处理信号的标识符</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">sigaction</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">sigaction</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">act</span><span class="p">,</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">sigaction</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">oact</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="err">设置信号处理动作，</span><span class="vg">signal</span><span class="p">()</span><span class="err">不带信号信息，</span><span class="vg">sigaction</span><span class="p">()</span><span class="err">带有额外的信号信息</span>
+</pre></div>
+
 
 <h4 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>进程与线程</h4>
 <p><strong>进程管理</strong><br />
 进程是程序实体的一次运行，是系统进行资源分配和调度的一个基本独立单位。每一个进程都有一个唯一的标识符，即进程ID，简称pid。系统保证某时刻每个pid都是唯一的。</p>
-<pre><code>// 获得进程ID
-#include &lt;sys/types.h&gt;
-#include &lt;unistd.h&gt;
-pid_t getpid(void);     // 返回调用进程的ID
-pid_t getppid(void);    // 返回进程的父进程ID
-// 创建进程
-pid_t fork(void);       // 父子进程不共享数据，随机运行，返回0给子进程pid_t
-pid_t vfork();          // 父子进程共享数据，子进程先运行
-// exec系列系统调用
-int execl(const char *path, const char *arg0, ... /*, (char *)0 */);
-// 将path所指路径的映像载入内存，替换当前进程的映像。execl是可变参数的，但参数列表必须以NULL(0)结尾
-// 终止进程
-void exit(int status);
-int kill(pid_t pid, int sig);
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// 获得进程ID</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">types</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">pid_t</span> <span class="n">getpid</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>     <span class="c1">// 返回调用进程的ID</span>
+<span class="n">pid_t</span> <span class="n">getppid</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>    <span class="c1">// 返回进程的父进程ID</span>
+<span class="c1">// 创建进程</span>
+<span class="n">pid_t</span> <span class="k">fork</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>       <span class="c1">// 父子进程不共享数据，随机运行，返回0给子进程pid_t</span>
+<span class="n">pid_t</span> <span class="n">vfork</span><span class="p">();</span>          <span class="c1">// 父子进程共享数据，子进程先运行</span>
+<span class="c1">// exec系列系统调用</span>
+<span class="k">int</span> <span class="n">execl</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/*, (char *)0 */</span><span class="p">);</span>
+<span class="c1">// 将path所指路径的映像载入内存，替换当前进程的映像。execl是可变参数的，但参数列表必须以NULL(0)结尾</span>
+<span class="c1">// 终止进程</span>
+<span class="k">void</span> <span class="n">exit</span><span class="p">(</span><span class="k">int</span> <span class="n">status</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">kill</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="k">int</span> <span class="n">sig</span><span class="p">);</span>
+</pre></div>
+
 
 <p><strong>线程</strong><br />
 线程是一个“轻量级的进程”。线程自己不拥有系统资源，引入线程后进程只作为除CPU外系统资源的分配单元，线程则作为处理机的分配单元，即线程是独立调度的基本单位，进程是资源拥有的基本单位。</p>
-<pre><code>#include &lt;pthread.h&gt;
-int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);
-// 线程创建, thread: 线程标识符  attr: 线程属性(堆栈大小) start_routine: 线程调用的函数 arg: 函数参数
-void pthread_exit(void *value_ptr); // 线程退出
-// 线程信号量同步
-int pthread_mutex_init(pthread_mutex_t *restrict mutex, const pthread_mutexattr_t *restrict attr);  
-int pthread_mutex_lock(pthread_mutex_t *mutex);
-int pthread_mutex_unlock(pthread_mutex_t *mutex);
-</code></pre>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">pthread</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_create</span><span class="p">(</span><span class="vg">pthread_t</span><span class="w"> </span><span class="o">*</span><span class="vg">thread</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">pthread_attr_t</span><span class="w"> </span><span class="o">*</span><span class="vg">attr</span><span class="p">,</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="vg">start_routine</span><span class="p">)(</span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="vg">arg</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="err">线程创建</span><span class="p">,</span><span class="w"> </span><span class="nl">thread:</span><span class="w"> </span><span class="err">线程标识符</span><span class="w">  </span><span class="nl">attr:</span><span class="w"> </span><span class="err">线程属性</span><span class="p">(</span><span class="err">堆栈大小</span><span class="p">)</span><span class="w"> </span><span class="nl">start_routine:</span><span class="w"> </span><span class="err">线程调用的函数</span><span class="w"> </span><span class="nl">arg:</span><span class="w"> </span><span class="err">函数参数</span>
+<span class="vg">void</span><span class="w"> </span><span class="vg">pthread_exit</span><span class="p">(</span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="vg">value_ptr</span><span class="p">);</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">线程退出</span>
+<span class="o">//</span><span class="w"> </span><span class="err">线程信号量同步</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_init</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">mutex</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">pthread_mutexattr_t</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">attr</span><span class="p">);</span><span class="w">  </span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_lock</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">mutex</span><span class="p">);</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_unlock</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">mutex</span><span class="p">);</span>
+</pre></div>
+
 
 <p><strong>进程间通信</strong><br />
 IPC（InterProcess Communication）函数提供了系统中多个进程之间相互通信的方法。Linux系统中包含以下几种方式的IPC：</p>
@@ -852,42 +938,45 @@ IPC（InterProcess Communication）函数提供了系统中多个进程之间相
 <li>共享内存</li>
 <li>socket网络套接字</li>
 </ol>
-<pre><code>int pipe(int fildes[2]);    // pipe用于父子进程之间，如果父进程从子进程中读取数据，则父进程应关闭fd1，同时子进程关闭fd0；反之，父进程向子进程发送数据，它应该关闭fd0，子进程关闭fd1。
-int mkfifo(const char *path, mode_t mode);  // 创建一个命名管道，用于不同程序之间
-</code></pre>
+<div class="codehilite"><pre><span class="vg">int</span><span class="w"> </span><span class="vg">pipe</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">fildes</span><span class="p">[</span><span class="il">2</span><span class="p">]);</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="vg">pipe</span><span class="err">用于父子进程之间，如果父进程从子进程中读取数据，则父进程应关闭</span><span class="vg">fd1</span><span class="err">，同时子进程关闭</span><span class="vg">fd0</span><span class="err">；反之，父进程向子进程发送数据，它应该关闭</span><span class="vg">fd0</span><span class="err">，子进程关闭</span><span class="vg">fd1</span><span class="err">。</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">mkfifo</span><span class="p">(</span><span class="vg">const</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="o">*</span><span class="vg">path</span><span class="p">,</span><span class="w"> </span><span class="vg">mode_t</span><span class="w"> </span><span class="vg">mode</span><span class="p">);</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="err">创建一个命名管道，用于不同程序之间</span>
+</pre></div>
 
-<pre><code>// 消息队列
-#include &lt;sys/ipc.h&gt;
-#include &lt;sys/msg.h&gt;
-int msgget(key_t key, int msgflg);  // 创建或获取一个消息队列 msgflg通常为IPC_CREAT | IPC_EXCL
-int msgsnd(int msqid, struct msgbuf *msgp, int msgsz, int msgflg); // 向消息队列发送消息
-int msgctl(int msqid, int cmd,  struct msqid_ds *buf); // 控制对消息队列的操作
-int msgrcv(int  msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg); // 接收消息队列消息
-// 信号量机制
-#include &lt;sys/sem.h&gt;
-int semget(key_t key, int nsems, int semflg); // 创建或获取一个信号量
-int semop(int semid, struct sembuf *sops, size_t nsops); // 信号量操作
-int semctl(int semid, int semnum, int cmd, ...); // 信号量控制
-// 共享内存
-#include &lt;sys/shm.h&gt;
-int shmget(key_t key, size_t size, int flags); // 创建或获取一段共享内存
-void *shmat(int shmid, const void *shmaddr, int shmflg); // 将共享内存段连接到进程中的地址
-int shmctl(int shmid, int cmd, struct shmid_ds *buf); // 内存控制
-int shmdt(const void *shmaddr); // 把内存段从晋城地址空间脱离
-</code></pre>
 
-<pre><code>// socket套接字
-#include &lt;sys/socket.h&gt;
-int socket(int domain, int type, int protocol); 
-// domain设置为AF_INET，type: SOCK_STREAM | SOCKDGRAM, protocol设为0
-int bind(int socket, const struct sockaddr *address, socklen_t address_len);
-// 将socket绑定到本地计算机的一个端口上,address_len使用sizeof()获取
-int connect(int socket, const struct sockaddr *address, socklen_t address_len); // 连接
-int listen(int socket, int backlog); // 侦听，backlog:允许进入连接的个数
-int accept(int socket, struct sockaddr *address, socklen_t *address_len); // 处理连接
-int send(int socket, const void *buffer, size_t length, int flags); // 发送数据
-int recv(int socket, void *buffer, size_t length, int flags); // 接收数据
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// 消息队列</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">ipc</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">msg</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">msgget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span>  <span class="c1">// 创建或获取一个消息队列 msgflg通常为IPC_CREAT | IPC_EXCL</span>
+<span class="k">int</span> <span class="n">msgsnd</span><span class="p">(</span><span class="k">int</span> <span class="n">msqid</span><span class="p">,</span> <span class="k">struct</span> <span class="n">msgbuf</span> <span class="o">*</span><span class="n">msgp</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgsz</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span> <span class="c1">// 向消息队列发送消息</span>
+<span class="k">int</span> <span class="n">msgctl</span><span class="p">(</span><span class="k">int</span> <span class="n">msqid</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span>  <span class="k">struct</span> <span class="n">msqid_ds</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span> <span class="c1">// 控制对消息队列的操作</span>
+<span class="k">int</span> <span class="n">msgrcv</span><span class="p">(</span><span class="k">int</span>  <span class="n">msqid</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="n">msgp</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">msgsz</span><span class="p">,</span> <span class="n">long</span> <span class="n">msgtyp</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span> <span class="c1">// 接收消息队列消息</span>
+<span class="c1">// 信号量机制</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">sem</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">semget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="k">int</span> <span class="n">nsems</span><span class="p">,</span> <span class="k">int</span> <span class="n">semflg</span><span class="p">);</span> <span class="c1">// 创建或获取一个信号量</span>
+<span class="k">int</span> <span class="n">semop</span><span class="p">(</span><span class="k">int</span> <span class="n">semid</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sembuf</span> <span class="o">*</span><span class="n">sops</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">nsops</span><span class="p">);</span> <span class="c1">// 信号量操作</span>
+<span class="k">int</span> <span class="n">semctl</span><span class="p">(</span><span class="k">int</span> <span class="n">semid</span><span class="p">,</span> <span class="k">int</span> <span class="n">semnum</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span> <span class="p">...);</span> <span class="c1">// 信号量控制</span>
+<span class="c1">// 共享内存</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">shm</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">shmget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 创建或获取一段共享内存</span>
+<span class="k">void</span> <span class="o">*</span><span class="n">shmat</span><span class="p">(</span><span class="k">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">,</span> <span class="k">int</span> <span class="n">shmflg</span><span class="p">);</span> <span class="c1">// 将共享内存段连接到进程中的地址</span>
+<span class="k">int</span> <span class="n">shmctl</span><span class="p">(</span><span class="k">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">shmid_ds</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span> <span class="c1">// 内存控制</span>
+<span class="k">int</span> <span class="n">shmdt</span><span class="p">(</span><span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">);</span> <span class="c1">// 把内存段从晋城地址空间脱离</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// socket套接字</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">socket</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">socket</span><span class="p">(</span><span class="k">int</span> <span class="n">domain</span><span class="p">,</span> <span class="k">int</span> <span class="k">type</span><span class="p">,</span> <span class="k">int</span> <span class="n">protocol</span><span class="p">);</span> 
+<span class="c1">// domain设置为AF_INET，type: SOCK_STREAM | SOCKDGRAM, protocol设为0</span>
+<span class="k">int</span> <span class="k">bind</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="n">address_len</span><span class="p">);</span>
+<span class="c1">// 将socket绑定到本地计算机的一个端口上,address_len使用sizeof()获取</span>
+<span class="k">int</span> <span class="n">connect</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="n">address_len</span><span class="p">);</span> <span class="c1">// 连接</span>
+<span class="k">int</span> <span class="n">listen</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">int</span> <span class="n">backlog</span><span class="p">);</span> <span class="c1">// 侦听，backlog:允许进入连接的个数</span>
+<span class="k">int</span> <span class="n">accept</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="o">*</span><span class="n">address_len</span><span class="p">);</span> <span class="c1">// 处理连接</span>
+<span class="k">int</span> <span class="n">send</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 发送数据</span>
+<span class="k">int</span> <span class="n">recv</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 接收数据</span>
+</pre></div>
+
 
 <h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>项目开发</h2>
 <p>小组选择了聊天软件项目。</p>
@@ -899,16 +988,17 @@ int recv(int socket, void *buffer, size_t length, int flags); // 接收数据
 作为评审负责人，我主要完成了概要设计文档的评审工作，写作了概要设计评审记录。此外，对设计中的技术点进行调查分析，主要包括QT的网络库使用、QT文件配置和Redis数据库的使用。</p>
 <h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编码阶段</h3>
 <p>与另一名小组成员负责服务器端程序编写。个人主要完成 SQLite3和 Redis数据库相关代码编写。将数据库相关代码封装成概要设计相关接口。</p>
-<pre><code>// 使用hiredis与Redis数据库交互
-redisContext *c = redisConnect(&quot;127.0.0.1&quot;, 6379);  // 连接本地Redis数据库
-redisReply *r = (redisReply *)redisCommand(c, command); // 执行并返回结果
-freeReplyObject(r); // 使用完结果后需要释放对象占用的空间
-redisFree(c);       // 释放连接
-// SQLite3
-Sqlite3 *db = NULL; // 定义一个数据对象
-int rc = sqlite3_open(&quot;test.db&quot;, &amp;db); // 打开数据库
-int sqlite3_exec(sqlite3*, const char *sql, int(*callback)(void*,int,char**,char**), void *, char **errmsg );   // 执行语句
-</code></pre>
+<div class="codehilite"><pre><span class="c1">// 使用hiredis与Redis数据库交互</span>
+<span class="n">redisContext</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">redisConnect</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mh">6379</span><span class="p">);</span>  <span class="c1">// 连接本地Redis数据库</span>
+<span class="n">redisReply</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">redisReply</span> <span class="o">*</span><span class="p">)</span><span class="n">redisCommand</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">command</span><span class="p">);</span> <span class="c1">// 执行并返回结果</span>
+<span class="n">freeReplyObject</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="c1">// 使用完结果后需要释放对象占用的空间</span>
+<span class="n">redisFree</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>       <span class="c1">// 释放连接</span>
+<span class="c1">// SQLite3</span>
+<span class="n">Sqlite3</span> <span class="o">*</span><span class="n">db</span> <span class="o">=</span> <span class="no">NULL</span><span class="p">;</span> <span class="c1">// 定义一个数据对象</span>
+<span class="k">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">sqlite3_open</span><span class="p">(</span><span class="s">&quot;test.db&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">db</span><span class="p">);</span> <span class="c1">// 打开数据库</span>
+<span class="k">int</span> <span class="n">sqlite3_exec</span><span class="p">(</span><span class="n">sqlite3</span><span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">sql</span><span class="p">,</span> <span class="k">int</span><span class="p">(</span><span class="o">*</span><span class="n">callback</span><span class="p">)(</span><span class="k">void</span><span class="o">*</span><span class="p">,</span><span class="k">int</span><span class="p">,</span><span class="n">char</span><span class="o">**</span><span class="p">,</span><span class="n">char</span><span class="o">**</span><span class="p">),</span> <span class="k">void</span> <span class="o">*</span><span class="p">,</span> <span class="n">char</span> <span class="o">**</span><span class="n">errmsg</span> <span class="p">);</span>   <span class="c1">// 执行语句</span>
+</pre></div>
+
 
 <p>编码阶段结束后，个人完成了代码评审，写作了代码评审记录。</p>
 <h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>测试阶段</h3>
@@ -957,84 +1047,86 @@ int sqlite3_exec(sqlite3*, const char *sql, int(*callback)(void*,int,char**,char
 </body>
 </html>
 <script type="text/javascript">
-	var oClockAnalog = {
-    aSecond:         [],
-    dtDate:          new Date(),
-    iCurrSecond:     -1,
-    iHourRotation:   -1,
-    iMinuteRotation: -1,
-    iStepSize:       10,
-    iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
-    iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
+var oClockAnalog = {
+	aSecond:         [],
+	dtDate:          new Date(),
+	iCurrSecond:     -1,
+	iHourRotation:   -1,
+	iMinuteRotation: -1,
+	iStepSize:       10,
+	iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
+	iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
 
-    fAnimate:       function() {
-        if (this.aSecond.length > 0) {
-            this.fRotate("analogsecond", this.aSecond[0]);
-            this.aSecond = this.aSecond.slice(1);
-        }
-    },
-    fGetHour:     function() {
-        var iHours = this.dtDate.getHours();
-        if (iHours > 11) {
-            iHours -= 12;
-        }
-        return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
-    },
-    fGetMinute:     function() {
-        return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
-    },
-    fInit:          function() {
-        this.iHourRotation = this.fGetHour();
-        this.fRotate("analoghour", this.iHourRotation);
+	fAnimate:       function() {
+	    if (this.aSecond.length > 0) {
+	        this.fRotate("analogsecond", this.aSecond[0]);
+	        this.aSecond = this.aSecond.slice(1);
+	    }
+	},
+	fGetHour:     function() {
+	    var iHours = this.dtDate.getHours();
+	    if (iHours > 11) {
+	        iHours -= 12;
+	    }
+	    return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
+	},
+	fGetMinute:     function() {
+	    return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
+	},
+	fInit:          function() {
+	    this.iHourRotation = this.fGetHour();
+	    this.fRotate("analoghour", this.iHourRotation);
 
-        this.iMinuteRotation = this.fGetMinute();
-        this.fRotate("analogminute", this.iMinuteRotation);
+	    this.iMinuteRotation = this.fGetMinute();
+	    this.fRotate("analogminute", this.iMinuteRotation);
 
-        this.iCurrSecond = this.dtDate.getSeconds();
-        this.fRotate("analogsecond", (6 * this.iCurrSecond));
-    },
-    fRotate:        function(sID, iDeg) {
-        var sCSS = ("rotate(" + iDeg + "deg)");
-        $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
-    },
-    fStepSize:     function(iTo, iFrom) {
-        var iAnimDiff = (iFrom - iTo);
-        if (iAnimDiff > 0) {
-            iAnimDiff -= 360;
-        }
-        return iAnimDiff / this.iStepSize;
-    },
-    fUpdate:        function() {
-        // update time
-        this.dtDate = new Date();
+	    this.iCurrSecond = this.dtDate.getSeconds();
+	    this.fRotate("analogsecond", (6 * this.iCurrSecond));
+	},
+	fRotate:        function(sID, iDeg) {
+	    var sCSS = ("rotate(" + iDeg + "deg)");
+	    $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
+	},
+	fStepSize:     function(iTo, iFrom) {
+	    var iAnimDiff = (iFrom - iTo);
+	    if (iAnimDiff > 0) {
+	        iAnimDiff -= 360;
+	    }
+	    return iAnimDiff / this.iStepSize;
+	},
+	fUpdate:        function() {
+	    // update time
+	    this.dtDate = new Date();
 
-        // hours
-        var iTemp = this.fGetHour();
-        if (this.iHourRotation != iTemp) {
-            this.iHourRotation = iTemp;
-            this.fRotate("analoghour", iTemp);
-        }
+	    // hours
+	    var iTemp = this.fGetHour();
+	    if (this.iHourRotation != iTemp) {
+	        this.iHourRotation = iTemp;
+	        this.fRotate("analoghour", iTemp);
+	    }
 
-        // minutes
-        iTemp = this.fGetMinute();
-        if (this.iMinuteRotation != iTemp) {
-            this.iMinuteRotation = iTemp;
-            this.fRotate("analogminute", iTemp);
-        }
+	    // minutes
+	    iTemp = this.fGetMinute();
+	    if (this.iMinuteRotation != iTemp) {
+	        this.iMinuteRotation = iTemp;
+	        this.fRotate("analogminute", iTemp);
+	    }
 
-        // seconds
-        if (this.iCurrSecond != this.dtDate.getSeconds()) {
-            var iRotateFrom = (6 * this.iCurrSecond);
-            this.iCurrSecond = this.dtDate.getSeconds();
-            var iRotateTo = (6 * this.iCurrSecond);
+	    // seconds
+	    if (this.iCurrSecond != this.dtDate.getSeconds()) {
+	        var iRotateFrom = (6 * this.iCurrSecond);
+	        this.iCurrSecond = this.dtDate.getSeconds();
+	        var iRotateTo = (6 * this.iCurrSecond);
 
-            // push steps into array
-            var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
-            for (var i = 0; i < this.iStepSize; i++) {
-                iRotateFrom -= iDiff;
-                this.aSecond.push(Math.round(iRotateFrom));
-            }
-        }
-    }
-};   ClockInit()
+	        // push steps into array
+	        var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
+	        for (var i = 0; i < this.iStepSize; i++) {
+	            iRotateFrom -= iDiff;
+	            this.aSecond.push(Math.round(iRotateFrom));
+	        }
+	    }
+	}
+};   
+
+oClockAnalog.fInit();
 </script>
