@@ -17,7 +17,9 @@ class GithubStyle(Style):
         Comment.Preproc:             "bold #999999 noitalic",
         Comment.Single:              "#999988",
         Comment.Special:             "bold #999999",
-        Error:                       "bg:#e3d2d2 #a61717",
+        # I changed the error type to comment
+        # Error:                       "bg:#e3d2d2 #a61717",
+        Error:                       "italic #999988",
         Generic.Deleted:             "bg:#ffdddd #000000",
         Generic.Emph:                "italic",
         Generic.Error:               "#aa0000",

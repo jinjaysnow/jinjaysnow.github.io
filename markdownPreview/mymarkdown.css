@@ -61,7 +61,11 @@ body {
   border: 1px solid #ddd;
   outline: solid #f8f8f8;
 }
-
+/* modify codehilite */
+.codehilite pre .err {
+  color: #000000;
+  /* background-color: #FFFFFF; */
+}
 /* Links */
 a{ color: #06d; text-decoration:none; }
 a:hover{ color: #06e; text-decoration: underline; }

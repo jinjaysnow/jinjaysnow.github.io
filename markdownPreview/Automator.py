@@ -10,21 +10,22 @@ import os, datetime, sys
 # from mako.template import Template
 import json
 from MarkdownPreview import MarkdownCompiler
-# from markdownPreview.MarkdownPreview import MarkdownCompiler
 
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
 		print "filepath is not reasonable"
 		return
-	# modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime(filePath))
+	modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime(filePath))
 
 	# generate full blog html file
 	# TODO: add the changedTime
 
 	mdc = MarkdownCompiler(filePath)
 	mdc.default_css = "mymarkdown.css"
-	finalHtml, body = mdc.run()
 
+	finalHtml, body = mdc.run()
+	finalHtml = finalHtml.replace('{{ DATE }}', "<p style=\"text-align: right; color: gray;\"><br>" + modifyTime.strftime("%Y-%m-%d %H:%M:%S") + u"</p>", 1)
+	
 	meta = mdc.settings.get("meta", {})
 
 	try:

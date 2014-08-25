@@ -69,7 +69,11 @@ body {
   border: 1px solid #ddd;
   outline: solid #f8f8f8;
 }
-
+/* modify codehilite */
+.codehilite pre .err {
+  color: #000000;
+  /* background-color: #FFFFFF; */
+}
 /* Links */
 a{ color: #06d; text-decoration:none; }
 a:hover{ color: #06e; text-decoration: underline; }
@@ -579,7 +583,7 @@ only screen and (max-width: 768px){
 </style><style>.codehilite pre .hll { background-color: #ffffcc }
 .codehilite pre  { background: #f8f8f8; color: #333333 }
 .codehilite pre .c { color: #999988; font-style: italic } /* Comment */
-.codehilite pre .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.codehilite pre .err { color: #999988; font-style: italic } /* Error */
 .codehilite pre .k { font-weight: bold } /* Keyword */
 .codehilite pre .n { color: #333333 } /* Name */
 .codehilite pre .o { font-weight: bold } /* Operator */
@@ -694,6 +698,7 @@ MathJax.Hub.Config({
     <span class="n">print</span> $<span class="p">{</span><span class="n">x</span><span class="p">}</span>
 <span class="c">% endfor</span>
 </pre></div>
+			<p style="text-align: right; color: gray;"><br>2014-08-23 08:48:52</p>
 		</div>
 	</div>
 	<div id="side">
