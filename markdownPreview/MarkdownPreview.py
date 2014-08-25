@@ -338,11 +338,11 @@ class Compiler(object):
             absolute = False
             if src.startswith('file://'):
                 src = src.replace('file://', '', 1)
-                if sublime.platform() == "windows" and not src.startswith('//'):
-                    src = src.lstrip("/")
+                # if sublime.platform() == "windows" and not src.startswith('//'):
+                #     src = src.lstrip("/")
                 absolute = True
-            elif sublime.platform() == "windows" and RE_WIN_DRIVE.match(src) is not None:
-                absolute = True
+            # elif sublime.platform() == "windows" and RE_WIN_DRIVE.match(src) is not None:
+            #     absolute = True
 
             # Make sure we are working with an absolute path
             if not src.startswith(exclusion_list):
@@ -451,9 +451,11 @@ class Compiler(object):
         if self.meta_title is not None:
             title = self.meta_title
         else:
-            title = self.view.name()
+            title = self.filename
+        
+        # TODO: I changed here
         if not title:
-            fn = self.view.file_name()
+            fn = self.filename
             title = 'untitled' if not fn else os.path.splitext(os.path.basename(fn))[0]
         return '<title>%s</title>' % cgi.escape(title)
 

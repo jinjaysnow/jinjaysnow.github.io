@@ -8,7 +8,6 @@ import os
 pygment_path = os.path.join("lib")
 if pygment_path not in sys.path:
     sys.path.append(pygment_path)
-# In the sublime environment, there just appears to be no other way.
 # Loop through and import the submodules so we can find them later
 for parent in ("lexers", "styles"):
     parent_folder = os.path.join(pygment_path, "markdown_preview_lib", "pygments", parent)

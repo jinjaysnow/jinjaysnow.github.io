@@ -7,7 +7,7 @@
 
 import markdown, codecs
 import os, datetime, sys
-from mako.template import Template
+# from mako.template import Template
 import json
 from MarkdownPreview import MarkdownCompiler
 # from markdownPreview.MarkdownPreview import MarkdownCompiler
@@ -16,16 +16,15 @@ def generateFile(filePath):
 	if not os.path.isfile(filePath):
 		print "filepath is not reasonable"
 		return
-	# createTime = os.path.getctime(filePath)
-	# dateFolder = datetime.date.fromtimestamp(createTime).strftime("%Y-%m")
-	modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime(filePath))
-	# generate html file
-	text = codecs.open(filePath, mode="r", encoding="utf-8")
-	text = text.read()
-	# markdown extensions
-	md = markdown.Markdown(extensions = ['codehilite', 'extra', 'meta', 'fenced_code', 'tables'])
-	html = md.convert(text)
-	meta = md.Meta
+	# modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime(filePath))
+
+	# generate full blog html file
+	# TODO: add the changedTime
+
+	mdc = MarkdownCompiler(filePath)
+	finalHtml, body = mdc.run()
+
+	meta = mdc.settings.get("meta", {})
 
 	try:
 		fileName = meta["title"][0]
@@ -34,6 +33,16 @@ def generateFile(filePath):
 	except :
 		print "there is no essential meta"
 		return
+
+	if not os.path.isdir("../blog/" + dateFolder):
+		os.mkdir("../blog/" + dateFolder)
+
+	output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w",
+                          encoding="utf-8", 
+                          errors="xmlcharrefreplace")
+	
+	output_file.write(finalHtml)
+	output_file.close()
 
 	# generate Brief File to be used by updateIndex
 	if not os.path.isdir("../brief"):
@@ -76,25 +85,8 @@ def generateFile(filePath):
 			json.dump(fc, f)
 			f.close()
 
-	# generate full blog html file
-	# TODO: add the blog css
-	if not os.path.isdir("../blog/" + dateFolder):
-		os.mkdir("../blog/" + dateFolder)
-
-	# mytempFile = Template(codecs.open("../templates/head.tm.html", "r", encoding="utf-8").read())
-	# finalHtml = mytempFile.render(title=fileName, blogbody=html, modifydate=modifyTime.strftime("%Y-%m-%d %H:%I:%S"))
-	mdc = MarkdownCompiler(filePath)
-	finalHtml, body = mdc.run()
-
-	output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w",
-                          encoding="utf-8", 
-                          errors="xmlcharrefreplace")
-	
-	output_file.write(finalHtml)
-	output_file.close()
-
 if __name__ == '__main__':
-	# When there is no args, it will generate all ".*md" files by default. 
+	# When there is no args, it will generate all "../blog/.*md" files by default. 
 	if len(sys.argv) == 1:
 		currentDir = os.listdir('../blog/')
 		import re

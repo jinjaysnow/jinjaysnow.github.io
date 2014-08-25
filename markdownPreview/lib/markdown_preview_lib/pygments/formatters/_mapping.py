@@ -69,8 +69,9 @@ if __name__ == '__main__':
         if filename.endswith('.py') and not filename.startswith('_'):
             module_name = 'pygments.formatters.%s' % filename[:-3]
             print(module_name)
-            import sublime
-            if int(sublime.version()) >= 3000:
+            # import sublime
+            # if int(sublime.version()) >= 3000:
+            if False:
                 import importlib
                 from .....helper import INSTALLED_DIRECTORY
                 mod = importlib.import_module(INSTALLED_DIRECTORY + '.lib.markdown_preview_lib.%s' % module_name)

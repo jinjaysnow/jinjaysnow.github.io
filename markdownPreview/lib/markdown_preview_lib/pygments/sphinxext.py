@@ -92,8 +92,9 @@ class PygmentsDoc(Directive):
         moduledocstrings = {}
         for classname, data in sorted(LEXERS.items(), key=lambda x: x[0]):
             module = data[0]
-            import sublime
-            if int(sublime.version()) >= 3000:
+            # import sublime
+            # if int(sublime.version()) >= 3000:
+            if False:
                 import importlib
                 from ....helper import INSTALLED_DIRECTORY
                 mod = importlib.import_module(INSTALLED_DIRECTORY + '.lib.markdown_preview_lib.%s' % module)
