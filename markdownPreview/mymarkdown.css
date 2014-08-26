@@ -557,18 +557,18 @@ footer {
   #blog {width: 100% !important;}
   #side {display: none!important;}
   #markdown{max-width: 98% !important;}
-  footer{margin-left:10%; width: 80%;}
+  footer{margin-left:10%; margin-right: 10%;}
 }
 
 @media 
 only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait), 
-only screen and (max-width: 800px) ,
+only screen and (max-device-width:768px),
 only screen and (width: 768px),
 only screen and (max-width: 768px){
   body{ font-size:16px; }
   #blog {width: 100% !important;}
   #side {display: none !important;}
   #markdown{max-width: 98% !important; padding: 2px;}
-  footer{margin-left: 10%; width: 80%;}
+  footer{margin-left: 10%; margin-right: 10%;}
 }
 
