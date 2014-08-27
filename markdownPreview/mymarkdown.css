@@ -35,22 +35,47 @@ body {
   margin: 0;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  width: 100% !important;
+  min-height: 30px;
+  display: block;
+  background: #f7f7f7;
+  border-bottom: solid 1px #808080;
+  z-index: 1023;
+  opacity: 0.4;
+}
+
+.navigation li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.navigation li a {
+  display: block;
+  padding: 1em 0.5em;
+}
+
 #side {
   background-color: #F8F8F8;
   position: fixed;
   margin-right: 0 !important;
-  bottom: 0 !important;
-  top:10px !important;
+  /*bottom: 5% !important;*/
   left: 71%;
-  height: 90%;
+  margin-top: 5%;
+  top: 3em;
+  /*height: 80%;*/
   width: 28% !important;
   border: 1px solid #ddd;
   outline: solid #f8f8f8;
 }
+
 #blog {
   margin-left: 0 !important;
   margin-right: 20%;
-  top: 0 !important;
+  margin-top: 5%;
+  top: 3em;
+  /*top: 0 !important;*/
   width: 70% !important;
 }
 

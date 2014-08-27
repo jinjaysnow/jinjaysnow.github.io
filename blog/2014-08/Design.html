@@ -43,22 +43,47 @@ body {
   margin: 0;
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  width: 100% !important;
+  min-height: 30px;
+  display: block;
+  background: #f7f7f7;
+  border-bottom: solid 1px #808080;
+  z-index: 1023;
+  opacity: 0.4;
+}
+
+.navigation li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.navigation li a {
+  display: block;
+  padding: 1em 0.5em;
+}
+
 #side {
   background-color: #F8F8F8;
   position: fixed;
   margin-right: 0 !important;
-  bottom: 0 !important;
-  top:10px !important;
+  /*bottom: 5% !important;*/
   left: 71%;
-  height: 90%;
+  margin-top: 5%;
+  top: 3em;
+  /*height: 80%;*/
   width: 28% !important;
   border: 1px solid #ddd;
   outline: solid #f8f8f8;
 }
+
 #blog {
   margin-left: 0 !important;
   margin-right: 20%;
-  top: 0 !important;
+  margin-top: 5%;
+  top: 3em;
+  /*top: 0 !important;*/
   width: 70% !important;
 }
 
@@ -675,6 +700,58 @@ MathJax.Hub.Config({
 	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
 </head>
 <body>
+<!-- 		<ul class="navigation" role="navigation">
+			<li><a href="#">主页</a></li>
+			<li><a href="#">博客</a></li>
+			<li><a href="#">关于我</a></li>
+		</ul> -->	
+		<div id="main-navigation-container" class="clearfix">
+		  <div id="main-navigation">
+		    <ul class="navigation-menu">
+		      <li><a href="">Home</a></li>
+		      <li>
+		        <a href="">Menu Item 1</a>
+		        <ul class="navigation-sub-menu">
+		          <li><a href="">Sub Menu Item 1</a></li>
+		          <li><a href="">Sub Menu Item 2</a></li>
+		          <li><a href="">Sub Menu Item 3</a></li>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="">Menu Item 2</a>
+		        <ul class="navigation-sub-menu">
+		          <li><a href="">Sub Menu Item 1</a></li>
+		          <li><a href="">Sub Menu Item 2</a></li>
+		          <li><a href="">Sub Menu Item 3</a></li>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="">Menu Item 3</a>
+		        <ul class="navigation-sub-menu">
+		          <li><a href="">Sub Menu Item 1</a></li>
+		          <li><a href="">Sub Menu Item 2</a></li>
+		          <li><a href="">Sub Menu Item 3</a></li>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="">Menu Item 4</a>
+		        <ul class="navigation-sub-menu">
+		          <li><a href="">Sub Menu Item 1</a></li>
+		          <li><a href="">Sub Menu Item 2</a></li>
+		          <li><a href="">Sub Menu Item 3</a></li>
+		        </ul>
+		      </li>
+		      <li>
+		        <a href="">Menu Item 5</a>
+		        <ul class="navigation-sub-menu">
+		          <li><a href="">Sub Menu Item 1</a></li>
+		          <li><a href="">Sub Menu Item 2</a></li>
+		          <li><a href="">Sub Menu Item 3</a></li>
+		        </ul>
+		      </li>
+		    </ul>
+		  </div><!-- main-navigation -->
+		</div><!-- main-navigation-container -->
 	<div id="blog">
 		<div id="markdown" >
 			<h2 id="universal"><a name="user-content-universal" href="#universal" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Universal</h2>
