@@ -47,3 +47,5 @@ $$F(x)=\int \_{-\infty}^x{f(x)}{dx},\quad P(x\in D)=\int \_{D}{f(x)}dx$$
 $X\sim U[a, b]\quad EX=\frac {a+b}{2} \quad DX=\frac {(b-a)^2}{12}$
 #### 指数分布
 $X\sim E(\lambda) \quad f(x)=\begin{cases} \lambda e^{-\lambda x} \quad,x\ge 0 \\\\ 0\quad \quad \quad ,x < 0 \end{cases}\quad EX=\frac{1}{\lambda}\quad DX=\frac{1}{\lambda  ^2}$
+#### 正态分布
+$X\sim N(\mu, \sigma ^2)$ $$f(x)=\frac {1}{\sqrt{2\pi}\sigma}e^{-\frac {(x-\mu)^2}{2\sigma ^2}}$$ $\sigma$越小，曲线越陡峭。标准正态：$X\sim N(0,1)$。
