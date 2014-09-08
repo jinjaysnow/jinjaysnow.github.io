@@ -6,7 +6,7 @@ Date:    2014-09
 
 ## 考研概率论复习
 ### 概率基本公式
-$ P(A-B) = P(A-AB) = P(A)-P(AB)$
+$P(A-B) = P(A-AB) = P(A)-P(AB)$
 全概率公式： $${A}\_{1}\cdots{A}\_{n} 是 \Omega 的一个分划, 则有 P(B)=\sum \_{i=1}^{n}{P(B|{A}\_{i})\cdot P({A}\_{i})}$$
 贝叶斯公式：
 $$P({A}\_{i}|B)=\frac {P(B|{A}\_{i})\cdot P({A}\_{i})}{\sum \_{j=1}^{n}{P(B|{A}\_{j})P({A}\_{j})}}$$
@@ -36,3 +36,14 @@ $时间发生k次\quad P(x=k)=C\_{k-1}^{r-1}p^r(1-p)^{k-r} \quad EX=\frac {r}{q}
 
 ### 概率密度函数
 >设随机变量$X$的分布函数为$F(x)$，若存在非负函数$f(x)$，使得对任意实数$x$，有$$F(x)=\int \_{-\infty}^{x}{f(t)}{dt}，$$则称$X$为连续型变量。$f(x)$称为$X$的**概率密度函数**。
+
+#### 概率密度函数性质
+1. 非负性 $f(x) \ge 0$。
+2. 规范性 $\int \_{-\infty}^{+\infty}{f(x)}{dx}$
+$$F(x)=\int \_{-\infty}^x{f(x)}{dx},\quad P(x\in D)=\int \_{D}{f(x)}dx$$
+
+### 常用连续性随机变量分布
+#### 均匀分布
+$X\sim U[a, b]\quad EX=\frac {a+b}{2} \quad DX=\frac {(b-a)^2}{12}$
+#### 指数分布
+$X\sim E(\lambda) \quad f(x)=\begin{cases} \lambda e^{-\lambda x} \quad,x\ge 0 \\\\ 0\quad \quad \quad ,x < 0 \end{cases}\quad EX=\frac{1}{\lambda}\quad DX=\frac{1}{\lambda  ^2}$
