@@ -168,7 +168,8 @@ class Compiler(object):
     ''' Do the markdown converting '''
     default_css = "markdown.css"
     filename = "../first.md"
-    def __init__(self, file_name):
+    html_template = None
+    def __init__(self, file_name, html_template = None):
         self.filename = file_name
 
     def isurl(self, css_name):
@@ -488,7 +489,11 @@ class Compiler(object):
 
         body = self.convert_markdown(contents)
 
-        html_template = self.settings.get('html_template')
+        # add self.html_template, it can be assigned.
+        if self.html_template is None:
+            html_template = self.settings.get('html_template')
+        else:
+            html_template = self.html_template
 
         # use customized html template if given
         if self.settings.get('html_simple', False):

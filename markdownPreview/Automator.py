@@ -7,7 +7,6 @@
 
 import markdown, codecs
 import os, datetime, sys
-# from mako.template import Template
 import json
 from MarkdownPreview import MarkdownCompiler
 
@@ -18,16 +17,14 @@ def generateFile(filePath):
 	modifyTime = datetime.datetime.fromtimestamp(os.path.getmtime(filePath))
 
 	# generate full blog html file
-	# TODO: add the changedTime
-
 	mdc = MarkdownCompiler(filePath)
 	mdc.default_css = "mymarkdown.css"
 
 	finalHtml, body = mdc.run()
+	# add date
 	finalHtml = finalHtml.replace('{{ DATE }}', "<p style=\"text-align: right; color: gray;\"><br>" + modifyTime.strftime("%Y-%m-%d %H:%M:%S") + u"</p>", 1)
 	
 	meta = mdc.settings.get("meta", {})
-
 	try:
 		fileName = meta["title"][0]
 		dateFolder = meta["date"][0]
