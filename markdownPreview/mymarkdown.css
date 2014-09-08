@@ -56,6 +56,90 @@ nav {
   padding: 1em 0.5em;
 }
 
+/* nav */
+#main-navigation-container {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background-color: #333333;
+  box-shadow: 0px 0px 5px #000000;
+}
+
+#main-navigation {
+  margin: 0px auto 0px auto;
+  width: 1000px;
+}
+
+ul.navigation-menu {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  list-style-type: none;
+}
+
+ul.navigation-menu li {
+  float: left;
+}
+
+ul.navigation-menu li:hover {
+  background-color: #cccccc;
+}
+
+ul.navigation-menu li a:link, .navigation-menu li a:visited {
+  display: block;
+  padding: 10px 20px 10px 20px;
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 1px 1px #000000;
+}
+
+ul.navigation-sub-menu {
+  visibility: hidden;
+  position: absolute;
+  z-index: 10001;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  box-shadow: 1px 1px 2px #cccccc;
+  -webkit-box-shadow: 1px 1px 2px #cccccc;
+  -moz-box-shadow: 1px 1px 2px #cccccc;
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+ul.navigation-menu li:hover > ul.navigation-sub-menu {
+  visibility: visible;
+}
+
+ul.navigation-sub-menu li {
+  float: none;
+}
+
+ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
+  display: block;
+  padding: 5px 20px 5px 20px;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #000000;
+  text-shadow: 0px 0px;
+}
+
+/* clearfix */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  content: " ";
+}
+
+/* IE6 clearfix */
+* html .clearfix {
+  zoom: 1;
+}
+
+/* end of navigation */
 #side {
   background-color: #F8F8F8;
   position: fixed;
