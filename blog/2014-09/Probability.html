@@ -838,7 +838,30 @@ $$F(x)=\int _{-\infty}^x{f(x)}{dx},\quad P(x\in D)=\int _{D}{f(x)}dx$$</li>
 <p>$X\sim E(\lambda) \quad f(x)=\begin{cases} \lambda e^{-\lambda x} \quad,x\ge 0 \\ 0\quad \quad \quad ,x &lt; 0 \end{cases}\quad EX=\frac{1}{\lambda}\quad DX=\frac{1}{\lambda  ^2}$</p>
 <h4 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>正态分布</h4>
 <p>$X\sim N(\mu, \sigma ^2)$ $$f(x)=\frac {1}{\sqrt{2\pi}\sigma}e^{-\frac {(x-\mu)^2}{2\sigma ^2}}$$ $\sigma$越小，曲线越陡峭。标准正态：$X\sim N(0,1)$。</p>
-			<p style="text-align: right; color: gray;"><br>2014-09-08 23:34:35</p>
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>随机变量函数的分布</h3>
+<p>对于$y=g(x)$，利用$f_{Y}(y)=F_{Y}^{\prime}(y)$有：$$F_{Y}(y)=F_{Y}(Y\le y)=P(g(x)\le y)$$</p>
+<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>二维随机变量</h3>
+<blockquote>
+<p>联合分布函数$F(x,y)=P(X\le x,Y\le y)=\int _{-\infty}^{y}{f(x,y)}{dxdy}$<br />
+边缘分布$\quad \quad F_{X}(x)=F(x,+\infty )=\int _{-\infty}^{x}\int _{-\infty}^{+\infty}f(x,y)dxdy$<br />
+边缘概率密度$\quad f_{X}(x)=F_{X}^{\prime}(x)=\int _{-\infty}^{+\infty}f(x,y)dy$<br />
+重要的积分式$\quad\int _{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$<br />
+条件分布$\quad \quad f_{X|Y}(x|y)=\frac {f(x,y)}{f_{Y}(y)}$($Y=y$条件下$X$的条件概率密度)</p>
+</blockquote>
+<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多维随机变量函数的分布</h3>
+<p>和的分布$Z=X+Y\quad f_{Z}(z)=\int {-\infty}^{+\infty}f(z-y,y)dy=\int _{-\infty}^{+\infty}f(x,z-x)dx$;$$x,y相互独立时，\quad f_{z}(z)=\int _{-\infty}^{+\infty}f_{X}(x)f_{Y}(z-x)dx=f_{X}(x)*f_{Y}(x)$$<br />
+商的分布$Z=\frac {X}{Y}\quad f_{Z}(z)=\int _{-\infty}^{+\infty}|y|f(zy,y)dy$<br />
+$max\{X_1,X_2,\cdots,X_n\}$和$min\{X_1,X_2,\cdots,X_n\}$的分布:$$F_{max}(x)=F_1(x)F_2(x)\cdots F_n(x)\quad \quad F_{min}(x)=1-[1-F_1(x)]\cdots[1-F_n(x)]$$</p>
+<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数字特征</h3>
+<h4 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>期望</h4>
+<p>离散型$EX=\sum _{i=1}^{n}x_ip_i$，连续型$EX=\int _{-\infty}^{+\infty}xf(x)dx$<br />
+定理1：$\quad E(Y)=E(g(x))=\int _{-\infty}^{+\infty}g(x)f(x)dx$<br />
+定理2：$\quad EZ=Eg(X,Y)=\int _{-\infty}^{+\infty}\int _{-\infty}^{+\infty}g(xmy)f(x,y)dxdy$<br />
+性质：$\quad EC=C,\quad E(\sum k_iX_i)=\sum k_iEX_i$，若$X_1,\cdots,X_n$相互独立，$E(\prod X_i)=\prod EX_i$<br />
+柯西-施瓦兹不等式：$[E(XY)]^2 \le EX^2EY^2$</p>
+<h4 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方差</h4>
+<p>$DX=E(x-EX)^2$</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-09 12:54:12</p>
 		</div>
 	</div>
 	<div id="side">

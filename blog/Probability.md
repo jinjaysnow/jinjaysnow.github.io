@@ -49,3 +49,29 @@ $X\sim U[a, b]\quad EX=\frac {a+b}{2} \quad DX=\frac {(b-a)^2}{12}$
 $X\sim E(\lambda) \quad f(x)=\begin{cases} \lambda e^{-\lambda x} \quad,x\ge 0 \\\\ 0\quad \quad \quad ,x < 0 \end{cases}\quad EX=\frac{1}{\lambda}\quad DX=\frac{1}{\lambda  ^2}$
 #### 正态分布
 $X\sim N(\mu, \sigma ^2)$ $$f(x)=\frac {1}{\sqrt{2\pi}\sigma}e^{-\frac {(x-\mu)^2}{2\sigma ^2}}$$ $\sigma$越小，曲线越陡峭。标准正态：$X\sim N(0,1)$。
+
+### 随机变量函数的分布
+对于$y=g(x)$，利用$f\_{Y}(y)=F\_{Y}^{\prime}(y)$有：$$F\_{Y}(y)=F\_{Y}(Y\le y)=P(g(x)\le y)$$
+
+### 二维随机变量
+>联合分布函数$F(x,y)=P(X\le x,Y\le y)=\int \_{-\infty}^{y}{f(x,y)}{dxdy}$
+边缘分布$\quad \quad F\_{X}(x)=F(x,+\infty )=\int \_{-\infty}^{x}\int \_{-\infty}^{+\infty}f(x,y)dxdy$
+边缘概率密度$\quad f\_{X}(x)=F\_{X}^{\prime}(x)=\int \_{-\infty}^{+\infty}f(x,y)dy$
+重要的积分式$\quad\int \_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$
+条件分布$\quad \quad f\_{X|Y}(x|y)=\frac {f(x,y)}{f\_{Y}(y)}$($Y=y$条件下$X$的条件概率密度)
+
+### 多维随机变量函数的分布
+和的分布$Z=X+Y\quad f\_{Z}(z)=\int \{-\infty}^{+\infty}f(z-y,y)dy=\int \_{-\infty}^{+\infty}f(x,z-x)dx$;$$x,y相互独立时，\quad f\_{z}(z)=\int \_{-\infty}^{+\infty}f\_{X}(x)f\_{Y}(z-x)dx=f\_{X}(x)\*f\_{Y}(x)$$  
+商的分布$Z=\frac {X}{Y}\quad f\_{Z}(z)=\int \_{-\infty}^{+\infty}|y|f(zy,y)dy$  
+$max\\{X\_1,X\_2,\cdots,X\_n\\}$和$min\\{X\_1,X\_2,\cdots,X\_n\\}$的分布:$$F\_{max}(x)=F\_1(x)F\_2(x)\cdots F\_n(x)\quad \quad F\_{min}(x)=1-[1-F\_1(x)]\cdots[1-F\_n(x)]$$
+
+### 数字特征
+#### 期望
+离散型$EX=\sum \_{i=1}^{n}x\_ip\_i$，连续型$EX=\int \_{-\infty}^{+\infty}xf(x)dx$  
+定理1：$\quad E(Y)=E(g(x))=\int \_{-\infty}^{+\infty}g(x)f(x)dx$  
+定理2：$\quad EZ=Eg(X,Y)=\int \_{-\infty}^{+\infty}\int \_{-\infty}^{+\infty}g(xmy)f(x,y)dxdy$  
+性质：$\quad EC=C,\quad E(\sum k\_iX\_i)=\sum k\_iEX\_i$，若$X\_1,\cdots,X\_n$相互独立，$E(\prod X\_i)=\prod EX\_i$  
+柯西-施瓦兹不等式：$[E(XY)]^2 \le EX^2EY^2$
+
+#### 方差
+$DX=E(x-EX)^2$
