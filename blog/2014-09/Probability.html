@@ -852,16 +852,50 @@ $$F(x)=\int _{-\infty}^x{f(x)}{dx},\quad P(x\in D)=\int _{D}{f(x)}dx$$</li>
 <p>和的分布$Z=X+Y\quad f_{Z}(z)=\int {-\infty}^{+\infty}f(z-y,y)dy=\int _{-\infty}^{+\infty}f(x,z-x)dx$;$$x,y相互独立时，\quad f_{z}(z)=\int _{-\infty}^{+\infty}f_{X}(x)f_{Y}(z-x)dx=f_{X}(x)*f_{Y}(x)$$<br />
 商的分布$Z=\frac {X}{Y}\quad f_{Z}(z)=\int _{-\infty}^{+\infty}|y|f(zy,y)dy$<br />
 $max\{X_1,X_2,\cdots,X_n\}$和$min\{X_1,X_2,\cdots,X_n\}$的分布:$$F_{max}(x)=F_1(x)F_2(x)\cdots F_n(x)\quad \quad F_{min}(x)=1-[1-F_1(x)]\cdots[1-F_n(x)]$$</p>
-<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数字特征</h3>
-<h4 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>期望</h4>
+<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>连续型随机变量函数的分布</h3>
+<p>①. $Y=g(X)$具有单调性时，利用公式求解：<br />
+$$f_Y(y)=\begin{cases} f_X[g^{-1}(y)]\cdot|[g^{-1}(y)]|, \quad \alpha &lt; x &lt; \beta \\ 0,\quad \quad \quad \quad \quad \quad \quad \quad \quad 其他 \end{cases}$$<br />
+②. $Y=g(X)$不具有单调性时，用定义求解  </p>
+<blockquote>
+<p>a. $F_Y(y) = P(Y\le y)=P(g(x)\le y) = P(x\in D_y),\quad$其中 $D_y=\{x:g(x)\le y\}$. <br />
+b. $f_Y(y)=F_Y^\prime (y)$.</p>
+</blockquote>
+<h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数字特征</h3>
+<h4 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>期望</h4>
 <p>离散型$EX=\sum _{i=1}^{n}x_ip_i$，连续型$EX=\int _{-\infty}^{+\infty}xf(x)dx$<br />
 定理1：$\quad E(Y)=E(g(x))=\int _{-\infty}^{+\infty}g(x)f(x)dx$<br />
 定理2：$\quad EZ=Eg(X,Y)=\int _{-\infty}^{+\infty}\int _{-\infty}^{+\infty}g(xmy)f(x,y)dxdy$<br />
 性质：$\quad EC=C,\quad E(\sum k_iX_i)=\sum k_iEX_i$，若$X_1,\cdots,X_n$相互独立，$E(\prod X_i)=\prod EX_i$<br />
 柯西-施瓦兹不等式：$[E(XY)]^2 \le EX^2EY^2$</p>
-<h4 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方差</h4>
-<p>$DX=E(x-EX)^2$</p>
-			<p style="text-align: right; color: gray;"><br>2014-09-09 12:54:12</p>
+<h4 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方差</h4>
+<p>定义：$DX=E(X-EX)^2\quad $离散型：$DX=\sum (x_i-EX)^2p_i\quad $连续型：$DX=\int _{-\infty}^{+\infty}(x-EX)^2f(x)dx$<br />
+常用公式：$DX=EX^2-(EX)^2$<br />
+切比雪夫不等式：$P(|X-EX|\ge \varepsilon)\le \frac {DX}{\varepsilon ^2}$<br />
+性质：$D(CX)=C^2DX$，$X_1\cdots X_n$相互独立时，$D(X_1+\cdots+D_n)=DX_1+\cdots+DX_n$</p>
+<h4 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>协方差</h4>
+<p>$Cov(X,Y)=E(X-EX)(Y-EY)=E(XY)-EXEY$</p>
+<h4 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>相关系数</h4>
+<p>$\rho_{XY}=\frac {Cov(X,Y)}{\sqrt {DX}\sqrt {DY}}$<br />
+性质：$|\rho|\le1$，$|\rho|=1$的充要条件是$P(Y=aX+b)=1$，其中a、b为常数.</p>
+<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>中心极限定理</h3>
+<blockquote>
+<p>随机变量列$\{X_n\}$有有限的期望和方差$EX_n=\mu,\quad DX_n=\sigma ^2\neq0$，则$$Y_n=\frac {\sum _{i=1}^{n}X_i-n\mu}{\sqrt n\sigma} = \frac {\frac 1n \sum_{i=1}^n X_i-\mu}{\frac {\sigma}{\sqrt n}} \sim N(0,1)$$</p>
+</blockquote>
+<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>矩估计</h3>
+<p>用样本矩估计总体矩。</p>
+<h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极大似然估计</h3>
+<blockquote>
+<p>寻找似然函数$L(X_1,\cdots,X_n;\theta)$，使得$L$取极大的$\theta$即为所求。一般情况，使用$L(\theta)=\prod _{i=1}^{n}f(X_i;\theta)$，然后对其求导或取对数后求导$\frac {\partial lnL}{\partial \theta}=0$.</p>
+</blockquote>
+<h3 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>无偏性</h3>
+<blockquote>
+<p>设$\hat \theta = \hat \theta (X_1,\cdots,X_n)$是参数$\theta$的样本估计量，若$\forall \theta \in \Theta$，有$E\hat \theta = \theta$，则称$\hat theta$是$\theta$的无偏估计。<br />
+话句话说，样本均值$\bar X$总是总体均值$EX$的无偏估计，即$EX=\bar X$.<br />
+$ES^2=\sigma ^2$</p>
+</blockquote>
+<p>性质：$\forall c_i, \sum c_i=1;\quad \sum c_iX_i = EX$.<br />
+另:$\hat \theta$是$\theta$的无偏估计，$g(\theta)$是$\theta$的函数，$g(\hat \theta)$不一定是$g(\theta)$的无偏估计。且参数$\theta$的无偏估计不唯一。</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-09 22:24:58</p>
 		</div>
 	</div>
 	<div id="side">

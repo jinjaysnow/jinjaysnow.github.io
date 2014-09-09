@@ -65,6 +65,13 @@ $X\sim N(\mu, \sigma ^2)$ $$f(x)=\frac {1}{\sqrt{2\pi}\sigma}e^{-\frac {(x-\mu)^
 商的分布$Z=\frac {X}{Y}\quad f\_{Z}(z)=\int \_{-\infty}^{+\infty}|y|f(zy,y)dy$  
 $max\\{X\_1,X\_2,\cdots,X\_n\\}$和$min\\{X\_1,X\_2,\cdots,X\_n\\}$的分布:$$F\_{max}(x)=F\_1(x)F\_2(x)\cdots F\_n(x)\quad \quad F\_{min}(x)=1-[1-F\_1(x)]\cdots[1-F\_n(x)]$$
 
+### 连续型随机变量函数的分布
+①. $Y=g(X)$具有单调性时，利用公式求解：
+$$f\_Y(y)=\begin{cases} f\_X[g^{-1}(y)]\cdot|[g^{-1}(y)]|, \quad \alpha < x < \beta \\\\ 0,\quad \quad \quad \quad \quad \quad \quad \quad \quad 其他 \end{cases}$$
+②. $Y=g(X)$不具有单调性时，用定义求解  
+> a. $F\_Y(y) = P(Y\le y)=P(g(x)\le y) = P(x\in D\_y),\quad$其中 $D\_y=\\{x:g(x)\le y\\}$. 
+> b. $f\_Y(y)=F\_Y^\prime (y)$.
+
 ### 数字特征
 #### 期望
 离散型$EX=\sum \_{i=1}^{n}x\_ip\_i$，连续型$EX=\int \_{-\infty}^{+\infty}xf(x)dx$  
@@ -74,4 +81,31 @@ $max\\{X\_1,X\_2,\cdots,X\_n\\}$和$min\\{X\_1,X\_2,\cdots,X\_n\\}$的分布:$$F
 柯西-施瓦兹不等式：$[E(XY)]^2 \le EX^2EY^2$
 
 #### 方差
-$DX=E(x-EX)^2$
+定义：$DX=E(X-EX)^2\quad $离散型：$DX=\sum (x\_i-EX)^2p\_i\quad $连续型：$DX=\int \_{-\infty}^{+\infty}(x-EX)^2f(x)dx$  
+常用公式：$DX=EX^2-(EX)^2$  
+切比雪夫不等式：$P(|X-EX|\ge \varepsilon)\le \frac {DX}{\varepsilon ^2}$  
+性质：$D(CX)=C^2DX$，$X\_1\cdots X\_n$相互独立时，$D(X\_1+\cdots+D\_n)=DX\_1+\cdots+DX\_n$
+
+#### 协方差
+$Cov(X,Y)=E(X-EX)(Y-EY)=E(XY)-EXEY$
+
+#### 相关系数
+$\rho\_{XY}=\frac {Cov(X,Y)}{\sqrt {DX}\sqrt {DY}}$  
+性质：$|\rho|\le1$，$|\rho|=1$的充要条件是$P(Y=aX+b)=1$，其中a、b为常数.
+
+### 中心极限定理
+>随机变量列$\\{X\_n\\}$有有限的期望和方差$EX\_n=\mu,\quad DX\_n=\sigma ^2\neq0$，则$$Y\_n=\frac {\sum \_{i=1}^{n}X\_i-n\mu}{\sqrt n\sigma} = \frac {\frac 1n \sum\_{i=1}^n X\_i-\mu}{\frac {\sigma}{\sqrt n}} \sim N(0,1)$$
+
+### 矩估计
+用样本矩估计总体矩。
+### 极大似然估计
+>寻找似然函数$L(X\_1,\cdots,X\_n;\theta)$，使得$L$取极大的$\theta$即为所求。一般情况，使用$L(\theta)=\prod \_{i=1}^{n}f(X\_i;\theta)$，然后对其求导或取对数后求导$\frac {\partial lnL}{\partial \theta}=0$.
+
+### 无偏性
+>设$\hat \theta = \hat \theta (X\_1,\cdots,X\_n)$是参数$\theta$的样本估计量，若$\forall \theta \in \Theta$，有$E\hat \theta = \theta$，则称$\hat theta$是$\theta$的无偏估计。  
+话句话说，样本均值$\bar X$总是总体均值$EX$的无偏估计，即$EX=\bar X$.  
+$ES^2=\sigma ^2$
+
+性质：$\forall c\_i, \sum c\_i=1;\quad \sum c\_iX\_i = EX$.  
+另:$\hat \theta$是$\theta$的无偏估计，$g(\theta)$是$\theta$的函数，$g(\hat \theta)$不一定是$g(\theta)$的无偏估计。且参数$\theta$的无偏估计不唯一。
+
