@@ -90,4 +90,29 @@ Third = 2 Second = 2 Fourth = 2
 Third = 3 Second = 3 
 ```
 
+#### while循环
+```
+#include <stdio.h>
+int main(int argc, char const *argv[]) {
+    int i = 3;
+    while(printf("first = %d ",i), --i) {
+        printf("second = %d\n", i);
+    }
+    return 0;
+}
+```
+
+输出结果为
+```
+first = 3 second = 2
+first = 2 second = 1
+first = 1
+```
+
+#### const
+```
+const int *p        // 指针变量p可变，而p指向的数据元素不能变
+int * const p       // 指针变量p不可变，而p指向的数据元素可变
+const int * const p // 指针变量p不可变，p指向的元素也不能变
+```
 [TOC]

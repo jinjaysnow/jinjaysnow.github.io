@@ -895,6 +895,32 @@ MathJax.Hub.Config({
 </pre></div>
 
 
+<h4 id="while"><a name="user-content-while" href="#while" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>while循环</h4>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">while</span><span class="p">(</span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;first = %d &quot;</span><span class="p">,</span><span class="vg">i</span><span class="p">),</span><span class="w"> </span><span class="o">--</span><span class="vg">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;second = %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>输出结果为</p>
+<div class="codehilite"><pre><span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span><span class="vg">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span>
+<span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
+<span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
+</pre></div>
+
+
+<h4 id="const"><a name="user-content-const" href="#const" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>const</h4>
+<div class="codehilite"><pre><span class="vg">const</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="vg">p</span><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">可变，而</span><span class="vg">p</span><span class="err">指向的数据元素不能变</span>
+<span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">p</span><span class="w">       </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">不可变，而</span><span class="vg">p</span><span class="err">指向的数据元素可变</span>
+<span class="vg">const</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">p</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">不可变，</span><span class="vg">p</span><span class="err">指向的元素也不能变</span>
+</pre></div>
+
+
 <div class="toc">
 <ul>
 <li><a href="#c">保研复试C语言复习</a><ul>
@@ -902,13 +928,15 @@ MathJax.Hub.Config({
 <li><a href="#_1">几个基本概念</a><ul>
 <li><a href="#switch">switch()语句</a></li>
 <li><a href="#for">for循环</a></li>
+<li><a href="#while">while循环</a></li>
+<li><a href="#const">const</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-09-10 21:08:16</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-10 21:30:18</p>
 		</div>
 	</div>
 	<div id="side">
