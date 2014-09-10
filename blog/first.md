@@ -7,7 +7,6 @@ keywords: code
 		markdown
 base_url: http://jinjaysnow.github.io
 
-[TOC]
 # 一级标题
 ## 二级标题
 
@@ -72,7 +71,7 @@ $ \begin{tabular}{|c|c|c|c|} Name & Age & Degree & Happy \ \hline \ Justin & 21 
 Or even: $y = mx + b$
 Or even: $e^{\imath x} = \cos{x} + \imath\sin{x}$
 
-<math>\int ^{1}_{0}\int ^{x}_{0}\dfrac {xf_{x}+yf_{y}}{x^{2}+y{2}}dxdy</math>
+$\int ^{1}\_{0}\int ^{x}\_{0}\dfrac {xf\_{x}+yf\_{y}}{x^{2}+y{2}}dxdy$
 
 ```
 http://jinjaysnow.github.com
@@ -84,3 +83,6 @@ http://jinjaysnow.github.com
 | col 3 is      | right-aligned | $1600 |
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
+
+[TOC]
+

@@ -1,0 +1,1310 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="date" content="2014-08">
+<meta name="keywords" content="Intern">
+<meta name="brief" content="Intern Report in NEUSOFT东软.">
+<meta name="author" content="Jin Jay"><style>/* Fonts */
+@font-face{
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face{
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+/* Body */
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box; /* 允许以特定的方式定义某个区域的特定元素,元素的任何内边距和边框都将在已设定的宽度和高度内绘制。
+              通过已设定的宽度和高度减去边框和内编剧才能得到内容的宽度和高度。*/
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+  margin: 0; /* 外部边距 */
+  padding: 0;  /*内部边距*/    
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+
+body {
+  color:#4d4d4c;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:16px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 100% !important;
+  margin: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100% !important;
+  min-height: 30px;
+  display: block;
+  background: #f7f7f7;
+  border-bottom: solid 1px #808080;
+  z-index: 1023;
+  opacity: 0.4;
+}
+
+.navigation li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.navigation li a {
+  display: block;
+  padding: 1em 0.5em;
+}
+
+/* nav */
+#main-navigation-container {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background-color: #333333;
+  box-shadow: 0px 0px 5px #000000;
+}
+
+#main-navigation {
+  margin: 0px auto 0px auto;
+  width: 1000px;
+}
+
+ul.navigation-menu {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  list-style-type: none;
+}
+
+ul.navigation-menu li {
+  float: left;
+}
+
+ul.navigation-menu li:hover {
+  background-color: #cccccc;
+}
+
+ul.navigation-menu li a:link, .navigation-menu li a:visited {
+  display: block;
+  padding: 10px 20px 10px 20px;
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 1px 1px #000000;
+}
+
+ul.navigation-sub-menu {
+  visibility: hidden;
+  position: absolute;
+  z-index: 10001;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  box-shadow: 1px 1px 2px #cccccc;
+  -webkit-box-shadow: 1px 1px 2px #cccccc;
+  -moz-box-shadow: 1px 1px 2px #cccccc;
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+ul.navigation-menu li:hover > ul.navigation-sub-menu {
+  visibility: visible;
+}
+
+ul.navigation-sub-menu li {
+  float: none;
+}
+
+ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
+  display: block;
+  padding: 5px 20px 5px 20px;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #000000;
+  text-shadow: 0px 0px;
+}
+
+/* clearfix */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  content: " ";
+}
+
+/* IE6 clearfix */
+* html .clearfix {
+  zoom: 1;
+}
+/* table of contents*/
+.toc {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  /*bottom: 5% !important;*/
+  left: 71%;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+
+  top: 4em;
+  width: 28% !important;
+  height: 36%;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+
+/* end of navigation */
+#side {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 2% !important;
+  left: 71%;
+  /*margin-top: 5%;*/
+  /*top: 3em;*/
+  /*height: 80%;*/
+  width: 28% !important;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  margin-top: 5%;
+  top: 4em;
+  /*top: 0 !important;*/
+  width: 70% !important;
+}
+
+#markdown {
+  max-width: 45em;
+  margin: 10px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+/* modify codehilite */
+.codehilite pre .err {
+  color: #000000;
+  /* background-color: #FFFFFF; */
+}
+/* Links */
+a{ color: #06d; text-decoration:none; }
+a:hover{ color: #06e; text-decoration: underline; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+::-moz-selection { background:#a8d1ff; color:#000 }
+::selection { background:#a8d1ff; color:#000 }
+
+a::-moz-selection { background:#a8d1ff; color:#0645ad }
+a::selection { background:#a8d1ff; color:#0645ad }
+
+/* Header Anchor Links*/
+.headeranchor-link {
+  color:#111;
+  border: 0;
+  margin-left: -20px;
+  padding-right: 6px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor-link:hover,
+.headeranchor-link:visited,
+.headeranchor-link:active
+{ text-decoration: none; color:#4d4d4c; }
+.headeranchor-link:hover .headeranchor:before,
+h1:hover .headeranchor:before,
+h2:hover .headeranchor:before,
+h3:hover .headeranchor:before,
+h4:hover .headeranchor:before,
+h5:hover .headeranchor:before,
+h6:hover .headeranchor:before
+{ content: '\f05c'; }
+
+abbr { cursor: pointer; }
+
+/* Paragraphs */
+p { margin:1em 0; }
+
+/* Images */
+img {
+  max-width:100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6 {
+  font-weight:normal;
+  color:#111;
+  line-height: 1.7;
+  position: relative;
+}
+h4,h5,h6{ font-weight: bold; }
+h1 { font-size:2.5em; border-bottom: 1px solid #ddd;}
+h2 { font-size:2em; border-bottom:1px solid #eee; padding-bottom: 5px; }
+h3 { font-size:1.5em; }
+h4 { font-size:1.2em; }
+h5 { font-size:1em; }
+h6 { font-size:0.9em; }
+
+/* Block Quotes */
+blockquote {
+  color:#666666;
+  margin:0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+/* Raw Blocks */
+pre, code, kbd, samp {
+  color: #000;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC;
+}
+
+pre {
+  padding: 10px;
+  overflow: auto;
+}
+
+code { padding: 0 3px 0 3px; }
+pre code { border: 0; padding: 0; }
+
+/* Admonition */
+.admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 10px auto;
+  color: #888888;
+  background-color: #F8F8F8;
+  border: 1px solid #888888;
+}
+
+.admonition p { padding: 0; margin: 0; }
+.admonition-title { font-weight: bold; margin: 0; }
+
+.admonition-icon {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float: left;
+}
+
+.admonition.attention { color: #4F8A10; background-color: #DFF2BF; border: 1px solid #4F8A10; }
+.admonition.caution { color: #D63301; background-color: #FFCCBA; border: 1px solid #D63301; }
+.admonition.hint { color: #00529B; background-color: #BDE5F8; border: 1px solid #00529B; }
+.admonition.danger { color: #D8000C; background-color: #FFBABA; border: 1px solid #D8000C; }
+.admonition.question { color: #00049b; background-color: #BDC8F8; border: 1px solid #00049b; }
+.admonition.note { color: #9F6000; background-color: #FEEFB3; border: 1px solid #9F6000; }
+
+.attention > .admonition-icon:before { content: "\f058\00a0"; }
+.caution > .admonition-icon:before { content: "\f06a\00a0"; }
+.hint > .admonition-icon:before { content: "\f05a\00a0"; }
+.danger > .admonition-icon:before { content: "\f056\00a0"; }
+.question > .admonition-icon:before { content: "\f059\00a0"; }
+.note > .admonition-icon:before { content: "\f040\00a0"; }
+
+/* progress bar*/
+.progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow:
+    1px 1px 0px #fefefe,
+    -1px -1px 0px #fefefe,
+    -1px 1px 0px #fefefe,
+    1px -1px 0px #fefefe,
+    0px 1px 0px #fefefe,
+    0px -1px 0px #fefefe,
+    1px 0px 0px #fefefe,
+    -1px 0px 0px #fefefe,
+    1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 24px;
+  float: left;
+  border-right: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #34c2e3;
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, .5);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.progress-100plus .progress-bar { background-color: #1ee038; }
+.progress-80plus .progress-bar { background-color: #86e01e; }
+.progress-60plus .progress-bar { background-color: #f2d31b; }
+.progress-40plus .progress-bar { background-color: #f2b01e; }
+.progress-20plus .progress-bar { background-color: #f27011; }
+.progress-0plus .progress-bar { background-color: #f63a0f; }
+
+.gloss .progress-bar {
+  box-shadow:
+    inset -1px 1px 0px rgba(255, 255, 255, .5),
+    inset 0 -4px 12px rgba(255, 255, 255, .7),
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0px rgba(0, 0, 0, .05),
+    inset 1px -1px 0px rgba(255, 255, 255, .2);
+}
+
+.candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@-moz-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+
+/* Inlines */
+b, strong { font-weight: bold; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+dfn { font-style: italic; }
+
+/* Lists */
+ul, ol { padding-left: 30px; }
+li p:last-child { margin:0 }
+.task-list-item { list-style-type: none; }
+.task-list-item input { float:left; margin-left: -20px; margin-top: 6px; }
+dt { font-weight: bold; font-style: italic;}
+dd { margin: 0 0 0 2em; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; overflow-x: auto; overflow-y: hidden; display: block;}
+table tr { background-color: #fefefe; }
+table tr:nth-child(2n) { background-color: #f8f8f8; }
+td, th { border: 1px solid #ddd; padding: 6px 13px; }
+
+/* Codehilite Tables */
+.codehilitetable { border: 0; border-spacing: 0; }
+.linenos, .code, .codehilitetable td { border: 0; padding: 0; }
+td:not(.linenos) .linenodiv { padding: 0 !important; }
+.code { width: 100%; }
+.linenos div pre, .linenodiv pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.code div pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+footer {
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 10%;
+  width: 50%!important;
+  border-top: solid 1px rgb(51, 51, 51);
+  padding: 30px 0 30px;
+  font-size: 12px;
+  /*outline: ;*/
+}
+
+/* Clock */
+.clock {
+  width:193px;
+  height:193px;
+  border-radius:50%;
+  margin:auto;
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  background:#f0f1e9;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 3px 0 rgba(255,255,255,0.5), inset 0 -4px 0 rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.2);
+  /* background: linear-gradient(top, #f0f1e9, #f0f1e9 100%);*/
+}
+.clock::before {
+  content:'';
+  width:130px;
+  height:130px;
+  position:absolute;
+  margin:auto;
+  top:0; right:0; bottom:0; left:0;
+  border-radius:50%;
+  background: -webkit-linear-gradient(top, #e9eae2, #f5f5ec 100%);
+  background: -moz-linear-gradient(top, #e9eae2, #f5f5ec 100%);
+  background: linear-gradient(top, #e9eae2, #f5f5ec 100%);
+}
+
+.numbers, clockwise {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+
+.numbers ul {
+  list-style:none;
+}
+
+.numbers ul li {
+  position:absolute;
+  width:1.5em;
+  height:1.5em;
+  text-align:center;
+  line-height:1.5em;
+  font-size:1.3em;
+  color:#a5a595;
+}
+
+.numbers ul li:first-child {
+  top:0;
+  left:50%;
+  margin-left:-0.75em;
+}
+.numbers ul li:nth-child(2){
+  top:50%;
+  right:0;
+  margin-top:-0.75em;
+}
+.numbers ul li:nth-child(3){
+  left:50%;
+  bottom:0;
+  margin-left:-0.75em;
+}
+.numbers ul li:last-child{
+  top:50%;
+  left:0;
+  margin-top:-0.75em;
+}
+
+.clockwise .center, .support {
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background: radial-gradient(center center, circle , #ffffff, #837874 97%, #b4b2aa 100%);
+  background: -moz-radial-gradient(center center, circle,#ffffff, #837874 97%, #b4b2aa 100%);
+  background: -webkit-radial-gradient(center center, circle , #ffffff, #837874 97%, #b4b2aa 100%);
+  background-position:50% -12px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.clockwise .center {
+  left:50%; margin-left:-5px;
+  top:50%; margin-top:-5px;
+  z-index:5;
+}
+
+.support {
+  margin:auto;
+  top:-260px; right:0; bottom:0; left:0;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.4), 0 -1px 2px rgba(0,0,0,0.3);
+}
+
+.support::before {
+  content:'';
+  width:4px;
+  height:100px;
+  background:#fff;
+  position:absolute;
+  z-index:-1;
+  transform:rotate(38deg);
+  transform-origin:50% 0%;
+  top:5px;
+  left:3px;
+  background: linear-gradient(left, #f3f3f3, #fff);
+  box-shadow: 4px 3px 3px rgba(0,0,0,0.2), inset 1px 0 4px rgba(0,0,0,0.2);
+}
+.support::after {
+  content:'';
+  width:4px;
+  height:100px;
+  background:#fff;
+  position:absolute;
+  z-index:-1;
+  transform:rotate(-38deg);
+  transform-origin:50% 0%;
+  top:5px;
+  left:1px;
+  background: linear-gradient(left, #f3f3f3, #fff);
+  box-shadow: -2px 3px 3px rgba(0,0,0,0.2), inset 1px 0 4px rgba(0,0,0,0.2);
+}
+
+[class*="hand-"] {
+  border-radius: 100% 100% 5px 5px;
+  box-shadow: 0 0 0.5em rgba(black,0.2);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+.hand-second {
+  width: 2px;
+  top: 18px;
+  height: 78px;
+  background:#f16e54;
+    transform-origin: 50% 100%;
+}
+
+.hand-minute {
+  width: 6px;
+  top:26px;
+  margin-left:-3px;
+  height: 88px;
+  background:#68645b;
+  transform-origin: 50% 80%;
+}
+
+.hand-hour {
+  width: 6px;
+  top: 56px;
+  transform-origin: 50% 40px;
+  margin-left:-3px;
+  height: 50px; 
+  background:#68645b;
+}
+
+/* Media */
+@media only screen and (max-width: 480px) {
+  body{ font-size:14px; }
+  #blog {width: 100% !important;}
+  #side {display: none!important;}
+  #markdown{max-width: 98% !important;}
+  footer{margin-left:10%; width: 80% !important;margin-right: 10%;}
+}
+
+@media 
+only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait), 
+only screen and (max-device-width:768px),
+only screen and (width: 768px),
+only screen and (max-width: 768px){
+  body{ font-size:16px; }
+  #blog {width: 100% !important;}
+  #side {display: none !important;}
+  #markdown{max-width: 98% !important; padding: 2px;}
+  footer{margin-left: 10%; width: 80% !important; margin-right: 10%;}
+}
+
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f8f8f8; color: #333333 }
+.codehilite pre .c { color: #999988; font-style: italic } /* Comment */
+.codehilite pre .err { color: #999988; font-style: italic } /* Error */
+.codehilite pre .k { font-weight: bold } /* Keyword */
+.codehilite pre .n { color: #333333 } /* Name */
+.codehilite pre .o { font-weight: bold } /* Operator */
+.codehilite pre .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.codehilite pre .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #aa0000 } /* Generic.Error */
+.codehilite pre .gh { color: #999999 } /* Generic.Heading */
+.codehilite pre .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.codehilite pre .go { color: #888888 } /* Generic.Output */
+.codehilite pre .gp { color: #555555 } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #aa0000 } /* Generic.Traceback */
+.codehilite pre .kc { font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { font-weight: bold } /* Keyword.Pseudo */
+.codehilite pre .kr { font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #009999 } /* Literal.Number */
+.codehilite pre .s { color: #dd1144 } /* Literal.String */
+.codehilite pre .na { color: #008080 } /* Name.Attribute */
+.codehilite pre .nb { color: #0086b3 } /* Name.Builtin */
+.codehilite pre .nc { color: #445588; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #008080 } /* Name.Constant */
+.codehilite pre .nd { color: #333333 } /* Name.Decorator */
+.codehilite pre .ni { color: #800080 } /* Name.Entity */
+.codehilite pre .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #990000; font-weight: bold } /* Name.Function */
+.codehilite pre .nl { color: #333333 } /* Name.Label */
+.codehilite pre .nn { color: #555555 } /* Name.Namespace */
+.codehilite pre .nx { color: #333333 } /* Name.Other */
+.codehilite pre .py { color: #333333 } /* Name.Property */
+.codehilite pre .nt { color: #000080 } /* Name.Tag */
+.codehilite pre .nv { color: #008080 } /* Name.Variable */
+.codehilite pre .ow { font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #009999 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #009999 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #009999 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #009999 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #009999 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #dd1144 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #dd1144 } /* Literal.String.Char */
+.codehilite pre .sd { color: #dd1144 } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #dd1144 } /* Literal.String.Double */
+.codehilite pre .se { color: #dd1144 } /* Literal.String.Escape */
+.codehilite pre .sh { color: #dd1144 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #dd1144 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #dd1144 } /* Literal.String.Other */
+.codehilite pre .sr { color: #009926 } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #dd1144 } /* Literal.String.Single */
+.codehilite pre .ss { color: #990073 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #008080 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #008080 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #008080 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #009999 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>Intern Report</title>
+	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+</head>
+<body>
+	<nav>
+		<ul class="navigation" role="navigation">
+			<li><a href="http://jinjaysnow.github.io">主页</a></li>
+			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
+			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
+		</ul>
+	</nav>
+	<div id="blog">
+		<div id="markdown" >
+			<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习内容记述</h1>
+<p>2014年 6月 17号到7月 11号，在大连东软集团实习。</p>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习任务</h2>
+<p>经过30多个小时的车程后，在18号下午到达了东软集团，路途比较长，下午在安排的员工宿舍休息。在到达东软集团的第二天，见到了实习经理，他给我们介绍了一下此次实习的日程安排：</p>
+<div class="codehilite"><pre><span class="err">前期学习</span><span class="w"> </span><span class="vg">Linux</span><span class="err">环境编程和系统编程。</span>
+<span class="err">根据所学制作一款局域网聊天软件或邮件系统软件。</span>
+</pre></div>
+
+
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>实习过程</h2>
+<p>从到东软的第二天开始，先是学习在 Windows电脑上的 Vmware虚拟机软件中安装 Ubuntu系统。然后是熟悉Linux环境编程。接触到了一些常用命令<code>ls</code>, <code>ps</code>, <code>top</code>, <code>kill</code>, <code>grep</code>, <code>find</code>, <code>man</code>, <code>cd</code>, <code>rm</code>, <code>cp</code>, <code>locate</code>, <code>which</code>, <code>what</code>, <code>whatis</code>, <code>where</code>, <code>whereis</code>&hellip; 还有管道操作<code>|</code>，重定向操作<code>&lt;</code>和<code>&gt;</code>等等。每一个命令都会练习使用好几遍以达到熟悉的程度。<br />
+Linux系统编程从介绍 Vim编辑器开始，然后是 gcc编译器的使用， gdb调试工具的使用， makefile的编写，最后是系统函数调用(系统编程)的学习。<br />
+6月 28号开始了小组分配和项目编写。我们小组总共8个人，其中一个项目经理，一个评审负责人，一个配置管理员。我是小组评审负责人，主要负责项目的设计评审、技术点分析，同时还是服务器端的编程人员。小组选择了聊天软件项目。</p>
+<h1 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>专题内容分析</h1>
+<h2 id="linux"><a name="user-content-linux" href="#linux" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Linux环境编程学习</h2>
+<h3 id="shell"><a name="user-content-shell" href="#shell" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Shell脚本与常用命令</h3>
+<blockquote>
+<p>man命令<br />
+格式化显示在线操作手册。在实习中遇到不会用的命令还有系统编程时不会使用的函数时，通过man命令能够很快速的找到有用的信息，十分好用。例如：</p>
+</blockquote>
+<div class="codehilite"><pre><span class="vg">man</span><span class="w"> </span><span class="vg">ls</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">查看</span><span class="vg">ls</span><span class="err">命令的帮助信息</span>
+</pre></div>
+
+
+<p><img src="http://jinjaysnow.github.io/images/manls.png"></p>
+<blockquote>
+<p>其他常用命令</p>
+</blockquote>
+<div class="codehilite"><pre><span class="vg">cd</span><span class="w"> </span><span class="o">..</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">改变位置到父目录</span>
+<span class="vg">cd</span><span class="w"> </span><span class="o">~</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="err">改变位置到用户工作目录</span>
+<span class="vg">cp</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="vg">file2</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">复制到</span><span class="vg">file2</span>
+<span class="vg">mv</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="vg">file2</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">更名为</span><span class="vg">file2</span>
+<span class="vg">mkdir</span><span class="w"> </span><span class="vg">dir1</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">建立一个目录</span><span class="vg">dir1</span>
+<span class="vg">rm</span><span class="w"> </span><span class="vg">f</span><span class="o">*</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前所有以</span><span class="vg">f</span><span class="err">开头的文件</span>
+<span class="vg">rm</span><span class="w"> </span><span class="o">-</span><span class="vg">r</span><span class="w"> </span><span class="vg">dir1</span><span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="err">删除目录</span><span class="vg">dir1</span><span class="err">及其子目录下所有文件</span>
+<span class="vg">cat</span><span class="w"> </span><span class="vg">file1</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="err">打印文件内容到屏幕</span>
+<span class="vg">pwd</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="err">列出当前所在的目录信息</span>
+<span class="vg">chmod</span><span class="w"> </span><span class="vg">mode</span><span class="w"> </span><span class="vg">file</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">改变文件的读写执行权限</span>
+</pre></div>
+
+
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>管道 <code>|</code></h3>
+<p><em>语法：</em> 命令1 | 命令2<br />
+将命令1的执行结果送给命令2，作为命令2的输入。<br />
+管道使得两个及多个命令可以相互通信，带来了很多的便利。</p>
+<div class="codehilite"><pre><span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">R1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="vg">more</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">以分页的方式列出当前目录及其子目录下所有文件的名称</span>
+</pre></div>
+
+
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>输入输出重定向<code>&lt;</code> &amp; <code>&gt;</code></h3>
+<p><em>语法：</em> 命令 <code>&lt;</code> 文件<br />
+将文件作为命令的输入。<br />
+<em>语法：</em> 命令 <code>&gt;</code> 文件<br />
+将命令的结果送至指定的文件。<br />
+输入输出重定向便于将操作的结果送入文件或读取文件作为操作的输入。</p>
+<div class="codehilite"><pre><span class="vg">mail</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="s2">&quot;theme&quot;</span><span class="w"> </span><span class="vg">xx@email</span><span class="o">.</span><span class="vg">com</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="vg">file1</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">将文件</span><span class="vg">file1</span><span class="err">当做信件内容发给收件人</span>
+<span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">l</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="vg">list</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">将”</span><span class="vg">ls</span><span class="w"> </span><span class="o">-</span><span class="vg">l</span><span class="err">“的结果写入文件</span><span class="vg">list</span>
+</pre></div>
+
+
+<h2 id="linux_1"><a name="user-content-linux_1" href="#linux_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Linux系统编程</h2>
+<h3 id="vim"><a name="user-content-vim" href="#vim" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Vim编辑器</h3>
+<p>Vim是从vi发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富。Vim拥有多种模式，常用有三种：</p>
+<blockquote>
+<p>普通模式<br />
+在普通模式中，用的是编辑器命令，比如移动光标，删除文本等等。这是Vim启动后的默认模式。常用命令有：</p>
+</blockquote>
+<div class="codehilite"><pre><span class="vg">j</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向上移动一行</span>
+<span class="vg">k</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向下移动一行</span>
+<span class="vg">h</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向左移动一个字符</span>
+<span class="vg">l</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标向右移动一个字符</span>
+<span class="vg">w</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标移到下一个单词词首</span>
+<span class="vg">e</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标移到单词末尾或下一个单词末尾</span>
+<span class="vg">b</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">光标回退到词首或回退到上一个单词词首</span>
+<span class="vg">dd</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">删除一行</span>
+<span class="vg">daw</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前光标所在单词</span>
+<span class="vg">r</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">替换一个字符</span>
+<span class="vg">x</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">删除当前光标所在的一个字符</span>
+<span class="vg">G</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">跳转到文章末尾</span>
+<span class="vg">gg</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">跳转到文章开头</span>
+</pre></div>
+
+
+<blockquote>
+<p>插入模式<br />
+在普通模式中，有很多方法可以进入插入模式。常用的方式是按&rdquo;a&rdquo;（append／追加）键或者&rdquo;i&rdquo;（insert／插入）键。在这个模式中，大多数按键都会向文本缓冲中插入文本。在插入模式中，可以按ESC键回到普通模式。</p>
+<p>可视模式<br />
+这个模式与普通模式比较相似。但是移动命令会扩大高亮的文本区域。高亮区域可以是字符、行或者是一块文本。当执行一个非移动命令时，命令会被执行到这块高亮的区域上。Vim的&rdquo;文本对象&rdquo;也能和移动命令一样用在这个模式中。</p>
+</blockquote>
+<div class="codehilite"><pre><span class="vg">y</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">复制高亮选中的文本</span>
+<span class="vg">p</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">粘贴复制在缓冲区的文本</span>
+</pre></div>
+
+
+<blockquote>
+<p>Vim文件配置</p>
+</blockquote>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">定义</span><span class="vg">F5</span><span class="err">键用于构建并运行</span><span class="vg">c</span><span class="err">文件</span>
+<span class="vg">map</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">F5</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="vg">call</span><span class="w"> </span><span class="vg">Compilerungcc</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">CR</span><span class="o">&gt;</span>
+<span class="vg">func!</span><span class="w"> </span><span class="vg">Compilerungcc</span><span class="p">()</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;w&quot;</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;!gcc % -o %c&quot;</span>
+<span class="vg">exec</span><span class="w"> </span><span class="s2">&quot;! ./%&lt;&quot;</span>
+<span class="vg">endfunc</span>
+</pre></div>
+
+
+<h3 id="gcc"><a name="user-content-gcc" href="#gcc" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>GCC</h3>
+<p>GCC（GNU Compiler Collection，GNU编译器套装），是一套由GNU开发的编程语言编译器。</p>
+<div class="codehilite"><pre><span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">E</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">i</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">预处理</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">S</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">i</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">s</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">编译</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">s</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">o</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">汇编</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="vg">hello</span><span class="o">.</span><span class="vg">o</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">hello</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">链接</span>
+</pre></div>
+
+
+<p><strong>gcc参数</strong><br />
+<code>gcc -I目录 -l链接库 -L链接库路径</code></p>
+<p><strong>gcc生成链接库</strong>  </p>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">静态链接库</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">             </span><span class="err">#</span><span class="w"> </span><span class="err">生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件</span>
+<span class="vg">ar</span><span class="w"> </span><span class="vg">rcs</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="vg">ar</span><span class="err">命令将</span><span class="o">.</span><span class="vg">o</span><span class="err">文件打包成静态库文件</span>
+<span class="vg">ar</span><span class="w"> </span><span class="vg">t</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="w">                        </span><span class="err">#</span><span class="w"> </span><span class="err">查看</span><span class="vg">libsource</span><span class="o">.</span><span class="vg">a</span><span class="err">包含哪些文件</span><span class="w"> </span>
+<span class="err">#</span><span class="w"> </span><span class="err">动态链接库</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">fpic</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="err">添加</span><span class="o">-</span><span class="vg">fpic</span><span class="err">选项生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件</span>
+<span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">shared</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">o</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">libsource</span><span class="o">.</span><span class="vg">so</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">生成动态链接库</span>
+</pre></div>
+
+
+<h3 id="makefile"><a name="user-content-makefile" href="#makefile" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Makefile</h3>
+<blockquote>
+<p>在软件开发中，make是一个工具程序（Utility software），它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。大多数情况下，make被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。<em>makefile</em>便是make用来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行的文件。</p>
+</blockquote>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="vg">makefile</span><span class="err">预定义变量</span>
+<span class="err">$@</span><span class="w"> </span><span class="err">目标名称</span>
+<span class="err">$</span><span class="o">^</span><span class="w"> </span><span class="err">所有被依赖的对象</span>
+<span class="err">$</span><span class="o">&lt;</span><span class="w"> </span><span class="err">第一个被依赖的文件</span>
+<span class="err">#</span><span class="w"> </span><span class="err">模式规则</span>
+<span class="o">%.</span><span class="nl">o:</span><span class="w"> </span><span class="o">%.</span><span class="vg">c</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">将所有的</span><span class="o">.</span><span class="vg">c</span><span class="err">文件生成</span><span class="o">.</span><span class="vg">o</span><span class="err">文件，</span><span class="w"> </span><span class="o">%</span><span class="err">是通配符</span>
+<span class="err">#</span><span class="w"> </span><span class="err">使用</span>
+<span class="vg">cc</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="vg">CCFLAGS</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="err">$@</span><span class="w"> </span><span class="err">$</span><span class="o">&lt;</span>
+</pre></div>
+
+
+<h3 id="gdb"><a name="user-content-gdb" href="#gdb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>GDB调试工具</h3>
+<p>GNU调试器(Debugger，缩写：GDB)，是GNU软件系统中的标准调试器。</p>
+<div class="codehilite"><pre><span class="vg">gcc</span><span class="w"> </span><span class="o">-</span><span class="vg">c</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w"> </span><span class="o">-</span><span class="vg">g</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在编译时使用</span><span class="o">-</span><span class="vg">g</span><span class="err">选项</span>
+<span class="vg">list</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">显示代码</span>
+<span class="vg">break</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">设置断点</span>
+<span class="vg">watch</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">观察变量，变量值改变时输出值</span>
+<span class="vg">print</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="err">查看变量信息</span>
+<span class="vg">step</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在断点时，用于一步一步继续执行，进入函数内部</span>
+<span class="vg">next</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">在断电时，继续执行但不进入函数内部</span>
+</pre></div>
+
+
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>系统编程</h3>
+<blockquote>
+<p>系统编程：从操作系统获得服务或资源而向内核发起的函数调用。</p>
+</blockquote>
+<h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>文件和文件系统</h4>
+<p>在Linux系统中一切皆是文件，很多交互工作是通过读取和写入文件件来完成的。<br />
+文件通过inode（信息节点）访问，inode使用唯一的数值（inode编号）进行标识。一个inode存储文件关联的元数据，如它的修改时间戳、所有者、类型、长度以及文件的数据的地址&ndash;不包含文件名。目录将易读的文件名与inode编号进行映射。文件名与inode的配对也称为链接（link）。<br />
+用户请求打开一个文件时，内核打开包含指定文件名的目录然后搜索该文件。内核通过文件名获得inode编号，然后根据inode编号找到对应的inode。</p>
+<div class="codehilite"><pre><span class="c1">// open() 打开文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">fcntl</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">open</span> <span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">,</span> <span class="p">...);</span>
+<span class="c1">// flags: O_RDONLY, O_WRONLY, O_RDWR</span>
+<span class="c1">// 打开文件错误时会返回-1，成功则返回文件描述符</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// read() 读取文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">ssize_t</span> <span class="n">read</span> <span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="k">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">len</span><span class="p">);</span>
+<span class="c1">// 从文件fd的当前偏移量至多读取len个字节到buf中，成功时返回写入buf中的字节数，出错返回-1</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// write() 写入文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">ssize_t</span> <span class="n">write</span> <span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="k">buf</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">count</span><span class="p">);</span>
+<span class="c1">// 从文件fd当前位置开始将buf中至多count个字节写入文件中</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// close() 关闭文件</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">close</span><span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">);</span>
+<span class="c1">// 解除文件描述符的关联，并分离进程和文件的关联</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// 其他调用</span>
+<span class="n">off_t</span> <span class="n">lseek</span><span class="p">(</span><span class="k">int</span> <span class="n">fd</span><span class="p">,</span> <span class="n">off_t</span> <span class="n">pos</span><span class="p">,</span> <span class="k">int</span> <span class="n">origin</span><span class="p">);</span>     <span class="c1">// 移动读写指针</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">stat</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>                           <span class="c1">// 查看文件属性</span>
+<span class="k">int</span> <span class="n">fstat</span><span class="p">(</span><span class="k">int</span> <span class="n">fildes</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">lstat</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">path</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">restrict</span> <span class="k">buf</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">stat</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="k">restrict</span> <span class="n">path</span><span class="p">,</span> <span class="k">struct</span> <span class="n">stat</span> <span class="o">*</span><span class="k">restrict</span> <span class="k">buf</span><span class="p">);</span>
+<span class="c1">// 制作文件硬链接</span>
+<span class="k">int</span> <span class="n">link</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path1</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path2</span><span class="p">);</span>
+<span class="c1">// 制作符号链接</span>
+<span class="k">int</span> <span class="n">symlink</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path1</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path2</span><span class="p">);</span>
+</pre></div>
+
+
+<h4 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>信号与信号处理</h4>
+<p>信号是提供处理异步事件机制的软件终端。信号有一个明确的生命周期：首先，产生信号；然后内核存储信号直到可以发送它；最后，一旦有空闲，内核会适当的处理信号。信号处理通常有三种情况：</p>
+<ol>
+<li><strong>忽略信号</strong>  不采取任何操作。信号SIGKILL和SIGSTOP不能忽略。</li>
+<li><strong>捕获并处理信号</strong>  内核会暂停该进程正在执行的代码，并跳转到先前注册过的函数。接下来进程执行该函数，执行完后再跳回先前捕获信号的地方继续执行。常见的有SIGINT和SIGTERM。</li>
+<li><strong>执行默认操作</strong>  取决于被发送的信号。默认操作通常是终止进程。</li>
+</ol>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">signal</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">signal</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">func</span><span class="p">)(</span><span class="vg">int</span><span class="p">)))(</span><span class="vg">int</span><span class="p">);</span>
+<span class="vg">typedef</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">sig_t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="vg">int</span><span class="p">);</span>
+<span class="vg">sig_t</span><span class="w"> </span><span class="vg">signal</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">sig_t</span><span class="w"> </span><span class="vg">func</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="nl">sig:</span><span class="w"> </span><span class="err">信号种类</span><span class="w"> </span><span class="nl">func:</span><span class="w"> </span><span class="err">接收到信号后调用的函数，参数是被处理信号的标识符</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">sigaction</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">sig</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">sigaction</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">act</span><span class="p">,</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">sigaction</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">oact</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="err">设置信号处理动作，</span><span class="vg">signal</span><span class="p">()</span><span class="err">不带信号信息，</span><span class="vg">sigaction</span><span class="p">()</span><span class="err">带有额外的信号信息</span>
+</pre></div>
+
+
+<h4 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>进程与线程</h4>
+<p><strong>进程管理</strong><br />
+进程是程序实体的一次运行，是系统进行资源分配和调度的一个基本独立单位。每一个进程都有一个唯一的标识符，即进程ID，简称pid。系统保证某时刻每个pid都是唯一的。</p>
+<div class="codehilite"><pre><span class="c1">// 获得进程ID</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">types</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">unistd</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="n">pid_t</span> <span class="n">getpid</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>     <span class="c1">// 返回调用进程的ID</span>
+<span class="n">pid_t</span> <span class="n">getppid</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>    <span class="c1">// 返回进程的父进程ID</span>
+<span class="c1">// 创建进程</span>
+<span class="n">pid_t</span> <span class="k">fork</span><span class="p">(</span><span class="k">void</span><span class="p">);</span>       <span class="c1">// 父子进程不共享数据，随机运行，返回0给子进程pid_t</span>
+<span class="n">pid_t</span> <span class="n">vfork</span><span class="p">();</span>          <span class="c1">// 父子进程共享数据，子进程先运行</span>
+<span class="c1">// exec系列系统调用</span>
+<span class="k">int</span> <span class="n">execl</span><span class="p">(</span><span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/*, (char *)0 */</span><span class="p">);</span>
+<span class="c1">// 将path所指路径的映像载入内存，替换当前进程的映像。execl是可变参数的，但参数列表必须以NULL(0)结尾</span>
+<span class="c1">// 终止进程</span>
+<span class="k">void</span> <span class="n">exit</span><span class="p">(</span><span class="k">int</span> <span class="n">status</span><span class="p">);</span>
+<span class="k">int</span> <span class="n">kill</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="k">int</span> <span class="n">sig</span><span class="p">);</span>
+</pre></div>
+
+
+<p><strong>线程</strong><br />
+线程是一个“轻量级的进程”。线程自己不拥有系统资源，引入线程后进程只作为除CPU外系统资源的分配单元，线程则作为处理机的分配单元，即线程是独立调度的基本单位，进程是资源拥有的基本单位。</p>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">pthread</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_create</span><span class="p">(</span><span class="vg">pthread_t</span><span class="w"> </span><span class="o">*</span><span class="vg">thread</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">pthread_attr_t</span><span class="w"> </span><span class="o">*</span><span class="vg">attr</span><span class="p">,</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="vg">start_routine</span><span class="p">)(</span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="vg">arg</span><span class="p">);</span>
+<span class="o">//</span><span class="w"> </span><span class="err">线程创建</span><span class="p">,</span><span class="w"> </span><span class="nl">thread:</span><span class="w"> </span><span class="err">线程标识符</span><span class="w">  </span><span class="nl">attr:</span><span class="w"> </span><span class="err">线程属性</span><span class="p">(</span><span class="err">堆栈大小</span><span class="p">)</span><span class="w"> </span><span class="nl">start_routine:</span><span class="w"> </span><span class="err">线程调用的函数</span><span class="w"> </span><span class="nl">arg:</span><span class="w"> </span><span class="err">函数参数</span>
+<span class="vg">void</span><span class="w"> </span><span class="vg">pthread_exit</span><span class="p">(</span><span class="vg">void</span><span class="w"> </span><span class="o">*</span><span class="vg">value_ptr</span><span class="p">);</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">线程退出</span>
+<span class="o">//</span><span class="w"> </span><span class="err">线程信号量同步</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_init</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">mutex</span><span class="p">,</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">pthread_mutexattr_t</span><span class="w"> </span><span class="o">*</span><span class="vg">restrict</span><span class="w"> </span><span class="vg">attr</span><span class="p">);</span><span class="w">  </span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_lock</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">mutex</span><span class="p">);</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">pthread_mutex_unlock</span><span class="p">(</span><span class="vg">pthread_mutex_t</span><span class="w"> </span><span class="o">*</span><span class="vg">mutex</span><span class="p">);</span>
+</pre></div>
+
+
+<p><strong>进程间通信</strong><br />
+IPC（InterProcess Communication）函数提供了系统中多个进程之间相互通信的方法。Linux系统中包含以下几种方式的IPC：</p>
+<ol>
+<li>半双工Unix管道pipe</li>
+<li>FIFO(命名管道)</li>
+<li>消息队列</li>
+<li>信号量机制</li>
+<li>共享内存</li>
+<li>socket网络套接字</li>
+</ol>
+<div class="codehilite"><pre><span class="vg">int</span><span class="w"> </span><span class="vg">pipe</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">fildes</span><span class="p">[</span><span class="il">2</span><span class="p">]);</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="vg">pipe</span><span class="err">用于父子进程之间，如果父进程从子进程中读取数据，则父进程应关闭</span><span class="vg">fd1</span><span class="err">，同时子进程关闭</span><span class="vg">fd0</span><span class="err">；反之，父进程向子进程发送数据，它应该关闭</span><span class="vg">fd0</span><span class="err">，子进程关闭</span><span class="vg">fd1</span><span class="err">。</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">mkfifo</span><span class="p">(</span><span class="vg">const</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="o">*</span><span class="vg">path</span><span class="p">,</span><span class="w"> </span><span class="vg">mode_t</span><span class="w"> </span><span class="vg">mode</span><span class="p">);</span><span class="w">  </span><span class="o">//</span><span class="w"> </span><span class="err">创建一个命名管道，用于不同程序之间</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// 消息队列</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">ipc</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">msg</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">msgget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span>  <span class="c1">// 创建或获取一个消息队列 msgflg通常为IPC_CREAT | IPC_EXCL</span>
+<span class="k">int</span> <span class="n">msgsnd</span><span class="p">(</span><span class="k">int</span> <span class="n">msqid</span><span class="p">,</span> <span class="k">struct</span> <span class="n">msgbuf</span> <span class="o">*</span><span class="n">msgp</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgsz</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span> <span class="c1">// 向消息队列发送消息</span>
+<span class="k">int</span> <span class="n">msgctl</span><span class="p">(</span><span class="k">int</span> <span class="n">msqid</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span>  <span class="k">struct</span> <span class="n">msqid_ds</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span> <span class="c1">// 控制对消息队列的操作</span>
+<span class="k">int</span> <span class="n">msgrcv</span><span class="p">(</span><span class="k">int</span>  <span class="n">msqid</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="n">msgp</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">msgsz</span><span class="p">,</span> <span class="n">long</span> <span class="n">msgtyp</span><span class="p">,</span> <span class="k">int</span> <span class="n">msgflg</span><span class="p">);</span> <span class="c1">// 接收消息队列消息</span>
+<span class="c1">// 信号量机制</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">sem</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">semget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="k">int</span> <span class="n">nsems</span><span class="p">,</span> <span class="k">int</span> <span class="n">semflg</span><span class="p">);</span> <span class="c1">// 创建或获取一个信号量</span>
+<span class="k">int</span> <span class="n">semop</span><span class="p">(</span><span class="k">int</span> <span class="n">semid</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sembuf</span> <span class="o">*</span><span class="n">sops</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">nsops</span><span class="p">);</span> <span class="c1">// 信号量操作</span>
+<span class="k">int</span> <span class="n">semctl</span><span class="p">(</span><span class="k">int</span> <span class="n">semid</span><span class="p">,</span> <span class="k">int</span> <span class="n">semnum</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span> <span class="p">...);</span> <span class="c1">// 信号量控制</span>
+<span class="c1">// 共享内存</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">shm</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">shmget</span><span class="p">(</span><span class="n">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 创建或获取一段共享内存</span>
+<span class="k">void</span> <span class="o">*</span><span class="n">shmat</span><span class="p">(</span><span class="k">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">,</span> <span class="k">int</span> <span class="n">shmflg</span><span class="p">);</span> <span class="c1">// 将共享内存段连接到进程中的地址</span>
+<span class="k">int</span> <span class="n">shmctl</span><span class="p">(</span><span class="k">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">int</span> <span class="n">cmd</span><span class="p">,</span> <span class="k">struct</span> <span class="n">shmid_ds</span> <span class="o">*</span><span class="k">buf</span><span class="p">);</span> <span class="c1">// 内存控制</span>
+<span class="k">int</span> <span class="n">shmdt</span><span class="p">(</span><span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">);</span> <span class="c1">// 把内存段从晋城地址空间脱离</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// socket套接字</span>
+<span class="p">#</span><span class="k">include</span> <span class="o">&lt;</span><span class="n">sys</span><span class="o">/</span><span class="n">socket</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="k">int</span> <span class="n">socket</span><span class="p">(</span><span class="k">int</span> <span class="n">domain</span><span class="p">,</span> <span class="k">int</span> <span class="k">type</span><span class="p">,</span> <span class="k">int</span> <span class="n">protocol</span><span class="p">);</span> 
+<span class="c1">// domain设置为AF_INET，type: SOCK_STREAM | SOCKDGRAM, protocol设为0</span>
+<span class="k">int</span> <span class="k">bind</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="n">address_len</span><span class="p">);</span>
+<span class="c1">// 将socket绑定到本地计算机的一个端口上,address_len使用sizeof()获取</span>
+<span class="k">int</span> <span class="n">connect</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="n">address_len</span><span class="p">);</span> <span class="c1">// 连接</span>
+<span class="k">int</span> <span class="n">listen</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">int</span> <span class="n">backlog</span><span class="p">);</span> <span class="c1">// 侦听，backlog:允许进入连接的个数</span>
+<span class="k">int</span> <span class="n">accept</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="n">socklen_t</span> <span class="o">*</span><span class="n">address_len</span><span class="p">);</span> <span class="c1">// 处理连接</span>
+<span class="k">int</span> <span class="n">send</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">const</span> <span class="k">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 发送数据</span>
+<span class="k">int</span> <span class="n">recv</span><span class="p">(</span><span class="k">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">int</span> <span class="n">flags</span><span class="p">);</span> <span class="c1">// 接收数据</span>
+</pre></div>
+
+
+<h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>项目开发</h2>
+<p>小组选择了聊天软件项目。</p>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>需求分析阶段</h3>
+<p>第一天完成了软件需求分析，产生了需求分析矩阵。大体分成服务器端和客户端。小组人员分为服务器编程人员，客户端编程人员还有UI设计人员。个人在项目中参与讨论需求，之后完成了对需求矩阵的评审。</p>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>概要设计阶段</h3>
+<p>进入概要设计阶段，产生了概要设计文档。主要对模块，函数接口等进行设计。系统模块图如下：<br />
+<img alt="概要设计结构图" src="http://jinjaysnow.github.io/images/design.png" /><br />
+作为评审负责人，我主要完成了概要设计文档的评审工作，写作了概要设计评审记录。此外，对设计中的技术点进行调查分析，主要包括QT的网络库使用、QT文件配置和Redis数据库的使用。</p>
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编码阶段</h3>
+<p>与另一名小组成员负责服务器端程序编写。个人主要完成 SQLite3和 Redis数据库相关代码编写。将数据库相关代码封装成概要设计相关接口。</p>
+<div class="codehilite"><pre><span class="c1">// 使用hiredis与Redis数据库交互</span>
+<span class="n">redisContext</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="n">redisConnect</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mh">6379</span><span class="p">);</span>  <span class="c1">// 连接本地Redis数据库</span>
+<span class="n">redisReply</span> <span class="o">*</span><span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">redisReply</span> <span class="o">*</span><span class="p">)</span><span class="n">redisCommand</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">command</span><span class="p">);</span> <span class="c1">// 执行并返回结果</span>
+<span class="n">freeReplyObject</span><span class="p">(</span><span class="n">r</span><span class="p">);</span> <span class="c1">// 使用完结果后需要释放对象占用的空间</span>
+<span class="n">redisFree</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>       <span class="c1">// 释放连接</span>
+<span class="c1">// SQLite3</span>
+<span class="n">Sqlite3</span> <span class="o">*</span><span class="n">db</span> <span class="o">=</span> <span class="no">NULL</span><span class="p">;</span> <span class="c1">// 定义一个数据对象</span>
+<span class="k">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">sqlite3_open</span><span class="p">(</span><span class="s">&quot;test.db&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">db</span><span class="p">);</span> <span class="c1">// 打开数据库</span>
+<span class="k">int</span> <span class="n">sqlite3_exec</span><span class="p">(</span><span class="n">sqlite3</span><span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">sql</span><span class="p">,</span> <span class="k">int</span><span class="p">(</span><span class="o">*</span><span class="n">callback</span><span class="p">)(</span><span class="k">void</span><span class="o">*</span><span class="p">,</span><span class="k">int</span><span class="p">,</span><span class="n">char</span><span class="o">**</span><span class="p">,</span><span class="n">char</span><span class="o">**</span><span class="p">),</span> <span class="k">void</span> <span class="o">*</span><span class="p">,</span> <span class="n">char</span> <span class="o">**</span><span class="n">errmsg</span> <span class="p">);</span>   <span class="c1">// 执行语句</span>
+</pre></div>
+
+
+<p>编码阶段结束后，个人完成了代码评审，写作了代码评审记录。</p>
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>测试阶段</h3>
+<p>测试阶段先由其他队员完成了测试用例的设计。个人对测试用例进行了评审，写作了测试用例评审记录。然后小组成员完成了测试，产生了系统测试报告。最后对系统测试报告进行评审。</p>
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>项目展示</h3>
+<p>由于时间较紧，最后的软件并没有完成所有需求。没有群聊天，没有文件发送，客户端没有聊天记录保存与查询&hellip;但是软件的基本聊天功能实现了，还可以发送表情，发送图片，支持中文。</p>
+<h1 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>在实习中收获最大与体会最深的内容</h1>
+<p>不到一个月的时间，总感觉时间太短。可能是因为是实习生，在公司并没有加班什么的，朝九晚五的生活过得也还不错，有很多自己可以支配的时间。  </p>
+<p>对于团队项目开发的感受是，在整个实习过程中，网络访问受到限制，只能通过设置网络代理打开百度网页，查看搜索资料内容也必须使用百度快照，感觉略麻烦。不过这样带来的好处是很多问题都是自己一步一步思考清楚后解决的，遇到不会的也是尽量去看文档（尽管大部分文档是英文的，看不太懂- -），而不是通过搜索引擎搜索到相应代码后复制粘贴。实习完后，感觉自己的能力有提升，尤其是看英文文档的能力。  </p>
+<p>此外，感触很深的是项目开发过程中，一定要把设计文档写好，尤其是软件模块接口，因为文档是不同模块的编写者之间相互交流的蓝本，这次项目进度落后便是因为客户端与服务器交互的很多接口定义不是很好，双方对接口的理解也有一定的差异。最终项目的服务器端完成了大部分功能，而客户端没能跟上进度很好的完成所有需求，这是一件令人遗憾的事。</p>
+<h1 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>对实习工作的改进意见</h1>
+<ol>
+<li>实习能够安排达到一个月的时间。</li>
+<li>对公司文化并没有太多接触，如果公司能够让学员们与正式员工多接触，多参与到他们的项目讨论中更有益于了解软件公司项目运作过程。</li>
+<li>因为软件学院的实习（应该叫做实训）与其他学院不同，实训并没有见识到很多实际的问题，都是一些自己在学校里做项目能够遇到的，如果能够接触到工业界的项目肯定很有意义。比如服务器访问量达到百万级的应用、分布式计算程序设计等等。</li>
+</ol>
+<div class="toc">
+<ul>
+<li><a href="#_1">实习内容记述</a><ul>
+<li><a href="#_2">实习任务</a></li>
+<li><a href="#_3">实习过程</a></li>
+</ul>
+</li>
+<li><a href="#_4">专题内容分析</a><ul>
+<li><a href="#linux">Linux环境编程学习</a><ul>
+<li><a href="#shell">Shell脚本与常用命令</a></li>
+<li><a href="#_5">管道 |</a></li>
+<li><a href="#_6">输入输出重定向&lt; &amp; &gt;</a></li>
+</ul>
+</li>
+<li><a href="#linux_1">Linux系统编程</a><ul>
+<li><a href="#vim">Vim编辑器</a></li>
+<li><a href="#gcc">GCC</a></li>
+<li><a href="#makefile">Makefile</a></li>
+<li><a href="#gdb">GDB调试工具</a></li>
+<li><a href="#_7">系统编程</a><ul>
+<li><a href="#_8">文件和文件系统</a></li>
+<li><a href="#_9">信号与信号处理</a></li>
+<li><a href="#_10">进程与线程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_11">项目开发</a><ul>
+<li><a href="#_12">需求分析阶段</a></li>
+<li><a href="#_13">概要设计阶段</a></li>
+<li><a href="#_14">编码阶段</a></li>
+<li><a href="#_15">测试阶段</a></li>
+<li><a href="#_16">项目展示</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_17">在实习中收获最大与体会最深的内容</a></li>
+<li><a href="#_18">对实习工作的改进意见</a></li>
+</ul>
+</div>
+			<p style="text-align: right; color: gray;"><br>2014-09-10 21:13:36</p>
+		</div>
+	</div>
+	<div id="side">
+		<div class="support"></div>
+		<div class="clock">
+		  <div class="numbers">
+		    <ul>
+		      <li>12</li>
+		      <li>3</li>
+		      <li>6</li>
+		      <li>9</li>
+		    </ul>
+		  </div>
+		  <div class="clockwise">
+		    <div class="center"></div>
+		    <div class="hand-second" id="analogsecond"></div>
+		    <div class="hand-minute" id="analogminute"></div>
+		    <div class="hand-hour" id="analoghour"></div>
+		  </div>
+		</div>
+		<div style="text-align: center;margin-top: 80%;">
+			<p>Chrish time</p>
+		</div>
+	</div>
+	<footer>
+		<p class="text-muted text-center">
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+	</footer>
+</body>
+</html>
+<script type="text/javascript">
+var oClockAnalog = {
+	aSecond:         [],
+	dtDate:          new Date(),
+	iCurrSecond:     -1,
+	iHourRotation:   -1,
+	iMinuteRotation: -1,
+	iStepSize:       10,
+	iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
+	iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
+
+	fAnimate:       function() {
+	    if (this.aSecond.length > 0) {
+	        this.fRotate("analogsecond", this.aSecond[0]);
+	        this.aSecond = this.aSecond.slice(1);
+	    }
+	},
+	fGetHour:     function() {
+	    var iHours = this.dtDate.getHours();
+	    if (iHours > 11) {
+	        iHours -= 12;
+	    }
+	    return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
+	},
+	fGetMinute:     function() {
+	    return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
+	},
+	fInit:          function() {
+	    this.iHourRotation = this.fGetHour();
+	    this.fRotate("analoghour", this.iHourRotation);
+
+	    this.iMinuteRotation = this.fGetMinute();
+	    this.fRotate("analogminute", this.iMinuteRotation);
+
+	    this.iCurrSecond = this.dtDate.getSeconds();
+	    this.fRotate("analogsecond", (6 * this.iCurrSecond));
+	},
+	fRotate:        function(sID, iDeg) {
+	    var sCSS = ("rotate(" + iDeg + "deg)");
+	    $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
+	},
+	fStepSize:     function(iTo, iFrom) {
+	    var iAnimDiff = (iFrom - iTo);
+	    if (iAnimDiff > 0) {
+	        iAnimDiff -= 360;
+	    }
+	    return iAnimDiff / this.iStepSize;
+	},
+	fUpdate:        function() {
+	    // update time
+	    this.dtDate = new Date();
+
+	    // hours
+	    var iTemp = this.fGetHour();
+	    if (this.iHourRotation != iTemp) {
+	        this.iHourRotation = iTemp;
+	        this.fRotate("analoghour", iTemp);
+	    }
+
+	    // minutes
+	    iTemp = this.fGetMinute();
+	    if (this.iMinuteRotation != iTemp) {
+	        this.iMinuteRotation = iTemp;
+	        this.fRotate("analogminute", iTemp);
+	    }
+
+	    // seconds
+	    if (this.iCurrSecond != this.dtDate.getSeconds()) {
+	        var iRotateFrom = (6 * this.iCurrSecond);
+	        this.iCurrSecond = this.dtDate.getSeconds();
+	        var iRotateTo = (6 * this.iCurrSecond);
+
+	        // push steps into array
+	        var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
+	        for (var i = 0; i < this.iStepSize; i++) {
+	            iRotateFrom -= iDiff;
+	            this.aSecond.push(Math.round(iRotateFrom));
+	        }
+	    }
+	}
+};   
+
+oClockAnalog.fInit();
+</script>

@@ -1,3 +1,10 @@
+Title: Resume_en
+Brief:   This is a file introducing me.
+Authors: Jin Jay
+Date:    2014-08
+base_url: http://jinjaysnow.github.io
+keywords: Resume
+
 ## <center><b>Jin Jay</b></center>
 
 ---
@@ -36,3 +43,5 @@ Software Tools Used:
 
 > git, sublime, zsh, tmux
 
+
+[TOC]

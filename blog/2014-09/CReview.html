@@ -809,15 +809,7 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<div class="toc">
-<ul>
-<li><a href="#c">保研复试C语言复习</a><ul>
-<li><a href="#c_1">C与指针</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
+			<h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
 <h3 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C与指针</h3>
 <p><strong>函数指针</strong></p>
 <blockquote>
@@ -880,8 +872,43 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a></h3>
-			<p style="text-align: right; color: gray;"><br>2014-09-10 18:56:25</p>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>几个基本概念</h3>
+<h4 id="switch"><a name="user-content-switch" href="#switch" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>switch()语句</h4>
+<p>switch(c)语句中c可以是int, long, char, unsigned int。不能是浮点型数据。case语句中也不能有变量。</p>
+<h4 id="for"><a name="user-content-for" href="#for" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>for循环</h4>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="p">,</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;First = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Second = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">),</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="il">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="vg">i</span><span class="p">,</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Third = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Fourth = %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>输出结果为</p>
+<div class="codehilite"><pre><span class="vg">First</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span>
+<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
+<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span>
+<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span>
+</pre></div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#c">保研复试C语言复习</a><ul>
+<li><a href="#c_1">C与指针</a></li>
+<li><a href="#_1">几个基本概念</a><ul>
+<li><a href="#switch">switch()语句</a></li>
+<li><a href="#for">for循环</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+			<p style="text-align: right; color: gray;"><br>2014-09-10 21:08:16</p>
 		</div>
 	</div>
 	<div id="side">

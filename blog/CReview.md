@@ -5,7 +5,6 @@ Date:    2014-09
 codehilite: true
 base_url: http://jinjaysnow.github.io
 
-[TOC]
 ## 保研复试C语言复习
 ### C与指针
 **函数指针**
@@ -66,4 +65,29 @@ int main(){
 }
 ```
 
-### 
+### 几个基本概念
+
+#### switch()语句
+switch(c)语句中c可以是int, long, char, unsigned int。不能是浮点型数据。case语句中也不能有变量。
+
+#### for循环
+```
+#include <stdio.h>
+int main(int argc, char const *argv[]) {
+    int i = 0;
+    for ( i = 0, printf("First = %d ", i); printf("Second = %d ", i), i < 3; ++i, printf("Third = %d ", i)) {
+        printf("Fourth = %d\n", i);
+    }
+    return 0;
+}
+```
+
+输出结果为
+```
+First = 0 Second = 0 Fourth = 0
+Third = 1 Second = 1 Fourth = 1
+Third = 2 Second = 2 Fourth = 2
+Third = 3 Second = 3 
+```
+
+[TOC]

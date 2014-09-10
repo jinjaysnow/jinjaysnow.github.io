@@ -5,7 +5,6 @@ Date:    2014-08
 base_url: http://jinjaysnow.github.io
 keywords: Free-Software-Movement
 
-[TOC]
 ##### Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375
 Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today's topic - *Intellectual Property and the Free Software Movement*.
 
@@ -77,3 +76,6 @@ Sell your own expertise! If you are a developer with experience installing or cu
 Since there are so many ways earning money from free software, I think it helps the software industry develop more rapidly. And it also inpires rather than discourages innovation, for programmers like to pursue the ultimate. Since I have benefited a lot from free software, it doesn't discourage me from choosing a career in software engineering, on the contrary, I'd like to dedicate myself to the develpment of software industry. But I don't approve of Stallman's belief that people should reject all proprietary software, because intellecture property should be protected and can be used in any legal form that the owner like.
 
 So what do you think?
+
+[TOC]
+

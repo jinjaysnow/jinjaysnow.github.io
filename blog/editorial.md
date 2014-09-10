@@ -4,7 +4,6 @@ Authors: Jin Jay
 Date:    2014-08
 base_url: http://jinjaysnow.github.io
 
-[TOC]
 # Question
 Richard Stallman, the founder of the GNU Project, supports “free” software and believes that
 proprietary software (like Microsoft Windows) is harmful. Do you agree with his views? In your
@@ -94,4 +93,4 @@ Proprietary vendors lock-in proprietary standards to ensure that their users wil
 10) Part of social movement
 Free software is not just for the individual user's sake. It promotes social solidarity and represents society as a whole through sharing and cooperation. Since our activities are progressively digitized, free software is becoming an even more essential part of our culture and life activities.
 
-### 
+[TOC]
