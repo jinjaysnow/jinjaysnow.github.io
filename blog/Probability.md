@@ -109,3 +109,4 @@ $ES^2=\sigma ^2$
 性质：$\forall c\_i, \sum c\_i=1;\quad \sum c\_iX\_i = EX$.  
 另:$\hat \theta$是$\theta$的无偏估计，$g(\theta)$是$\theta$的函数，$g(\hat \theta)$不一定是$g(\theta)$的无偏估计。且参数$\theta$的无偏估计不唯一。
 
+[TOC]

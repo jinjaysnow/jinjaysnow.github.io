@@ -7,6 +7,7 @@ keywords: code
 		markdown
 base_url: http://jinjaysnow.github.io
 
+[TOC]
 # 一级标题
 ## 二级标题
 

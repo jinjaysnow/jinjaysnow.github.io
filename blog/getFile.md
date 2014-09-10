@@ -5,6 +5,7 @@ Date:    2014-08
 base_url: http://jinjaysnow.github.io
 keywords: code
 
+[TOC]
 ## pygmentize 产生代码高亮的css文件
 ```
 pygmentize -S default -f html > default.css

@@ -5,6 +5,7 @@ Date:    2014-09
 codehilite: true
 base_url: http://jinjaysnow.github.io
 
+[TOC]
 ## 保研复试C语言复习
 ### C与指针
 **函数指针**

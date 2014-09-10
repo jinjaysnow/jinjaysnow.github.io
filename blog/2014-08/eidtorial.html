@@ -145,16 +145,32 @@ ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
 * html .clearfix {
   zoom: 1;
 }
+/* table of contents*/
+.toc {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  /*bottom: 5% !important;*/
+  left: 71%;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+
+  top: 4em;
+  width: 28% !important;
+  height: 36%;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
 
 /* end of navigation */
 #side {
   background-color: #F8F8F8;
   position: fixed;
   margin-right: 0 !important;
-  /*bottom: 5% !important;*/
+  bottom: 2% !important;
   left: 71%;
-  margin-top: 5%;
-  top: 3em;
+  /*margin-top: 5%;*/
+  /*top: 3em;*/
   /*height: 80%;*/
   width: 28% !important;
   border: 1px solid #ddd;
@@ -165,7 +181,7 @@ ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
   margin-left: 0 !important;
   margin-right: 20%;
   margin-top: 5%;
-  top: 3em;
+  top: 4em;
   /*top: 0 !important;*/
   width: 70% !important;
 }
@@ -792,7 +808,19 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<h1 id="question"><a name="user-content-question" href="#question" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Question</h1>
+			<div class="toc">
+<ul>
+<li><a href="#question">Question</a></li>
+<li><a href="#answer">Answer</a><ul>
+<li><a href="#february-1986">February 1986 :</a></li>
+<li><a href="#1996">1996:</a></li>
+<li><a href="#comparison-with-open-source">Comparison with open source</a></li>
+<li><a href="#what-we-can-benefit">What we can benefit?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="question"><a name="user-content-question" href="#question" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Question</h1>
 <p>Richard Stallman, the founder of the GNU Project, supports “free” software and believes that<br />
 proprietary software (like Microsoft Windows) is harmful. Do you agree with his views? In your<br />
 editorial, please include answers to the following questions. For questions that ask for your opinion,<br />
@@ -865,7 +893,7 @@ Proprietary vendors lock-in proprietary standards to ensure that their users wil
 <p>10) Part of social movement<br />
 Free software is not just for the individual user&rsquo;s sake. It promotes social solidarity and represents society as a whole through sharing and cooperation. Since our activities are progressively digitized, free software is becoming an even more essential part of our culture and life activities.</p>
 <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a></h3>
-			<p style="text-align: right; color: gray;"><br>2014-08-22 23:57:00</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-10 20:14:50</p>
 		</div>
 	</div>
 	<div id="side">

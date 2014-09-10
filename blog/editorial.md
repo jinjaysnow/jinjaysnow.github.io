@@ -4,6 +4,7 @@ Authors: Jin Jay
 Date:    2014-08
 base_url: http://jinjaysnow.github.io
 
+[TOC]
 # Question
 Richard Stallman, the founder of the GNU Project, supports “free” software and believes that
 proprietary software (like Microsoft Windows) is harmful. Do you agree with his views? In your

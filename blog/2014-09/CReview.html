@@ -146,16 +146,32 @@ ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
 * html .clearfix {
   zoom: 1;
 }
+/* table of contents*/
+.toc {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  /*bottom: 5% !important;*/
+  left: 71%;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+
+  top: 4em;
+  width: 28% !important;
+  height: 36%;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
 
 /* end of navigation */
 #side {
   background-color: #F8F8F8;
   position: fixed;
   margin-right: 0 !important;
-  /*bottom: 5% !important;*/
+  bottom: 2% !important;
   left: 71%;
-  margin-top: 5%;
-  top: 3em;
+  /*margin-top: 5%;*/
+  /*top: 3em;*/
   /*height: 80%;*/
   width: 28% !important;
   border: 1px solid #ddd;
@@ -166,7 +182,7 @@ ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
   margin-left: 0 !important;
   margin-right: 20%;
   margin-top: 5%;
-  top: 3em;
+  top: 4em;
   /*top: 0 !important;*/
   width: 70% !important;
 }
@@ -793,7 +809,15 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
+			<div class="toc">
+<ul>
+<li><a href="#c">保研复试C语言复习</a><ul>
+<li><a href="#c_1">C与指针</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
 <h3 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C与指针</h3>
 <p><strong>函数指针</strong></p>
 <blockquote>
@@ -857,7 +881,7 @@ MathJax.Hub.Config({
 
 
 <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a></h3>
-			<p style="text-align: right; color: gray;"><br>2014-09-08 09:18:52</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-10 18:56:25</p>
 		</div>
 	</div>
 	<div id="side">
