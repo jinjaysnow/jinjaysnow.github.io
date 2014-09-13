@@ -6,7 +6,7 @@ base_url: http://jinjaysnow.github.io
 keywords: Resume
 
 
-### **个人信息：**
+### 个人信息
 
 ---
 
@@ -16,7 +16,7 @@ keywords: Resume
 联系电话：18607106575  
 电子邮件：jinjaysnow@gmail.com / 709134513@qq.com  
 
-### **学习与实践：**
+### 学习与实践
 
 ---
 
