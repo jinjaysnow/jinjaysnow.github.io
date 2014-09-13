@@ -115,4 +115,33 @@ const int *p        // 指针变量p可变，而p指向的数据元素不能变
 int * const p       // 指针变量p不可变，而p指向的数据元素可变
 const int * const p // 指针变量p不可变，p指向的元素也不能变
 ```
+
+#### union联合类型
+>联合数据类型（Union）是一种特殊的数据类型。它可以实现：以一种数据类型存储数据，以另一种数据类型来读取数据。程序员可以根据不同的需要，以不同的数据类型来读取联合类型中的数据。也就是说，在一些情况下，以一种数据类型来读取联合类型中的数据，而在另一些情况下，又以另一种数据类型来读取其数据。 `联合类型的所有成员在同一时刻只能有一个起作用，因此他占用的内存空间是所有成员中最大那个的大小。`
+
+```
+#include <stdio.h>
+union number {
+    int x;
+    long y;
+    double z;
+};
+int main(int argc, char const *argv[]) {
+    union number num;
+    num.x = 22;
+    printf("%d\n", num.x);
+    return 0;
+}
+```
+
+#### 枚举类型
+> 如果一个变量只有有限的可能的值，则可以定义为枚举类型，变量的值只限于列举出来的值。
+
+```
+enum Weekday{sun, mon, tue, wed, thu, fri, sat};
+enum Weekday workday, weekend;
+workday = mon;
+weekday = sun;
+```
+
 [TOC]

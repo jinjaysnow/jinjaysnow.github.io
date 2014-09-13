@@ -150,20 +150,8 @@ a:hover, a:active{ outline: 0; }
 a::-moz-selection { background:#a8d1ff; color:#0645ad }
 a::selection { background:#a8d1ff; color:#0645ad }
 
-/* Gallery */
-#gallery {
-  width: 100% !important;
-  /*height: 300px;*/
-  position: relative;
-  top: 4em;
-}
 
-#blog_sample {
-  position: relative;
-  margin-top: 30px;
-  width: 100% !important;
-  min-height: 100px;
-}
+
 footer{
   text-align: center;
   margin-top: 30px;
@@ -174,6 +162,7 @@ footer{
   width: 80% !important;
   margin-right: 10%;
 }
+
 
 /* Media */
 @media only screen and (max-width: 480px) {

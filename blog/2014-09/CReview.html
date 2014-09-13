@@ -798,6 +798,7 @@ MathJax.Hub.Config({
 </script>
 <title>CReview</title>
 	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
 </head>
 <body>
 	<nav>
@@ -921,6 +922,36 @@ MathJax.Hub.Config({
 </pre></div>
 
 
+<h4 id="union"><a name="user-content-union" href="#union" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>union联合类型</h4>
+<blockquote>
+<p>联合数据类型（Union）是一种特殊的数据类型。它可以实现：以一种数据类型存储数据，以另一种数据类型来读取数据。程序员可以根据不同的需要，以不同的数据类型来读取联合类型中的数据。也就是说，在一些情况下，以一种数据类型来读取联合类型中的数据，而在另一些情况下，又以另一种数据类型来读取其数据。 <code>联合类型的所有成员在同一时刻只能有一个起作用，因此他占用的内存空间是所有成员中最大那个的大小。</code></p>
+</blockquote>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">union</span><span class="w"> </span><span class="vg">number</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">x</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">long</span><span class="w"> </span><span class="vg">y</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">double</span><span class="w"> </span><span class="vg">z</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">union</span><span class="w"> </span><span class="vg">number</span><span class="w"> </span><span class="vg">num</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">num</span><span class="o">.</span><span class="vg">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">22</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;%d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">num</span><span class="o">.</span><span class="vg">x</span><span class="p">);</span>
+<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>枚举类型</h4>
+<blockquote>
+<p>如果一个变量只有有限的可能的值，则可以定义为枚举类型，变量的值只限于列举出来的值。</p>
+</blockquote>
+<div class="codehilite"><pre><span class="vg">enum</span><span class="w"> </span><span class="vg">Weekday</span><span class="p">{</span><span class="vg">sun</span><span class="p">,</span><span class="w"> </span><span class="vg">mon</span><span class="p">,</span><span class="w"> </span><span class="vg">tue</span><span class="p">,</span><span class="w"> </span><span class="vg">wed</span><span class="p">,</span><span class="w"> </span><span class="vg">thu</span><span class="p">,</span><span class="w"> </span><span class="vg">fri</span><span class="p">,</span><span class="w"> </span><span class="vg">sat</span><span class="p">};</span>
+<span class="vg">enum</span><span class="w"> </span><span class="vg">Weekday</span><span class="w"> </span><span class="vg">workday</span><span class="p">,</span><span class="w"> </span><span class="vg">weekend</span><span class="p">;</span>
+<span class="vg">workday</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">mon</span><span class="p">;</span>
+<span class="vg">weekday</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">sun</span><span class="p">;</span>
+</pre></div>
+
+
 <div class="toc">
 <ul>
 <li><a href="#c">保研复试C语言复习</a><ul>
@@ -930,13 +961,15 @@ MathJax.Hub.Config({
 <li><a href="#for">for循环</a></li>
 <li><a href="#while">while循环</a></li>
 <li><a href="#const">const</a></li>
+<li><a href="#union">union联合类型</a></li>
+<li><a href="#_2">枚举类型</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-09-10 21:30:18</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-11 18:10:41</p>
 		</div>
 	</div>
 	<div id="side">
@@ -962,7 +995,7 @@ MathJax.Hub.Config({
 		</div>
 	</div>
 	<footer>
-		<p class="text-muted text-center">
+		<p>
 			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
 		</p>
 	</footer>
