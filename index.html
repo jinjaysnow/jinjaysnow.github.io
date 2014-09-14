@@ -1,602 +1,159 @@
-<html class="theme theme-black"><head>
-    <meta charset="utf-8">
-    
-    <meta name="description" content="Cmd Markdown 编辑阅读器，支持实时同步预览，区分写作和阅读模式，支持在线存储，分享文稿网址。">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
-    <title>实习内容记述</title>
-
-
-    <link href="https://www.zybuluo.com/static/img/favicon.png" type="image/x-icon" rel="icon">
-
-    <link href="https://www.zybuluo.com/static/assets/9b84e41b.base.lib.min.css" rel="stylesheet" media="screen">
-
-    <link href="https://www.zybuluo.com/static/font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    
-    <!-- id="prettify-style" will be used to get the link element below and change href to change prettify code style, so it can't be in beginmin/endmin block. -->
-    <link id="prettify-style" href="https://www.zybuluo.com/static/editor/libs/google-code-prettify/desert-cmd.css" type="text/css" rel="stylesheet">
-    <link href="https://www.zybuluo.com/static/assets/mdeditor/8eb06c40.layout.min.css" rel="stylesheet" media="screen">
-
-
-    
-
-    <script async="" src="//www.google-analytics.com/analytics.js"></script><script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-44461741-1', 'zybuluo.com');
-      ga('send', 'pageview');
-    </script><style type="text/css"></style>
-<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
-.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
-</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-.MathJax_MenuItem {padding: 2px 2em; background: transparent}
-.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
-.MathJax_MenuActive .MathJax_MenuArrow {color: white}
-.MathJax_MenuCheck {position: absolute; left: .7em}
-.MathJax_MenuRadioCheck {position: absolute; left: 1em}
-.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
-.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
-.MathJax_MenuDisabled {color: GrayText}
-.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
-.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
-</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
-#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
-#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
-</style><style type="text/css">.MathJax_Preview {color: #888}
-#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
-#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
-.MathJax_Error {color: #CC0000; font-style: italic}
-</style><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
-
-<body class="theme theme-black"><div id="MathJax_Message" style="display: none;"></div>
-
-    <!-- zybuluo's body -->
-    
-
-
-
-
-
-
-
-<!-- mdeditor's body -->
-
-
-
-
-
-
-<div id="editor-reader-full" class="editor-reader-full-shown" style="position: static;">
-    <div id="reader-full-topInfo" class="reader-full-topInfo-shown">
-        <span>
-            <code class="code-black">@JinJay</code>
-        </span>
-        <code class="code-black"><span class="article-updated-date">2014-08-24 18:28</span></code>
-        <code class="code-black"><span>字数 </span><span class="article-characters">8357</span></code>
-        <code class="code-black"><span>阅读 </span><span class="article-read">9</span></code>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+	<title>Welcome to Jin Jay's HomePage</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/callerystyle.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/blog.css">
+	<script type="text/javascript" src="javascripts/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.gallery.js"></script>
+	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
+</head>
+<body>
+	<nav>
+		<ul class="navigation" role="navigation">
+			<li><a href="http://jinjaysnow.github.io">主页</a></li>
+			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
+			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
+		</ul>
+	</nav>
+	<!-- gallery -->
+    <div id="gallery" class="container">
+    	<p style="text-align:center; font-size: 16px;color: rgb(126,217,211);">
+    		优秀网站推荐
+		</p>
+		<!-- Codrops top bar -->
+		<section id="dg-container" class="dg-container">
+			<div class="dg-wrapper">
+				<a href="http://www.colazionedamichy.it/"><img src="images/1.jpg" alt="image01"><div>http://www.colazionedamichy.it/</div></a>
+				<a href="http://www.percivalclo.com/"><img src="images/2.jpg" alt="image02"><div>http://www.percivalclo.com/</div></a>
+				<a href="http://www.wanda.net"><img src="images/3.jpg" alt="image03"><div>http://www.wanda.net</div></a>
+				<a href="http://lifeingreenville.com/"><img src="images/4.jpg" alt="image04"><div>http://lifeingreenville.com/</div></a>
+				<a href="http://circlemeetups.com/"><img src="images/5.jpg" alt="image05"><div>http://circlemeetups.com/</div></a>
+				<a href="http://www.castirondesign.com/"><img src="images/6.jpg" alt="image06"><div>http://www.castirondesign.com/</div></a>
+				<a href="http://www.foundrycollective.com/"><img src="images/7.jpg" alt="image07"><div>http://www.foundrycollective.com/</div></a>
+				<a href="http://www.mathiassterner.com/"><img src="images/8.jpg" alt="image08"><div>http://www.mathiassterner.com/</div></a>
+				<a href="http://learnlakenona.com/"><img src="images/9.jpg" alt="image09"><div>http://learnlakenona.com/</div></a>
+				<a href="http://www.neighborhood-studio.com/"><img src="images/10.jpg" alt="image10"><div>http://www.neighborhood-studio.com/</div></a>
+				<a href="http://www.beckindesign.com/"><img src="images/11.jpg" alt="image11"><div>http://www.beckindesign.com/</div></a>
+				<a href="http://kicksend.com/"><img src="images/12.jpg" alt="image12"><div>http://kicksend.com/</div></a>
+			</div>
+		</section>
     </div>
-    <div id="wmd-preview" class="wmd-preview wmd-preview-full-reader"><div class="md-section-divider"></div>
+    <div class="row">
+    		<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-09/Caculus.html">
+			<div class="titleText">
+				<p>Caculus</p>
+			</div>
+			<div class="blog_sample">
+				<p>考研微积分复习。</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-09/CReview.html">
+			<div class="titleText">
+				<p>CReview</p>
+			</div>
+			<div class="blog_sample">
+				<p>保研复试C语言复习。</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/Editorial.html">
+			<div class="titleText">
+				<p>Editorial</p>
+			</div>
+			<div class="blog_sample">
+				<p>This is a document about *Free Software Movement*.</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/eidtorial.html">
+			<div class="titleText">
+				<p>eidtorial</p>
+			</div>
+			<div class="blog_sample">
+				<p>This is a problem.</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/I'm Jin Jay.html">
+			<div class="titleText">
+				<p>I'm Jin Jay</p>
+			</div>
+			<div class="blog_sample">
+				<p>This is a file introducing me.</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/Intern Report.html">
+			<div class="titleText">
+				<p>Intern Report</p>
+			</div>
+			<div class="blog_sample">
+				<p>Intern Report in NEUSOFT东软.</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-09/Probability.html">
+			<div class="titleText">
+				<p>Probability</p>
+			</div>
+			<div class="blog_sample">
+				<p>考研概率论复习。</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/Resume_en.html">
+			<div class="titleText">
+				<p>Resume_en</p>
+			</div>
+			<div class="blog_sample">
+				<p>This is a file introducing me.</p>
+			</div>
+		</a>
+	</div>
+	<div class="col">
+		<a href="https://jinjaysnow.github.io/blog/2014-08/test.html">
+			<div class="titleText">
+				<p>test</p>
+			</div>
+			<img class="blog_sample" src="images/snow.jpg">
+		</a>
+	</div>
+	<div class="col">
+		<a href="jinjaysnow.github.io/blog/2014-08/Use MarkDownPy.html">
+			<div class="titleText">
+				<p>Use MarkDownPy</p>
+			</div>
+			<div class="blog_sample">
+				<p>This is a file introducing how to use python-makdown.</p>
+			</div>
+		</a>
+	</div>
 
-<p><code class="code-black">markdown</code> <code class="code-black">Stern</code> <code class="code-black">实习</code></p>
-
-<div class="md-section-divider"></div>
-
-<h1 id="实习内容记述">实习内容记述</h1>
-
-<p>2014年 6月 17号到7月 11号，在大连东软集团实习。</p>
-
-<div class="md-section-divider"></div>
-
-<h2 id="实习任务">实习任务</h2>
-
-<p>经过30多个小时的车程后，在18号下午到达了东软集团，路途比较长，下午在安排的员工宿舍休息。在到达东软集团的第二天，见到了实习经理，他给我们介绍了一下此次实习的日程安排：</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pun">前期学习</span><span class="pln"> </span><span class="typ">Linux</span><span class="pun">环境编程和系统编程。</span></code></li><li class="L1"><code><span class="pun">根据所学制作一款局域网聊天软件或邮件系统软件。</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h2 id="实习过程">实习过程</h2>
-
-<p>从到东软的第二天开始，先是学习在 Windows电脑上的 Vmware虚拟机软件中安装 Ubuntu系统。然后是熟悉Linux环境编程。接触到了一些常用命令<code class="code-black">ls</code>, <code class="code-black">ps</code>, <code class="code-black">top</code>, <code class="code-black">kill</code>, <code class="code-black">grep</code>, <code class="code-black">find</code>, <code class="code-black">man</code>, <code class="code-black">cd</code>, <code class="code-black">rm</code>, <code class="code-black">cp</code>, <code class="code-black">locate</code>, <code class="code-black">which</code>, <code class="code-black">what</code>, <code class="code-black">whatis</code>, <code class="code-black">where</code>, <code class="code-black">whereis</code>... 还有管道操作<code class="code-black">|</code>，重定向操作<code class="code-black">&lt;</code>和<code class="code-black">&gt;</code>等等。每一个命令都会练习使用好几遍以达到熟悉的程度。 <br>
-Linux系统编程从介绍 Vim编辑器开始，然后是 gcc编译器的使用， gdb调试工具的使用， makefile的编写，最后是系统函数调用(系统编程)的学习。 <br>
-6月 28号开始了小组分配和项目编写。我们小组总共8个人，其中一个项目经理，一个评审负责人，一个配置管理员。我是小组评审负责人，主要负责项目的设计评审、技术点分析，同时还是服务器端的编程人员。小组选择了聊天软件项目。</p>
-
-<div class="md-section-divider"></div>
-
-<h1 id="专题内容分析">专题内容分析</h1>
-
-<div class="md-section-divider"></div>
-
-<h2 id="linux环境编程学习">Linux环境编程学习</h2>
-
-<div class="md-section-divider"></div>
-
-<h3 id="shell脚本与常用命令">Shell脚本与常用命令</h3>
-
-<blockquote class="black-blockquote">
-  <p>man命令 <br>
-  格式化显示在线操作手册。在实习中遇到不会用的命令还有系统编程时不会使用的函数时，通过man命令能够很快速的找到有用的信息，十分好用。例如：</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">man ls </span><span class="com"># 查看ls命令的帮助信息</span></code></li></ol></pre>
-
-<p><img src="http://jinjaysnow.github.io/images/manls.png"></p>
-
-<blockquote class="black-blockquote">
-  <p>其他常用命令</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">cd </span><span class="pun">..</span><span class="pln">           </span><span class="com"># 改变位置到父目录</span></code></li><li class="L1"><code><span class="pln">cd </span><span class="pun">~</span><span class="pln">            </span><span class="com"># 改变位置到用户工作目录</span></code></li><li class="L2"><code><span class="pln">cp file1 file2  </span><span class="com"># 将文件file1复制到file2</span></code></li><li class="L3"><code><span class="pln">mv file1 file2  </span><span class="com"># 将文件file1更名为file2</span></code></li><li class="L4"><code><span class="pln">mkdir dir1      </span><span class="com"># 建立一个目录dir1</span></code></li><li class="L5"><code><span class="pln">rm f</span><span class="pun">*</span><span class="pln">           </span><span class="com"># 删除当前所有以f开头的文件</span></code></li><li class="L6"><code><span class="pln">rm </span><span class="pun">-</span><span class="pln">r dir1      </span><span class="com"># 删除目录dir1及其子目录下所有文件</span></code></li><li class="L7"><code><span class="pln">cat file1       </span><span class="com"># 打印文件内容到屏幕</span></code></li><li class="L8"><code><span class="pln">pwd             </span><span class="com"># 列出当前所在的目录信息</span></code></li><li class="L9"><code><span class="pln">chmod mode file </span><span class="com"># 改变文件的读写执行权限</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="管道">管道 <code class="code-black">|</code></h3>
-
-<p><em>语法：</em> 命令1 | 命令2 <br>
-将命令1的执行结果送给命令2，作为命令2的输入。 <br>
-管道使得两个及多个命令可以相互通信，带来了很多的便利。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">ls </span><span class="pun">-</span><span class="pln">R1 </span><span class="pun">|</span><span class="pln"> more   </span><span class="com"># 以分页的方式列出当前目录及其子目录下所有文件的名称</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="输入输出重定向">输入输出重定向<code class="code-black">&lt;</code> &amp; <code class="code-black">&gt;</code></h3>
-
-<p><em>语法：</em> 命令 <code class="code-black">&lt;</code> 文件 <br>
-将文件作为命令的输入。 <br>
-<em>语法：</em> 命令 <code class="code-black">&gt;</code> 文件 <br>
-将命令的结果送至指定的文件。 <br>
-输入输出重定向便于将操作的结果送入文件或读取文件作为操作的输入。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">mail </span><span class="pun">-</span><span class="pln">s </span><span class="str">"theme"</span><span class="pln"> xx@email</span><span class="pun">.</span><span class="pln">com </span><span class="pun">&lt;</span><span class="pln"> file1 </span><span class="com"># 将文件file1当做信件内容发给收件人</span></code></li><li class="L1"><code><span class="pln">ls </span><span class="pun">-</span><span class="pln">l </span><span class="pun">&gt;</span><span class="pln"> list    </span><span class="com"># 将”ls -l“的结果写入文件list</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h2 id="linux系统编程">Linux系统编程</h2>
-
-<div class="md-section-divider"></div>
-
-<h3 id="vim编辑器">Vim编辑器</h3>
-
-<p>Vim是从vi发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富。Vim拥有多种模式，常用有三种：</p>
-
-<blockquote class="black-blockquote">
-  <p>普通模式 <br>
-  在普通模式中，用的是编辑器命令，比如移动光标，删除文本等等。这是Vim启动后的默认模式。常用命令有：</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">j   </span><span class="com"># 光标向上移动一行</span></code></li><li class="L1"><code><span class="pln">k   </span><span class="com"># 光标向下移动一行</span></code></li><li class="L2"><code><span class="pln">h   </span><span class="com"># 光标向左移动一个字符</span></code></li><li class="L3"><code><span class="pln">l   </span><span class="com"># 光标向右移动一个字符</span></code></li><li class="L4"><code><span class="pln">w   </span><span class="com"># 光标移到下一个单词词首</span></code></li><li class="L5"><code><span class="pln">e   </span><span class="com"># 光标移到单词末尾或下一个单词末尾</span></code></li><li class="L6"><code><span class="pln">b   </span><span class="com"># 光标回退到词首或回退到上一个单词词首</span></code></li><li class="L7"><code><span class="pln">dd  </span><span class="com"># 删除一行</span></code></li><li class="L8"><code><span class="pln">daw </span><span class="com"># 删除当前光标所在单词</span></code></li><li class="L9"><code><span class="pln">r   </span><span class="com"># 替换一个字符</span></code></li><li class="L0"><code><span class="pln">x   </span><span class="com"># 删除当前光标所在的一个字符</span></code></li><li class="L1"><code><span class="pln">G   </span><span class="com"># 跳转到文章末尾</span></code></li><li class="L2"><code><span class="pln">gg  </span><span class="com"># 跳转到文章开头</span></code></li></ol></pre>
-
-<blockquote class="black-blockquote">
-  <p>插入模式 <br>
-  在普通模式中，有很多方法可以进入插入模式。常用的方式是按"a"（append／追加）键或者"i"（insert／插入）键。在这个模式中，大多数按键都会向文本缓冲中插入文本。在插入模式中，可以按ESC键回到普通模式。</p>
-  
-  <p>可视模式 <br>
-  这个模式与普通模式比较相似。但是移动命令会扩大高亮的文本区域。高亮区域可以是字符、行或者是一块文本。当执行一个非移动命令时，命令会被执行到这块高亮的区域上。Vim的"文本对象"也能和移动命令一样用在这个模式中。</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">y   </span><span class="com"># 复制高亮选中的文本</span></code></li><li class="L1"><code><span class="pln">p   </span><span class="com"># 粘贴复制在缓冲区的文本</span></code></li></ol></pre>
-
-<blockquote class="black-blockquote">
-  <p>Vim文件配置</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com"># 定义F5键用于构建并运行c文件</span></code></li><li class="L1"><code><span class="pln">map </span><span class="pun">&lt;</span><span class="pln">F5</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">:</span><span class="pln">call </span><span class="typ">Compilerungcc</span><span class="pun">()</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">CR</span><span class="pun">&gt;</span></code></li><li class="L2"><code><span class="pln">func</span><span class="pun">!</span><span class="pln"> </span><span class="typ">Compilerungcc</span><span class="pun">()</span></code></li><li class="L3"><code><span class="kwd">exec</span><span class="pln"> </span><span class="str">"w"</span></code></li><li class="L4"><code><span class="kwd">exec</span><span class="pln"> </span><span class="str">"!gcc % -o %c"</span></code></li><li class="L5"><code><span class="kwd">exec</span><span class="pln"> </span><span class="str">"! ./%&lt;"</span></code></li><li class="L6"><code><span class="pln">endfunc</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="gcc">GCC</h3>
-
-<p>GCC（GNU Compiler Collection，GNU编译器套装），是一套由GNU开发的编程语言编译器。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">E hello</span><span class="pun">.</span><span class="pln">c </span><span class="pun">-</span><span class="pln">o hello</span><span class="pun">.</span><span class="pln">i   </span><span class="com"># 预处理</span></code></li><li class="L1"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">S hello</span><span class="pun">.</span><span class="pln">i </span><span class="pun">-</span><span class="pln">o hello</span><span class="pun">.</span><span class="pln">s   </span><span class="com"># 编译</span></code></li><li class="L2"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">c hello</span><span class="pun">.</span><span class="pln">s </span><span class="pun">-</span><span class="pln">o hello</span><span class="pun">.</span><span class="pln">o   </span><span class="com"># 汇编</span></code></li><li class="L3"><code><span class="pln">gcc hello</span><span class="pun">.</span><span class="pln">o </span><span class="pun">-</span><span class="pln">o hello        </span><span class="com"># 链接</span></code></li></ol></pre>
-
-<p><strong>gcc参数</strong> <br>
-<code class="code-black">gcc -I目录 -l链接库 -L链接库路径</code></p>
-
-<p><strong>gcc生成链接库</strong>  </p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com"># 静态链接库</span></code></li><li class="L1"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">c source</span><span class="pun">.</span><span class="pln">c </span><span class="pun">-</span><span class="pln">o source</span><span class="pun">.</span><span class="pln">o             </span><span class="com"># 生成.o文件</span></code></li><li class="L2"><code><span class="pln">ar rcs </span><span class="pun">-</span><span class="pln">o libsource</span><span class="pun">.</span><span class="pln">a source</span><span class="pun">.</span><span class="pln">o          </span><span class="com"># ar命令将.o文件打包成静态库文件</span></code></li><li class="L3"><code><span class="pln">ar t libsource</span><span class="pun">.</span><span class="pln">a                        </span><span class="com"># 查看libsource.a包含哪些文件 </span></code></li><li class="L4"><code><span class="com"># 动态链接库</span></code></li><li class="L5"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">c source</span><span class="pun">.</span><span class="pln">c </span><span class="pun">-</span><span class="pln">fpic </span><span class="pun">-</span><span class="pln">o source</span><span class="pun">.</span><span class="pln">o       </span><span class="com"># 添加-fpic选项生成.o文件</span></code></li><li class="L6"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">shared source</span><span class="pun">.</span><span class="pln">o </span><span class="pun">-</span><span class="pln">o libsource</span><span class="pun">.</span><span class="pln">so    </span><span class="com"># 生成动态链接库</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="makefile">Makefile</h3>
-
-<blockquote class="black-blockquote">
-  <p>在软件开发中，make是一个工具程序（Utility software），它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。大多数情况下，make被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。<em>makefile</em>便是make用来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行的文件。</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com"># makefile预定义变量</span></code></li><li class="L1"><code><span class="pln">$@ </span><span class="pun">目标名称</span></code></li><li class="L2"><code><span class="pln">$</span><span class="pun">^</span><span class="pln"> </span><span class="pun">所有被依赖的对象</span></code></li><li class="L3"><code><span class="pln">$</span><span class="pun">&lt;</span><span class="pln"> </span><span class="pun">第一个被依赖的文件</span></code></li><li class="L4"><code><span class="com"># 模式规则</span></code></li><li class="L5"><code><span class="pun">%.</span><span class="pln">o</span><span class="pun">:</span><span class="pln"> </span><span class="pun">%.</span><span class="pln">c  </span><span class="com"># 将所有的.c文件生成.o文件， %是通配符</span></code></li><li class="L6"><code><span class="com"># 使用</span></code></li><li class="L7"><code><span class="pln">cc $</span><span class="pun">(</span><span class="pln">CCFLAGS</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-</span><span class="pln">c </span><span class="pun">-</span><span class="pln">o $@ $</span><span class="pun">&lt;</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="gdb调试工具">GDB调试工具</h3>
-
-<p>GNU调试器(Debugger，缩写：GDB)，是GNU软件系统中的标准调试器。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">gcc </span><span class="pun">-</span><span class="pln">c source</span><span class="pun">.</span><span class="pln">c </span><span class="pun">-</span><span class="pln">o source </span><span class="pun">-</span><span class="pln">g    </span><span class="com"># 在编译时使用-g选项</span></code></li><li class="L1"><code><span class="pln">list    </span><span class="com"># 显示代码</span></code></li><li class="L2"><code><span class="kwd">break</span><span class="pln">   </span><span class="com"># 设置断点</span></code></li><li class="L3"><code><span class="pln">watch   </span><span class="com"># 观察变量，变量值改变时输出值</span></code></li><li class="L4"><code><span class="kwd">print</span><span class="pln">   </span><span class="com"># 查看变量信息</span></code></li><li class="L5"><code><span class="pln">step    </span><span class="com"># 在断点时，用于一步一步继续执行，进入函数内部</span></code></li><li class="L6"><code><span class="kwd">next</span><span class="pln">    </span><span class="com"># 在断电时，继续执行但不进入函数内部</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h3 id="系统编程">系统编程</h3>
-
-<blockquote class="black-blockquote">
-  <p>系统编程：从操作系统获得服务或资源而向内核发起的函数调用。</p>
-</blockquote>
-
-<div class="md-section-divider"></div>
-
-<h4 id="文件和文件系统">文件和文件系统</h4>
-
-<p>在Linux系统中一切皆是文件，很多交互工作是通过读取和写入文件件来完成的。 <br>
-文件通过inode（信息节点）访问，inode使用唯一的数值（inode编号）进行标识。一个inode存储文件关联的元数据，如它的修改时间戳、所有者、类型、长度以及文件的数据的地址--不包含文件名。目录将易读的文件名与inode编号进行映射。文件名与inode的配对也称为链接（link）。 <br>
-用户请求打开一个文件时，内核打开包含指定文件名的目录然后搜索该文件。内核通过文件名获得inode编号，然后根据inode编号找到对应的inode。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// open() 打开文件</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;fcntl.h&gt;</span></code></li><li class="L2"><code><span class="kwd">int</span><span class="pln"> open </span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> flags</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...);</span></code></li><li class="L3"><code><span class="com">// flags: O_RDONLY, O_WRONLY, O_RDWR</span></code></li><li class="L4"><code><span class="com">// 打开文件错误时会返回-1，成功则返回文件描述符</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// read() 读取文件</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;unistd.h&gt;</span></code></li><li class="L2"><code><span class="typ">ssize_t</span><span class="pln"> read </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fd</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">buf</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> len</span><span class="pun">);</span></code></li><li class="L3"><code><span class="com">// 从文件fd的当前偏移量至多读取len个字节到buf中，成功时返回写入buf中的字节数，出错返回-1</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// write() 写入文件</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;unistd.h&gt;</span></code></li><li class="L2"><code><span class="typ">ssize_t</span><span class="pln"> write </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fd</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">buf</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> count</span><span class="pun">);</span></code></li><li class="L3"><code><span class="com">// 从文件fd当前位置开始将buf中至多count个字节写入文件中</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// close() 关闭文件</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;unistd.h&gt;</span></code></li><li class="L2"><code><span class="kwd">int</span><span class="pln"> close</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fd</span><span class="pun">);</span></code></li><li class="L3"><code><span class="com">// 解除文件描述符的关联，并分离进程和文件的关联</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// 其他调用</span></code></li><li class="L1"><code><span class="typ">off_t</span><span class="pln"> lseek</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fd</span><span class="pun">,</span><span class="pln"> </span><span class="typ">off_t</span><span class="pln"> pos</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> origin</span><span class="pun">);</span><span class="pln">     </span><span class="com">// 移动读写指针</span></code></li><li class="L2"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/stat.h&gt;</span><span class="pln">                           </span><span class="com">// 查看文件属性</span></code></li><li class="L3"><code><span class="kwd">int</span><span class="pln"> fstat</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fildes</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> stat </span><span class="pun">*</span><span class="pln">buf</span><span class="pun">);</span></code></li><li class="L4"><code><span class="kwd">int</span><span class="pln"> lstat</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">restrict path</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> stat </span><span class="pun">*</span><span class="pln">restrict buf</span><span class="pun">);</span></code></li><li class="L5"><code><span class="kwd">int</span><span class="pln"> stat</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">restrict path</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> stat </span><span class="pun">*</span><span class="pln">restrict buf</span><span class="pun">);</span></code></li><li class="L6"><code><span class="com">// 制作文件硬链接</span></code></li><li class="L7"><code><span class="kwd">int</span><span class="pln"> link</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path1</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path2</span><span class="pun">);</span></code></li><li class="L8"><code><span class="com">// 制作符号链接</span></code></li><li class="L9"><code><span class="kwd">int</span><span class="pln"> symlink</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path1</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path2</span><span class="pun">);</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h4 id="信号与信号处理">信号与信号处理</h4>
-
-<p>信号是提供处理异步事件机制的软件终端。信号有一个明确的生命周期：首先，产生信号；然后内核存储信号直到可以发送它；最后，一旦有空闲，内核会适当的处理信号。信号处理通常有三种情况：</p>
-
-<ol>
-<li><strong>忽略信号</strong>  不采取任何操作。信号SIGKILL和SIGSTOP不能忽略。</li>
-<li><strong>捕获并处理信号</strong>  内核会暂停该进程正在执行的代码，并跳转到先前注册过的函数。接下来进程执行该函数，执行完后再跳回先前捕获信号的地方继续执行。常见的有SIGINT和SIGTERM。</li>
-<li><strong>执行默认操作</strong>  取决于被发送的信号。默认操作通常是终止进程。</li>
-</ol>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;signal.h&gt;</span></code></li><li class="L1"><code><span class="kwd">void</span><span class="pln"> </span><span class="pun">(*</span><span class="pln">signal</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> sig</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">(*</span><span class="pln">func</span><span class="pun">)(</span><span class="kwd">int</span><span class="pun">)))(</span><span class="kwd">int</span><span class="pun">);</span></code></li><li class="L2"><code><span class="kwd">typedef</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">(*</span><span class="typ">sig_t</span><span class="pun">)</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pun">);</span></code></li><li class="L3"><code><span class="typ">sig_t</span><span class="pln"> signal</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> sig</span><span class="pun">,</span><span class="pln"> </span><span class="typ">sig_t</span><span class="pln"> func</span><span class="pun">);</span></code></li><li class="L4"><code><span class="com">// sig: 信号种类 func: 接收到信号后调用的函数，参数是被处理信号的标识符</span></code></li><li class="L5"><code><span class="kwd">int</span><span class="pln"> sigaction</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> sig</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sigaction </span><span class="pun">*</span><span class="pln">restrict act</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sigaction </span><span class="pun">*</span><span class="pln">restrict oact</span><span class="pun">);</span></code></li><li class="L6"><code><span class="com">// 设置信号处理动作，signal()不带信号信息，sigaction()带有额外的信号信息</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h4 id="进程与线程">进程与线程</h4>
-
-<p><strong>进程管理</strong> <br>
-进程是程序实体的一次运行，是系统进行资源分配和调度的一个基本独立单位。每一个进程都有一个唯一的标识符，即进程ID，简称pid。系统保证某时刻每个pid都是唯一的。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// 获得进程ID</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/types.h&gt;</span></code></li><li class="L2"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;unistd.h&gt;</span></code></li><li class="L3"><code><span class="typ">pid_t</span><span class="pln"> getpid</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">);</span><span class="pln">     </span><span class="com">// 返回调用进程的ID</span></code></li><li class="L4"><code><span class="typ">pid_t</span><span class="pln"> getppid</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">);</span><span class="pln">    </span><span class="com">// 返回进程的父进程ID</span></code></li><li class="L5"><code><span class="com">// 创建进程</span></code></li><li class="L6"><code><span class="typ">pid_t</span><span class="pln"> fork</span><span class="pun">(</span><span class="kwd">void</span><span class="pun">);</span><span class="pln">       </span><span class="com">// 父子进程不共享数据，随机运行，返回0给子进程pid_t</span></code></li><li class="L7"><code><span class="typ">pid_t</span><span class="pln"> vfork</span><span class="pun">();</span><span class="pln">          </span><span class="com">// 父子进程共享数据，子进程先运行</span></code></li><li class="L8"><code><span class="com">// exec系列系统调用</span></code></li><li class="L9"><code><span class="kwd">int</span><span class="pln"> execl</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">arg0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="com">/*, (char *)0 */</span><span class="pun">);</span></code></li><li class="L0"><code><span class="com">// 将path所指路径的映像载入内存，替换当前进程的映像。execl是可变参数的，但参数列表必须以NULL(0)结尾</span></code></li><li class="L1"><code><span class="com">// 终止进程</span></code></li><li class="L2"><code><span class="kwd">void</span><span class="pln"> </span><span class="kwd">exit</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> status</span><span class="pun">);</span></code></li><li class="L3"><code><span class="kwd">int</span><span class="pln"> kill</span><span class="pun">(</span><span class="typ">pid_t</span><span class="pln"> pid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> sig</span><span class="pun">);</span></code></li></ol></pre>
-
-<p><strong>线程</strong> <br>
-线程是一个“轻量级的进程”。线程自己不拥有系统资源，引入线程后进程只作为除CPU外系统资源的分配单元，线程则作为处理机的分配单元，即线程是独立调度的基本单位，进程是资源拥有的基本单位。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;pthread.h&gt;</span></code></li><li class="L1"><code><span class="kwd">int</span><span class="pln"> pthread_create</span><span class="pun">(</span><span class="typ">pthread_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">thread</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">pthread_attr_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">attr</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*(*</span><span class="pln">start_routine</span><span class="pun">)(</span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*),</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">arg</span><span class="pun">);</span></code></li><li class="L2"><code><span class="com">// 线程创建, thread: 线程标识符  attr: 线程属性(堆栈大小) start_routine: 线程调用的函数 arg: 函数参数</span></code></li><li class="L3"><code><span class="kwd">void</span><span class="pln"> pthread_exit</span><span class="pun">(</span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">value_ptr</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 线程退出</span></code></li><li class="L4"><code><span class="com">// 线程信号量同步</span></code></li><li class="L5"><code><span class="kwd">int</span><span class="pln"> pthread_mutex_init</span><span class="pun">(</span><span class="typ">pthread_mutex_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">restrict mutex</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="typ">pthread_mutexattr_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">restrict attr</span><span class="pun">);</span><span class="pln">  </span></code></li><li class="L6"><code><span class="kwd">int</span><span class="pln"> pthread_mutex_lock</span><span class="pun">(</span><span class="typ">pthread_mutex_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">mutex</span><span class="pun">);</span></code></li><li class="L7"><code><span class="kwd">int</span><span class="pln"> pthread_mutex_unlock</span><span class="pun">(</span><span class="typ">pthread_mutex_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">mutex</span><span class="pun">);</span></code></li></ol></pre>
-
-<p><strong>进程间通信</strong> <br>
-IPC（InterProcess Communication）函数提供了系统中多个进程之间相互通信的方法。Linux系统中包含以下几种方式的IPC：</p>
-
-<ol>
-<li>半双工Unix管道pipe</li>
-<li>FIFO(命名管道)</li>
-<li>消息队列</li>
-<li>信号量机制</li>
-<li>共享内存</li>
-<li>socket网络套接字</li>
-</ol>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="kwd">int</span><span class="pln"> pipe</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> fildes</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]);</span><span class="pln">    </span><span class="com">// pipe用于父子进程之间，如果父进程从子进程中读取数据，则父进程应关闭fd1，同时子进程关闭fd0；反之，父进程向子进程发送数据，它应该关闭fd0，子进程关闭fd1。</span></code></li><li class="L1"><code><span class="kwd">int</span><span class="pln"> mkfifo</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">path</span><span class="pun">,</span><span class="pln"> </span><span class="typ">mode_t</span><span class="pln"> mode</span><span class="pun">);</span><span class="pln">  </span><span class="com">// 创建一个命名管道，用于不同程序之间</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// 消息队列</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/ipc.h&gt;</span></code></li><li class="L2"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/msg.h&gt;</span></code></li><li class="L3"><code><span class="kwd">int</span><span class="pln"> msgget</span><span class="pun">(</span><span class="typ">key_t</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> msgflg</span><span class="pun">);</span><span class="pln">  </span><span class="com">// 创建或获取一个消息队列 msgflg通常为IPC_CREAT | IPC_EXCL</span></code></li><li class="L4"><code><span class="kwd">int</span><span class="pln"> msgsnd</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> msqid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> msgbuf </span><span class="pun">*</span><span class="pln">msgp</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> msgsz</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> msgflg</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 向消息队列发送消息</span></code></li><li class="L5"><code><span class="kwd">int</span><span class="pln"> msgctl</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> msqid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> cmd</span><span class="pun">,</span><span class="pln">  </span><span class="kwd">struct</span><span class="pln"> msqid_ds </span><span class="pun">*</span><span class="pln">buf</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 控制对消息队列的操作</span></code></li><li class="L6"><code><span class="kwd">int</span><span class="pln"> msgrcv</span><span class="pun">(</span><span class="kwd">int</span><span class="pln">  msqid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">msgp</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> msgsz</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> msgtyp</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> msgflg</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 接收消息队列消息</span></code></li><li class="L7"><code><span class="com">// 信号量机制</span></code></li><li class="L8"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/sem.h&gt;</span></code></li><li class="L9"><code><span class="kwd">int</span><span class="pln"> semget</span><span class="pun">(</span><span class="typ">key_t</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> nsems</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> semflg</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 创建或获取一个信号量</span></code></li><li class="L0"><code><span class="kwd">int</span><span class="pln"> semop</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> semid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sembuf </span><span class="pun">*</span><span class="pln">sops</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> nsops</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 信号量操作</span></code></li><li class="L1"><code><span class="kwd">int</span><span class="pln"> semctl</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> semid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> semnum</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> cmd</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...);</span><span class="pln"> </span><span class="com">// 信号量控制</span></code></li><li class="L2"><code><span class="com">// 共享内存</span></code></li><li class="L3"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/shm.h&gt;</span></code></li><li class="L4"><code><span class="kwd">int</span><span class="pln"> shmget</span><span class="pun">(</span><span class="typ">key_t</span><span class="pln"> key</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> size</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> flags</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 创建或获取一段共享内存</span></code></li><li class="L5"><code><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">shmat</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> shmid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">shmaddr</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> shmflg</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 将共享内存段连接到进程中的地址</span></code></li><li class="L6"><code><span class="kwd">int</span><span class="pln"> shmctl</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> shmid</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> cmd</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> shmid_ds </span><span class="pun">*</span><span class="pln">buf</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 内存控制</span></code></li><li class="L7"><code><span class="kwd">int</span><span class="pln"> shmdt</span><span class="pun">(</span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">shmaddr</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 把内存段从晋城地址空间脱离</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// socket套接字</span></code></li><li class="L1"><code><span class="com">#include</span><span class="pln"> </span><span class="str">&lt;sys/socket.h&gt;</span></code></li><li class="L2"><code><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> domain</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> type</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> protocol</span><span class="pun">);</span><span class="pln"> </span></code></li><li class="L3"><code><span class="com">// domain设置为AF_INET，type: SOCK_STREAM | SOCKDGRAM, protocol设为0</span></code></li><li class="L4"><code><span class="kwd">int</span><span class="pln"> bind</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sockaddr </span><span class="pun">*</span><span class="pln">address</span><span class="pun">,</span><span class="pln"> </span><span class="typ">socklen_t</span><span class="pln"> address_len</span><span class="pun">);</span></code></li><li class="L5"><code><span class="com">// 将socket绑定到本地计算机的一个端口上,address_len使用sizeof()获取</span></code></li><li class="L6"><code><span class="kwd">int</span><span class="pln"> connect</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sockaddr </span><span class="pun">*</span><span class="pln">address</span><span class="pun">,</span><span class="pln"> </span><span class="typ">socklen_t</span><span class="pln"> address_len</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 连接</span></code></li><li class="L7"><code><span class="kwd">int</span><span class="pln"> listen</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> backlog</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 侦听，backlog:允许进入连接的个数</span></code></li><li class="L8"><code><span class="kwd">int</span><span class="pln"> accept</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">struct</span><span class="pln"> sockaddr </span><span class="pun">*</span><span class="pln">address</span><span class="pun">,</span><span class="pln"> </span><span class="typ">socklen_t</span><span class="pln"> </span><span class="pun">*</span><span class="pln">address_len</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 处理连接</span></code></li><li class="L9"><code><span class="kwd">int</span><span class="pln"> send</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">buffer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> length</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> flags</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 发送数据</span></code></li><li class="L0"><code><span class="kwd">int</span><span class="pln"> recv</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> socket</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*</span><span class="pln">buffer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">size_t</span><span class="pln"> length</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> flags</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 接收数据</span></code></li></ol></pre>
-
-<div class="md-section-divider"></div>
-
-<h2 id="项目开发">项目开发</h2>
-
-<p>小组选择了聊天软件项目。</p>
-
-<div class="md-section-divider"></div>
-
-<h3 id="需求分析阶段">需求分析阶段</h3>
-
-<p>第一天完成了软件需求分析，产生了需求分析矩阵。大体分成服务器端和客户端。小组人员分为服务器编程人员，客户端编程人员还有UI设计人员。个人在项目中参与讨论需求，之后完成了对需求矩阵的评审。</p>
-
-<div class="md-section-divider"></div>
-
-<h3 id="概要设计阶段">概要设计阶段</h3>
-
-<p>进入概要设计阶段，产生了概要设计文档。主要对模块，函数接口等进行设计。系统模块图如下： <br>
-<img src="http://jinjaysnow.github.io/images/design.png" alt="概要设计结构图" title=""> <br>
-作为评审负责人，我主要完成了概要设计文档的评审工作，写作了概要设计评审记录。此外，对设计中的技术点进行调查分析，主要包括QT的网络库使用、QT文件配置和Redis数据库的使用。</p>
-
-<div class="md-section-divider"></div>
-
-<h3 id="编码阶段">编码阶段</h3>
-
-<p>与另一名小组成员负责服务器端程序编写。个人主要完成 SQLite3和 Redis数据库相关代码编写。将数据库相关代码封装成概要设计相关接口。</p>
-
-<div class="md-section-divider"></div>
-
-<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="com">// 使用hiredis与Redis数据库交互</span></code></li><li class="L1"><code><span class="pln">redisContext </span><span class="pun">*</span><span class="pln">c </span><span class="pun">=</span><span class="pln"> redisConnect</span><span class="pun">(</span><span class="str">"127.0.0.1"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6379</span><span class="pun">);</span><span class="pln">  </span><span class="com">// 连接本地Redis数据库</span></code></li><li class="L2"><code><span class="pln">redisReply </span><span class="pun">*</span><span class="pln">r </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">redisReply </span><span class="pun">*)</span><span class="pln">redisCommand</span><span class="pun">(</span><span class="pln">c</span><span class="pun">,</span><span class="pln"> command</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 执行并返回结果</span></code></li><li class="L3"><code><span class="pln">freeReplyObject</span><span class="pun">(</span><span class="pln">r</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 使用完结果后需要释放对象占用的空间</span></code></li><li class="L4"><code><span class="pln">redisFree</span><span class="pun">(</span><span class="pln">c</span><span class="pun">);</span><span class="pln">       </span><span class="com">// 释放连接</span></code></li><li class="L5"><code><span class="com">// SQLite3</span></code></li><li class="L6"><code><span class="typ">Sqlite3</span><span class="pln"> </span><span class="pun">*</span><span class="pln">db </span><span class="pun">=</span><span class="pln"> NULL</span><span class="pun">;</span><span class="pln"> </span><span class="com">// 定义一个数据对象</span></code></li><li class="L7"><code><span class="kwd">int</span><span class="pln"> rc </span><span class="pun">=</span><span class="pln"> sqlite3_open</span><span class="pun">(</span><span class="str">"test.db"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln">db</span><span class="pun">);</span><span class="pln"> </span><span class="com">// 打开数据库</span></code></li><li class="L8"><code><span class="kwd">int</span><span class="pln"> sqlite3_exec</span><span class="pun">(</span><span class="pln">sqlite3</span><span class="pun">*,</span><span class="pln"> </span><span class="kwd">const</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">*</span><span class="pln">sql</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">(*</span><span class="pln">callback</span><span class="pun">)(</span><span class="kwd">void</span><span class="pun">*,</span><span class="kwd">int</span><span class="pun">,</span><span class="kwd">char</span><span class="pun">**,</span><span class="kwd">char</span><span class="pun">**),</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> </span><span class="pun">*,</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">**</span><span class="pln">errmsg </span><span class="pun">);</span><span class="pln">   </span><span class="com">// 执行语句</span></code></li></ol></pre>
-
-<p>编码阶段结束后，个人完成了代码评审，写作了代码评审记录。</p>
-
-<div class="md-section-divider"></div>
-
-<h3 id="测试阶段">测试阶段</h3>
-
-<p>测试阶段先由其他队员完成了测试用例的设计。个人对测试用例进行了评审，写作了测试用例评审记录。然后小组成员完成了测试，产生了系统测试报告。最后对系统测试报告进行评审。</p>
-
-<div class="md-section-divider"></div>
-
-<h3 id="项目展示">项目展示</h3>
-
-<p>由于时间较紧，最后的软件并没有完成所有需求。没有群聊天，没有文件发送，客户端没有聊天记录保存与查询...但是软件的基本聊天功能实现了，还可以发送表情，发送图片，支持中文。</p>
-
-<div class="md-section-divider"></div>
-
-<h1 id="在实习中收获最大与体会最深的内容">在实习中收获最大与体会最深的内容</h1>
-
-<p>不到一个月的时间，总感觉时间太短。可能是因为是实习生，在公司并没有加班什么的，朝九晚五的生活过得也还不错，有很多自己可以支配的时间。  </p>
-
-<p>对于团队项目开发的感受是，在整个实习过程中，网络访问受到限制，只能通过设置网络代理打开百度网页，查看搜索资料内容也必须使用百度快照，感觉略麻烦。不过这样带来的好处是很多问题都是自己一步一步思考清楚后解决的，遇到不会的也是尽量去看文档（尽管大部分文档是英文的，看不太懂- -），而不是通过搜索引擎搜索到相应代码后复制粘贴。实习完后，感觉自己的能力有提升，尤其是看英文文档的能力。  </p>
-
-<p>此外，感触很深的是项目开发过程中，一定要把设计文档写好，尤其是软件模块接口，因为文档是不同模块的编写者之间相互交流的蓝本，这次项目进度落后便是因为客户端与服务器交互的很多接口定义不是很好，双方对接口的理解也有一定的差异。最终项目的服务器端完成了大部分功能，而客户端没能跟上进度很好的完成所有需求，这是一件令人遗憾的事。</p>
-
-<div class="md-section-divider"></div>
-
-<h1 id="对实习工作的改进意见">对实习工作的改进意见</h1>
-
-<ol>
-<li>实习能够安排达到一个月的时间。</li>
-<li>对公司文化并没有太多接触，如果公司能够让学员们与正式员工多接触，多参与到他们的项目讨论中更有益于了解软件公司项目运作过程。</li>
-<li>因为软件学院的实习（应该叫做实训）与其他学院不同，实训并没有见识到很多实际的问题，都是一些自己在学校里做项目能够遇到的，如果能够接触到工业界的项目肯定很有意义。比如服务器访问量达到百万级的应用、分布式计算程序设计等等。</li>
-</ol></div>
-</div>
-
-<!--in page preview buttons. -->
-<div class="in-page-preview-buttons in-page-preview-buttons-full-reader">
-    <ul>
-        <li class="in-page-button dropdown" id="preview-toc-button" title="内容目录 Ctrl+Alt+O">
-            <span class="dropdown-toggle icon-list" data-toggle="dropdown" style="color: rgba(187, 187, 187, 0.45098);"></span>
-            <div id="toc-list" class="dropdown-menu theme pull-right theme-black"> <!-- Add theme means this element will be changed when apply theme color. -->
-                <h3>内容目录</h3>
-                <hr>
-                <div class="table-of-contents"><div class="toc">
-<ul>
-<li><a href="#实习内容记述">实习内容记述</a><ul>
-<li><a href="#实习任务">实习任务</a></li>
-<li><a href="#实习过程">实习过程</a></li>
-</ul>
-</li>
-<li><a href="#专题内容分析">专题内容分析</a><ul>
-<li><a href="#linux环境编程学习">Linux环境编程学习</a><ul>
-<li><a href="#shell脚本与常用命令">Shell脚本与常用命令</a></li>
-<li><a href="#管道">管道 |</a></li>
-<li><a href="#输入输出重定向">输入输出重定向&lt; &amp; &gt;</a></li>
-</ul>
-</li>
-<li><a href="#linux系统编程">Linux系统编程</a><ul>
-<li><a href="#vim编辑器">Vim编辑器</a></li>
-<li><a href="#gcc">GCC</a></li>
-<li><a href="#makefile">Makefile</a></li>
-<li><a href="#gdb调试工具">GDB调试工具</a></li>
-<li><a href="#系统编程">系统编程</a><ul>
-<li><a href="#文件和文件系统">文件和文件系统</a></li>
-<li><a href="#信号与信号处理">信号与信号处理</a></li>
-<li><a href="#进程与线程">进程与线程</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#项目开发">项目开发</a><ul>
-<li><a href="#需求分析阶段">需求分析阶段</a></li>
-<li><a href="#概要设计阶段">概要设计阶段</a></li>
-<li><a href="#编码阶段">编码阶段</a></li>
-<li><a href="#测试阶段">测试阶段</a></li>
-<li><a href="#项目展示">项目展示</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#在实习中收获最大与体会最深的内容">在实习中收获最大与体会最深的内容</a></li>
-<li><a href="#对实习工作的改进意见">对实习工作的改进意见</a></li>
-</ul>
-</div>
-</div>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<div id="reader-full-toolbar" class="reader-full-toolbar-shown" style="padding-top: 0;">
-    <ul id="reader-full-toolbar-home" class="preview-button-row">
-        <li class="preview-button-full-reader" id="preview-editor-button" title="撰写文本 Ctrl+Alt+M">
-            <span class="icon-pencil" style="color: rgb(187, 187, 187);"></span>
-        </li>
-    </ul>
-    <ul id="preview-button-row" class="preview-button-row">
-        <li class="preview-button-full-reader dropdown" id="preview-list-button" title="文本列表 Ctrl+Alt+F">
-            <span class="dropdown-toggle icon-reorder" data-toggle="dropdown" style="color: rgb(187, 187, 187);"></span>
-            <ul id="file-list" class="dropdown-menu theme-black pull-right" role="menu" style="max-height: 234.99999237060547px;">
-                    <li>
-                    <ul class="tag-list">
-                        <li class="tag-item item" tag-name="Stern">
-                            <span class="pull-left"><i class="icon-tag"></i><span class="tag-name">Stern</span></span>
-                            <span class="tag-count pull-right">1</span>
-                            <div class="clearfix"></div>
-                        </li>
-                            
-    <li class="file-item item" file-created-date="2014-08-24 18:24:03">
-        <a tabindex="-1" href="https://www.zybuluo.com/JinJay/note/28939" title="【已发布】 2014-08-24 18:28">
-        <i class="icon-share-sign"></i>
-        <span id="28939" class="whiter-on-black">实习内容记述</span>
-        </a>
-    </li>
-
-                    </ul>
-                    </li>
-                    <li>
-                    <ul class="tag-list">
-                        <li class="tag-item item" tag-name="markdown">
-                            <span class="pull-left"><i class="icon-tag"></i><span class="tag-name">markdown</span></span>
-                            <span class="tag-count pull-right">1</span>
-                            <div class="clearfix"></div>
-                        </li>
-                            
-    <li class="file-item item" file-created-date="2014-08-24 18:24:03">
-        <a tabindex="-1" href="https://www.zybuluo.com/JinJay/note/28939" title="【已发布】 2014-08-24 18:28">
-        <i class="icon-share-sign"></i>
-        <span id="28939" class="whiter-on-black">实习内容记述</span>
-        </a>
-    </li>
-
-                    </ul>
-                    </li>
-            </ul>
-            <ul id="file-list-topbar" class="dropdown-menu theme-black pull-right" role="menu">
-                <li id="search-file-bar">
-                    <i class="icon-search icon-large"></i>
-                    <input type="text" id="search-file-textbox" placeholder="搜索 JinJay 的文本， * 显示全部">
-                    <i class="icon-level-down icon-rotate-90 icon-large"></i>
-                </li>
-                <li id="tag-file-bar">
-                    以下【标签】将用于标记这篇文稿：
-                </li>
-            </ul>
-        </li>
-        <li class="preview-button-full-reader" id="preview-theme-button" title="主题切换 Ctrl+Alt+J">
-            <span class="icon-adjust" style="color: rgb(187, 187, 187);"></span>
-        </li>
-        <li class="preview-button-full-reader" id="preview-fullscreen-button" title="全屏模式 F11">
-            <span class="icon-fullscreen" style="color: rgb(187, 187, 187);"></span>
-        </li>
-        <li class="preview-button-full-reader wmd-spacer"></li>
-        <li class="preview-button-full-reader dropdown" id="preview-about-button" title="关于本站">
-            <span class="dropdown-toggle icon-info-sign" data-toggle="dropdown" data-hover="dropdown" data-delay="100" data-close-others="true" style="color: rgb(187, 187, 187);"></span>
-            <ul id="about-menu" class="dropdown-menu theme-black pull-right" role="menu">
-                <li title="support@zybuluo.com"><a tabindex="-1" href="mailto:support@zybuluo.com" target="_blank"><i class="icon-envelope"></i>联系我们</a></li>
-                <li title="@ghosert"><a tabindex="-1" href="http://www.weibo.com/ghosert" target="_blank"><i class="icon-weibo"></i>关注开发者</a></li>
-                <li title=""><a tabindex="-1" href="https://github.com/ghosert/cmd-editor/issues" target="_blank"><i class="icon-github-alt"></i>报告问题，建议</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-<ul id="reader-full-toolbar-tail" class="reader-full-toolbar-tail-shown">
-    <li class="preview-button-full-reader" id="preview-hidden-button" title="隐藏工具栏 Ctrl+Alt+I">
-        <span class="icon-chevron-sign-right" style="color: rgb(187, 187, 187);"></span>
-    </li>
-</ul>
-
-
-
-
-
-
-
-    
-
-
-    <!-- Hidden Popup Modal -->
-    <div id="notification" class="modal hide fade theme theme-black" tabindex="-1" role="dialog" aria-labelledby="notification-title" aria-hidden="true">
-        <div class="modal-header theme theme-black">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="notification-title">通知</h3>
-        </div>
-        <div class="modal-body theme theme-black">
-            <p></p>
-        </div>
-        <div class="modal-footer theme theme-black">
-            <button id="notification-cancel" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-            <button id="notification-confirm" class="btn btn-primary">确认</button>
-        </div>
     </div>
+	<footer>
+		<p>
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+	</footer>
+	<script type="text/javascript">
+		$(function() {
+			$('#dg-container').gallery({
+				autoplay:	true
+			});
+		});
+	</script>
 
-    <!-- zybuluo's foot -->
-
-    <script src="https://www.zybuluo.com/static/assets/1ebbdfb0.base.lib.min.js"></script>
-
-    
-    <!--mathjax-->
-    <script type="text/x-mathjax-config;executed=true">
-      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]], processEscapes: true },  messageStyle: "none"});
-    </script>
-    <script src="https://www.zybuluo.com/static/editor/libs/mathJax.js"></script>
-    <!--mathjax source code is here: https://github.com/mathjax/MathJax.-->
-    <script src="https://www.zybuluo.com/static/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    <script src="https://www.zybuluo.com/static/assets/mdeditor/4f710898.layout.min.js"></script>
-
-
-    
-
-    <script src="https://www.zybuluo.com/static/assets/mdeditor/f4e69405.user_note.lib.min.js"></script>
-
-    <script>
-        Namespace('com.zybuluo.mdeditor.user_note');
-        com.zybuluo.mdeditor.user_note.initData = {
-            isLoggedIn: 'True',
-            mdeditorUrl: "https://www.zybuluo.com/mdeditor",
-        };
-    </script>
-
-    <script src="https://www.zybuluo.com/static/assets/mdeditor/aad7414f.user_note.min.js"></script>
-
-
-
-
-    
-</body></html>
+</body>
+</html>

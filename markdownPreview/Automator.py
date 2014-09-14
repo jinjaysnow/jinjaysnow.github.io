@@ -10,6 +10,10 @@ import os, datetime, sys
 import json
 from MarkdownPreview import MarkdownCompiler
 
+def jsonWrite(filename, data):
+	with open(filename, 'w') as outfile:
+		json.dump(data, outfile)
+
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
 		print "filepath is not reasonable"
@@ -46,17 +50,16 @@ def generateFile(filePath):
 	# generate Brief File to be used by updateIndex
 	if not os.path.isdir("../brief"):
 		os.mkdir("../brief")
-	briefFile = codecs.open("../brief/" + fileName, "w", encoding="utf-8", errors="xmlcharrefreplace")	
+	# change use json open
 	if meta.has_key("image"):
 		# TODO: add the imagebox css
-		briefFile.write("<div class=\"imagebox\"><h1>" + fileName + "</h1>")
-		briefFile.write("<img src=\""+ meta["image"][0] + "\">")
+		briefData = {"imgurl": meta["image"][0], "url": "https://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		jsonWrite("../brief/" + fileName, briefData)
+
 	else:
 		# TODO: add the wordbox css
-		briefFile.write("<div class=\"wordbox\"><h1>" + fileName + "</h1>")
-	briefFile.write(markdown.markdown(brief))
-	briefFile.write("</div>")
-	briefFile.close()
+		briefData = {"brief": brief, "url": "jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		jsonWrite("../brief/" + fileName, briefData)
 
 	# generate Keywords files
 	if not meta.has_key("keywords"):
