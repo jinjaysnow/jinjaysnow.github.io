@@ -247,3 +247,6 @@ only screen and (max-width: 768px){
   .col{width: 50%;}
 }
 
+@media only screen and (max-width: 480px){
+  .col{width: 100%;}
+}
