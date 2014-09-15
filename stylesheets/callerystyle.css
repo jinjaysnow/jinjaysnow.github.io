@@ -2,10 +2,13 @@
 	width: 100%;
 	height: 300px;
 	position: relative;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .dg-wrapper{
 	width: 481px;
-	height: 316px;
+	/*height: 316px;*/
+	height: 260px;
 	margin: 0 auto;
 	position: relative;
 	-webkit-transform-style: preserve-3d;

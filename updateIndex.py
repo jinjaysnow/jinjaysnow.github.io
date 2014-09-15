@@ -19,7 +19,6 @@ for x in datedir:
 # with open("blog/keywords.json", mode='r') as f:
 # 	keywords = json.load(f)
 
-
 # mytempFile = Template(codecs.open("templates/indextemplate.html", "r", encoding="utf-8").read())
 
 # indexFile = codecs.open("index.html", "w", encoding="utf-8")
