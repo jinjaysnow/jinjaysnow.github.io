@@ -699,12 +699,20 @@ only screen and (max-device-width:768px),
 only screen and (width: 768px),
 only screen and (max-width: 768px){
   body{ font-size:16px; }
-  #blog {width: 100% !important;}
+  #blog {width: 100% !important;margin-top: 4.5em}
   #side {display: none !important;}
   #markdown{max-width: 98% !important; padding: 2px;}
+  .toc{display: none !important;}
   footer{margin-left: 10%; width: 80% !important; margin-right: 10%;}
 }
 
+@media 
+only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape), 
+only screen and (max-device-width:1024px),
+only screen and (width: 1024px),
+only screen and (max-width: 1024px){
+  #blog {margin-top: 4.5em;}
+}
 </style><style>.codehilite pre .hll { background-color: #ffffcc }
 .codehilite pre  { background: #f8f8f8; color: #333333 }
 .codehilite pre .c { color: #999988; font-style: italic } /* Comment */
