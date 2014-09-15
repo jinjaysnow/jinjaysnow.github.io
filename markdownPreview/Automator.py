@@ -53,12 +53,12 @@ def generateFile(filePath):
 	# change use json open
 	if meta.has_key("image"):
 		# TODO: add the imagebox css
-		briefData = {"imgurl": meta["image"][0], "url": "https://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		briefData = {"imgurl": meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
 		jsonWrite("../brief/" + fileName, briefData)
 
 	else:
 		# TODO: add the wordbox css
-		briefData = {"brief": brief, "url": "jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
 		jsonWrite("../brief/" + fileName, briefData)
 
 	# generate Keywords files
