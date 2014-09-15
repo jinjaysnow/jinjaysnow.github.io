@@ -2,133 +2,100 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	{{ HEAD }}
-	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/blog.css">
 </head>
 <body>
-	<nav>
-		<ul class="navigation" role="navigation">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="height: 56px; border-bottom: solid 1px #808080;" >
+		<ul class="navigation" role="navigation" style="padding-left: 30px;">
 			<li><a href="http://jinjaysnow.github.io">主页</a></li>
 			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
 			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
 		</ul>
 	</nav>
-	<div id="blog">
-		<div id="markdown" >
-			{{ BODY }}
-			{{ DATE }}
+
+	<div class="container" style="margin-top: 4em;">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-09/Caculus.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Caculus</h4>
+				    <p class="list-group-item-text">考研微积分复习。</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-09/CReview.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">CReview</h4>
+				    <p class="list-group-item-text">保研复试C语言复习。</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/Editorial.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Editorial</h4>
+				    <p class="list-group-item-text">This is a document about *Free Software Movement*.</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/eidtorial.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">eidtorial</h4>
+				    <p class="list-group-item-text">This is a problem.</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/I'm Jin Jay.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">I'm Jin Jay</h4>
+				    <p class="list-group-item-text">This is a file introducing me.</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/Intern Report.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Intern Report</h4>
+				    <p class="list-group-item-text">Intern Report in NEUSOFT东软.</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-09/Probability.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Probability</h4>
+				    <p class="list-group-item-text">考研概率论复习。</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/Resume_en.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Resume_en</h4>
+				    <p class="list-group-item-text">This is a file introducing me.</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/test.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">test</h4>
+				    <p class="list-group-item-text">This is an image box, no brief!</p>
+				  </a>
+				</div>
+			</div>			<div class="col-md-6">
+				<div class="list-group">
+				  <a href="http://jinjaysnow.github.io/blog/2014-08/Use MarkDownPy.html" class="list-group-item">
+				    <h4 class="list-group-item-heading">Use MarkDownPy</h4>
+				    <p class="list-group-item-text">This is a file introducing how to use python-makdown.</p>
+				  </a>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div id="side">
-		<div class="support"></div>
-		<div class="clock">
-		  <div class="numbers">
-		    <ul>
-		      <li>12</li>
-		      <li>3</li>
-		      <li>6</li>
-		      <li>9</li>
-		    </ul>
-		  </div>
-		  <div class="clockwise">
-		    <div class="center"></div>
-		    <div class="hand-second" id="analogsecond"></div>
-		    <div class="hand-minute" id="analogminute"></div>
-		    <div class="hand-hour" id="analoghour"></div>
-		  </div>
-		</div>
-		<div style="text-align: center;margin-top: 80%;">
-			<p>Chrish time</p>
-		</div>
-	</div>
+
 	<footer>
 		<p class="text-muted text-center">
 			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
 		</p>
 	</footer>
+<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
-<script type="text/javascript">
-var oClockAnalog = {
-	aSecond:         [],
-	dtDate:          new Date(),
-	iCurrSecond:     -1,
-	iHourRotation:   -1,
-	iMinuteRotation: -1,
-	iStepSize:       10,
-	iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
-	iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
-
-	fAnimate:       function() {
-	    if (this.aSecond.length > 0) {
-	        this.fRotate("analogsecond", this.aSecond[0]);
-	        this.aSecond = this.aSecond.slice(1);
-	    }
-	},
-	fGetHour:     function() {
-	    var iHours = this.dtDate.getHours();
-	    if (iHours > 11) {
-	        iHours -= 12;
-	    }
-	    return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
-	},
-	fGetMinute:     function() {
-	    return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
-	},
-	fInit:          function() {
-	    this.iHourRotation = this.fGetHour();
-	    this.fRotate("analoghour", this.iHourRotation);
-
-	    this.iMinuteRotation = this.fGetMinute();
-	    this.fRotate("analogminute", this.iMinuteRotation);
-
-	    this.iCurrSecond = this.dtDate.getSeconds();
-	    this.fRotate("analogsecond", (6 * this.iCurrSecond));
-	},
-	fRotate:        function(sID, iDeg) {
-	    var sCSS = ("rotate(" + iDeg + "deg)");
-	    $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
-	},
-	fStepSize:     function(iTo, iFrom) {
-	    var iAnimDiff = (iFrom - iTo);
-	    if (iAnimDiff > 0) {
-	        iAnimDiff -= 360;
-	    }
-	    return iAnimDiff / this.iStepSize;
-	},
-	fUpdate:        function() {
-	    // update time
-	    this.dtDate = new Date();
-
-	    // hours
-	    var iTemp = this.fGetHour();
-	    if (this.iHourRotation != iTemp) {
-	        this.iHourRotation = iTemp;
-	        this.fRotate("analoghour", iTemp);
-	    }
-
-	    // minutes
-	    iTemp = this.fGetMinute();
-	    if (this.iMinuteRotation != iTemp) {
-	        this.iMinuteRotation = iTemp;
-	        this.fRotate("analogminute", iTemp);
-	    }
-
-	    // seconds
-	    if (this.iCurrSecond != this.dtDate.getSeconds()) {
-	        var iRotateFrom = (6 * this.iCurrSecond);
-	        this.iCurrSecond = this.dtDate.getSeconds();
-	        var iRotateTo = (6 * this.iCurrSecond);
-
-	        // push steps into array
-	        var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
-	        for (var i = 0; i < this.iStepSize; i++) {
-	            iRotateFrom -= iDiff;
-	            this.aSecond.push(Math.round(iRotateFrom));
-	        }
-	    }
-	}
-};   
-
-oClockAnalog.fInit();
-</script>

@@ -36,21 +36,30 @@ briefdir = os.listdir("brief")
 
 textbox = load_utf8("templates/textbox.tm.html").encode("utf8")
 imgbox = load_utf8("templates/imagebox.tm.html").encode("utf8")
+blogText = load_utf8("templates/blogindex.html").encode("utf8")
 
 allbox = ""
+blogbox = ""
 for x in briefdir:
 	with open("brief/" + x) as f:
 		tempData = json.load(f)
+	# blog template
+	blogTemplate = blogText
 	if tempData.has_key("imgurl"):
 		template = imgbox
 		data = tempData["imgurl"]
 		template = template.replace("{{IMGURL}}", tempData["imgurl"].encode("utf8"))
+		blogTemplate = blogTemplate.replace("{{BRIEF}}", "This is an image box, no brief!")
 	else:
 		template = textbox
+		blogTemplate = blogTemplate.replace("{{BRIEF}}", tempData["brief"].encode("utf8"))
 		template = template.replace("{{BRIEF}}", tempData["brief"].encode("utf8"))
 	template = template.replace("{{TITLE}}", x)
 	template = template.replace("{{URL}}", tempData["url"].encode("utf8"))
 	allbox = allbox + template
+	blogTemplate = blogTemplate.replace("{{TITLE}}", x)
+	blogTemplate = blogTemplate.replace("{{URL}}", tempData["url"].encode("utf8"))
+	blogbox = blogbox + blogTemplate
 
 finalHtml = load_utf8("templates/indextemplate.html").encode("utf8")
 finalHtml = finalHtml.replace("{{BLOG}}", allbox)
@@ -61,3 +70,12 @@ output_file = codecs.open("index.html", "w",
 	
 output_file.write(finalHtml.decode("utf8"))
 output_file.close()
+print "success generate index.html"
+
+# update blog/index.html
+finalHtml = load_utf8("blog/indextemplate.html").encode("utf8")
+finalHtml = finalHtml.replace("{{BODY}}", blogbox)
+output_file = codecs.open("blog/index.html", "w", encoding="utf-8")
+output_file.write(finalHtml.decode("utf8"))
+output_file.close()
+print "success generate blog/index.html"

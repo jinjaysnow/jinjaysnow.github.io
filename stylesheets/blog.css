@@ -168,6 +168,7 @@ a::selection { background:#a8d1ff; color:#0645ad }
   margin-left: auto;
   display: table;
 }
+
 .col {
   position: relative;
   width: 25%;
@@ -243,5 +244,6 @@ only screen and (max-width: 768px){
   #blog {width: 100% !important;}
   #side {display: none !important;}
   #markdown{max-width: 98% !important; padding: 2px;}
+  .col{width: 50%;}
 }
 
