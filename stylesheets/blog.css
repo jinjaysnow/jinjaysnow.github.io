@@ -224,19 +224,7 @@ footer{
 /* Media */
 @media only screen and (max-width: 480px) {
   body{ font-size:14px; }
-}
-.blogtitle {
-  font-weight: bold;
-  font-size: 16px;
-  border-bottom: solid 1px black;
-}
-.brief {
-  font-weight: normal;
-  font-size: 12px;
-}
-img.brief{
-  width: 200px;
-  height: 100px;
+  .col{width: 100%;}
 }
 
 @media 
@@ -251,6 +239,3 @@ only screen and (max-width: 768px){
   .col{width: 50%;}
 }
 
-@media only screen and (max-width: 480px){
-  .col{width: 100%;}
-}
