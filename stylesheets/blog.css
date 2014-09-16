@@ -69,6 +69,9 @@ nav {
   width: 1000px;
 }
 
+ul {
+  padding: 0 30px;
+}
 ul.navigation-menu {
   position: relative;
   margin: 0px 0px 0px 0px;
@@ -162,6 +165,7 @@ a::selection { background:#a8d1ff; color:#0645ad }
   margin-top: 20px;
   outline: solid #f8f8f8;
   width: 90% !important;
+  padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
