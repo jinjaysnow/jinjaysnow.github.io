@@ -190,6 +190,8 @@ a::selection { background:#a8d1ff; color:#0645ad }
   color: #428bca;
   padding: 15px;
   display: block; 
+  text-overflow:ellipsis;
+  -o-text-overflow: ellipsis;
 }
 .blog_sample {
   color: black;
@@ -208,8 +210,13 @@ a::selection { background:#a8d1ff; color:#0645ad }
   -webkit-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+  text-overflow:ellipsis;
+  -o-text-overflow: ellipsis;
 }
-
+.list-group-item-text {
+  text-overflow:ellipsis;
+  -o-text-overflow: ellipsis;
+}
 footer{
   text-align: center;
   margin-top: 30px;
