@@ -214,7 +214,7 @@ a::selection { background:#a8d1ff; color:#0645ad }
   transition: all .2s ease-in-out;
   text-overflow:ellipsis;
   -o-text-overflow: ellipsis;
-  white-space:nowrap;
+  /*white-space:nowrap;*/
   overflow: hidden;
 }
 .list-group-item-text {
