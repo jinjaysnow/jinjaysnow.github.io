@@ -184,14 +184,16 @@ a::selection { background:#a8d1ff; color:#0645ad }
   margin-left: auto;
 }
 .titleText {
-
   text-align: center;
-  font-size: 2em;
+  font-size: 1.8em;
   color: #428bca;
-  padding: 15px;
+  margin: 15px;
   display: block; 
   text-overflow:ellipsis;
   -o-text-overflow: ellipsis;
+  white-space:nowrap;
+  height: 32px;
+  line-height: 32px;
 }
 .blog_sample {
   color: black;
@@ -212,6 +214,8 @@ a::selection { background:#a8d1ff; color:#0645ad }
   transition: all .2s ease-in-out;
   text-overflow:ellipsis;
   -o-text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow: hidden;
 }
 .list-group-item-text {
   text-overflow:ellipsis;
