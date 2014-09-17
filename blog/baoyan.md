@@ -13,16 +13,16 @@ I'm 20 years old, born in a small city Suizhou, in Hubei province. I am from Hua
 I have a nice family, my mother and father is running a small shop store in the countryside, Sometimes my father works as a building worker. And sometimes my grandfather will help run the shop store. And I have a brother, who is two years older than me. My brother only has a High School Degree. Before he works as a fisherman in Taizhou, Zhejiang province, he had worked as a ordinary worker in electronics, a worker in truck factory and a cook. I always call my family at least twice a week, sometimes I video chat with them using QQ.
 
 #### Could you introduce your classmates of your dormitory?
-I have two dormitory now. One is monitor. But monitor doesn't live in the dormitory, he has a team and a laborary. He always lives in the laborary. So I know him nothing more than he is a big technique god. Another roommate is crazy sport fan. Among all sports stars, he likes Cobe Bryant best. Although Cobe is so hurted that he cannot gain great achievement, my roommate still supports him. I also think he is very good at backetball.
+I have two dormitory now. One is monitor. But monitor doesn't live in the dormitory, he has a team and a laborary. He always lives in the laborary. So I know him nothing more than he is a big technique god. Another roommate is a crazy sport fan. Among all sports stars, he likes Cobe Bryant best. Although Cobe is so hurted that he cannot gain great achievement, my roommate still supports him. I also think he is very good at backetball.
 
 #### Introduce the history of your hometown?
-Suizhou is a small city. it is the hometown of Yan Di and it has the Chime(namely BianZhong), the landscape of it is very beautiful. Where I live is a small hill, I think the air of hometown is much clearer than Wuhan. 
+Suizhou is a small city. it is the hometown of Yan Di and it has the Chime(namely BianZhong), the landscape of it is very beautiful. Where I live is a small hill, I think the air of hometown is much cleaner than lots of cities. 
 
 #### Could you compare your city with Hangzhou?
-Since this is the first time I come to Hangzhou, I haven't experiment a lot. But I have heard a lot about Hangzhou, such as Qiantang River, West Lake. I know Hangzhou is a true beautiful city with beautiful boys and girls. So I expect to be one of Zhejiang University, and have a close touch with this city.
+Since this is the first time I come to Hangzhou, I haven't experiment a lot. But I have heard a lot about Hangzhou, such as Qiantang River, West Lake. I know Hangzhou is a true beautiful city with handsome boys and beautiful girls. So I expect to be one of Zhejiang University, and have a close touch with this city.
 
 #### Please introduce your university. 
-I am a student in Huazhong University of Science and Technology (we call HUST for short). I was a student of Bioscience until I passed the changing majors' test to major in software engineering. Life in HUST is full of variery and interet. All our teachers are rich in knowledge and of good character and they teach us very earnestly. HUST has one of China’s five national labs Wuhan National Laboratory for Optoelectronics (WNLO). HUST also has a lot of outstanding Alumni, such as Zhangxiaolong of Wechat, Yaoxin of PPTV，Yangyongzhi of dolphin browser. 
+I am a student in Huazhong University of Science and Technology (we call HUST for short). I was a student of Bioscience until I passed the changing majors' test to major in software engineering. Life in HUST is full of variery and interet. All our teachers are rich in knowledge and of good character and they teach us very earnestly. HUST has one of China’s five national labs --Wuhan National Laboratory for Optoelectronics. HUST also has a lot of outstanding Alumnies, such as Zhangxiaolong of Wechat, Yaoxin of PPTV，Yangyongzhi of dolphin browser. 
 
 #### Who is the dean of your college?
 Chen Chuanbo
