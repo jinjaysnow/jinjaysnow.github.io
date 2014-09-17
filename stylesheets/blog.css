@@ -236,6 +236,7 @@ footer{
 @media only screen and (max-width: 480px) {
   body{ font-size:14px; }
   .col{width: 100%;}
+  .motto{display: none !important;}
 }
 
 @media 

@@ -683,6 +683,7 @@ footer {
   #side {display: none!important;}
   #markdown{max-width: 98% !important;}
   footer{margin-left:10%; width: 80% !important;margin-right: 10%;}
+  .motto{display: none !important;}
 }
 
 @media 
