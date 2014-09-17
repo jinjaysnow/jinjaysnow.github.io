@@ -828,7 +828,7 @@ MathJax.Hub.Config({
 <h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤三</h3>
 <p>由于唯一的四元组能够确定唯一的tcp连接，故步骤二得到的hash表每一个关键字都对应的是一个文件。这一步考虑seq和ack的次序对hash表中每一个关键字链表进行<strong>排序</strong>。使用冒泡排序。</p>
 <h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤四</h3>
-<p>步骤三得到的链表可能会出现有多余的包，这一次遍历聊表<strong>去掉重复的包</strong>。</p>
+<p>步骤三得到的链表可能会出现有多余的包，这一次遍历链表<strong>去掉重复的包</strong>。</p>
 <h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤五</h3>
 <p>得到了有序的包的链表后，现在将tcp上层应用层协议HTTP中的数据进行按顺序组装，便可得到重组文件。</p>
 <h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>总结</h3>
@@ -846,7 +846,7 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-09-17 22:25:46</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-17 22:28:22</p>
 		</div>
 	</div>
 	<div id="side">
