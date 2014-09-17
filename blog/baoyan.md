@@ -1,9 +1,13 @@
+Author: Jin Jay
+Title: ZJU
+Date: 2014-09
+Brief: My preparation for Zhejiang University Interview.
+Keywords: Interview
+
 ###  浙大面试准备
 
-英语面试： 自我介绍，母校介绍，为什么考浙大，所在城市与杭州的对比，你的专业爱好
-
 #### Please introduce yourself
-I'm 20 years old, born in a small city Suizhou, in Hubei province. 
+I'm 20 years old, born in a small city Suizhou, in Hubei province. I am from Huazhong University of Science and Technology. It's really my honor to come for this interview.
 
 #### Please introduce your family 
 I have a nice family, my mother and father is running a small shop store in the countryside, Sometimes my father works as a building worker. And sometimes my grandfather will help run the shop store. And I have a brother, who is two years older than me. My brother only has a High School Degree. Before he works as a fisherman in Taizhou, Zhejiang province, he had worked as a ordinary worker in electronics, a worker in truck factory and a cook. I always call my family at least twice a week, sometimes I video chat with them using QQ.
