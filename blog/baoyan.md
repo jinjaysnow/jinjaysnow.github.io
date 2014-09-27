@@ -8,11 +8,11 @@ Keywords: Interview
 
 ### English
 
+#### Please introduce something about this paper?
+> 面试前会发两张纸，纸上有一些英文专业论文，有十几分钟可以理解和记忆，面试一开始便是介绍这些论文中的内容。
+
 #### Please introduce yourself
 I'm 20 years old, born in a small city Suizhou, in Hubei province. I am from Huazhong University of Science and Technology. It's really my honor to come for this interview.
-
-#### Could you introduce your classmates of your dormitory?
-I have two dormitory now. One is monitor. But monitor doesn't live in the dormitory, he has a team and a laborary. He always lives in the laborary. So I know him nothing more than he is a big technique god. Another roommate is a crazy sport fan. Among all sports stars, he likes Cobe Bryant best. Although Cobe is so hurted that he cannot gain great achievement, my roommate still supports him. I also think he is very good at backetball.
 
 #### Please introduce your university. 
 I am a student in Huazhong University of Science and Technology (we call HUST for short). I was a student of Bioscience until I passed the changing majors' test to major in software engineering. Life in HUST is full of variery and interet. All our teachers are rich in knowledge and of good character and they teach us very earnestly. HUST has one of China’s five national labs --Wuhan National Laboratory for Optoelectronics. HUST also has a lot of outstanding Alumnies, such as Zhangxiaolong of Wechat, Yaoxin of PPTV，Yangyongzhi of dolphin browser. 
@@ -22,7 +22,7 @@ Zhejiang University is one of Chinese famous universities. And Hangzhou is a nic
 
 ### 中文
 #### 说说你的项目经历
-[关于我](http://jinjaysnow.github.io/about.html#_2)
+[我的项目经历](http://jinjaysnow.github.io/about.html#_2)
 
 #### 你认为C和C++的区别是什么？
 C++是C的一个超集，C++支持面向对象和STL（范型）。C能实现的C++都能实现，反过来也一样。本质上，C++更利于编程人员实现好的软件设计，因为面向对象的出现就源自软件工程设计上的一些问题。
