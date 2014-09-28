@@ -827,7 +827,7 @@ MathJax.Hub.Config({
 <h4 id="pythonpython"><a name="user-content-pythonpython" href="#pythonpython" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>学Python是从什么时候？为什么选择Python？</h4>
 <p>大三的时候做一个项目，同学介绍说学Python比较好，所以就学了。</p>
 <h4 id="python"><a name="user-content-python" href="#python" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>除了Python，你还学过什么语言？</h4>
-<p>诶，学过很多诶，C和C++，函数是编程语言Scheme，是Lisp的一种方言。还有HTML, JavaScript,一些web相关的语言等等。</p>
+<p>诶，学过很多诶，C和C++，函数式编程语言Scheme，是Lisp的一种方言。还有HTML, JavaScript,一些web相关的语言等等。</p>
 <h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你做过抓包的应用啊，那你可以说一下整个过程吗？比如浏览器打开一个网址时，整个过程是怎样？都有哪些包传递？</h4>
 <p>嗯，网页是通过HTTP协议进行传输的，下层是TCP，应该是客户端先发送一个TCP请求建立连接，就是三次握手的过程，然后通过HTTP协议的GET方法获取网页内容。</p>
 <h4 id="tcp"><a name="user-content-tcp" href="#tcp" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>那第一步建立连接的过程中TCP中的关键字段是什么？</h4>
@@ -836,15 +836,17 @@ MathJax.Hub.Config({
 <p>嗯，知道，就是secure shell版本的HTTP。</p>
 <h4 id="https"><a name="user-content-https" href="#https" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你可以解释一下HTTPS整个工作的过程吗？</h4>
 <p>诶，这个就不清楚了。</p>
-<h3 id="tornado"><a name="user-content-tornado" href="#tornado" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你用Tornado的过程中有什么难点？</h3>
+<h4 id="tornado"><a name="user-content-tornado" href="#tornado" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你用Tornado的过程中有什么难点？</h4>
 <p>Tornado是一种异步的服务器框架，然后它没有内建的对服务器支持的相关库，所以在过程中对数据库这块花了比较大的心思。</p>
-<h3 id="tornado_1"><a name="user-content-tornado_1" href="#tornado_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Tornado是异步的，那你觉得访问数据库时会有什么考虑？你在自己项目中怎么解决的？</h3>
+<h4 id="tornado_1"><a name="user-content-tornado_1" href="#tornado_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Tornado是异步的，那你觉得访问数据库时会有什么考虑？你在自己项目中怎么解决的？</h4>
 <p>我猜你的意思是，对数据库的同时访问这种问题。这个老实说，做的是一门课设，对这些方面考虑并不多，这些应该都是数据库系统进行维护的。</p>
-<h3 id="python_1"><a name="user-content-python_1" href="#python_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你觉得Python的类对象是储存在什么地方？</h3>
+<h4 id="tornado_2"><a name="user-content-tornado_2" href="#tornado_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你做的Tornado项目，每秒钟能够支持多少人同时访问？</h4>
+<p>这个真不知道，没试过，毕竟只是一个课设。</p>
+<h4 id="python_1"><a name="user-content-python_1" href="#python_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>你觉得Python的类对象是储存在什么地方？</h4>
 <p>诶，我不清楚，但我想想，应该是在堆中。因为Python是一种解释性语言，一行一行的执行，内存是动态申请的，所以在堆中。</p>
-<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>看你学过汇编，那问你汇编中子过程的调用是怎样的？</h3>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>看你学过汇编，那问你汇编中子过程的调用是怎样的？</h4>
 <p>诶，这个，汇编啊，你的意思是那个中断过程吗？那就应该是先保护现场push进入现场的数据，然后终端进入子过程，最后执行完后，会pop原来的数据，恢复现场。</p>
-<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>好，我的面试就到这里，再见！！</h3>
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>好，我的面试就到这里，再见！！</h4>
 <p>（= =，我跪了）</p>
 <div class="toc">
 <ul>
@@ -859,6 +861,7 @@ MathJax.Hub.Config({
 <li><a href="#https">你可以解释一下HTTPS整个工作的过程吗？</a></li>
 <li><a href="#tornado">你用Tornado的过程中有什么难点？</a></li>
 <li><a href="#tornado_1">Tornado是异步的，那你觉得访问数据库时会有什么考虑？你在自己项目中怎么解决的？</a></li>
+<li><a href="#tornado_2">你做的Tornado项目，每秒钟能够支持多少人同时访问？</a></li>
 <li><a href="#python_1">你觉得Python的类对象是储存在什么地方？</a></li>
 <li><a href="#_5">看你学过汇编，那问你汇编中子过程的调用是怎样的？</a></li>
 <li><a href="#_6">好，我的面试就到这里，再见！！</a></li>
@@ -866,7 +869,7 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-09-28 18:42:26</p>
+			<p style="text-align: right; color: gray;"><br>2014-09-28 18:46:43</p>
 		</div>
 	</div>
 	<div id="side">
