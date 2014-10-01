@@ -1,5 +1,5 @@
 Author: Jin Jay
-Title: 中科院自动化所保研面试
+Title: 自动化所保研面试
 Date: 2014-09
 Brief: 2014年9月23日，在北京中科院自动化所自动化大厦参与的保研面试情况整理。
 Keywords: Interview  AC
