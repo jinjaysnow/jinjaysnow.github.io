@@ -1,9 +1,4 @@
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> -->
-	<meta name="viewport" content="width=device-width">
-	<meta name="image" content="images/snow.jpg">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="image" content="images/snow.jpg">
 <meta name="brief" content="This is a file for testing my blog.">
 <meta name="date" content="2014-08">
 <meta name="authors" content="Jin Jay">
@@ -806,22 +801,7 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>test</title>
-	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
-	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
-</head>
-<body>
-	<nav>
-		<ul class="navigation" role="navigation" style="padding: 0 30px;">
-			<li><a href="http://jinjaysnow.github.io">主页</a></li>
-			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
-			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
-			<li  class="motto" style="margin-top: 16px; float: right;">朝着梦想，一步一步！</li>
-		</ul>
-	</nav>
-	<div id="blog">
-		<div id="markdown" >
-			<div class="codehilite"><pre><span class="w">    </span><span class="vg">markdown</span>
+<title>test</title></head><body><div class="codehilite"><pre><span class="w">    </span><span class="vg">markdown</span>
 </pre></div>
 
 
@@ -924,121 +904,4 @@ Or even: $e^{\imath x} = \cos{x} + \imath\sin{x}$</p>
 </ul>
 </li>
 </ul>
-</div>
-			<p style="text-align: right; color: gray;"><br>2014-09-10 21:11:25</p>
-		</div>
-	</div>
-	<div id="side">
-		<div class="support"></div>
-		<div class="clock">
-		  <div class="numbers">
-		    <ul>
-		      <li>12</li>
-		      <li>3</li>
-		      <li>6</li>
-		      <li>9</li>
-		    </ul>
-		  </div>
-		  <div class="clockwise">
-		    <div class="center"></div>
-		    <div class="hand-second" id="analogsecond"></div>
-		    <div class="hand-minute" id="analogminute"></div>
-		    <div class="hand-hour" id="analoghour"></div>
-		  </div>
-		</div>
-		<div style="text-align: center;margin-top: 80%;">
-			<p>Chrish time</p>
-		</div>
-	</div>
-	<footer>
-		<p>
-			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
-		</p>
-		<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&web_id=1253269299" language="JavaScript"></script>
-	</footer>
-</body>
-</html>
-<script type="text/javascript">
-var oClockAnalog = {
-	aSecond:         [],
-	dtDate:          new Date(),
-	iCurrSecond:     -1,
-	iHourRotation:   -1,
-	iMinuteRotation: -1,
-	iStepSize:       10,
-	iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
-	iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
-
-	fAnimate:       function() {
-	    if (this.aSecond.length > 0) {
-	        this.fRotate("analogsecond", this.aSecond[0]);
-	        this.aSecond = this.aSecond.slice(1);
-	    }
-	},
-	fGetHour:     function() {
-	    var iHours = this.dtDate.getHours();
-	    if (iHours > 11) {
-	        iHours -= 12;
-	    }
-	    return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
-	},
-	fGetMinute:     function() {
-	    return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
-	},
-	fInit:          function() {
-	    this.iHourRotation = this.fGetHour();
-	    this.fRotate("analoghour", this.iHourRotation);
-
-	    this.iMinuteRotation = this.fGetMinute();
-	    this.fRotate("analogminute", this.iMinuteRotation);
-
-	    this.iCurrSecond = this.dtDate.getSeconds();
-	    this.fRotate("analogsecond", (6 * this.iCurrSecond));
-	},
-	fRotate:        function(sID, iDeg) {
-	    var sCSS = ("rotate(" + iDeg + "deg)");
-	    $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
-	},
-	fStepSize:     function(iTo, iFrom) {
-	    var iAnimDiff = (iFrom - iTo);
-	    if (iAnimDiff > 0) {
-	        iAnimDiff -= 360;
-	    }
-	    return iAnimDiff / this.iStepSize;
-	},
-	fUpdate:        function() {
-	    // update time
-	    this.dtDate = new Date();
-
-	    // hours
-	    var iTemp = this.fGetHour();
-	    if (this.iHourRotation != iTemp) {
-	        this.iHourRotation = iTemp;
-	        this.fRotate("analoghour", iTemp);
-	    }
-
-	    // minutes
-	    iTemp = this.fGetMinute();
-	    if (this.iMinuteRotation != iTemp) {
-	        this.iMinuteRotation = iTemp;
-	        this.fRotate("analogminute", iTemp);
-	    }
-
-	    // seconds
-	    if (this.iCurrSecond != this.dtDate.getSeconds()) {
-	        var iRotateFrom = (6 * this.iCurrSecond);
-	        this.iCurrSecond = this.dtDate.getSeconds();
-	        var iRotateTo = (6 * this.iCurrSecond);
-
-	        // push steps into array
-	        var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
-	        for (var i = 0; i < this.iStepSize; i++) {
-	            iRotateFrom -= iDiff;
-	            this.aSecond.push(Math.round(iRotateFrom));
-	        }
-	    }
-	}
-};   
-
-oClockAnalog.fInit();
-</script>
+</div></body></html>
