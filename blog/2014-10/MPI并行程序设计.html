@@ -3,10 +3,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> -->
 	<meta name="viewport" content="width=device-width">
-	<meta name="date" content="2014-08">
-<meta name="brief" content="This is a problem.">
-<meta name="base_url" content="http://jinjaysnow.github.io">
-<meta name="authors" content="Jin Jay"><style>/* Fonts */
+	<meta name="date" content="2014-10">
+<meta name="keywords" content="MPI,Mac OS">
+<meta name="author" content="Jin Jay">
+<meta name="brief" content="MPI并行程序设计相关学习。学习资料来源：清华大学《高性能计算之并行编程技术——MPI并行程序设计》。"><style>/* Fonts */
 @font-face{
   font-family: octicons-anchor;
   src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
@@ -805,7 +805,7 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>eidtorial</title>
+<title>MPI并行程序设计</title>
 	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
 	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
 </head>
@@ -820,91 +820,75 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<h1 id="question"><a name="user-content-question" href="#question" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Question</h1>
-<p>Richard Stallman, the founder of the GNU Project, supports “free” software and believes that<br />
-proprietary software (like Microsoft Windows) is harmful. Do you agree with his views? In your<br />
-editorial, please include answers to the following questions. For questions that ask for your opinion,<br />
-please explain your reasoning.</p>
-<ul>
-<li>What is the free software movement? What does Richard Stallman mean by “free”? Does he<br />
-mean that people should not charge money for software, or does “free” have a different<br />
-meaning?</li>
-<li>What are the four essential freedoms of free software?</li>
-<li>What is the difference between the free software and open-source software?</li>
-<li>According to Stallman, why must we insist on free software? What are the benefits?</li>
-<li>Who benefits from free software, and who gets hurt?</li>
-<li>What is proprietary software? What is the purpose of copyright and patents, and who benefits<br />
-from them?</li>
-<li>What are some arguments that reject proprietary software? What does he mean when he says<br />
-that proprietary software is harmful?</li>
-<li>He also says that proprietary software is often malware. Give some examples to show what he<br />
-means by this.</li>
-<li>Do you believe that proprietary software is more harmful than helpful? Are you worried about<br />
-your privacy if you use proprietary software?</li>
-<li>What are the advantages of proprietary software over free software?</li>
-<li>If a program is available as both proprietary and free software, which one will you choose?<br />
-What if the proprietary software has more features, such as Microsoft Office versus<br />
-OpenOffice? Are you willing to pay for Microsoft Office?</li>
-<li>What is Service as a Software Substitute, or SaaSS? What is his opinion on SaaSS?</li>
-<li>How can one make money from free software? Do you think it is possible to make money?</li>
-<li>Do you think free software helps or hurts the software industry? Does free software discourage<br />
-innovation? Does it discourage people from choosing a career in software engineering?</li>
-<li>Do you support Stallman&rsquo;s belief that people should reject all proprietary software, or do you<br />
-support a different position?</li>
-</ul>
-<hr />
-<h1 id="answer"><a name="user-content-answer" href="#answer" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Answer</h1>
-<h3 id="february-1986"><a name="user-content-february-1986" href="#february-1986" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>February 1986 :</h3>
-<ul>
-<li>The word &ldquo;free&rdquo; in our name does not refer to price; it refers to freedom. First, the freedom to copy a program and redistribute it to your neighbors, so that they can use it as well as you. </li>
-<li>Second, the freedom to change a program, so that you can control it instead of it controlling you; for this, the source code must be made available to you.</li>
-</ul>
-<h3 id="1996"><a name="user-content-1996" href="#1996" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>1996:</h3>
-<ul>
-<li>The freedom to run the program, for any purpose (freedom 0).</li>
-<li>The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.</li>
-<li>The freedom to redistribute copies so you can help your neighbor (freedom 2).</li>
-<li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.</li>
-</ul>
-<h3 id="comparison-with-open-source"><a name="user-content-comparison-with-open-source" href="#comparison-with-open-source" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Comparison with open source</h3>
-<p>The term “open source” software is used by some people to mean more or less the same category as free software. It is not exactly the same class of software: they accept some licences that we consider too restrictive, and there are free software licences they have not accepted. However, the differences in extension of the category are small: nearly all free software is open source, and nearly all open source software is free.</p>
-<h3 id="what-we-can-benefit"><a name="user-content-what-we-can-benefit" href="#what-we-can-benefit" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>What we can benefit?</h3>
-<p>1) Available at minimal cost<br />
-Free software does not mean zero cost software. It is true that most current open source projects are available for free of cost, which leads ambiguity around the commonly used term &ldquo;free software.&rdquo; So the common saying is, &ldquo;Think free as in free speech (freedom) and not free as in free beer (zero cost).&rdquo; Free software lowers the production cost. Making a system like MS-Windows costs millions of dollars. But if you produce the same kind of system using a free POSIX version, it would probably cost less than a hundred dollars.</p>
-<p>2) Provides full freedom<br />
-Originally, computer manufacturers aimed only for hardware innovation and didn&rsquo;t consider software as a business asset. This is because most computer users were scientists and technicians who could modify the software themselves, so hardware was distributed with the software pre-installed. Later, high level programming languages were introduced which were compatible for almost every kind of computer. That meant even less efficient hardware design could be made to work better. This led to a decline in profit margin for hardware manufacturers who led design innovations and considered hardware as their only business assets. They had to start treating software as an essential part of their hardware sales, enforcing strict copyright policies. This led to the rise of proprietary software.</p>
-<p>Richard Stallman once said:</p>
-<p>&ldquo;The first step in using a computer was to promise not to help your neighbor. A cooperating community was forbidden. The rule made by the owners of proprietary software was, &lsquo;If you share with your neighbor, you are a pirate. If you want any changes, beg us to make them.&rsquo;&ldquo;<br />
-Free software gives users the freedom to study how the program works by accessing the source code, writing additional code, testing, modifying and distributing it. These things are prohibited for proprietary software.</p>
-<p>3) No imposed upgrades<br />
-Free software never disappears like proprietary. If proprietary vendors stop supporting a product, users have two options: either use an unsupported version of the software, or go for an (unwanted) upgrade. Imposed upgrading never happens for free software. For example when RedHat decided to stop supporting their RedHat Linux 7, 8, and 9, various other companies came forward to support them.</p>
-<p>4) No spying on users<br />
-If users have no control over the software they are using, it can easily spy on their activity. The company behind proprietary software often installs features that restrict users from sharing it with others. Since anyone who buys proprietary software must sign a licensing agreement before using it, they are agreeing that the vendor has the right to inspect hard drive content without warning. This violates our privacy because our computers hold our personal information and daily activities.</p>
-<p>5) Auditability<br />
-When closed-source software manufacturers claim that they made improvements in the program, improved security and restricted backdoors, users are forced to believe it. Since the source code is not provided, there is no evidence for such claims.</p>
-<p>6) Provides better security<br />
-It is a commonly known fact that proprietary software threatens users&rsquo; security. There is a long history of security vulnerabilities. Proprietary software doesn&rsquo;t necessarily stop the spreading of viruses and letting hackers to take over people&rsquo;s computers for sending spam. Because the software is secret, all users are dependent on the corporation to fix these kinds of problems.</p>
-<p>7) No monopolies<br />
-It is easier and cheaper to switch from one free software to another compared to switching proprietary software. Free software does not tie you down to any corporation.</p>
-<p>8) Truly user-oriented<br />
-One of proprietary software&rsquo;s major claims is that free software is not user-oriented. A proprietary vendor used to listen to its customers&rsquo; needs and respond and develop accordingly. But companies like Red Hat and IBM are crafting strategies that rely on all end users having the same needs.</p>
-<p>9) No lock-in standards<br />
-Proprietary vendors lock-in proprietary standards to ensure that their users will become returning customers. Free software works in open standards.</p>
-<p>10) Part of social movement<br />
-Free software is not just for the individual user&rsquo;s sake. It promotes social solidarity and represents society as a whole through sharing and cooperation. Since our activities are progressively digitized, free software is becoming an even more essential part of our culture and life activities.</p>
+			<h1 id="mpi"><a name="user-content-mpi" href="#mpi" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>MPI并行程序设计</h1>
+<p>学习资料主要来源：清华大学《高性能计算之并行编程技术——MPI并行程序设计》。</p>
+<h2 id="mpi_1"><a name="user-content-mpi_1" href="#mpi_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>MPI简介</h2>
+<ol>
+<li>MPI是一个库，而不是一门语言。</li>
+<li>MPI是一种标准或规范的代表，而不特指某一个对它的具体实现。所有并行计算机制造商都提供对MPI的支持，可以在网上免费得到MPI在不同并行计算技上的实现，一个正确的MPI程序，可以不加修改地在所有的并行计算机上运行。</li>
+<li>MPI是一种消息传递编程模型。MPI的最终目的是服务于进程间通信这一目标的。</li>
+</ol>
+<h2 id="open-mpi"><a name="user-content-open-mpi" href="#open-mpi" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Open-MPI安装</h2>
+<p>本文主要使用<a href="http://www.open-mpi.org/">OpenMPI</a>这个实现版本。计算机为Mac mini 2012年版本，运行Mac OS，Intel i5处理器。语言采用C和C++。<br />
+步骤：<br />
+1. 在<a href="http://www.open-mpi.org/"><a href="http://www.open-mpi.org/"><a href="http://www.open-mpi.org/">http://www.open-mpi.org/</a></a></a>下载界面下载最新的稳定版本源代码压缩包<br />
+2. 解压缩，进入源代码目录<br />
+3. <code>./configure</code><br />
+4. <code>make all install</code><br />
+5. 完毕<br />
+6. 可以进入<a href="http://mtt.open-mpi.org/"><a href="http://mtt.open-mpi.org/"><a href="http://mtt.open-mpi.org/">http://mtt.open-mpi.org/</a></a></a>进行在线测试是否安装成功。</p>
+<h2 id="hello-world"><a name="user-content-hello-world" href="#hello-world" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第一个程序hello world</h2>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="s2">&quot;mpi.h&quot;</span>
+<span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">math</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+
+<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">myid</span><span class="p">,</span><span class="w"> </span><span class="vg">numprocs</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">namelen</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">processor_name</span><span class="p">[</span><span class="vg">MPI_MAX_PROCESSOR_NAME</span><span class="p">];</span>
+
+<span class="w">    </span><span class="vg">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">argv</span><span class="p">);</span>
+<span class="w">    </span><span class="vg">MPI_Comm_rank</span><span class="p">(</span><span class="vg">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">myid</span><span class="p">);</span>
+<span class="w">    </span><span class="vg">MPI_Comm_size</span><span class="p">(</span><span class="vg">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">numprocs</span><span class="p">);</span>
+<span class="w">    </span><span class="vg">MPI_Get_processor_name</span><span class="p">(</span><span class="vg">processor_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">namelen</span><span class="p">);</span>
+
+<span class="w">    </span><span class="vg">fprintf</span><span class="p">(</span><span class="vg">stderr</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;To beautiful you! Process %d of %d on %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">myid</span><span class="p">,</span><span class="w"> </span><span class="vg">numprocs</span><span class="p">,</span><span class="w"> </span><span class="vg">processor_name</span><span class="p">);</span>
+<span class="w">    </span><span class="vg">MPI_Finalize</span><span class="p">();</span>
+
+<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编译运行</h2>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">编译</span><span class="p">,</span><span class="err">将</span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="err">文件编译成可运行文件</span><span class="vg">source</span>
+<span class="vg">mpicc</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span>
+<span class="vg">mpiCC</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">cc</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span><span class="o">++</span>
+<span class="vg">mpic</span><span class="o">++</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">cc</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span><span class="o">++</span><span class="p">,</span><span class="err">用于大小写敏感的文件系统</span>
+
+<span class="err">#</span><span class="w"> </span><span class="err">运行</span><span class="p">,</span><span class="err">并行程序需要多个进程</span><span class="p">,</span><span class="err">故需要开启多个源程序进行运算</span>
+<span class="vg">mpiexec</span><span class="w"> </span><span class="o">-</span><span class="vg">n</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="o">./</span><span class="vg">source</span>
+</pre></div>
+
+
+<p>e.g. 编译运行第一个程序hello world得到的结果为：</p>
+<div class="codehilite"><pre><span class="vg">To</span><span class="w"> </span><span class="vg">beautiful</span><span class="w"> </span><span class="vg">you!</span><span class="w"> </span><span class="vg">Process</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">of</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">tp2</span>
+<span class="vg">To</span><span class="w"> </span><span class="vg">beautiful</span><span class="w"> </span><span class="vg">you!</span><span class="w"> </span><span class="vg">Process</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">of</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">tp1</span>
+</pre></div>
+
+
 <div class="toc">
 <ul>
-<li><a href="#question">Question</a></li>
-<li><a href="#answer">Answer</a><ul>
-<li><a href="#february-1986">February 1986 :</a></li>
-<li><a href="#1996">1996:</a></li>
-<li><a href="#comparison-with-open-source">Comparison with open source</a></li>
-<li><a href="#what-we-can-benefit">What we can benefit?</a></li>
+<li><a href="#mpi">MPI并行程序设计</a><ul>
+<li><a href="#mpi_1">MPI简介</a></li>
+<li><a href="#open-mpi">Open-MPI安装</a></li>
+<li><a href="#hello-world">第一个程序hello world</a></li>
+<li><a href="#_1">编译运行</a></li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-03 14:31:15</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-03 16:52:25</p>
 		</div>
 	</div>
 	<div id="side">
