@@ -629,9 +629,9 @@ footer {
   position:absolute;
   z-index:-1;
   transform:rotate(38deg);
-  -webkit-transform:rotate(38deg);
-  transform-origin:50% 0%;
+  -webkit-transform: rotate(38deg);
   -webkit-transform-origin: 50% 0%;
+  transform-origin:50% 0%;
   top:5px;
   left:3px;
   background: linear-gradient(left, #f3f3f3, #fff);
@@ -645,8 +645,8 @@ footer {
   position:absolute;
   z-index:-1;
   transform:rotate(-38deg);
-  -webkit-transform:rotate(-38deg);
   transform-origin:50% 0%;
+  -webkit-transform: rotate(-38deg);
   -webkit-transform-origin: 50% 0%;
   top:5px;
   left:1px;
@@ -668,8 +668,8 @@ footer {
   top: 18px;
   height: 78px;
   background:#f16e54;
-    transform-origin: 50% 100%;
- -webkit-transform-origin: 50% 100%; 
+  transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
 }
 
 .hand-minute {
@@ -679,7 +679,7 @@ footer {
   height: 88px;
   background:#68645b;
   transform-origin: 50% 80%;
--webkit-transform-origin: 50% 80%;
+  -webkit-transform-origin: 50% 80%;
 }
 
 .hand-hour {
@@ -699,6 +699,7 @@ footer {
   #side {display: none!important;}
   #markdown{max-width: 98% !important;}
   footer{margin-left:10%; width: 80% !important;margin-right: 10%;}
+  .motto{display: none !important;}
 }
 
 @media 
@@ -720,6 +721,10 @@ only screen and (max-device-width:1024px),
 only screen and (width: 1024px),
 only screen and (max-width: 1024px){
   #blog {margin-top: 4.5em;}
+}
+
+@media only screen and (max-width: 1920px) {
+  #markdown{max-width: 90%;}
 }
 </style><style>.codehilite pre .hll { background-color: #ffffcc }
 .codehilite pre  { background: #f8f8f8; color: #333333 }
@@ -822,7 +827,7 @@ MathJax.Hub.Config({
 			<li><a href="http://jinjaysnow.github.io">主页</a></li>
 			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
 			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
-			<li style="margin-top: 16px; float: right;">朝着梦想，一步一步！</li>
+			<li  class="motto" style="margin-top: 16px; float: right;">朝着梦想，一步一步！</li>
 		</ul>
 	</nav>
 	<div id="blog">
@@ -871,7 +876,7 @@ MathJax.Hub.Config({
 <li><a href="#_6">技能</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-09-15 14:01:30</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-03 14:31:15</p>
 		</div>
 	</div>
 	<div id="side">

@@ -713,3 +713,7 @@ only screen and (width: 1024px),
 only screen and (max-width: 1024px){
   #blog {margin-top: 4.5em;}
 }
+
+@media only screen and (max-width: 1920px) {
+  #markdown{max-width: 90%;}
+}
