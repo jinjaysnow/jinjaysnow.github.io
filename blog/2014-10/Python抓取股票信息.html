@@ -833,7 +833,7 @@ MathJax.Hub.Config({
 	<div id="blog">
 		<div id="markdown" >
 			<h2 id="python"><a name="user-content-python" href="#python" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Python抓取股票信息</h2>
-<p>主要信息来源：<a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html">http://blog.sciencenet.cn/blog-461456-455211.html</a></a></a></p>
+<p>主要参考信息来源：<a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html">http://blog.sciencenet.cn/blog-461456-455211.html</a></a></a></p>
 <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤一：获取所有的股票代码</h3>
 <p>可以在网上搜索股票代码一览表获得，我自己是在东方财富网上获取的，获取时间为2014年10月8日，通过提取html内容得到一个<a href="../../static/stock/codes.txt">codes.txt</a></p>
 <h3 id="python_1"><a name="user-content-python_1" href="#python_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤二：Python抓取股票信息</h3>
@@ -844,6 +844,35 @@ MathJax.Hub.Config({
 
 <p>返回数据为：</p>
 <div class="codehilite"><pre><span class="vg">var</span><span class="w"> </span><span class="vg">hq_str_sh601006</span><span class="o">=</span><span class="s2">&quot;大秦铁路,7.90,7.93,7.92,7.98,7.89,7.91,7.92,29388117,232721144,34300,7.91,117258,7.90,262584,7.89,261200,7.88,138300,7.87,8800,7.92,80770,7.93,364800,7.94,473882,7.95,336194,7.96,2014-10-09,15:03:04,00&quot;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>数据意义：</p>
+<div class="codehilite"><pre><span class="nl">0</span><span class="err">：”大秦铁路”，股票名字；</span>
+<span class="nl">1</span><span class="err">：”</span><span class="mf">7.90</span><span class="err">″，今日开盘价；</span>
+<span class="nl">2</span><span class="err">：”</span><span class="mf">7.93</span><span class="err">″，昨日收盘价；</span>
+<span class="nl">3</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，当前价格；</span>
+<span class="nl">4</span><span class="err">：”</span><span class="mf">7.98</span><span class="err">″，今日最高价；</span>
+<span class="nl">5</span><span class="err">：”</span><span class="mf">7.89</span><span class="err">″，今日最低价；</span>
+<span class="nl">6</span><span class="err">：”</span><span class="mf">7.91</span><span class="err">″，竞买价，即“买一”报价；</span>
+<span class="nl">7</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，竞卖价，即“卖一”报价；</span>
+<span class="nl">8</span><span class="err">：”</span><span class="il">29388117</span><span class="err">″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；</span>
+<span class="nl">9</span><span class="err">：”</span><span class="il">232721144</span><span class="err">″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；</span>
+<span class="nl">10</span><span class="err">：”</span><span class="il">34300</span><span class="err">″，“买一”申请</span><span class="il">34300</span><span class="err">股；</span>
+<span class="nl">11</span><span class="err">：”</span><span class="mf">7.91</span><span class="err">″，“买一”报价；</span>
+<span class="nl">12</span><span class="err">：”</span><span class="il">117258</span><span class="err">″，“买二”</span>
+<span class="nl">13</span><span class="err">：”</span><span class="mf">7.90</span><span class="err">″，“买二”</span>
+<span class="nl">14</span><span class="err">：”</span><span class="il">262584</span><span class="err">″，“买三”</span>
+<span class="nl">15</span><span class="err">：”</span><span class="mf">7.89</span><span class="err">″，“买三”</span>
+<span class="nl">16</span><span class="err">：”</span><span class="il">261200</span><span class="err">″，“买四”</span>
+<span class="nl">17</span><span class="err">：”</span><span class="mf">7.88</span><span class="err">″，“买四”</span>
+<span class="nl">18</span><span class="err">：”</span><span class="il">138300</span><span class="err">″，“买五”</span>
+<span class="nl">19</span><span class="err">：”</span><span class="mf">7.87</span><span class="err">″，“买五”</span>
+<span class="nl">20</span><span class="err">：”</span><span class="il">8800</span><span class="err">″，“卖一”申报</span><span class="il">3100</span><span class="err">股，即</span><span class="il">31</span><span class="err">手；</span>
+<span class="nl">21</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，“卖一”报价</span>
+<span class="p">(</span><span class="il">22</span><span class="p">,</span><span class="w"> </span><span class="il">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">24</span><span class="p">,</span><span class="w"> </span><span class="il">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">26</span><span class="p">,</span><span class="il">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">28</span><span class="p">,</span><span class="w"> </span><span class="il">29</span><span class="p">)</span><span class="err">分别为“卖二”至“卖四的情况”</span>
+<span class="nl">30</span><span class="err">：”</span><span class="il">2014-10-09</span><span class="err">″，日期；</span>
+<span class="nl">31</span><span class="err">：”</span><span class="il">15</span><span class="o">:</span><span class="il">03</span><span class="o">:</span><span class="il">04</span><span class="err">″，时间；</span>
 </pre></div>
 
 
@@ -862,7 +891,7 @@ MathJax.Hub.Config({
 
 
 <p>通过执行上述代码便在companyInfo中存储了股票相应的信息。</p>
-<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤三：删选出自己感兴趣的股票</h3>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤三：筛选出自己感兴趣的股票</h3>
 <p>在这里，我设置筛选条件为<code>当前股票价格&lt;5元</code>，然后获取月K线图。通过观察月K线来确定是否投资。<br />
 月K线获取的url为：<code>http://image.sinajs.cn/newchart/monthly/n/%s.gif</code>，%s为股票代码。<br />
 实例：</p>
@@ -896,7 +925,7 @@ MathJax.Hub.Config({
 <h3 id="k"><a name="user-content-k" href="#k" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤五：显示满足条件的股票月K线</h3>
 <p>虽然可以直接一张一张的翻看图片，但是每次都需要点击鼠标，比较麻烦。我将产生的文件地址写入一个HTML文件中，通过浏览器便可以在一个界面里显示所有的图片文件，便于分析。  </p>
 <h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>总结</h2>
-<p>Python的网络库很容易上手抓取网页数据，这里只是简单的应用了一下，没有使用正则表达式匹配等手段获取局部数据，程序可以改进的地方还有很多。比如对股票的详细删选：获取满足条件的股票数据，通过进一步获取更多的信息（公司详情，股本结构等），来进行股票投资。  </p>
+<p>Python的网络库很容易上手抓取网页数据，这里只是简单的应用了一下，没有使用正则表达式匹配等手段获取局部数据，程序可以改进的地方还有很多。比如对股票的详细筛选：获取满足条件的股票数据，通过进一步获取更多的信息（公司详情，股本结构等），来进行股票投资。  </p>
 <h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>程序源码</h2>
 <p><a href="../../static/stock/getinfo.py">抓取信息程序源码</a><br />
 <a href="../../static/stock/generateHTML.py">生成网页文件源码</a></p>
@@ -905,7 +934,7 @@ MathJax.Hub.Config({
 <li><a href="#python">Python抓取股票信息</a><ul>
 <li><a href="#_1">步骤一：获取所有的股票代码</a></li>
 <li><a href="#python_1">步骤二：Python抓取股票信息</a></li>
-<li><a href="#_2">步骤三：删选出自己感兴趣的股票</a></li>
+<li><a href="#_2">步骤三：筛选出自己感兴趣的股票</a></li>
 <li><a href="#_3">步骤四：股票数量众多，采用多线程加速获取数据</a></li>
 <li><a href="#k">步骤五：显示满足条件的股票月K线</a></li>
 </ul>
@@ -914,7 +943,7 @@ MathJax.Hub.Config({
 <li><a href="#_5">程序源码</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-09 20:28:59</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-09 20:47:52</p>
 		</div>
 	</div>
 	<div id="side">
