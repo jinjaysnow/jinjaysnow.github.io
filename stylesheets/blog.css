@@ -202,7 +202,8 @@ a::selection { background:#a8d1ff; color:#0645ad }
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  max-width: 310px;
+  /*max-width: 310px;*/
+  max-width: 100%;
   margin-bottom: 30px;
   border-radius: 0;
   padding: 4px;
