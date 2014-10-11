@@ -62,6 +62,8 @@ e.g. 编译运行第一个程序hello world得到的结果为：
 To beautiful you! Process 0 of 2 on tp2
 To beautiful you! Process 1 of 2 on tp1
 ```
+## To be continued...未完待续
+**由于缺少多个CPU共同组成的计算机系统，多核与并行程序设计学习不能更有效的进行，所以暂时停止MPI的学习。**
 
 
 [TOC]
