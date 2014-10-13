@@ -3,7 +3,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> -->
 	<meta name="viewport" content="width=device-width">
-	<meta name="image" content="images/levelsOfDesign.png">
+	<meta name="robots" content="all" />
+	<meta name="description" content="code complete, 代码大全">
+<meta name="image" content="images/levelsOfDesign.png">
 <meta name="brief" content="Code Complete《代码大全》，经典著作书摘，主要关于软件工程，如何构建软件，如何编写代码，应该有什么样的编程风格。">
 <meta name="date" content="2014-10">
 <meta name="authors" content="Jin Jay">
@@ -1118,9 +1120,26 @@ case语句中default字句只用于检查真正的默认情况。</p>
 4. 记录员<br />
     记录详查会议期间发现的错误，以及指派的任务。</p>
 <p><strong>详查中的自尊心</strong><br />
-进行详查的目的是发现设计或代码中的缺陷，而不是探索替代方案，或者争论谁对谁错，其目的绝不应该是批评作者的设计或者代码。因为设计或者代码收到了批评，作者可能感到自己难辞其咎，所以很自然地作者会觉得代码让他脸上无光。作者应该预料到他会听到对某些缺陷的批评，而那些其实并不是缺陷，还有许多是有争议的。尽管如此，作者应该承认每一个所谓的缺陷，然后继续详查。<em>承认一个批评并不意味着作者认同批评的内容。</em>在复查之后，作者可以独自对每一个问题进行思考，判断它是否真的是一个缺陷。<br />
+进行详查的目的是发现设计或代码中的缺陷，而不是探索替代方案，或者争论谁对谁错，其目的绝不应该是批评作者的设计或者代码。因为设计或者代码收到了批评，作者可能感到自己难辞其咎，所以很自然地作者会觉得代码让他脸上无光。作者应该预料到他会听到对某些缺陷的批评，而那些其实并不是缺陷，还有许多是有争议的。尽管如此，作者应该承认每一个所谓的缺陷，然后继续详查。<strong><em>承认一个批评并不意味着作者认同批评的内容。</em></strong>在复查之后，作者可以独自对每一个问题进行思考，判断它是否真的是一个缺陷。<br />
 评论员也必须记住，最终是由作者来负责决定如何处理缺陷。我们应该享受寻找缺陷的了却，但每一个评论员必须尊重作者决定如何解决某个错误的最终权力。</p>
-<h1 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
+<h2 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>测试</h2>
+<p>测试是一种检查错误的方法，而调试意味着错误已经被发现，要做的是诊断错误并消灭造成这些错误的根本原因。测试包括：<br />
+1. 单元测试<br />
+    将一个程序员或者一个开发团队所编写的，一个完整的类、子程序或者小程序，从完整的系统中隔离出来进行测试。<br />
+2. 组件测试<br />
+    将一个类、包、小程序或者其它程序元素，从一个更加完整的系统中隔离出来进行测试，这些被测代码涉及到多个程序员或者多个团队。<br />
+3. 集成测试<br />
+    对两个或更多的类、包、组件或者子系统进行的联合测试，这些组件由多个程序员或者开发团队所创建。这种测试应该通常在有了两个可以进行测试的类的时候就应该尽快开始，并且一直持续到真个系统开发完成。<br />
+4. 回归测试<br />
+    指重复执行以前的测试用例，以便在原先通过了相同测试集合的软件中查找缺陷。<br />
+5. 系统测试<br />
+    在最终的配置下运行整个软件，以便测试安全、性能、资源消耗、时序方面的问题，以及其他无法在低级集成上测试的问题。</p>
+<p>测试通常分为两大类：<br />
+1. 黑盒测试<br />
+    测试者无法了解测试对象内部工作机制的测试。<br />
+2. 白盒测试<br />
+    测试者清楚待测试对象内部工作机制的测试。</p>
+<h1 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
 <div class="toc">
 <ul>
 <li><a href="#_1">代码大全</a><ul>
@@ -1176,12 +1195,13 @@ case语句中default字句只用于检查真正的默认情况。</p>
 <li><a href="#_37">正式检查</a></li>
 </ul>
 </li>
+<li><a href="#_38">测试</a></li>
 </ul>
 </li>
-<li><a href="#_38">未完待续&hellip;</a></li>
+<li><a href="#_39">未完待续&hellip;</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-13 11:27:06</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-13 15:30:43</p>
 		</div>
 	</div>
 	<div id="side">
