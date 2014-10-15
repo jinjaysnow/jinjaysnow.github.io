@@ -1139,7 +1139,37 @@ case语句中default字句只用于检查真正的默认情况。</p>
     测试者无法了解测试对象内部工作机制的测试。<br />
 2. 白盒测试<br />
     测试者清楚待测试对象内部工作机制的测试。</p>
-<h1 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
+<h2 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>调试</h2>
+<p>调试是确定错误根本原因并纠正此错误的过程。  </p>
+<blockquote>
+<p>程序员们往往不愿意使用现成的数据来约束他们的推理。他们往往喜欢进行琐碎和无理性的修改，而且他们通常不愿意推翻以前不正确的修改。<br />
+——Iris Vessey</p>
+</blockquote>
+<h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>寻找缺陷</h3>
+<ol>
+<li>将错误状态稳定下来</li>
+<li>确定错误的来源<br />
+    a. 收集产生缺陷的相关数据<br />
+    b. 分析所收集的数据，并构造对缺陷的假设<br />
+    c. 确定怎样去证实或证伪这个假设，可以对程序进行测试或者通过检查代码<br />
+    d. 对假设做出最终结论</li>
+<li>修补缺陷</li>
+<li>对所修补的地方进行测试</li>
+<li>查找是否还有类似的错误</li>
+</ol>
+<h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>修正缺陷</h3>
+<p>在动手之前先要理解问题<br />
+理解程序本身，而不仅仅是问题<br />
+验证对错误的分析<br />
+保存最初的源代码<br />
+治本，而不是治标<br />
+修改代码时一定要有恰当的理由<br />
+一次只做一个改动<br />
+检查自己的改动<br />
+增加能暴露问题的单元测试<br />
+休息一下</p>
+<h3 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>调试中的心理因素</h3>
+<h1 id="_43"><a name="user-content-_43" href="#_43" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
 <div class="toc">
 <ul>
 <li><a href="#_1">代码大全</a><ul>
@@ -1196,12 +1226,18 @@ case语句中default字句只用于检查真正的默认情况。</p>
 </ul>
 </li>
 <li><a href="#_38">测试</a></li>
+<li><a href="#_39">调试</a><ul>
+<li><a href="#_40">寻找缺陷</a></li>
+<li><a href="#_41">修正缺陷</a></li>
+<li><a href="#_42">调试中的心理因素</a></li>
 </ul>
 </li>
-<li><a href="#_39">未完待续&hellip;</a></li>
+</ul>
+</li>
+<li><a href="#_43">未完待续&hellip;</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-13 15:30:43</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-14 08:51:46</p>
 		</div>
 	</div>
 	<div id="side">
