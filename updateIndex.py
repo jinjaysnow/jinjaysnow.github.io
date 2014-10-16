@@ -72,34 +72,7 @@ for x in briefdir:
 	sites = sites + sitemapTemplate
 
 
-
 saveFinalFile("index.html", "templates/indextemplate.html", "{{BLOG}}", allbox)
 saveFinalFile("blog/index.html", "blog/indextemplate.html", "{{BODY}}", blogbox)
 saveFinalFile("sitemap.xml", "sitemapTemplate.xml", "{{URLS}}", sites)
 
-# finalHtml = load_utf8("templates/indextemplate.html").encode("utf-8")
-# finalHtml = finalHtml.replace("{{BLOG}}", allbox)
-
-# output_file = codecs.open("index.html", "w",
-#                           encoding="utf-8", 
-#                           errors="xmlcharrefreplace")
-	
-# output_file.write(finalHtml.decode("utf-8"))
-# output_file.close()
-# print "success generate index.html"
-
-# # update blog/index.html
-# finalHtml = load_utf8("blog/indextemplate.html").encode("utf-8")
-# finalHtml = finalHtml.replace("{{BODY}}", blogbox)
-# output_file = codecs.open("blog/index.html", "w", encoding="utf-8")
-# output_file.write(finalHtml.decode("utf-8"))
-# output_file.close()
-# print "success generate blog/index.html"
-
-# # update siteMap
-# finalSiteMap = load_utf8("sitemapTemplate.xml").encode("utf-8")
-# finalSiteMap = finalSiteMap.replace("{{URLS}}", sites)
-# output_file = codecs.open("sitemap.xml", "w", encoding="utf-8")
-# output_file.write(finalSiteMap.decode("utf-8"))
-# output_file.close()
-# print "success generate sitemap.xml"
