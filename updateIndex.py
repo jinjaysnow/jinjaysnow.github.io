@@ -17,21 +17,24 @@ for x in datedir:
 	if os.path.isdir("blog/" + x):
 		dateFolder.append("blog/" + x)
 
-# add keyword folder
-# with open("blog/keywords.json", mode='r') as f:
-# 	keywords = json.load(f)
-
-# mytempFile = Template(codecs.open("templates/indextemplate.html", "r", encoding="utf-8").read())
-
-# indexFile = codecs.open("index.html", "w", encoding="utf-8")
-# indexFile.write(html)
-# indexFile.close()
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
         f.write(text)
 def load_utf8(filename):
     with codecs.open(filename, 'r', encoding='utf-8') as f:
         return f.read()
+
+def urlToXml(url):
+	return url.replace("&", "&amp;")
+
+def saveFinalFile(filePath, tempFilePath, keyword, tempData):	
+	finalTemp = load_utf8(tempFilePath).encode("utf-8")
+	finalTemp = finalTemp.replace(keyword, tempData)
+	output_file = codecs.open(filePath, "w", encoding="utf-8")
+	output_file.write(finalTemp.decode("utf-8"))
+	output_file.close()
+	print "success generate ", filePath
+
 
 briefdir = os.listdir("brief")
 
@@ -64,34 +67,39 @@ for x in briefdir:
 	blogTemplate = blogTemplate.replace("{{URL}}", tempData["url"].encode("utf-8"))
 	blogbox = blogbox + blogTemplate
 	# sitemap
-	sitemapTemplate = siteMap.replace("{{URL}}", tempData["url"].encode("utf-8"))
+	sitemapTemplate = siteMap.replace("{{URL}}", urlToXml(tempData["url"].encode("utf-8")))
 	sitemapTemplate = sitemapTemplate.replace("{{DATE}}", datetime.datetime.fromtimestamp(os.path.getmtime("brief/" + x)).strftime("%Y-%m-%d"))
 	sites = sites + sitemapTemplate
 
 
-finalHtml = load_utf8("templates/indextemplate.html").encode("utf-8")
-finalHtml = finalHtml.replace("{{BLOG}}", allbox)
 
-output_file = codecs.open("index.html", "w",
-                          encoding="utf-8", 
-                          errors="xmlcharrefreplace")
+saveFinalFile("index.html", "templates/indextemplate.html", "{{BLOG}}", allbox)
+saveFinalFile("blog/index.html", "blog/indextemplate.html", "{{BODY}}", blogbox)
+saveFinalFile("sitemap.xml", "sitemapTemplate.xml", "{{URLS}}", sites)
+
+# finalHtml = load_utf8("templates/indextemplate.html").encode("utf-8")
+# finalHtml = finalHtml.replace("{{BLOG}}", allbox)
+
+# output_file = codecs.open("index.html", "w",
+#                           encoding="utf-8", 
+#                           errors="xmlcharrefreplace")
 	
-output_file.write(finalHtml.decode("utf-8"))
-output_file.close()
-print "success generate index.html"
+# output_file.write(finalHtml.decode("utf-8"))
+# output_file.close()
+# print "success generate index.html"
 
-# update blog/index.html
-finalHtml = load_utf8("blog/indextemplate.html").encode("utf-8")
-finalHtml = finalHtml.replace("{{BODY}}", blogbox)
-output_file = codecs.open("blog/index.html", "w", encoding="utf-8")
-output_file.write(finalHtml.decode("utf-8"))
-output_file.close()
-print "success generate blog/index.html"
+# # update blog/index.html
+# finalHtml = load_utf8("blog/indextemplate.html").encode("utf-8")
+# finalHtml = finalHtml.replace("{{BODY}}", blogbox)
+# output_file = codecs.open("blog/index.html", "w", encoding="utf-8")
+# output_file.write(finalHtml.decode("utf-8"))
+# output_file.close()
+# print "success generate blog/index.html"
 
-# update siteMap
-finalSiteMap = load_utf8("sitemapTemplate.xml").encode("utf-8")
-finalSiteMap = finalSiteMap.replace("{{URLS}}", sites)
-output_file = codecs.open("sitemap.xml", "w", encoding="utf-8")
-output_file.write(finalSiteMap.decode("utf-8"))
-output_file.close()
-print "success generate sitemap.xml"
+# # update siteMap
+# finalSiteMap = load_utf8("sitemapTemplate.xml").encode("utf-8")
+# finalSiteMap = finalSiteMap.replace("{{URLS}}", sites)
+# output_file = codecs.open("sitemap.xml", "w", encoding="utf-8")
+# output_file.write(finalSiteMap.decode("utf-8"))
+# output_file.close()
+# print "success generate sitemap.xml"
