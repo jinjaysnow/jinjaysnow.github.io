@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+	<url>
+		<loc>http://jinjaysnow.github.io/</loc>
+		<lastmod>2014-10-16</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>http://jinjaysnow.github.io/blog/index.html</loc>
+		<lastmod>2014-10-16</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	{{URLS}}
+</urlset>

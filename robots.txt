@@ -1,0 +1,7 @@
+Site-map: http://jinjaysnow.github.io/sitemap.xml
+
+User-Agent: *
+Disallow: /brief/
+Disallow: /markdownPreview/
+Disallow: /templates/
+

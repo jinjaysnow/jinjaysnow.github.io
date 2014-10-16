@@ -14,6 +14,10 @@ def jsonWrite(filename, data):
 	with open(filename, 'w') as outfile:
 		json.dump(data, outfile)
 
+def fileNameToUrl(fileName):
+	return fileName.replace(' ', "%20")
+
+
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
 		print "filepath is not reasonable"
@@ -58,7 +62,7 @@ def generateFile(filePath):
 
 	else:
 		# TODO: add the wordbox css
-		briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html"}
 		jsonWrite("../brief/" + fileName, briefData)
 
 	# generate Keywords files
@@ -78,10 +82,10 @@ def generateFile(filePath):
 			with open("keywords.json") as f:
 				fc = json.load(f)
 			if not fc.has_key(keyword):
-				fc[keyword] = [dateFolder + "/" +fileName + ".html"]
+				fc[keyword] = [dateFolder + "/" + fileNameToUrl(fileName) + ".html"]
 			else:
 				if not (dateFolder + "/" +fileName + ".html") in fc[keyword]:
-					fc[keyword].append(dateFolder + "/" +fileName + ".html")
+					fc[keyword].append(dateFolder + "/" + fileNameToUrl(fileName) + ".html")
 			# delete duplicate elements in the list
 			f = open("keywords.json","w+")
 			json.dump(fc, f)
