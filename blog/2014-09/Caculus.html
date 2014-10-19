@@ -859,6 +859,56 @@ MathJax.Hub.Config({
 <li>夹逼准则：若{$x_n$}、{$y_n$}、{$z_n$}满足，当$n&lt;n_0$时，$y_n\le x_n \le z_n$，且$\lim _{n\rightarrow \infty}{y_n}=a,\lim _{n\rightarrow \infty}{z_n}=a$，则{$x_n$}的极限存在，且$\lim _{n\rightarrow \infty}{x_n}=a$。</li>
 <li>单调有界数列必有极限。</li>
 </ol>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>间断点</h3>
+<p>如果$x_0$是函数f(x)的间断点，但左极限$f(x_0^-)$和右极限$f(x_0^+)$都存在，则称$x_0$为f(x)的第一类间断点，不是第一类间断点的任何间断点都称为第二类间断点。<br />
+在第一类间断点中，$f(x_0^-)=f(x_0^+)$称可去间断点，否则为跳跃间断点。</p>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>零点定理</h3>
+<p>设函数f(x)在闭区间[a,b]上连续，且f(a)与f(b)异号，则在开区间(a,b)内至少有一点$\xi$，使得$f(\xi)=0$。</p>
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>介值定理</h3>
+<p>设f(x)在[a,b]上连续，且f(a)=A,f(b)=B，那么对A与B之间任意的一个数C，在(a,b)内至少有一点$\xi$，使得$f(\xi)=C$。</p>
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>导数</h2>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>求导法则</h3>
+<ol>
+<li>$[\mu(x)\pm \nu(x)]^\prime = \mu(x)^\prime\pm \nu(x)^\prime$</li>
+<li>$[\mu(x)\nu(x)]^\prime=\mu^\prime(x)\nu(x)+\mu(x)\nu^\prime(x)$</li>
+<li>$[\frac{\mu(x)}{\nu(x)}]^\prime=\frac{\mu^\prime(x)\nu(x)-\mu(x)\nu^\prime(x)}{\nu^2(x)}$</li>
+<li>反函数的求导法则<br />
+    如果函数x=f(y)在区间$I_y$内单调、可导且$f^\prime(y)\neq 0$，则它的反函数$y=f^{-1}(x)$在区间$I_x=\{x | x=f(y)\}$内也可导，且$[f^{-1}(x)]^\prime=\frac{1}{f^\prime(y)}$或$\frac{dx}{dy}=\frac{1}{\frac{dy}{dx}}$。</li>
+<li>复合函数的求导法则<br />
+    设y=f($\mu$)，而$\mu=g(x)$且$f(\mu)$与g(x)均可导，则f[g(x)]的符合导数为：<br />
+    $$\frac{dy}{dx}=\frac{dy}{d\mu}\cdot\frac{d\mu}{dx}\quad or \quad y^\prime(x)=f^\prime(\mu)\cdot g^\prime(x)$$</li>
+</ol>
+<p><strong>常用导数表</strong></p>
+<table>
+<thead>
+<tr>
+<th>$(x^n)^\prime=nx^{n-1}$</th>
+<th>$(\sin x)^\prime=\cos x$</th>
+<th>$(\cos x)^\prime=-\sin x$</th>
+<th>$(\tan x)^\prime=\sec^2{x}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(\cot x)^\prime=-\csc ^2x$</td>
+<td>$(\sec x)^\prime=\sec x\tan x$</td>
+<td>$(\csc x)^\prime=-\csc x\cot x$</td>
+<td>$(a^x)^\prime=a^x\ln a$</td>
+</tr>
+<tr>
+<td>$(e^x)^\prime = e^x$</td>
+<td>$(\log _ax)^\prime=$ $\frac1{x\ln a}$</td>
+<td>$(\ln x)^\prime=\frac1x$</td>
+<td>$(\arcsin x)^\prime = \frac 1{\sqrt{1-x^2}}$</td>
+</tr>
+<tr>
+<td>$(\arccos x)^\prime = -\frac 1{\sqrt{1-x^2}}$</td>
+<td>$(\arctan x)^\prime=\frac1{1+x^2}$</td>
+<td>$($arccot $x)^\prime=-\frac 1{1+x^2}$</td>
+<td>$\quad$</td>
+</tr>
+</tbody>
+</table>
 <div class="toc">
 <ul>
 <li><a href="#_1">高等数学微积分</a><ul>
@@ -869,13 +919,20 @@ MathJax.Hub.Config({
 <li><a href="#_6">极限存在准则</a></li>
 </ul>
 </li>
+<li><a href="#_7">间断点</a></li>
+<li><a href="#_8">零点定理</a></li>
+<li><a href="#_9">介值定理</a></li>
+</ul>
+</li>
+<li><a href="#_10">导数</a><ul>
+<li><a href="#_11">求导法则</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-19 15:34:02</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-19 17:07:27</p>
 		</div>
 	</div>
 	<div id="side">
