@@ -1,4 +1,4 @@
-Title:   Caculus
+Title:   Calculus
 Brief:   微积分要点归纳。
 Authors: Jin Jay
 Date:    2014-09
@@ -49,13 +49,78 @@ $\\{x\_n\\}$为一数列，若$\exists  a$，$\forall $给定的正数$\epsilon 
     $$\frac{dy}{dx}=\frac{dy}{d\mu}\cdot\frac{d\mu}{dx}\quad or \quad y^\prime(x)=f^\prime(\mu)\cdot g^\prime(x)$$
 
 
-**常用导数表**
+### 常用导数表
 
+|      |      |      |      |
+| ---- | ---- | ---- | ---- |
 | $(x^n)^\prime=nx^{n-1}$ | $(\sin x)^\prime=\cos x$ | $(\cos x)^\prime=-\sin x$ | $(\tan x)^\prime=\sec^2{x}$ |
-| --:-- | --:-- | --:-- | --:-- |
 | $(\cot x)^\prime=-\csc ^2x$ | $(\sec x)^\prime=\sec x\tan x$ | $(\csc x)^\prime=-\csc x\cot x$ | $(a^x)^\prime=a^x\ln a$ |
 | $(e^x)^\prime = e^x$ | $(\log \_ax)^\prime=$ $\frac1\{x\ln a\}$ | $(\ln x)^\prime=\frac1x$ | $(\arcsin x)^\prime = \frac 1\{\sqrt\{1-x^2\}\}$ |
 | $(\arccos x)^\prime = -\frac 1\{\sqrt\{1-x^2\}\}$ | $(\arctan x)^\prime=\frac1\{1+x^2\}$ | $($arccot $x)^\prime=-\frac 1\{1+x^2\}$ | $\quad$ |
+
+### 罗尔定理
+如果函数f(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③在区间端点处的函数值相等，即f(a)=f(b)；那么在(a,b)内至少有一点$\xi (a<\xi <b)$，使得$f^\prime(\xi)=0$。
+
+### 拉格朗日中值定理
+如果函数f(x)满足①在闭区间[a,b]上连续；②在开区间(a,b)内可导；那么在(a,b)内至少有一点$\xi(a<\xi<b)$，使等式$f(b)-f(a)=f^\prime(\xi)(b-a)$成立。
+
+### 柯西中值定理
+如果函数f(x)及F(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③对任一$x\in(a,b)$，$F^\prime(x)\neq 0$，那么在(a,b)内至少存在一点$\xi$，使等式$\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f^\prime(\xi)}{F^\prime(\xi)}$成立。
+
+### 洛必达法则
+设①当$x\rightarrow a$时，函数f(x)及F(x)都趋近于0；②在点a的某去心邻域内，$f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x)\neq0$；③$\lim \_{x\rightarrow a}\frac{f(x)}{F(x)}=\lim \_{x\rightarrow a}\frac{f^\prime(x)}{F^\prime(x)}$。
+
+### 泰勒中值定理
+如果函数f(x)在含有$x\_0$的某个开区间(a,b)内具有直到(n+1)阶的导数，则$\forall x\in(a,b)$，有$$f(x)=f(x\_0)+f^\prime(x\_0)(x-x\_0)+\frac{f^{\prime\prime}(x\_0)}{2}(x-x\_0)^2+\cdots+\frac{f^{(n)}(x\_0)_)}{n!}(x-x\_0)^n+R\_n(x),$$其中$R\_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x\_0)^{n+1}$。
+
+### 凹凸性
+设f(x)在(a,b)内具有一阶和二阶导数，在[a,b]上连续，则  
+(1) 若在(a,b)内$f^{\prime\prime}>0$，则f(x)在[a,b]上是凹函数。即：$$f(\frac{x\_1+x\_2}2)<\frac{f(x\_1)+f(x\_2)}2$$
+(2) 若在(a,b)内$f^{\prime\prime}<0$，则f(x)在[a,b]上是凸函数。即：$$f(\frac{x\_1+x\_2}2)>\frac{f(x\_1)+f(x\_2)}2$$
+
+### 拐点的求法
+1. 求$f^{\prime\prime}(x)$
+2. 令$f^{\prime\prime}(x)=0$，解出这个方程在区间I内的实数根，并求出在区间I内$f^{\prime\prime}(x)$不存在的点
+3. 对步骤2中求出的每一个是跟或二阶导数不存在的点$x\_0$，检查$f^{\prime\prime}(x\_0^-)$，$f^{\prime\prime}(x\_0^+)$，符号相反时，$x\_0$是拐点。
+
+### 极值
+设函数f(x)在$x\_0$处可导，且在$x\_0$处取得极值，那么$f^\prime(x)=0$.[**必要条件**]  
+设f(x)在$x\_0$处具有二阶导数且$f^\prime(x\_0)=0,f^{\prime\prime}(x\_0)\neq0$，那么  
+(1)当$f^{\prime\prime}(x)<0$时，函数f(x)在$x\_0$处取得极大值。  
+(2)当$f^{\prime\prime}(x)>0$时，函数f(x)在$x\_0$处取得极小值。
+
+### 高阶导数
+|   |   |
+|---|---|
+| $(e^2)^\{(n)\}=e^2$ | $(\sin x)^\{(n)\}=\sin(x+\frac\{n\pi\}2)$ |
+| $(\cos x)^\{(n)\}=\cos(x+\frac\{n\pi\}2)$ | $[\ln(1+x)]^\{(n)\}=(-1)^\{n-1\}\frac\{(n-1)!\}\{(1+x)^n\}$ |
+| $(\mu\nu)^\{(n)\}=\sum\_\{k=0\}^nC\_n^k\mu^\{(n-k)\}\nu^\{(k)\}$ |   |
+
+## 积分
+### 常用积分表
+|      |      |
+| ---- | ---- | 
+| $\int x^\mu dx=\frac\{x^\{\mu+1\}\}\{\mu+1\}$ | $\int \frac\{dx\}\{x\}=\ln &#124;x&#124;$ |
+|$\int \frac\{dx\}\{1+x^2\}=\arctan x$ | $\int \frac\{dx\}\{\sqrt\{1-x^2\}\}=\arcsin x$ | 
+| $\int \sin xdx=-cosx$ | $\int \cos xdx=\sin x$ |
+| $\int e^xdx=e^x$ |  $\int a^xdx=\frac\{a^x\}\{\ln a\}$ |
+| $\int \frac\{dx\}\{a^2+x^2\}=\frac1a\arctan \frac xa$ | $\int \frac\{dx\}\{x^2-a^2\}=frac1\{2a\}\ln&#124;\frac\{x-a\}\{x+a\}&#124;$ |
+| $\int \frac\{dx\}\{\sqrt\{a^2-x^2\}\}=\arcsin \frac xa$ | $\int \{dx\}\{\sqrt\{x^2\pm a^2\}\}=\ln (x+\sqrt\{x^2\pm a^2\})$ |
+| $\int \sqrt\{a^2-x^2\}dx=\frac\{a^2\}2\arcsin \frac xa+\frac x2\sqrt\{a^2-x^2\}$ | $\int \sqrt\{x^2\pm a^2\}dx=\pm \frac\{a^2\}2\ln&#124;x+\sqrt\{x^2+a^2\}&#124;+\frac x2\sqrt\{x^2+a^2\}$ | 
+
+`注：积分省略了最后的常数项`
+
+### 第一类换元法
+设$f(\mu)$具有原函数，$\mu=\varphi(x)$可导，则有$\int f(\varphi(x))\varphi^\prime(x)dx=[f(\mu)d\mu]\_{\mu=\varphi(x)}$。
+
+### 第二类换元法
+设$x=\varphi(t)$是单调的、可导的函数，并且$\varphi^\prime(t)\neq0$，又设$f[\varphi(t)],\varphi^\prime(t)$具有原函数，则有$\int f(x)dx=[\int f[\varphi(t)]\varphi^\prime(t)dt]\_{t=\varphi^{-1}(x)}$。
+
+### 分部积分法
+$$\int \mu\nu^\prime dx= \mu\nu-\int\mu\prime\nu dx$$
+
+### 定积分中值定理
+如果函数f(x)在积分区间[a,b]上连续，则在[a,b]上至少存在一个点$\xi$，有$$\int \_a^bf(x)dx=f(\xi)(b-a).\quad (a\le \xi \le b)$$
 
 
 

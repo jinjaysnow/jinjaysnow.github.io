@@ -818,7 +818,7 @@ MathJax.Hub.Config({
   showProcessingMessages: false
 });
 </script>
-<title>Caculus</title>
+<title>Calculus</title>
 	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
 	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
 </head>
@@ -878,17 +878,23 @@ MathJax.Hub.Config({
     设y=f($\mu$)，而$\mu=g(x)$且$f(\mu)$与g(x)均可导，则f[g(x)]的符合导数为：<br />
     $$\frac{dy}{dx}=\frac{dy}{d\mu}\cdot\frac{d\mu}{dx}\quad or \quad y^\prime(x)=f^\prime(\mu)\cdot g^\prime(x)$$</li>
 </ol>
-<p><strong>常用导数表</strong></p>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用导数表</h3>
 <table>
 <thead>
 <tr>
-<th>$(x^n)^\prime=nx^{n-1}$</th>
-<th>$(\sin x)^\prime=\cos x$</th>
-<th>$(\cos x)^\prime=-\sin x$</th>
-<th>$(\tan x)^\prime=\sec^2{x}$</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td n-1="n-1">$(x^n)^\prime=nx^</td>
+<td>$(\sin x)^\prime=\cos x$</td>
+<td>$(\cos x)^\prime=-\sin x$</td>
+<td x="x">$(\tan x)^\prime=\sec^2</td>
+</tr>
 <tr>
 <td>$(\cot x)^\prime=-\csc ^2x$</td>
 <td>$(\sec x)^\prime=\sec x\tan x$</td>
@@ -909,6 +915,103 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>罗尔定理</h3>
+<p>如果函数f(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③在区间端点处的函数值相等，即f(a)=f(b)；那么在(a,b)内至少有一点$\xi (a&lt;\xi &lt;b)$，使得$f^\prime(\xi)=0$。</p>
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>拉格朗日中值定理</h3>
+<p>如果函数f(x)满足①在闭区间[a,b]上连续；②在开区间(a,b)内可导；那么在(a,b)内至少有一点$\xi(a&lt;\xi&lt;b)$，使等式$f(b)-f(a)=f^\prime(\xi)(b-a)$成立。</p>
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>柯西中值定理</h3>
+<p>如果函数f(x)及F(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③对任一$x\in(a,b)$，$F^\prime(x)\neq 0$，那么在(a,b)内至少存在一点$\xi$，使等式$\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f^\prime(\xi)}{F^\prime(\xi)}$成立。</p>
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>洛必达法则</h3>
+<p>设①当$x\rightarrow a$时，函数f(x)及F(x)都趋近于0；②在点a的某去心邻域内，$f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x)\neq0$；③$\lim _{x\rightarrow a}\frac{f(x)}{F(x)}=\lim _{x\rightarrow a}\frac{f^\prime(x)}{F^\prime(x)}$。</p>
+<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>泰勒中值定理</h3>
+<p>如果函数f(x)在含有$x_0$的某个开区间(a,b)内具有直到(n+1)阶的导数，则$\forall x\in(a,b)$，有$$f(x)=f(x_0)+f^\prime(x_0)(x-x_0)+\frac{f^{\prime\prime}(x_0)}{2}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)_)}{n!}(x-x_0)^n+R_n(x),$$其中$R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。</p>
+<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>凹凸性</h3>
+<p>设f(x)在(a,b)内具有一阶和二阶导数，在[a,b]上连续，则<br />
+(1) 若在(a,b)内$f^{\prime\prime}&gt;0$，则f(x)在[a,b]上是凹函数。即：$$f(\frac{x_1+x_2}2)&lt;\frac{f(x_1)+f(x_2)}2$$<br />
+(2) 若在(a,b)内$f^{\prime\prime}&lt;0$，则f(x)在[a,b]上是凸函数。即：$$f(\frac{x_1+x_2}2)&gt;\frac{f(x_1)+f(x_2)}2$$</p>
+<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>拐点的求法</h3>
+<ol>
+<li>求$f^{\prime\prime}(x)$</li>
+<li>令$f^{\prime\prime}(x)=0$，解出这个方程在区间I内的实数根，并求出在区间I内$f^{\prime\prime}(x)$不存在的点</li>
+<li>对步骤2中求出的每一个是跟或二阶导数不存在的点$x_0$，检查$f^{\prime\prime}(x_0^-)$，$f^{\prime\prime}(x_0^+)$，符号相反时，$x_0$是拐点。</li>
+</ol>
+<h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极值</h3>
+<p>设函数f(x)在$x_0$处可导，且在$x_0$处取得极值，那么$f^\prime(x)=0$.[<strong>必要条件</strong>]<br />
+设f(x)在$x_0$处具有二阶导数且$f^\prime(x_0)=0,f^{\prime\prime}(x_0)\neq0$，那么<br />
+(1)当$f^{\prime\prime}(x)&lt;0$时，函数f(x)在$x_0$处取得极大值。<br />
+(2)当$f^{\prime\prime}(x)&gt;0$时，函数f(x)在$x_0$处取得极小值。</p>
+<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>高阶导数</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(e^2)^{(n)}=e^2$</td>
+<td>$(\sin x)^{(n)}=\sin(x+\frac{n\pi}2)$</td>
+</tr>
+<tr>
+<td>$(\cos x)^{(n)}=\cos(x+\frac{n\pi}2)$</td>
+<td>$[\ln(1+x)]^{(n)}=(-1)^{n-1}\frac{(n-1)!}{(1+x)^n}$</td>
+</tr>
+<tr>
+<td>$(\mu\nu)^{(n)}=\sum_{k=0}^nC_n^k\mu^{(n-k)}\nu^{(k)}$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>积分</h2>
+<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用积分表</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\int x^\mu dx=\frac{x^{\mu+1}}{\mu+1}$</td>
+<td>$\int \frac{dx}{x}=\ln &#124;x&#124;$</td>
+</tr>
+<tr>
+<td>$\int \frac{dx}{1+x^2}=\arctan x$</td>
+<td>$\int \frac{dx}{\sqrt{1-x^2}}=\arcsin x$</td>
+</tr>
+<tr>
+<td>$\int \sin xdx=-cosx$</td>
+<td>$\int \cos xdx=\sin x$</td>
+</tr>
+<tr>
+<td>$\int e^xdx=e^x$</td>
+<td>$\int a^xdx=\frac{a^x}{\ln a}$</td>
+</tr>
+<tr>
+<td>$\int \frac{dx}{a^2+x^2}=\frac1a\arctan \frac xa$</td>
+<td>$\int \frac{dx}{x^2-a^2}=frac1{2a}\ln&#124;\frac{x-a}{x+a}&#124;$</td>
+</tr>
+<tr>
+<td>$\int \frac{dx}{\sqrt{a^2-x^2}}=\arcsin \frac xa$</td>
+<td>$\int {dx}{\sqrt{x^2\pm a^2}}=\ln (x+\sqrt{x^2\pm a^2})$</td>
+</tr>
+<tr>
+<td>$\int \sqrt{a^2-x^2}dx=\frac{a^2}2\arcsin \frac xa+\frac x2\sqrt{a^2-x^2}$</td>
+<td>$\int \sqrt{x^2\pm a^2}dx=\pm \frac{a^2}2\ln&#124;x+\sqrt{x^2+a^2}&#124;+\frac x2\sqrt{x^2+a^2}$</td>
+</tr>
+</tbody>
+</table>
+<p><code>注：积分省略了最后的常数项</code></p>
+<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第一类换元法</h3>
+<p>设$f(\mu)$具有原函数，$\mu=\varphi(x)$可导，则有$\int f(\varphi(x))\varphi^\prime(x)dx=[f(\mu)d\mu]_{\mu=\varphi(x)}$。</p>
+<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第二类换元法</h3>
+<p>设$x=\varphi(t)$是单调的、可导的函数，并且$\varphi^\prime(t)\neq0$，又设$f[\varphi(t)],\varphi^\prime(t)$具有原函数，则有$\int f(x)dx=[\int f[\varphi(t)]\varphi^\prime(t)dt]_{t=\varphi^{-1}(x)}$。</p>
+<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分部积分法</h3>
+<p>$$\int \mu\nu^\prime dx= \mu\nu-\int\mu\prime\nu dx$$</p>
+<h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>定积分中值定理</h3>
+<p>如果函数f(x)在积分区间[a,b]上连续，则在[a,b]上至少存在一个点$\xi$，有$$\int _a^bf(x)dx=f(\xi)(b-a).\quad (a\le \xi \le b)$$</p>
 <div class="toc">
 <ul>
 <li><a href="#_1">高等数学微积分</a><ul>
@@ -926,13 +1029,31 @@ MathJax.Hub.Config({
 </li>
 <li><a href="#_10">导数</a><ul>
 <li><a href="#_11">求导法则</a></li>
+<li><a href="#_12">常用导数表</a></li>
+<li><a href="#_13">罗尔定理</a></li>
+<li><a href="#_14">拉格朗日中值定理</a></li>
+<li><a href="#_15">柯西中值定理</a></li>
+<li><a href="#_16">洛必达法则</a></li>
+<li><a href="#_17">泰勒中值定理</a></li>
+<li><a href="#_18">凹凸性</a></li>
+<li><a href="#_19">拐点的求法</a></li>
+<li><a href="#_20">极值</a></li>
+<li><a href="#_21">高阶导数</a></li>
+</ul>
+</li>
+<li><a href="#_22">积分</a><ul>
+<li><a href="#_23">常用积分表</a></li>
+<li><a href="#_24">第一类换元法</a></li>
+<li><a href="#_25">第二类换元法</a></li>
+<li><a href="#_26">分部积分法</a></li>
+<li><a href="#_27">定积分中值定理</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-19 17:07:27</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-19 21:20:53</p>
 		</div>
 	</div>
 	<div id="side">
