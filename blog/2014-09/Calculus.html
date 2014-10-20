@@ -1051,13 +1051,38 @@ $Q_m(x)为x的m次多项式，系数待定。$</p>
 $\overrightarrow{a},\overrightarrow{b},\overrightarrow{c}$共面：$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=0$</p>
 <h2 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数</h2>
 <h3 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数可微性</h3>
-<p>$$\lim _{ \begin{matrix} \Delta x\rightarrow 0 \\ \Delta y\rightarrow 0 \end{matrix} }{ |\frac { \Delta z-f_{ x }(x_{ 0 },y_{ 0 } )\Delta x-f_y(x_0,y_0)\Delta y}{\sqrt{\Delta x^2+\Delta y^2}} | }=0 $$</p>
+<p>$$\lim _{ \begin{matrix} \Delta x\rightarrow 0 \\ \Delta y\rightarrow 0 \end{matrix} }{ \begin{vmatrix} \frac { \Delta z-f_ { x }(x_ { 0 },y_ { 0 })\Delta x-f_ y(x_ 0,y_ 0)\Delta y }{ \sqrt { \Delta x^{ 2 }+\Delta y^{ 2 } }  }  \end{vmatrix} }=0 $$</p>
 <h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>隐函数</h3>
 <p>$$\frac{dy}{dx}=-\frac{F^\prime_x}{F^\prime_y}$$</p>
 <h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>条件极值</h3>
 <p>$f(x,y)$在条件$\varphi(x,y)=0$下的极值：<br />
 构造$\quad F(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$，解<br />
 $$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \partial x } +\lambda \frac { \partial \varphi  }{ \partial x } =0 \\ \frac { \partial F }{ \partial y } =\frac { \partial f }{ \partial y } +\lambda \frac { \partial \varphi  }{ \partial y } =0 \\ \frac { \partial F }{ \partial \lambda  } = \varphi (x,y)=0 \end{cases}$$</p>
+<h3 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>平面曲线积分</h3>
+<p><img alt="曲线积分" src="../../images/quxianjifen.png" /></p>
+<h3 id="_43"><a name="user-content-_43" href="#_43" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>空间曲线积分</h3>
+<p>$$\int _LPdx+Qdy+Rdx$$<br />
+$$\nabla \times\overrightarrow{F}=\begin{vmatrix}  \overrightarrow{i}&amp;\overrightarrow{j}&amp;\overrightarrow{k} \\ \frac{\partial}{\partial x}&amp; \frac{\partial}{\partial y}&amp;\frac{\partial}{\partial z}\\P&amp;Q&amp;R \end{vmatrix}$$</p>
+<h3 id="_44"><a name="user-content-_44" href="#_44" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>曲面积分</h3>
+<ol>
+<li>一投<br />
+    $z=Z(x,y)$投影到%xoy%上得到$D_{xy}$</li>
+<li>二代<br />
+    将$R(x,y,z)$中$z$用$Z(x,y)$代替</li>
+<li>三定号<br />
+    曲面的侧确定面积微元符号</li>
+</ol>
+<h4 id="_45"><a name="user-content-_45" href="#_45" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>柱坐标</h4>
+<p>$$\iiint _{\Omega}{f(x,y,z)dv}=\iiint_\Omega{f(r\cos \theta,r\sin \theta,z)rdrd\theta dz}$$<br />
+适用于$f(x,y,z)=\varphi(z)g(x^2+y^2)$</p>
+<h4 id="_46"><a name="user-content-_46" href="#_46" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>球坐标</h4>
+<p>$$\iiint _{ \Omega  }{ f(x,y,z)dv } =\iiint _{ \Omega  }{ f(r\sin\varphi\cos  \theta ,r\sin\varphi\sin  \theta ,r\cos\varphi)r^2\sin\varphi drd\theta d\varphi } $$<br />
+适用于$f(x,y,z)=\varphi(x^2+y^2+z^2)$</p>
+<h2 id="_47"><a name="user-content-_47" href="#_47" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极限</h2>
+<h3 id="_48"><a name="user-content-_48" href="#_48" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>几何级数</h3>
+<p>$$\sum _{ n=0 }^{ \infty  }{ q^{ n } } =\begin{cases} q=1,\quad \quad 发散 \\ q=-1,\quad 不存在 \\ |q|&gt;1,\quad \quad发散\\|q|&lt;1,\quad\quad收敛 \end{cases}$$</p>
+<h3 id="p-"><a name="user-content-p-" href="#p-" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>p-级数</h3>
+<p>$$\sum_{n=0}^{\infty}{\frac{1}{n^p} } =\begin{cases} p=1,\quad\quad \quad发散 \\ 0&lt; p &lt;1,\quad 发散 \\ p&gt;1,\quad\quad\quad 收敛 \end{cases}$$</p>
 <div class="toc">
 <ul>
 <li><a href="#_1">高等数学微积分</a><ul>
@@ -1115,13 +1140,25 @@ $$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \parti
 <li><a href="#_39">多元函数可微性</a></li>
 <li><a href="#_40">隐函数</a></li>
 <li><a href="#_41">条件极值</a></li>
+<li><a href="#_42">平面曲线积分</a></li>
+<li><a href="#_43">空间曲线积分</a></li>
+<li><a href="#_44">曲面积分</a><ul>
+<li><a href="#_45">柱坐标</a></li>
+<li><a href="#_46">球坐标</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_47">极限</a><ul>
+<li><a href="#_48">几何级数</a></li>
+<li><a href="#p-">p-级数</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-20 13:16:42</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-20 15:45:12</p>
 		</div>
 	</div>
 	<div id="side">

@@ -167,7 +167,7 @@ $\overrightarrow{a},\overrightarrow{b},\overrightarrow{c}$共面：$\overrightar
 
 ## 多元函数
 ### 多元函数可微性
-$$\lim \_{ \begin{matrix} \Delta x\rightarrow 0 \\\\ \Delta y\rightarrow 0 \end{matrix} }{ |\frac { \Delta z-f\_{ x }(x\_{ 0 },y\_{ 0 } )\Delta x-f\_y(x\_0,y\_0)\Delta y}{\sqrt{\Delta x^2+\Delta y^2}} | }=0 $$
+$$\lim \_{ \begin{matrix} \Delta x\rightarrow 0 \\\\ \Delta y\rightarrow 0 \end{matrix} }{ \begin{vmatrix} \frac { \Delta z-f\_ { x }(x\_ { 0 },y\_ { 0 })\Delta x-f\_ y(x\_ 0,y\_ 0)\Delta y }{ \sqrt { \Delta x^{ 2 }+\Delta y^{ 2 } }  }  \end{vmatrix} }=0 $$
 
 ### 隐函数
 $$\frac{dy}{dx}=-\frac{F^\prime\_x}{F^\prime\_y}$$
@@ -177,5 +177,34 @@ $f(x,y)$在条件$\varphi(x,y)=0$下的极值：
 构造$\quad F(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$，解
 $$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \partial x } +\lambda \frac { \partial \varphi  }{ \partial x } =0 \\\\ \frac { \partial F }{ \partial y } =\frac { \partial f }{ \partial y } +\lambda \frac { \partial \varphi  }{ \partial y } =0 \\\\ \frac { \partial F }{ \partial \lambda  } = \varphi (x,y)=0 \end{cases}$$
 
+### 平面曲线积分
+![曲线积分](../../images/quxianjifen.png)
+
+### 空间曲线积分
+$$\int \_LPdx+Qdy+Rdx$$
+$$\nabla \times\overrightarrow{F}=\begin{vmatrix}  \overrightarrow{i}&\overrightarrow{j}&\overrightarrow{k} \\\\ \frac{\partial}{\partial x}& \frac{\partial}{\partial y}&\frac{\partial}{\partial z}\\\\P&Q&R \end{vmatrix}$$
+
+### 曲面积分
+1. 一投
+    $z=Z(x,y)$投影到%xoy%上得到$D\_{xy}$
+2. 二代
+    将$R(x,y,z)$中$z$用$Z(x,y)$代替
+3. 三定号
+    曲面的侧确定面积微元符号
+
+#### 柱坐标
+$$\iiint \_{\Omega}{f(x,y,z)dv}=\iiint\_\Omega{f(r\cos \theta,r\sin \theta,z)rdrd\theta dz}$$
+适用于$f(x,y,z)=\varphi(z)g(x^2+y^2)$
+
+#### 球坐标
+$$\iiint \_{ \Omega  }{ f(x,y,z)dv } =\iiint \_{ \Omega  }{ f(r\sin\varphi\cos  \theta ,r\sin\varphi\sin  \theta ,r\cos\varphi)r^2\sin\varphi drd\theta d\varphi } $$
+适用于$f(x,y,z)=\varphi(x^2+y^2+z^2)$
+
+## 极限
+### 几何级数
+$$\sum \_{ n=0 }^{ \infty  }{ q^{ n } } =\begin{cases} q=1,\quad \quad 发散 \\\\ q=-1,\quad 不存在 \\\\ |q|>1,\quad \quad发散\\\\|q|<1,\quad\quad收敛 \end{cases}$$
+
+### p-级数
+$$\sum\_{n=0}^{\infty}{\frac{1}{n^p} } =\begin{cases} p=1,\quad\quad \quad发散 \\\\ 0< p <1,\quad 发散 \\\\ p>1,\quad\quad\quad 收敛 \end{cases}$$
 
 [TOC]
