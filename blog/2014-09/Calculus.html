@@ -1012,6 +1012,52 @@ MathJax.Hub.Config({
 <p>$$\int \mu\nu^\prime dx= \mu\nu-\int\mu\prime\nu dx$$</p>
 <h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>定积分中值定理</h3>
 <p>如果函数f(x)在积分区间[a,b]上连续，则在[a,b]上至少存在一个点$\xi$，有$$\int _a^bf(x)dx=f(\xi)(b-a).\quad (a\le \xi \le b)$$</p>
+<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>微分方程</h2>
+<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分离变量法</h3>
+<p>$$y^\prime = f(x)g(y)$$</p>
+<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>一阶线性微分方程</h3>
+<p>$$y^\prime + P(x)y=Q(x)$$</p>
+<blockquote>
+<p>$\quad\quad\quad\quad\quad\quad\nu(x)\frac{dy}{dx} + P(x)\nu(x)y=\nu(x)Q(x)$<br />
+  $\quad\quad\quad\quad\quad\quad令\quad \nu(x)\frac{dy}{dx} + P(x)\nu(x) y=\frac{d(\nu(x)\cdot y)}{dx}$<br />
+  $\quad\quad\quad\quad\quad\quad则有\quad \nu(x) y = \int \nu(x)Q(x)dx$<br />
+  $\quad\quad\quad\quad\quad\quad\quad y = \frac1{\nu(x)}\int \nu(x)Q(x)dx$<br />
+  $\quad\quad\quad\quad\quad\quad\quad \nu(x)=e^{\int P(x)dx}\quad 故，$</p>
+</blockquote>
+<p>$$y = e^{-\int P(x)dx}[\int Q(x)e^{\int P(x)dx}dx + C]$$</p>
+<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>二阶常系数</h3>
+<h4 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>齐次方程</h4>
+<p>$$y^{\prime\prime}+py^\prime+q=0$$<br />
+特征方程为：$r^2+pr+q=0$<br />
+1. 两个不同实数根<br />
+    $$y=C_1e^{r_1x}+C_2e^{r_2x}$$<br />
+2. 两个相同实数根<br />
+    $$y=(C_1+C_2x)e^{r_{12}x}$$<br />
+3. 共轭复根<br />
+    $$r_{1,2}=\alpha\pm\beta i, y=e^{\alpha x}(C_1\cos \beta+C_2\sin \beta x)$$</p>
+<h4 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>非齐次方程</h4>
+<p>$$y^{\prime\prime}+py^\prime+q=P_m(x)e^{ax}$$<br />
+求特解：<br />
+$$令\quad y=x^kQ_m(x)e^{ax}$$<br />
+$$k = \begin{cases} {0, \quad a不是特征根} \\ {1, \quad a为单重特征根} \\ {2, \quad a为双重特征根} \end{cases}$$<br />
+$Q_m(x)为x的m次多项式，系数待定。$</p>
+<h2 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>向量</h2>
+<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>叉乘</h3>
+<p>$$\overrightarrow { a } \times \overrightarrow { b } = \begin{vmatrix} \overrightarrow{i} &amp; \overrightarrow{j} &amp; \overrightarrow{k} \\ x_1 &amp; y_1 &amp;z_1 \\ x_2 &amp; y_2 &amp; z_2  \end{vmatrix}$$</p>
+<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>混合积</h3>
+<p>$$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=\begin{vmatrix} x_{ 1 } &amp; y_{ 1 } &amp; z_{ 1 } \\ x_{ 2 } &amp; y_{ 2 } &amp; z_{ 2 } \\x_3&amp;y_3&amp;z_3\end{vmatrix}$$</p>
+<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>公式</h3>
+<p>两向量平行：$\overrightarrow{a}\times\overrightarrow{b}=\overrightarrow{0}$<br />
+$\overrightarrow{a},\overrightarrow{b},\overrightarrow{c}$共面：$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=0$</p>
+<h2 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数</h2>
+<h3 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数可微性</h3>
+<p>$$\lim _{ \begin{matrix} \Delta x\rightarrow 0 \\ \Delta y\rightarrow 0 \end{matrix} }{ |\frac { \Delta z-f_{ x }(x_{ 0 },y_{ 0 } )\Delta x-f_y(x_0,y_0)\Delta y}{\sqrt{\Delta x^2+\Delta y^2}} | }=0 $$</p>
+<h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>隐函数</h3>
+<p>$$\frac{dy}{dx}=-\frac{F^\prime_x}{F^\prime_y}$$</p>
+<h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>条件极值</h3>
+<p>$f(x,y)$在条件$\varphi(x,y)=0$下的极值：<br />
+构造$\quad F(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$，解<br />
+$$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \partial x } +\lambda \frac { \partial \varphi  }{ \partial x } =0 \\ \frac { \partial F }{ \partial y } =\frac { \partial f }{ \partial y } +\lambda \frac { \partial \varphi  }{ \partial y } =0 \\ \frac { \partial F }{ \partial \lambda  } = \varphi (x,y)=0 \end{cases}$$</p>
 <div class="toc">
 <ul>
 <li><a href="#_1">高等数学微积分</a><ul>
@@ -1049,11 +1095,33 @@ MathJax.Hub.Config({
 <li><a href="#_27">定积分中值定理</a></li>
 </ul>
 </li>
+<li><a href="#_28">微分方程</a><ul>
+<li><a href="#_29">分离变量法</a></li>
+<li><a href="#_30">一阶线性微分方程</a></li>
+<li><a href="#_31">二阶常系数</a><ul>
+<li><a href="#_32">齐次方程</a></li>
+<li><a href="#_33">非齐次方程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_34">向量</a><ul>
+<li><a href="#_35">叉乘</a></li>
+<li><a href="#_36">混合积</a></li>
+<li><a href="#_37">公式</a></li>
+</ul>
+</li>
+<li><a href="#_38">多元函数</a><ul>
+<li><a href="#_39">多元函数可微性</a></li>
+<li><a href="#_40">隐函数</a></li>
+<li><a href="#_41">条件极值</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-19 21:20:53</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-20 13:16:42</p>
 		</div>
 	</div>
 	<div id="side">

@@ -14,7 +14,13 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-09/Caculus.html</loc>
-		<lastmod>2014-10-16</lastmod>
+		<lastmod>2014-10-19</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
+		<loc>http://jinjaysnow.github.io/blog/2014-09/Calculus.html</loc>
+		<lastmod>2014-10-20</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>

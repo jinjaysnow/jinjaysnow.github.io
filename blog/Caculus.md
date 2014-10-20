@@ -122,9 +122,60 @@ $$\int \mu\nu^\prime dx= \mu\nu-\int\mu\prime\nu dx$$
 ### 定积分中值定理
 如果函数f(x)在积分区间[a,b]上连续，则在[a,b]上至少存在一个点$\xi$，有$$\int \_a^bf(x)dx=f(\xi)(b-a).\quad (a\le \xi \le b)$$
 
+## 微分方程
+### 分离变量法
+$$y^\prime = f(x)g(y)$$
 
+### 一阶线性微分方程
+$$y^\prime + P(x)y=Q(x)$$
+>   $\quad\quad\quad\quad\quad\quad\nu(x)\frac{dy}{dx} + P(x)\nu(x)y=\nu(x)Q(x)$
+>   $\quad\quad\quad\quad\quad\quad令\quad \nu(x)\frac{dy}{dx} + P(x)\nu(x) y=\frac{d(\nu(x)\cdot y)}{dx}$
+>   $\quad\quad\quad\quad\quad\quad则有\quad \nu(x) y = \int \nu(x)Q(x)dx$
+>   $\quad\quad\quad\quad\quad\quad\quad y = \frac1{\nu(x)}\int \nu(x)Q(x)dx$
+>   $\quad\quad\quad\quad\quad\quad\quad \nu(x)=e^{\int P(x)dx}\quad 故，$
 
+$$y = e^{-\int P(x)dx}[\int Q(x)e^{\int P(x)dx}dx + C]$$
 
+### 二阶常系数
+#### 齐次方程
+$$y^{\prime\prime}+py^\prime+q=0$$
+特征方程为：$r^2+pr+q=0$
+1. 两个不同实数根
+    $$y=C\_1e^{r\_1x}+C\_2e^{r\_2x}$$
+2. 两个相同实数根
+    $$y=(C\_1+C\_2x)e^{r\_{12}x}$$
+3. 共轭复根
+    $$r\_{1,2}=\alpha\pm\beta i, y=e^{\alpha x}(C\_1\cos \beta+C\_2\sin \beta x)$$
+
+#### 非齐次方程
+$$y^{\prime\prime}+py^\prime+q=P\_m(x)e^{ax}$$
+求特解：
+$$令\quad y=x^kQ\_m(x)e^{ax}$$
+$$k = \begin{cases} {0, \quad a不是特征根} \\\\ {1, \quad a为单重特征根} \\\\ {2, \quad a为双重特征根} \end{cases}$$
+$Q\_m(x)为x的m次多项式，系数待定。$
+
+## 向量
+### 叉乘
+$$\overrightarrow { a } \times \overrightarrow { b } = \begin{vmatrix} \overrightarrow{i} & \overrightarrow{j} & \overrightarrow{k} \\\\ x\_1 & y\_1 &z\_1 \\\\ x\_2 & y\_2 & z\_2  \end{vmatrix}$$
+
+### 混合积
+$$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=\begin{vmatrix} x\_{ 1 } & y\_{ 1 } & z\_{ 1 } \\\\ x\_{ 2 } & y\_{ 2 } & z_{ 2 } \\\\x\_3&y\_3&z\_3\end{vmatrix}$$
+
+### 公式
+两向量平行：$\overrightarrow{a}\times\overrightarrow{b}=\overrightarrow{0}$  
+$\overrightarrow{a},\overrightarrow{b},\overrightarrow{c}$共面：$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=0$
+
+## 多元函数
+### 多元函数可微性
+$$\lim \_{ \begin{matrix} \Delta x\rightarrow 0 \\\\ \Delta y\rightarrow 0 \end{matrix} }{ |\frac { \Delta z-f\_{ x }(x\_{ 0 },y\_{ 0 } )\Delta x-f\_y(x\_0,y\_0)\Delta y}{\sqrt{\Delta x^2+\Delta y^2}} | }=0 $$
+
+### 隐函数
+$$\frac{dy}{dx}=-\frac{F^\prime\_x}{F^\prime\_y}$$
+
+### 条件极值
+$f(x,y)$在条件$\varphi(x,y)=0$下的极值：  
+构造$\quad F(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$，解
+$$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \partial x } +\lambda \frac { \partial \varphi  }{ \partial x } =0 \\\\ \frac { \partial F }{ \partial y } =\frac { \partial f }{ \partial y } +\lambda \frac { \partial \varphi  }{ \partial y } =0 \\\\ \frac { \partial F }{ \partial \lambda  } = \varphi (x,y)=0 \end{cases}$$
 
 
 [TOC]
