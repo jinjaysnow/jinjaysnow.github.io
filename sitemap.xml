@@ -25,7 +25,7 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-09/Django%20&amp;%20Tornado.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-09/Django%20&amp;amp;%20Tornado.html</loc>
 		<lastmod>2014-10-20</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>

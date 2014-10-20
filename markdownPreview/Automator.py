@@ -15,8 +15,7 @@ def jsonWrite(filename, data):
 		json.dump(data, outfile)
 
 def fileNameToUrl(fileName):
-	return fileName.replace(' ', "%20")
-
+	return fileName.replace(' ', "%20").replace("&","&amp;")
 
 def generateFile(filePath):
 	if not os.path.isfile(filePath):
