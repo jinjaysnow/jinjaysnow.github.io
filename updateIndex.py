@@ -24,9 +24,6 @@ def load_utf8(filename):
     with codecs.open(filename, 'r', encoding='utf-8') as f:
         return f.read()
 
-def urlToXml(url):
-	return url.replace("&", "&amp;")
-
 def saveFinalFile(filePath, tempFilePath, keyword, tempData):	
 	finalTemp = load_utf8(tempFilePath).encode("utf-8")
 	finalTemp = finalTemp.replace(keyword, tempData)
@@ -67,7 +64,7 @@ for x in briefdir:
 	blogTemplate = blogTemplate.replace("{{URL}}", tempData["url"].encode("utf-8"))
 	blogbox = blogbox + blogTemplate
 	# sitemap
-	sitemapTemplate = siteMap.replace("{{URL}}", urlToXml(tempData["url"].encode("utf-8")))
+	sitemapTemplate = siteMap.replace("{{URL}}", tempData["url"].encode("utf-8"))
 	sitemapTemplate = sitemapTemplate.replace("{{DATE}}", datetime.datetime.fromtimestamp(os.path.getmtime("brief/" + x)).strftime("%Y-%m-%d"))
 	sites = sites + sitemapTemplate
 
