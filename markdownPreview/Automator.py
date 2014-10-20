@@ -56,12 +56,10 @@ def generateFile(filePath):
 		os.mkdir("../brief")
 	# change use json open
 	if meta.has_key("image"):
-		# TODO: add the imagebox css
-		briefData = {"imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
+		briefData = {"brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
 		jsonWrite("../brief/" + fileName, briefData)
 
 	else:
-		# TODO: add the wordbox css
 		briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html"}
 		jsonWrite("../brief/" + fileName, briefData)
 

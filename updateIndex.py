@@ -55,7 +55,7 @@ for x in briefdir:
 		template = imgbox
 		data = tempData["imgurl"]
 		template = template.replace("{{IMGURL}}", tempData["imgurl"].encode("utf-8"))
-		blogTemplate = blogTemplate.replace("{{BRIEF}}", "This is an image box, no brief!")
+		blogTemplate = blogTemplate.replace("{{BRIEF}}", tempData["brief"].encode("utf-8"))
 	else:
 		template = textbox
 		blogTemplate = blogTemplate.replace("{{BRIEF}}", tempData["brief"].encode("utf-8"))
