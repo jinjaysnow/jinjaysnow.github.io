@@ -1,8 +1,9 @@
-Title:   Calculus
-Brief:   微积分要点归纳。
-Authors: Jin Jay
+title:   Calculus
+author: Jin Jay
 Date:    2014-09
-Description: 微积分总结,Calculus
+description: 微积分总结。
+keywords: 微积分
+          Calculus
 
 # 高等数学微积分
 ## 初等函数

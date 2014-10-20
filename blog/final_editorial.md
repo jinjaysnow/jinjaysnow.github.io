@@ -1,8 +1,7 @@
 Title: 	 Editorial
-Brief:   This is a document about *Free Software Movement*.
+description:   This is a document about *Free Software Movement*.
 Authors: Jin Jay
 Date:    2014-08
-base_url: http://jinjaysnow.github.io
 keywords: Free-Software-Movement
 
 ##### Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375

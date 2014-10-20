@@ -1,8 +1,8 @@
 Title: Django & Tornado
-Brief: Simple Comparision of Django and Tornado.
 Date: 2014-09
 Author: Jin Jay
-Keywords: Djaong, Tornado
+description: Django与Tornado的简单比较。
+Keywords: Django, Tornado
 
 ### Django & Tornado
 Django 和 Tornado是Python众多web框架中常用的两种，这里简单比较一下两个框架。

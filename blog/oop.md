@@ -1,5 +1,6 @@
 Title: 面向对象编程
-brief: OOP(Object Oriented Program), 面向对象软件开发。
+author: Jin Jay
+description: OOP(Object Oriented Program), 面向对象软件开发。
 Keywords: OOP
 Date: 2014-09
 

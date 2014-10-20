@@ -1,9 +1,9 @@
 Title:   CReview
-Brief:   保研复试C语言复习。
-Authors: Jin Jay
+Author: Jin Jay
 Date:    2014-09
 codehilite: true
-base_url: http://jinjaysnow.github.io
+description: C语言复习。
+keywords: C语言
 
 ## 保研复试C语言复习
 ### C与指针

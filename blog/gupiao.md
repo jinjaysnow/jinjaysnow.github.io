@@ -2,7 +2,7 @@ Author: Jin Jay
 Title: Python抓取股票信息
 Date: 2014-10
 Image:  static/stock/sh000001.gif
-Brief: 使用Python实现网页信息抓取，对股票进行分形，筛选出个人感兴趣的股票，查看详情。
+description: 使用Python实现网页信息抓取，对股票进行分形，筛选出个人感兴趣的股票，查看详情。
 Keywords: Python
           网页抓取
           股票信息

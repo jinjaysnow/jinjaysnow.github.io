@@ -1,7 +1,7 @@
 Author: Jin Jay  
 Title: R语言学习之路
 Date: 2014-05
-brief: 学习R语言的一些问题整理，心得体会。
+description: 学习R语言的一些问题整理，心得体会。 
 keywords: R
 
 

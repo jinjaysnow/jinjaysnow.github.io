@@ -1,7 +1,7 @@
 Author: JinJay
 Date: 2014-05
 Title: Scheme语言学习
-brief: 记录Scheme语言的学习，主要是常用函数的运用。
+description: 记录Scheme语言的学习，主要是常用函数的运用。
 keywords: Scheme
 
 ### 一个小题

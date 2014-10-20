@@ -1,6 +1,6 @@
 Title:   Probability
-Brief:   考研概率论复习。
-Authors: Jin Jay
+description:   考研概率论复习。
+Author: Jin Jay
 Date:    2014-09
 
 

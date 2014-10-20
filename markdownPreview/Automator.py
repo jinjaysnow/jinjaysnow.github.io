@@ -5,7 +5,7 @@
 # Used to generate my blog html file
 ##########################
 
-import markdown, codecs
+import codecs
 import os, datetime, sys
 import json
 from MarkdownPreview import MarkdownCompiler
@@ -36,7 +36,7 @@ def generateFile(filePath):
 	try:
 		fileName = meta["title"][0]
 		dateFolder = meta["date"][0]
-		brief = meta["brief"][0]
+		brief = meta["description"][0]
 	except :
 		print "there is no essential meta"
 		return

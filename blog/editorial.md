@@ -1,8 +1,7 @@
 Title:   eidtorial
-Brief:   This is a problem.
-Authors: Jin Jay
+Author: Jin Jay
 Date:    2014-08
-base_url: http://jinjaysnow.github.io
+description: free software movement editorial.
 
 # Question
 Richard Stallman, the founder of the GNU Project, supports “free” software and believes that

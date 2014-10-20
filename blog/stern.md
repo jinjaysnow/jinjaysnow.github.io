@@ -1,8 +1,9 @@
 Title: Intern Report
 Author: Jin Jay
 Date: 2014-08
-brief: Intern Report in NEUSOFT东软.
-Keywords: Intern
+description: Intern Report in NEUSOFT东软，东软实习报告.
+Keywords: Intern Report
+         东软实习
 
 # 实习内容记述
 

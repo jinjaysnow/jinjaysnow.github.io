@@ -1,9 +1,8 @@
 Title: 	 Use MarkDownPy
-Brief:   This is a file introducing how to use python-makdown.
-Authors: Jin Jay
+Author: Jin Jay
 Date:    2014-08
-base_url: http://jinjaysnow.github.io
-keywords: code
+description: 介绍使用python-markdown.
+keywords: python markdown
 
 ## pygmentize 产生代码高亮的css文件
 ```

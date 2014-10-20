@@ -1,11 +1,10 @@
 Title:   test
-Brief:   This is a file for testing my blog.
 Image:	 images/snow.jpg
-Authors: Jin Jay
+Author: Jin Jay
 Date:    2014-08
+description: 测试博客开发使用的test文档。
 keywords: code
 		markdown
-base_url: http://jinjaysnow.github.io
 
 # 一级标题
 ## 二级标题

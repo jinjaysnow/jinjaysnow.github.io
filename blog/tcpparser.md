@@ -1,4 +1,4 @@
-Brief: 将通过wireshark抓取的包进行解析，重组生成静态网页。
+description: 将通过wireshark抓取的包进行解析，重组生成静态网页。
 Title: 信安Pcap解析
 Keywords: pcap parse
 Author: Jin Jay
