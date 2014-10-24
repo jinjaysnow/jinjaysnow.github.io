@@ -976,6 +976,52 @@ MathJax.Hub.Config({
 </pre></div>
 
 
+<h3 id="c_2"><a name="user-content-c_2" href="#c_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C语言变长参数函数</h3>
+<p>变长参数应用模版：</p>
+<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdarg</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<span class="vg">function</span><span class="w"> </span><span class="p">(</span><span class="vg">parmN</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span>
+<span class="vg">va_list</span><span class="w"> </span><span class="vg">pvar</span><span class="p">;</span>
+<span class="err">……………………………</span>
+<span class="vg">va_start</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">,</span><span class="w"> </span><span class="vg">parmN</span><span class="p">);</span>
+<span class="vg">while</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="err">……………………</span>
+<span class="w">    </span><span class="vg">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">va_arg</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">,</span><span class="w"> </span><span class="vg">type</span><span class="p">);</span>
+<span class="w">    </span><span class="err">……………………</span>
+<span class="p">}</span>
+<span class="vg">va_end</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">);</span>
+</pre></div>
+
+
+<p>其中va_list 用来保存宏va_arg与宏va_va_end所需信息</p>
+<table>
+<thead>
+<tr>
+<th>宏名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>va_start</td>
+<td>使va_list指向起始的参数</td>
+</tr>
+<tr>
+<td>va_arg</td>
+<td>检索参数</td>
+</tr>
+<tr>
+<td>va_end</td>
+<td>释放va_list</td>
+</tr>
+<tr>
+<td>va_copy</td>
+<td>拷贝va_list的内容</td>
+</tr>
+</tbody>
+</table>
+<p><code>va_arg(pvar, int)</code>将参数作为整形处理<br />
+<code>va_arg(pvar, char *)</code>将参数作为字符串指针处理</p>
 <div class="toc">
 <ul>
 <li><a href="#c">保研复试C语言复习</a><ul>
@@ -989,11 +1035,12 @@ MathJax.Hub.Config({
 <li><a href="#_2">枚举类型</a></li>
 </ul>
 </li>
+<li><a href="#c_2">C语言变长参数函数</a></li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-20 16:28:58</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-24 15:26:11</p>
 		</div>
 	</div>
 	<div id="side">

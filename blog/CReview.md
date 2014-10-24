@@ -143,5 +143,32 @@ enum Weekday workday, weekend;
 workday = mon;
 weekday = sun;
 ```
+### C语言变长参数函数
+变长参数应用模版：
+
+    #include <stdarg.h>
+    function (parmN, ...)
+    va_list pvar;
+    ……………………………
+    va_start (pvar, parmN);
+    while()
+    {
+        ……………………
+        f = va_arg (pvar, type);
+        ……………………
+    }
+    va_end (pvar);
+其中va\_list 用来保存宏va\_arg与宏va\_va_end所需信息
+
+| 宏名称 | 描述 |
+|-------|------|
+| va\_start | 使va\_list指向起始的参数 |
+| va_arg | 检索参数 |
+| va\_end | 释放va\_list |
+| va\_copy | 拷贝va\_list的内容 |
+
+`va_arg(pvar, int)`将参数作为整形处理  
+`va_arg(pvar, char *)`将参数作为字符串指针处理
+
 
 [TOC]

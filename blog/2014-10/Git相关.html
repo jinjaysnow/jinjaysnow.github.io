@@ -833,10 +833,50 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<div class="toc">
-<ul></ul>
+			<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>创建一个仓库</h1>
+<div class="codehilite"><pre><span class="vg">git</span><span class="w"> </span><span class="vg">init</span>
+</pre></div>
+
+
+<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分支</h1>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>创建一个分支</h2>
+<div class="codehilite"><pre><span class="vg">git</span><span class="w"> </span><span class="vg">checkout</span><span class="w"> </span><span class="o">-</span><span class="vg">b</span><span class="w"> </span><span class="vg">newbranch</span>
+</pre></div>
+
+
+<p>相当于</p>
+<div class="codehilite"><pre><span class="vg">git</span><span class="w"> </span><span class="vg">branch</span><span class="w"> </span><span class="vg">newbranch</span>
+<span class="vg">git</span><span class="w"> </span><span class="vg">checkout</span><span class="w"> </span><span class="vg">newbranch</span>
+</pre></div>
+
+
+<p><code>git checkout</code>作用是切换到某一个分支。比如想切换回master分支可以使用<code>git checkout master</code>.</p>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>合并分支</h2>
+<div class="codehilite"><pre><span class="vg">git</span><span class="w"> </span><span class="vg">checkout</span><span class="w"> </span><span class="vg">master</span>
+<span class="vg">git</span><span class="w"> </span><span class="vg">merge</span><span class="w"> </span><span class="vg">newbranch</span>
+</pre></div>
+
+
+<p>Git自动合并，但没有提交，它会停下来等你解决冲突。要看看哪些文件在合并时发生冲突，可以用<code>git status</code>查阅。<br />
+任何包含未解决冲突的文件都会以未合并（unmerged）的状态列出。Git会在有冲突的文件里加入标准的冲突解决标记，可以通过它们来手工定位并解决这些冲突。<br />
+<code>git mergetool</code>可以使用图形化的合并工具。再使用<code>git status</code>查看冲突状态。</p>
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>删除分支</h2>
+<div class="codehilite"><pre><span class="vg">git</span><span class="w"> </span><span class="vg">branch</span><span class="w"> </span><span class="o">-</span><span class="vg">d</span><span class="w"> </span><span class="vg">newbranch</span>
+</pre></div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#_1">创建一个仓库</a></li>
+<li><a href="#_2">分支</a><ul>
+<li><a href="#_3">创建一个分支</a></li>
+<li><a href="#_4">合并分支</a></li>
+<li><a href="#_5">删除分支</a></li>
+</ul>
+</li>
+</ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-10-20 16:30:58</p>
+			<p style="text-align: right; color: gray;"><br>2014-10-24 15:25:18</p>
 		</div>
 	</div>
 	<div id="side">
