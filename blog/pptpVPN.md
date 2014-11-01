@@ -10,7 +10,7 @@ keywords:   pptp
 ## PPTP配置
 ### 安装PPTP
 
-    sudo apt-get install 
+    sudo apt-get install pptpd
 
 ### 修改配置文件
 
