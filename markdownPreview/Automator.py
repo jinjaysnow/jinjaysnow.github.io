@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#coding=utf-8
 ##########################
 # Author: Jinjay
 # Created On: 201408
