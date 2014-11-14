@@ -1,5 +1,5 @@
-Title:   Probability
-description:   考研概率论复习。
+Title:   概率论
+description:   概率论相关知识：全概率公式、分布函数、随机变量分布、数字特征、中心极限定理、矩估计等等。
 Author: Jin Jay
 Date:    2014-09
 

@@ -1,7 +1,7 @@
 Title:  搭建基于PPTP协议的VPN
 Author: Jin Jay
 Date:    2014-10
-description: 基于PPTP搭建VPN
+description: 搭建基于PPTP搭建VPN。
 keywords:   pptp
             VPN
 

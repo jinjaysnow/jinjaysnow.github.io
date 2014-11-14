@@ -1,10 +1,9 @@
-Title: 	 Editorial
-description:   This is a document about *Free Software Movement*.
+Title: 	 Free Software Movement
+description:   This is a document about Free Software Movement.
 Authors: Jin Jay
 Date:    2014-08
 keywords: Free-Software-Movement
 
-##### Jin Jie 靳杰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SE1102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U201112375
 Do you know free software movement? Do you know Intellectual Property? Have you ever compared proprietary software and free software? Here comes today's topic - *Intellectual Property and the Free Software Movement*.
 
 Free software movement is a social movement with the goal of obtaining and guaranteeing certain freedoms for software users, namely the freedom to run the software, to study and change the software, and to redistribute copies with or without changes. Although drawing on traditions and philosophies among members of the 1970s hacker culture, Richard Stallman formally founded the movement in 1983 by launching the GNU Project. And Stallman also founded the Free Software Foundation in 1985 to support the movement. What should be mentioned is that the word "free" does not refer to price, it refers to freedom. In the early times, Stallman defined free software as two points: 

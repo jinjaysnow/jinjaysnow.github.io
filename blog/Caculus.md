@@ -1,7 +1,7 @@
 title:   Calculus
 author: Jin Jay
 Date:    2014-09
-description: 微积分总结。
+description: 微积分相关总结：数列、极限、微分、积分、微分方程、级数等等。
 keywords: 微积分
           Calculus
 

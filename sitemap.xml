@@ -19,7 +19,7 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-09/CReview.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-09/C语言知识点整理.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
@@ -31,13 +31,7 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-08/Editorial.html</loc>
-		<lastmod>2014-11-14</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.9</priority>
-	</url>
-		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-08/eidtorial.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-08/Free%20Software%20Movement.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
@@ -50,12 +44,6 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-10/Git相关.html</loc>
-		<lastmod>2014-11-14</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.9</priority>
-	</url>
-		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-08/Intern%20Report.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
@@ -79,12 +67,6 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-09/Probability.html</loc>
-		<lastmod>2014-11-14</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.9</priority>
-	</url>
-		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-10/Python抓取股票信息.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
@@ -103,13 +85,13 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-08/test.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-08/Use%20MarkDownPy.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-08/Use%20MarkDownPy.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-08/东软实习报告.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
@@ -128,6 +110,12 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-10/搭建基于PPTP协议的VPN.html</loc>
+		<lastmod>2014-11-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
+		<loc>http://jinjaysnow.github.io/blog/2014-09/概率论.html</loc>
 		<lastmod>2014-11-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>

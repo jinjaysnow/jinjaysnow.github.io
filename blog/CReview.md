@@ -1,8 +1,8 @@
-Title:   CReview
+Title:   C语言知识点整理
 Author: Jin Jay
 Date:    2014-09
 codehilite: true
-description: C语言复习。
+description: C语言知识点整理：指针、枚举、联合体、变长参数函数等等。
 keywords: C语言
 
 ## 保研复试C语言复习
