@@ -1,8 +1,3 @@
-title: Resume_en
-description:   This is a file introducing me.
-author: Jin Jay
-date:    2014-08
-keywords: Resume
 
 ## <center><b>Jin Jay</b></center>
 

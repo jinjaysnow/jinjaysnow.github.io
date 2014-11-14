@@ -1,8 +1,3 @@
-Title:   I'm Jin Jay
-description:   This is a file introducing me.
-Author: Jin Jay
-Date:    2014-08
-keywords: Resume
 
 ## 个人信息
 
