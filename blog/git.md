@@ -1,7 +1,7 @@
 Title:  Git相关
 Authors: Jin Jay
 Date:    2014-10
-Description: Git相关问题。
+Description: Git相关问题：创建仓库、创建分支、合并分支、删除分支等等。
 keywords: git
           github
 

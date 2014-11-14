@@ -1,7 +1,7 @@
 Title: Linux基本操作
 Author: Jin Jay
 Date: 2014-10
-description: Linux基本操作。
+description: Linux基本操作：创建新用户、修改密码、修改用户信息。
 keywords: Linux
 
 ## Linux相关操作
