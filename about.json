@@ -50,8 +50,8 @@
       "index": 0,
       "selected": false,
       "active": false,
-      "x": 230,
-      "y": 145,
+      "x": 295,
+      "y": 117,
       "markdown": ""
     },
     {
@@ -91,8 +91,8 @@
       "index": 1,
       "selected": false,
       "active": false,
-      "x": 262,
-      "y": 368
+      "x": 196,
+      "y": 312
     },
     {
       "components": [
@@ -133,8 +133,8 @@
       "index": 2,
       "selected": false,
       "active": false,
-      "x": 542,
-      "y": 144
+      "x": 316,
+      "y": 487
     },
     {
       "components": [
@@ -180,14 +180,14 @@
       ],
       "z": 0,
       "impScale": 3,
-      "rotateX": 0.64,
-      "rotateY": 1.04,
+      "rotateX": -0.78,
+      "rotateY": 0.14,
       "rotateZ": -0.17,
       "index": 3,
       "selected": false,
       "active": false,
-      "x": 559,
-      "y": 373
+      "x": 585,
+      "y": 104
     },
     {
       "components": [
@@ -221,21 +221,88 @@
       ],
       "z": 0,
       "impScale": 3,
-      "rotateX": 0,
-      "rotateY": 0,
-      "rotateZ": 0,
+      "rotateX": -0.16,
+      "rotateY": -0.74,
+      "rotateZ": 0.66,
       "index": 4,
       "selected": false,
-      "active": true,
-      "x": 847,
-      "y": 268
+      "active": false,
+      "x": 795,
+      "y": 255
     },
     {
       "components": [
         {
           "TextBox": {},
-          "x": 187,
-          "y": 241,
+          "x": 110,
+          "y": 297,
+          "scale": {
+            "x": 1,
+            "y": 1
+          },
+          "type": "TextBox",
+          "text": "<font face=\"Ubuntu\">One more thing</font>",
+          "size": 72,
+          "selected": false
+        }
+      ],
+      "z": 0,
+      "impScale": 3,
+      "rotateX": 0,
+      "rotateY": -1.46,
+      "rotateZ": 0.26,
+      "index": 5,
+      "selected": false,
+      "active": false,
+      "x": 719,
+      "y": 457
+    },
+    {
+      "components": [
+        {
+          "TextBox": {},
+          "x": 130,
+          "y": 387,
+          "scale": {
+            "x": 1,
+            "y": 1
+          },
+          "type": "TextBox",
+          "text": "<font face=\"Ubuntu\">Write the Code<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Change the World</font>",
+          "size": 64,
+          "selected": false
+        },
+        {
+          "TextBox": {},
+          "x": 184,
+          "y": 224,
+          "scale": {
+            "x": 1,
+            "y": 1
+          },
+          "type": "TextBox",
+          "size": 64,
+          "text": "<font face=\"Droid Sans Mono, monospace\"><b>~心若冰清，天塌不惊~</b></font><br>",
+          "selected": false
+        }
+      ],
+      "z": 0,
+      "impScale": 3,
+      "rotateX": 0.9,
+      "rotateY": 0,
+      "rotateZ": 0,
+      "index": 6,
+      "selected": false,
+      "active": true,
+      "x": 530,
+      "y": 518
+    },
+    {
+      "components": [
+        {
+          "TextBox": {},
+          "x": 197,
+          "y": 324,
           "scale": {
             "x": 1,
             "y": 1
@@ -244,6 +311,18 @@
           "size": 64,
           "text": "<font face=\"Droid Sans Mono, monospace\">感谢您的来访<br>点击<a href=\"http://jinjaysnow.github.io\" style=\"font-weight: bold;\">这里</a>返回我的主页</font><br>",
           "selected": false
+        },
+        {
+          "src": "http://jinjaysnow.github.io/images/me.png",
+          "type": "Image",
+          "x": 675,
+          "y": 114,
+          "scale": {
+            "x": 1,
+            "y": 1
+          },
+          "imageType": "PNG",
+          "selected": false
         }
       ],
       "z": 0,
@@ -251,59 +330,58 @@
       "rotateX": 0,
       "rotateY": 0,
       "rotateZ": 0,
-      "index": 5,
+      "index": 7,
       "selected": false,
       "active": false,
-      "x": 1580,
-      "y": 180
+      "x": 502,
+      "y": 311
     }
   ],
   "activeSlide": {
     "components": [
       {
         "TextBox": {},
-        "x": 107,
-        "y": 239,
+        "x": 130,
+        "y": 387,
         "scale": {
           "x": 1,
           "y": 1
         },
         "type": "TextBox",
-        "size": 48,
-        "text": "<font face=\"Droid Sans Mono, monospace\">你可以在</font><a href=\"http://null\" style=\"font-weight: bold; font-family: 'Droid Sans Mono', monospace;\">新浪微博</a><font face=\"Droid Sans Mono, monospace\">，</font><font face=\"Ubuntu, sans-serif\"><a href=\"http://github.com/jinjaysnow\"><b>GitHub</b></a></font><font face=\"Droid Sans Mono, monospace\">找到我<br></font>当然，<br><font face=\"Droid Sans Mono, monospace\">如果你会翻墙的话，</font><br><a href=\"http://www.facebook.com/jinjaysnow\" style=\"font-family: Ubuntu, sans-serif; font-weight: bold;\">Facebook</a><font face=\"Droid Sans Mono, monospace\">，</font><b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\">T</a></font></b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\" style=\"font-weight: bold;\">witter</a>里也有我的身影</font><br>",
+        "text": "<font face=\"Ubuntu\">Write the Code<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Change the World</font>",
+        "size": 64,
         "selected": false
       },
       {
-        "src": "http://jinjaysnow.github.io/images/bitbug_favicon.ico",
-        "type": "Image",
-        "x": 789,
-        "y": 503,
+        "TextBox": {},
+        "x": 184,
+        "y": 224,
         "scale": {
-          "x": 1.71875,
-          "y": 1.71875,
-          "width": 55,
-          "height": 55
+          "x": 1,
+          "y": 1
         },
-        "imageType": "ICO",
+        "type": "TextBox",
+        "size": 64,
+        "text": "<font face=\"Droid Sans Mono, monospace\"><b>~心若冰清，天塌不惊~</b></font><br>",
         "selected": false
       }
     ],
     "z": 0,
     "impScale": 3,
-    "rotateX": 0,
+    "rotateX": 0.9,
     "rotateY": 0,
     "rotateZ": 0,
-    "index": 4,
+    "index": 6,
     "selected": false,
     "active": true,
-    "x": 847,
-    "y": 268
+    "x": 530,
+    "y": 518
   },
   "fileName": "presentation-unnamed",
   "deckVersion": "1.0",
   "customBackgrounds": {
     "bgs": []
   },
-  "overviewX": 905,
-  "overviewY": 258.5
+  "overviewX": 495.5,
+  "overviewY": 311
 }
