@@ -69,7 +69,7 @@ def generateFile(filePath):
 		keywords = ["default"]
 	else:
 		keywords = meta["keywords"]
-	print keywords
+	# print keywords
 	for keyword in keywords:
 		print "write keywords file w+"
 		if not os.path.isfile("keywords.json"):
