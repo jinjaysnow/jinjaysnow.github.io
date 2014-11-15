@@ -5,11 +5,11 @@
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> -->
 	<meta name="viewport" content="width=device-width">
 	<meta name="robots" content="all" />
-	<meta name="description" content="C语言知识点整理：指针、枚举、联合体、变长参数函数等等。">
+	<meta name="description" content="C语言知识点整理：指针、枚举、联合体、变长参数函数、文件操作、宏等等。">
 <meta name="author" content="Jin Jay">
 <meta name="codehilite" content="true">
 <meta name="date" content="2014-09">
-<meta name="keywords" content="C语言"><style>/* Fonts */
+<meta name="keywords" content="C语言,函数指针,枚举,联合体,宏定义,C文件操作"><style>/* Fonts */
 @font-face{
   font-family: octicons-anchor;
   src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff');
@@ -1022,6 +1022,131 @@ MathJax.Hub.Config({
 </table>
 <p><code>va_arg(pvar, int)</code>将参数作为整形处理<br />
 <code>va_arg(pvar, char *)</code>将参数作为字符串指针处理</p>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用文件操作</h3>
+<table>
+<thead>
+<tr>
+<th>函数调用形式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fopen(路径,打开方式)</td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td>fclose(FILE *)</td>
+<td>关闭文件</td>
+</tr>
+<tr>
+<td>fgetc(FILE *)</td>
+<td>从文件读取一个字符</td>
+</tr>
+<tr>
+<td>fputc(ch, FILE *)</td>
+<td>把ch代表的字符写入这个文件里</td>
+</tr>
+<tr>
+<td>fgets(FILE *)</td>
+<td>从文件中读取一行</td>
+</tr>
+<tr>
+<td>fputs(char *, FILE *)</td>
+<td>把一行写入文件</td>
+</tr>
+<tr>
+<td>fprintf(FILE *, 格式字符串, 参数)</td>
+<td>把数据写入文件</td>
+</tr>
+<tr>
+<td>fscanf(FILE *, 格式字符串，参数)</td>
+<td>从文件中读取</td>
+</tr>
+<tr>
+<td>fwrite(地址，sizeof(),n, FILE*)</td>
+<td>把地址中n个sizeof大的数据写入文件</td>
+</tr>
+<tr>
+<td>fread(地址，sizeof(),n, FILE*)</td>
+<td>把地址中n个sizeof大的数据读到地址里</td>
+</tr>
+<tr>
+<td>rewind(FILE *)</td>
+<td>把文件指针拨回到文件头</td>
+</tr>
+<tr>
+<td>fseek(FILE *, x, 0/1/2)</td>
+<td>移动文件指针，x为位移量，0代表从头移，1从当前位置，2从文件尾</td>
+</tr>
+<tr>
+<td>feof(FILE *)</td>
+<td>判断是否到了文件末尾</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>文件打开方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>打开只读文件</td>
+</tr>
+<tr>
+<td>w</td>
+<td>建立供写入的文件，如果已存在就抹去原有数据</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开或建立一个把数据追加到文件尾的文件</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开用于更新数据的文件</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>建立用于更新数据的文件，如果已存在就抹去原有数据</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开或建立用于更新数据的文件，数据追加到文件尾</td>
+</tr>
+<tr>
+<td><code>注：如果是二进制文件需要在字母后加b</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>宏</h3>
+<div class="codehilite"><pre><span class="c1">// 得到指定地址上的一个字节或字</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">MEM_B</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="k">byte</span> <span class="o">*</span><span class="p">)(</span><span class="n">x</span><span class="p">)))</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">MEM_W</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="n">word</span> <span class="o">*</span><span class="p">)(</span><span class="n">x</span><span class="p">)))</span>
+<span class="c1">// 求最大值最小值</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">MAX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">(((</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">?</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">MIN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">(((</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">?</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="c1">// 得到一个字的高位和底位字节</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">WORD_LO</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">((</span><span class="k">byte</span><span class="p">)((</span><span class="n">word</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">255</span><span class="p">))</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">WORD_HI</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">((</span><span class="k">byte</span><span class="p">)((</span><span class="n">word</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mh">8</span><span class="p">))</span>
+
+<span class="c1">// 宏定义里用#的地方宏参数不会展开（作为字符串）</span>
+<span class="p">#</span><span class="n">define</span> <span class="no">FILL</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span><span class="n">a</span><span class="p">,</span> <span class="p">#</span><span class="n">a</span><span class="p">}</span>
+<span class="k">enum</span> <span class="no">STATE</span><span class="p">{</span><span class="no">OPEN</span><span class="p">,</span> <span class="no">CLOSE</span><span class="p">};</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="no">MSG</span><span class="p">{</span>
+    <span class="no">STATE</span> <span class="n">state</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span><span class="no">MSG</span><span class="p">;</span>
+<span class="no">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="no">FILL</span><span class="p">(</span><span class="no">OPEN</span><span class="p">),</span> <span class="no">FILL</span><span class="p">(</span><span class="no">CLOSE</span><span class="p">)};</span>
+<span class="err">相当于：</span>
+<span class="no">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{{</span><span class="no">OPEN</span><span class="p">,</span> <span class="s">&quot;OPEN&quot;</span><span class="p">},</span> <span class="p">{</span><span class="no">CLOSE</span><span class="p">,</span> <span class="s">&quot;CLOSE&quot;</span><span class="p">}};</span>
+</pre></div>
+
+
 <div class="toc">
 <ul>
 <li><a href="#c">保研复试C语言复习</a><ul>
@@ -1036,11 +1161,13 @@ MathJax.Hub.Config({
 </ul>
 </li>
 <li><a href="#c_2">C语言变长参数函数</a></li>
+<li><a href="#_3">常用文件操作</a></li>
+<li><a href="#_4">宏</a></li>
 </ul>
 </li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-11-14 19:26:53</p>
+			<p style="text-align: right; color: gray;"><br>2014-11-15 14:42:51</p>
 		</div>
 	</div>
 	<div id="side">

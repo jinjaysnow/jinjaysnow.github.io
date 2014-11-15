@@ -2,8 +2,13 @@ Title:   C语言知识点整理
 Author: Jin Jay
 Date:    2014-09
 codehilite: true
-description: C语言知识点整理：指针、枚举、联合体、变长参数函数等等。
+description: C语言知识点整理：指针、枚举、联合体、变长参数函数、文件操作、宏等等。
 keywords: C语言
+          函数指针
+          枚举
+          联合体
+          宏定义
+          C文件操作
 
 ## 保研复试C语言复习
 ### C与指针
@@ -169,6 +174,60 @@ weekday = sun;
 
 `va_arg(pvar, int)`将参数作为整形处理  
 `va_arg(pvar, char *)`将参数作为字符串指针处理
+
+### 常用文件操作
+
+| 函数调用形式 | 说明 |
+| ----------- | --- |
+| fopen(路径,打开方式) | 打开文件 |
+| fclose(FILE \*) | 关闭文件 |
+| fgetc(FILE \*) | 从文件读取一个字符 |
+| fputc(ch, FILE \*) | 把ch代表的字符写入这个文件里 | 
+| fgets(FILE \*) | 从文件中读取一行 |
+| fputs(char *, FILE \*) | 把一行写入文件 |
+| fprintf(FILE \*, 格式字符串, 参数) | 把数据写入文件 |
+| fscanf(FILE \*, 格式字符串，参数) | 从文件中读取 |
+| fwrite(地址，sizeof(),n, FILE*) | 把地址中n个sizeof大的数据写入文件 |
+| fread(地址，sizeof(),n, FILE*) | 把地址中n个sizeof大的数据读到地址里 |
+| rewind(FILE \*) | 把文件指针拨回到文件头 |
+| fseek(FILE \*, x, 0/1/2) | 移动文件指针，x为位移量，0代表从头移，1从当前位置，2从文件尾 |
+| feof(FILE \*) | 判断是否到了文件末尾 |
+
+| 文件打开方式 | 说明 |
+| ----------  | --- |
+| r | 打开只读文件 |
+| w | 建立供写入的文件，如果已存在就抹去原有数据 |
+| a | 打开或建立一个把数据追加到文件尾的文件 |
+| r+ | 打开用于更新数据的文件 |
+| w+ | 建立用于更新数据的文件，如果已存在就抹去原有数据 |
+| a+ | 打开或建立用于更新数据的文件，数据追加到文件尾 |
+`注：如果是二进制文件需要在字母后加b`
+
+### 宏
+
+    // 得到指定地址上的一个字节或字
+    #define MEM_B(x) (*((byte *)(x)))
+    #define MEM_W(x) (*((word *)(x)))
+    // 求最大值最小值
+    #define MAX(x,y) (((x) > (y)) ? (x) : (y))
+    #define MIN(x,y) (((x) > (y)) ? (x) : (y))
+    // 得到一个字的高位和底位字节
+    #define WORD_LO(x) ((byte)((word)(x) & 255))
+    #define WORD_HI(x) ((byte)((word)(x) >> 8))
+    
+    // 宏定义里用#的地方宏参数不会展开（作为字符串）
+    #define FILL(a) {a, #a}
+    enum STATE{OPEN, CLOSE};
+    typedef struct MSG{
+        STATE state;
+        const char *msg;
+    }MSG;
+    MSG _msg[] = {FILL(OPEN), FILL(CLOSE)};
+    相当于：
+    MSG _msg[] = {{OPEN, "OPEN"}, {CLOSE, "CLOSE"}};
+
+
+
 
 
 [TOC]
