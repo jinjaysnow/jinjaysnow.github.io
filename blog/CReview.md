@@ -213,7 +213,7 @@ weekday = sun;
     #define MEM_W(x) (*((word *)(x)))
     // 求最大值最小值
     #define MAX(x,y) (((x) > (y)) ? (x) : (y))
-    #define MIN(x,y) (((x) > (y)) ? (x) : (y))
+    #define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
     // 得到一个字的高位和底位字节
     #define WORD_LO(x) ((byte)((word)(x) & 255))
     #define WORD_HI(x) ((byte)((word)(x) >> 8))
