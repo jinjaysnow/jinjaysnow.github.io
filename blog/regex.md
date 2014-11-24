@@ -27,7 +27,6 @@ NFA状态节点
         WordNode word;          // 当前待匹配单词
         enum eMulTimes  type;   // 当前状态重复信息
         struct State *  next;   // 下一个状态节点
-        //enum  eParentheses pType; // 结点的小括号状态
     } State, *pStateNode;
 NFA链头节点
 
@@ -37,21 +36,20 @@ NFA链头节点
     } Head, *pHeadNode;
 分组结构
 
-    typedef struct Group{
+    typedef struct Group {
         char str[20];           // 分组字符串
         int len;                // 分组字符串长度
         int id;                 // 分组编号
     }Group;
 模式结构
 
-    typedef struct Patterns
-    {
+    typedef struct Patterns {
         char pattern[100];
         int  p;
     }Patterns;
 分支结构
 
-    typedef struct Branch{
+    typedef struct Branch {
         Head h[10];         // 分支数组
         int  num;           // 分支个数
     } Branch;
@@ -92,12 +90,12 @@ NFA链头节点
 
     enum eMulTimes {
         one = 0,        // 不重复，默认
-        zero2one,   // 重复0-1次
-        one2n,      // 重复1-n次
-        zero2n,     // 重复0-n次
-        n,          // 重复n次
-        n2more,     // 重复n-更多次
-        n2m ,       // 重复n-m次
+        zero2one,       // 重复0-1次
+        one2n,          // 重复1-n次
+        zero2n,         // 重复0-n次
+        n,              // 重复n次
+        n2more,         // 重复n-更多次
+        n2m ,           // 重复n-m次
         leftP = -1,
         rightP = -2,
         quote = -3,
@@ -108,7 +106,7 @@ NFA链头节点
 #### 分支处理
 处理模式字符串时，存在’|’符号，则表明出现了分支情况。由于规定的分支情况只要求处理多个正则式的情况，因此我们对用’|’符号分隔的每个正则式，都进行由模式到NFA链的处理，并且将每个链的头保存到一个结构体中。定义
 
-    typedef struct Branch{
+    typedef struct Branch {
         Head h[10];         // 分支数组
         int  num;           // 分支个数
     } Branch;
@@ -133,11 +131,9 @@ NFA链头节点
     //’\s’和’\S’匹配
     int spaceCompare(char ch, ...) {}
     // 匹配行开始，当前位置为第一个字符或前一个字符为'\n'
-    int lineStartCompare(char ch, ...) {
-    }
+    int lineStartCompare(char ch, ...) {}
     // 匹配一行的结束，当前位置为最后一个字符或为'\n'
-    int endCompare(char ch, ...) {
-    }
+    int endCompare(char ch, ...) {}
     // 匹配单词的开始或结尾，当前位置不为空字符，前一个或后一个字符为空字符
     int startEndCompare(char ch, ...) {}
 在最后进行匹配时，我们灵活应用类型，来使用这些函数（例如\S和\s的结果是相反的），达到减少代码量，增加灵活性的目的。
@@ -158,8 +154,7 @@ NFA链头节点
 
 栈的结构如下：
 
-    typedef struct StackNode
-    {
+    typedef struct StackNode {
         int id;             //元素属于的分组编号
         char c;             //字符值
     }StackNode;
