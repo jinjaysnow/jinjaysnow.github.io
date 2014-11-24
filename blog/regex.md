@@ -4,7 +4,7 @@ Author: Jin Jay
 Date:    2014-10
 keywords: 正则表达式引擎
           regular expression engine
-          
+          2014种子杯初赛
 
 
 ### 程序设计及各模块的功能说明
