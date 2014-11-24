@@ -1,7 +1,7 @@
 Title: Linux基本操作
 Author: Jin Jay
 Date: 2014-10
-description: Linux基本操作：创建新用户、修改密码、修改用户信息。
+description: Linux基本操作：创建新用户、修改密码、修改用户信息、从远程服务器拷贝。
 keywords: Linux
 
 ## Linux相关操作
@@ -17,5 +17,8 @@ keywords: Linux
 
     usermod Jay
 
+### 从远程服务器拷贝
+
+    scp Jay@myserver/file1 file2
 
 [TOC]
