@@ -1,5 +1,5 @@
 title: Mac常用操作
-description: Mac基本操作：使用updatedb、使用gdb等。
+description: Mac基本操作：使用updatedb、使用gdb、快速查找mdfind等。
 date: 2014-11
 author: Jin Jay
         靳杰
@@ -46,3 +46,7 @@ keywords: Mac updatedb
 
     codesign -s gdb-cert $(which gdb)
 输入用户名和密码后成功
+
+## mdfind
+mdfind是find与locate的结合版本，能够非常快速的匹配查找需要的内容，需要配合updatedb使用。
+

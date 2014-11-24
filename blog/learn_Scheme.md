@@ -4,6 +4,13 @@ Title: Scheme语言学习
 description: 记录Scheme语言的学习，主要是常用函数的运用。
 keywords: Scheme
 
+# MIT-Scheme学习
+**平台：** Mac OS X
+## 安装
+建议使用homebrew进行安装：
+
+    brew install mit-scheme
+
 ### 一个小题
 > 依序遍历 0 到 100 闭区间内所有的正整数，如果该数字能被 3 整除，则输出该数字及 ‘\*’ 标记；如果该数字能被 5 整除，则输出该数字及 ‘#’ 标记；如果该数字既能被 3 整除又能被 5 整除，则输出该数字及 ‘\*#’ 标记。
 
