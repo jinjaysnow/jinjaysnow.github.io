@@ -50,3 +50,5 @@ keywords: Mac updatedb
 ## mdfind
 mdfind是find与locate的结合版本，能够非常快速的匹配查找需要的内容，需要配合updatedb使用。
 
+
+[TOC]
