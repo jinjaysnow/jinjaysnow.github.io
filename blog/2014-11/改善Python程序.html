@@ -1,0 +1,1236 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes"> -->
+	<meta name="viewport" content="width=device-width">
+	<meta name="robots" content="all" />
+	<meta name="date" content="2014-11">
+<meta name="keywords" content="improve python,改善Python程序">
+<meta name="description" content="《编写高质量代码————改善Python程序的91个建议》：主要记录编写高质量Python程序需要注意的地方。">
+<meta name="author" content="Jin Jay"><style>/* Fonts */
+@font-face{
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face{
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+/* Body */
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+* {
+  box-sizing: border-box; /* 允许以特定的方式定义某个区域的特定元素,元素的任何内边距和边框都将在已设定的宽度和高度内绘制。
+              通过已设定的宽度和高度减去边框和内编剧才能得到内容的宽度和高度。*/
+  -moz-box-sizing: border-box; /* Firefox */
+  -webkit-box-sizing: border-box; /* Safari */
+  margin: 0; /* 外部边距 */
+  padding: 0;  /*内部边距*/    
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+
+body {
+  color:#4d4d4c;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:16px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 100% !important;
+  margin: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100% !important;
+  min-height: 30px;
+  display: block;
+  background: #f7f7f7;
+  border-bottom: solid 1px #808080;
+  z-index: 1023;
+  opacity: 0.4;
+}
+
+.navigation li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+.navigation li a {
+  display: block;
+  padding: 1em 0.5em;
+}
+
+/* nav */
+#main-navigation-container {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background-color: #333333;
+  box-shadow: 0px 0px 5px #000000;
+}
+
+#main-navigation {
+  margin: 0px auto 0px auto;
+  width: 1000px;
+}
+
+ul.navigation-menu {
+  position: relative;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  list-style-type: none;
+}
+
+ul.navigation-menu li {
+  float: left;
+}
+
+ul.navigation-menu li:hover {
+  background-color: #cccccc;
+}
+
+ul.navigation-menu li a:link, .navigation-menu li a:visited {
+  display: block;
+  padding: 10px 20px 10px 20px;
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  text-shadow: 1px 1px #000000;
+}
+
+ul.navigation-sub-menu {
+  visibility: hidden;
+  position: absolute;
+  z-index: 10001;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  box-shadow: 1px 1px 2px #cccccc;
+  -webkit-box-shadow: 1px 1px 2px #cccccc;
+  -moz-box-shadow: 1px 1px 2px #cccccc;
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+ul.navigation-menu li:hover > ul.navigation-sub-menu {
+  visibility: visible;
+}
+
+ul.navigation-sub-menu li {
+  float: none;
+}
+
+ul.navigation-sub-menu li a:link, .navigation-sub-menu li a:visited {
+  display: block;
+  padding: 5px 20px 5px 20px;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #000000;
+  text-shadow: 0px 0px;
+}
+
+/* clearfix */
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+  font-size: 0;
+  content: " ";
+}
+
+/* IE6 clearfix */
+* html .clearfix {
+  zoom: 1;
+}
+/* table of contents*/
+.toc {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  /*bottom: 5% !important;*/
+  left: 71%;
+  /*overflow-y: scroll;*/
+  overflow: auto;
+
+  top: 4em;
+  width: 28% !important;
+  height: 36%;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+
+/* end of navigation */
+#side {
+  background-color: #F8F8F8;
+  position: fixed;
+  margin-right: 0 !important;
+  bottom: 2% !important;
+  left: 71%;
+  /*margin-top: 5%;*/
+  /*top: 3em;*/
+  /*height: 80%;*/
+  width: 28% !important;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+
+#blog {
+  margin-left: 0 !important;
+  margin-right: 20%;
+  margin-top: 5%;
+  top: 4em;
+  /*top: 0 !important;*/
+  width: 70% !important;
+}
+
+#markdown {
+  max-width: 45em;
+  margin: 10px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  outline: solid #f8f8f8;
+}
+/* modify codehilite */
+.codehilite pre .err {
+  color: #000000;
+  /* background-color: #FFFFFF; */
+}
+/* Links */
+a{ color: #06d; text-decoration:none; }
+a:hover{ color: #06e; text-decoration: underline; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+::-moz-selection { background:#a8d1ff; color:#000 }
+::selection { background:#a8d1ff; color:#000 }
+
+a::-moz-selection { background:#a8d1ff; color:#0645ad }
+a::selection { background:#a8d1ff; color:#0645ad }
+
+/* Header Anchor Links*/
+.headeranchor-link {
+  color:#111;
+  border: 0;
+  margin-left: -20px;
+  padding-right: 6px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor-link:hover,
+.headeranchor-link:visited,
+.headeranchor-link:active
+{ text-decoration: none; color:#4d4d4c; }
+.headeranchor-link:hover .headeranchor:before,
+h1:hover .headeranchor:before,
+h2:hover .headeranchor:before,
+h3:hover .headeranchor:before,
+h4:hover .headeranchor:before,
+h5:hover .headeranchor:before,
+h6:hover .headeranchor:before
+{ content: '\f05c'; }
+
+abbr { cursor: pointer; }
+
+/* Paragraphs */
+p { margin:1em 0; }
+
+/* Images */
+img {
+  max-width:100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6 {
+  font-weight:normal;
+  color:#111;
+  line-height: 1.7;
+  position: relative;
+}
+h4,h5,h6{ font-weight: bold; }
+h1 { font-size:2.5em; border-bottom: 1px solid #ddd;}
+h2 { font-size:2em; border-bottom:1px solid #eee; padding-bottom: 5px; }
+h3 { font-size:1.5em; }
+h4 { font-size:1.2em; }
+h5 { font-size:1em; }
+h6 { font-size:0.9em; }
+
+/* Block Quotes */
+blockquote {
+  color:#666666;
+  margin:0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+/* Raw Blocks */
+pre, code, kbd, samp {
+  color: #000;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC;
+}
+
+pre {
+  padding: 10px;
+  overflow: auto;
+}
+
+code { padding: 0 3px 0 3px; }
+pre code { border: 0; padding: 0; }
+
+/* Admonition */
+.admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 10px auto;
+  color: #888888;
+  background-color: #F8F8F8;
+  border: 1px solid #888888;
+}
+
+.admonition p { padding: 0; margin: 0; }
+.admonition-title { font-weight: bold; margin: 0; }
+
+.admonition-icon {
+  font: normal normal 16px fontawesome-mini;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  float: left;
+}
+
+.admonition.attention { color: #4F8A10; background-color: #DFF2BF; border: 1px solid #4F8A10; }
+.admonition.caution { color: #D63301; background-color: #FFCCBA; border: 1px solid #D63301; }
+.admonition.hint { color: #00529B; background-color: #BDE5F8; border: 1px solid #00529B; }
+.admonition.danger { color: #D8000C; background-color: #FFBABA; border: 1px solid #D8000C; }
+.admonition.question { color: #00049b; background-color: #BDC8F8; border: 1px solid #00049b; }
+.admonition.note { color: #9F6000; background-color: #FEEFB3; border: 1px solid #9F6000; }
+
+.attention > .admonition-icon:before { content: "\f058\00a0"; }
+.caution > .admonition-icon:before { content: "\f06a\00a0"; }
+.hint > .admonition-icon:before { content: "\f05a\00a0"; }
+.danger > .admonition-icon:before { content: "\f056\00a0"; }
+.question > .admonition-icon:before { content: "\f059\00a0"; }
+.note > .admonition-icon:before { content: "\f040\00a0"; }
+
+/* progress bar*/
+.progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow:
+    1px 1px 0px #fefefe,
+    -1px -1px 0px #fefefe,
+    -1px 1px 0px #fefefe,
+    1px -1px 0px #fefefe,
+    0px 1px 0px #fefefe,
+    0px -1px 0px #fefefe,
+    1px 0px 0px #fefefe,
+    -1px 0px 0px #fefefe,
+    1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 24px;
+  float: left;
+  border-right: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #34c2e3;
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, .5);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 53%, rgba(255, 255, 255, .4) 53%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.progress-100plus .progress-bar { background-color: #1ee038; }
+.progress-80plus .progress-bar { background-color: #86e01e; }
+.progress-60plus .progress-bar { background-color: #f2d31b; }
+.progress-40plus .progress-bar { background-color: #f2b01e; }
+.progress-20plus .progress-bar { background-color: #f27011; }
+.progress-0plus .progress-bar { background-color: #f63a0f; }
+
+.gloss .progress-bar {
+  box-shadow:
+    inset -1px 1px 0px rgba(255, 255, 255, .5),
+    inset 0 -4px 12px rgba(255, 255, 255, .7),
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0px rgba(0, 0, 0, .05),
+    inset 1px -1px 0px rgba(255, 255, 255, .2);
+}
+
+.candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@-moz-keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+@keyframes animate-stripes { 0% { background-position: 0 0; } 100% { background-position: 60px 0; } }
+
+/* Inlines */
+b, strong { font-weight: bold; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+dfn { font-style: italic; }
+
+/* Lists */
+ul, ol { padding-left: 30px; }
+li p:last-child { margin:0 }
+.task-list-item { list-style-type: none; }
+.task-list-item input { float:left; margin-left: -20px; margin-top: 6px; }
+dt { font-weight: bold; font-style: italic;}
+dd { margin: 0 0 0 2em; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; overflow-x: auto; overflow-y: hidden; display: block;}
+table tr { background-color: #fefefe; }
+table tr:nth-child(2n) { background-color: #f8f8f8; }
+td, th { border: 1px solid #ddd; padding: 6px 13px; }
+
+/* Codehilite Tables */
+.codehilitetable { border: 0; border-spacing: 0; }
+.linenos, .code, .codehilitetable td { border: 0; padding: 0; }
+td:not(.linenos) .linenodiv { padding: 0 !important; }
+.code { width: 100%; }
+.linenos div pre, .linenodiv pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.code div pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+footer {
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 10%;
+  width: 50%!important;
+  border-top: solid 1px rgb(51, 51, 51);
+  padding: 30px 0 30px;
+  font-size: 12px;
+  /*outline: ;*/
+}
+
+/* Clock */
+.clock {
+  width:193px;
+  height:193px;
+  border-radius:50%;
+  margin:auto;
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  background:#f0f1e9;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 3px 0 rgba(255,255,255,0.5), inset 0 -4px 0 rgba(0,0,0,0.1), 0 2px 5px rgba(0,0,0,0.2);
+  /* background: linear-gradient(top, #f0f1e9, #f0f1e9 100%);*/
+}
+.clock::before {
+  content:'';
+  width:130px;
+  height:130px;
+  position:absolute;
+  margin:auto;
+  top:0; right:0; bottom:0; left:0;
+  border-radius:50%;
+  background: -webkit-linear-gradient(top, #e9eae2, #f5f5ec 100%);
+  background: -moz-linear-gradient(top, #e9eae2, #f5f5ec 100%);
+  background: linear-gradient(top, #e9eae2, #f5f5ec 100%);
+}
+
+.numbers, clockwise {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+
+.numbers ul {
+  list-style:none;
+}
+
+.numbers ul li {
+  position:absolute;
+  width:1.5em;
+  height:1.5em;
+  text-align:center;
+  line-height:1.5em;
+  font-size:1.3em;
+  color:#a5a595;
+}
+
+.numbers ul li:first-child {
+  top:0;
+  left:50%;
+  margin-left:-0.75em;
+}
+.numbers ul li:nth-child(2){
+  top:50%;
+  right:0;
+  margin-top:-0.75em;
+}
+.numbers ul li:nth-child(3){
+  left:50%;
+  bottom:0;
+  margin-left:-0.75em;
+}
+.numbers ul li:last-child{
+  top:50%;
+  left:0;
+  margin-top:-0.75em;
+}
+
+.clockwise .center, .support {
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background: radial-gradient(center center, circle , #ffffff, #837874 97%, #b4b2aa 100%);
+  background: -moz-radial-gradient(center center, circle,#ffffff, #837874 97%, #b4b2aa 100%);
+  background: -webkit-radial-gradient(center center, circle , #ffffff, #837874 97%, #b4b2aa 100%);
+  background-position:50% -12px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.clockwise .center {
+  left:50%; margin-left:-5px;
+  top:50%; margin-top:-5px;
+  z-index:5;
+}
+
+.support {
+  margin:auto;
+  top:-260px; right:0; bottom:0; left:0;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.4), 0 -1px 2px rgba(0,0,0,0.3);
+}
+
+.support::before {
+  content:'';
+  width:4px;
+  height:100px;
+  background:#fff;
+  position:absolute;
+  z-index:-1;
+  transform:rotate(38deg);
+  -webkit-transform: rotate(38deg);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin:50% 0%;
+  top:5px;
+  left:3px;
+  background: linear-gradient(left, #f3f3f3, #fff);
+  box-shadow: 4px 3px 3px rgba(0,0,0,0.2), inset 1px 0 4px rgba(0,0,0,0.2);
+}
+.support::after {
+  content:'';
+  width:4px;
+  height:100px;
+  background:#fff;
+  position:absolute;
+  z-index:-1;
+  transform:rotate(-38deg);
+  transform-origin:50% 0%;
+  -webkit-transform: rotate(-38deg);
+  -webkit-transform-origin: 50% 0%;
+  top:5px;
+  left:1px;
+  background: linear-gradient(left, #f3f3f3, #fff);
+  box-shadow: -2px 3px 3px rgba(0,0,0,0.2), inset 1px 0 4px rgba(0,0,0,0.2);
+}
+
+[class*="hand-"] {
+  border-radius: 100% 100% 5px 5px;
+  box-shadow: 0 0 0.5em rgba(black,0.2);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+.hand-second {
+  width: 2px;
+  top: 18px;
+  height: 78px;
+  background:#f16e54;
+  transform-origin: 50% 100%;
+  -webkit-transform-origin: 50% 100%;
+}
+
+.hand-minute {
+  width: 6px;
+  top:26px;
+  margin-left:-3px;
+  height: 88px;
+  background:#68645b;
+  transform-origin: 50% 80%;
+  -webkit-transform-origin: 50% 80%;
+}
+
+.hand-hour {
+  width: 6px;
+  top: 56px;
+  transform-origin: 50% 40px;
+  -webkit-transform-origin: 50% 40px;
+  margin-left:-3px;
+  height: 50px; 
+  background:#68645b;
+}
+
+/* Media */
+@media only screen and (max-width: 480px) {
+  body{ font-size:14px; }
+  #blog {width: 100% !important;}
+  #side {display: none!important;}
+  #markdown{max-width: 98% !important;}
+  footer{margin-left:10%; width: 80% !important;margin-right: 10%;}
+  .motto{display: none !important;}
+}
+
+@media 
+only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait), 
+only screen and (max-device-width:768px),
+only screen and (width: 768px),
+only screen and (max-width: 768px){
+  body{ font-size:16px; }
+  #blog {width: 100% !important;margin-top: 4.5em}
+  #side {display: none !important;}
+  #markdown{max-width: 98% !important; padding: 2px;}
+  .toc{display: none !important;}
+  footer{margin-left: 10%; width: 80% !important; margin-right: 10%;}
+}
+
+@media 
+only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape), 
+only screen and (max-device-width:1024px),
+only screen and (width: 1024px),
+only screen and (max-width: 1024px){
+  #blog {margin-top: 4.5em;}
+}
+
+@media only screen and (max-width: 1920px) {
+  #markdown{max-width: 90%;}
+}
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f8f8f8; color: #333333 }
+.codehilite pre .c { color: #999988; font-style: italic } /* Comment */
+.codehilite pre .err { color: #999988; font-style: italic } /* Error */
+.codehilite pre .k { font-weight: bold } /* Keyword */
+.codehilite pre .n { color: #333333 } /* Name */
+.codehilite pre .o { font-weight: bold } /* Operator */
+.codehilite pre .cm { color: #999988; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
+.codehilite pre .c1 { color: #999988; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #aa0000 } /* Generic.Error */
+.codehilite pre .gh { color: #999999 } /* Generic.Heading */
+.codehilite pre .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.codehilite pre .go { color: #888888 } /* Generic.Output */
+.codehilite pre .gp { color: #555555 } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #aa0000 } /* Generic.Traceback */
+.codehilite pre .kc { font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { font-weight: bold } /* Keyword.Pseudo */
+.codehilite pre .kr { font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #445588; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #009999 } /* Literal.Number */
+.codehilite pre .s { color: #dd1144 } /* Literal.String */
+.codehilite pre .na { color: #008080 } /* Name.Attribute */
+.codehilite pre .nb { color: #0086b3 } /* Name.Builtin */
+.codehilite pre .nc { color: #445588; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #008080 } /* Name.Constant */
+.codehilite pre .nd { color: #333333 } /* Name.Decorator */
+.codehilite pre .ni { color: #800080 } /* Name.Entity */
+.codehilite pre .ne { color: #990000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #990000; font-weight: bold } /* Name.Function */
+.codehilite pre .nl { color: #333333 } /* Name.Label */
+.codehilite pre .nn { color: #555555 } /* Name.Namespace */
+.codehilite pre .nx { color: #333333 } /* Name.Other */
+.codehilite pre .py { color: #333333 } /* Name.Property */
+.codehilite pre .nt { color: #000080 } /* Name.Tag */
+.codehilite pre .nv { color: #008080 } /* Name.Variable */
+.codehilite pre .ow { font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #009999 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #009999 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #009999 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #009999 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #009999 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #dd1144 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #dd1144 } /* Literal.String.Char */
+.codehilite pre .sd { color: #dd1144 } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #dd1144 } /* Literal.String.Double */
+.codehilite pre .se { color: #dd1144 } /* Literal.String.Escape */
+.codehilite pre .sh { color: #dd1144 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #dd1144 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #dd1144 } /* Literal.String.Other */
+.codehilite pre .sr { color: #009926 } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #dd1144 } /* Literal.String.Single */
+.codehilite pre .ss { color: #990073 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #999999 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #008080 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #008080 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #008080 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #009999 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>改善Python程序</title>
+	<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+	<link rel="shortcut icon" href="images/bitbug_favicon.ico" />
+</head>
+<body>
+	<nav>
+		<ul class="navigation" style="padding: 0 30px;">
+			<li><a href="http://jinjaysnow.github.io">主页</a></li>
+			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
+			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
+			<li  class="motto" style="margin-top: 16px; float: right;">朝着梦想，一步一步！</li>
+		</ul>
+	</nav>
+	<div id="blog">
+		<div id="markdown" >
+			<p>《编写高质量代码&ndash;改善Python程序的91个建议》：主要记录编写高质量Python程序需要注意的地方(个人觉得有用的建议)。</p>
+<h3 id="pythonc"><a name="user-content-pythonc" href="#pythonc" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Python与C语言的不同之处</h3>
+<h4 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>三元操作符</h4>
+<p><code>C?X:Y</code>在Python中的表示为<code>X if C else Y</code></p>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编写函数的四个原则</h3>
+<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>原则一</h4>
+<p>函数设计要尽量短小，嵌套层次不宜过深。</p>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>原则二</h4>
+<p>函数申明应该做到合理、简单、易于使用。</p>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>原则三</h4>
+<p>函数参数设计应该考虑向下兼容。</p>
+<div class="codehilite"><pre><span class="vg">def</span><span class="w"> </span><span class="vg">readline</span><span class="p">(</span><span class="vg">filename</span><span class="p">)</span><span class="o">:</span><span class="w">                     </span><span class="err">###</span><span class="w"> </span><span class="err">第一版</span>
+<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="s2">&quot;file read completed&quot;</span>
+<span class="vg">def</span><span class="w"> </span><span class="vg">readline</span><span class="p">(</span><span class="vg">filename</span><span class="p">,</span><span class="w"> </span><span class="vg">logger</span><span class="o">=</span><span class="vg">logger</span><span class="o">.</span><span class="vg">info</span><span class="p">)</span><span class="w">  </span><span class="err">###</span><span class="w"> </span><span class="err">第二版，使用了默认参数，兼容了上一版</span>
+</pre></div>
+
+
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>原则四</h4>
+<p>一个函数只做一件事，尽量保证函数语句粒度的一致性。</p>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>将常量集中到一个文件</h3>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">_const</span><span class="p">:</span>
+    <span class="k">class</span> <span class="nc">ConstError</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span> <span class="k">pass</span>
+    <span class="k">class</span> <span class="nc">ConstCaseError</span><span class="p">(</span><span class="n">ConstError</span><span class="p">):</span> <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConstError</span><span class="p">,</span> <span class="s">&quot;Can&#39;t change const. </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConstCaseError</span><span class="p">,</span> <span class="s">&#39;const name &quot;</span><span class="si">%s</span><span class="s">&quot; is not all uppercase&#39;</span> <span class="o">%</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">_const</span><span class="p">()</span>
+</pre></div>
+
+
+<p>上面的代码对应的模块名未const，使用时只需要import const，便可定义常量了，例如：</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">const</span>
+<span class="n">const</span><span class="o">.</span><span class="n">COMPANY</span> <span class="o">=</span> <span class="s">&quot;APPLE&quot;</span>
+</pre></div>
+
+
+<h3 id="assert"><a name="user-content-assert" href="#assert" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>利用assert语句来发现问题</h3>
+<div class="codehilite"><pre><span class="vg">assert</span><span class="w"> </span><span class="vg">expression1</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;,&quot;</span><span class="w"> </span><span class="vg">expression2</span><span class="p">]</span>
+</pre></div>
+
+
+<p>断言实际是被设计用来捕获用户所定义的约束的，而不是用来捕获程序本身错误的，所以需要谨慎使用。</p>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数据交换值的时候不推荐使用中间变量</h3>
+<div class="codehilite"><pre><span class="vg">x</span><span class="p">,</span><span class="vg">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">y</span><span class="p">,</span><span class="vg">x</span>
+</pre></div>
+
+
+<h3 id="type"><a name="user-content-type" href="#type" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>不推荐使用type来进行类型检查</h3>
+<p><strong>基于内建类型扩展的用户自定义类型，type函数并不能准确返回结果。</strong><br />
+正确做法是：如果类型有对应的工厂函数，可以使用工厂函数对类型进行相应的转换，如<code>list(listing)</code>，<code>str(name)</code>等，否则可以使用<code>isinstance()</code>函数来检测。</p>
+<div class="codehilite"><pre><span class="vg">isinstance</span><span class="p">(</span><span class="vg">object</span><span class="p">,</span><span class="w"> </span><span class="vg">classinfo</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="eval"><a name="user-content-eval" href="#eval" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>警惕eval()的安全漏洞</h3>
+<blockquote>
+<p>eval is evil.<br />
+<strong>如果使用对象不是新人员，应该尽量避免使用eval，在需要使用eval的地方可用安全性更好的<code>ast.literal_eval</code>替代。</strong></p>
+</blockquote>
+<h3 id="is"><a name="user-content-is" href="#is" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分清==与is的适用场景</h3>
+<p><code>x is y</code>当且仅当x和y是同一个对象的时候才返回True。<br />
+<strong>判断两个对象相等应该使用==而不是is。</strong></p>
+<h3 id="unicode"><a name="user-content-unicode" href="#unicode" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>考虑兼容性，尽可能使用Unicode</h3>
+<p><strong>decode()</strong> 解码<br />
+<strong>encode()</strong> 编码  </p>
+<div class="codehilite"><pre><span class="c">### coding=utf-8</span>
+</pre></div>
+
+
+<h3 id="module"><a name="user-content-module" href="#module" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>构建合理的包层次来管理module</h3>
+<p>包结构：</p>
+<div class="codehilite"><pre><span class="n">Package</span><span class="o">/</span> <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
+    <span class="n">Module1</span><span class="p">.</span><span class="n">py</span>
+    <span class="n">Module2</span><span class="p">.</span><span class="n">py</span>
+    <span class="n">Subpackage</span><span class="o">/</span> <span class="n">__init__</span><span class="p">.</span><span class="n">py</span>
+        <span class="n">Module1</span><span class="p">.</span><span class="n">py</span>
+        <span class="n">Module2</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p><code>__init__.py</code>通过在该文件中定义<code>__all__</code>变量，控制需要导入的子包或模块。</p>
+<div class="codehilite"><pre><span class="vg">__all__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="c1">&#39;Module1&#39;, &#39;Module2&#39;, &#39;Subpackage&#39;]</span>
+</pre></div>
+
+
+<h3 id="with"><a name="user-content-with" href="#with" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用with自动关闭资源</h3>
+<div class="codehilite"><pre><span class="n">with</span> <span class="n">expression</span> <span class="p">[</span><span class="n">as</span> <span class="n">target</span><span class="p">]</span><span class="o">:</span>
+    <span class="n">codes</span>
+</pre></div>
+
+
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>遵循异常处理的基本原则</h3>
+<p><img alt="exceptionhandle.png" src="http://jinjaysnow.github.io/images/exceptionhandle.png" /></p>
+<ol>
+<li>注意异常的粒度，不推荐在try中放入过多的代码。</li>
+<li>谨慎使用单独的except语句处理所有异常，最好能定位具体的异常。</li>
+<li>注意异常捕获的顺序，在合适的层次处理异常。</li>
+<li>使用更为友好的异常信息，遵守异常参数的规范。</li>
+</ol>
+<h3 id="join"><a name="user-content-join" href="#join" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>连接字符串优先使用join而不是+</h3>
+<h3 id="format"><a name="user-content-format" href="#format" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>格式化字符串是尽量使用.format方式而不是%</h3>
+<h4 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>%转换标记</h4>
+<div class="codehilite"><pre><span class="c">%[转换标记] [宽度[.精确度]]</span>
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th>转换标记</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>表示左对齐</td>
+</tr>
+<tr>
+<td>+</td>
+<td>在整数之前加上+</td>
+</tr>
+<tr>
+<td>空格</td>
+<td>在整数之前保留空格</td>
+</tr>
+<tr>
+<td>###</td>
+<td>在八进制数前面显示(&lsquo;0&rsquo;)，在十六禁止前面显示&lsquo;0x&rsquo;或者’0X&rsquo;</td>
+</tr>
+<tr>
+<td>0</td>
+<td>表示转换值若位数不够则用0填充而非默认的空格</td>
+</tr>
+<tr>
+<td>c</td>
+<td>转换为单个字符，对于数据将转换为改值所对应的Ascii码</td>
+</tr>
+<tr>
+<td>s</td>
+<td>转换为字符串，对于非字符串对象，将默认调用str()函数进行转换</td>
+</tr>
+<tr>
+<td>r</td>
+<td>用repr()函数进行字符串转换</td>
+</tr>
+<tr>
+<td>i d</td>
+<td>转换为带符号的十进制数</td>
+</tr>
+<tr>
+<td>u</td>
+<td>转换为不带符号的十进制数</td>
+</tr>
+<tr>
+<td>o</td>
+<td>转换为不带符号的八进制数</td>
+</tr>
+<tr>
+<td>x X</td>
+<td>转换为不带符号的十六进制数</td>
+</tr>
+<tr>
+<td>e E</td>
+<td>转换为科学计数法表示的浮点数</td>
+</tr>
+<tr>
+<td>f F</td>
+<td>转成浮点数(小数部分自然截断)</td>
+</tr>
+<tr>
+<td>g G</td>
+<td>如果指数大于-4或者小于精度值则和e相同，其他情况与f相同；如果指数大于-4或者小鱼精度值则和E相同，其他情况与F相同</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span class="vg">iitemdict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="c1">&#39;itemname&#39;:&#39;circumference&#39;, &#39;radius&#39;:3, &#39;value&#39;: match.pi*radius*2}</span>
+<span class="vg">print</span><span class="w"> </span><span class="s2">&quot;the %(itemname)s of a circle with radius %(radius)f is %(value)0.3f&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="vg">itemdict</span>
+</pre></div>
+
+
+<h4 id="format_1"><a name="user-content-format_1" href="#format_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>format方式</h4>
+<div class="codehilite"><pre><span class="cp">[</span><span class="err">[填充符</span><span class="cp">][</span><span class="err">对齐方式</span><span class="cp">]</span><span class="x">]</span><span class="cp">[</span><span class="err">符号</span><span class="cp">][</span><span class="err">#</span><span class="cp">][</span><span class="mi">0</span><span class="cp">][</span><span class="err">宽度</span><span class="cp">][</span><span class="p">,</span><span class="cp">][</span><span class="nx">.</span><span class="err">精确度</span><span class="cp">][</span><span class="err">转换类型</span><span class="cp">]</span><span class="x"></span>
+</pre></div>
+
+
+<p><strong>.format方式格式化字符串的对齐方式</strong></p>
+<table>
+<thead>
+<tr>
+<th>对齐方式</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>表示左对齐， 是大多数对象为默认的对齐方式</td>
+</tr>
+<tr>
+<td>></td>
+<td>表示右对齐，数值默认的对齐方式</td>
+</tr>
+<tr>
+<td>=</td>
+<td>仅对数值类型有效，如果有符号的话，在符号后数值前进行填充</td>
+</tr>
+<tr>
+<td>^</td>
+<td>居中对齐，用空格进行填充</td>
+</tr>
+</tbody>
+</table>
+<p><strong>.format方式格式化字符串符号列表</strong></p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>正数前加+，附属前加-</td>
+</tr>
+<tr>
+<td>-</td>
+<td>正数前不加符号，负数前加-，为数值的默认形式</td>
+</tr>
+<tr>
+<td>空格</td>
+<td>正数前加空格，负数前加-</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span class="s2">&quot;The number {0:,} inn hex is:{0:#x}, the number {1} in oct is {1:#o}&quot;</span><span class="o">.</span><span class="vg">format</span><span class="p">(</span><span class="il">4746</span><span class="p">,</span><span class="w"> </span><span class="il">45</span><span class="p">)</span>
+<span class="err">输出为：</span><span class="c1">&#39;the number4,746 in hex is: 0x128a, the number 45 in oct is 0o55&#39;</span>
+
+<span class="s2">&quot;the max number is {max}, the min number is {min}, the averagenumber is {average:0.3f}&quot;</span><span class="o">.</span><span class="vg">format</span><span class="p">(</span><span class="vg">max</span><span class="o">=</span><span class="il">189</span><span class="p">,</span><span class="w"> </span><span class="vg">min</span><span class="o">=</span><span class="mf">12.6</span><span class="p">,</span><span class="w"> </span><span class="vg">average</span><span class="o">=</span><span class="mf">23.5</span><span class="p">)</span>
+<span class="err">输出为：</span><span class="c1">&#39;the max number is 189, the min number is 12.6, the averagenumber is 23.500&#39;</span>
+
+<span class="vg">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="il">1</span><span class="p">,</span><span class="il">3</span><span class="p">)</span>
+<span class="c1">&#39;X:{0[0]};Y:{0[1]}&#39;.format(point)</span>
+<span class="err">输出为：</span><span class="c1">&#39;X:1;Y:3&#39;</span>
+</pre></div>
+
+
+<div class="toc">
+<ul>
+<li><a href="#pythonc">Python与C语言的不同之处</a><ul>
+<li><a href="#_1">三元操作符</a></li>
+</ul>
+</li>
+<li><a href="#_2">编写函数的四个原则</a><ul>
+<li><a href="#_3">原则一</a></li>
+<li><a href="#_4">原则二</a></li>
+<li><a href="#_5">原则三</a></li>
+<li><a href="#_6">原则四</a></li>
+</ul>
+</li>
+<li><a href="#_7">将常量集中到一个文件</a></li>
+<li><a href="#assert">利用assert语句来发现问题</a></li>
+<li><a href="#_8">数据交换值的时候不推荐使用中间变量</a></li>
+<li><a href="#type">不推荐使用type来进行类型检查</a></li>
+<li><a href="#eval">警惕eval()的安全漏洞</a></li>
+<li><a href="#is">分清==与is的适用场景</a></li>
+<li><a href="#unicode">考虑兼容性，尽可能使用Unicode</a></li>
+<li><a href="#module">构建合理的包层次来管理module</a></li>
+<li><a href="#with">使用with自动关闭资源</a></li>
+<li><a href="#_9">遵循异常处理的基本原则</a></li>
+<li><a href="#join">连接字符串优先使用join而不是+</a></li>
+<li><a href="#format">格式化字符串是尽量使用.format方式而不是%</a><ul>
+<li><a href="#_10">%转换标记</a></li>
+<li><a href="#format_1">format方式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+			<p style="text-align: right; color: gray;"><br>2014-11-27 22:08:40</p>
+		</div>
+	</div>
+	<div id="side">
+		<div class="support"></div>
+		<div class="clock">
+		  <div class="numbers">
+		    <ul>
+		      <li>12</li>
+		      <li>3</li>
+		      <li>6</li>
+		      <li>9</li>
+		    </ul>
+		  </div>
+		  <div class="clockwise">
+		    <div class="center"></div>
+		    <div class="hand-second" id="analogsecond"></div>
+		    <div class="hand-minute" id="analogminute"></div>
+		    <div class="hand-hour" id="analoghour"></div>
+		  </div>
+		</div>
+		<div style="text-align: center;margin-top: 80%;">
+			<p>Chrish time</p>
+		</div>
+	</div>
+	<footer>
+		<p>
+			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+		</p>
+		<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+	</footer>
+</body>
+</html>
+<script type="text/javascript">
+var oClockAnalog = {
+	aSecond:         [],
+	dtDate:          new Date(),
+	iCurrSecond:     -1,
+	iHourRotation:   -1,
+	iMinuteRotation: -1,
+	iStepSize:       10,
+	iTimerAnimate:   setInterval("oClockAnalog.fAnimate()", 20),
+	iTimerUpdate:    setInterval("oClockAnalog.fUpdate()", 1000),
+
+	fAnimate:       function() {
+	    if (this.aSecond.length > 0) {
+	        this.fRotate("analogsecond", this.aSecond[0]);
+	        this.aSecond = this.aSecond.slice(1);
+	    }
+	},
+	fGetHour:     function() {
+	    var iHours = this.dtDate.getHours();
+	    if (iHours > 11) {
+	        iHours -= 12;
+	    }
+	    return Math.round((this.dtDate.getHours() * 30) + (this.dtDate.getMinutes() / 2) + (this.dtDate.getSeconds() / 120));
+	},
+	fGetMinute:     function() {
+	    return Math.round((this.dtDate.getMinutes() * 6) + (this.dtDate.getSeconds() / 10));
+	},
+	fInit:          function() {
+	    this.iHourRotation = this.fGetHour();
+	    this.fRotate("analoghour", this.iHourRotation);
+
+	    this.iMinuteRotation = this.fGetMinute();
+	    this.fRotate("analogminute", this.iMinuteRotation);
+
+	    this.iCurrSecond = this.dtDate.getSeconds();
+	    this.fRotate("analogsecond", (6 * this.iCurrSecond));
+	},
+	fRotate:        function(sID, iDeg) {
+	    var sCSS = ("rotate(" + iDeg + "deg)");
+	    $("#" + sID).css({ '-moz-transform': sCSS, '-o-transform': sCSS, '-webkit-transform': sCSS });
+	},
+	fStepSize:     function(iTo, iFrom) {
+	    var iAnimDiff = (iFrom - iTo);
+	    if (iAnimDiff > 0) {
+	        iAnimDiff -= 360;
+	    }
+	    return iAnimDiff / this.iStepSize;
+	},
+	fUpdate:        function() {
+	    // update time
+	    this.dtDate = new Date();
+
+	    // hours
+	    var iTemp = this.fGetHour();
+	    if (this.iHourRotation != iTemp) {
+	        this.iHourRotation = iTemp;
+	        this.fRotate("analoghour", iTemp);
+	    }
+
+	    // minutes
+	    iTemp = this.fGetMinute();
+	    if (this.iMinuteRotation != iTemp) {
+	        this.iMinuteRotation = iTemp;
+	        this.fRotate("analogminute", iTemp);
+	    }
+
+	    // seconds
+	    if (this.iCurrSecond != this.dtDate.getSeconds()) {
+	        var iRotateFrom = (6 * this.iCurrSecond);
+	        this.iCurrSecond = this.dtDate.getSeconds();
+	        var iRotateTo = (6 * this.iCurrSecond);
+
+	        // push steps into array
+	        var iDiff = this.fStepSize(iRotateTo, iRotateFrom);
+	        for (var i = 0; i < this.iStepSize; i++) {
+	            iRotateFrom -= iDiff;
+	            this.aSecond.push(Math.round(iRotateFrom));
+	        }
+	    }
+	}
+};   
+
+oClockAnalog.fInit();
+</script>

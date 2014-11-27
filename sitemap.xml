@@ -56,7 +56,7 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-11/Mac常用操作.html</loc>
-		<lastmod>2014-11-22</lastmod>
+		<lastmod>2014-11-25</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
@@ -117,6 +117,12 @@
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-10/搭建基于PPTP协议的VPN.html</loc>
 		<lastmod>2014-11-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
+		<loc>http://jinjaysnow.github.io/blog/2014-11/改善Python程序.html</loc>
+		<lastmod>2014-11-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
