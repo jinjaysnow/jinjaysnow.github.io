@@ -895,7 +895,7 @@ MathJax.Hub.Config({
 <h3 id="eval"><a name="user-content-eval" href="#eval" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>警惕eval()的安全漏洞</h3>
 <blockquote>
 <p>eval is evil.<br />
-<strong>如果使用对象不是新人员，应该尽量避免使用eval，在需要使用eval的地方可用安全性更好的<code>ast.literal_eval</code>替代。</strong></p>
+<strong>如果使用对象不是信任源，应该尽量避免使用eval，在需要使用eval的地方可用安全性更好的<code>ast.literal_eval</code>替代。</strong></p>
 </blockquote>
 <h3 id="is"><a name="user-content-is" href="#is" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分清==与is的适用场景</h3>
 <p><code>x is y</code>当且仅当x和y是同一个对象的时候才返回True。<br />
@@ -903,7 +903,7 @@ MathJax.Hub.Config({
 <h3 id="unicode"><a name="user-content-unicode" href="#unicode" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>考虑兼容性，尽可能使用Unicode</h3>
 <p><strong>decode()</strong> 解码<br />
 <strong>encode()</strong> 编码  </p>
-<div class="codehilite"><pre><span class="c">### coding=utf-8</span>
+<div class="codehilite"><pre><span class="c"># coding=utf-8</span>
 </pre></div>
 
 
@@ -1014,6 +1014,7 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
+<p>例：</p>
 <div class="codehilite"><pre><span class="vg">iitemdict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="c1">&#39;itemname&#39;:&#39;circumference&#39;, &#39;radius&#39;:3, &#39;value&#39;: match.pi*radius*2}</span>
 <span class="vg">print</span><span class="w"> </span><span class="s2">&quot;the %(itemname)s of a circle with radius %(radius)f is %(value)0.3f&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="vg">itemdict</span>
 </pre></div>
@@ -1074,6 +1075,7 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
+<p>例：</p>
 <div class="codehilite"><pre><span class="s2">&quot;The number {0:,} inn hex is:{0:#x}, the number {1} in oct is {1:#o}&quot;</span><span class="o">.</span><span class="vg">format</span><span class="p">(</span><span class="il">4746</span><span class="p">,</span><span class="w"> </span><span class="il">45</span><span class="p">)</span>
 <span class="err">输出为：</span><span class="c1">&#39;the number4,746 in hex is: 0x128a, the number 45 in oct is 0o55&#39;</span>
 
@@ -1086,6 +1088,291 @@ MathJax.Hub.Config({
 </pre></div>
 
 
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>区别对待可变对象和不可变对象</h3>
+<p>Python中一切皆对象，每一个对象都一个唯一的标示符(id())、类型(type())以及值。对象根据其值能否修改该分为可变对象和不可变对象，其中<strong>数字、字符串、元组</strong>属于不可变对象；字典、列表、字节数组属于可变对象。因此，字符串中某个字符不可修改。</p>
+<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="nl">encoding:</span><span class="vg">utf</span><span class="il">-8</span>
+<span class="vg">class</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;test student&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">__init__</span><span class="p">(</span><span class="vg">self</span><span class="p">,</span><span class="w"> </span><span class="vg">name</span><span class="p">,</span><span class="w"> </span><span class="vg">course</span><span class="o">=</span><span class="p">[])</span><span class="o">:</span>
+<span class="w">        </span><span class="s2">&quot;&quot;&quot;init&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">name</span>
+<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">course</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">course</span>
+<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">addcourse</span><span class="p">(</span><span class="vg">self</span><span class="p">,</span><span class="w"> </span><span class="vg">coursename</span><span class="p">)</span><span class="o">:</span>
+<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">course</span><span class="o">.</span><span class="vg">append</span><span class="p">(</span><span class="vg">coursename</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">printcourse</span><span class="p">(</span><span class="vg">self</span><span class="p">)</span><span class="o">:</span>
+<span class="w">        </span><span class="vg">for</span><span class="w"> </span><span class="vg">item</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="vg">self</span><span class="o">.</span><span class="nl">course:</span>
+<span class="w">            </span><span class="vg">print</span><span class="w"> </span><span class="vg">item</span>
+
+<span class="vg">if</span><span class="w"> </span><span class="vg">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="c1">&#39;__main__&#39;:</span>
+<span class="w">    </span><span class="vg">stuA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="s2">&quot;Jin Jay&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&#39;s course:&quot;</span>
+<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">printcourse</span><span class="p">()</span>
+<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="s2">&quot;----------------&quot;</span>
+<span class="w">    </span><span class="vg">stuB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="s2">&quot;Snow&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Chinese&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Physics&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&#39;s course:&quot;</span>
+<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">printcourse</span><span class="p">()</span>
+</pre></div>
+
+
+<p>输出为：</p>
+<div class="codehilite"><pre><span class="vg">Jin</span><span class="w"> </span><span class="vg">Jay</span><span class="c1">&#39;s course:</span>
+<span class="vg">Math</span>
+<span class="vg">English</span>
+<span class="o">----------------</span>
+<span class="vg">Snow</span><span class="c1">&#39;s course:</span>
+<span class="vg">Math</span>
+<span class="vg">English</span>
+<span class="vg">Chinese</span>
+<span class="vg">Physics</span>
+</pre></div>
+
+
+<p>由于init()函数的第二个参数是个默认参数，默认参数在函数被调用的时候仅仅被评估一次，以后都会使用第一次评估的结果，因此实际上对象空间里面的course所指向的是list的地址，每次操作的实际上是list所指向的具体列表。故我们在将可变对象作为函数默认参数的时候要特别警惕，<strong>对可变对象的更改会直接影响原对象</strong>。解决这个问题，最好的方式是传入None作为默认参数，在创建对象的时候动态生成列表。</p>
+<div class="codehilite"><pre><span class="vg">def</span><span class="w"> </span><span class="vg">__init__</span><span class="p">(</span><span class="vg">self</span><span class="p">,</span><span class="w"> </span><span class="vg">name</span><span class="p">,</span><span class="w"> </span><span class="vg">course</span><span class="o">=</span><span class="vg">None</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="vg">self</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">name</span>
+<span class="w">    </span><span class="vg">if</span><span class="w"> </span><span class="vg">course</span><span class="w"> </span><span class="vg">is</span><span class="w"> </span><span class="nl">None:</span><span class="vg">course</span><span class="o">=</span><span class="p">[]</span>
+<span class="w">    </span><span class="vg">self</span><span class="o">.</span><span class="vg">course</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">course</span>
+</pre></div>
+
+
+<p>对可变对象，需要注意浅拷贝</p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="c1">&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">list1</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list1</span><span class="o">.</span><span class="vg">append</span><span class="p">(</span><span class="c1">&#39;d&#39;)</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list1</span>
+<span class="p">[</span><span class="c1">&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list2</span>
+<span class="p">[</span><span class="c1">&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]    # list2也发生变化</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">list1</span><span class="p">[</span><span class="o">:</span><span class="p">]</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">切片是浅拷贝</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list3</span><span class="o">.</span><span class="vg">remove</span><span class="p">(</span><span class="c1">&#39;a&#39;)</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list3</span>
+<span class="p">[</span><span class="c1">&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">list1</span>
+<span class="p">[</span><span class="c1">&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">id</span><span class="p">(</span><span class="vg">list3</span><span class="p">)</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="vg">list3</span><span class="err">指向新内存</span>
+<span class="nl">4536661200</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">id</span><span class="p">(</span><span class="vg">list1</span><span class="p">)</span>
+<span class="nl">4536477456</span><span class="w"></span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="vg">id</span><span class="p">(</span><span class="vg">list2</span><span class="p">)</span>
+<span class="nl">4536477456</span><span class="w"></span>
+</pre></div>
+
+
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>函数传参既不是传值也不是传引用</h3>
+<p>正确的叫法应该是传对象或者传对象的引用。函数参数在传递的过程中将整个对象传入，对可变对象的修改在函数外部以及内部都可见，调用者和被调用者之间共享这个对象；而对于不可变对象，由于并不能真正被修改，因此，修改该往往是通过生成一个新对象然后赋值来实现的。</p>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>慎用变长参数</h3>
+<p>Python支持可变长度的参数列表，可以通过在函数定义的时候使用<code>*args</code>和<code>**kwargs</code>这两个特殊语法来实现。</p>
+<ol>
+<li>使用<code>*args</code>来实现可变参数列表：<code>*args</code>勇于接受一个包装为元组形式的参数列表来传递非关键字参数，参数个数可以任意。</li>
+<li>使用<code>**kwargs</code>接受字典形式的关键字参数列表，其中字典的键值对分别表示不可变参数的参数名和值。</li>
+</ol>
+<h3 id="strrepr"><a name="user-content-strrepr" href="#strrepr" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>深入理解str()和repr()的区别</h3>
+<ol>
+<li>两者之间的目标不同：str()主要面向用户，其目的是可读性，返回形式为用户友好性和可读性都较强的字符串类型；而repr()面向的是Python解释器，或者说开发人员，其目的是准确性，其返回值表示Python解释器内部的含义，常作为编程人员的debug用途。</li>
+<li>在解释其中直接输入a时默认调用repr()函数，而print a则调用str()。</li>
+<li>repr()返回值一般可以用eval()函数来还原对象。</li>
+<li>这两个方法分别调用内建的<code>__str__()</code>和<code>__repr__()</code>方法。</li>
+</ol>
+<h3 id="staticmethodclassmethod"><a name="user-content-staticmethodclassmethod" href="#staticmethodclassmethod" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分清staticmethod和classmethod的适用场景</h3>
+<p>Python中的静态方法和类方法都依赖于装饰器来实现。其中静态方法的用法如下：</p>
+<div class="codehilite"><pre><span class="vg">class</span><span class="w"> </span><span class="vg">C</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="err">@</span><span class="vg">staticmethod</span>
+<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">f</span><span class="p">(</span><span class="vg">arg1</span><span class="p">,</span><span class="w"> </span><span class="vg">arg2</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span><span class="o">:</span>
+</pre></div>
+
+
+<p>类方法的用法如下：</p>
+<div class="codehilite"><pre><span class="vg">class</span><span class="w"> </span><span class="vg">C</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="err">@</span><span class="vg">classmethod</span>
+<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">f</span><span class="p">(</span><span class="vg">cls</span><span class="p">,</span><span class="w"> </span><span class="vg">arg1</span><span class="p">,</span><span class="w"> </span><span class="vg">arg2</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span><span class="o">:</span>
+</pre></div>
+
+
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>掌握字符串基本用法</h3>
+<p>编写多行字符串小技巧：</p>
+<div class="codehilite"><pre><span class="vg">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="c1">&#39;select * &#39;</span>
+<span class="w">    </span><span class="c1">&#39;from atable &#39;</span>
+<span class="w">    </span><span class="c1">&#39;where afield=&quot;value&quot;&#39;)</span>
+</pre></div>
+
+
+<p>判断一个变量是否是字符串，使用isinstance(s, basestring).</p>
+<ol>
+<li>性质判定<br />
+<code>is*()</code>、<code>*with()</code></li>
+<li>查找替换<br />
+    count()、find()、index()、sub()、rfind()、rindex()、rindex()<br />
+    推荐按使用in、not in 判断是否包含子串<br />
+    replace(old, new[,count]),如果指定count，就最多替换count次，否则全部替换。</li>
+<li>分切与连接<br />
+    partition(sep)、split([sep[, maxsplit]]):partition()返回三个元素的元组对象[left, sep, right];split()中maxsplit是分切的次数。</li>
+<li>变形<br />
+    lower()、upper()、capitalize()、swapcase()</li>
+<li>填空与删减<br />
+    strip([chars])、lstrip()、rstrip()<br />
+    center(width[, fillchar])、ljust(width[, fillchar])、rjust(width[, fillchar])、zfill(width)、expandtabs([tabsize])</li>
+</ol>
+<h3 id="sortsorted"><a name="user-content-sortsorted" href="#sortsorted" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>按需选择sort()或者sorted()</h3>
+<div class="codehilite"><pre><span class="vg">sorted</span><span class="p">(</span><span class="vg">iterable</span><span class="p">[,</span><span class="w"> </span><span class="vg">cmp</span><span class="p">[,</span><span class="w"> </span><span class="vg">key</span><span class="p">[,</span><span class="w"> </span><span class="vg">reverse</span><span class="p">]]])</span>
+<span class="vg">s</span><span class="o">.</span><span class="vg">sort</span><span class="p">([</span><span class="vg">cmp</span><span class="p">[,</span><span class="w"> </span><span class="vg">key</span><span class="p">[,</span><span class="w"> </span><span class="vg">reverse</span><span class="p">]]])</span>
+</pre></div>
+
+
+<ol>
+<li>cmp为用户定义的任何比较函数，函数的参数为两个可比较的元素，函数根据地一个参数与第二个参数的关系依次返回-1、0、1</li>
+<li>key是带一个参数的函数，用来为每个元素提取比较值</li>
+<li>reverse表示排序结果是否反转（默认从小到大）</li>
+</ol>
+<p>当排序对象时列表时，sorted()函数会返回一个排序后的列表，原有列表保持不变；而sort()函数会直接修改原有列表，函数返回为None。</p>
+<p>无论是sort()还是sorted()传入参数key比传入参数cmp效率更高。</p>
+<p>sorted()函数功能更强大，，使用它可以方便地对不同的数据结构进行排序：<br />
+<strong>对字典排序</strong></p>
+<div class="codehilite"><pre><span class="n">phonebook</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Linda&#39;</span><span class="p">:</span> <span class="s">&#39;7750&#39;</span><span class="p">,</span> <span class="s">&#39;Bob&#39;</span><span class="p">:</span> <span class="s">&#39;9345&#39;</span><span class="p">,</span> <span class="s">&#39;Carol&#39;</span><span class="p">:</span> <span class="s">&#39;5834&#39;</span><span class="p">}</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="n">sorted_pb</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">phonebook</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<p><strong>多维list排序</strong></p>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="n">gameresult</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;Bob&#39;</span><span class="p">,</span> <span class="mf">95.00</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Alan&#39;</span><span class="p">,</span> <span class="mf">86.0</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Mandy&#39;</span><span class="p">,</span> <span class="mf">82.5</span><span class="p">,</span><span class="s">&#39;A&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s">&#39;Bob&#39;</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="s">&#39;E&#39;</span><span class="p">]]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">gameresult</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<h3 id="copy"><a name="user-content-copy" href="#copy" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用copy模块深拷贝对象</h3>
+<p><strong>浅拷贝</strong>  构造一个新的复合对象并将从原对象中发现的引用插入该对象中。</p>
+<p><strong>深拷贝</strong> 也构造一个新的复合对象，但是遇到引用会继续递归拷贝其所指向的具体内容，使用copy模块的deepcopy()操作实现。深拷贝得到的对象与原对象是相互独立的。</p>
+<h3 id="configparser"><a name="user-content-configparser" href="#configparser" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>深入掌握ConfigParser</h3>
+<h4 id="getboolean"><a name="user-content-getboolean" href="#getboolean" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>getboolean()</h4>
+<p>getboolean()将0、no、false、off转义为False，对应的1、yes、true、on都被转义为True，其他值都会导致抛出ValueError异常。</p>
+<p>配置项的查找规则<br />
+1. 如果找不到节名，就抛出NoSectionError<br />
+2. 如果给定的配置项出现在get()方法的vars参数中，则返回vars参数中的值<br />
+3. 如果在指定的接种含有给定的值，则返回其值<br />
+4. 在配置文件中有[DEFAULT]节，当读取的配置项不在指定的节里时，ConfigParser会在[DEFAULT]节中查找<br />
+5. 如果在构造函数的defaults参数中有指定的配置项，则返回其值<br />
+6. 抛出NoOptionError</p>
+<div class="codehilite"><pre><span class="k">[DEFAULT]</span>
+<span class="na">conn_str</span> <span class="o">=</span> <span class="s">%(dbn)s://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s</span>
+<span class="na">dbn</span> <span class="o">=</span> <span class="s">mysql</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">root</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">localhost</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">3308</span>
+<span class="s"> [db1]</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">aaa</span>
+<span class="na">pw</span> <span class="o">=</span> <span class="s">ppp</span>
+<span class="na">db</span> <span class="o">=</span> <span class="s">example</span>
+<span class="s"> [db2]</span>
+<span class="na">host</span> <span class="o">=</span> <span class="s">192.168.0.110</span>
+<span class="na">pw</span> <span class="o">=</span> <span class="s">www</span>
+<span class="na">db</span> <span class="o">=</span> <span class="s">example</span>
+
+
+<span class="err">import</span> <span class="err">ConfigParser</span>
+<span class="na">conf</span> <span class="o">=</span> <span class="s">ConfigParser.ConfigParser()</span>
+<span class="err">conf.read(&#39;format.conf&#39;)</span>
+<span class="err">print</span> <span class="err">conf.get(&#39;db1&#39;,</span> <span class="err">&#39;conn_str&#39;)</span>
+<span class="err">print</span> <span class="err">conf.get(&#39;db2&#39;,</span> <span class="err">&#39;conn_str&#39;)</span>
+</pre></div>
+
+
+<h3 id="argparse"><a name="user-content-argparse" href="#argparse" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用argparse处理命令行参数</h3>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-o&#39;</span><span class="p">,</span> <span class="s">&#39;--outpu&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-v&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&#39;verbose&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store_true&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;bar&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">argparser</span><span class="o">.</span><span class="n">FileType</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">))</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_args</span><span class="p">([</span><span class="s">&#39;output.txt&#39;</span><span class="p">])</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;door&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+
+
+<h3 id="pandascsv"><a name="user-content-pandascsv" href="#pandascsv" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用pandas处理大型CSV文件</h3>
+<p>CSV(Comma Separated Values)逗号分隔型值的纯文本格式文件。</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pandas</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">()</span>
+<span class="c"># 分块处理</span>
+<span class="n">pandas</span><span class="o">.</span><span class="n">read_table</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="elementtreexml"><a name="user-content-elementtreexml" href="#elementtreexml" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>一般情况下使用ElementTree解析XML</h3>
+<p><strong>ElementTree的主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>主要的方法、属性</th>
+<th>方法说明和使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getroot()</td>
+<td>返回xml文档的根节点</td>
+</tr>
+<tr>
+<td>find() findall() findtext()</td>
+<td>从根节点开始搜索</td>
+</tr>
+<tr>
+<td>iter(tag=None)</td>
+<td>从根节点开始，根据传入的元素的tag返回所有的元素集合的迭代器</td>
+</tr>
+<tr>
+<td>iterfind()</td>
+<td>根据传入的tag名称或者path以迭代器的形式返回所有的子元素</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Element的主要方法</strong></p>
+<table>
+<thead>
+<tr>
+<th>主要的方法、属性</th>
+<th>方法说明和使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag</td>
+<td>字符串，用来表示元素所代表的名称</td>
+</tr>
+<tr>
+<td>text</td>
+<td>表示元素对应的具体值</td>
+</tr>
+<tr>
+<td>attrib</td>
+<td>用字典表示的元素的属性</td>
+</tr>
+<tr>
+<td>get(key, default=None)</td>
+<td>根据元素属性字典的key值获取对应的值，如果找不到对应的属性，则返回default</td>
+</tr>
+<tr>
+<td>iterms()</td>
+<td>将元素属性以（名称，值）的形式返回</td>
+</tr>
+<tr>
+<td>keys()</td>
+<td>返回元素属性的key值结合</td>
+</tr>
+<tr>
+<td>find() findall()</td>
+<td>查找</td>
+</tr>
+<tr>
+<td>list(elem)</td>
+<td>根据传入的元素返回其所有的子节点</td>
+</tr>
+</tbody>
+</table>
 <div class="toc">
 <ul>
 <li><a href="#pythonc">Python与C语言的不同之处</a><ul>
@@ -1115,9 +1402,24 @@ MathJax.Hub.Config({
 <li><a href="#format_1">format方式</a></li>
 </ul>
 </li>
+<li><a href="#_11">区别对待可变对象和不可变对象</a></li>
+<li><a href="#_12">函数传参既不是传值也不是传引用</a></li>
+<li><a href="#_13">慎用变长参数</a></li>
+<li><a href="#strrepr">深入理解str()和repr()的区别</a></li>
+<li><a href="#staticmethodclassmethod">分清staticmethod和classmethod的适用场景</a></li>
+<li><a href="#_14">掌握字符串基本用法</a></li>
+<li><a href="#sortsorted">按需选择sort()或者sorted()</a></li>
+<li><a href="#copy">使用copy模块深拷贝对象</a></li>
+<li><a href="#configparser">深入掌握ConfigParser</a><ul>
+<li><a href="#getboolean">getboolean()</a></li>
+</ul>
+</li>
+<li><a href="#argparse">使用argparse处理命令行参数</a></li>
+<li><a href="#pandascsv">使用pandas处理大型CSV文件</a></li>
+<li><a href="#elementtreexml">一般情况下使用ElementTree解析XML</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-11-27 22:08:40</p>
+			<p style="text-align: right; color: gray;"><br>2014-12-02 16:38:54</p>
 		</div>
 	</div>
 	<div id="side">

@@ -64,7 +64,7 @@ sys.modules[__name__] = _const()
 
 ### 警惕eval()的安全漏洞
 > eval is evil.
-**如果使用对象不是新人员，应该尽量避免使用eval，在需要使用eval的地方可用安全性更好的`ast.literal_eval`替代。**
+**如果使用对象不是信任源，应该尽量避免使用eval，在需要使用eval的地方可用安全性更好的`ast.literal_eval`替代。**
 
 ### 分清==与is的适用场景
 `x is y`当且仅当x和y是同一个对象的时候才返回True。  
@@ -74,7 +74,7 @@ sys.modules[__name__] = _const()
 **decode()** 解码  
 **encode()** 编码  
 
-    ### coding=utf-8
+    # coding=utf-8
 ### 构建合理的包层次来管理module
 包结构：
 
@@ -165,7 +165,239 @@ sys.modules[__name__] = _const()
     输出为：'X:1;Y:3'
 
 ### 区别对待可变对象和不可变对象
+Python中一切皆对象，每一个对象都一个唯一的标示符(id())、类型(type())以及值。对象根据其值能否修改该分为可变对象和不可变对象，其中**数字、字符串、元组**属于不可变对象；字典、列表、字节数组属于可变对象。因此，字符串中某个字符不可修改。
+
+```
+# encoding:utf-8
+class Student(object):
+    """test student"""
+    def __init__(self, name, course=[]):
+        """init"""
+        self.name = name
+        self.course = course
+    def addcourse(self, coursename):
+        self.course.append(coursename)
+    def printcourse(self):
+        for item in self.course:
+            print item
+
+if __name__ == '__main__':
+    stuA = Student("Jin Jay")
+    stuA.addcourse("Math")
+    stuA.addcourse("English")
+    print stuA.name + "'s course:"
+    stuA.printcourse()
+    print "----------------"
+    stuB = Student("Snow")
+    stuB.addcourse("Chinese")
+    stuB.addcourse("Physics")
+    print stuB.name + "'s course:"
+    stuB.printcourse()
+```
+
+输出为：
+
+    Jin Jay's course:
+    Math
+    English
+    ----------------
+    Snow's course:
+    Math
+    English
+    Chinese
+    Physics
+
+由于init()函数的第二个参数是个默认参数，默认参数在函数被调用的时候仅仅被评估一次，以后都会使用第一次评估的结果，因此实际上对象空间里面的course所指向的是list的地址，每次操作的实际上是list所指向的具体列表。故我们在将可变对象作为函数默认参数的时候要特别警惕，**对可变对象的更改会直接影响原对象**。解决这个问题，最好的方式是传入None作为默认参数，在创建对象的时候动态生成列表。
+
+    def __init__(self, name, course=None):
+        self.name = name
+        if course is None:course=[]
+        self.course = course
+
+对可变对象，需要注意浅拷贝
+
+    >>> list1 = ['a', 'b', 'c']
+    >>> list2 = list1
+    >>> list1.append('d')
+    >>> list1
+    ['a', 'b', 'c', 'd']
+    >>> list2
+    ['a', 'b', 'c', 'd']    # list2也发生变化
+    >>> list3 = list1[:]    # 切片是浅拷贝
+    >>> list3.remove('a')
+    >>> list3
+    ['b', 'c', 'd']
+    >>> list1
+    ['a', 'b', 'c', 'd']
+    >>> id(list3)           # list3指向新内存
+    4536661200
+    >>> id(list1)
+    4536477456
+    >>> id(list2)
+    4536477456
+
+### 函数传参既不是传值也不是传引用
+正确的叫法应该是传对象或者传对象的引用。函数参数在传递的过程中将整个对象传入，对可变对象的修改在函数外部以及内部都可见，调用者和被调用者之间共享这个对象；而对于不可变对象，由于并不能真正被修改，因此，修改该往往是通过生成一个新对象然后赋值来实现的。
+
+### 慎用变长参数
+Python支持可变长度的参数列表，可以通过在函数定义的时候使用`*args`和`**kwargs`这两个特殊语法来实现。
+
+1. 使用`*args`来实现可变参数列表：`*args`勇于接受一个包装为元组形式的参数列表来传递非关键字参数，参数个数可以任意。
+2. 使用`**kwargs`接受字典形式的关键字参数列表，其中字典的键值对分别表示不可变参数的参数名和值。
+
+### 深入理解str()和repr()的区别
+1. 两者之间的目标不同：str()主要面向用户，其目的是可读性，返回形式为用户友好性和可读性都较强的字符串类型；而repr()面向的是Python解释器，或者说开发人员，其目的是准确性，其返回值表示Python解释器内部的含义，常作为编程人员的debug用途。
+2. 在解释其中直接输入a时默认调用repr()函数，而print a则调用str()。
+3. repr()返回值一般可以用eval()函数来还原对象。
+4. 这两个方法分别调用内建的`__str__()`和`__repr__()`方法。
+
+### 分清staticmethod和classmethod的适用场景
+Python中的静态方法和类方法都依赖于装饰器来实现。其中静态方法的用法如下：
+
+    class C(object):
+        @staticmethod
+        def f(arg1, arg2, ...):
+
+类方法的用法如下：
+
+    class C(object):
+        @classmethod
+        def f(cls, arg1, arg2, ...):
+
+### 掌握字符串基本用法
+编写多行字符串小技巧：
+
+    s = ('select * '
+        'from atable '
+        'where afield="value"')
+
+判断一个变量是否是字符串，使用isinstance(s, basestring).
+
+1. 性质判定
+    `is*()`、`*with()`
+2. 查找替换
+    count()、find()、index()、sub()、rfind()、rindex()、rindex()
+    推荐按使用in、not in 判断是否包含子串
+    replace(old, new[,count]),如果指定count，就最多替换count次，否则全部替换。
+3. 分切与连接
+    partition(sep)、split([sep[, maxsplit]]):partition()返回三个元素的元组对象[left, sep, right];split()中maxsplit是分切的次数。
+4. 变形  
+    lower()、upper()、capitalize()、swapcase()
+5. 填空与删减
+    strip([chars])、lstrip()、rstrip()
+    center(width[, fillchar])、ljust(width[, fillchar])、rjust(width[, fillchar])、zfill(width)、expandtabs([tabsize])
+
+### 按需选择sort()或者sorted()
+
+    sorted(iterable[, cmp[, key[, reverse]]])
+    s.sort([cmp[, key[, reverse]]])
+
+1. cmp为用户定义的任何比较函数，函数的参数为两个可比较的元素，函数根据地一个参数与第二个参数的关系依次返回-1、0、1
+2. key是带一个参数的函数，用来为每个元素提取比较值
+3. reverse表示排序结果是否反转（默认从小到大）
+
+当排序对象时列表时，sorted()函数会返回一个排序后的列表，原有列表保持不变；而sort()函数会直接修改原有列表，函数返回为None。
+
+无论是sort()还是sorted()传入参数key比传入参数cmp效率更高。
+
+sorted()函数功能更强大，，使用它可以方便地对不同的数据结构进行排序：  
+**对字典排序**
+
+    phonebook = {'Linda': '7750', 'Bob': '9345', 'Carol': '5834'}
+    from operator import itemgetter
+    sorted_pb = sorted(phonebook.iteritems(), key=itemgetter(1))
+
+**多维list排序**
+
+    from operator import itemgetter
+    gameresult = [['Bob', 95.00, 'A'], ['Alan', 86.0, 'C'], ['Mandy', 82.5,'A'], ['Bob', 86, 'E']]
+    sorted(gameresult, key=itemgetter(2, 1))
+
+### 使用copy模块深拷贝对象
+**浅拷贝**  构造一个新的复合对象并将从原对象中发现的引用插入该对象中。
+
+**深拷贝** 也构造一个新的复合对象，但是遇到引用会继续递归拷贝其所指向的具体内容，使用copy模块的deepcopy()操作实现。深拷贝得到的对象与原对象是相互独立的。
+
+### 深入掌握ConfigParser
+#### getboolean()
+getboolean()将0、no、false、off转义为False，对应的1、yes、true、on都被转义为True，其他值都会导致抛出ValueError异常。
+
+配置项的查找规则
+1. 如果找不到节名，就抛出NoSectionError
+2. 如果给定的配置项出现在get()方法的vars参数中，则返回vars参数中的值
+3. 如果在指定的接种含有给定的值，则返回其值
+4. 在配置文件中有[DEFAULT]节，当读取的配置项不在指定的节里时，ConfigParser会在[DEFAULT]节中查找
+5. 如果在构造函数的defaults参数中有指定的配置项，则返回其值
+6. 抛出NoOptionError
+
+    [DEFAULT]
+    conn_str = %(dbn)s://%(user)s:%(pw)s@%(host)s:%(port)s/%(db)s
+    dbn = mysql
+    user = root
+    host = localhost
+    port = 3308
+     [db1]
+    user = aaa
+    pw = ppp
+    db = example
+     [db2]
+    host = 192.168.0.110
+    pw = www
+    db = example
+
+
+    import ConfigParser
+    conf = ConfigParser.ConfigParser()
+    conf.read('format.conf')
+    print conf.get('db1', 'conn_str')
+    print conf.get('db2', 'conn_str')
+
+### 使用argparse处理命令行参数
+
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-o', '--outpu')
+    parser.add_argument('-v', dest='verbose', action='store_true')
+    args = parser.parse_args()
+    parser.add_argument('bar', type=argparser.FileType('w'))
+    parser.add_args(['output.txt'])
+    parser.add_argument('door', type=int, choices=range(1, 4))
+
+### 使用pandas处理大型CSV文件
+CSV(Comma Separated Values)逗号分隔型值的纯文本格式文件。
+
+    import pandas
+    pandas.read_csv()
+    # 分块处理
+    pandas.read_table()
+
+### 一般情况下使用ElementTree解析XML
+
+**ElementTree的主要方法**
+
+主要的方法、属性 | 方法说明和使用
+--------------|------------
+getroot() | 返回xml文档的根节点
+find() findall() findtext() | 从根节点开始搜索
+iter(tag=None) | 从根节点开始，根据传入的元素的tag返回所有的元素集合的迭代器
+iterfind() | 根据传入的tag名称或者path以迭代器的形式返回所有的子元素
+
+**Element的主要方法**
+
+主要的方法、属性 | 方法说明和使用
+--------------|------------
+tag | 字符串，用来表示元素所代表的名称
+text | 表示元素对应的具体值
+attrib | 用字典表示的元素的属性
+get(key, default=None) | 根据元素属性字典的key值获取对应的值，如果找不到对应的属性，则返回default
+iterms() | 将元素属性以（名称，值）的形式返回
+keys() | 返回元素属性的key值结合
+find() findall() | 查找
+list(elem) | 根据传入的元素返回其所有的子节点
+
 
 
 
 [TOC]
+
+
