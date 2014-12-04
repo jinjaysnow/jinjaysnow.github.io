@@ -395,6 +395,34 @@ keys() | 返回元素属性的key值结合
 find() findall() | 查找
 list(elem) | 根据传入的元素返回其所有的子节点
 
+### 使用JSON序列化
+
+    try: import simplejson as json
+    except ImportError: import json
+
+### 使用traceback获取栈信息
+
+1. traceback.print\_exception(type, value, traceback[, limit[, file]])
+    根据limit的设置打印栈信息，file为None的情况下定位到sysstderr，否则则写入文件；其中type、value、traceback这三个参数对应的值可以从sys.exe\_info()中获取
+2. tracebreak.print\_exc([limit[, file]])
+    打印三部分信息：错误类型、错误对应的值、具体的trace信息
+3. traceback.format\_exc([limit])
+    与print\_exec类似，区别在与返回值为字符串
+4. traceback.extract\__stack([file[, limit]])
+    从当前栈帧中提取trace信息
+
+### 使用logging记录日志信息
+日志级别，使用`Logger.setLevel(level)`来设置
+
+Level | 使用情形
+------|-------
+DEBUG | 详细的信息，在追踪问题的时候使用
+INFO | 正常的信息
+WARNING | 一些不可预见的问题发生，或者将要发生，如磁盘空间低等，但不影响程序的运行
+ERROR | 由于某些严重的问题，程序中的一些功能受到影响
+CRITICAL | 严重的错误，或者程序本身不能够继续运行
+
+
 
 
 
