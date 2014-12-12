@@ -612,6 +612,23 @@ property是用来实现属性可管理性的built-in数据类型，其实只是�
         def x(self):
             del self._x
 
+### 使用中缀语法
+
+    pip install pipe
+
+一个小题：
+> 计算小于4 000 000的斐波那契数中的偶数之和
+
+    from pipe import *
+    def fib():
+        a, b = 0, 1
+        while True:
+            yield a
+            a, b = b, a + b
+    fib() | where(lambda x: x%2 == 0) | take_while(lambda x: x < 4000000) | add
+
+
+
 
 
 
