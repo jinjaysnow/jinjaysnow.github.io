@@ -1689,6 +1689,27 @@ MathJax.Hub.Config({
 <h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>对象的管理与垃圾回收</h3>
 <p>Python使用引用计数器的方法来管理内存中的对象，即针对每一个对象维护一个引用计数值来表示该对象当前有多少个引用。当其他对象引用该对象时，其引用对象会增加1，而删除一个对当前对象的引用，其引用计数会减1。只有当引用计数的值为0的时候该对象才会被垃圾回收器回收，因为他表示这个对象不再被其他对象引用，是个不可达对象。引用计数法最明显的缺点是无法解决循环引用的问题，即两个对象相互引用。</p>
 <p>使用gc模块触发垃圾回收：一种是通过显示的调用gc.collect()进行垃圾回收；一种是在创建新的对象为其分配内存的时候，检查threshold阈值，当对象的数量超过threshold的时候便自动进行垃圾回收。默认情况下阈值设为(700, 10, 10)。</p>
+<h3 id="paster"><a name="user-content-paster" href="#paster" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用paster创建包</h3>
+<p>Python自带的有一个distutils标准库：<br />
+1. 支持包的构建、安装、发布<br />
+2. 支持PyPI的登记、上传<br />
+3. 定义了扩展指令的协议，包括distutils.cmd.Command基类、distutils.commands和distutils.key_words等入口点，为setuptools和pip等提供了基础设施</p>
+<p>使用distutils，按习惯需要编写一个setup.py文件，作为后续操作的入口点</p>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;***&#39;</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="s">&#39;1.0&#39;</span><span class="p">,</span>
+      <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;***&#39;</span><span class="p">],</span>
+      <span class="p">)</span>
+</pre></div>
+
+
+<p>编写好setup.py文件以后，就可以使用<code>python setup.py install</code>把它安装到系统中了。</p>
+<p>使用pastescript自动穿件项目的setup.py文件及相关的配置、目录等。</p>
+<div class="codehilite"><pre><span class="vg">pip</span><span class="w"> </span><span class="vg">install</span><span class="w"> </span><span class="vg">pastescript</span>
+</pre></div>
+
+
+<p>安装以后可以使用paster命令</p>
 <div class="toc">
 <ul>
 <li><a href="#pythonc">Python与C语言的不同之处</a><ul>
@@ -1753,9 +1774,10 @@ MathJax.Hub.Config({
 <li><a href="#greenlet">基于生成器的协程及greenlet</a></li>
 <li><a href="#gil">理解GIL的局限性</a></li>
 <li><a href="#_20">对象的管理与垃圾回收</a></li>
+<li><a href="#paster">使用paster创建包</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2014-12-29 16:13:20</p>
+			<p style="text-align: right; color: gray;"><br>2014-12-31 10:27:35</p>
 		</div>
 	</div>
 	<div id="side">
