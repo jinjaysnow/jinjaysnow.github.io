@@ -25,9 +25,7 @@ function updatePos () {
 		zhChildNodes[i].style.marginTop = String(mTop + "px");
 	};
 }
-function showYue () {
-	alert("感谢小月月的更正");
-}
+
 // 文档加载结束进行一次界面布局
 updatePos();
 // 在MathJax加载完成后再次进行界面的布局
