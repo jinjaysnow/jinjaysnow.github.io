@@ -1,7 +1,7 @@
 // 获取元素子元素
 var getChildNodes=function(ele){
-   var childArr=ele.children || ele.childNodes,
-        childArrTem=new Array();  //  临时数组，用来存储符合条件的节点
+    var childArr=ele.children || ele.childNodes,
+    childArrTem=new Array();  //  临时数组，用来存储符合条件的节点
     for(var i=0,len=childArr.length;i<len;i++){
         if(childArr[i].nodeType==1){
             childArrTem.push(childArr[i]);
