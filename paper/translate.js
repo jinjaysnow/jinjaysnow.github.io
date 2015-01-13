@@ -26,4 +26,5 @@ function updatePos () {
 	};
 }
 
+updatePos();
 window.onload = function(){updatePos();};
