@@ -20,7 +20,7 @@ body {
 #zh{
   width: 46%;
   float: right;
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   border: 1px solid #ddd;
 }
 

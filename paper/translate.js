@@ -25,6 +25,9 @@ function updatePos () {
 		zhChildNodes[i].style.marginTop = String(mTop + "px");
 	};
 }
-
+// 文档加载结束进行一次界面布局
 updatePos();
-window.onload = function(){updatePos();};
+// 在MathJax加载完成后再次进行界面的布局
+MathJax.Hub.Queue(function () {
+	updatePos();
+});
