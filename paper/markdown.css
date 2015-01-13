@@ -1,12 +1,17 @@
 /*highlight*/
-span:hover, .highlight{
+span:hover,{
   cursor: pointer;
   background-color: #b3d4fd;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
 }
-
+.highlight {
+  background-color: red;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
 body {
   width: 98%;
   border: 1px solid #ddd;

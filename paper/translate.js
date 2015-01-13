@@ -15,7 +15,7 @@ function updatePos () {
 	// 获取英文与中文文档元素
 	var en_div = document.getElementById("en");
 	var zh_div = document.getElementById("zh");
-	// 子元素节点集合
+	// 子元素节点 集合
 	enChildNodes = getChildNodes(en_div);
 	zhChildNodes = getChildNodes(zh_div);
 
@@ -25,9 +25,13 @@ function updatePos () {
 		zhChildNodes[i].style.marginTop = String(mTop + "px");
 	};
 }
+function showYue () {
+	alert("感谢小月月的更正");
+}
 // 文档加载结束进行一次界面布局
 updatePos();
 // 在MathJax加载完成后再次进行界面的布局
 MathJax.Hub.Queue(function () {
 	updatePos();
 });
+
