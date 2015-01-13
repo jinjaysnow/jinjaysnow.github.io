@@ -1,5 +1,5 @@
 /*highlight*/
-span:hover,{
+span:hover{
   cursor: pointer;
   background-color: #b3d4fd;
   border-radius: 5px;
