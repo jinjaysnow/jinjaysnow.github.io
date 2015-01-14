@@ -334,7 +334,7 @@ MathJax.Hub.Config({
 <li>忽略在分离归一化过程中的边缘像素的抑制作用</li>
 </ol>
 <p><span>在下一部分，我们会说明可视度模型的细节，包括对这些改变的解释。</span></p>
-<p><img alt="figure4" src="figure4.png" /><br />
+<p><img alt="figure4" src="figure4_zh.png" /><br />
 <small>图4 <span>可视度模型示意图。</span><span>融合图像（右图）的可视度通过比较融合图像和在融合前的背景图像（左图）的模拟神经反应来计算的。</span></small></p>
 <h3 id="31"><a name="user-content-31" href="#31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.1 色彩转换</h3>
 <p><span>在可视度模型的第一阶段，输入图像从RGB空间转换为CIE L*a*b*色彩空间。</span><span>尽管Laparra等人【12】使用YUV色彩空间，但是由于L*a*b*中的L*通道比YUV中的Y通道视觉上相比更加线性可识别，所以L*a*b*更好一些。</span><span>另外，因为等亮度颜色对比的灵敏度相对于亮度对比的灵敏度要小，我们只需要使用L*通道就能够计算可视度【17】。</span><span>由于我们假设混合方法的使用是在实时应用中，所以我们给予效率更多的考虑，牺牲了一部分可能的小的颜色通道的作用。</span></p>
