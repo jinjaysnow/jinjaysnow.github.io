@@ -344,7 +344,7 @@ MathJax.Hub.Config({
 <p>$$c_i = S_iw_i \quad \quad \quad (1)$$</p>
 <p><span>其中，$c_i$和$w_i$分别表示在线性增益之后与之前的一个小波变换的第i个滤波器因子。</span><span>$S_i$是用于模拟CSF的第i个滤波器的线性增益。</span><span>在Laparra等人【12】的工作中，$S_i$通过以下函数建模得到：</span> </p>
 <p>$$S_i = S_{(e,o)} = A_o exp(- \frac{(4-e)\theta}{s^\theta}) \quad \quad \quad (2)$$</p>
-<p><span>其中，$e$和$o$分别表示尺度（$e$可以取值为1,2,3,4,从细致到粗糙）和方向（$o$=1,2,3,分别代表水平，对角和垂直方向）。$A_o$是在$o$方向最大的增益，$s$控制带宽，$\theta$决定衰减的锐度。</span><span>这里，参数$A_o, s, \theta$由Laparra等人【12】的研究中给出。</span><span>这些参数的值见表1。</span></p>
+<p><span>其中，$e$和$o$分别表示尺度（$e$可以取值为1,2,3,4,从细致到粗糙）和方向（$o$=1,2,3,分别代表水平，对角和垂直方向）。$A_o$是在$o$方向最大的增益，$s$控制带宽，$\theta$决定衰减的锐度。</span><span>这里，参数$A_o, s, \theta$由Laparra等人【12】的研究给出。</span><span>这些参数的值见表1。</span></p>
 <h3 id="33"><a name="user-content-33" href="#33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.3 对比度掩蔽效应的模拟</h3>
 <p><span>系数因子接着被分离归一化来模拟对比度掩蔽效应。</span><span>依据Laparra等人【12】的研究，我们使用下面的方程来获得归一化的神经通道i: </span></p>
 <p>$$r_i = sign(c_i)\frac{|c_i|^\gamma}{\beta ^\gamma_i + \sum^n_{k=1} H_{ik} |c_k|^\gamma} \quad \quad \quad (3)$$</p>
