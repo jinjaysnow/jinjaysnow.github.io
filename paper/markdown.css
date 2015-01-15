@@ -1,13 +1,13 @@
 /*highlight*/
-span:hover{
-  cursor: pointer;
-  background-color: #b3d4fd;
+.highlight {
+  background-color: yellow;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
 }
-.highlight {
-  background-color: yellow;
+.focus{
+  cursor: pointer;
+  background-color: #b3d4fd;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
