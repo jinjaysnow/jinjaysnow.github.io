@@ -28,11 +28,11 @@ function updatePos () {
 
 // 文档加载结束进行一次界面布局
 updatePos();
+// 网速较慢时，需要在图片等资源加载完成后再次进行界面布局
+// window.onload(function(){
+// 	updatePos();
+// });
 // 在MathJax加载完成后再次进行界面的布局
 MathJax.Hub.Queue(function () {
-	updatePos();
-});
-// 网速较慢时，需要在图片等资源加载完成后再次进行界面布局
-window.onload(function(){
 	updatePos();
 });
