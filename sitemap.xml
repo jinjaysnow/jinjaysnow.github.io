@@ -43,6 +43,12 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
+		<loc>http://jinjaysnow.github.io/blog/2015-01/iOS隐藏状态栏.html</loc>
+		<lastmod>2015-01-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-10/linear%20algebra.html</loc>
 		<lastmod>2014-11-17</lastmod>
 		<changefreq>monthly</changefreq>
@@ -80,7 +86,7 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-05/Scheme语言学习.html</loc>
-		<lastmod>2014-11-17</lastmod>
+		<lastmod>2014-12-04</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
@@ -122,7 +128,7 @@
 	</url>
 		<url>
 		<loc>http://jinjaysnow.github.io/blog/2014-11/改善Python程序.html</loc>
-		<lastmod>2014-11-27</lastmod>
+		<lastmod>2014-12-31</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
