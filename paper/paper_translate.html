@@ -33,261 +33,6 @@ MathJax.Hub.Config({
 </head>
 <body>
 
-<div id="zh" class="markdown-body"><h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>用于实时应用基于可视度的融合方法</h1>
-<pre><code>TaiKi Fukiage   TakeShi Oishi   KatSushi Ikeuchi  东京大学
-                    靳杰  译                   华中科技大学
-</code></pre>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>摘要</h2>
-<p><span>在实时应用中，很多场合里虚拟物体半透明地呈现在背景之上。</span><span>在这些情况下，我们经常想要以恒定的可视度展示物体。</span><span>然而，使用传统的阿尔法融合系统，一个混合后的物体的可视度会跟随背景的颜色、纹理和结构的变化而变化。</span><span>为了克服这个难题，我们提出了一个基于可视度主观标准的融合图像框架。</span><span>我们的方法采用了一个能够局部自适应优化的混合参数来使得每一个位置的可视度满足目标级别。</span><span class="highlight">为了预测一个被任意参数融合后的物体的可视度，我们使用了用于图像质量评价的误差可视度标准的其中一个。</span><span>在这个研究中，我们论证了我们采用的标准能够线性预测在多种纹理图像上的融合图案的可视度，并且展示了提出的能够在实际情况下很好地增强现实的融合方法。</span></p>
-<p><strong>关键字：</strong> <span>可视度，人工视觉系统模型，混合系统</span> </p>
-<p><strong>索引词：</strong> I.5.1 [Infomation interfaces and presentation]: Multimedia Infomation Systems—Artificial , augmented, and virtual realities; H.1.2 [Models and Principles]: User/Machine Systems—Human factors</p>
-<h2 id="1"><a name="user-content-1" href="#1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 简介</h2>
-<p><span>在大多数的交互应用中，人们往往需要将一个物体半透明地渲染在背景场景图像上。</span><span>比如，在移动增强现实系统中，由于现实世界中的障碍物通常都是交织在一起的,用100%的透明度渲染虚拟信息是不可取的。</span><span>出于X射线可视化的目的，虚拟物体也可能被完全透明地渲染【6,26】。</span><span>在光学透视式系统或结构化增强现实系统中呈现虚拟物体时，虚拟信息则常常被半透明地感知。</span></p>
-<p><span>在这些条件下，人们常常想要被渲染的物体的可视度保持不变。</span><span>然而，目前还没有一个确立的基于主观可视度测量方法融合两张图像的标准。</span><span>在传统的阿尔法融合方法中【20】，我们可以根据一个阿尔法值改变一个图像相对另一个图像的透明度。</span><span>不过，阿尔法值的大小与一个图像相对另一个图像的可视度并无必要的联系。</span><span>比如，在将一个虚拟物体与背景图像融合的情况下，虚拟物体的可视度很大程度上取决于背景场景的像素密度和纹理以及虚拟物体本身（见图1）。</span></p>
-<p><img alt="figure1" src="figure1.png" /><br />
-<small><span>图1 </span><span>一个虚拟物体与两个不同的背景图像融合，右图是基于可视度的融合方法，左图是传统的使用恒定阿尔法值（=0.4）的阿尔法融合方法。</span><span>使用传统的阿尔法融合，虚拟物体的可视度很大程度取决于背景场景的像素密度和纹理。</span><span>我们提出的融合方法通过采用基于主观可视度测量的局部自适应优化融合参数克服了这个难题。</span></small></p>
-<p><span>同样地，在光学透视式系统中，任何虚拟信息的可视度必定取决于背景场景的纹理和结构。</span><span> 这会给我们在不考虑背景场景时保持一个物体的可视度恒定带来诸多不便。</span></p>
-<p><span class="highlight">解决这个问题的一个可能的方法是预测可视度，并优化一个融合参数。</span><span class="highlight">在这个研究中，我们从众多的误差可视度模型中采用了其中一个模型来预测可视度，这些误差可视度模型都是为了进行图像质量评价而建立的【12,15】。</span><span>在这个误差可视度模型中，图像失真的可视度是通过比较对原始图像和失真图像的模拟神经反应来预测的。</span><span>神经反应的模拟基于基本视觉区域的可计算模型（记为V1）。</span><span>在我们的例子中，输入图像是由一个融合的图像和一个融合后的图像组成；融合后的图像的可视度是通过比较这两个输入图像的模拟反应结果预测得出的。</span><span>这个方法的一个明显的好处就是我们可以除去背景场景的影响来评价一个融合物体的可视度。</span></p>
-<p><span>在本文的研究中，我们提出了两种基于可视度模型的融合方法。</span><span class="highlight">一个是基于可视度的融合方法，它采用局部优化一个融合参数来使融合物体的可视度达到任意的目标级别。</span><span>另一个是对光学透视式系统进行可视度增强的融合方法，它能够使得虚拟物体的可视度局部自适应地增强。</span><span>使用提出的方法，我们可以将一个物体以恒定的可视度融合在不同的背景场景中（图1的右图）。</span><span>另外，我们还可以在同一个场景的每一个区域保持一致的可视度。</span></p>
-<p><span>本文的其他部分安排如下。</span><span>在下一章中，我们简单介绍关于AR/MR（增强现实/混合现实）的识别研究和关于图像质量标准误差可见度的相关研究。</span><span>第三章介绍我们采用的可视度模型。</span><span>然后，在第四章和第五章中，我们提出两种融合方法。</span><span>接着，第六章对我们的融合方法进行展示和分析。</span><span>最后，我们以总结和结论来结束本篇论文。</span></p>
-<h2 id="2"><a name="user-content-2" href="#2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2 相关工作</h2>
-<p><span>在AR/MR可视化系统中，已经有一些改善渲染在背景场景上虚拟信息的识别性的研究工作了。</span><span>尽管这些研究并不采取将虚拟信息半透明化渲染的方式，但是他们考虑的问题与我们的工作十分相似。</span></p>
-<p><span>举例来说，J.L.Heeger等人【7】研究了背景颜色和纹理对渲染在真实场景上的文字的识别性的影响。</span><span>他们发现背景颜色和纹理能够显著地影响用户的表现。</span><span>他们也设计了一个通过基于背景的平均颜色来设置文本的颜色的方法来增强可识别性。</span><span>不过，他们的方法没有基于任何能够预测在不同纹理和颜色背景下的可识别性的定量模型。</span></p>
-<p><span>有一些研究人员使用显著图模型来保持在AR/MR系统X射线可视化中关键区域的可识别性。</span><span>显著图模型是一个能够预测一个区域能够引起多大的影响的可计算模型【10】。</span><span class="highlight">而为了在真实的有遮蔽的物体身后渲染一个被遮蔽了的场景，同时保持遮蔽物体重要区域的可识别性，J.Rekinmote.Squama【22】基于显著图从遮蔽域提取显著区域并将它们覆盖在原来的遮蔽场景上。</span><span>与此相反，D.Kalkofen等人【11】使用显著图来自适应增强从真实的有遮蔽的表面观测到的遮蔽信息。</span><span class="highlight">然而，显著图只是体现了单个图像的每一个区域相对于周围区域的显著度，而没有提供在同一位置一个半透明物体相对于背景场景的可视度等级。</span></p>
-<p><span>为了正确地预测一个半透明物体在任意背景上的可视度等级，我们采用了用于图像质量评价的误差可视度标准的框架。</span><span>这些误差可视度标准通常都会把认为对预测可视度有重要因素的人类视觉系统的基本特点加入考虑。</span><span class="highlight">这一章的下一部分，我们会介绍人类视觉系统的基本特点，并且回顾一些采用了人类视觉系统模型来设计用于图像质量评价的误差可视度标准的研究。</span></p>
-<h3 id="21"><a name="user-content-21" href="#21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1 人类视觉系统的基本特点</h3>
-<p><span class="highlight">可视度通常从两个关键点来理解，对比敏感度和对比度掩蔽。</span><span>这里，我们分别介绍这两个特点及它们的重要机制。</span></p>
-<h4 id="211"><a name="user-content-211" href="#211" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1.1 对比敏感度</h4>
-<p><span class="highlight">对可视度有影响的关键特点之一是能够被观测的伴随着不同空间频率刺激而变化的对比敏感度（也即对比敏感度函数，CSF）。</span><span>如图2所示，人类视觉系统的对比灵敏度具有带通特性，它的极值在2-5周期每度【2,3】。</span><span>有来自心理物理学和生物学研究的证据表明了几种不同的机制（每个机制都相互独立）和一个更加有限的空间频率带宽构成了CSF的基础【2,9】。</span><span>每一个空间频率检测机制也与一些特定的方向范围对应。</span><span>有理由相信这些机制已经在V1模型中的神经元上实施过了。</span><span>每一个神经元在视觉刺激于它最合适的视网膜位置上时会以它适合的空间频率和方向作出最积极的反应。</span><span>如此一来，可以说在视觉处理的早期阶段，视觉刺激是被几种不同的神经通道进行线性分解的，每一个通道都对应于特定的空间频率范围、方向范围和一个特定的视觉区域的位置。</span></p>
-<p><img alt="figure2" src="figure2.png" /><br />
-<small><span>图2 </span><span>对比灵敏度函数。</span><span>（左图）一个视觉刺激的对比灵敏度取决于它的空间频率。</span><span>（右图）对比灵敏度函数曲线（实线）和与其对应的几个不同的空间频率通道（虚线）示意图。</span> </small></p>
-<h4 id="212"><a name="user-content-212" href="#212" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1.2 对比度掩蔽</h4>
-<p><span>一个视觉刺激的可视度也取决于它的背景的对比度（这是一种被称为对比度掩蔽的现象【13】）。</span><span>在图3中，一个正弦型的目标以相同的对比度嵌入在不同的背景上。</span><span class="highlight">在最左边的图像中，目标呈现在一个平坦的背景上；而中间的图像，相同的目标加在一个有相似正弦型的背景上。</span><span>这里，两幅图像相对于背景增强或减弱的物理强度也是一样的。</span><span>然而，目标的可视度相比之下中间的图像更低些。</span><span class="highlight">当背景图案的方向和目标的方向不一样时，尽管影响相对较小，但是这种对比度掩蔽的情况也会发生（见最右侧图像）【5】。</span></p>
-<p><img alt="figure3" src="figure3.png" /><br />
-<small><span>图3 </span><span>对比度掩蔽效应的例子。</span><span>当正弦型目标是嵌入在有纹理的背景上时，目标的可视度减少了，尽管物理强度增强或减弱的程度一直都是保持着恒定。</span></small></p>
-<p><span class="highlight">对比度掩蔽效应能够用V1模型中的一个非线性对比度增益控制过程来进行解释。</span><span>目前，最有影响的增益控制机制模型是分离归一化模型【8】。</span><span>根据分离归一化模型，任何神经元的一个反应都是可以通过相同位置的神经元（包括那些反应已经被归一化了的神经元）的反应的加权总和来进行分离归一化。</span><span>因为当另一个图案加入相同位置时对目标刺激的反应（或与目标刺激相关的反应增益）会被归一化过程减弱，目标的感知对比度也会随之减弱。</span><span>这个模型可以印证大量的数据，包括生理学上测量了的神经反应数据和心理物理学上测量了的对比度掩蔽数据【8,25,28】。</span></p>
-<h3 id="22-v1"><a name="user-content-22-v1" href="#22-v1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.2 基于V1模型的误差可视度标准</h3>
-<p><span>误差可视度标准已经在上一章中描述的能够模拟基本特征的V1可计算模型（V1模型）里建立了。</span><span>在多数的误差可视度标准中，两个输入图像（一个原始图像和一个失真了的图像）在V1模型中进行处理，而且通过比较来自V1模型的每一个输出可以获得输入图像之间的明显差异的大量测量值。</span><span>多数的V1模型由两个组件构成，分别代表在上一节中描述的两个基本特点的神经元机制。</span></p>
-<p><span class="highlight">在V1模型的第一阶段，输入图像在每一个位置被线性地分解为一组子频带，这些子频带由若干个频带和方向带组成。</span><span>这些子频带的系数代表神经通道的反应，每一个对应于特定的频带，方向和局部位置。</span><span>这些系数接着乘上线性增益来模拟对比灵敏度函数。</span><span>在第二阶段，这些系数会被非线性的处理来模拟对比度掩蔽效应。</span></p>
-<p><span>为了模拟在V1模型中的线性分解过程，S.J.Daly【4】使用了皮层变换【27】，这个方法能够将图像在傅里叶域中分解为4个不同的频率等级和6个不同的方向。</span><span>尽管皮层变换的滤波器被严格地设计为模拟V1模型中神经通道的选择性，但是这个变换的计算成本相对来说是过高了。</span><span>与皮层变换不同，A.P.Bradley【1】使用了小波变换进行线性分解来将误差可视度标准集成到一个基于小波变换的图像压缩机制中（例【16】）。</span><span>小波变换很适合在V1模型中用于模拟线性分解过程，因为它能够很有效地将一个图像分解为多个在V1模型中有相似神经通道选择性的子频带。</span></p>
-<p><span class="highlight">然而，A.P.Bradley和S.J.Daly【1,4】的误差可视度标准只是演示了在每一个位置进行图像失真的检测的可能性，而并不能预测可见失真的感知幅度。</span><span class="highlight">J.Lubin【14】通过使用恰好可察觉的对比度差异作为失真测量的一个单元打破了这个限制。</span><span>另一方面，V.Laparra和P.C.Teo等人【12,25】在使用分离归一化模型进行V1模型中模拟神经反应的问题上明显地站在了同一战线上，并且他们使用了在这些模拟反应中的一个基本差异作为可见失真的感知大小。</span><span>V.Laparra等人【12】进一步地展示了他们的误差可视度标准能够很好地预测心理物理学上几种类型的失真的可测量的可视度。</span></p>
-<h2 id="3"><a name="user-content-3" href="#3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3 可视度模型</h2>
-<p><span>本文提出的基于可视度融合方法根据可视度模型预测的融合物体的可视度优化了一个融合参数。</span><span>我们使用的可视度模型基于V.Laparra等人【12】提出的误差可视度模型。</span></p>
-<p><span>图4是可视度模型的示意图。</span><span>在这个可视度模型中，两个输入图像，一个是融合前的、另一个是融合后的，会首先被转换为更合适于模拟视觉系统行为的颜色空间。</span><span>下一步，转换后的图像在V1模型视觉机制的可计算模型中被处理，（V1模型）和几个神经通道的模拟神经反应在每一个图像的每一个位置的数据都可以获得。</span><span>接着，在两个图像间的神经反应的差异通过神经通道进行合并。</span><span>最后，合并了的差异被用来作为那个位置的可见度主观总和的测量值。</span></p>
-<p><span>尽管本文使用的可视度模型与Laparra等人【12】使用的模型中大多数的数学方程都是相同的，但是一些更改带来更好的结果的同时降低了计算消耗。</span><span>更改如下：</span></p>
-<ol>
-<li>使用CIE L*a*b* 色彩空间代替YUV色彩空间</li>
-<li>在对比度之外加入局部亮度的因素</li>
-<li>忽略彩色对比度</li>
-<li>忽略在分离归一化过程中的边缘像素的抑制作用</li>
-</ol>
-<p><span>在下一部分，我们会说明可视度模型的细节，包括对这些改变的解释。</span></p>
-<p><img alt="figure4" src="figure4_zh.png" /><br />
-<small><span>图4 </span><span>可视度模型示意图。</span><span>融合图像（右图）的可视度通过比较融合图像和在融合前的背景图像（左图）的模拟神经反应来计算的。</span></small></p>
-<h3 id="31"><a name="user-content-31" href="#31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.1 色彩转换</h3>
-<p><span>在可视度模型的第一阶段，输入图像从RGB空间转换为CIE L*a*b*色彩空间。</span><span>尽管Laparra等人【12】使用YUV色彩空间，但是由于L*a*b*中的L*通道比YUV中的Y通道视觉上相比更加线性可识别，所以L*a*b*更好一些。</span><span>另外，因为等亮度颜色对比的灵敏度相对于亮度对比的灵敏度要小，我们只需要使用L*通道就能够计算可视度【17】。</span><span>由于我们假设混合方法的使用是在实时应用中，所以我们给予效率更多的考虑，牺牲了一部分可能的小的颜色通道的作用。</span></p>
-<h3 id="32"><a name="user-content-32" href="#32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.2 对比敏感度的模拟</h3>
-<p><span>输入图像接着被线性地分解为几个方向频率域来模拟神经通道的行为；每一个都对应为一个特定的空间频率范围和方向范围。</span><span>在Laparra等人【12】的研究中，分离正交镜像滤波（QMF）小波变换（由E.Simoncelli等人提出【24】）用于图像分解。</span><span>QMF小波滤波器将图像分解为四个频域和三个方向域（水平，垂直和对角），产生一个对应各个位置的有12个系数的向量w。</span><span>尽管两个对角方向（也即45°和-45°）在QMF小波变换中没有区分开来，但是因为计算速度十分快速，所以这个变换十分适合实时应用。</span></p>
-<p><span>在变换之后，<strong>w</strong>中12个系数的每一个都与线性增益<strong><em>S</em></strong>按如下相乘：</span> </p>
-<p>$$c_i = S_iw_i \quad \quad \quad (1)$$</p>
-<p><span>其中，$c_i$和$w_i$分别表示在线性增益之后与之前的一个小波变换的第i个滤波器因子。</span><span>$S_i$是用于模拟CSF的第i个滤波器的线性增益。</span><span>在Laparra等人【12】的工作中，$S_i$通过以下函数建模得到：</span> </p>
-<p>$$S_i = S_{(e,o)} = A_o exp(- \frac{(4-e)\theta}{s^\theta}) \quad \quad \quad (2)$$</p>
-<p><span>其中，$e$和$o$分别表示尺度（$e$可以取值为1,2,3,4,从细致到粗糙）和方向（$o$=1,2,3,分别代表水平，对角和垂直方向）。$A_o$是在$o$方向最大的增益，$s$控制带宽，$\theta$决定衰减的锐度。</span><span>这里，参数$A_o, s, \theta$由Laparra等人【12】的研究给出。</span><span>这些参数的值见表1。</span></p>
-<h3 id="33"><a name="user-content-33" href="#33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.3 对比度掩蔽效应的模拟</h3>
-<p><span>系数因子接着被分离归一化来模拟对比度掩蔽效应。</span><span>依据Laparra等人【12】的研究，我们使用下面的方程来获得归一化的神经通道i:</span> </p>
-<p>$$r_i = sign(c_i)\frac{|c_i|^\gamma}{\beta ^\gamma_i + \sum^n_{k=1} H_{ik} |c_k|^\gamma} \quad \quad \quad (3)$$</p>
-<p><span>其中，$\gamma$是一个常数，由Laparra等人【12】的研究给出。</span><span>$\beta_i$是一个对应与第i个滤波器的饱和常数，它定义了何处开始饱和（这个参数也是防止除零操作所必须的）。</span><span>饱和常数是根据从标准图像数据库中选出的100个自然图像的每一个小波系数的标准偏差决定的【18】。</span><span>由于小波系数的标准偏差能够在不同的颜色空间（我们的模型里使用L*a*b*,Laparra等使用YUV）里变化，我们重新计算了标准方差，并且将结果与尺度常数$b$相乘得到$\beta_i$。</span><span>尺度常数$b$是通过在3.6节中描述的优化过程决定的。</span></p>
-<p><span>在方程3中，$H_{ik}$表示第k个滤波器对第i个滤波器的影响大小的权重。</span><span>$H_{ik}$被假定为第k个滤波器在第i个滤波器维度内相邻时会更大些，它的定义如下：</span> </p>
-<p>$$H_{ik} = H_{(e,o),(e^\prime,o^\prime)} = K exp(-(\frac {(e-e^\prime)^2}{\sigma^2_e}+\frac{(o-o^\prime)^2}{\sigma^2_o})) \quad \quad \quad (4)$$</p>
-<p><span>其中，$(e,o)$和$(e^\prime,o^\prime)$表示第i个和第k个滤波器调优后的频率等级和方向。</span><span>$K$是一个归一化因子，他可以保证对于所有的k，$H_{ik}$的总和为1。</span><span>$\sigma_i,\sigma_o$在Laparra等人【12】的研究中给出。</span><span>在他们的研究中，他们假设不仅仅有来自附近的频率等级和方向的相互作用，还有来自附近像素的相互作用。</span><span>然而，每一次我们计算一个分离归一化响应就访问相邻的像素是十分耗费时间的。</span><span>由于我们需要分别计算可视度来优化融合参数，在研究中我们使用方程4来近似权重函数$H_{ik}$，省略了有关空间交互影响的研究内容。</span><span>在6.1节，我们会展示这个近似的模型能够很好地预测一个融合图案的可视度。也有前人的研究提出在空间上的空间合并是非常局部的【28】。</span></p>
-<h3 id="34"><a name="user-content-34" href="#34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.4 局部亮度反应</h3>
-<p><span>在Laparra等人【12】的研究中，只有四个带通子频带被考虑在可视度计算中。</span><span>因此，如果在频率范围内的差异低于这些子频带能够覆盖的范围时，Laparra等人的可视度模型并不能正确地预测可视度。</span><span>由于在虚拟物体和真实背景场景都有光滑的表面时（例如，天空，较少纹理的墙壁，黑色阴影区域等等）对可视度的低估，这个瑕疵会导致不正确的融合结果。</span></p>
-<p><span>为了防止上面的情况发生，我们在研究中通过使用在QMF小波变换的结果的低通残留额外考虑了局部亮度的反应。</span><span>我们将这个局部亮度反应$r_L$建模如下：</span> </p>
-<p>$$r_L = \omega w_L \quad \quad \quad (5)$$</p>
-<p><span>其中，$w_L$表示一个低通残留的小波因子，$\omega$表示线性增益。</span></p>
-<h3 id="35"><a name="user-content-35" href="#35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.5 合并模拟反应</h3>
-<p><span>在获得了两个输入图像的模拟反应后，两个图像在每一个位置通过神经通道的反应的差异会被合并。</span><span>这个过程通过$l_p$规范进行建模：</span></p>
-<p>$$d_{xy} = \frac{1}{n+1}(|r_L-r^\prime_L|^p + \sum^n_{i=1}|r_i-r^\prime_i|^p)^{\frac1p} \quad \quad \quad (6)$$</p>
-<p><span>其中，$d_{xy}$表示合并了的在局部位置$(x,y)$的模拟反应差异。</span><span>$r_i,r^\prime_i$分别是对两个输入图像的第i个神经通道（滤波器）的模拟反应。</span><span>$n$是神经通道的个数，也即12。</span><span>$r_L, r_L^\prime$分别是两个输入图像的局部亮度反应。</span></p>
-<h3 id="36"><a name="user-content-36" href="#36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.6 参数优化</h3>
-<p><span>在Laparra等人【12】的研究中，可视度模型里的参数是通过拟合一整套主观评级了的图像质量数据来进行优化的。</span><span>他们展示了优化后的模型不仅仅可以满足更大集合的图像质量数据，还额外得到了心理物理学数据（即对比敏感度和对比对掩蔽）的基本趋势。</span><span>为了不损害他们的优化了的模型的兼容性，我们使用他们给出的参数，除了饱和常数$\beta$（方程3），和局部亮度的线性增益$\omega$（方程5）。</span><span>因此，在本文中，只有两个参数（尺度常数$b$和线性增益$\omega$）被优化过。</span></p>
-<p><span>参数是通过拟合与多种自然纹理和多种透明度融合的图案的主观评级可视度进行优化的。</span><span>数据获取过程的细节会在6.1节进行描述。</span><span>为了比较通过带有主观可视度分数的模型模拟进行预测的可视度，像素间的局部可视度值$d_{xy}$（方程6）根据以下方程进行合并。</span></p>
-<p>$$d = \frac 1m(\sum_{(x,y)\in O}d_{xy}^q)\frac1q \quad \quad \quad (7)$$</p>
-<p><span>其中，$O$表示一组属于某一图案的像素，$m$是在$O$中的像素个数。</span><span>这里，我们使用$q=2.2$，由Laparra等人【12】的研究而来。</span><span>参数$(b, \omega)$通过最小化在主观可视度分数和预测可视度$d$之间的线性回归结果的残差平方和来优化的。</span></p>
-<p><span>获得的参数$(b, \omega)$值是$(10.3, 0.35)$。</span><span>饱和常数$\beta$随$b$变化的情况如表1所示。</span><span>必须提及的是，本文中得到的饱和常数$\beta$与Laparra等人【12】得到的十分相似。</span><span>因此，这些参数的改变不会影响Laparra等人优化了的模型的可预测性。</span></p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>优化过后的值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$A_o$</td>
-<td>40 当o=1或3时（水平或垂直）；36.6 当o=2时（对角）</td>
-</tr>
-<tr>
-<td>$s$</td>
-<td>1.5</td>
-</tr>
-<tr>
-<td>$\theta$</td>
-<td>6</td>
-</tr>
-<tr>
-<td>$r$</td>
-<td>1.7</td>
-</tr>
-<tr>
-<td>$\sigma_e$</td>
-<td>0.25</td>
-</tr>
-<tr>
-<td>$\sigma_o$</td>
-<td>3</td>
-</tr>
-<tr>
-<td>$p$</td>
-<td>4.5</td>
-</tr>
-<tr>
-<td>$\omega$</td>
-<td>0.35</td>
-</tr>
-<tr>
-<td>$\beta_i = \beta_{(e,o)}$</td>
-<td><small><table><thead><tr><th> </th><th>e=1</th><th>e=2</th><th>e=3</th><th>e=4</th></tr></thead><tbody><tr><td>o=1,3</td><td>0.3</td><td>0.8</td><td>1.9</td><td>4.6</td></tr><tr><td>o=2</td><td>0.2</td><td>0.5</td><td>1.1</td><td>2.7</td></tr></tbody></table></small></td>
-</tr>
-</tbody>
-</table>
-<p><small>表1 <span>本研究中的可视度模型参数。</span><span>在这些参数中，$w$和$\beta$是通过拟合一个在研究中获得的主观评级的可视度数据来优化的（6.1节）。</span><span>其它的参数是在Laparra等人【12】的研究中得到的。</span></small></p>
-<h2 id="4"><a name="user-content-4" href="#4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 基于可视度的融合方法</h2>
-<p><span>基于上一章中描述的可视度模型，我们提出了一个基于可视度的融合方法。</span><span>这个基于可视度的融合方法局部优化一个融合参数($\alpha$)，可以使融合物体的可视度能够达到任意的目标级别。</span><span>我们设定的融合方程如下：</span> </p>
-<p>$$I = \alpha I_1 + (1-\alpha)I_2 \quad \quad \quad (8)$$</p>
-<p><span>其中，$I_1$表示待融合物体的图像强度，$I_2$表示背景产经的图像强度（二者都是在L*a*b*色彩空间下）。</span></p>
-<p><span>基于可视度融合的示意图如图5所示。</span><span>在第一个阶段，两个输入图像转化到CIE L*a*b*色彩空间下，并且在L*通道里的图像被一个4级分离QMF滤波器分解。</span><span>这两个图像一个是在融合前的背景图像，一个是待融合物体以100%的透明度渲染在背景图像上的图像。</span><span>因为QMF变换是一种线性变换，我们可以通过线性组合这两个分解的图像来产生以任意透明度水平混合图像的分解图像数据。</span></p>
-<p><span>在QMF变换后，我们得到了输入图像的任意位置的12个影响因子（4个频率级别乘3个方向）。</span><span>下一步便是找到最优的融合参数来满足每一个位置的目标可视度。</span><span>最优的$\alpha$值通过二分搜索法获得。</span><span>在搜索算法的每一步，当前$\alpha$值下的渲染结果的可视度被计算出来并且会检查是否与目标可视度相比更高。</span></p>
-<p><span>当前$\alpha$值下的可视度按如下方法获得。</span><span>首先，在当前$\alpha$值下的融合图像的系数通过线性结合两个使用当前$\alpha$和方程8得到的输入图像的系数来产生。</span><span>这里，方程8中的$I$表示组合系数。</span><span>$I_1$和$I_2$分别表示输入图像1（背景场景）的系数和输入图形2（背景+不透明的物体）的系数。</span></p>
-<p><span>组合系数接着会被线性增益$S$处理，并且根据方程3进行分离归一化。</span><span>背景图像（输入图像1）的系数也会被方程3处理。</span><span>局部亮度反应也会有两个图像通过方程5计算出来。</span><span>然后，这些模拟反应的合并了的差异会通过方程6计算出来。</span></p>
-<p><span>在方程6中获得的$d$值被用于与目标可视度的比较中。</span><span>如果可视度$d$值比目标高，那么下一个$\alpha$值就会下降，反之$\alpha$值会增加。</span><span>增加和减少的大小初始化为0.25，在每一步之后这个大小会减小一半。</span><span>初始的融合参数$\alpha_0$是0.5。</span><span>搜索在8次迭代后结束。</span></p>
-<p><span>最终，融合会按照方程8使用优化了的$\alpha$值进行。</span><span>然而，因为像素间的优化是相互独立的，局部优化的$\alpha$值常常会导致人工边缘或者融合物体的外表上的不连续的情况出现。</span><span>因此，我们对一个预定义的窗口中的每一个$\alpha$值进行平均。</span><span>窗口的大小是通过经验给出的。</span></p>
-<p><img alt="figure5" src="figure5_zh.png" /><br />
-<small><span>图5 </span><span>基于可视度融合方法概览。</span><span>输入图像是(1)一个在融合前的背景图像和(2)一个使用100%透明度融合一个物体后的图像。</span><span>在融合参数$\alpha$的优化过程的每一步，当前$\alpha$下融合图像的滤波因子$\omega$通过线性组合这两个输入图像的系数来产生。</span><span>接着，在当前$\alpha$下的可视度通过方程3到6进行计算得到。</span><span>最后，当前的可视度通过与目标可视度进行比较使得$\alpha$得到更新。</span><span>在8次迭代后，由方程8使用优化后的$\alpha$值产生融合结果。</span></small></p>
-<h2 id="5"><a name="user-content-5" href="#5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5 可视度增强融合的光学透视式系统</h2>
-<p><span>在通用使用半透明反射镜的光学透视式设备中，虚拟物体的颜色是加在真实场景的颜色上的。</span><span>因此，观察者看到的虚拟物体总是以一定的透明度呈现的。</span><span>在这些条件下，虚拟物体的可视度不仅仅取决于从真实场景和设备传入的光强度，还取决于虚拟物体和它所在真实背景场景的纹理或结构。</span><span>通过使用可视度模型，我们可以将这些属性加入预测可视度的考虑中。</span><span>这里，我们提出了一种能够自适应增强加在光学透视式系统的真实场景上的虚拟物体的可视度的融合方法。</span><span>按照我们的方法，可视度会通过增加局部强度比目标级别低的像素的强度而得到增强。</span></p>
-<p><span>为了精确预测在光学透视式系统中的虚拟物体的可视度，我们需要知道在用户视野下虚拟物体在场景中的确切位置。</span><span>此外，我们还必须知道用户的眼睛在真实场景中对当前亮度级别的自适应级别。</span><span>为了模拟用户的眼睛是如何看到AR/MR系统的场景的，这个信息是必要的。</span><span>尽管这些校验是十分重要的问题，而且也是将我们的方法应用到实际系统中所必需的，但是当前工作下我们假设在精确校验下的模拟的MR/AR场景图像已经给出了。</span><span>所以，我们主要集中讨论可视度增强方法本身。</span></p>
-<p><img alt="figure6" src="figure6_zh.png" /><br />
-<small><span>图6 </span><span>可视度增强融合的光学透视式系统概览。</span><span>有三个输入图像：(1)一个真实背景场景图像，(2)一个模拟的混合现实场景，作为原始渲染的结果，和(3)一个物体以最大的强度渲染的模拟的混合现实场景。</span><span>最终的融合结果通过采用一个局部优化的权重$\alpha$来线性组合(2)和(3)得到。</span></small></p>
-<p><span>图6中显示的是可视度增强融合的示意图。</span><span>如图所示，可视度增强融合的过程几乎与上一节基于可视度融合的过程一模一样。</span><span>主要的区别就是我们需要三个输入图像：(1)一个真实背景场景图像，(2)一个模拟混合现实场景，作为原始渲染的结果，和(3)一个物体以最大的亮度级别渲染的模拟的混合现实场景。</span><span>为了得到最大亮度下物体的颜色，物体的图像首先被转换到CIE L*a*b*空间下，然后在L*通道下的值会被设为最大值。</span><span>最终的融合结果通过对每一个像素使用方程8产生一个局部优化的权重$(\alpha)$来线性组合(2)和(3)得到。</span><span>这里，$I_1$表示物体以最大的强度进行渲染的模拟图像，而$I_2$表示原始渲染结果的的模拟图像。</span></p>
-<p><span>这里，表示最接近目标可视度的可视度的最优$\alpha$值与之前类似，是通过0与1之间的二分搜索得到的。</span><span>在搜索算法的每一步，当前$\alpha$值下的可视度通过方程6计算得出。</span><span>为了计算方程6中的可视度，在当前$\alpha$之下通过线性组合输入图像(2)和(3)得到的模拟混合现实场景的模拟反应会与真实背景场景的模拟反应进行比较。</span></p>
-<p><span>其它的细节地方与基于可视度的融合方法完全类似。</span><span>当前$\alpha$值下的可视度与目标可视度进行比较。</span><span>根据比较结果，下一个$\alpha$值通过当前的步长进行增加或减少。</span><span>接着，步长会被减半，然后下一步开始。</span><span>搜索在8次迭代后结束。</span></p>
-<p><span>最终，融合过程使用在预定义的窗口下平均了的优化$\alpha$值依据方程8进行。</span></p>
-<h2 id="6"><a name="user-content-6" href="#6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6 实验</h2>
-<p><span>在这一章中，我们首先测试了在第三章里描述并在两种提出的方法中使用的可视度模型的有效性。</span><span>至于Laparra等人【12】提出的原始的可视度模型，他们已经论证了他们的模型可以接受多种图像失真的主观误差可视度数据。</span><span>然而，一个模型如何很好地解释一个融合物体感知到的可视度并没有被明确地研究过。</span><span>此外，我们对他们的模型进行了几点更改。</span><span>因此，我们需要验证我们的可视度模型。</span><span>在验证了可视度模型的有效性后，我们使用了几个真实的场景图像和虚拟物体来测试提出的两个融合方法。</span></p>
-<h3 id="61"><a name="user-content-61" href="#61" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1 可视度模型的验证</h3>
-<p><span>我们进行了一个真人实验，实验中观察者会为融合了不同纹理多种级别的透明度的图案可视度进行评级。</span><span>评级后的可视度数据用于测试可视度模型和优化模型中一系列的参数（参数优化的详细情况可参见3.6节）。</span><span>这里，我们展示数据获取过程的细节和从模型获得的可视度与主观评价的可视度数据相比较的结果。</span></p>
-<h4 id="611"><a name="user-content-611" href="#611" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1.1 方法</h4>
-<blockquote>
-<p>实验设备</p>
-</blockquote>
-<p><span>刺激在一间黑暗无光的房间里的一台CRT显示器（Sony Trinitron Multiscan CPD-17SF9,17寸，1024x768像素，刷新率75Hz，平均亮度$44.6cd/m^2$）上呈现。</span><span>每一个实验者都会将头放在最舒适的地方并使用双眼来感受刺激。</span><span>观测距离为114厘米。</span><span>根据Laparra等人【12,15】的研究，可视度模型设定为图像能够以64周期每度采样的位置处观察图像。</span><span>观测距离是通过这个假定确定的。</span></p>
-<blockquote>
-<p>刺激</p>
-</blockquote>
-<p><img alt="figure7" src="figure7.png" /><br />
-<small><span>图7 </span><span>刺激举例。</span><span>观察者对融合在自然纹理图像上的棋盘图案的可视度进行评级。</span></small></p>
-<p><span>每一个刺激中，棋盘图案都是融合在自然纹理图像之上的（图7）。</span><span>棋盘图案水平和垂直方向都为200像素（3.1度的可视角度），由两种颜色组成，RGB值分别为(0, 0.8, 0)和(0.2, 0, 0.2)。</span><span>有50种不同的照片图像用作实验纹理图像。</span><span>纹理的分辨率为512x512，可视角度为8度。</span><span>纹理图像大都来自标准视觉纹理数据库【19】。</span><span>48个均匀的纹理直接从数据库中选择。</span><span>这些纹理包括树木，砖块，织物，鲜花，食物，小草，树叶，金属，沙子，石头和瓦片的图片。</span><span>有两片树叶的图像由本文作者之一额外加入。</span><span>棋盘和纹理通过简单的阿尔法融合方法（方程8）进行融合。</span><span>这里，方程8中的$I_1$和$I_2$分表表示棋盘图案图像和纹理图像。</span><span>对每一个自然纹理图像，使用不同的$\alpha$值产生5个融合图像。</span><span>$\alpha$值按照对数规模进行调整以使棋盘的可视度尽可能平衡稳定的变化。</span></p>
-<blockquote>
-<p>静态和动态条件</p>
-</blockquote>
-<p><span>除了将棋盘和纹理图像固定在显示器的中心这一静态条件，我们还测试了将棋盘图案和纹理图像以不同的速度进行移动以模拟实际情形下的动态条件情况。</span><span>在动态条件下，棋盘团和纹理图像都水平地往同一方向摆动。</span><span>他们的速度以相同时间频率1Hz按照正弦进行调制，不过摆动的宽度是不同的：棋盘为0.8度，纹理为1.6度。</span></p>
-<blockquote>
-<p>参与者</p>
-</blockquote>
-<p><span>十个观察者（9名男性，1名女性，年龄为22-27），在不知晓实验目的的情况下，参与了本研究。</span><span>9个观察者完成了静态和动态条件下的实验。</span><span>另一名男性只参加了动态条件实验。</span></p>
-<blockquote>
-<p>实验过程</p>
-</blockquote>
-<p><span>在实验开始前，会进行一个训练课程。</span><span>在训练中，会呈现刺激的可视度的大致范围，接着观察者被告知制作一个一致的判断可视度的标准 。</span></p>
-<p><span>在实验中，每一次刺激都会持续1.6秒。</span><span>在刺激消失后，观察者在1-5的范围内对棋盘图案的可视度进行评价，其中1代表“不可见”，2表示“隐约可见”，3表示“一般可见”，4表示“相当明显”，5表示“十分清晰”。</span><span>这些描述一直在相应的数字值旁边呈现。</span><span>观察者也可以在任意相邻的值之间选择一个中间值。</span><span>观察者使用鼠标完成这个工作。</span><span>静态和动态条件的测试，每一个都总共有250个刺激。</span><span>250个刺激按照随机的顺序进行呈现。</span><span>对参加了所有条件的观察者，观察者首先进行动态条件测试，然后静态条件测试会在另一天进行。</span><span>当天每一次进行实验时都会先进行训练课程。</span></p>
-<h4 id="612"><a name="user-content-612" href="#612" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1.2 实验结果</h4>
-<p><span>我们比较了在第三章中描述的可视度模型评价的可视度和主观评价的可视度。</span><span>观察者们的主观数据会使用以下方程来转换为Z分数：</span> </p>
-<p>$$z = \frac {\upsilon - \mu_\upsilon}{\sigma_{\upsilon}} \quad \quad \quad (9)$$</p>
-<p><span>其中，$\upsilon$代表可视度的原始分数。$\mu_\upsilon$和$\sigma_\upsilon$分别表示250个刺激得到的原始分数的平均值和标准偏差。</span><span>对每一个刺激，所有的个人观测者的分数z会被平均，结果被用作主观可视度的代表。</span></p>
-<p><span>我们计算了在第三章中描述的可视度模型对250个刺激的每一个的可视度。</span><span>在计算中，刺激图像和刺激的纹理图像被用作输入图像。</span><span>为了获得一个总体上有代表性的图案可视度值，我们使用方程7合并了方程6中的$d_{xy}$。</span></p>
-<p><img alt="figure8" src="figure8_zh.png" /><br />
-<small><span>图8 </span><span>主观评级的可视度（分数z）作为预测可视度d(A)和RMSE(B)的函数绘制图。</span><span>在每一幅图中的$\rho_s$和$\rho_d$分别表示静态和动态条件下的皮尔森相关系数。</span></small></p>
-<p><span>在图8A中，主观可视度（分数z）作为对250个刺激中的每一个的预测可视度（方程7中的d值）的函数进行绘制。</span><span>红色圆圈表示静态条件下的数据，蓝色表示动态条件下的数据。</span><span>作为比较，在图8B中，我们也绘制了相同的主观可视度数据作为在融合图像和L*通道下计算的只有纹理的图像之间的均方根误差的函数图像。</span><span>每一次绘制的皮尔森相关系数在图8中已经给出了。</span></p>
-<p><span>正如散点图和皮尔森相关系数所显示的那样，可视度模型的预测能力是十分好的，尽管大多数的可视度模型参数是从Laparra等人【12】的研究中取得的。</span><span>虽然主观可视度的数据在动态条件下比在静态条件下略微高一些，但是预测的可视度与这些数据在两种条件下都线性相关。</span></p>
-<p><span>为什么主观数据动态条件下更高些，原因可能是在动态条件下所有的图像帧中优势的区域叠加在一起获得了更多的可感知的可视度。</span><span>另一个可能的原因是视觉系统的检测机制的适应性减少了对静态条件下的棋盘图案的反应。</span><span>加入视觉系统的这些特性的考虑能够进一步改善模型的预测能力。</span></p>
-<p><span>然而，鉴于预测和主观数据的线性高度相关，我们可以得出结论，在本研究中使用的模型能够足够准确地运用在实际情况中。</span></p>
-<h3 id="62"><a name="user-content-62" href="#62" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2 提出的融合方法的评价</h3>
-<p><span>在上一节中，我们展现了在提出的融合方法中使用的可视度模型能够准确地线性预测一个融合物体在不同自然纹理图案上的可视度。</span><span>在这一小节，我们首先展示融合方法的效率（6.2.1节）。</span><span>接着，我们展示使用不同实验图像时提出的两种融合方法的每一个的有效性（6.2.2和6.2.3节）。</span></p>
-<h4 id="621"><a name="user-content-621" href="#621" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.1 计算效率的评价</h4>
-<p><span>我们在GLSL着色器程序中进行了两种提出的融合方法的所有计算。</span><span>在每一级别的QMF变换在GLSL中的实现如图9所示。</span><span>在第一和第二个通路中，原始图像水平方向与一维低通（第一通路）或高通（第二通路）滤波器核卷积相乘，然后在同一方向上降低采样率。</span><span>这些卷积后的图像在同一个帧缓冲器中进行渲染。</span><span>接着，在第三和第四通道，合并了的卷积后的图像会在垂直方向与低通（第三通路）或高通（第四通路）滤波器核进行卷积和降低采样率。</span><span>合成的低通图像（图9中的“LL”）接着会在下一级别的卷积过程中继续被处理。</span><span>就这样，在每一个频率级别的6次卷积通过4个通路完成了。</span><span>4级QMF变换在16次卷积后完成。</span></p>
-<p><span>然而，在初期实验中，我们发现低频子频带图像的低采样噪音可能会导致融合结果帧与帧之间的短暂不兼容。</span><span>为了减少低采样噪音的同时使得计算速度尽可能快，我们改变了QMF小波变换的算法以使得低采样过程之作用在两个高频级别的处理阶段。</span><span>于是，在为卷积核采样的像素间的距离在第二低频级别上翻了一番，而在最低频级别上翻了两番。</span></p>
-<p><img alt="figure9" src="figure9.jpg" /><br />
-<small><span>图9 </span><span>每一级别下的QMF小波变换过程。</span><span>在每一个过程中，图像与一个一维的低通或高通核水平或垂直地进行卷积，接着进行低采样。</span><span>为了减少在低频子频带图像上的低采样噪音，低采样古城只在最高的两个频率级别上进行。</span></small></p>
-<p><span>在基于可视度的融合方法中（在第四章提出），两个输入图像的L*通道在单个图像的不同通道上进行渲染，并且每一次卷积都会在两个图像上进行。</span><span>为了减少卷积图像值因为量化而退化，我们在每一通路上对每一个输入图像使用两个通道（16位）进行保存数据（也即，一个图像R和G通道，另一个图像的B和阿尔法通道）。</span><span>在可视度增强融合方法中（在第五章提出），三个输入图像的两个是与同一个图像进行渲染的，另一个输入图像则渲染在另一个图像上。</span><span>因此，QMF变换被执行了两次来得到三个输入图像的小波因子的。</span></p>
-<p><span>在实验中，我们使用一台个人计算机（系统：Windows7，CPU:Core i7 2.93GHz，内存：8GB，GPU：NVIDIA GTX 550Ti 1024MB）。</span><span>输入图像的分辨率是640x480。</span><span>平均每一个优化了的$\alpha$值的窗口大小是65x65。</span><span>在这些条件下，提出的两种融合方法都能工作在高于60FPS的帧率下。</span></p>
-<h4 id="622"><a name="user-content-622" href="#622" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.2 基于可视度融合的实验</h4>
-<p><span>在这个实验中，我们假定是在虚拟物体融合在一个真实背景场景上的情景下。</span><span>我们使用一个静态图像进行了融合方法的测试。</span><span>图像的分辨率是640x480。</span></p>
-<p><span>首先，我们测试了基于可视度的融合方法，通过在两个不同的真实场景图像（一个具有相对光滑的纹理，另一个具有高对比度的纹理）中融合一个虚拟物体，使用4中不同的目标可视度（$v_t=0.6, 1.2, 1.8, 2.4$)进行。</span><span>作为对比，我们使用了传统的阿尔法融合方法（$\alpha = 0.2, 0.4, 0.6, 0.8 $）将相同的真实场景图像与相同的虚拟物体进行融合。</span><span>结果见图10。</span><span>在基于可视度的融合方法的结果中，在两个垂直对齐的图像间（使用相同目标可视度的图像对）虚拟物体（彩色立方体）的可视度看起来很相近。</span><span>相比之下，在阿尔法融合的结果中，在两个垂直对齐的图像对中，尽管融合参数（$\alpha$）是相同的，但是可视度看起来明显不同。</span></p>
-<p><img alt="figure10" src="figure10_zh.png" /><br />
-<small><span>图10 </span><span>使用四个不同目标可视度（$v_t$）的基于可视度的融合方法结果（左图）和使用四个不同阿尔法值的传统阿尔法融合方法结果（右图）。</span><span>在基于可视度的融合方法的图像中中，虚拟物体（彩色立方体）的可视度在竖直方向对齐的两个图像上看起来很相似。</span><span>相比之下，在阿尔法融合的图像中，在两个垂直对齐的图像对中，尽管融合参数（$\alpha$）是相同的，但是可视度看起来明显不同。</span></small></p>
-<p><span>在图11中，我们展示了额外的更加实际的情形下的实验结果。</span><span>这里，一个虚拟物体（彩色立方体或一个塔形建筑物）通过基于可视度的融合方法（左侧）和通过阿尔法融合方法（右侧）进行融合。</span><span>在阿尔法融合的结果中，相同的场景下的每一个区域使用的都是同一个不变的阿尔法值。</span><span>然而，由阿尔法融合的虚拟物体的可视度在图像的不同区域间看起来并不一致。</span></p>
-<p><img alt="figure11" src="figure11_zh.png" /><br />
-<small><span>图11 </span><span>基于可视度融合的例子（上图）和作为对比的传统的阿尔法融合实例（下图）。</span><span>在阿尔法融合的图像中，可视度跟随背景场景的亮度和纹理的变化而变化。</span><span>另一方面，在基于可视度的融合的图像中，可视度保持恒定。</span></small></p>
-<p><span>在阿尔法融合的两个结果中出现了不一致的可视度问题。</span><span>另一方面，在基于可视度的融合方法中，这个问题得到了缓解，而且虚拟物体的每一个部分在每一个图像里看起来几乎是一致的（目标可视度为1.5）。</span><span>因此，当人们想要以恒定统一的可视度融合虚拟物体到不同的场景或相同场景的不同区域时，不论背景的纹理或结构，基于可视度的融合方法都是十分有用的。</span></p>
-<h4 id="623"><a name="user-content-623" href="#623" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.3 可视度增强融合的光学透视式系统的实验</h4>
-<p><span>现在，我们对在第五章中描述的可视度增强融合的光学透视式系统进行测试。</span><span>为了知道我们的融合方法是如何在理想情况下工作的，我们首先使用方程8在0到1的强度范围内在光学透视式系统里模拟渲染结果。</span><span>这里，方程8中的$\alpha$的值代表来自设备的光和从真实场景传入的光相对的影响因子。</span><span>$I_1$和$I_2$分别表示虚拟物体和真实场景的线性的RGB颜色。</span><span>我们在实验中使用的参数$\alpha$是0.5。</span><span>在图12A中，我们展示了从模拟中得到的实验结果。</span><span>在每一个图像中，一个虚拟物体（一个彩色立方体或一个古建筑）融合在一个真实背景场景上。</span><span>在图的每一个行里，左图展示了可视度增强的融合方法（目标可视度=1.5），右图则是没有进行可视度增强的原始的场景。</span><span>在原始图像（右侧）中，虚拟物体局部很难看清。</span><span>在可视度增强融合（顶部）中， 在这些区域里可视度得到了改善，而且我们可以感觉到虚拟物体的整个轮廓。</span></p>
-<p><span>接着，我们使用了真实的光学透视式眼镜（MOVERIO BT-200,EPSON）来测试可视度增强的融合方法。</span><span>为了分析真实场景，我们通过照相机（Grasshoppper2,Point Gray Research）进行捕捉真实场景。</span><span>在这个实验中，校准工作是人为完成的以使融合管道的输入图像的外观和通过眼睛看到的真实场景的外观尽可能相同（在光学和几何学层面上）。</span><span>然后，优化了的虚拟场景会呈现在眼睛上。</span><span>合成的增强现实场景会从眼镜的外部由照相机进行捕捉。</span><span>结果展示在图12B中。</span><span>左图是可视度增强的融合方法（目标可视度=1.5），右图是没有使用可视度增强的原始场景。</span><span>再一次，我们可以发现在可视度增强的结果中可视度得到了改善。</span></p>
-<p><img alt="figure12" src="figure12_zh.png" /><br />
-<small><span>图12 </span><span>可视度增强融合的光学可透视系统实例。</span><span>(A)通过模拟的假定的理想校准情况下的实验结果。</span><span>(B)使用真实的光学透视式设备得到的实验结果。</span><span>在两种情况下，左图显示了可视度增强融合的结果，右图是原始的渲染结果。</span></small></p>
-<h3 id="63"><a name="user-content-63" href="#63" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.3 实验讨论</h3>
-<p><span>我们论证了可视度模型能够线性预测一个融合物体在多种自然纹理图像上的可视度。</span><span>然后我们展示了提出的融合方法在以恒定统一的可视度融合图像或增强融合物体的可视度上是有效的。</span></p>
-<p><span>然而，在本文中提出的融合方法存在一些限制。</span><span>首先，可视度模型的参数应该依据观测距离或每一视角的像素密度进行重新调整。</span><span>在Laparra等人【12】的研究中，可视度模型的参数是通过拟合心理物理学上测量的误差可视度数据来优化的。</span><span>在数据获取的过程中，观察者在观察距离的特定范围内对图像质量进行评级【23】。</span><span>因此，如果用户在可容许的距离范围外观察融合图像，当前参数下的可视度模型并不能提供精确的预测。</span></p>
-<p><span>其次，我们在融合方法中建立的可视度模型只是分析了亮度，并没有包括颜色对抗的通道分析。</span><span>尽管我们没有考虑颜色对抗通道而论证了模型可以准确地预测可视度，但是考虑了这些因素能进一步增加准确性是在亮度对比很小而色彩对比大的情况下的。</span></p>
-<p><span>至于在第四章提出的基于可视度的融合方法，有一个问题就是可视度不可能增加到超过100%透明度下融合物体的可视度。</span><span>然而，这个问题能够通过准备一个加强了物体存在感（比如边缘）的图像来简单解决。</span><span>（已经有人这样尝试了【11】） 根据预测的可视度调整突出图像的融合参数能够充分地增加这些区域的可视度。</span></p>
-<p><span>最后，至于在第五章中提出的可视度增强的光学透视式系统，一个明显的问题就是在来自真实场景的光线强度相比显示系统的最大光强更强的时候，增强效应一点也不起作用。</span><span>另一个问题是在增强参数$\alpha$变大时虚拟物体表面的对比度会下降。</span><span>如果想要高质量的虚拟物体的表现，来自硬件的支持会是一个理想的解决方法。</span></p>
-<h2 id="7"><a name="user-content-7" href="#7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>7 结论和展望</h2>
-<p><span>我们提出了两种基于可视度模型的融合方法。</span><span>一种是基于可视度的融合方法，它能够局部优化一个融合参数$\alpha$来使得融合物体的可视度满足任意的目标级别。</span><span>另一种是对光学透视式系统进行的可视度增强融合方法，它可以使得虚拟物体的可视度局部自适应地增强到任意目标级别。</span></p>
-<p><span>在这个实验中，我们论证了可视度模型可以线性预测在多种自然纹理图案上的融合物体的可视度。</span><span>然后，我们展示了提出的融合方法在以恒定统一的可视度融合图像或增强融合图像的可视度上是有效的。</span><span>因为提出的融合方法工作在一个足够快速的帧率上，他们与构成AR/MR场景所必须的计算结合时并不会出现交互冲突的情况。</span></p>
-<p><span>尽管在这个研究中我们展示的实验图像设定为增强（混合）显示现实场景，但是提出的方法的使用并不局限于这些场景；融合方法可以被用在任何一个图像需要半透明渲染在另一个图像上的场合里。</span><span>举例来说，基于可适度的融合方法能有效地工作在将虚拟物体与虚拟场景融合的场景下。</span><span>另一可能的使用场景是对类似应用的用户研究使用的刺激展示。</span><span>当半透明地渲染物体时，我们根据目的和场合通常想要知道最优的透明度。</span><span>使用基于可视度的融合模型，我们可以将一个物体的可视度作为一个独立变量并与背景场景相独立地进行调节。</span></p>
-<p><span>此外，鉴于基本理论（即V1模型）的普适性，我们有理由认为我们使用的可视度模型也可以预测在不同背景场景下的文本的可视度。</span><span>使用一个与本文中提出的类似的算法，我们可以自适应增强文本的可视度。</span></p>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h2>
-<p>[1] A. P. Bradley. A wavelet visible difference predictor. IEEE Transaction on Image Processing, 5: 717–730, 1999. <br />
-[2] F. W. Campbell and J. G. Robson. Application of fourier analysis to the visibility of gratings. Journal of Physiology, 197: 551-566, 1968. <br />
-[3] C. R. Carlson, R. W. Cohen, and I. Gorog. Visual processing of simple two-dimensional sine-wave luminance gratings. Vision Research, 17:351-358, 1977. <br />
-[4] S. J. Daly. Visible differences predictor: an algorithm for the assessment of image fidelity. In Proceedings of SPIE 1666, pages 215, 1992. <br />
-[5] J. M. Foley and G. M. Boynton. A new model of human luminance pattern vision mechanisms: analysis of the effects of pattern orientation, spatial phase, and temporal frequency. In Proceedings of SPIE 2054, pages 32-42, 1994. <br />
-[6] T. Fukiage, T. Oishi, and K. Ikeuchi. Reduction of contradictory partial occlusion in Mixed Reality by using characteristics of transparency perception. In ISMAR, pages 129-139, 2012. <br />
-[7] J. L. Gabbard, J E. Swan, D. Hix, S. Jung Kim, and G. Fitch. Active text drawing styles for outdoor augmented reality: A user-based study and design implications. In IEEE Virtual Reality, pages 35-42, 2007. <br />
-[8] D. J. Heeger. Normalization of cell responses in cat striate cortex. Visual Neuroscience, 9(2): 181-192, 1992. <br />
-[9] D. H. Hubel and T. N. Wiesel. Receptive fields, binocular interaction and functional architecture in the cat’s visual cortex. Journal of Physiology, 160:106–154, 1962. <br />
-[10]    L. Itti, C. Koch, and E. Niebur. A model of saliency-based visual attention for rapid scene analysis. IEEE Transactions on Pattern Analysis and Machine Intelligence, 20(11): 1254-1259, 1998. <br />
-[11]    D. Kalkofen, E. Veas, S. Zollmann, M. Steinberger, and D. Schmalstieg, Adaptive Ghosted Views for Augmented Reality. In ISMAR, pages 1-9, 2013. <br />
-[12]    V. Laparra, J. Muñoz-Marí, and J. Malo. Divisive normalization image quality metric revisited. Jounrnal of Optical Society of America A, 27(4): 852-64, 2010. <br />
-[13]    G. E. Legge and J. M. Foley. Contrast masking in human vision. Jounrnal of Optical Society of America, 70(12): 1458-1471, 1980. <br />
-[14]    J. Lubin. A human vision system model for objective picture quality measurements. In International Broadcasting Convention, pages 498-503, 1997. <br />
-[15]    J. Malo and V. Laparra. Psychophysically tuned divisive normalization approximately factorizes the PDF of natural images. Neural computation, 22(12): 3179-3206, 2010. <br />
-[16]    M. W. Marcellin, M. Gormish, A. Bilgin, and M. P. Boliek. An Overview of JPEG2000. Proceedings of the Data Compression Conference, pages 523-544, 2000. <br />
-[17]    K. T. Mullen. The contrast sensitivity of human color vision to redgreen and blue-yellow chromatic gratings. The Journal of Physiology, 359: 381–400, 1985. <br />
-[18]    A. Olmos and F. A. A. Kingdom. Mcgill calibrated colour image database. <a href="http://tabby.vision.mcgill.ca">http://tabby.vision.mcgill.ca</a>., 2004.  <br />
-[19]    R. Picard, C. Graczyk, S. Mann, J. Wachman, L. Picard, and L. Campbell. The MIT Vision Textures database. <a href="http://vismod.media.mit.edu/vismod/imagery/VisionTexture/vistex.html">http://vismod.media.mit.edu/vismod/imagery/VisionTexture/vistex.html</a>, 1995. <br />
-[20]    T. Porter and T. Duff. Compositing Digital Images. Computer Graphics, 18(3): 253-259, 1984. <br />
-[21]    J. Rekimoto. Squama: a programmable window and wall for future physical architectures. Proceedings of the 2012 ACM Conference on Ubiquitous Computing, pages 667–668, 2012. <br />
-[22]    C. Sandor, A. Cunningham, A. Dey, and V. V. Mattila. An Augmented Reality X-Ray System based on Visual Saliency. In ISMAR, pages 27–36, 2010. <br />
-[23]    H. R. Sheikh, M. F. Sabir, and A. C. Bovik. A statistical evaluation of recent full reference image quality assessment algorithms. IEEE Transactions on Image Processing, 15(11): 3440–3451, 2006. <br />
-[24]    E. Simoncelli and E. Adelson. Subband Image Coding. Norwell, MA: Kluwer Academic Publishers, pages 143–192, 1990.<br />
-[25]    P. C. Teo and D. J. Heeger. Perceptual image distortion. In Proceedings ICIP, pages 982-986, 1994. <br />
-[26]    T. Tsuda, H. Yamamoto, Y. Kameda, and Y. Ohta. Visualization methods for outdoor see-through vision. In ICAT, pages 62-69, 2005. <br />
-[27]    A. B. Watson. The cortex transform: rapid computation of simulated neural images. Computer vision, graphics, and image processing, 39(3):311-327, 1987. <br />
-[28]    A. B. Watson and J. A. Solomon. Model of visual contrast gain control and pattern masking. Jounrnal of Optical Society of America A, 14(9): 2379-2391, 1997.</p>
-</div>
-
-
 <div id="en" class="markdown-body">
 <h1 id="visibility-based-blending-for-real-time-applications"><a name="user-content-visibility-based-blending-for-real-time-applications" href="#visibility-based-blending-for-real-time-applications" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Visibility-Based Blending for Real-Time Applications</h1>
 <pre><code>Taiki Fukiage   Takeshi Oishi       Katsushi Ikeuchi 
@@ -513,6 +258,261 @@ MathJax.Hub.Config({
 <p><span>Although the experimental images we showed in this study assumed augmented (mixed) reality scenes, the uses of the proposed methods are not restricted to those situations; the blending methods can be used whenever an image is halftransparently rendered on another image.</span> <span>For example, the visibility-based blending method will be effectively used in blending a virtual object with a virtual scene.</span> <span>The visibility enhancement method is also applicable to spatially augmented reality systems.</span> <span>Another possible use may be stimulus presentation in user studies for such applications.</span> <span>When rendering objects half-transparently, we usually want to know optimum transparency depending on purposes and situations.</span> <span>Using the visibility-based blending, we can modulate visibility of an object independently of its background scene as an independent variable.</span></p>
 <p><span>In addition, given the generality of the underlying theory (i.e., V1 model), we think that the visibility model we used can also predict legibility of texts on various background scenes.</span> <span>Using an algorithm similar to the one proposed in this paper, we will be able to adaptively enhance legibility of the texts.</span></p>
 <h2 id="references"><a name="user-content-references" href="#references" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>REFERENCES</h2>
+<p>[1] A. P. Bradley. A wavelet visible difference predictor. IEEE Transaction on Image Processing, 5: 717–730, 1999. <br />
+[2] F. W. Campbell and J. G. Robson. Application of fourier analysis to the visibility of gratings. Journal of Physiology, 197: 551-566, 1968. <br />
+[3] C. R. Carlson, R. W. Cohen, and I. Gorog. Visual processing of simple two-dimensional sine-wave luminance gratings. Vision Research, 17:351-358, 1977. <br />
+[4] S. J. Daly. Visible differences predictor: an algorithm for the assessment of image fidelity. In Proceedings of SPIE 1666, pages 215, 1992. <br />
+[5] J. M. Foley and G. M. Boynton. A new model of human luminance pattern vision mechanisms: analysis of the effects of pattern orientation, spatial phase, and temporal frequency. In Proceedings of SPIE 2054, pages 32-42, 1994. <br />
+[6] T. Fukiage, T. Oishi, and K. Ikeuchi. Reduction of contradictory partial occlusion in Mixed Reality by using characteristics of transparency perception. In ISMAR, pages 129-139, 2012. <br />
+[7] J. L. Gabbard, J E. Swan, D. Hix, S. Jung Kim, and G. Fitch. Active text drawing styles for outdoor augmented reality: A user-based study and design implications. In IEEE Virtual Reality, pages 35-42, 2007. <br />
+[8] D. J. Heeger. Normalization of cell responses in cat striate cortex. Visual Neuroscience, 9(2): 181-192, 1992. <br />
+[9] D. H. Hubel and T. N. Wiesel. Receptive fields, binocular interaction and functional architecture in the cat’s visual cortex. Journal of Physiology, 160:106–154, 1962. <br />
+[10]    L. Itti, C. Koch, and E. Niebur. A model of saliency-based visual attention for rapid scene analysis. IEEE Transactions on Pattern Analysis and Machine Intelligence, 20(11): 1254-1259, 1998. <br />
+[11]    D. Kalkofen, E. Veas, S. Zollmann, M. Steinberger, and D. Schmalstieg, Adaptive Ghosted Views for Augmented Reality. In ISMAR, pages 1-9, 2013. <br />
+[12]    V. Laparra, J. Muñoz-Marí, and J. Malo. Divisive normalization image quality metric revisited. Jounrnal of Optical Society of America A, 27(4): 852-64, 2010. <br />
+[13]    G. E. Legge and J. M. Foley. Contrast masking in human vision. Jounrnal of Optical Society of America, 70(12): 1458-1471, 1980. <br />
+[14]    J. Lubin. A human vision system model for objective picture quality measurements. In International Broadcasting Convention, pages 498-503, 1997. <br />
+[15]    J. Malo and V. Laparra. Psychophysically tuned divisive normalization approximately factorizes the PDF of natural images. Neural computation, 22(12): 3179-3206, 2010. <br />
+[16]    M. W. Marcellin, M. Gormish, A. Bilgin, and M. P. Boliek. An Overview of JPEG2000. Proceedings of the Data Compression Conference, pages 523-544, 2000. <br />
+[17]    K. T. Mullen. The contrast sensitivity of human color vision to redgreen and blue-yellow chromatic gratings. The Journal of Physiology, 359: 381–400, 1985. <br />
+[18]    A. Olmos and F. A. A. Kingdom. Mcgill calibrated colour image database. <a href="http://tabby.vision.mcgill.ca">http://tabby.vision.mcgill.ca</a>., 2004.  <br />
+[19]    R. Picard, C. Graczyk, S. Mann, J. Wachman, L. Picard, and L. Campbell. The MIT Vision Textures database. <a href="http://vismod.media.mit.edu/vismod/imagery/VisionTexture/vistex.html">http://vismod.media.mit.edu/vismod/imagery/VisionTexture/vistex.html</a>, 1995. <br />
+[20]    T. Porter and T. Duff. Compositing Digital Images. Computer Graphics, 18(3): 253-259, 1984. <br />
+[21]    J. Rekimoto. Squama: a programmable window and wall for future physical architectures. Proceedings of the 2012 ACM Conference on Ubiquitous Computing, pages 667–668, 2012. <br />
+[22]    C. Sandor, A. Cunningham, A. Dey, and V. V. Mattila. An Augmented Reality X-Ray System based on Visual Saliency. In ISMAR, pages 27–36, 2010. <br />
+[23]    H. R. Sheikh, M. F. Sabir, and A. C. Bovik. A statistical evaluation of recent full reference image quality assessment algorithms. IEEE Transactions on Image Processing, 15(11): 3440–3451, 2006. <br />
+[24]    E. Simoncelli and E. Adelson. Subband Image Coding. Norwell, MA: Kluwer Academic Publishers, pages 143–192, 1990.<br />
+[25]    P. C. Teo and D. J. Heeger. Perceptual image distortion. In Proceedings ICIP, pages 982-986, 1994. <br />
+[26]    T. Tsuda, H. Yamamoto, Y. Kameda, and Y. Ohta. Visualization methods for outdoor see-through vision. In ICAT, pages 62-69, 2005. <br />
+[27]    A. B. Watson. The cortex transform: rapid computation of simulated neural images. Computer vision, graphics, and image processing, 39(3):311-327, 1987. <br />
+[28]    A. B. Watson and J. A. Solomon. Model of visual contrast gain control and pattern masking. Jounrnal of Optical Society of America A, 14(9): 2379-2391, 1997.</p>
+</div>
+
+
+<div id="zh" class="markdown-body"><h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>用于实时应用基于可视度的融合方法</h1>
+<pre><code>TaiKi Fukiage   TakeShi Oishi   KatSushi Ikeuchi  东京大学
+                    靳杰  译                   华中科技大学
+</code></pre>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>摘要</h2>
+<p><span>在实时应用中，很多场合里虚拟物体半透明地呈现在背景之上。</span><span>在这些情况下，我们经常想要以恒定的可视度展示物体。</span><span>然而，使用传统的阿尔法融合系统，一个混合后的物体的可视度会跟随背景的颜色、纹理和结构的变化而变化。</span><span>为了克服这个难题，我们提出了一个基于可视度主观标准的融合图像框架。</span><span>我们的方法采用了一个能够局部自适应优化的混合参数来使得每一个位置的可视度满足目标级别。</span><span class="highlight">为了预测一个被任意参数融合后的物体的可视度，我们使用了用于图像质量评价的误差可视度标准的其中一个。</span><span>在这个研究中，我们论证了我们采用的标准能够线性预测在多种纹理图像上的融合图案的可视度，并且展示了提出的能够在实际情况下很好地增强现实的融合方法。</span></p>
+<p><strong>关键字：</strong> <span>可视度，人工视觉系统模型，混合系统</span> </p>
+<p><strong>索引词：</strong> I.5.1 [Infomation interfaces and presentation]: Multimedia Infomation Systems—Artificial , augmented, and virtual realities; H.1.2 [Models and Principles]: User/Machine Systems—Human factors</p>
+<h2 id="1"><a name="user-content-1" href="#1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1 简介</h2>
+<p><span>在大多数的交互应用中，人们往往需要将一个物体半透明地渲染在背景场景图像上。</span><span>比如，在移动增强现实系统中，由于现实世界中的障碍物通常都是交织在一起的,用100%的透明度渲染虚拟信息是不可取的。</span><span>出于X射线可视化的目的，虚拟物体也可能被完全透明地渲染【6,26】。</span><span>在光学透视式系统或结构化增强现实系统中呈现虚拟物体时，虚拟信息则常常被半透明地感知。</span></p>
+<p><span>在这些条件下，人们常常想要被渲染的物体的可视度保持不变。</span><span>然而，目前还没有一个确立的基于主观可视度测量方法融合两张图像的标准。</span><span>在传统的阿尔法融合方法中【20】，我们可以根据一个阿尔法值改变一个图像相对另一个图像的透明度。</span><span>不过，阿尔法值的大小与一个图像相对另一个图像的可视度并无必要的联系。</span><span>比如，在将一个虚拟物体与背景图像融合的情况下，虚拟物体的可视度很大程度上取决于背景场景的像素密度和纹理以及虚拟物体本身（见图1）。</span></p>
+<p><img alt="figure1" src="figure1.png" /><br />
+<small><span>图1 </span><span>一个虚拟物体与两个不同的背景图像融合，右图是基于可视度的融合方法，左图是传统的使用恒定阿尔法值（=0.4）的阿尔法融合方法。</span><span>使用传统的阿尔法融合，虚拟物体的可视度很大程度取决于背景场景的像素密度和纹理。</span><span>我们提出的融合方法通过采用基于主观可视度测量的局部自适应优化融合参数克服了这个难题。</span></small></p>
+<p><span>同样地，在光学透视式系统中，任何虚拟信息的可视度必定取决于背景场景的纹理和结构。</span><span> 这会给我们在不考虑背景场景时保持一个物体的可视度恒定带来诸多不便。</span></p>
+<p><span class="highlight">解决这个问题的一个可能的方法是预测可视度，并优化一个融合参数。</span><span class="highlight">在这个研究中，我们从众多的误差可视度模型中采用了其中一个模型来预测可视度，这些误差可视度模型都是为了进行图像质量评价而建立的【12,15】。</span><span>在这个误差可视度模型中，图像失真的可视度是通过比较对原始图像和失真图像的模拟神经反应来预测的。</span><span>神经反应的模拟基于基本视觉区域的可计算模型（记为V1）。</span><span>在我们的例子中，输入图像是由一个融合的图像和一个融合后的图像组成；融合后的图像的可视度是通过比较这两个输入图像的模拟反应结果预测得出的。</span><span>这个方法的一个明显的好处就是我们可以除去背景场景的影响来评价一个融合物体的可视度。</span></p>
+<p><span>在本文的研究中，我们提出了两种基于可视度模型的融合方法。</span><span class="highlight">一个是基于可视度的融合方法，它采用局部优化一个融合参数来使融合物体的可视度达到任意的目标级别。</span><span>另一个是对光学透视式系统进行可视度增强的融合方法，它能够使得虚拟物体的可视度局部自适应地增强。</span><span>使用提出的方法，我们可以将一个物体以恒定的可视度融合在不同的背景场景中（图1的右图）。</span><span>另外，我们还可以在同一个场景的每一个区域保持一致的可视度。</span></p>
+<p><span>本文的其他部分安排如下。</span><span>在下一章中，我们简单介绍关于AR/MR（增强现实/混合现实）的识别研究和关于图像质量标准误差可见度的相关研究。</span><span>第三章介绍我们采用的可视度模型。</span><span>然后，在第四章和第五章中，我们提出两种融合方法。</span><span>接着，第六章对我们的融合方法进行展示和分析。</span><span>最后，我们以总结和结论来结束本篇论文。</span></p>
+<h2 id="2"><a name="user-content-2" href="#2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2 相关工作</h2>
+<p><span>在AR/MR可视化系统中，已经有一些改善渲染在背景场景上虚拟信息的识别性的研究工作了。</span><span>尽管这些研究并不采取将虚拟信息半透明化渲染的方式，但是他们考虑的问题与我们的工作十分相似。</span></p>
+<p><span>举例来说，J.L.Heeger等人【7】研究了背景颜色和纹理对渲染在真实场景上的文字的识别性的影响。</span><span>他们发现背景颜色和纹理能够显著地影响用户的表现。</span><span>他们也设计了一个通过基于背景的平均颜色来设置文本的颜色的方法来增强可识别性。</span><span>不过，他们的方法没有基于任何能够预测在不同纹理和颜色背景下的可识别性的定量模型。</span></p>
+<p><span>有一些研究人员使用显著图模型来保持在AR/MR系统X射线可视化中关键区域的可识别性。</span><span>显著图模型是一个能够预测一个区域能够引起多大的影响的可计算模型【10】。</span><span class="highlight">而为了在真实的有遮蔽的物体身后渲染一个被遮蔽了的场景，同时保持遮蔽物体重要区域的可识别性，J.Rekinmote.Squama【22】基于显著图从遮蔽域提取显著区域并将它们覆盖在原来的遮蔽场景上。</span><span>与此相反，D.Kalkofen等人【11】使用显著图来自适应增强从真实的有遮蔽的表面观测到的遮蔽信息。</span><span class="highlight">然而，显著图只是体现了单个图像的每一个区域相对于周围区域的显著度，而没有提供在同一位置一个半透明物体相对于背景场景的可视度等级。</span></p>
+<p><span>为了正确地预测一个半透明物体在任意背景上的可视度等级，我们采用了用于图像质量评价的误差可视度标准的框架。</span><span>这些误差可视度标准通常都会把认为对预测可视度有重要因素的人类视觉系统的基本特点加入考虑。</span><span class="highlight">这一章的下一部分，我们会介绍人类视觉系统的基本特点，并且回顾一些采用了人类视觉系统模型来设计用于图像质量评价的误差可视度标准的研究。</span></p>
+<h3 id="21"><a name="user-content-21" href="#21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1 人类视觉系统的基本特点</h3>
+<p><span class="highlight">可视度通常从两个关键点来理解，对比敏感度和对比度掩蔽。</span><span>这里，我们分别介绍这两个特点及它们的重要机制。</span></p>
+<h4 id="211"><a name="user-content-211" href="#211" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1.1 对比敏感度</h4>
+<p><span class="highlight">对可视度有影响的关键特点之一是能够被观测的伴随着不同空间频率刺激而变化的对比敏感度（也即对比敏感度函数，CSF）。</span><span>如图2所示，人类视觉系统的对比灵敏度具有带通特性，它的极值在2-5周期每度【2,3】。</span><span>有来自心理物理学和生物学研究的证据表明了几种不同的机制（每个机制都相互独立）和一个更加有限的空间频率带宽构成了CSF的基础【2,9】。</span><span>每一个空间频率检测机制也与一些特定的方向范围对应。</span><span>有理由相信这些机制已经在V1模型中的神经元上实施过了。</span><span>每一个神经元在视觉刺激于它最合适的视网膜位置上时会以它适合的空间频率和方向作出最积极的反应。</span><span>如此一来，可以说在视觉处理的早期阶段，视觉刺激是被几种不同的神经通道进行线性分解的，每一个通道都对应于特定的空间频率范围、方向范围和一个特定的视觉区域的位置。</span></p>
+<p><img alt="figure2" src="figure2.png" /><br />
+<small><span>图2 </span><span>对比灵敏度函数。</span><span>（左图）一个视觉刺激的对比灵敏度取决于它的空间频率。</span><span>（右图）对比灵敏度函数曲线（实线）和与其对应的几个不同的空间频率通道（虚线）示意图。</span> </small></p>
+<h4 id="212"><a name="user-content-212" href="#212" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.1.2 对比度掩蔽</h4>
+<p><span>一个视觉刺激的可视度也取决于它的背景的对比度（这是一种被称为对比度掩蔽的现象【13】）。</span><span>在图3中，一个正弦型的目标以相同的对比度嵌入在不同的背景上。</span><span class="highlight">在最左边的图像中，目标呈现在一个平坦的背景上；而中间的图像，相同的目标加在一个有相似正弦型的背景上。</span><span>这里，两幅图像相对于背景增强或减弱的物理强度也是一样的。</span><span>然而，目标的可视度相比之下中间的图像更低些。</span><span class="highlight">当背景图案的方向和目标的方向不一样时，尽管影响相对较小，但是这种对比度掩蔽的情况也会发生（见最右侧图像）【5】。</span></p>
+<p><img alt="figure3" src="figure3.png" /><br />
+<small><span>图3 </span><span>对比度掩蔽效应的例子。</span><span>当正弦型目标是嵌入在有纹理的背景上时，目标的可视度减少了，尽管物理强度增强或减弱的程度一直都是保持着恒定。</span></small></p>
+<p><span class="highlight">对比度掩蔽效应能够用V1模型中的一个非线性对比度增益控制过程来进行解释。</span><span>目前，最有影响的增益控制机制模型是分离归一化模型【8】。</span><span>根据分离归一化模型，任何神经元的一个反应都是可以通过相同位置的神经元（包括那些反应已经被归一化了的神经元）的反应的加权总和来进行分离归一化。</span><span>因为当另一个图案加入相同位置时对目标刺激的反应（或与目标刺激相关的反应增益）会被归一化过程减弱，目标的感知对比度也会随之减弱。</span><span>这个模型可以印证大量的数据，包括生理学上测量了的神经反应数据和心理物理学上测量了的对比度掩蔽数据【8,25,28】。</span></p>
+<h3 id="22-v1"><a name="user-content-22-v1" href="#22-v1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.2 基于V1模型的误差可视度标准</h3>
+<p><span>误差可视度标准已经在上一章中描述的能够模拟基本特征的V1可计算模型（V1模型）里建立了。</span><span>在多数的误差可视度标准中，两个输入图像（一个原始图像和一个失真了的图像）在V1模型中进行处理，而且通过比较来自V1模型的每一个输出可以获得输入图像之间的明显差异的大量测量值。</span><span>多数的V1模型由两个组件构成，分别代表在上一节中描述的两个基本特点的神经元机制。</span></p>
+<p><span class="highlight">在V1模型的第一阶段，输入图像在每一个位置被线性地分解为一组子频带，这些子频带由若干个频带和方向带组成。</span><span>这些子频带的系数代表神经通道的反应，每一个对应于特定的频带，方向和局部位置。</span><span>这些系数接着乘上线性增益来模拟对比灵敏度函数。</span><span>在第二阶段，这些系数会被非线性的处理来模拟对比度掩蔽效应。</span></p>
+<p><span>为了模拟在V1模型中的线性分解过程，S.J.Daly【4】使用了皮层变换【27】，这个方法能够将图像在傅里叶域中分解为4个不同的频率等级和6个不同的方向。</span><span>尽管皮层变换的滤波器被严格地设计为模拟V1模型中神经通道的选择性，但是这个变换的计算成本相对来说是过高了。</span><span>与皮层变换不同，A.P.Bradley【1】使用了小波变换进行线性分解来将误差可视度标准集成到一个基于小波变换的图像压缩机制中（例【16】）。</span><span>小波变换很适合在V1模型中用于模拟线性分解过程，因为它能够很有效地将一个图像分解为多个在V1模型中有相似神经通道选择性的子频带。</span></p>
+<p><span class="highlight">然而，A.P.Bradley和S.J.Daly【1,4】的误差可视度标准只是演示了在每一个位置进行图像失真的检测的可能性，而并不能预测可见失真的感知幅度。</span><span class="highlight">J.Lubin【14】通过使用恰好可察觉的对比度差异作为失真测量的一个单元打破了这个限制。</span><span>另一方面，V.Laparra和P.C.Teo等人【12,25】在使用分离归一化模型进行V1模型中模拟神经反应的问题上明显地站在了同一战线上，并且他们使用了在这些模拟反应中的一个基本差异作为可见失真的感知大小。</span><span>V.Laparra等人【12】进一步地展示了他们的误差可视度标准能够很好地预测心理物理学上几种类型的失真的可测量的可视度。</span></p>
+<h2 id="3"><a name="user-content-3" href="#3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3 可视度模型</h2>
+<p><span>本文提出的基于可视度融合方法根据可视度模型预测的融合物体的可视度优化了一个融合参数。</span><span>我们使用的可视度模型基于V.Laparra等人【12】提出的误差可视度模型。</span></p>
+<p><span>图4是可视度模型的示意图。</span><span>在这个可视度模型中，两个输入图像，一个是融合前的、另一个是融合后的，会首先被转换为更合适于模拟视觉系统行为的颜色空间。</span><span>下一步，转换后的图像在V1模型视觉机制的可计算模型中被处理，（V1模型）和几个神经通道的模拟神经反应在每一个图像的每一个位置的数据都可以获得。</span><span>接着，在两个图像间的神经反应的差异通过神经通道进行合并。</span><span>最后，合并了的差异被用来作为那个位置的可见度主观总和的测量值。</span></p>
+<p><span>尽管本文使用的可视度模型与Laparra等人【12】使用的模型中大多数的数学方程都是相同的，但是一些更改带来更好的结果的同时降低了计算消耗。</span><span>更改如下：</span></p>
+<ol>
+<li>使用CIE L*a*b* 色彩空间代替YUV色彩空间</li>
+<li>在对比度之外加入局部亮度的因素</li>
+<li>忽略彩色对比度</li>
+<li>忽略在分离归一化过程中的边缘像素的抑制作用</li>
+</ol>
+<p><span>在下一部分，我们会说明可视度模型的细节，包括对这些改变的解释。</span></p>
+<p><img alt="figure4" src="figure4_zh.png" /><br />
+<small><span>图4 </span><span>可视度模型示意图。</span><span>融合图像（右图）的可视度通过比较融合图像和在融合前的背景图像（左图）的模拟神经反应来计算的。</span></small></p>
+<h3 id="31"><a name="user-content-31" href="#31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.1 色彩转换</h3>
+<p><span>在可视度模型的第一阶段，输入图像从RGB空间转换为CIE L*a*b*色彩空间。</span><span>尽管Laparra等人【12】使用YUV色彩空间，但是由于L*a*b*中的L*通道比YUV中的Y通道视觉上相比更加线性可识别，所以L*a*b*更好一些。</span><span>另外，因为等亮度颜色对比的灵敏度相对于亮度对比的灵敏度要小，我们只需要使用L*通道就能够计算可视度【17】。</span><span>由于我们假设混合方法的使用是在实时应用中，所以我们给予效率更多的考虑，牺牲了一部分可能的小的颜色通道的作用。</span></p>
+<h3 id="32"><a name="user-content-32" href="#32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.2 对比敏感度的模拟</h3>
+<p><span>输入图像接着被线性地分解为几个方向频率域来模拟神经通道的行为；每一个都对应为一个特定的空间频率范围和方向范围。</span><span>在Laparra等人【12】的研究中，分离正交镜像滤波（QMF）小波变换（由E.Simoncelli等人提出【24】）用于图像分解。</span><span>QMF小波滤波器将图像分解为四个频域和三个方向域（水平，垂直和对角），产生一个对应各个位置的有12个系数的向量w。</span><span>尽管两个对角方向（也即45°和-45°）在QMF小波变换中没有区分开来，但是因为计算速度十分快速，所以这个变换十分适合实时应用。</span></p>
+<p><span>在变换之后，<strong>w</strong>中12个系数的每一个都与线性增益<strong><em>S</em></strong>按如下相乘：</span> </p>
+<p>$$c_i = S_iw_i \quad \quad \quad (1)$$</p>
+<p><span>其中，$c_i$和$w_i$分别表示在线性增益之后与之前的一个小波变换的第i个滤波器因子。</span><span>$S_i$是用于模拟CSF的第i个滤波器的线性增益。</span><span>在Laparra等人【12】的工作中，$S_i$通过以下函数建模得到：</span> </p>
+<p>$$S_i = S_{(e,o)} = A_o exp(- \frac{(4-e)\theta}{s^\theta}) \quad \quad \quad (2)$$</p>
+<p><span>其中，$e$和$o$分别表示尺度（$e$可以取值为1,2,3,4,从细致到粗糙）和方向（$o$=1,2,3,分别代表水平，对角和垂直方向）。$A_o$是在$o$方向最大的增益，$s$控制带宽，$\theta$决定衰减的锐度。</span><span>这里，参数$A_o, s, \theta$由Laparra等人【12】的研究给出。</span><span>这些参数的值见表1。</span></p>
+<h3 id="33"><a name="user-content-33" href="#33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.3 对比度掩蔽效应的模拟</h3>
+<p><span>系数因子接着被分离归一化来模拟对比度掩蔽效应。</span><span>依据Laparra等人【12】的研究，我们使用下面的方程来获得归一化的神经通道i:</span> </p>
+<p>$$r_i = sign(c_i)\frac{|c_i|^\gamma}{\beta ^\gamma_i + \sum^n_{k=1} H_{ik} |c_k|^\gamma} \quad \quad \quad (3)$$</p>
+<p><span>其中，$\gamma$是一个常数，由Laparra等人【12】的研究给出。</span><span>$\beta_i$是一个对应与第i个滤波器的饱和常数，它定义了何处开始饱和（这个参数也是防止除零操作所必须的）。</span><span>饱和常数是根据从标准图像数据库中选出的100个自然图像的每一个小波系数的标准偏差决定的【18】。</span><span>由于小波系数的标准偏差能够在不同的颜色空间（我们的模型里使用L*a*b*,Laparra等使用YUV）里变化，我们重新计算了标准方差，并且将结果与尺度常数$b$相乘得到$\beta_i$。</span><span>尺度常数$b$是通过在3.6节中描述的优化过程决定的。</span></p>
+<p><span>在方程3中，$H_{ik}$表示第k个滤波器对第i个滤波器的影响大小的权重。</span><span>$H_{ik}$被假定为第k个滤波器在第i个滤波器维度内相邻时会更大些，它的定义如下：</span> </p>
+<p>$$H_{ik} = H_{(e,o),(e^\prime,o^\prime)} = K exp(-(\frac {(e-e^\prime)^2}{\sigma^2_e}+\frac{(o-o^\prime)^2}{\sigma^2_o})) \quad \quad \quad (4)$$</p>
+<p><span>其中，$(e,o)$和$(e^\prime,o^\prime)$表示第i个和第k个滤波器调优后的频率等级和方向。</span><span>$K$是一个归一化因子，他可以保证对于所有的k，$H_{ik}$的总和为1。</span><span>$\sigma_i,\sigma_o$在Laparra等人【12】的研究中给出。</span><span>在他们的研究中，他们假设不仅仅有来自附近的频率等级和方向的相互作用，还有来自附近像素的相互作用。</span><span>然而，每一次我们计算一个分离归一化响应就访问相邻的像素是十分耗费时间的。</span><span>由于我们需要分别计算可视度来优化融合参数，在研究中我们使用方程4来近似权重函数$H_{ik}$，省略了有关空间交互影响的研究内容。</span><span>在6.1节，我们会展示这个近似的模型能够很好地预测一个融合图案的可视度。也有前人的研究提出在空间上的空间合并是非常局部的【28】。</span></p>
+<h3 id="34"><a name="user-content-34" href="#34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.4 局部亮度反应</h3>
+<p><span>在Laparra等人【12】的研究中，只有四个带通子频带被考虑在可视度计算中。</span><span>因此，如果在频率范围内的差异低于这些子频带能够覆盖的范围时，Laparra等人的可视度模型并不能正确地预测可视度。</span><span>由于在虚拟物体和真实背景场景都有光滑的表面时（例如，天空，较少纹理的墙壁，黑色阴影区域等等）对可视度的低估，这个瑕疵会导致不正确的融合结果。</span></p>
+<p><span>为了防止上面的情况发生，我们在研究中通过使用在QMF小波变换的结果的低通残留额外考虑了局部亮度的反应。</span><span>我们将这个局部亮度反应$r_L$建模如下：</span> </p>
+<p>$$r_L = \omega w_L \quad \quad \quad (5)$$</p>
+<p><span>其中，$w_L$表示一个低通残留的小波因子，$\omega$表示线性增益。</span></p>
+<h3 id="35"><a name="user-content-35" href="#35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.5 合并模拟反应</h3>
+<p><span>在获得了两个输入图像的模拟反应后，两个图像在每一个位置通过神经通道的反应的差异会被合并。</span><span>这个过程通过$l_p$规范进行建模：</span></p>
+<p>$$d_{xy} = \frac{1}{n+1}(|r_L-r^\prime_L|^p + \sum^n_{i=1}|r_i-r^\prime_i|^p)^{\frac1p} \quad \quad \quad (6)$$</p>
+<p><span>其中，$d_{xy}$表示合并了的在局部位置$(x,y)$的模拟反应差异。</span><span>$r_i,r^\prime_i$分别是对两个输入图像的第i个神经通道（滤波器）的模拟反应。</span><span>$n$是神经通道的个数，也即12。</span><span>$r_L, r_L^\prime$分别是两个输入图像的局部亮度反应。</span></p>
+<h3 id="36"><a name="user-content-36" href="#36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.6 参数优化</h3>
+<p><span>在Laparra等人【12】的研究中，可视度模型里的参数是通过拟合一整套主观评级了的图像质量数据来进行优化的。</span><span>他们展示了优化后的模型不仅仅可以满足更大集合的图像质量数据，还额外得到了心理物理学数据（即对比敏感度和对比对掩蔽）的基本趋势。</span><span>为了不损害他们的优化了的模型的兼容性，我们使用他们给出的参数，除了饱和常数$\beta$（方程3），和局部亮度的线性增益$\omega$（方程5）。</span><span>因此，在本文中，只有两个参数（尺度常数$b$和线性增益$\omega$）被优化过。</span></p>
+<p><span>参数是通过拟合与多种自然纹理和多种透明度融合的图案的主观评级可视度进行优化的。</span><span>数据获取过程的细节会在6.1节进行描述。</span><span>为了比较通过带有主观可视度分数的模型模拟进行预测的可视度，像素间的局部可视度值$d_{xy}$（方程6）根据以下方程进行合并。</span></p>
+<p>$$d = \frac 1m(\sum_{(x,y)\in O}d_{xy}^q)\frac1q \quad \quad \quad (7)$$</p>
+<p><span>其中，$O$表示一组属于某一图案的像素，$m$是在$O$中的像素个数。</span><span>这里，我们使用$q=2.2$，由Laparra等人【12】的研究而来。</span><span>参数$(b, \omega)$通过最小化在主观可视度分数和预测可视度$d$之间的线性回归结果的残差平方和来优化的。</span></p>
+<p><span>获得的参数$(b, \omega)$值是$(10.3, 0.35)$。</span><span>饱和常数$\beta$随$b$变化的情况如表1所示。</span><span>必须提及的是，本文中得到的饱和常数$\beta$与Laparra等人【12】得到的十分相似。</span><span>因此，这些参数的改变不会影响Laparra等人优化了的模型的可预测性。</span></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>优化过后的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A_o$</td>
+<td>40 当o=1或3时（水平或垂直）；36.6 当o=2时（对角）</td>
+</tr>
+<tr>
+<td>$s$</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>$\theta$</td>
+<td>6</td>
+</tr>
+<tr>
+<td>$r$</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>$\sigma_e$</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>$\sigma_o$</td>
+<td>3</td>
+</tr>
+<tr>
+<td>$p$</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>$\omega$</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>$\beta_i = \beta_{(e,o)}$</td>
+<td><small><table><thead><tr><th> </th><th>e=1</th><th>e=2</th><th>e=3</th><th>e=4</th></tr></thead><tbody><tr><td>o=1,3</td><td>0.3</td><td>0.8</td><td>1.9</td><td>4.6</td></tr><tr><td>o=2</td><td>0.2</td><td>0.5</td><td>1.1</td><td>2.7</td></tr></tbody></table></small></td>
+</tr>
+</tbody>
+</table>
+<p><small>表1 <span>本研究中的可视度模型参数。</span><span>在这些参数中，$w$和$\beta$是通过拟合一个在研究中获得的主观评级的可视度数据来优化的（6.1节）。</span><span>其它的参数是在Laparra等人【12】的研究中得到的。</span></small></p>
+<h2 id="4"><a name="user-content-4" href="#4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>4 基于可视度的融合方法</h2>
+<p><span>基于上一章中描述的可视度模型，我们提出了一个基于可视度的融合方法。</span><span>这个基于可视度的融合方法局部优化一个融合参数($\alpha$)，可以使融合物体的可视度能够达到任意的目标级别。</span><span>我们设定的融合方程如下：</span> </p>
+<p>$$I = \alpha I_1 + (1-\alpha)I_2 \quad \quad \quad (8)$$</p>
+<p><span>其中，$I_1$表示待融合物体的图像强度，$I_2$表示背景产经的图像强度（二者都是在L*a*b*色彩空间下）。</span></p>
+<p><span>基于可视度融合的示意图如图5所示。</span><span>在第一个阶段，两个输入图像转化到CIE L*a*b*色彩空间下，并且在L*通道里的图像被一个4级分离QMF滤波器分解。</span><span>这两个图像一个是在融合前的背景图像，一个是待融合物体以100%的透明度渲染在背景图像上的图像。</span><span>因为QMF变换是一种线性变换，我们可以通过线性组合这两个分解的图像来产生以任意透明度水平混合图像的分解图像数据。</span></p>
+<p><span>在QMF变换后，我们得到了输入图像的任意位置的12个影响因子（4个频率级别乘3个方向）。</span><span>下一步便是找到最优的融合参数来满足每一个位置的目标可视度。</span><span>最优的$\alpha$值通过二分搜索法获得。</span><span>在搜索算法的每一步，当前$\alpha$值下的渲染结果的可视度被计算出来并且会检查是否与目标可视度相比更高。</span></p>
+<p><span>当前$\alpha$值下的可视度按如下方法获得。</span><span>首先，在当前$\alpha$值下的融合图像的系数通过线性结合两个使用当前$\alpha$和方程8得到的输入图像的系数来产生。</span><span>这里，方程8中的$I$表示组合系数。</span><span>$I_1$和$I_2$分别表示输入图像1（背景场景）的系数和输入图形2（背景+不透明的物体）的系数。</span></p>
+<p><span>组合系数接着会被线性增益$S$处理，并且根据方程3进行分离归一化。</span><span>背景图像（输入图像1）的系数也会被方程3处理。</span><span>局部亮度反应也会有两个图像通过方程5计算出来。</span><span>然后，这些模拟反应的合并了的差异会通过方程6计算出来。</span></p>
+<p><span>在方程6中获得的$d$值被用于与目标可视度的比较中。</span><span>如果可视度$d$值比目标高，那么下一个$\alpha$值就会下降，反之$\alpha$值会增加。</span><span>增加和减少的大小初始化为0.25，在每一步之后这个大小会减小一半。</span><span>初始的融合参数$\alpha_0$是0.5。</span><span>搜索在8次迭代后结束。</span></p>
+<p><span>最终，融合会按照方程8使用优化了的$\alpha$值进行。</span><span>然而，因为像素间的优化是相互独立的，局部优化的$\alpha$值常常会导致人工边缘或者融合物体的外表上的不连续的情况出现。</span><span>因此，我们对一个预定义的窗口中的每一个$\alpha$值进行平均。</span><span>窗口的大小是通过经验给出的。</span></p>
+<p><img alt="figure5" src="figure5_zh.png" /><br />
+<small><span>图5 </span><span>基于可视度融合方法概览。</span><span>输入图像是(1)一个在融合前的背景图像和(2)一个使用100%透明度融合一个物体后的图像。</span><span>在融合参数$\alpha$的优化过程的每一步，当前$\alpha$下融合图像的滤波因子$\omega$通过线性组合这两个输入图像的系数来产生。</span><span>接着，在当前$\alpha$下的可视度通过方程3到6进行计算得到。</span><span>最后，当前的可视度通过与目标可视度进行比较使得$\alpha$得到更新。</span><span>在8次迭代后，由方程8使用优化后的$\alpha$值产生融合结果。</span></small></p>
+<h2 id="5"><a name="user-content-5" href="#5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>5 可视度增强融合的光学透视式系统</h2>
+<p><span>在通用使用半透明反射镜的光学透视式设备中，虚拟物体的颜色是加在真实场景的颜色上的。</span><span>因此，观察者看到的虚拟物体总是以一定的透明度呈现的。</span><span>在这些条件下，虚拟物体的可视度不仅仅取决于从真实场景和设备传入的光强度，还取决于虚拟物体和它所在真实背景场景的纹理或结构。</span><span>通过使用可视度模型，我们可以将这些属性加入预测可视度的考虑中。</span><span>这里，我们提出了一种能够自适应增强加在光学透视式系统的真实场景上的虚拟物体的可视度的融合方法。</span><span>按照我们的方法，可视度会通过增加局部强度比目标级别低的像素的强度而得到增强。</span></p>
+<p><span>为了精确预测在光学透视式系统中的虚拟物体的可视度，我们需要知道在用户视野下虚拟物体在场景中的确切位置。</span><span>此外，我们还必须知道用户的眼睛在真实场景中对当前亮度级别的自适应级别。</span><span>为了模拟用户的眼睛是如何看到AR/MR系统的场景的，这个信息是必要的。</span><span>尽管这些校验是十分重要的问题，而且也是将我们的方法应用到实际系统中所必需的，但是当前工作下我们假设在精确校验下的模拟的MR/AR场景图像已经给出了。</span><span>所以，我们主要集中讨论可视度增强方法本身。</span></p>
+<p><img alt="figure6" src="figure6_zh.png" /><br />
+<small><span>图6 </span><span>可视度增强融合的光学透视式系统概览。</span><span>有三个输入图像：(1)一个真实背景场景图像，(2)一个模拟的混合现实场景，作为原始渲染的结果，和(3)一个物体以最大的强度渲染的模拟的混合现实场景。</span><span>最终的融合结果通过采用一个局部优化的权重$\alpha$来线性组合(2)和(3)得到。</span></small></p>
+<p><span>图6中显示的是可视度增强融合的示意图。</span><span>如图所示，可视度增强融合的过程几乎与上一节基于可视度融合的过程一模一样。</span><span>主要的区别就是我们需要三个输入图像：(1)一个真实背景场景图像，(2)一个模拟混合现实场景，作为原始渲染的结果，和(3)一个物体以最大的亮度级别渲染的模拟的混合现实场景。</span><span>为了得到最大亮度下物体的颜色，物体的图像首先被转换到CIE L*a*b*空间下，然后在L*通道下的值会被设为最大值。</span><span>最终的融合结果通过对每一个像素使用方程8产生一个局部优化的权重$(\alpha)$来线性组合(2)和(3)得到。</span><span>这里，$I_1$表示物体以最大的强度进行渲染的模拟图像，而$I_2$表示原始渲染结果的的模拟图像。</span></p>
+<p><span>这里，表示最接近目标可视度的可视度的最优$\alpha$值与之前类似，是通过0与1之间的二分搜索得到的。</span><span>在搜索算法的每一步，当前$\alpha$值下的可视度通过方程6计算得出。</span><span>为了计算方程6中的可视度，在当前$\alpha$之下通过线性组合输入图像(2)和(3)得到的模拟混合现实场景的模拟反应会与真实背景场景的模拟反应进行比较。</span></p>
+<p><span>其它的细节地方与基于可视度的融合方法完全类似。</span><span>当前$\alpha$值下的可视度与目标可视度进行比较。</span><span>根据比较结果，下一个$\alpha$值通过当前的步长进行增加或减少。</span><span>接着，步长会被减半，然后下一步开始。</span><span>搜索在8次迭代后结束。</span></p>
+<p><span>最终，融合过程使用在预定义的窗口下平均了的优化$\alpha$值依据方程8进行。</span></p>
+<h2 id="6"><a name="user-content-6" href="#6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6 实验</h2>
+<p><span>在这一章中，我们首先测试了在第三章里描述并在两种提出的方法中使用的可视度模型的有效性。</span><span>至于Laparra等人【12】提出的原始的可视度模型，他们已经论证了他们的模型可以接受多种图像失真的主观误差可视度数据。</span><span>然而，一个模型如何很好地解释一个融合物体感知到的可视度并没有被明确地研究过。</span><span>此外，我们对他们的模型进行了几点更改。</span><span>因此，我们需要验证我们的可视度模型。</span><span>在验证了可视度模型的有效性后，我们使用了几个真实的场景图像和虚拟物体来测试提出的两个融合方法。</span></p>
+<h3 id="61"><a name="user-content-61" href="#61" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1 可视度模型的验证</h3>
+<p><span>我们进行了一个真人实验，实验中观察者会为融合了不同纹理多种级别的透明度的图案可视度进行评级。</span><span>评级后的可视度数据用于测试可视度模型和优化模型中一系列的参数（参数优化的详细情况可参见3.6节）。</span><span>这里，我们展示数据获取过程的细节和从模型获得的可视度与主观评价的可视度数据相比较的结果。</span></p>
+<h4 id="611"><a name="user-content-611" href="#611" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1.1 方法</h4>
+<blockquote>
+<p>实验设备</p>
+</blockquote>
+<p><span>刺激在一间黑暗无光的房间里的一台CRT显示器（Sony Trinitron Multiscan CPD-17SF9,17寸，1024x768像素，刷新率75Hz，平均亮度$44.6cd/m^2$）上呈现。</span><span>每一个实验者都会将头放在最舒适的地方并使用双眼来感受刺激。</span><span>观测距离为114厘米。</span><span>根据Laparra等人【12,15】的研究，可视度模型设定为图像能够以64周期每度采样的位置处观察图像。</span><span>观测距离是通过这个假定确定的。</span></p>
+<blockquote>
+<p>刺激</p>
+</blockquote>
+<p><img alt="figure7" src="figure7.png" /><br />
+<small><span>图7 </span><span>刺激举例。</span><span>观察者对融合在自然纹理图像上的棋盘图案的可视度进行评级。</span></small></p>
+<p><span>每一个刺激中，棋盘图案都是融合在自然纹理图像之上的（图7）。</span><span>棋盘图案水平和垂直方向都为200像素（3.1度的可视角度），由两种颜色组成，RGB值分别为(0, 0.8, 0)和(0.2, 0, 0.2)。</span><span>有50种不同的照片图像用作实验纹理图像。</span><span>纹理的分辨率为512x512，可视角度为8度。</span><span>纹理图像大都来自标准视觉纹理数据库【19】。</span><span>48个均匀的纹理直接从数据库中选择。</span><span>这些纹理包括树木，砖块，织物，鲜花，食物，小草，树叶，金属，沙子，石头和瓦片的图片。</span><span>有两片树叶的图像由本文作者之一额外加入。</span><span>棋盘和纹理通过简单的阿尔法融合方法（方程8）进行融合。</span><span>这里，方程8中的$I_1$和$I_2$分表表示棋盘图案图像和纹理图像。</span><span>对每一个自然纹理图像，使用不同的$\alpha$值产生5个融合图像。</span><span>$\alpha$值按照对数规模进行调整以使棋盘的可视度尽可能平衡稳定的变化。</span></p>
+<blockquote>
+<p>静态和动态条件</p>
+</blockquote>
+<p><span>除了将棋盘和纹理图像固定在显示器的中心这一静态条件，我们还测试了将棋盘图案和纹理图像以不同的速度进行移动以模拟实际情形下的动态条件情况。</span><span>在动态条件下，棋盘团和纹理图像都水平地往同一方向摆动。</span><span>他们的速度以相同时间频率1Hz按照正弦进行调制，不过摆动的宽度是不同的：棋盘为0.8度，纹理为1.6度。</span></p>
+<blockquote>
+<p>参与者</p>
+</blockquote>
+<p><span>十个观察者（9名男性，1名女性，年龄为22-27），在不知晓实验目的的情况下，参与了本研究。</span><span>9个观察者完成了静态和动态条件下的实验。</span><span>另一名男性只参加了动态条件实验。</span></p>
+<blockquote>
+<p>实验过程</p>
+</blockquote>
+<p><span>在实验开始前，会进行一个训练课程。</span><span>在训练中，会呈现刺激的可视度的大致范围，接着观察者被告知制作一个一致的判断可视度的标准 。</span></p>
+<p><span>在实验中，每一次刺激都会持续1.6秒。</span><span>在刺激消失后，观察者在1-5的范围内对棋盘图案的可视度进行评价，其中1代表“不可见”，2表示“隐约可见”，3表示“一般可见”，4表示“相当明显”，5表示“十分清晰”。</span><span>这些描述一直在相应的数字值旁边呈现。</span><span>观察者也可以在任意相邻的值之间选择一个中间值。</span><span>观察者使用鼠标完成这个工作。</span><span>静态和动态条件的测试，每一个都总共有250个刺激。</span><span>250个刺激按照随机的顺序进行呈现。</span><span>对参加了所有条件的观察者，观察者首先进行动态条件测试，然后静态条件测试会在另一天进行。</span><span>当天每一次进行实验时都会先进行训练课程。</span></p>
+<h4 id="612"><a name="user-content-612" href="#612" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.1.2 实验结果</h4>
+<p><span>我们比较了在第三章中描述的可视度模型评价的可视度和主观评价的可视度。</span><span>观察者们的主观数据会使用以下方程来转换为Z分数：</span> </p>
+<p>$$z = \frac {\upsilon - \mu_\upsilon}{\sigma_{\upsilon}} \quad \quad \quad (9)$$</p>
+<p><span>其中，$\upsilon$代表可视度的原始分数。$\mu_\upsilon$和$\sigma_\upsilon$分别表示250个刺激得到的原始分数的平均值和标准偏差。</span><span>对每一个刺激，所有的个人观测者的分数z会被平均，结果被用作主观可视度的代表。</span></p>
+<p><span>我们计算了在第三章中描述的可视度模型对250个刺激的每一个的可视度。</span><span>在计算中，刺激图像和刺激的纹理图像被用作输入图像。</span><span>为了获得一个总体上有代表性的图案可视度值，我们使用方程7合并了方程6中的$d_{xy}$。</span></p>
+<p><img alt="figure8" src="figure8_zh.png" /><br />
+<small><span>图8 </span><span>主观评级的可视度（分数z）作为预测可视度d(A)和RMSE(B)的函数绘制图。</span><span>在每一幅图中的$\rho_s$和$\rho_d$分别表示静态和动态条件下的皮尔森相关系数。</span></small></p>
+<p><span>在图8A中，主观可视度（分数z）作为对250个刺激中的每一个的预测可视度（方程7中的d值）的函数进行绘制。</span><span>红色圆圈表示静态条件下的数据，蓝色表示动态条件下的数据。</span><span>作为比较，在图8B中，我们也绘制了相同的主观可视度数据作为在融合图像和L*通道下计算的只有纹理的图像之间的均方根误差的函数图像。</span><span>每一次绘制的皮尔森相关系数在图8中已经给出了。</span></p>
+<p><span>正如散点图和皮尔森相关系数所显示的那样，可视度模型的预测能力是十分好的，尽管大多数的可视度模型参数是从Laparra等人【12】的研究中取得的。</span><span>虽然主观可视度的数据在动态条件下比在静态条件下略微高一些，但是预测的可视度与这些数据在两种条件下都线性相关。</span></p>
+<p><span>为什么主观数据动态条件下更高些，原因可能是在动态条件下所有的图像帧中优势的区域叠加在一起获得了更多的可感知的可视度。</span><span>另一个可能的原因是视觉系统的检测机制的适应性减少了对静态条件下的棋盘图案的反应。</span><span>加入视觉系统的这些特性的考虑能够进一步改善模型的预测能力。</span></p>
+<p><span>然而，鉴于预测和主观数据的线性高度相关，我们可以得出结论，在本研究中使用的模型能够足够准确地运用在实际情况中。</span></p>
+<h3 id="62"><a name="user-content-62" href="#62" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2 提出的融合方法的评价</h3>
+<p><span>在上一节中，我们展现了在提出的融合方法中使用的可视度模型能够准确地线性预测一个融合物体在不同自然纹理图案上的可视度。</span><span>在这一小节，我们首先展示融合方法的效率（6.2.1节）。</span><span>接着，我们展示使用不同实验图像时提出的两种融合方法的每一个的有效性（6.2.2和6.2.3节）。</span></p>
+<h4 id="621"><a name="user-content-621" href="#621" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.1 计算效率的评价</h4>
+<p><span>我们在GLSL着色器程序中进行了两种提出的融合方法的所有计算。</span><span>在每一级别的QMF变换在GLSL中的实现如图9所示。</span><span>在第一和第二个通路中，原始图像水平方向与一维低通（第一通路）或高通（第二通路）滤波器核卷积相乘，然后在同一方向上降低采样率。</span><span>这些卷积后的图像在同一个帧缓冲器中进行渲染。</span><span>接着，在第三和第四通道，合并了的卷积后的图像会在垂直方向与低通（第三通路）或高通（第四通路）滤波器核进行卷积和降低采样率。</span><span>合成的低通图像（图9中的“LL”）接着会在下一级别的卷积过程中继续被处理。</span><span>就这样，在每一个频率级别的6次卷积通过4个通路完成了。</span><span>4级QMF变换在16次卷积后完成。</span></p>
+<p><span>然而，在初期实验中，我们发现低频子频带图像的低采样噪音可能会导致融合结果帧与帧之间的短暂不兼容。</span><span>为了减少低采样噪音的同时使得计算速度尽可能快，我们改变了QMF小波变换的算法以使得低采样过程之作用在两个高频级别的处理阶段。</span><span>于是，在为卷积核采样的像素间的距离在第二低频级别上翻了一番，而在最低频级别上翻了两番。</span></p>
+<p><img alt="figure9" src="figure9.jpg" /><br />
+<small><span>图9 </span><span>每一级别下的QMF小波变换过程。</span><span>在每一个过程中，图像与一个一维的低通或高通核水平或垂直地进行卷积，接着进行低采样。</span><span>为了减少在低频子频带图像上的低采样噪音，低采样古城只在最高的两个频率级别上进行。</span></small></p>
+<p><span>在基于可视度的融合方法中（在第四章提出），两个输入图像的L*通道在单个图像的不同通道上进行渲染，并且每一次卷积都会在两个图像上进行。</span><span>为了减少卷积图像值因为量化而退化，我们在每一通路上对每一个输入图像使用两个通道（16位）进行保存数据（也即，一个图像R和G通道，另一个图像的B和阿尔法通道）。</span><span>在可视度增强融合方法中（在第五章提出），三个输入图像的两个是与同一个图像进行渲染的，另一个输入图像则渲染在另一个图像上。</span><span>因此，QMF变换被执行了两次来得到三个输入图像的小波因子的。</span></p>
+<p><span>在实验中，我们使用一台个人计算机（系统：Windows7，CPU:Core i7 2.93GHz，内存：8GB，GPU：NVIDIA GTX 550Ti 1024MB）。</span><span>输入图像的分辨率是640x480。</span><span>平均每一个优化了的$\alpha$值的窗口大小是65x65。</span><span>在这些条件下，提出的两种融合方法都能工作在高于60FPS的帧率下。</span></p>
+<h4 id="622"><a name="user-content-622" href="#622" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.2 基于可视度融合的实验</h4>
+<p><span>在这个实验中，我们假定是在虚拟物体融合在一个真实背景场景上的情景下。</span><span>我们使用一个静态图像进行了融合方法的测试。</span><span>图像的分辨率是640x480。</span></p>
+<p><span>首先，我们测试了基于可视度的融合方法，通过在两个不同的真实场景图像（一个具有相对光滑的纹理，另一个具有高对比度的纹理）中融合一个虚拟物体，使用4中不同的目标可视度（$v_t=0.6, 1.2, 1.8, 2.4$)进行。</span><span>作为对比，我们使用了传统的阿尔法融合方法（$\alpha = 0.2, 0.4, 0.6, 0.8 $）将相同的真实场景图像与相同的虚拟物体进行融合。</span><span>结果见图10。</span><span>在基于可视度的融合方法的结果中，在两个垂直对齐的图像间（使用相同目标可视度的图像对）虚拟物体（彩色立方体）的可视度看起来很相近。</span><span>相比之下，在阿尔法融合的结果中，在两个垂直对齐的图像对中，尽管融合参数（$\alpha$）是相同的，但是可视度看起来明显不同。</span></p>
+<p><img alt="figure10" src="figure10_zh.png" /><br />
+<small><span>图10 </span><span>使用四个不同目标可视度（$v_t$）的基于可视度的融合方法结果（左图）和使用四个不同阿尔法值的传统阿尔法融合方法结果（右图）。</span><span>在基于可视度的融合方法的图像中中，虚拟物体（彩色立方体）的可视度在竖直方向对齐的两个图像上看起来很相似。</span><span>相比之下，在阿尔法融合的图像中，在两个垂直对齐的图像对中，尽管融合参数（$\alpha$）是相同的，但是可视度看起来明显不同。</span></small></p>
+<p><span>在图11中，我们展示了额外的更加实际的情形下的实验结果。</span><span>这里，一个虚拟物体（彩色立方体或一个塔形建筑物）通过基于可视度的融合方法（左侧）和通过阿尔法融合方法（右侧）进行融合。</span><span>在阿尔法融合的结果中，相同的场景下的每一个区域使用的都是同一个不变的阿尔法值。</span><span>然而，由阿尔法融合的虚拟物体的可视度在图像的不同区域间看起来并不一致。</span></p>
+<p><img alt="figure11" src="figure11_zh.png" /><br />
+<small><span>图11 </span><span>基于可视度融合的例子（上图）和作为对比的传统的阿尔法融合实例（下图）。</span><span>在阿尔法融合的图像中，可视度跟随背景场景的亮度和纹理的变化而变化。</span><span>另一方面，在基于可视度的融合的图像中，可视度保持恒定。</span></small></p>
+<p><span>在阿尔法融合的两个结果中出现了不一致的可视度问题。</span><span>另一方面，在基于可视度的融合方法中，这个问题得到了缓解，而且虚拟物体的每一个部分在每一个图像里看起来几乎是一致的（目标可视度为1.5）。</span><span>因此，当人们想要以恒定统一的可视度融合虚拟物体到不同的场景或相同场景的不同区域时，不论背景的纹理或结构，基于可视度的融合方法都是十分有用的。</span></p>
+<h4 id="623"><a name="user-content-623" href="#623" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.2.3 可视度增强融合的光学透视式系统的实验</h4>
+<p><span>现在，我们对在第五章中描述的可视度增强融合的光学透视式系统进行测试。</span><span>为了知道我们的融合方法是如何在理想情况下工作的，我们首先使用方程8在0到1的强度范围内在光学透视式系统里模拟渲染结果。</span><span>这里，方程8中的$\alpha$的值代表来自设备的光和从真实场景传入的光相对的影响因子。</span><span>$I_1$和$I_2$分别表示虚拟物体和真实场景的线性的RGB颜色。</span><span>我们在实验中使用的参数$\alpha$是0.5。</span><span>在图12A中，我们展示了从模拟中得到的实验结果。</span><span>在每一个图像中，一个虚拟物体（一个彩色立方体或一个古建筑）融合在一个真实背景场景上。</span><span>在图的每一个行里，左图展示了可视度增强的融合方法（目标可视度=1.5），右图则是没有进行可视度增强的原始的场景。</span><span>在原始图像（右侧）中，虚拟物体局部很难看清。</span><span>在可视度增强融合（顶部）中， 在这些区域里可视度得到了改善，而且我们可以感觉到虚拟物体的整个轮廓。</span></p>
+<p><span>接着，我们使用了真实的光学透视式眼镜（MOVERIO BT-200,EPSON）来测试可视度增强的融合方法。</span><span>为了分析真实场景，我们通过照相机（Grasshoppper2,Point Gray Research）进行捕捉真实场景。</span><span>在这个实验中，校准工作是人为完成的以使融合管道的输入图像的外观和通过眼睛看到的真实场景的外观尽可能相同（在光学和几何学层面上）。</span><span>然后，优化了的虚拟场景会呈现在眼睛上。</span><span>合成的增强现实场景会从眼镜的外部由照相机进行捕捉。</span><span>结果展示在图12B中。</span><span>左图是可视度增强的融合方法（目标可视度=1.5），右图是没有使用可视度增强的原始场景。</span><span>再一次，我们可以发现在可视度增强的结果中可视度得到了改善。</span></p>
+<p><img alt="figure12" src="figure12_zh.png" /><br />
+<small><span>图12 </span><span>可视度增强融合的光学可透视系统实例。</span><span>(A)通过模拟的假定的理想校准情况下的实验结果。</span><span>(B)使用真实的光学透视式设备得到的实验结果。</span><span>在两种情况下，左图显示了可视度增强融合的结果，右图是原始的渲染结果。</span></small></p>
+<h3 id="63"><a name="user-content-63" href="#63" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>6.3 实验讨论</h3>
+<p><span>我们论证了可视度模型能够线性预测一个融合物体在多种自然纹理图像上的可视度。</span><span>然后我们展示了提出的融合方法在以恒定统一的可视度融合图像或增强融合物体的可视度上是有效的。</span></p>
+<p><span>然而，在本文中提出的融合方法存在一些限制。</span><span>首先，可视度模型的参数应该依据观测距离或每一视角的像素密度进行重新调整。</span><span>在Laparra等人【12】的研究中，可视度模型的参数是通过拟合心理物理学上测量的误差可视度数据来优化的。</span><span>在数据获取的过程中，观察者在观察距离的特定范围内对图像质量进行评级【23】。</span><span>因此，如果用户在可容许的距离范围外观察融合图像，当前参数下的可视度模型并不能提供精确的预测。</span></p>
+<p><span>其次，我们在融合方法中建立的可视度模型只是分析了亮度，并没有包括颜色对抗的通道分析。</span><span>尽管我们没有考虑颜色对抗通道而论证了模型可以准确地预测可视度，但是考虑了这些因素能进一步增加准确性是在亮度对比很小而色彩对比大的情况下的。</span></p>
+<p><span>至于在第四章提出的基于可视度的融合方法，有一个问题就是可视度不可能增加到超过100%透明度下融合物体的可视度。</span><span>然而，这个问题能够通过准备一个加强了物体存在感（比如边缘）的图像来简单解决。</span><span>（已经有人这样尝试了【11】） 根据预测的可视度调整突出图像的融合参数能够充分地增加这些区域的可视度。</span></p>
+<p><span>最后，至于在第五章中提出的可视度增强的光学透视式系统，一个明显的问题就是在来自真实场景的光线强度相比显示系统的最大光强更强的时候，增强效应一点也不起作用。</span><span>另一个问题是在增强参数$\alpha$变大时虚拟物体表面的对比度会下降。</span><span>如果想要高质量的虚拟物体的表现，来自硬件的支持会是一个理想的解决方法。</span></p>
+<h2 id="7"><a name="user-content-7" href="#7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>7 结论和展望</h2>
+<p><span>我们提出了两种基于可视度模型的融合方法。</span><span>一种是基于可视度的融合方法，它能够局部优化一个融合参数$\alpha$来使得融合物体的可视度满足任意的目标级别。</span><span>另一种是对光学透视式系统进行的可视度增强融合方法，它可以使得虚拟物体的可视度局部自适应地增强到任意目标级别。</span></p>
+<p><span>在这个实验中，我们论证了可视度模型可以线性预测在多种自然纹理图案上的融合物体的可视度。</span><span>然后，我们展示了提出的融合方法在以恒定统一的可视度融合图像或增强融合图像的可视度上是有效的。</span><span>因为提出的融合方法工作在一个足够快速的帧率上，他们与构成AR/MR场景所必须的计算结合时并不会出现交互冲突的情况。</span></p>
+<p><span>尽管在这个研究中我们展示的实验图像设定为增强（混合）显示现实场景，但是提出的方法的使用并不局限于这些场景；融合方法可以被用在任何一个图像需要半透明渲染在另一个图像上的场合里。</span><span>举例来说，基于可适度的融合方法能有效地工作在将虚拟物体与虚拟场景融合的场景下。</span><span>另一可能的使用场景是对类似应用的用户研究使用的刺激展示。</span><span>当半透明地渲染物体时，我们根据目的和场合通常想要知道最优的透明度。</span><span>使用基于可视度的融合模型，我们可以将一个物体的可视度作为一个独立变量并与背景场景相独立地进行调节。</span></p>
+<p><span>此外，鉴于基本理论（即V1模型）的普适性，我们有理由认为我们使用的可视度模型也可以预测在不同背景场景下的文本的可视度。</span><span>使用一个与本文中提出的类似的算法，我们可以自适应增强文本的可视度。</span></p>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h2>
 <p>[1] A. P. Bradley. A wavelet visible difference predictor. IEEE Transaction on Image Processing, 5: 717–730, 1999. <br />
 [2] F. W. Campbell and J. G. Robson. Application of fourier analysis to the visibility of gratings. Journal of Physiology, 197: 551-566, 1968. <br />
 [3] C. R. Carlson, R. W. Cohen, and I. Gorog. Visual processing of simple two-dimensional sine-wave luminance gratings. Vision Research, 17:351-358, 1977. <br />
