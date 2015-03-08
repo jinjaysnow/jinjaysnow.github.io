@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width">
 	<meta name="robots" content="all" />
 	<meta name="date" content="2015-02">
-<meta name="keywords" content="iOS7, iOS8">
+<meta name="keywords" content="iOS7, iOS8, EAGLView, snapshot OpenGLES view">
 <meta name="author" content="Jin Jay">
 <meta name="description" content="iOS capture EAGLView as UIImage/snapshot EAGLView."><style>/* Fonts */
 @font-face{
@@ -833,12 +833,7 @@ MathJax.Hub.Config({
 	</nav>
 	<div id="blog">
 		<div id="markdown" >
-			<div class="codehilite"><pre><span class="w">        </span><span class="vg">EAGLView</span>
-<span class="w">        </span><span class="vg">snapshot</span><span class="w"> </span><span class="vg">OpenGLES</span><span class="w"> </span><span class="vg">view</span>
-</pre></div>
-
-
-<h2 id="snapshot-vieweaglview-in-ios7-or-later"><a name="user-content-snapshot-vieweaglview-in-ios7-or-later" href="#snapshot-vieweaglview-in-ios7-or-later" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>snapshot view/EAGLView in iOS7 or later</h2>
+			<h2 id="snapshot-vieweaglview-in-ios7-or-later"><a name="user-content-snapshot-vieweaglview-in-ios7-or-later" href="#snapshot-vieweaglview-in-ios7-or-later" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>snapshot view/EAGLView in iOS7 or later</h2>
 <div class="codehilite"><pre><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">snapshot:</span><span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span><span class="p">){</span>
     <span class="n">UIGraphicsBeginImageContext</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">);</span>
     <span class="p">[</span><span class="nb">self</span> <span class="nl">drawViewHierarchyInRect</span><span class="p">:</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="nl">afterScreenUpdates</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
@@ -854,7 +849,7 @@ MathJax.Hub.Config({
 <li><a href="#snapshot-vieweaglview-in-ios7-or-later">snapshot view/EAGLView in iOS7 or later</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2015-03-08 18:27:55</p>
+			<p style="text-align: right; color: gray;"><br>2015-03-08 18:31:24</p>
 		</div>
 	</div>
 	<div id="side">

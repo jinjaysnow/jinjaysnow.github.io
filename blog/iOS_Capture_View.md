@@ -2,9 +2,7 @@ author: Jin Jay
 title: iOS Capture EAGLView
 Date: 2015-02
 description: iOS capture EAGLView as UIImage/snapshot EAGLView.
-keywords:   iOS7, iOS8 
-			EAGLView
-			snapshot OpenGLES view
+keywords:   iOS7, iOS8, EAGLView, snapshot OpenGLES view
 
 ## snapshot view/EAGLView in iOS7 or later
 	
