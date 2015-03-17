@@ -22,8 +22,8 @@ GCD中的队列为`dispatch queue`，主要有以下三种：
         // 耗时的操作
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
-        })；
-    })；
+        });
+    });
 
 ### dispatch\_group\_async
 dispatch\_group\_async可以实现监听一组任务是否完成，完成后得到通知执行其他的操作。这个方法很有用，比如你执行三个下载任务，当三个任务都下载完成后你才通知界面说完成的了。示例代码：
