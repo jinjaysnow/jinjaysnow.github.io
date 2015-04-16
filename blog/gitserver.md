@@ -16,14 +16,14 @@ keywords: git server debian
 
     sudo adduser git
 ## 创建证书登陆
-收集所有需要登录的用户的公钥，就是他们自己的`id\rsa.pub`文件，把所有公钥导入到`/home/git/.ssh/authorized_keys`文件里，一行一个。
+收集所有需要登录的用户的公钥，就是他们自己的`id_rsa.pub`文件，把所有公钥导入到`/home/git/.ssh/authorized_keys`文件里，一行一个。
 # 初始化Git仓库
 先选定一个目录作为Git仓库，假定是/sources/test.git，在/sources目录下输入命令：
 
     sudo git init --bare test.git
 Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：
 
-    sudo chown -R git:git sample.git
+    sudo chown -R git:git test.git
 ## 禁用shell登录：
 出于安全考虑，第二步创建的git用户不允许登录shell，这可以通过编辑/etc/passwd文件完成。找到类似下面的一行：
 
