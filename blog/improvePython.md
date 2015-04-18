@@ -681,7 +681,7 @@ Python自带的有一个distutils标准库：
 
 编写好setup.py文件以后，就可以使用`python setup.py install`把它安装到系统中了。
 
-使用pastescript自动穿件项目的setup.py文件及相关的配置、目录等。
+使用pastescript自动创建项目的setup.py文件及相关的配置、目录等。
 
     pip install pastescript
 
