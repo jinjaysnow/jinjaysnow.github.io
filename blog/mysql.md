@@ -19,7 +19,7 @@ create view myview(id, username, password) as select id, username, passwd from a
 ```mysql
 insert into atable (id, user, passwd) values (xx, xx, xx);
 drop table atable;
-update atable set (id, user,passwd) valuse (xx, xx, xx);
+update atable set (id, user,passwd) values (xx, xx, xx);
 select * from atable;
 ```
 
@@ -33,5 +33,9 @@ create table if not exists atable(
 ) engine=innodb;
 ```
 
+# 备份
+```
+mysqldump -hhost -Pport -uuser -ppassword --all-databases > all.sql
+```
 
 [TOC]
