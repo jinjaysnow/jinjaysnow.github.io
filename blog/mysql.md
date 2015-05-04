@@ -38,4 +38,45 @@ create table if not exists atable(
 mysqldump -hhost -Pport -uuser -ppassword --all-databases > all.sql
 ```
 
+# 事件定时器
+## 查看是否开启，三种方法
+```
+SHOW VARIABLES LIKE 'event_scheduler';
+SELECT @@event_scheduler;
+SHOW PROCESSLIST;
+```
+
+## 开启事件机制
+```
+SET GLOBAL event_scheduler = 1;
+SET @@global.event_scheduler = 1;
+SET GLOBAL event_scheduler = ON;
+SET @@global.event_scheduler = ON;
+```
+
+## 事件权限查看
+```
+SELECT HOST,USER,Event_priv FROM mysql.user;
+```
+
+## 事件权限分配
+```
+UPDATE mysql.user SET Event_priv = 'Y' WHERE HOST='%' AND USER='auser';
+```
+## 创建事件
+```
+create event [if not exists] event_name
+on schedule schedule
+[on completion [not] preserve]
+[enable | disable]
+[comment 'comment']
+do sql_statement;
+```
+
+## 事件开启与关闭
+```
+alter event e_test on completion preserve enable;
+alter event e_test on completion preserve disable;
+```
+
 [TOC]
