@@ -1,6 +1,11 @@
+author: Jin Jay
+title: iOS应用开发流程
+Date: 2015-07
+description: 使用Swift开发iOS应用，一步一步教你开发。
+keywords: iOS; Swift; App
+
 <h1 align="center">iOS应用开发流程</h1>
 
-[TOC]
 
 # 获取工具
 在开发之前，需要搭建开发环境，获取开发工具。
@@ -13,7 +18,7 @@
 > 注，本教程中使用的是Xcode7 beta版，编写时Xcode7还没有正式发布。
 
 Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界面编辑器，和其它的功能。iOS SDK作为Xcode的扩展，包括开发iOS应用的一系列工具，编译器，和库函数。
-![安装工具](https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/Art/install_tools_2x.png)
+<center>![安装工具](https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/Art/install_tools_2x.png)</center>
 
 在App Store中查找Xcode，并点击下载，不到3GB的大小。
 
@@ -3046,3 +3051,4 @@ typedef NS_ENUM(NSInteger, ABCRecordSide) {
 # 真机调试
 **现在，Xcode7不需要认证证书就能够进行真机测试。只需要一个Apple ID即可。**
 
+[TOC]
