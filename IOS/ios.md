@@ -26,11 +26,11 @@ Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界
 
 #### 新建Playground
 1. 打开Xcode，选择Get started with a playground
-    <center>![](p1.png)</center>
+    <center>![](http://jinjaysnow.github.io/IOS/p1.png)</center>
 2. 输入文件名,并点击next
-    <center>![](p2.png)</center>
+    <center>![](http://jinjaysnow.github.io/IOS/p2.png)</center>
 3. 选择需要放置文件的位置后，点击create，创建新文件。
-    <center>![](p3.png)</center>
+    <center>![](http://jinjaysnow.github.io/IOS/p3.png)</center>
 
 进入编辑模式，左侧为代码编辑区，右侧为实时的运算结果。接下来介绍的Swift基本知识的代码都可以在左侧代码编辑区编写。
 
@@ -434,7 +434,7 @@ import UIKit
 
 ## 熟悉Xcode
 Xcode工作空间布局如下：
-<center>![](w.png)</center>
+<center>![](http://jinjaysnow.github.io/IOS/w.png)</center>
 
 ## 运行模拟器
 iOS模拟器可以模拟多种设备，在开发中经常使用。新建的工程可以直接在模拟器中运行，在模拟器中运行App有以下步骤。
@@ -611,7 +611,7 @@ Storyboard文件是应用的用户接口的可视化表示，它可以呈现内�
 
 ### 查看大纲视图
 1. 在Storyboard中找到大纲视图开关。
-    <center>![](outline.png)</center>
+    <center>![](http://jinjaysnow.github.io/IOS/outline.png)</center>
 2. 如果大纲视图是关闭状态，点击大纲视图开关以打开大纲视图。
 
 在画布左侧的大纲视图展示了在故事板中的对象的层级关系。
@@ -797,7 +797,7 @@ mealNameLabel.text = "Default Text"
     ```
 
 #### 设置ViewController作为nameTextField的委托
-1. 在ViewController.swfit 中找到`viewDidLoad()`方法。
+1. 在ViewController.swift 中找到`viewDidLoad()`方法。
 2. 在`super.viewDidLoad()`行之下，增加如下内容。
     ```Swift
     // Handle the text field’s user input through delegate callbacks.
@@ -912,7 +912,7 @@ func textFieldDidEndEditing(textField: UITextField) {
 <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_sim_finalUI_2x.png)</center>
 
 ### 将图像与代码连接
-1. 打开辅助编辑器，辅助编辑器中打开ViewController.swfit文件。
+1. 打开辅助编辑器，辅助编辑器中打开ViewController.swift文件。
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png)</center>
 2. 如果想要更大的空间进行操作，可以关闭导航栏和功能区。
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png)</center>
@@ -1035,7 +1035,7 @@ func imagePickerController(picker: UIImagePickerController, didFinishPickingMedi
     默认保存在工程目录下；组选项默认为应用名；在目标选项处，勾选应用，取消勾选"tests for your app"。
 8. 保持默认的配置，点击"Create"。
     Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。
-9. 在RatingControl.swfit中，删除默认添加的实现代码。
+9. 在RatingControl.swift中，删除默认添加的实现代码。
     ```Swift
     import UIKit
 
@@ -1093,7 +1093,7 @@ required init(coder aDecoder: NSCoder!) {
 <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_sim_1redbutton_2x.png)</center>
 
 ### 给按钮添加动作
-1. 在RatingControl.swfit中，增加一行注释:
+1. 在RatingControl.swift中，增加一行注释:
     ```Swift 
     // MARK: Button Action
     ```
@@ -1104,7 +1104,7 @@ required init(coder aDecoder: NSCoder!) {
     }
     ```
 3. 在`init(coder:)`初始化函数中，在`addSubview(button)`这一行的前面，增加如下代码：
-    ```Swfit
+    ```Swift
     button.addTarget(self, action: "ratingButtonTapped:", forControlEvents: .TouchDown)
     ```
     这里使用的是target-action模式，将动作`ratingButtonTapped`与`button`对象绑定，触发条件为`.TouchDown`(按下操作)。这里不需要使用IBAction，因为你没有使用Interface Builder。
@@ -1248,7 +1248,7 @@ required init(coder aDecoder: NSCoder!) {
 <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_assetcatalog_final_2x.png)</center>
 
 接下来，编写代码来在合适的时间使用合适的图像。
-1. 打开 RatingControl.swfit。
+1. 打开 RatingControl.swift。
 2. 在`for-in`循环前，增加如下代码：
     ```Swift 
     let filledStarImage = UIImage(named: "filledStar")
@@ -1411,7 +1411,7 @@ func updateButtonSelectionStates() {
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_centerstack_2x.png)</center>
 
 接下来，清除与刚刚删除的按钮相关的动作按钮。
-1. 打开ViewController.swfit。
+1. 打开ViewController.swift。
 2. 删除`setDefaultLabelText(_:)`方法。
     ```Swift 
     @IBAction func setDefaultLabelText(sender: UIButton) {
@@ -2088,7 +2088,7 @@ var meal = Meal?()
 
 接下来，给MealTableViewController增加一个动作方法来实现转场。这个方法应该被标记为"IBAciont"，并且有一个segue参数(`UIStoryboardSegue`)。
 
-打开MealTableViewController.swfit，增加如下函数：
+打开MealTableViewController.swift，增加如下函数：
 ```Swift 
 @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
     /*  as? 可选类型强制转换符，将源视图控制器强制转换为MealViewController类型。
@@ -2518,10 +2518,535 @@ override func viewDidLoad() {
 **调试和测试应用：** [Debugging with Xcode](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/debugging_with_xcode/index.html#//apple_ref/doc/uid/TP40015022)讲解如何使用Xcode调试和测试应用。  
 **发布应用** [App Distribution Guide](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582) 指导如何进行内测和将应用发布到应用商店。
 
+# 在Cocoa和Objective-C中使用Swift
+Swift在设计之初就考虑到了与Cocoa和Objective-C的无缝兼容。在Swift中可以使用Objective-C的API，也可以在Objective-C中使用Swift API。
+
+先来理解Swift的import过程：  
+任何Objective-C库(或者C库)都能够被Swift当做一个模块直接导入。比如Objective-C常用的库：Foundation, UIKit, SpriteKit。导入Foundation库只需要一个import语句：
+```Swift 
+import Foundation
+```
+这个导入使得Foundation 的所有API，比如NSDate、NSURL、NSMutableData及其方法和属性等，都能被Swift直接使用。不过导入过程会将OC的部分类型转换为Swift语言相对应的类型。
+
+下面介绍两种语言的互用性。
+## 互用性
+### 初始化
+在Swift中初始化一个OC的类，我们可以使用Swift的语法来调用这个类的某一个初始化函数。"init"前缀会被对齐然后变为一个表明该方法是初始化函数的关键字。对于以"initWith"开头的初始化函数，"With"也会被丢弃。接着"init"或"initWith"后面的第一个单词首字母会变为小写，并且会被当做第一个参数名。其余的会作为另外的参数名。举例如下：
+
+在OC中，我们可能会有如下初始化：
+```Objective-C
+UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectZero style: UITableViewStyleGrouped];
+```
+在Swift中，我们这样做：
+```Swift
+let myTableView: UITableView = UITableView(frame: CGRectZero, style: .Grouped)
+```
+我们不需要调用alloc，Swift会自动处理。注意到"init"没有在Swift的初始化调用中出现。
+
+在初始化的过程中，我们可以明确的输入对象类型，或者省略类型。Swift的类型引用会自动正确地确定对象的类型。
+```Swift
+let myTextField = UITextField(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 40.0))
+```
+
+这些UITableView和UITextField对象拥有在OC中相同的功能。可以如在OC中一样使用它们，比如访问属性和调用方法。
+
+为了一致性和简便性，OC的工厂方法会被映射为Swift中的"convenience initializer"。比如OC中的如下工厂方法：
+```Objective-C
+UIColor *color = [UIColor colorWithRed: 0.5 green: 0.0 blue: 0.5 alpha: 1.0];
+```
+在Swift中我们可以这样调用：
+```Swift 
+let color = UIColor(red: 0.5, green: 0.0, blue: 0.5, alpha: 1.0)
+```
+
+### 允许失败的初始化
+在OC中，初始化函数直接返回它初始化的对象。为了通知调用者初始化失败，OC初始化会返回nil。在Swift中，这一模式被内建为一种语言特性——`failable initialization`。使用`init(...)`表示一定能成功的初始化，`init?(...)`表示可能会失败的初始化。比如`UIImage(contentsOfFile:)`初始化在图像文件不存在时会失败。我们可以使用可选绑定来拆包这个初始化的结果：
+```Swift 
+if let image = UIImage(contentsOfFile: "MyImage.png") {
+    // loaded the image successfully
+} else {
+    // could not load the image
+}
+```
+
+### 访问属性
+访问和设置OC对象的属性使用点语法：
+```Swift 
+myTextField.textColor = UIColor.darkGrayColor()
+myTextField.text = "hello world"
+```
+
+### 类方法
+在Swift中调用OC方法也使用点语法：
+
+OC函数：
+```Objective-C
+[myTableView insertSubview: mySubview atIndex: 2];
+```
+Swift函数：
+```Swift 
+myTableView.insertSubview(mySubview, atIndex: 2)
+```
+
+### id兼容性
+Swift使用一个名为`AnyObject`的协议类型来表示任一种类型，OC中使用`id`。因此Swift会将OC中的id映射为AngObject。我们可以给AnyObject赋值为任何一个类型的对象，我们还可以更改为另外一种类型的对象。
+```Swift 
+var myObject: AnyObject = UITableViewCell()
+myObject = NSDate()
+```
+
+不过，由于AnyObject对象的类型只能在运行时确定，所以很可能会编写不安全的代码，很可能产生运行时错误。我们可以采用Swift中的可选来消除这一类型的错误。当我们调用一个AnyObject对象的方法时，这个调用会作为隐式拆包可选来进行。
+
+> AnyObject的属性访问总是返回一个可选值。
+
+下面的例子中，第一行与第二行代码并不会得到执行，因为NSDate对象并不具有count属性和characterAtIndex方法。myCount常量会被推断为可选Int型，然后设置为nil。我们可以使用if-let语句来按条件拆包一个方法的执行结果。
+```Swift 
+let myCount = myObject.count
+let myChar = myObject.characterAtIndex?(5)
+if let fifthCharacter = myObject.characterAtIndex?(5) {
+    print("Found \(fifthCharacter) at index5")
+}
+```
+
+SWift中，将AnyObject向下转换到一个具体的对象类型并不能保证成功，所以会返回一个可选值。我们可以检查这个可选值来确定是否能够转换成功。
+```Swift 
+let userDefaults = NSUserDefaults.standardUserDefaults()
+let lastRefershDate: AnyObject? = userDefaults.objectForKey("LastRefreshDate")
+if let date = lastRefershDate as? NSDate {
+    print("\(date.timeIntervalSinceReferenceData)")
+}
+```
+
+当然，在我们确定对象的类型不为空时，我们可以强制转换。
+```Swift 
+let myDate = lastRefershDate as! NSDate
+let tiemInterval = myDate.timeIntervalSinceReferenceData
+```
+
+### 可空与可选
+OC中我们使用指针来引用对象，指针可能为NULL。在Swift中，所有的值，包括结构体和对象引用，保证为非空。我们使用可选类型来表示一个值可能为空。
+
+OC:
+```Objective-C
+@property (nullable) id  nullableProperty;
+@property (nonnull) id nonNullProperty;
+@property id unannotatedProperty;
+ 
+NS_ASSUME_NONNULL_BEGIN
+- (id)returnsNonNullValue;
+- (void)takesNonNullParameter:(id)value;
+NS_ASSUME_NONNULL_END
+ 
+- (nullable id)returnsNullableValue;
+- (void)takesNullableParameter:(nullable id)value;
+ 
+- (id)returnsUnannotatedValue;
+- (void)takesUnannotatedParameter:(id)value;
+```
+
+Swift:
+```Swift
+var nullableProperty: AnyObject?
+var nonNullProperty: AnyObject
+var unannotatedProperty: AnyObject!
+ 
+func returnsNonNullValue() -> AnyObject
+func takesNonNullParameter(value: AnyObject)
+ 
+func returnsNullableValue() -> AnyObject?
+func takesNullableParameter(value: AnyObject?)
+ 
+func returnsUnannotatedValue() -> AnyObject!
+func takesUnannotatedParameter(value: AnyObject!)
+```
+
+### 扩展
+Swift扩展(Extension)与OC的category类似。扩展允许给一个已经存在的类、结构体和枚举等增添行为。
+
+我们给UIBezierPath类进行扩展使它能够创建等边三角形的简单Bézier路径。
+```Swift 
+extension UIBezierPath {
+    convenience init(triangleSideLength: CGFloat, origin: CGPoint) {
+        self.init()
+        let squareRoot = CGFloat(sqrt(3.0))
+        let altitude = (squareRoot * triangleSideLength) / 2
+        moveToPoint(origin)
+        addLineToPoint(CGPoint(x: origin.x + triangleSideLength, y: origin.y))
+        addLineToPoint(CGPoint(x: origin.x + triangleSideLength / 2, y: origin.y + altitude))
+        closePath()
+    }
+}
+```
+
+我们还可以使用扩展增加属性。
+```Swift
+extension CGRect {
+    var area: CGFloat {
+        return width * height
+    }
+}
+let rect = CGRect(x: 0.0, y: 0.0, width: 10.0, height: 50.0)
+let area = rect.area
+```
+
+### 闭包
+OC中的代码块(Block)会自动作为Swift闭包(Closure)导入。
+
+OC:
+```Objective-C
+void (^completionBlock)(NSData *, NSError *) = ^(NSData *data, NSError *error) {
+   /* ... */
+}
+```
+
+```Swift
+let completionBlock: (NSData, NSError) -> Void = { (data, error) in
+    /* ... */
+}
+```
+
+### 对象比较
+在Swift中有两种类型的对象比较。第一是是相等比较`==`，比较对象的内容；第二种是恒等`===`，比较是否是同一个对象实例。
+
+### 轻量级的范型
+OC中的NSArray, NSSet, NSDictionary类型使用轻量级的范型参数，Swift导入后会将相应的内容类型信息保留。
+
+OC:
+```Objective-C
+@property NSArray<NSDate *>* dates;
+@property NSSet<NSString *>* words;
+@property NSDictionary<KeyType: NSURL *, NSData *>* cachedDate;
+```
+
+Swift:
+```Swift
+var dates: [NSDate]
+var words: Set<String>
+var cachedData: [NSURL: NSData]
+```
+
+### OC选择器
+OC选择器是一种能够引用OC中某一个方法的类型。在Swift中，OC选择器由Selector结构体代替。
+```Swift
+import UIKit
+class MyViewController: UIViewController {
+    let myButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+    
+    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        myButton.addTarget(self, action: "tappedButton:", forControlEvents: .TouchUpInside)
+    }
+    
+    func tappedButton(sender: UIButton!) {
+        print("tapped button")
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+}
+```
+
+## 编写具有OC行为的Swift类
+### 从OC类继承
+继承使用冒号语法：
+```Swift
+import UIKit
+class MySwiftViewController: UIViewController {
+    // define the class
+}
+```
+
+### 配置类属性的属性
+#### Strong和Weak
+Swift的属性默认为strong。使用weak关键词表明一个属性对存储确定值的对象拥有弱引用。这个关键词只有在属性是可选类类型时使用。
+
+### Read/Write和Read-Only
+在Swift中并没有readwrite和readonly。声明属性的时候使用let表明是read-only，使用var表明是read/write。
+
+#### copy语法
+在Swift中，OC的copy属性被转换为@NSCopying。
+
+### Cocoa数据类型
+#### 字符串
+Swift将String类型与NSString类进行了自动桥接。事实上，Swift导入OC API时，会将所有的NSString转换为String类型。所以我们应该更经常使用String对象。NSSting总是能够转换为String。
+```Swift 
+import Foundation
+let myString: NSString = "123"
+if let integerValue = Int(myString as String) {
+    print("\(myString) is the integer \(integerValue)")
+}
+// prints "123 is the integer 123"
+```
+
+此外，在OC中我们常常使用NSLocalizedString一系列宏来本地化字符串，在Swift中我们只需要使用单一的范数来进行本地化——`NSLocalizedString(key:tableName:bundle:value:comment:)`。
+
+#### 集合类
+Swift将NSArray, NSSet, NSDictionary与Array, Set, Dictionary进行了桥接。
+
+OC:
+```Objective-C
+@property NSDictionary<NSURL *, NSData *>* cachedData;
+- (NSDictionary<NSURL *, NSNumber *> *)fileSizesForURLsWithSuffix:(NSString *)suffix;
+- (void)setCacheExpirations:(NSDictionary<NSURL *, NSDate *> *)expirations;
+```
+
+Swift:
+```Swift 
+var cachedData: [NSURL: NSData]
+func fileSizesForURLsWithSuffix(suffix: String) -> [NSURL: NSNumber]
+func setCacheExpirations(expirations: [NSURL: NSDate])
+```
+
+### Cocoa设计模式
+#### 委托
+```Swift 
+class MyDelegate: NSObject, NSWindowDelegate {
+    func window(NSWindow, willUseFullScreenContentSize proposedSize: NSSize) -> NSSize {
+        return proposedSize
+    }
+}
+var myDelegate: NSWindowDelegate? = MyDelegate()
+if let fullScreenSize = myDelegate?.window?(myWindow, willUseFullScreenContentSize: mySize) {
+    print(NSStringFromSize(fullScreenSize))
+}
+```
+
+#### 错误处理
+捕获和处理错误，OC:
+```Objective-C
+NSFileManager *fileManager = [NSFileManager defaultManager];
+NSURL *URL = [NSURL fileURLWithPath:@"/path/to/file"];
+NSError *error = nil;
+BOOL success = [fileManager removeItemAtURL:URL error:&error];
+if (!success && error) {
+    NSLog(@"Error: %@", error.domain);
+}
+```
+
+```Swift 
+let fileManager = NSFileManager.defaultManager()
+let URL = NSURL.fileURLWithPath("/path/to/file")
+do {
+    try fileManager.removeItemAtURL(URL)
+} catch let error as NSError {
+    print("Error: \(error.domain)")
+}
+```
+
+抛出异常，OC:
+```Objective-C
+// an error occurred
+if (errorPtr) {
+   *errorPtr = [NSError errorWithDomain:NSURLErrorDomain
+                                   code:NSURLErrorCannotOpenFile
+                               userInfo:nil];
+}
+```
+
+Swift:
+```Swift
+// an error occurred
+throw NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotOpenFile, userInfo: nil)
+```
+
+#### 键值观察
+键值观察是一种允许对象在两一个对象的某一个属性改变时得到通知的机制。
+1. 给想要观察的属性添加一个`dynamic`修饰器。
+    ```Swift 
+    class MyObjectToObserve: NSObject {
+        dynamic var myDate = NSDate()
+        func updateDate() {
+            myDate = NSDate()
+        }
+    }
+    ```
+2. 创建一个全局变量
+    ```Swift 
+    private var myContext = 0
+    ```
+3. 给键路径创建一个观察者，重写函数`observeValueForKeyPath:ofObject:change:context:`,然后在`deinit`中移除观察者。
+    ```Swift 
+    class MyObserver: NSObject {
+        var objectToObserve = MyObjectToObserve()
+        override init() {
+            super.init()
+            objectToObserve.addObserver(self, forKeyPath: "myDate", options: .New, context: &myContext)
+        }
+        
+        override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+            if context == &myContext {
+                if let newValue = change?[NSKeyValueChangeNewKey] {
+                    print("Date changed: \(newValue)")
+                }
+            } else {
+                super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            }
+        }
+        
+        deinit {
+            objectToObserve.removeObserver(self, forKeyPath: "myDate", context: &myContext)
+        }
+    }
+    ```
+
+#### 内省法
+在OC中我们使用`isKindOfClass:`来检查对象是否是某一个类的对象，`conformsToProtocol:`检查对象是否实现了特定的协议。在Swift中，我们使用`is`操作符和`as?`操作符来完成。
+
+```Swift 
+if object is UIButton {
+    // object is of type UIButton
+} else {
+    // object is not of type UIButton
+}
+
+if let dataSource = object as? UITableViewDataSource {
+    // object conforms to UITableViewDataSource and is bound to dataSource
+} else {
+    // object not conform to UITableViewDataSource
+}
+```
+
+### 与C API 进行交互
+#### 基本类型
+
+C类型 | Swift类型
+-----|---------
+bool | CBool
+char, signed char | CChar
+unsigned char | CUnsignedChar
+short|CShort
+unsigned short|CUnsignedShort
+int|CInt
+unsigned int|CUnsignedInt
+long|CLong
+unsigned long|CUnsignedLong
+long long|CLongLong
+unsigned long long|CUnsignedLongLong
+wchar_t|CWideChar
+char16_t|CChar16
+char32_t|CChar32
+float|CFloat
+double|CDouble
+
+#### 指针
+
+C Syntax|Swift Syntax
+------|------
+const Type * | UnsafePointer<Type>
+Type * | UnsafeMutablePointer<Type>
+
+## Swift与OC混合编程
+OC和Swift能够在同一个项目中共存，处理流程依据编写app还是库而有所不同。
+<center>![](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/Art/DAG_2x.png)</center>
 
 
+### 将OC导入Swift
+将OC导入Swift需要依赖`Objective-C bridging header`的帮助。
+<center>![](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/Art/bridgingheader_2x.png)</center>
+点击"Yes"后Xcode会额外创建一个头文件，并会命名为项目名+"-Bridging-Header.h"。
+
+我们需要进一步编写这个头文件以将OC的代码暴露给Swift进行调用。
+1. 在新建的桥接头文件中，导入所有的想要暴露给Swift的OC头文件。例如：
+    ```Objective-C
+    #import "XYZCustomer.h"
+    #import "XYZCustomerView.h"
+    #import "XYZCustomerViewController.h"
+    ```
+2. 在构建设置`Building Settings`中，确保`Swift Compiler - Code Generation`下的`Objective-C Bridging Header`包含指向该头文件的路径。
+
+任何在这个桥接头文件中列出的公众OC头文件都对Swift可见。OC文件中的功能在Swift文件中可以自动变为可用，不用使用import语句。
+```Swift 
+let myCell = XYZCustomCell()
+myCell.subtitle = "A custom cell"
+```
+
+### 将Swift导入OC
+与将OC导入Swift类似，将Swift导入OC中时，我们依赖于Xcode产生的头文件来将这些文件暴露给OC。这个头文件的名称一般为项目名+"-Swift.h"。默认情况下，产生的头文件会包含使用`public`修饰的Swift声明，并且如果项目使用了桥接头文件还会包含使用了`internal`修饰的Swift声明。使用`private`修饰的声明不会被包含在这个头文件中，除非明确地使用了`@IBAction`,`@IBOutlet`,`@objc`。
+
+基本上不用做任何事情来产生这个文件，直接在OC中导入这个文件就可以使用文件的内容。如果在Swift中使用了自定义的OC类型，请确保在导入这个Swift头文件前将这些类型的OC头文件导入到想要访问Swift代码的OC ".m"文件中。
+```Objective-C
+#import "ProductModuleName-Swift.h"
+```
+
+代码 |导入Swift | 导入OC
+--|---------|-------
+Swift代码 | 不需要import | #import "ProductModuleName-Swift.h"
+OC代码 | 不需要import语句；需要OC桥接头文件 | #import "Header.h"
+
+### 在同一个库中导入代码
+编写混合语言的库时，需要额外注意。
+
+将OC导入Swift：
+1. 在`Building Settings`中，设置`Packaging`中的`Defines Module`为`Yes`。
+2. 使用尖括号包含头文件。
+    ```Swift
+    #import <XYZ/XYZCustomCell.h>
+    ```
+
+将Swift导入OC：
+1. 在`Building Settings`中，设置`Packaging`中的`Defines Module`为`Yes`。
+2. 使用尖括号包含头文件。
+    ```Objective-C
+    #import <ProductName/ProductModuleName-Swift.h>
+    ```
+
+### 导入外部库
+
+库 | 导入Swift | 导入OC 
+---|----------|------
+任意语言的库 | `import FrameWorkName` | `@import FrameworkName;`
 
 
+### 在OC中使用Swift
+将Swift代码导入OC中后，需要使用规范的OC语法来操作Swift类。
+```Swift 
+MySwiftClass *swiftObject = [[MySwiftClass alloc] init];
+[swiftObject swiftMethod];
+```
+
+Swift中的类或协议必须被标记为`@objc`才能在OC中访问和使用。
+
+在OC头文件中引用Swift类或协议：
+```Swift 
+// MyObjcClass.h
+@class MySwiftClass;
+@protocol MySwiftProtocol;
+ 
+@interface MyObjcClass : NSObject
+- (MySwiftClass *)returnSwiftClassInstance;
+- (id <MySwiftProtocol>)returnInstanceAdoptingSwiftProtocol;
+/* ... */
+@end
+```
+
+### 为OC接口重写Swift方法名
+Swift编译器会自动导入OC代码作为conventional代码，将OC的工厂方法变为初始化方法。可能存在一些边界情况导致代码不能正确处理。所以需要进行进一步处理。
+
+工厂方法可能出现问题，我们可以使用`NS_SWIFT_NAME`宏来使其正确地处理:
+```Objective-C
++ (instancetype)recordWithRPM:(NSUInteger)RPM NS_SWIFT_NAME(init(RPM:));
++ (id)recordWithQuality:(double)quality NS_SWIFT_NAME(record(quality:));
+```
+
+枚举类型，可以使用`NS_SWIFT_NAME`宏来处理：
+```Objective-C
+typedef NS_ENUM(NSInteger, ABCRecordSide) {
+  ABCRecordSideA,
+  ABCRecordSideB NS_SWIFT_NAME("FlipSide"),
+};
+```
+
+### 故障建议和提示
+* 将Swif与OC文件作为同一个代码集，注意命名冲突。
+* 在制作库时，确保设置`Packaging`中的`Defines Module`为`Yes`。
+* OC桥接文件中，确保`Swift Compiler - Code Generation`下的`Objective-C Bridging Header`包含指向该头文件的路径。
+* Xcode使用product module name而不是target name来命名桥接文件和给OC用的Swift头文件。
+* Swift类必须是OC类的子类或者被标记为`@objc`才能被OC使用。
+* 如果在Swift中使用了自定义的OC类型，请确保在导入这个Swift头文件前将这些类型的OC头文件导入到想要访问Swift代码的OC ".m"文件中。
+
+## 将OC代码迁移到Swift
+迁移用来重新审视现存的OC应用，通过使用Swift来改善应用的架构、逻辑和性能。
 
 
 
