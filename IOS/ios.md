@@ -18,7 +18,7 @@ Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界
 在App Store中查找Xcode，并点击下载，不到3GB的大小。
 
 # 编程语言
-当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Object-C的混合编程。因此，为了更好的学些本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float...)，数据结构，函数，控制流(while, if...else和for语句等等)。下面介绍Swift语言的基本知识。
+当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学些本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float...)，数据结构，函数，控制流(while, if...else和for语句等等)。下面介绍Swift语言的基本知识。
 
 ## Swift语言
 ### Playground
@@ -61,7 +61,7 @@ let width = 94
 let widthLabel = label + String(width)
 ```
 
-使用 `可选(optionals)` 来表示变量值可能不存在。一个可选值表示要么包含一个值，要是是空值(nil)。可选的标记是在类型后面添加 `?` 。
+使用 `可选(optionals)` 来表示变量值可能不存在。一个可选值表示要么包含一个值，要么是空值(nil)。可选的标记是在类型后面添加 `?` 。
 
 ```Swift
 let optionalInt: Int? = 9
@@ -145,7 +145,7 @@ if let hello = optionalHello where hello.hasPrefix("H"), let name = optionalName
 ```
 
 `switch`在swift中很强大，支持任意的类型和比较操作————它不限制为整型和相等比较。
-```
+```Swift
 let vegetable = "red pepper"
 switch vegetable {
 case "celery":
@@ -159,7 +159,7 @@ default:
 }
 ```
 
-半开区间运算符 `..<`, 闭区间运算符`...`, 通配符 '_'
+半开区间运算符 `..<`, 闭区间运算符`...`, 通配符 `_`:
 ```Swift
 var firstForLoop = 0
 for i in 0..<4 { // 4次
@@ -409,7 +409,7 @@ Cocoa Touch是用来开发iOS应用的开发框架。最经常使用的框架是
 import UIKit
 ```
 
-# 第一个项目————膳食跟踪
+# 第一个项目——膳食跟踪
 ## 创建新工程
 1. 打开Xcode，出现Xcode的初始界面
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_welcomewindow_2x.png)</center>
@@ -465,8 +465,8 @@ iOS模拟器可以模拟多种设备，在开发中经常使用。新建的工�
 
 ## 解析AppDelegate.swift文件
 AppDelegate.swift包含两个主要功能:
-· 它创建App的入口和一个运行循环将输入事件转发给App。这个工作是通过`UIApplicationMain`属性完成的(`@UIApplicationMain`)。UIApplicationMain 创建一个负责管理App的生命周期的应用对象和App delegate对象。
-· 它定义了AppDelegate类。App delegate创建一个窗口(window)，在window上进行应用的内容绘制并提供响应应用内部的状态转换的场所。`AppDelegate`类是编写自定义的App级代码的地方。
+* 它创建App的入口和一个运行循环将输入事件转发给App。这个工作是通过`UIApplicationMain`属性完成的(`@UIApplicationMain`)。UIApplicationMain 创建一个负责管理App的生命周期的应用对象和App delegate对象。
+* 它定义了AppDelegate类。App delegate创建一个窗口(window)，在window上进行应用的内容绘制并提供响应应用内部的状态转换的场所。`AppDelegate`类是编写自定义的App级代码的地方。
 
 AppDelegate包含一个单一属性`window`。通过这个属性，App追踪应用内容绘制的窗口。这个属性是可选的，意味着在某些时刻可能为nil。AppDelegate也包含几个预定义的方法来允许应用对象能够与App Delegate进行交互。
 ```Swift
@@ -596,8 +596,7 @@ Storyboard文件是应用的用户接口的可视化表示，它可以呈现内�
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_place_2x.png)</center>
 4. 双击标签并输入"Meal Name"(食物名称)。
 5. 按下回车键确认并在标签上显示文本。
-
-<center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png)</center>
+    <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png)</center>
 
 ### 添加一个按钮
 1. 在对象库中，查找 button 对象。
@@ -606,8 +605,7 @@ Storyboard文件是应用的用户接口的可视化表示，它可以呈现内�
     <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_place_2x.png)</center>
 4. 双击按钮，并输入"Set Default Label Text"(设置默认标签)。
 5. 按下回车键确认并在按钮上显示文本。
-
-<center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png)</center>
+    <center>![](https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png)</center>
 
 ### 查看大纲视图
 1. 在Storyboard中找到大纲视图开关。

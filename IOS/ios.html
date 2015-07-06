@@ -961,7 +961,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_9">第一个项目————膳食跟踪</a><ul>
+<li><a href="#_9">第一个项目——膳食跟踪</a><ul>
 <li><a href="#_10">创建新工程</a></li>
 <li><a href="#xcode">熟悉Xcode</a></li>
 <li><a href="#_11">运行模拟器</a></li>
@@ -1136,7 +1136,7 @@
 <img alt="安装工具" src="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/Art/install_tools_2x.png" /></p>
 <p>在App Store中查找Xcode，并点击下载，不到3GB的大小。</p>
 <h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编程语言</h1>
-<p>当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Object-C的混合编程。因此，为了更好的学些本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float&hellip;)，数据结构，函数，控制流(while, if&hellip;else和for语句等等)。下面介绍Swift语言的基本知识。</p>
+<p>当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学些本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float&hellip;)，数据结构，函数，控制流(while, if&hellip;else和for语句等等)。下面介绍Swift语言的基本知识。</p>
 <h2 id="swift"><a name="user-content-swift" href="#swift" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Swift语言</h2>
 <h3 id="playground"><a name="user-content-playground" href="#playground" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Playground</h3>
 <p>使用Playground学习Swift十分友好，Playground是Xcode自带的工具。</p>
@@ -1166,7 +1166,7 @@
 <span class="kd">let</span> <span class="nv">width</span> <span class="p">=</span> <span class="mi">94</span>
 <span class="kd">let</span> <span class="nv">widthLabel</span> <span class="p">=</span> <span class="n">label</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
 </pre></div>
-<p>使用 <code>可选(optionals)</code> 来表示变量值可能不存在。一个可选值表示要么包含一个值，要是是空值(nil)。可选的标记是在类型后面添加 <code>?</code> 。</p>
+<p>使用 <code>可选(optionals)</code> 来表示变量值可能不存在。一个可选值表示要么包含一个值，要么是空值(nil)。可选的标记是在类型后面添加 <code>?</code> 。</p>
 <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">optionalInt</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">=</span> <span class="mi">9</span>
 </pre></div>
 <blockquote>
@@ -1234,20 +1234,20 @@
 </pre></div>
 </p>
 <p><code>switch</code>在swift中很强大，支持任意的类型和比较操作————它不限制为整型和相等比较。<br />
-<div class="codehilite"><pre>let vegetable = &quot;red pepper&quot;
-switch vegetable {
-case &quot;celery&quot;:
-    let vegetableComment = &quot;Add some raisins and make ants on a log.&quot;
-case &quot;cucumber&quot;, &quot;watercress&quot;:
-    let vegetableComment = &quot;That would make a good tea sandwich.&quot;
-case let x where x.hasSuffix(&quot;pepper&quot;):
-    let vegetableComment = &quot;Is it a spicy \(x)?&quot;
-default:
-    let vegetableComment = &quot;Everything tastes good in soup.&quot;
-}
+<div class="codehilite"><pre><span class="kd">let</span> <span class="nv">vegetable</span> <span class="p">=</span> <span class="s">&quot;red pepper&quot;</span>
+<span class="k">switch</span> <span class="n">vegetable</span> <span class="p">{</span>
+<span class="k">case</span> <span class="s">&quot;celery&quot;</span><span class="p">:</span>
+    <span class="kd">let</span> <span class="nv">vegetableComment</span> <span class="p">=</span> <span class="s">&quot;Add some raisins and make ants on a log.&quot;</span>
+<span class="k">case</span> <span class="s">&quot;cucumber&quot;</span><span class="p">,</span> <span class="s">&quot;watercress&quot;</span><span class="p">:</span>
+    <span class="kd">let</span> <span class="nv">vegetableComment</span> <span class="p">=</span> <span class="s">&quot;That would make a good tea sandwich.&quot;</span>
+<span class="k">case</span> <span class="kd">let</span> <span class="nv">x</span> <span class="k">where</span> <span class="n">x</span><span class="p">.</span><span class="n">hasSuffix</span><span class="p">(</span><span class="s">&quot;pepper&quot;</span><span class="p">):</span>
+    <span class="kd">let</span> <span class="nv">vegetableComment</span> <span class="p">=</span> <span class="s">&quot;Is it a spicy </span><span class="si">\(</span><span class="n">x</span><span class="si">)</span><span class="s">?&quot;</span>
+<span class="k">default</span><span class="p">:</span>
+    <span class="kd">let</span> <span class="nv">vegetableComment</span> <span class="p">=</span> <span class="s">&quot;Everything tastes good in soup.&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </p>
-<p>半开区间运算符 <code>..&lt;</code>, 闭区间运算符<code>...</code>, 通配符 &lsquo;_&rsquo;<br />
+<p>半开区间运算符 <code>..&lt;</code>, 闭区间运算符<code>...</code>, 通配符 <code>_</code>:<br />
 <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">firstForLoop</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">4</span> <span class="p">{</span> <span class="c1">// 4次</span>
     <span class="n">firstForLoop</span> <span class="o">+=</span> <span class="n">i</span>
@@ -1477,7 +1477,7 @@ default:
 <div class="codehilite"><pre><span class="kd">import</span> <span class="nc">UIKit</span>
 </pre></div>
 </p>
-<h1 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第一个项目————膳食跟踪</h1>
+<h1 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第一个项目——膳食跟踪</h1>
 <h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建新工程</h2>
 <ol>
 <li>打开Xcode，出现Xcode的初始界面<br />
@@ -1528,8 +1528,8 @@ Xcode会打开新的工程如下所示。<br />
 <p>此外，如果双击AppDelegate.swift，会在另外一个窗口打开该文件。</p>
 <h2 id="appdelegateswift"><a name="user-content-appdelegateswift" href="#appdelegateswift" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>解析AppDelegate.swift文件</h2>
 <p>AppDelegate.swift包含两个主要功能:<br />
-· 它创建App的入口和一个运行循环将输入事件转发给App。这个工作是通过<code>UIApplicationMain</code>属性完成的(<code>@UIApplicationMain</code>)。UIApplicationMain 创建一个负责管理App的生命周期的应用对象和App delegate对象。<br />
-· 它定义了AppDelegate类。App delegate创建一个窗口(window)，在window上进行应用的内容绘制并提供响应应用内部的状态转换的场所。<code>AppDelegate</code>类是编写自定义的App级代码的地方。</p>
+<em> 它创建App的入口和一个运行循环将输入事件转发给App。这个工作是通过<code>UIApplicationMain</code>属性完成的(<code>@UIApplicationMain</code>)。UIApplicationMain 创建一个负责管理App的生命周期的应用对象和App delegate对象。<br />
+</em> 它定义了AppDelegate类。App delegate创建一个窗口(window)，在window上进行应用的内容绘制并提供响应应用内部的状态转换的场所。<code>AppDelegate</code>类是编写自定义的App级代码的地方。</p>
 <p>AppDelegate包含一个单一属性<code>window</code>。通过这个属性，App追踪应用内容绘制的窗口。这个属性是可选的，意味着在某些时刻可能为nil。AppDelegate也包含几个预定义的方法来允许应用对象能够与App Delegate进行交互。<br />
 <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="bp">NSObject</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span>
 <span class="kd">func</span> <span class="nf">applicationWillResignActive</span><span class="p">(</span><span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">)</span>
@@ -1718,9 +1718,9 @@ Xcode会打开新的工程如下所示。<br />
 <li>拖动标签对象以使得它的左侧与场景左侧对齐，并刚好处于文本域的上方。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_place_2x.png" /></center></li>
 <li>双击标签并输入&rdquo;Meal Name&rdquo;(食物名称)。</li>
-<li>按下回车键确认并在标签上显示文本。</li>
+<li>按下回车键确认并在标签上显示文本。<br />
+<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png" /></center></li>
 </ol>
-<p><center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png" /></center></p>
 <h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加一个按钮</h3>
 <ol>
 <li>在对象库中，查找 button 对象。</li>
@@ -1728,9 +1728,9 @@ Xcode会打开新的工程如下所示。<br />
 <li>拖动按钮到如下图所示的位置。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_place_2x.png" /></center></li>
 <li>双击按钮，并输入&rdquo;Set Default Label Text&rdquo;(设置默认标签)。</li>
-<li>按下回车键确认并在按钮上显示文本。</li>
+<li>按下回车键确认并在按钮上显示文本。<br />
+<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png" /></center></li>
 </ol>
-<p><center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png" /></center></p>
 <h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>查看大纲视图</h3>
 <ol>
 <li>在Storyboard中找到大纲视图开关。<br />
