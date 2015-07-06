@@ -3045,34 +3045,6 @@ typedef NS_ENUM(NSInteger, ABCRecordSide) {
 * Swift类必须是OC类的子类或者被标记为`@objc`才能被OC使用。
 * 如果在Swift中使用了自定义的OC类型，请确保在导入这个Swift头文件前将这些类型的OC头文件导入到想要访问Swift代码的OC ".m"文件中。
 
-## 将OC代码迁移到Swift
-迁移用来重新审视现存的OC应用，通过使用Swift来改善应用的架构、逻辑和性能。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 真机调试
+**现在，Xcode7不需要认证证书就能够进行真机测试。只需要一个Apple ID即可。**
 
