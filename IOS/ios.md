@@ -23,7 +23,7 @@ Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界
 在App Store中查找Xcode，并点击下载，不到3GB的大小。
 
 # 编程语言
-当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学些本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float...)，数据结构，函数，控制流(while, if...else和for语句等等)。下面介绍Swift语言的基本知识。
+当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学习本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float...)，数据结构，函数，控制流(while, if...else和for语句等等)。下面介绍Swift语言的基本知识。
 
 ## Swift语言
 ### Playground
@@ -2764,7 +2764,7 @@ class MySwiftViewController: UIViewController {
 #### Strong和Weak
 Swift的属性默认为strong。使用weak关键词表明一个属性对存储确定值的对象拥有弱引用。这个关键词只有在属性是可选类类型时使用。
 
-### Read/Write和Read-Only
+#### Read/Write和Read-Only
 在Swift中并没有readwrite和readonly。声明属性的时候使用let表明是read-only，使用var表明是read/write。
 
 #### copy语法
