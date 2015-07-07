@@ -1545,9 +1545,7 @@ class FoodTrackerTests: XCTestCase {
     ```Swift
     import UIKit
     import XCTest
-     
     class FoodTrackerTests: XCTestCase {
-        
     }
     ```
 2. 现增加如下注释：
