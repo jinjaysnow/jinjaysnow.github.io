@@ -759,64 +759,77 @@
     </nav>
     <div id="blog">
       <div id="markdown" >
-        <article class="markdown-body"><h1 align="center">iOS应用开发流程</h1>
-          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>获取工具</h1>
-          <p>在开发之前，需要搭建开发环境，获取开发工具。</p>
-          <p>开发iOS应用，需要以下工具：<br />
-            1. Mac电脑<br />
-            2. Xcode<br />
-          3. iOS SDK(一般由Xcode自带)</p>
-          <blockquote>
-            <p>注，本教程中使用的是Xcode7 beta版，编写时Xcode7还没有正式发布。</p>
-          </blockquote>
-          <p>Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界面编辑器，和其它的功能。iOS SDK作为Xcode的扩展，包括开发iOS应用的一系列工具，编译器，和库函数。<br />
-          <center><img alt="安装工具" src="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/Art/install_tools_2x.png" /></center></p>
-          <p>在App Store中查找Xcode，并点击下载，不到3GB的大小。</p>
-          <h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编程语言</h1>
-          <p>当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学习本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float&hellip;)，数据结构，函数，控制流(while, if&hellip;else和for语句等等)。下面介绍Swift语言的基本知识。</p>
-          <h2 id="swift"><a name="user-content-swift" href="#swift" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Swift语言</h2>
-          <h3 id="playground"><a name="user-content-playground" href="#playground" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Playground</h3>
-          <p>使用Playground学习Swift十分友好，Playground是Xcode自带的工具。</p>
-          <h4 id="playground_1"><a name="user-content-playground_1" href="#playground_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>新建Playground</h4>
-          <ol>
-            <li>打开Xcode，选择Get started with a playground<br />
-            <center><img alt="" src="http://jinjaysnow.github.io/IOS/p1.png" /></center></li>
-            <li>输入文件名,并点击next<br />
-            <center><img alt="" src="http://jinjaysnow.github.io/IOS/p2.png" /></center></li>
-            <li>选择需要放置文件的位置后，点击create，创建新文件。<br />
-            <center><img alt="" src="http://jinjaysnow.github.io/IOS/p3.png" /></center></li>
-          </ol>
-          <p>进入编辑模式，左侧为代码编辑区，右侧为实时的运算结果。接下来介绍的Swift基本知识的代码都可以在左侧代码编辑区编写。</p>
-          <h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>基本类型</h3>
-          <p><em>常量</em> 是在第一次声明后保持不变的一个值， <em>变量</em>是可以改变的值。程序中，如果你知道一个值不会在代码中更改，请使用常量而不是变量。</p>
-          <p>在Swift中使用<code>let</code>定义常量，<code>var</code>定义变量。</p>
-          <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">myVariable</span> <span class="p">=</span> <span class="mi">42</span>
-          <span class="n">myVariable</span> <span class="p">=</span> <span class="mi">50</span>
-          <span class="kd">let</span> <span class="nv">myConstant</span> <span class="p">=</span> <span class="mi">42</span>
-        </pre></div>
-        <p>在Swift中每一个常量和变量都有一个类型，但是你不需要显示的声明类型。编译器会自动推断出常量或变量的类型。在上面的例子中，编译器会把myVariable推断为 整型 。<strong>一旦常量或变量拥有了类型，就不可更改。</strong></p>
-        <p>我们可以在变量名后添加类型信息，以免造成编译器的错误推断。如下：</p>
-        <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">explicitDouble</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">70</span>
-      </pre></div>
-      <p>需要将变量转换为另一个类型是，需要显式地进行转换。如下：</p>
-      <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="s">&quot;The width is&quot;</span>
-      <span class="kd">let</span> <span class="nv">width</span> <span class="p">=</span> <span class="mi">94</span>
-      <span class="kd">let</span> <span class="nv">widthLabel</span> <span class="p">=</span> <span class="n">label</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
-    </pre></div>
-    <p>使用 <code>可选(optionals)</code> 来表示变量值可能不存在。一个可选值表示要么包含一个值，要么是空值(nil)。可选的标记是在类型后面添加 <code>?</code> 。</p>
-    <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">optionalInt</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">=</span> <span class="mi">9</span>
-  </pre></div>
-  <blockquote>
-    <p>optionalInt 要么是Int，要么是nil，不能是其他类型</p>
-  </blockquote>
-  <p>从可选值中获取信息，需要对可选值进行拆包，最直接的方法是在变量后加入拆包符 <code>!</code> 。只有在你确定可选值不为<code>nil</code>的时候才可以使用拆包运算符。</p>
-  <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">actualInt</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">optionalInt</span><span class="p">!</span>
+        <h1 align="center">iOS应用开发流程</h1>
+
+<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>获取工具</h1>
+<p>在开发之前，需要搭建开发环境，获取开发工具。</p>
+<p>开发iOS应用，需要以下工具：<br />
+1. Mac电脑<br />
+2. Xcode<br />
+3. iOS SDK(一般由Xcode自带)</p>
+<blockquote>
+<p>注，本教程中使用的是Xcode7 beta版，编写时Xcode7还没有正式发布。</p>
+</blockquote>
+<p>Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界面编辑器，和其它的功能。iOS SDK作为Xcode的扩展，包括开发iOS应用的一系列工具，编译器，和库函数。<br />
+<center><img alt="安装工具" src="https://developer.apple.com/library/ios/referencelibrary/GettingStarted/RoadMapiOS/Art/install_tools_2x.png" /></center></p>
+<p>在App Store中查找Xcode，并点击下载，不到3GB的大小。</p>
+<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编程语言</h1>
+<p>当前，苹果官方的开发语言有两种：Objective-C 和 Swift。Swift是苹果力推的编程语言，所以为了App应用未来的发展，建议使用Swift进行开发。本文主要使用Swift展示如何进行iOS应用开发，针对目前Objective-C上有更多第三方库，后面会讲解如何进行Swift与Objective-C的混合编程。因此，为了更好的学习本教程，需要了解Swift和Objective-C语言的基本特性，比如基本类型(int, float&hellip;)，数据结构，函数，控制流(while, if&hellip;else和for语句等等)。下面介绍Swift语言的基本知识。</p>
+<h2 id="swift"><a name="user-content-swift" href="#swift" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Swift语言</h2>
+<h3 id="playground"><a name="user-content-playground" href="#playground" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Playground</h3>
+<p>使用Playground学习Swift十分友好，Playground是Xcode自带的工具。</p>
+<h4 id="playground_1"><a name="user-content-playground_1" href="#playground_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>新建Playground</h4>
+<ol>
+<li>打开Xcode，选择Get started with a playground<br />
+    <center><img alt="" src="http://jinjaysnow.github.io/IOS/p1.png" /></center></li>
+<li>输入文件名,并点击next<br />
+    <center><img alt="" src="http://jinjaysnow.github.io/IOS/p2.png" /></center></li>
+<li>选择需要放置文件的位置后，点击create，创建新文件。<br />
+    <center><img alt="" src="http://jinjaysnow.github.io/IOS/p3.png" /></center></li>
+</ol>
+<p>进入编辑模式，左侧为代码编辑区，右侧为实时的运算结果。接下来介绍的Swift基本知识的代码都可以在左侧代码编辑区编写。</p>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>基本类型</h3>
+<p><em>常量</em> 是在第一次声明后保持不变的一个值， <em>变量</em>是可以改变的值。程序中，如果你知道一个值不会在代码中更改，请使用常量而不是变量。</p>
+<p>在Swift中使用<code>let</code>定义常量，<code>var</code>定义变量。</p>
+<div class="codehilite"><pre><span class="kd">var</span> <span class="nv">myVariable</span> <span class="p">=</span> <span class="mi">42</span>
+<span class="n">myVariable</span> <span class="p">=</span> <span class="mi">50</span>
+<span class="kd">let</span> <span class="nv">myConstant</span> <span class="p">=</span> <span class="mi">42</span>
 </pre></div>
+
+
+<p>在Swift中每一个常量和变量都有一个类型，但是你不需要显示的声明类型。编译器会自动推断出常量或变量的类型。在上面的例子中，编译器会把myVariable推断为 整型 。<strong>一旦常量或变量拥有了类型，就不可更改。</strong></p>
+<p>我们可以在变量名后添加类型信息，以免造成编译器的错误推断。如下：</p>
+<div class="codehilite"><pre><span class="kd">let</span> <span class="nv">explicitDouble</span><span class="p">:</span> <span class="nb">Double</span> <span class="p">=</span> <span class="mi">70</span>
+</pre></div>
+
+
+<p>需要将变量转换为另一个类型是，需要显式地进行转换。如下：</p>
+<div class="codehilite"><pre><span class="kd">let</span> <span class="nv">label</span> <span class="p">=</span> <span class="s">&quot;The width is&quot;</span>
+<span class="kd">let</span> <span class="nv">width</span> <span class="p">=</span> <span class="mi">94</span>
+<span class="kd">let</span> <span class="nv">widthLabel</span> <span class="p">=</span> <span class="n">label</span> <span class="o">+</span> <span class="nb">String</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
+</pre></div>
+
+
+<p>使用 <code>可选(optionals)</code> 来表示变量值可能不存在。一个可选值表示要么包含一个值，要么是空值(nil)。可选的标记是在类型后面添加 <code>?</code> 。</p>
+<div class="codehilite"><pre><span class="kd">let</span> <span class="nv">optionalInt</span><span class="p">:</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">=</span> <span class="mi">9</span>
+</pre></div>
+
+
+<blockquote>
+<p>optionalInt 要么是Int，要么是nil，不能是其他类型</p>
+</blockquote>
+<p>从可选值中获取信息，需要对可选值进行拆包，最直接的方法是在变量后加入拆包符 <code>!</code> 。只有在你确定可选值不为<code>nil</code>的时候才可以使用拆包运算符。</p>
+<div class="codehilite"><pre><span class="kd">let</span> <span class="nv">actualInt</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">=</span> <span class="n">optionalInt</span><span class="p">!</span>
+</pre></div>
+
+
 <p>可选在Swift中十分常见。在进行类型转换时十分有用。</p>
 <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">myString</span> <span class="p">=</span> <span class="s">&quot;7&quot;</span>
 <span class="kd">var</span> <span class="nv">possibleInt</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">(</span><span class="n">myString</span><span class="p">)</span>
 <span class="bp">print</span><span class="p">(</span><span class="n">possibleInt</span><span class="p">)</span>
 </pre></div>
+
+
 <p>上述代码中，<code>possibleInt</code>的值是7，因为<code>myString</code>包含整形数值，但是，当你把<code>myString</code>的值更改为其他不能转换为整型的值是，<code>possibleInt</code>的值会变为<code>nil</code>。<br />
 <div class="codehilite"><pre><span class="n">myString</span> <span class="p">=</span> <span class="s">&quot;banana&quot;</span>
 <span class="n">possibleInt</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">(</span><span class="n">myString</span><span class="p">)</span>
@@ -851,6 +864,8 @@
     <span class="bp">print</span><span class="p">(</span><span class="s">&quot;The number is between 10 and 100&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><div class="codehilite"><pre><span class="kd">let</span> <span class="nv">individualScores</span> <span class="p">=</span> <span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">103</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
 <span class="kd">var</span> <span class="nv">teamScore</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">score</span> <span class="k">in</span> <span class="n">individualScores</span> <span class="p">{</span>
@@ -890,6 +905,7 @@
     <span class="n">firstForLoop</span> <span class="o">+=</span> <span class="n">i</span>
 <span class="p">}</span>
 <span class="bp">print</span><span class="p">(</span><span class="n">firstForLoop</span><span class="p">)</span>
+
 <span class="kd">var</span> <span class="nv">secondForLoop</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">..</span><span class="mi">4</span> <span class="p">{</span> <span class="c1">// 5次</span>
     <span class="n">secondForLoop</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -925,6 +941,7 @@
         <span class="k">return</span> <span class="s">&quot;A shape with </span><span class="si">\(</span><span class="n">numberOfSides</span><span class="si">)</span><span class="s"> sides.&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
 <span class="kd">var</span> <span class="nv">shape</span> <span class="p">=</span> <span class="n">Shape</span><span class="p">()</span> <span class="c1">// 实例化一个类</span>
 <span class="n">shape</span><span class="p">.</span><span class="n">numberOfSides</span> <span class="p">=</span> <span class="mi">7</span> <span class="c1">// 使用.语法访问实例的属性和方法</span>
 <span class="kd">var</span> <span class="nv">shapeDescription</span> <span class="p">=</span> <span class="n">shape</span><span class="p">.</span><span class="n">simpleDescription</span><span class="p">()</span>
@@ -934,9 +951,11 @@
 <div class="codehilite"><pre><span class="kd">class</span> <span class="nc">NamedShape</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">numberOfSides</span> <span class="p">=</span> <span class="mi">0</span>
     <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+
     <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
     <span class="p">}</span>
+
     <span class="kd">func</span> <span class="nf">simpleDescription</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
         <span class="k">return</span> <span class="s">&quot;A shape with </span><span class="si">\(</span><span class="n">numberOfSides</span><span class="si">)</span><span class="s"> sides.&quot;</span>
     <span class="p">}</span>
@@ -950,14 +969,17 @@
 <em>继承</em> 中，需要重写父类的实现时，使用<code>override</code>关键字。<br />
 <div class="codehilite"><pre><span class="kd">class</span> <span class="nc">Square</span><span class="p">:</span> <span class="n">NamedShape</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">sideLength</span><span class="p">:</span> <span class="nb">Double</span>
+
     <span class="kd">init</span><span class="p">(</span><span class="n">sideLength</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">sideLength</span> <span class="p">=</span> <span class="n">sideLength</span>
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">numberOfSides</span> <span class="p">=</span> <span class="mi">4</span>
     <span class="p">}</span>
+
     <span class="kd">func</span> <span class="nf">area</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Double</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">sideLength</span> <span class="o">*</span> <span class="n">sideLength</span>
     <span class="p">}</span>
+
     <span class="kr">override</span> <span class="kd">func</span> <span class="nf">simpleDescription</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
         <span class="k">return</span> <span class="s">&quot;A square with sides of lenghth </span><span class="si">\(</span><span class="n">sideLength</span><span class="si">)</span><span class="s">.&quot;</span>
     <span class="p">}</span>
@@ -970,6 +992,7 @@
 有时候会出现实例化失败的情况，比如给一个圆形的半径赋值为负。可以使用<code>init?</code>来声明可能失败的初始化。<br />
 <div class="codehilite"><pre><span class="kd">class</span> <span class="nc">Circle</span><span class="p">:</span> <span class="n">NamedShape</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">radius</span><span class="p">:</span> <span class="nb">Double</span>
+
     <span class="kd">init</span><span class="p">?(</span><span class="n">radius</span><span class="p">:</span> <span class="nb">Double</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">radius</span> <span class="p">=</span> <span class="n">radius</span>
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
@@ -978,6 +1001,7 @@
             <span class="k">return</span> <span class="kc">nil</span>
         <span class="p">}</span>
     <span class="p">}</span>
+
     <span class="kr">override</span> <span class="kd">func</span> <span class="nf">simpleDescription</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
         <span class="k">return</span> <span class="s">&quot;A circle with a radius of </span><span class="si">\(</span><span class="n">radius</span><span class="si">)</span><span class="s">.&quot;</span>
     <span class="p">}</span>
@@ -994,6 +1018,7 @@
         <span class="n">numberOfSides</span> <span class="p">=</span> <span class="mi">3</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
 <span class="kd">let</span> <span class="nv">shapesArray</span> <span class="p">=</span> <span class="p">[</span><span class="n">Triangle</span><span class="p">(</span><span class="n">sideLength</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;triangle1&quot;</span><span class="p">),</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">sideLength</span><span class="p">:</span> <span class="mf">4.2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;triangle2&quot;</span><span class="p">),</span> <span class="n">Square</span><span class="p">(</span><span class="n">sideLength</span><span class="p">:</span> <span class="mf">3.2</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;square1&quot;</span><span class="p">),</span> <span class="n">Square</span><span class="p">(</span><span class="n">sideLength</span><span class="p">:</span> <span class="mf">2.7</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="s">&quot;square1&quot;</span><span class="p">)]</span>
 <span class="kd">var</span> <span class="nv">squares</span> <span class="p">=</span> <span class="mi">0</span>
 <span class="kd">var</span> <span class="nv">triangles</span> <span class="p">=</span> <span class="mi">0</span>
@@ -1102,6 +1127,7 @@
         <span class="n">simpleDescription</span> <span class="o">+=</span> <span class="s">&quot;  Adjusted.&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
 <span class="kd">var</span> <span class="nv">protocolArray</span><span class="p">:</span> <span class="p">[</span><span class="n">ExampleProtocol</span><span class="p">]</span> <span class="p">=</span> <span class="p">[</span><span class="n">SimpleClass</span><span class="p">(),</span> <span class="n">SimpleClass</span><span class="p">(),</span> <span class="n">SimpleClass2</span><span class="p">()]</span>
 <span class="k">for</span> <span class="n">instance</span> <span class="k">in</span> <span class="n">protocolArray</span> <span class="p">{</span>
     <span class="n">instance</span><span class="p">.</span><span class="n">adjust</span><span class="p">()</span>
@@ -1118,25 +1144,25 @@
 <h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建新工程</h2>
 <ol>
 <li>打开Xcode，出现Xcode的初始界面<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_welcomewindow_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_welcomewindow_2x.png" /></center></li>
 <li>在初始界面，点击&rdquo;Create a new Xcode project&rdquo;新建一个工程<br />
-这一步后，Xcode会让你显示对话框让你选择一个模版。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_singleviewapp_template_2x.png" /></center></li>
+    这一步后，Xcode会让你显示对话框让你选择一个模版。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_singleviewapp_template_2x.png" /></center></li>
 <li>在对话框中点击左侧iOS栏下的Application，选择&rdquo;Single View Applicaiton&rdquo;单一视图应用,并点击&rdquo;Next&rdquo;进入下一步</li>
 <li>弹出新的对话框，在这一个界面设置项目的基本参数<br />
-Product Name: 项目名<br />
-Organization Name: 组织名或你自己的名字，可以留空<br />
-Organization Identifier: 组织的标志符，如果有的话就填写，没有就填默认的com.example<br />
-Bundle Identifier: 自动产生，不需要填写<br />
-Language: 编程语言，选择Swift<br />
-Devices: 应用运行平台，可选iPhone或iPad或Universal(通用)<br />
-Use Core Data: 是否使用内核数据，主要用于数据持久化存储，此处我们不选择<br />
-Include Unit Tests: 是否使用单元测试，此处我们选择<br />
-Include UI Tests: 是否使用UI测试，此处不选择<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_newproject_2x.png" /></center></li>
+    Product Name: 项目名<br />
+    Organization Name: 组织名或你自己的名字，可以留空<br />
+    Organization Identifier: 组织的标志符，如果有的话就填写，没有就填默认的com.example<br />
+    Bundle Identifier: 自动产生，不需要填写<br />
+    Language: 编程语言，选择Swift<br />
+    Devices: 应用运行平台，可选iPhone或iPad或Universal(通用)<br />
+    Use Core Data: 是否使用内核数据，主要用于数据持久化存储，此处我们不选择<br />
+    Include Unit Tests: 是否使用单元测试，此处我们选择<br />
+    Include UI Tests: 是否使用UI测试，此处不选择<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_newproject_2x.png" /></center></li>
 <li>点击&rdquo;Next&rdquo;，弹出对话框，选择你需要将工程保存的位置，并点击&rdquo;Create&rdquo;<br />
-Xcode会打开新的工程如下所示。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_workspacewindow_2x.png" /></center></li>
+    Xcode会打开新的工程如下所示。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_workspacewindow_2x.png" /></center></li>
 </ol>
 <h2 id="xcode"><a name="user-content-xcode" href="#xcode" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>熟悉Xcode</h2>
 <p>Xcode工作空间布局如下：<br />
@@ -1144,11 +1170,11 @@ Xcode会打开新的工程如下所示。<br />
 <h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>运行模拟器</h2>
 <p>iOS模拟器可以模拟多种设备，在开发中经常使用。新建的工程可以直接在模拟器中运行，在模拟器中运行App有以下步骤。<br />
 1. 在工具栏的Scheme菜单中选择设备，此处选择iPhone6.<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_schememenu_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_schememenu_2x.png" /></center><br />
 2. 点击工具栏左上角的运行按钮，或者快捷键操作(Command+r)<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_toolbar_2x.png" /></center><br />
-第一次运行，Xcode会询问是否在Mac上开启开发者模式。请点击Enable允许。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_developermode_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_toolbar_2x.png" /></center><br />
+    第一次运行，Xcode会询问是否在Mac上开启开发者模式。请点击Enable允许。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_developermode_2x.png" /></center><br />
 3. 在工具栏上可以看到构建的进度。</p>
 <p>在Xcode完成构建后，模拟器会自动运行，第一次打开会消耗一些时间。加载App后，你会见到如下的开始界面：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_sim_launchscreen_2x.png" /></center><br />
@@ -1158,10 +1184,10 @@ Xcode会打开新的工程如下所示。<br />
 <h2 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>查看源代码</h2>
 <p>查看AppDelegate.swift <br />
 1. 确保导航区的工程导航为打开状态<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_projectnavigator_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_projectnavigator_2x.png" /></center><br />
 2. 如果必要，点击左侧的三角形以打开FoodTracker文件夹<br />
 3. 选择AppDelegate.swift<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_appdelegate_file_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_appdelegate_file_2x.png" /></center></p>
 <p>此外，如果双击AppDelegate.swift，会在另外一个窗口打开该文件。</p>
 <h2 id="appdelegateswift"><a name="user-content-appdelegateswift" href="#appdelegateswift" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>解析AppDelegate.swift文件</h2>
 <p>AppDelegate.swift包含两个主要功能:<br />
@@ -1314,27 +1340,27 @@ Xcode会打开新的工程如下所示。<br />
 <h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加一个文本域到场景中</h3>
 <ol>
 <li>打开对象库<br />
-对象库(Object Library)在Xcode功能区的右下角。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/object_library_2x.png" /></center><br />
-对象库是一个显示对象的名称、描述和可视化示例的列表。</li>
+    对象库(Object Library)在Xcode功能区的右下角。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/object_library_2x.png" /></center><br />
+    对象库是一个显示对象的名称、描述和可视化示例的列表。</li>
 <li>在对象库中，下方的搜索栏中输入 text field 来快速查找文本域对象。</li>
 <li>将文本域对象拖动到场景中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_drag_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_drag_2x.png" /></center></li>
 <li>拖动文本域以使它与场景的左侧对齐。对齐后停止拖动应该看到如下的视图。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_place_2x.png" /></center><br />
-蓝色的布局线提示你放置文本域。在上图中，这条蓝色的布局线表示场景的最左侧。</li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_place_2x.png" /></center><br />
+    蓝色的布局线提示你放置文本域。在上图中，这条蓝色的布局线表示场景的最左侧。</li>
 <li>如果必要，可以点击文本域改变文本域的大小。<br />
-一般通过拖拉UI元素边界上的调整大小图柄来改变大小。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_resizehandles_2x.png" /></center></li>
+    一般通过拖拉UI元素边界上的调整大小图柄来改变大小。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_resizehandles_2x.png" /></center></li>
 <li>将文本域的左右边界与视图的左右编辑对齐成如下状态。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_finalsize_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_textfield_finalsize_2x.png" /></center></li>
 </ol>
 <p>尽管在视图层中已经布置了文本域，但是并没有任何提示用户输入什么的信息。这里使用文本域的<code>placeholder</code>属性来体术用户输入菜品的名称。</p>
 <h3 id="placeholder"><a name="user-content-placeholder" href="#placeholder" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>配置文本域的placeholder文本</h3>
 <ol>
 <li>在视图中选中文本域，在功能区打开属性编辑器。<br />
-通过点击功能区最上方的第四个按钮来打开属性编辑器，属性编辑器允许你编辑Storyboard中的对象的属性。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_inspector_attributes_2x.png" /></center></li>
+    通过点击功能区最上方的第四个按钮来打开属性编辑器，属性编辑器允许你编辑Storyboard中的对象的属性。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_inspector_attributes_2x.png" /></center></li>
 <li>在属性编辑器中，找到Placeholder属性，然后键入“Enter meal name”（请输入食物名称）。</li>
 <li>按下回车键以确认修改并会在文本域上显示placeholder文本。</li>
 </ol>
@@ -1344,34 +1370,34 @@ Xcode会打开新的工程如下所示。<br />
 <ol>
 <li>确保文本域处于选中状态。</li>
 <li>在属性编辑器中，找到<code>Return Key</code>标签域，并选择<code>Done</code>。<br />
-这一步会改变默认的 Return 键的显示内容，会更改为<code>Done</code>。</li>
+    这一步会改变默认的 Return 键的显示内容，会更改为<code>Done</code>。</li>
 <li>在属性编辑器中，选中<code>Auto-enable Return Key</code>。<br />
-这一步会保证用户不能输入空值，即必须输入数据才能点按<code>Done</code>键。</li>
+    这一步会保证用户不能输入空值，即必须输入数据才能点按<code>Done</code>键。</li>
 </ol>
 <h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>在场景中添加一个标签</h3>
 <ol>
 <li>在对象库中查找 label 对象。</li>
 <li>将标签对象拖动到场景中。</li>
 <li>拖动标签对象以使得它的左侧与场景左侧对齐，并刚好处于文本域的上方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_place_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_place_2x.png" /></center></li>
 <li>双击标签并输入&rdquo;Meal Name&rdquo;(食物名称)。</li>
 <li>按下回车键确认并在标签上显示文本。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_label_rename_2x.png" /></center></li>
 </ol>
 <h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加一个按钮</h3>
 <ol>
 <li>在对象库中，查找 button 对象。</li>
 <li>拖动按钮对象到场景中。</li>
 <li>拖动按钮到如下图所示的位置。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_place_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_place_2x.png" /></center></li>
 <li>双击按钮，并输入&rdquo;Set Default Label Text&rdquo;(设置默认标签)。</li>
 <li>按下回车键确认并在按钮上显示文本。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_button_rename_2x.png" /></center></li>
 </ol>
 <h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>查看大纲视图</h3>
 <ol>
 <li>在Storyboard中找到大纲视图开关。<br />
-<center><img alt="" src="http://jinjaysnow.github.io/IOS/outline.png" /></center></li>
+    <center><img alt="" src="http://jinjaysnow.github.io/IOS/outline.png" /></center></li>
 <li>如果大纲视图是关闭状态，点击大纲视图开关以打开大纲视图。</li>
 </ol>
 <p>在画布左侧的大纲视图展示了在故事板中的对象的层级关系。<br />
@@ -1380,9 +1406,9 @@ Xcode会打开新的工程如下所示。<br />
 <p>间断地预览以保证界面如你希望的那样。可以通过使用 &ldquo;Assistant Editor&rdquo;（辅助编辑器）来预览用户界面，在这一界面可以将主编辑器平分为两个。</p>
 <ol>
 <li>点击Xcode工具栏上的辅助编辑器按钮来打开辅助编辑器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
 <li>如果需要更多的显示空间，可以点按导航栏开关和功能区开关来关闭两个区域。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
 <li>在辅助编辑器上方的编辑器选择栏处，切换辅助编辑器的显示，从 Automatic 到 Preview > Main.storyboard(Preview)。</li>
 </ol>
 <p><center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_assistant_editorselectorbar_2x.png" /></center></p>
@@ -1395,28 +1421,28 @@ Xcode会打开新的工程如下所示。<br />
 <h4 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>给场景添加自动布局约束</h4>
 <ol>
 <li>点击标准按钮以返回标准编辑器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center><br />
-打开导航栏和功能区。</li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center><br />
+    打开导航栏和功能区。</li>
 <li>按住键盘上的<code>Shift</code>键，用鼠标选择文本域、标签和按钮。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_shift_select_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_shift_select_2x.png" /></center></li>
 <li>在画布的右下角，点击堆栈按钮。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackmenu_2x.png" /></center><br />
-Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并指出对象应该竖直放置而不是水平。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stack_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackmenu_2x.png" /></center><br />
+    Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并指出对象应该竖直放置而不是水平。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stack_2x.png" /></center></li>
 <li>如果必要，打开大纲视图，选中堆栈视图对象。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_outlineview_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_outlineview_2x.png" /></center></li>
 <li>在属性编辑器中，找到Spacing标签，输入12，并按回车键。<br />
-可以看到UI元素自动垂直布局，并且堆栈视图自动变化了。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackspaced_2x.png" /></center></li>
+    可以看到UI元素自动垂直布局，并且堆栈视图自动变化了。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackspaced_2x.png" /></center></li>
 <li>在画布的右下角，打开 <code>Pin</code> 菜单<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_pinmenu_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_pinmenu_2x.png" /></center></li>
 <li>在&rdquo;Spacing to nearest neighbor&rdquo;上方，点击两个水平约束，和上方的垂直约束以选中它们。在选中后会变为红色。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_pinconstraints_2x.png" /></center><br />
-这些约束是指距离最近左侧邻元素、右侧邻元素和上方邻元素的空白距离。</li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_pinconstraints_2x.png" /></center><br />
+    这些约束是指距离最近左侧邻元素、右侧邻元素和上方邻元素的空白距离。</li>
 <li>设置左右约束的值为0，上方约束的值为60。</li>
 <li>在菜单的 <code>Update Frames</code>处，选择 <code>Items of New Constraints</code>。<br />
-此时 Pin 菜单应该如下所示：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackconstraints_2x.png" /></center></li>
+    此时 Pin 菜单应该如下所示：<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_stackconstraints_2x.png" /></center></li>
 <li>在Pin 菜单中，点击 &ldquo;Add 3 Constraints&rdquo;按钮以使约束生效。</li>
 </ol>
 <p>完成后，食谱场景应该如下所示。<br />
@@ -1426,17 +1452,17 @@ Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并�
 <ol>
 <li>在Storyboard中，选中文本域。</li>
 <li>在画布的右下角，打开 Pin 菜单。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/AL_pinmenu_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/AL_pinmenu_2x.png" /></center></li>
 <li>在&rdquo;Spacing to nearest neighbor&rdquo;的上方，选择两个水平约束，选中后会变为红色。</li>
 <li>在左右约束处输入0。</li>
 <li>在&rdquo;Update Frames&rdquo;标签处，选择&rdquo;Items of New Constraints&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_textfieldconstraints_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_textfieldconstraints_2x.png" /></center></li>
 <li>在Pin菜单中，点击&rdquo;Add 2 Constraints&rdquo;按钮。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_add2constraints_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_add2constraints_2x.png" /></center></li>
 <li>保持文本域选中的状态，打开位于功能区的大小指示器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_inspector_size_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_inspector_size_2x.png" /></center></li>
 <li>在&rdquo;Intrinsic Size&rdquo;(内部大小)域处，选择&rdquo;Placeholder&rdquo;。(这个域在大小指示器的底部，需要滚动到下方才能看到)<br />
-这里，文本域会根据内容自动调整大小，内部大小指的是需要显示所有内容的最小的大小。当前文本域的内容是占位字符串，但是实际中用户输入的文本可能会比这个更长。</li>
+    这里，文本域会根据内容自动调整大小，内部大小指的是需要显示所有内容的最小的大小。当前文本域的内容是占位字符串，但是实际中用户输入的文本可能会比这个更长。</li>
 </ol>
 <p>现在，场景UI应该如下图所示：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_textfieldfinal_2x.png" /></center></p>
@@ -1454,19 +1480,19 @@ Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并�
 <ol>
 <li>打开Storyboard文件,<code>Main.storyboard</code>。</li>
 <li>开启辅助编辑器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
 <li>如果想要更大的空间进行操作，可以关闭导航栏和功能区。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
 <li>在辅助编辑器上方的编辑器选择栏处，切换辅助编辑器的显示，从 Preview 到 <code>Automatic &gt; ViewController.swift</code>。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_switchtoviewcontroller_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_switchtoviewcontroller_2x.png" /></center></li>
 <li>在<code>ViewController.swift</code>,在ViewController类中添加以下注释：<br />
 <code>// MARK: Properties</code><br />
 <code>// MARK:</code>是一个特殊类型的注释，可以帮助你更方便的组织和导航代码。</li>
 <li>在Storyboard中，选中文本域。</li>
 <li>按住键盘上的<code>Control</code>键，选中文本域，并拖动到注释代码的下方，然后停止拖动。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_textfield_dragoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_textfield_dragoutlet_2x.png" /></center></li>
 <li>在弹出的对话框中，输入属性名 &ldquo;nameTextField&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_textfield_addoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_textfield_addoutlet_2x.png" /></center></li>
 <li>点击&rdquo;Connect&rdquo;按钮以确定。</li>
 </ol>
 <p>Xcode会添加以下代码到ViewController.swift中。<br />
@@ -1478,9 +1504,9 @@ Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并�
 <p>下面用同样地方式连接标签对象。<br />
 1. 在Storyboard中选中标签。<br />
 2. <code>Control</code>+拖动 从Storyboard的标签处到代码中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_label_dragoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_label_dragoutlet_2x.png" /></center><br />
 3. 在弹出的对话框中，输入属性名&rdquo;mealNameLabel&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_label_addoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_label_addoutlet_2x.png" /></center><br />
 4. 点击&rdquo;Connect&rdquo;。</p>
 <p>Xcode会添加如下代码：<br />
 <div class="codehilite"><pre><span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">mealNameLabel</span><span class="p">:</span> <span class="bp">UILabel</span><span class="p">!</span>
@@ -1495,14 +1521,14 @@ Xcode会将UI元素自动打包。Xcode还会分析你已经存在的布局并�
 <br />
 2. 在Storyboard中，选中&rdquo;Set Default Label Text&rdquo;按钮。<br />
 3. 按住键盘上的&rdquo;Control&rdquo;并拖动到刚刚创建的注释下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_button_dragaction_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_button_dragaction_2x.png" /></center><br />
 4. 在弹出的对话框中，在<code>Connection</code>处选择<code>Action</code>。<br />
 5. 设置&rdquo;Name&rdquo;为&rdquo;setDefaultLabelText&rdquo;。<br />
 6. 设置&rdquo;Type&rdquo;为&rdquo;UIButton&rdquo;。<br />
-你可能会注意到，&rdquo;Type&rdquo;的默认值为&rdquo;AnyObject&rdquo;。在Swift中，&rdquo;AnyObject&rdquo;是一个用来描述可以属于任何类的对象类型。配置动作方法类型为&rdquo;UIButton&rdquo;表示只有按钮对象能够连接到该动作。尽管目前看来并没有什么实际意义，但是记住这点在后面会用到的。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_button_addaction_2x.png" /></center><br />
+    你可能会注意到，&rdquo;Type&rdquo;的默认值为&rdquo;AnyObject&rdquo;。在Swift中，&rdquo;AnyObject&rdquo;是一个用来描述可以属于任何类的对象类型。配置动作方法类型为&rdquo;UIButton&rdquo;表示只有按钮对象能够连接到该动作。尽管目前看来并没有什么实际意义，但是记住这点在后面会用到的。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_button_addaction_2x.png" /></center><br />
 7. 点击&rdquo;Connect&rdquo;。<br />
-Xcode会添加如下代码：<br />
+    Xcode会添加如下代码：<br />
     <div class="codehilite"><pre><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">setDefaultLabelText</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
@@ -1553,8 +1579,8 @@ Xcode会添加如下代码：<br />
     <div class="codehilite"><pre><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> UITextFieldDelegate</span>
 </pre></div>
 <br />
-你已经添加了几个这样的特殊注释了，Xcode会在源代码的函数菜单处列出这些特殊的注释。函数菜单可以让你快速导航到你想要去的地方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_functionsmenu_2x.png" /></center></li>
+    你已经添加了几个这样的特殊注释了，Xcode会在源代码的函数菜单处列出这些特殊的注释。函数菜单可以让你快速导航到你想要去的地方。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_functionsmenu_2x.png" /></center></li>
 <li>在注释的下方，添加下列函数：<br />
     <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">textFieldShouldReturn</span><span class="p">(</span><span class="n">textField</span><span class="p">:</span> <span class="bp">UITextField</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
 <span class="p">}</span>
@@ -1565,13 +1591,13 @@ Xcode会添加如下代码：<br />
 <span class="n">textField</span><span class="p">.</span><span class="n">resignFirstResponder</span><span class="p">()</span>
 </pre></div>
 <br />
-尝试使用手工输入代替复制粘贴。这里可以发现Xcode的代码补全功能，十分节省时间。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_code_completion_2x.png" /></center></li>
+    尝试使用手工输入代替复制粘贴。这里可以发现Xcode的代码补全功能，十分节省时间。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/3_code_completion_2x.png" /></center></li>
 <li>在这个方法中，增加下面这行代码：<br />
     <div class="codehilite"><pre><span class="k">return</span> <span class="kc">true</span>
 </pre></div>
 <br />
-因为这个方法需要返回一个布尔值，返回<code>true</code>表示文本域在用户点击了回车键后应该将键盘消失以进行响应。</li>
+    因为这个方法需要返回一个布尔值，返回<code>true</code>表示文本域在用户点击了回车键后应该将键盘消失以进行响应。</li>
 </ol>
 <h4 id="uitextfielddelegate-textfielddidendediting_"><a name="user-content-uitextfielddelegate-textfielddidendediting_" href="#uitextfielddelegate-textfielddidendediting_" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>实现 UITextFieldDelegate 协议方法 textFieldDidEndEditing(_:)</h4>
 <p>在<code>textFieldShouldReturn(_:)</code>方法之后，增加如下代码：<br />
@@ -1587,34 +1613,34 @@ Xcode会添加如下代码：<br />
 <p><center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_vclife_2x.png" /></center></p>
 <p>上图是视图控制器的视图状态的相互转换图。下面是UIViewController常用的方法：<br />
 1. <code>viewDidLoad()</code><br />
-在视图控制器的内容视图被创建和从Storyboard加载时调用。这个方法一般用于初始化设置。由于视图可能会由于资源的限制被清理，所以并不能保证这个方法制备调用一次。<br />
+    在视图控制器的内容视图被创建和从Storyboard加载时调用。这个方法一般用于初始化设置。由于视图可能会由于资源的限制被清理，所以并不能保证这个方法制备调用一次。<br />
 2. <code>viewWillAppear()</code><br />
-在视图显示在屏幕上之前，你可以在这个方法中进行任何操作。因为一个视图的显示可能被其他视图阻隔，因此这个方法总会在内容视图将要显示在屏幕上之前被调用。<br />
+    在视图显示在屏幕上之前，你可以在这个方法中进行任何操作。因为一个视图的显示可能被其他视图阻隔，因此这个方法总会在内容视图将要显示在屏幕上之前被调用。<br />
 3. <code>viewDidAppear()</code><br />
-在视图呈现之后调用，比如用来获取数据或者展示一个动画。因为一个视图的显示可能被其他视图阻隔，这个方法总会在视图显示后被调用。</p>
+    在视图呈现之后调用，比如用来获取数据或者展示一个动画。因为一个视图的显示可能被其他视图阻隔，这个方法总会在视图显示后被调用。</p>
 <h3 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>增加一张食物照片</h3>
 <p>接下来，我们增加一张可以展示食物的照片。<br />
 1. 打开Storyboard <code>Main.storyboard</code>。<br />
 2. 打开功能区的对象库。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/object_library_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/object_library_2x.png" /></center><br />
 3. 在对象库中，找到&rdquo;image view&rdquo;对象。<br />
 4. 将图像视图对象拖动到场景中，放置在堆栈视图中按钮的下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_place_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_place_2x.png" /></center><br />
 5. 保持图像视图的选中状态，打开功能区的大小指示器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_inspector_size_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_inspector_size_2x.png" /></center><br />
 6. 在内部大小域出，选择&rdquo;Placeholder&rdquo;。<br />
 7. 设置&rdquo;Width&rdquo;,&rdquo;Height&rdquo;域的值为320。<br />
-一个空图像并没有内部内容大小。给图像视图一个占位大小可以帮助你在界面中配置合适的约束。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_placeholdersize_2x.png" /></center><br />
+    一个空图像并没有内部内容大小。给图像视图一个占位大小可以帮助你在界面中配置合适的约束。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_placeholdersize_2x.png" /></center><br />
 8. 在画布的右下角，打开 Pin 菜单。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_aspectratio_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_aspectratio_2x.png" /></center><br />
 9. 勾选&rdquo;Aspect Ratio&rdquo;(纵横比)。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_aspectratio_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_aspectratio_2x.png" /></center><br />
 10. 在Pin菜单中，点击&rdquo;Add 1 Constraint&rdquo;按钮。<br />
-现在你的图像视图拥有1:1的纵横比，所以它会一直是一个正方形。<br />
+    现在你的图像视图拥有1:1的纵横比，所以它会一直是一个正方形。<br />
 11. 保持图像视图的选中状态，打开属性编辑器。<br />
 12. 在属性编辑器中，设置&rdquo;Mode&rdquo;域的值为&rdquo;Aspect Fill&rdquo;。<br />
-这一步确保不同纬度大小的图像在图像视图中不会失真。<br />
+    这一步确保不同纬度大小的图像在图像视图中不会失真。<br />
 13. 在属性编辑器中，设置&rdquo;Interaction&rdquo;为&rdquo;User Interaction Enabled&rdquo;。</p>
 <p>此时用户界面看起来如下所示：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_finalconstraints_2x.png" /></center></p>
@@ -1623,9 +1649,9 @@ Xcode会添加如下代码：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/defaultphoto_2x.png" /></center></p>
 <ol>
 <li>在项目导航栏处，选择 Assets.xcassets 来查看资源目录。<br />
-资源目录是存储和组织应用的图像资源的地方。</li>
+    资源目录是存储和组织应用的图像资源的地方。</li>
 <li>在左下角，点击<code>+</code>按钮，然后在弹出菜单中选择&rdquo;New Image Set&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_assetcatalog_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_assetcatalog_2x.png" /></center></li>
 <li>双击图像集名称然后重命名为 &ldquo;defaultPhoto&rdquo;。</li>
 <li>在Mac上选择你想要添加的图像。</li>
 <li>拖动并放置图像到 &ldquo;2x&rdquo; 位置处。<br />
@@ -1640,16 +1666,16 @@ Xcode会添加如下代码：<br />
 <h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>将图像与代码连接</h3>
 <ol>
 <li>打开辅助编辑器，辅助编辑器中打开ViewController.swift文件。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center></li>
 <li>如果想要更大的空间进行操作，可以关闭导航栏和功能区。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center></li>
 <li>在Storyboard中，选中图像视图。</li>
 <li>按住键盘上的&rdquo;Control&rdquo;并拖动图像视图到ViewController中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_dragoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_dragoutlet_2x.png" /></center></li>
 <li>在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;photoImageView&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_addoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_imageview_addoutlet_2x.png" /></center></li>
 <li>点击&rdquo;Connect&rdquo;。<br />
-Xcode会增加以下代码：<br />
+    Xcode会增加以下代码：<br />
     <div class="codehilite"><pre><span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">photoImageView</span><span class="p">:</span> <span class="bp">UIImageView</span><span class="p">!</span>
 </pre></div>
 </li>
@@ -1659,19 +1685,19 @@ Xcode会增加以下代码：<br />
 <p>不过，我们可以通过添加手势识别器来是图像视图具有交互的能力。手势识别允许你将它绑定到某一个视图上并响应动作。在Storyboard上添加手势识别很方便。<br />
 1. 打开对象库。<br />
 2. 在对象库中查找&rdquo;Tap Gesture Recognizer&rdquo;对象，并将其拖动到场景中，放置在图像视图上方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_drag_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_drag_2x.png" /></center></p>
 <p>点击手势识别器会在场景上方的dock上显示。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_scenedock_2x.png" /></center></p>
 <h3 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>将手势与代码连接</h3>
 <ol>
 <li>按住键盘上的&rdquo;Control&rdquo;并拖动手势到代码中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_dragaction_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_dragaction_2x.png" /></center></li>
 <li>在弹出的对话框中，设置&rdquo;Connection&rdquo;为&rdquo;Action&rdquo;。</li>
 <li>设置&rdquo;Name&rdquo;为&rdquo;selectImageFromPhotoLibrary&rdquo;。</li>
 <li>设置&rdquo;Type&rdquo;为&rdquo;UITapGestureRecognizer&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_addaction_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_gesturerecognizer_addaction_2x.png" /></center></li>
 <li>点击&rdquo;Connect&rdquo;。<br />
-Xcode会添加如下代码：<br />
+    Xcode会添加如下代码：<br />
     <div class="codehilite"><pre><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">selectImageFromPhotoLibrary</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UITapGestureRecognizer</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
@@ -1681,7 +1707,7 @@ Xcode会添加如下代码：<br />
 <p>用户点击图像视图后应该发生什么？我们可以设想，用户可以从相册中选择一张照片或者拍摄新照片。幸运的是，<code>UIImagePickerController</code>类能够实现这个功能。一个图像选择控制器管理一个供用户选取照片和拍摄照片的用户界面。与之前处理文本域委托类似，这里我们需要一个图像选取控制器代理来实现这个功能。代理协议的名字为<code>UIImagePickerControllerDelegate</code>。因为ViewController负责呈现 image picker controller，所以有必要采用<code>UINavigationControllerDelegate</code>协议，让ViewController具备一些基本的导航特性。</p>
 <ol>
 <li>返回标准编辑器视图。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center></li>
 <li>在项目导航栏处，选择ViewController.swift。</li>
 <li>在UIViewController后增加 UIImagePickerControllerDelegate 和 UINavigationControllerDelegate。<br />
     <div class="codehilite"><pre><span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="bp">UITextFieldDelegate</span><span class="p">,</span> <span class="bp">UIImagePickerControllerDelegate</span><span class="p">,</span> <span class="bp">UINavigationControllerDelegate</span> <span class="p">{</span>
@@ -1693,18 +1719,24 @@ Xcode会添加如下代码：<br />
     <span class="c1">// Hide the keyboard. </span>
     <span class="c1">// 隐藏键盘</span>
     <span class="n">nameTextField</span><span class="p">.</span><span class="n">resignFirstResponder</span><span class="p">()</span>
+
     <span class="c1">// UIImagePickerController is a view controller that lets a user pick media from their photo library.</span>
     <span class="c1">// 新建一个图像选择控制器实例</span>
     <span class="kd">let</span> <span class="nv">imagePickerController</span> <span class="p">=</span> <span class="bp">UIImagePickerController</span><span class="p">()</span>
+
     <span class="c1">// Only allow photos to be picked, not taken.</span>
     <span class="c1">// 只允许从相册选择照片，不允许拍照</span>
     <span class="n">imagePickerController</span><span class="p">.</span><span class="n">sourceType</span> <span class="p">=</span> <span class="p">.</span><span class="n">PhotoLibrary</span>
+
     <span class="c1">// Make sure ViewController is notified when the user picks an image.</span>
     <span class="c1">// 确保用户选取了图像后视图控制器能够得到通知</span>
     <span class="n">imagePickerController</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+
     <span class="n">presentViewController</span><span class="p">(</span><span class="n">imagePickerController</span><span class="p">,</span> <span class="n">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p>在图像选取控制器呈现后，它的行为由它的代理进行控制。为了确保用户能够选取照片，需要实现UIImagePickerControllerDelegate定义的代理方法。<br />
 <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">imagePickerControllerDidCancel</span><span class="p">(</span><span class="n">picker</span><span class="p">:</span> <span class="bp">UIImagePickerController</span><span class="p">)</span>
 <span class="kd">func</span> <span class="nf">imagePickerController</span><span class="p">(</span><span class="n">picker</span><span class="p">:</span> <span class="bp">UIImagePickerController</span><span class="p">,</span> <span class="n">didFinishPickingMediaWithInfo</span> <span class="n">info</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span> <span class="p">:</span> <span class="nb">AnyObject</span><span class="p">])</span>
@@ -1722,14 +1754,18 @@ Xcode会添加如下代码：<br />
     <span class="c1">// The info dictionary contains multiple representations of the image, and this uses the original.</span>
     <span class="c1">// 字典info包含有原始图和可编辑版本图像，这里简单的使用原始图</span>
     <span class="kd">let</span> <span class="nv">selectedImage</span> <span class="p">=</span> <span class="n">info</span><span class="p">[</span><span class="n">UIImagePickerControllerOriginalImage</span><span class="p">]</span> <span class="kc">as</span><span class="p">!</span> <span class="bp">UIImage</span>
+
     <span class="c1">// Set photoImageView to display the selected image.</span>
     <span class="c1">// 设置photoImageView显示选取的图像</span>
     <span class="n">photoImageView</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">selectedImage</span>
+
     <span class="c1">// Dismiss the picker.</span>
     <span class="c1">// 选取结束后让控制器消失</span>
     <span class="n">dismissViewControllerAnimated</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><strong><em>检查点：</em></strong>运行应用，点击图像视图弹出一个图像选择器。你需要在警告框中点击OK以获得访问照片的权利。然后你可以点击Cancel按钮来释放图像选择器，或者打开相册并选择一个图像。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/4_sim_imagepicker_2x.png" /></center></p>
 <h2 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>自定义控制视图</h2>
@@ -1742,14 +1778,16 @@ Xcode会添加如下代码：<br />
 4. 设置&rdquo;Class&rdquo;为&rdquo;RatingControl&rdquo;。<br />
 5. 设置&rdquo;Subclass of&rdquo;为&rdquo;UIView&rdquo;。<br />
 6. 确保&rdquo;Language&rdquo;为&rdquo;Swift&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_newviewclass_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_newviewclass_2x.png" /></center><br />
 7. 点击&rdquo;Next&rdquo;。<br />
-默认保存在工程目录下；组选项默认为应用名；在目标选项处，勾选应用，取消勾选&rdquo;tests for your app&rdquo;。<br />
+    默认保存在工程目录下；组选项默认为应用名；在目标选项处，勾选应用，取消勾选&rdquo;tests for your app&rdquo;。<br />
 8. 保持默认的配置，点击&rdquo;Create&rdquo;。<br />
-Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br />
+    Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br />
 9. 在RatingControl.swift中，删除默认添加的实现代码。<br />
     <div class="codehilite"><pre><span class="kd">import</span> <span class="nc">UIKit</span>
+
 <span class="kd">class</span> <span class="nc">RatingControl</span><span class="p">:</span> <span class="bp">UIView</span> <span class="p">{</span>
+
 <span class="p">}</span>
 </pre></div>
 </p>
@@ -1760,11 +1798,11 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 </pre></div>
 <br />
 2. 在注释下方，输入<code>init</code>。<br />
-可以看到代码自动补全如下：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_initcoder_codecompletion_2x.png" /></center><br />
+    可以看到代码自动补全如下：<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_initcoder_codecompletion_2x.png" /></center><br />
 3. 在补全的代码中选择<code>init(coder:)</code>初始化函数，并按下回车键。<br />
 4. 点击错误修复来自动添加关键字<code>required</code>。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_initcoder_fixit_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_initcoder_fixit_2x.png" /></center><br />
 <code>required</code>表示每一个UIView子类都必须实现<code>init(coder:)</code>。Swift知道这一点，所以会提供这个自动修复。<br />
 5. 增加父类的初始化函数。<br />
     <div class="codehilite"><pre><span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
@@ -1775,19 +1813,20 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <li>打开Storyboard。</li>
 <li>在对象库中找到View(视图)对象，并拖动到堆栈视图中图像视图的下方。</li>
 <li>保持View对象的选中状态，打开大小指示器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_inspector_size_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_inspector_size_2x.png" /></center></li>
 <li>在大小指示器中设置&rdquo;Intrinsic Size&rdquo;为&rdquo;Placeholder&rdquo;。</li>
 <li>在&rdquo;Intrinsic Size&rdquo;下方的菜单中设置&rdquo;Height&rdquo;为44，设置&rdquo;Width&rdquo;为240，并按下回车键以确认。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_viewwithplaceholdersize_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_viewwithplaceholdersize_2x.png" /></center></li>
 <li>保持视图的选中状态，打开标识指示器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_inspector_identity_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_inspector_identity_2x.png" /></center></li>
 <li>在标识指示器中设置&rdquo;Class&rdquo;为&rdquo;RatingControl&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_identity_ratingcontrol_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_identity_ratingcontrol_2x.png" /></center></li>
 </ol>
 <h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>给自定义视图添加按钮</h3>
 <p>在<code>init(coder:)</code>函数中，增加如下代码：<br />
 <div class="codehilite"><pre><span class="kr">required</span> <span class="kd">init</span><span class="p">(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">!)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+
     <span class="c1">// 增加一个红色的按钮</span>
     <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">))</span>
     <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
@@ -1814,11 +1853,12 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <div class="codehilite"><pre><span class="n">button</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="s">&quot;ratingButtonTapped:&quot;</span><span class="p">,</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchDown</span><span class="p">)</span>
 </pre></div>
 <br />
-这里使用的是target-action模式，将动作<code>ratingButtonTapped</code>与<code>button</code>对象绑定，触发条件为<code>.TouchDown</code>(按下操作)。这里不需要使用IBAction，因为你没有使用Interface Builder。</li>
+    这里使用的是target-action模式，将动作<code>ratingButtonTapped</code>与<code>button</code>对象绑定，触发条件为<code>.TouchDown</code>(按下操作)。这里不需要使用IBAction，因为你没有使用Interface Builder。</li>
 </ol>
 <p>现在，<code>init(coder:)</code>初始化函数应该如下所示：<br />
 <div class="codehilite"><pre><span class="kr">required</span> <span class="kd">init</span><span class="p">(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">!)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+
     <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">))</span>
     <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
     <span class="n">button</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="s">&quot;ratingButtonTapped:&quot;</span><span class="p">,</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchDown</span><span class="p">)</span>
@@ -1836,6 +1876,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>现在，自定义视图中只有一个按钮，但是我们需要五个。创建五个按钮，我们可以使用<code>for-in</code>循环。下面是简单的增加了循环后的代码：<br />
 <div class="codehilite"><pre><span class="kr">required</span> <span class="kd">init</span><span class="p">(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">!)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">5</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">))</span>
         <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
@@ -1851,6 +1892,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>这种类型的布局代码属于一个叫做<code>layoutSubviews</code>的函数，由<code>UIView</code>类定义。<code>layoutSubviews</code>方法会被系统在合适的时间调用以使<code>UIView</code>子类能够对子视图进行布局。下面来重写这一个函数。<br />
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">buttonFrame</span> <span class="p">=</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">)</span>
+
     <span class="c1">// Offset each button&#39;s origin by the length of the button plus spacing</span>
     <span class="c1">// 将每一个按钮的横轴进行适当的偏移</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span> <span class="k">in</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="bp">enumerate</span><span class="p">()</span> <span class="p">{</span>
@@ -1874,6 +1916,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <br />
 2. 将代码中的44用<code>buttonSize</code>替换。<br />
     <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">buttonFrame</span> <span class="p">=</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">)</span>
+
 <span class="c1">// Offset each button&#39;s origin by the length of the button plus spacing</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span> <span class="k">in</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="bp">enumerate</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">buttonFrame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">index</span> <span class="o">*</span> <span class="p">(</span><span class="n">buttonSize</span> <span class="o">+</span> <span class="mi">5</span><span class="p">))</span>
@@ -1885,12 +1928,14 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">()</span>
 </pre></div>
 <br />
-因为在<code>layoutSubviews()</code>函数中已经重新设置了边框，所以不需要在创建的时候设置了。</p>
+    因为在<code>layoutSubviews()</code>函数中已经重新设置了边框，所以不需要在创建的时候设置了。</p>
 <p>现在，<code>layoutSubviews()</code>函数应该如下所示：<br />
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Set the button&#39;s width and height to a square the size of the frame&#39;s height.</span>
     <span class="kd">let</span> <span class="nv">buttonSize</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+
     <span class="kd">var</span> <span class="nv">buttonFrame</span> <span class="p">=</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">)</span>
+
     <span class="c1">// Offset each button&#39;s origin by the length of the button plus spacing</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span> <span class="k">in</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="bp">enumerate</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">buttonFrame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">index</span> <span class="o">*</span> <span class="p">(</span><span class="n">buttonSize</span> <span class="o">+</span> <span class="mi">5</span><span class="p">))</span>
@@ -1902,6 +1947,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p><code>init(coder:)</code>函数如下：<br />
 <div class="codehilite"><pre><span class="kr">required</span> <span class="kd">init</span><span class="p">(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">!)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">5</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">()</span>
         <span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
@@ -1921,15 +1967,15 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>将图像添加到项目中：<br />
 1. 在项目导航栏处，选择Images.xcassets。<br />
 2. 在左下角点击<code>+</code>，并在弹出菜单中选择&rdquo;New Folder&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_assetcatalog_addfolder_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_assetcatalog_addfolder_2x.png" /></center><br />
 3. 双击文件夹，重命名为&rdquo;Rating Images&rdquo;。<br />
 4. 保持文件夹的选中状态，在左下角点击<code>+</code>，并在弹出菜单中选择&rdquo;New Image Set&rdquo;。<br />
 5. 双击图像集名称并重命名为&rdquo;emptyStar&rdquo;。<br />
 6. 在Mac上选择空心星形图像。<br />
 7. 拖动并放置图像到 &ldquo;2x&rdquo; 位置处。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_emptystar_drag_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_emptystar_drag_2x.png" /></center><br />
 8. 同样的方式，将实心星形图像放入到名为&rdquo;filledStar&rdquo;的图像集中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_filledstar_drag_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_filledstar_drag_2x.png" /></center></p>
 <p>完成后资源集应该如下所示：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_assetcatalog_final_2x.png" /></center></p>
 <p>接下来，编写代码来在合适的时间使用合适的图像。<br />
@@ -1945,7 +1991,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="n">button</span><span class="p">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">filledStarImage</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">[.</span><span class="n">Highlighted</span><span class="p">,</span> <span class="p">.</span><span class="n">Selected</span><span class="p">])</span>
 </pre></div>
 <br />
-这里设置了按钮在<code>.Normal</code>状态下使用空心星形图像，在<code>.Selected</code>状态下和既在<code>.Selected</code>又在<code>.Highlighted</code>状态下(用户正在点击按钮)使用实心星形图像。<br />
+    这里设置了按钮在<code>.Normal</code>状态下使用空心星形图像，在<code>.Selected</code>状态下和既在<code>.Selected</code>又在<code>.Highlighted</code>状态下(用户正在点击按钮)使用实心星形图像。<br />
 4. 删除设置按钮背景颜色的代码：<br />
     <div class="codehilite"><pre><span class="n">button</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="p">=</span> <span class="bp">UIColor</span><span class="p">.</span><span class="n">redColor</span><span class="p">()</span>
 </pre></div>
@@ -1954,18 +2000,23 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <div class="codehilite"><pre><span class="n">button</span><span class="p">.</span><span class="n">adjustsImageWhenHighlighted</span> <span class="p">=</span> <span class="kc">false</span>
 </pre></div>
 <br />
-这一步确保按钮在状态转换时不会有额外的高亮显示。</p>
+    这一步确保按钮在状态转换时不会有额外的高亮显示。</p>
 <p>现在，<code>init(coder:)</code>代码如下：<br />
 <div class="codehilite"><pre><span class="kr">required</span> <span class="kd">init</span><span class="p">(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">!)</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+
     <span class="kd">let</span> <span class="nv">emptyStarImage</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;emptyStar&quot;</span><span class="p">)</span>
     <span class="kd">let</span> <span class="nv">filledStarImage</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;filledStar&quot;</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="kc">_</span> <span class="k">in</span> <span class="mf">0.</span><span class="p">.&lt;</span><span class="mi">5</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">()</span>
+
         <span class="n">button</span><span class="p">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">emptyStarImage</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Normal</span><span class="p">)</span>
         <span class="n">button</span><span class="p">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">filledStarImage</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">.</span><span class="n">Selected</span><span class="p">)</span>
         <span class="n">button</span><span class="p">.</span><span class="n">setImage</span><span class="p">(</span><span class="n">filledStarImage</span><span class="p">,</span> <span class="n">forState</span><span class="p">:</span> <span class="p">[.</span><span class="n">Highlighted</span><span class="p">,</span> <span class="p">.</span><span class="n">Selected</span><span class="p">])</span>
+
         <span class="n">button</span><span class="p">.</span><span class="n">adjustsImageWhenHighlighted</span> <span class="p">=</span> <span class="kc">false</span>
+
         <span class="n">button</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="s">&quot;ratingButtonTapped:&quot;</span><span class="p">,</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchDown</span><span class="p">)</span>
         <span class="n">ratingButtons</span> <span class="o">+=</span> <span class="p">[</span><span class="n">button</span><span class="p">]</span>
         <span class="n">addSubview</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
@@ -1988,7 +2039,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-这个函数用来更新按钮的选择状态。</li>
+    这个函数用来更新按钮的选择状态。</li>
 <li>在<code>updateButtonSelectionStates()</code>函数中，增加一个<code>for-in</code>循环。<br />
     <div class="codehilite"><pre><span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span> <span class="k">in</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="bp">enumerate</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// If the index of a button is less than the rating, that button should be selected.</span>
@@ -1996,10 +2047,11 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-通过比较来确定按钮是否被选中。</li>
+    通过比较来确定按钮是否被选中。</li>
 <li>在<code>ratingButtonTapped(_:)</code>函数中，添加对<code>updateButtonSelectionStates()</code>函数的调用代码：<br />
     <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">ratingButtonTapped</span><span class="p">(</span><span class="n">button</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">rating</span> <span class="p">=</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">button</span><span class="p">)</span><span class="o">!</span> <span class="o">+</span> <span class="mi">1</span>
+
     <span class="n">updateButtonSelectionStates</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
@@ -2009,6 +2061,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <span class="c1">// Set the button&#39;s width and height to a square the size of the frame&#39;s height.</span>
     <span class="kd">let</span> <span class="nv">buttonSize</span> <span class="p">=</span> <span class="nb">Int</span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
     <span class="kd">var</span> <span class="nv">buttonFrame</span> <span class="p">=</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">buttonSize</span><span class="p">)</span>
+
     <span class="c1">// Offset each button&#39;s origin by the length of the button plus some spacing.</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span> <span class="k">in</span> <span class="n">ratingButtons</span><span class="p">.</span><span class="bp">enumerate</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">buttonFrame</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="n">CGFloat</span><span class="p">(</span><span class="n">index</span> <span class="o">*</span> <span class="p">(</span><span class="n">buttonSize</span> <span class="o">+</span> <span class="mi">5</span><span class="p">))</span>
@@ -2018,7 +2071,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-在视图加载后更新按钮的状态十分必要，而不仅仅是在评级更改的时候。</li>
+    在视图加载后更新按钮的状态十分必要，而不仅仅是在评级更改的时候。</li>
 <li>更新rating属性，添加一个观察者：<br />
     <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">rating</span> <span class="p">=</span> <span class="mi">0</span> <span class="p">{</span>
     <span class="kr">didSet</span> <span class="p">{</span>
@@ -2027,7 +2080,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-属性观察者(property observer)可以获取属性值的改变并进行响应。属性观察者在属性值改变的前或后被调用。特别的是，<code>didSet</code>属性观察者在改变后调用。这里，我们包含了一个调用<code>setNeedsLayout()</code>，这会在每一次评级更新的时候触发布局更新。这样能够保证用户界面总是显示正确的评级属性。</li>
+    属性观察者(property observer)可以获取属性值的改变并进行响应。属性观察者在属性值改变的前或后被调用。特别的是，<code>didSet</code>属性观察者在改变后调用。这里，我们包含了一个调用<code>setNeedsLayout()</code>，这会在每一次评级更新的时候触发布局更新。这样能够保证用户界面总是显示正确的评级属性。</li>
 </ol>
 <p><code>updateButtonSelectionStates()</code>方法如下：<br />
 <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">updateButtonSelectionStates</span><span class="p">()</span> <span class="p">{</span>
@@ -2057,27 +2110,27 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <h3 id="viewcontroller"><a name="user-content-viewcontroller" href="#viewcontroller" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>将评级视图与ViewController连接</h3>
 <p>这一步设置ViewController类对自定义的rating control的引用。<br />
 1. 打开Storyboard，并开启辅助编辑器<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center><br />
 2. &ldquo;Control&rdquo;+拖动，将自定义的RatingControl拖动到ViewController中以添加引用。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_ratingcontrol_dragoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_ratingcontrol_dragoutlet_2x.png" /></center><br />
 3. 在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;ratingControl&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_ratingcontrol_addoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_ratingcontrol_addoutlet_2x.png" /></center><br />
 4. 点击&rdquo;Connect&rdquo;。</p>
 <h2 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>清理项目</h2>
 <p>现在，基本上掌握了应用场景的制作，接下来，我们会实现一些高级的行为并构建与现在不同的用户界面，所以需要清除不需要的部分。</p>
 <p>首先，清理用户界面：<br />
 1. 返回到标准编辑器状态。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/standard_toggle_2x.png" /></center><br />
 2. 打开Storyboard。<br />
 3. 选择&rdquo;Set Default Label Text&rdquo;按钮，然后按下&rdquo;Delete&rdquo;键来删除它。<br />
-堆栈视图会重新组合你的UI元素：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_deletebutton_2x.png" /></center><br />
+    堆栈视图会重新组合你的UI元素：<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_deletebutton_2x.png" /></center><br />
 4. 如果必要，打开大纲视图，选中堆栈视图对象。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_outlineview_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/2_AL_outlineview_2x.png" /></center><br />
 5. 打开功能区的属性编辑器。<br />
 6. 在属性编辑器中，设置&rdquo;Alignment&rdquo;为&rdquo;Center&rdquo;。<br />
-堆栈视图中的元素会居中显示：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_centerstack_2x.png" /></center></p>
+    堆栈视图中的元素会居中显示：<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/5_centerstack_2x.png" /></center></p>
 <p>接下来，清除与刚刚删除的按钮相关的动作按钮。<br />
 1. 打开ViewController.swift。<br />
 2. 删除<code>setDefaultLabelText(_:)</code>方法。<br />
@@ -2096,15 +2149,16 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 1. 按下&rdquo;Command+N&rdquo;新建文件。<br />
 2. 在弹出的对话框中，选择iOS栏下的Source。<br />
 3. 选择&rdquo;Swift&rdquo;文件，点击&rdquo;Next&rdquo;。<br />
-与新建RatingControl类不同的是，数据类并没有父类，不需要继承。<br />
+    与新建RatingControl类不同的是，数据类并没有父类，不需要继承。<br />
 4. 设置&rdquo;Save As&rdquo;为&rdquo;Meal&rdquo;。<br />
 5. 保存文件到默认的工程目录下。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_createmealclass_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_createmealclass_2x.png" /></center><br />
 6. 点击&rdquo;Create&rdquo;。</p>
 <p>在Swift中，属性&rdquo;名称&rdquo;可以使用<code>String</code>，&rdquo;照片&rdquo;可以使用&rdquo;UIImage&rdquo;类型，&rdquo;评级&rdquo;可以使用<code>Int</code>表示。<br />
 1. 按照如下代码定义属性。<br />
     <div class="codehilite"><pre><span class="kd">class</span> <span class="nc">Meal</span> <span class="p">{</span>
     <span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Properties</span>
+
     <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
     <span class="kd">var</span> <span class="nv">photo</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">?</span>
     <span class="kd">var</span> <span class="nv">rating</span><span class="p">:</span> <span class="nb">Int</span>
@@ -2113,6 +2167,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <br />
 2. 定义初始化函数。<br />
     <div class="codehilite"><pre><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Initialization</span>
+
 <span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">?,</span> <span class="n">rating</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
@@ -2124,7 +2179,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="kc">self</span><span class="p">.</span><span class="n">rating</span> <span class="p">=</span> <span class="n">rating</span>
 </pre></div>
 <br />
-不过，想一想如果试图使用错误的数值创建一个Meal的实例会发生什么？所以，我们需要设置在不能错误的情况下返回nil。<br />
+    不过，想一想如果试图使用错误的数值创建一个Meal的实例会发生什么？所以，我们需要设置在不能错误的情况下返回nil。<br />
 4. 增加如下代码来返回nil。<br />
     <div class="codehilite"><pre><span class="c1">// Initialization should fail if there is no name or if the rating is negative.</span>
 <span class="k">if</span> <span class="n">name</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="o">||</span> <span class="n">rating</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
@@ -2132,19 +2187,21 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-由于初始化函数可能返回为nil,所以需要给初始化函数指明。<br />
+    由于初始化函数可能返回为nil,所以需要给初始化函数指明。<br />
 5. 通过点击<code>fix-it</code>错误提示，在<code>init</code>关键词后增加一个<code>?</code>。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_init_fixit_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_init_fixit_2x.png" /></center><br />
     <div class="codehilite"><pre><span class="kd">init</span><span class="p">?(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">?,</span> <span class="n">rating</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
 </pre></div>
 </p>
 <p>下面是完整的<code>init?(name:photo:rating:)</code>函数：<br />
 <div class="codehilite"><pre><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Initialization</span>
+
 <span class="kd">init</span><span class="p">?(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">?,</span> <span class="n">rating</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Initialize stored properties.</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">photo</span> <span class="p">=</span> <span class="n">photo</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">rating</span> <span class="p">=</span> <span class="n">rating</span>
+
     <span class="c1">// Initialization should fail if there is no name or if the rating is negative.</span>
     <span class="k">if</span> <span class="n">name</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="o">||</span> <span class="n">rating</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">nil</span>
@@ -2157,31 +2214,39 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>尽管数据模型代码能够被构建，但是还没有在应用中真正起作用。所以很难说是否真正正确地实现了所有事情。那么接下来我们来编写单元测试以检验是否正确。</p>
 <p>Xcode已经自动创建了单元测试文件。<br />
 1. 打开项目导航栏出的 &ldquo;FoodTrackerTests&rdquo; 文件夹。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_foodtrackertests_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_foodtrackertests_2x.png" /></center><br />
 2. 打开 &ldquo;FoodTrackerTests.swift&rdquo;文件。</p>
 <div class="codehilite"><pre><span class="kd">import</span> <span class="nc">UIKit</span>
 <span class="kd">import</span> <span class="nc">XCTest</span>
+
 <span class="kd">class</span> <span class="nc">FoodTrackerTests</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+
     <span class="kr">override</span> <span class="kd">func</span> <span class="nf">setUp</span><span class="p">()</span> <span class="p">{</span>
         <span class="kc">super</span><span class="p">.</span><span class="n">setUp</span><span class="p">()</span>
         <span class="c1">// Put setup code here. This method is called before the invocation of each test method in the class.</span>
     <span class="p">}</span>
+
     <span class="kr">override</span> <span class="kd">func</span> <span class="nf">tearDown</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// Put teardown code here. This method is called after the invocation of each test method in the class.</span>
         <span class="kc">super</span><span class="p">.</span><span class="n">tearDown</span><span class="p">()</span>
     <span class="p">}</span>
+
     <span class="kd">func</span> <span class="nf">testExample</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// This is an example of a functional test case.</span>
         <span class="n">XCTAssert</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="s">&quot;Pass&quot;</span><span class="p">)</span>
     <span class="p">}</span>
+
     <span class="kd">func</span> <span class="nf">testPerformanceExample</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">// This is an example of a performance test case.</span>
         <span class="kc">self</span><span class="p">.</span><span class="n">measureBlock</span><span class="p">()</span> <span class="p">{</span>
             <span class="c1">// Put the code you want to measure the time of here.</span>
         <span class="p">}</span>
     <span class="p">}</span>
+
 <span class="p">}</span>
 </pre></div>
+
+
 <p>先来理解一下这个文件。XCTest框架库是Xcode的测试框架库。单元测试定义为一个类 &ldquo;FoodTrackerTests&rdquo;, 并继承自 &ldquo;XCTestCase&rdquo;。注释解释了<code>setUp()</code>和<code>tearDown()</code>方法。</p>
 <p>我们能够编写的测试主要是函数功能测试和性能测试。当前我们主要编写功能测试代码。以测试Meal类的对象为例：<br />
 1. 删除默认的模版测试代码：<br />
@@ -2195,7 +2260,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <div class="codehilite"><pre><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> FoodTracker Tests</span>
 </pre></div>
 <br />
-养成编写注释的好习惯😊。<br />
+    养成编写注释的好习惯😊。<br />
 3. 在注释的下方，添加下列单元测试函数：<br />
     <div class="codehilite"><pre><span class="c1">// Tests to confirm that the Meal initializer returns when no name or a negative rating is provided.</span>
 <span class="kd">func</span> <span class="nf">testMealInitialization</span><span class="p">()</span> <span class="p">{</span>
@@ -2227,9 +2292,11 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <span class="c1">// Success case.</span>
     <span class="kd">let</span> <span class="nv">potentialItem</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Newest meal&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
     <span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">potentialItem</span><span class="p">)</span>
+
     <span class="c1">// Failure cases.</span>
     <span class="kd">let</span> <span class="nv">noName</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">XCTAssertNil</span><span class="p">(</span><span class="n">noName</span><span class="p">,</span> <span class="s">&quot;Empty name is invalid&quot;</span><span class="p">)</span>
+
     <span class="kd">let</span> <span class="nv">badRating</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Really bad rating&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">badRating</span><span class="p">)</span>
 <span class="p">}</span>
@@ -2239,9 +2306,9 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>只运行一个单元测试：<br />
 1. 在<code>FoodTrackerTests.swift</code>文件中，找到<code>testMealInitialization</code>单元测试。<br />
 2. 在测试名的左侧，找到一个方块形的图标。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_preparetest_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_preparetest_2x.png" /></center><br />
 3. 鼠标悬停在方块上方以使一个小的运行按钮显现。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_runtest_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_runtest_2x.png" /></center><br />
 4. 点击运行按钮，运行这个单元测试。</p>
 <p><strong><em>检查点：</em></strong>运行这个单元测试，前两个用例应该能够通过，后面一个用例不能通过。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/6_failtest_2x.png" /></center></p>
@@ -2256,9 +2323,11 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <span class="c1">// Success case.</span>
     <span class="kd">let</span> <span class="nv">potentialItem</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Newest meal&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span>
     <span class="n">XCTAssertNotNil</span><span class="p">(</span><span class="n">potentialItem</span><span class="p">)</span>
+
     <span class="c1">// Failure cases.</span>
     <span class="kd">let</span> <span class="nv">noName</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">XCTAssertNil</span><span class="p">(</span><span class="n">noName</span><span class="p">,</span> <span class="s">&quot;Empty name is invalid&quot;</span><span class="p">)</span>
+
     <span class="kd">let</span> <span class="nv">badRating</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Really bad rating&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">XCTAssertNil</span><span class="p">(</span><span class="n">badRating</span><span class="p">,</span> <span class="s">&quot;Negative ratings are invalid, be positive&quot;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -2280,16 +2349,16 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <ol>
 <li>通过关闭导航栏和功能区来获得更大的编辑界面。</li>
 <li>将&rdquo;Storyboard entry point&rdquo;(故事板入口)从食物场景拖动到表视图控制器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_newtableview_2x.png" /></center><br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_storyboardentrypoint_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_newtableview_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_storyboardentrypoint_2x.png" /></center></li>
 </ol>
 <p><strong><em>检查点：</em></strong>运行你的App，应该看到如下的开场界面：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_sim_emptytv_2x.png" /></center></p>
 <p>接下来配置表视图:<br />
 1. 打开Storyboard的大纲视图，并选中表视图(Table View)<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_outlineview_table_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_outlineview_table_2x.png" /></center><br />
 2. 保持表视图的选中，打开功能区的大小指示器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_size_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_size_2x.png" /></center><br />
 3. 设置&rdquo;Row Height&rdquo;为 90 ,并按下回车键以确认。</p>
 <h3 id="_47"><a name="user-content-_47" href="#_47" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设计自定义的表单元</h3>
 <p>表视图中的每一行通过<code>UITableViewCell</code>进行管理。表视图单元有一系列的预定义的行为和默认单元样式，不过这里我们需要更多的功能，所以需要自定义我们的表单元。<br />
@@ -2298,67 +2367,67 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 3. 选择&rdquo;Cocoa Touch Class&rdquo;，并点击&rdquo;Next&rdquo;。<br />
 4. 设置&rdquo;Class&rdquo;为&rdquo;Meal&rdquo;。<br />
 5. 设置&rdquo;Subclass of&rdquo;为&rdquo;UITableViewCell&rdquo;。<br />
-这里类的标题会自动更改为&rdquo;MealTableViewCell&rdquo;。Xcode在你自定义创建表单元时会对名称进行处理以使代码更加清晰，所以保持新的命名。<br />
+    这里类的标题会自动更改为&rdquo;MealTableViewCell&rdquo;。Xcode在你自定义创建表单元时会对名称进行处理以使代码更加清晰，所以保持新的命名。<br />
 6. 确保&rdquo;Language&rdquo;为&rdquo;Swift&rdquo;。<br />
 7. 点击&rdquo;Next&rdquo;。<br />
-保存文件到默认的工程目录下。<br />
+    保存文件到默认的工程目录下。<br />
 8. 其它设置保持不变，点击&rdquo;Create&rdquo;。</p>
 <p>现在打开故事板，查看表视图控制器，注意到在表视图中只显示了一个表单元。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_singletvcell_2x.png" /></center></p>
 <p>这一个表单元代表了其它的单元，接下来需要做一些配置工作，将表单元与自定义的表单元子类连接。<br />
 1. 在大纲视图中，选中&rdquo;Table View Cell&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_outlineview_cell_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_outlineview_cell_2x.png" /></center><br />
 2. 打开功能区的属性编辑器。<br />
 3. 设置&rdquo;Identifier&rdquo;为&rdquo;MealTableViewCell&rdquo;。按下回车键以确认。<br />
-这是重要的一步，后面会解释。<br />
+    这是重要的一步，后面会解释。<br />
 4. 在属性编辑器中，设置&rdquo;Selection&rdquo;为&rdquo;None&rdquo;。<br />
-这一步会使表单元在用户点击的时候不会显示高亮。<br />
+    这一步会使表单元在用户点击的时候不会显示高亮。<br />
 5. 打开大小指示器。<br />
 6. 设置&rdquo;Row Height&rdquo;为&rdquo;93&rdquo;。<br />
-确保在右侧的&rdquo;Custom&rdquo;为选中的状态。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_size_cell_2x.png" /></center><br />
-按下回车键确认。<br />
+    确保在右侧的&rdquo;Custom&rdquo;为选中的状态。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_size_cell_2x.png" /></center><br />
+    按下回车键确认。<br />
 7. 打开标识指示器。<br />
 8. 设置&rdquo;Class&rdquo;为&rdquo;MealTableViewCell&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_cell_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_cell_2x.png" /></center></p>
 <p>配置完这个表单元后，我们要设计自定的用户界面，最后能够如下图所示，可以先自己想想如何设计并实现：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_sim_tablecellUI_2x.png" /></center></p>
 <p>下面来设计自定义表单元的用户界面：<br />
 1. 在菜单中选择 <code>Editor &gt; Canvas &gt; Show Bounds Rectangles</code>来显示UI元素的边界，以使得调整UI元素更加清晰。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_showbounds_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_showbounds_2x.png" /></center><br />
 2. 在对象库中，找到图像视图对象，并拖动到表单元中。<br />
 3. 拖动并改变图像视图的大小，让它处于单元视图的左侧，如下图所示：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_resize_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_resize_2x.png" /></center><br />
 4. 接下来给图像视图添加默认的图像。<br />
 5. 保持图像视图的选中状态，打开属性编辑器。<br />
 6. 在属性编辑器中，设置&rdquo;Image&rdquo;为&rdquo;defaultPhoto&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_setdefault_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_setdefault_2x.png" /></center><br />
 7. 在对象库中找到标签对象，并拖动到表单元中。<br />
 8. 拖动标签对象让它处于图像视图的右侧并于表单元的上边框对齐，如下图所示。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_drag_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_drag_2x.png" /></center><br />
 9. 改变标签的大小，让它的右边框与表单元的右边框对齐：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_resize_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_resize_2x.png" /></center><br />
 10. 在对象库中找到View(视图)对象，并拖动到表单元中。<br />
 11. 保持视图对象的选中，打开大小指示器。<br />
 12. 在大小指示器中设置&rdquo;Height&rdquo;为&rdquo;44&rdquo;，&rdquo;Width&rdquo;为&rdquo;240&rdquo;。并按下回车键以确认<br />
 13. 拖动视图动向使它与标签的左边框对齐并位于标签对象的下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_ratingcontrol_resize_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_ratingcontrol_resize_2x.png" /></center><br />
 14. 保持视图的选中状态，打开标识指示器。<br />
 15. 设置&rdquo;Class&rdquo;为&rdquo;RatingControl&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_control_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_control_2x.png" /></center><br />
 16. 保持视图的选中状态，打开属性编辑器。<br />
 17. 找到&rdquo;Interaction&rdquo;属性，取消选中&rdquo;User Interaction Enabled&rdquo;。<br />
-在表单元中显示时，不需要有交互功能。</p>
+    在表单元中显示时，不需要有交互功能。</p>
 <p>现在，用户界面应该如下图所示:<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_tablecellUI_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong>运行应用，可以看到如下的界面。尽管更改了UI元素，但是仍然显示为空，这是为什么？<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_sim_wideemptycells_2x.png" /></center></p>
 <p>在故事板中，一个表格视图能够配置成显示静态的数据(有Storyboard提供)或者动态的数据(有表视图控制器逻辑提供)。表视图默认使用动态数据，所以我们需要在代码中加载数据，不过目前为止还并没有实现这一行为。这意味着在故事板中提供的静态内容并不能在运行时呈现，所以我们看不到任何东西。接下来，我们在辅助编辑器中预览用户界面。<br />
 1. 打开辅助编辑器，如果需要更大的空间，可以关闭导航栏和功能区。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center><br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/assistant_editor_toggle_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/navigator_utilities_toggle_on_2x.png" /></center><br />
 2. 在编辑器选择栏中，从&rdquo;Automatic&rdquo;切换到&rdquo;Preview &gt; Main.storyboard(Preview)&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_assistant_switchtopreview_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_assistant_switchtopreview_2x.png" /></center></p>
 <p>Xcode应该看起来如下图所示：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_assistant_preview_2x.png" /></center></p>
 <h3 id="_48"><a name="user-content-_48" href="#_48" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加图像到工程中</h3>
@@ -2376,25 +2445,25 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <ol>
 <li>打开辅助编辑器，如果需要更大的空间，可以关闭导航栏和功能区。</li>
 <li>在编辑器选择栏中，选择&rdquo;Automatic &gt; MealTableViewCell.swift&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_assistant_switchtocode_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_assistant_switchtocode_2x.png" /></center></li>
 <li>在MealTableViewCell内中添加以下注释:<br />
     <div class="codehilite"><pre><span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> Properties</span>
 </pre></div>
 </li>
 <li>按住&rdquo;Control&rdquo;键，并拖动标签到注释代码下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_dragoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_dragoutlet_2x.png" /></center></li>
 <li>在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;nameLable&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_addoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_label_addoutlet_2x.png" /></center></li>
 <li>保持其他的默认选项，点击&rdquo;Connect&rdquo;。</li>
 <li>选中图像视图，按住&rdquo;Control&rdquo;键，拖动到&rdquo;nameLabel&rdquo;下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_dragoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_dragoutlet_2x.png" /></center></li>
 <li>在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;photoImageView&rdquo;。<br />
-保持其他的默认选项，点击&rdquo;Connect&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_addoutlet_2x.png" /></center></li>
+    保持其他的默认选项，点击&rdquo;Connect&rdquo;。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_imageview_addoutlet_2x.png" /></center></li>
 <li>选中评级控制视图，按住&rdquo;Control&rdquo;键，拖动到&rdquo;photoImageView&rdquo;下方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_ratingcontrol_dragoutlet_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_ratingcontrol_dragoutlet_2x.png" /></center></li>
 <li>在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;ratingControl&rdquo;。<br />
-保持其他的默认选项，点击&rdquo;Connect&rdquo;。</li>
+    保持其他的默认选项，点击&rdquo;Connect&rdquo;。</li>
 </ol>
 <p>&ldquo;MealTableViewCell.swift&rdquo;中的属性应该如下所示：<br />
 <div class="codehilite"><pre><span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">nameLabel</span><span class="p">:</span> <span class="bp">UILabel</span><span class="p">!</span>
@@ -2412,7 +2481,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 6. 确保&rdquo;Language&rdquo;为&rdquo;Swift&rdquo;。<br />
 7. 确保&rdquo;Also create XIB file&rdquo;为取消选中状态。<br />
 7. 点击&rdquo;Next&rdquo;。<br />
-保存文件到默认的工程目录下。<br />
+    保存文件到默认的工程目录下。<br />
 8. 其它设置保持不变，点击&rdquo;Create&rdquo;。</p>
 <p>在这个自定义的类中，我们需要定义一个属性来存储食物对象。Swift标准库中包含了<code>Array</code>这个结构，能够很好的记录对象列表。<br />
 1. 在<code>MealTableViewController</code>类中添加如下代码：<br />
@@ -2428,8 +2497,10 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 3. 在<code>loadSampleMeals()</code>方法中添加代码来创建一些Meal对象。<br />
     <div class="codehilite"><pre><span class="kd">let</span> <span class="nv">photo1</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal1.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
 <span class="kd">let</span> <span class="nv">meal1</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Caprese Salad&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo1</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span><span class="o">!</span>
+
 <span class="kd">let</span> <span class="nv">photo2</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal2.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
 <span class="kd">let</span> <span class="nv">meal2</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Chicken and Potatoes&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo2</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span><span class="o">!</span>
+
 <span class="kd">let</span> <span class="nv">photo3</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal3.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
 <span class="kd">let</span> <span class="nv">meal3</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Pasta with Meatballs&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo3</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span><span class="o">!</span>
 </pre></div>
@@ -2446,6 +2517,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>现在，<code>viewDidLoad()</code>方法为：<br />
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
     <span class="c1">// Load the sample data.</span>
     <span class="n">loadSampleMeals</span><span class="p">()</span>
 <span class="p">}</span>
@@ -2455,10 +2527,13 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <div class="codehilite"><pre><span class="kd">func</span> <span class="nf">loadSampleMeals</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nv">photo1</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal1.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
     <span class="kd">let</span> <span class="nv">meal1</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Caprese Salad&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo1</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span><span class="o">!</span>
+
     <span class="kd">let</span> <span class="nv">photo2</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal2.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
     <span class="kd">let</span> <span class="nv">meal2</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Chicken and Potatoes&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo2</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">5</span><span class="p">)</span><span class="o">!</span>
+
     <span class="kd">let</span> <span class="nv">photo3</span> <span class="p">=</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;meal3.jpg&quot;</span><span class="p">)</span><span class="o">!</span>
     <span class="kd">let</span> <span class="nv">meal3</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&quot;Pasta with Meatballs&quot;</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo3</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span><span class="o">!</span>
+
     <span class="n">meals</span> <span class="o">+=</span> <span class="p">[</span><span class="n">meal1</span><span class="p">,</span> <span class="n">meal2</span><span class="p">,</span> <span class="n">meal3</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -2492,12 +2567,15 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
     <span class="kd">let</span> <span class="nv">cellIdentifier</span> <span class="p">=</span> <span class="s">&quot;MealTableViewCell&quot;</span>
     <span class="c1">// 从队列中通过cellIdentifier获取对应的单元</span>
     <span class="kd">let</span> <span class="nv">cell</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="n">cellIdentifier</span><span class="p">,</span> <span class="n">forIndexPath</span><span class="p">:</span> <span class="n">indexPath</span><span class="p">)</span> <span class="kc">as</span><span class="p">!</span> <span class="n">MealTableViewCell</span>
+
     <span class="c1">// Fetches the appropriate meal for the data source layout.</span>
     <span class="c1">// 获取单元对应的食物并进行配置</span>
     <span class="kd">let</span> <span class="nv">meal</span> <span class="p">=</span> <span class="n">meals</span><span class="p">[</span><span class="n">indexPath</span><span class="p">.</span><span class="n">row</span><span class="p">]</span>
+
     <span class="n">cell</span><span class="p">.</span><span class="n">nameLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">name</span>
     <span class="n">cell</span><span class="p">.</span><span class="n">photoImageView</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">photo</span>
     <span class="n">cell</span><span class="p">.</span><span class="n">ratingControl</span><span class="p">.</span><span class="n">rating</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">rating</span>
+
     <span class="k">return</span> <span class="n">cell</span>
 <span class="p">}</span>
 </pre></div>
@@ -2507,16 +2585,16 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 2. 选中表视图控制器。<br />
 3. 打开标识指示器。<br />
 4. 设置&rdquo;Class&rdquo;为&rdquo;MealTableViewController&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_tablevc_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_inspector_identity_tablevc_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong>运行应用，可以看到如下的界面。注意到表视图与上方的状态栏有部分重叠，后面我们回来修复它。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_sim_finalUI_2x.png" /></center></p>
 <h3 id="_51"><a name="user-content-_51" href="#_51" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>给食物场景添加导航做准备</h3>
 <p>给应用添加导航，我们需要删除一些无用的UI和部分代码。</p>
 <ol>
 <li>打开Storyboard，并找到食物场景。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealsceneUI_old_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealsceneUI_old_2x.png" /></center></li>
 <li>选中Meal Name标签，按下&rdquo;Delete&rdquo;键来删除它。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealsceneUI_new_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealsceneUI_new_2x.png" /></center></li>
 <li>打开ViewController.swift。</li>
 <li>在ViewController.swift中，找到<code>textFieldDidEndEditing(_:)</code>方法。 </li>
 <li>删除标签属性部分代码。<br />
@@ -2538,19 +2616,19 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 4. 把最上方的文件注释信息也更改一下。<br />
 5. 打开Storyboard。<br />
 6. 通过单击场景以选中食物场景。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_scenedock_mealscene_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_scenedock_mealscene_2x.png" /></center><br />
 7. 打开标识指示器。<br />
 8. 设置&rdquo;Class&rdquo;为&rdquo;MealViewController&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealscenefinal_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/7_mealscenefinal_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong> 构建或运行应用，一切都应与之前相同。</p>
 <h2 id="_52"><a name="user-content-_52" href="#_52" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导航</h2>
 <h3 id="_53"><a name="user-content-_53" href="#_53" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加导航栏</h3>
 <p>导航控制器能够管理一系列视图控制器的前后转换。有导航控制器管理的视图控制器集合成为导航控制器的导航堆栈。堆栈中的第一个成为根视图控制器，并且永远不会从堆栈中移除。下面我们给食物列表场景添加一个导航控制器。<br />
 1. 打开Storyboard，选中表格视图控制器。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_scenedock_table_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_scenedock_table_2x.png" /></center><br />
 2. 在菜单栏中选择<code>Editor &gt; Embed In &gt; Navigation Controller</code>。<br />
-这一步会让Xcode在故事板中增加一个新的导航控制器，并设置它为故事板的入口，然后会给新的导航控制器与表视图控制器创建联系。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_navcontrolleradded_2x.png" /></center></p>
+    这一步会让Xcode在故事板中增加一个新的导航控制器，并设置它为故事板的入口，然后会给新的导航控制器与表视图控制器创建联系。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_navcontrolleradded_2x.png" /></center></p>
 <p>在画布上，两个视图控制器之间的图标代表根视图控制器关系。故事板的入口被设置为导航控制器，因为导航控制器现在是表格控制器的容器。</p>
 <p>注意到表视图控制器的上方现在有一个横栏，这个就是导航栏，在堆栈中的每一个控制器都有一个导航栏，导航栏包含向前和向后导航。接下来，我们回给这个导航栏增加一个导航到食物场景的按钮。</p>
 <p><strong><em>检查点：</em></strong>运行应用，可以看到如下的界面。<br />
@@ -2558,25 +2636,25 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <h3 id="_54"><a name="user-content-_54" href="#_54" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>给场景配置导航栏</h3>
 <p>我们给导航栏增加一个标题和一个按钮。<br />
 1. 双击食物列表场景中的导航栏。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_rename_meallist_2x.png" /></center><br />
-双击后，会出现光标，让你输入文本。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_rename_meallist_2x.png" /></center><br />
+    双击后，会出现光标，让你输入文本。<br />
 2. 输入&rdquo;Your Meals&rdquo;并按下回车键以保存。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_newname_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_newname_2x.png" /></center><br />
 3. 打开对象库，选择&rdquo;Bar Button Item&rdquo;对象，并将它拖动到导航栏的最后侧。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_barbutton_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_barbutton_2x.png" /></center><br />
 4. 选中这个导航栏按钮，并打开属性编辑器。<br />
 5. 设置&rdquo;System Item&rdquo;为&rdquo;Add&rdquo;。<br />
-按钮会变为&rdquo;+&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_addbutton_2x.png" /></center></p>
+    按钮会变为&rdquo;+&rdquo;。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_meallist_addbutton_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong>运行应用，可以看到如下的界面。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_sim_navbar_2x.png" /></center></p>
 <p>我们希望点击加号按钮后，能够进入食物场景中，所以这里我们需要增加一个进入食物场景的触发点。<br />
 1. 在画布上，选择添加按钮(&ldquo;+&rdquo;)。<br />
 2. 按住键盘上的&rdquo;Control&rdquo;并拖动到食物场景上。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_addbutton_drag_2x.png" /></center><br />
-会弹出一个动作前进(Action Segue)菜单，如下所示：<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_addbutton_segue_2x.png" /></center><br />
-动作前进菜单让我们选择在点击添加按钮后从食物列表视图转到食物视图使用哪一种类型的转换。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_addbutton_drag_2x.png" /></center><br />
+    会弹出一个动作前进(Action Segue)菜单，如下所示：<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_addbutton_segue_2x.png" /></center><br />
+    动作前进菜单让我们选择在点击添加按钮后从食物列表视图转到食物视图使用哪一种类型的转换。<br />
 3. 在动作前进菜单中选择&rdquo;show&rdquo;。</p>
 <p>Xcode会设置&rdquo;show segue&rdquo;，并会把食物场景配置到导航控制器中。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_showsegue_2x.png" /></center></p>
@@ -2584,37 +2662,37 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_sim_showsegue_2x.png" /></center></p>
 <p>使用&rdquo;show segue&rdquo;的推入式导航并不完全是我们增加食物时想要的效果。被设计成向下进入界面的推入导航让我们可以在用户选择时提供更多的信息。添加一个新的数据，是一种模态操作————用户执行的动作是完整且自包含的，然后从该场景返回到主导航视图。这里最合适的呈现方式是使用&rdquo;modal segue&rdquo;。我们不需要删除之前的segue，只需要简单的更改属性即可。<br />
 1.选中食物列表场景与食物场景之间的segue。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_selectsegue_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_selectsegue_2x.png" /></center><br />
 2. 在属性编辑器中，设置&rdquo;Segue&rdquo;为&rdquo;Present Modally&rdquo;。<br />
 3. 设置&rdquo;Identifier&rdquo;为&rdquo;AddItem&rdquo;，并按下回车键以确认。<br />
-后面我们会用到这个标识符。</p>
+    后面我们会用到这个标识符。</p>
 <p>模态视图控制器并不会添加到导航控制器堆栈中，所以在食物视图上方并不会有导航栏。下面我们给食物场景嵌入它自己的导航控制器。<br />
 1. 通过点击以选中食物场景。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_scenedock_mealscene_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_scenedock_mealscene_2x.png" /></center><br />
 2. 在菜单栏中选择<code>Editor &gt; Embed In &gt; Navigation Controller</code>。</p>
 <p>与之前一样，Xcode会给食物场景增加一个导航栏。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_navcontroller_mealscene_2x.png" /></center></p>
 <p>下面，我们给食物场景的导航栏添加标题和两个按钮。<br />
 1. 双击食物场景中的导航栏。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_rename_mealscene_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_rename_mealscene_2x.png" /></center><br />
 2. 输入&rdquo;New Meal&rdquo;并按下回车键以确认。<br />
 3. 从对象库中拖动&rdquo;Bar Button Item&rdquo;对象到导航栏的最左侧。<br />
 4. 在属性编辑器中，设置&rdquo;System Item&rdquo;为&rdquo;Cancel&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_mealscene_cancelbutton_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_mealscene_cancelbutton_2x.png" /></center><br />
 5. 再拖动一个&rdquo;Bar Button Item&rdquo;到导航栏的最右侧。<br />
 6. 在属性编辑器中，设置&rdquo;System Item&rdquo;为&rdquo;Save&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_mealscene_savebutton_2x.png" /></center></p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_mealscene_savebutton_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong>运行应用，点击添加按钮，会进入食物场景：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_sim_saveandcancel_2x.png" /></center></p>
 <h3 id="_55"><a name="user-content-_55" href="#_55" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用自动布局设置用户界面</h3>
 <p>先来对堆栈视图布局进行更新。<br />
 1. 在食物场景中，选中堆栈视图。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_selectstackview_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_selectstackview_2x.png" /></center><br />
 2. 在画布的右下角，打开&rdquo;Resolve Auto Layout Issues&rdquo;菜单。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_AL_resolvemenu_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_AL_resolvemenu_2x.png" /></center><br />
 3. 在&rdquo;Selected Views&rdquo;下方，选择&rdquo;Update Constraints&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_stackview_updateconstraints_2x.png" /></center><br />
-这一步会使堆栈视图与导航栏的下边框对齐。</p>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_stackview_updateconstraints_2x.png" /></center><br />
+    这一步会使堆栈视图与导航栏的下边框对齐。</p>
 <p>食物场景约束和用户界面如下图所示：<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_stackview_final_2x.png" /></center></p>
 <p><strong><em>检查点：</em></strong>运行应用，点击添加按钮，会进入与之前相同的食物场景：<br />
@@ -2632,9 +2710,9 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>将保存按钮与代码连接：<br />
 1. 打开辅助编辑器，如果需要更大的空间，可以关闭导航栏和功能区。<br />
 2. 选择保存按钮，按住&rdquo;Control&rdquo;键拖动到代码中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_dragoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_dragoutlet_2x.png" /></center><br />
 3. 在弹出的对话框中，设置&rdquo;Name&rdquo;为&rdquo;saveButton&rdquo;。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_addoutlet_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_addoutlet_2x.png" /></center><br />
 4. 点击&rdquo;Connect&rdquo;。</p>
 <p>接下来就是将Meal对象传递给MealTableViewController。为了完成这项工作，我们需要使用<code>unwind segue</code>。&rdquo;unwind segue&rdquo;允许用户从当前界面回退到任意一个已经存在的视图控制器，也即可以返回多级。这里我们使用<code>prepareForSegue(_:sender:)</code>这个方法来存储数据并在源视图控制器中做一些必要的清理工作。<br />
 1. 返回标准编辑器视图。<br />
@@ -2651,6 +2729,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
         <span class="kd">let</span> <span class="nv">name</span> <span class="p">=</span> <span class="n">nameTextField</span><span class="p">.</span><span class="n">text</span> <span class="p">??</span> <span class="s">&quot;&quot;</span>
         <span class="kd">let</span> <span class="nv">photo</span> <span class="p">=</span> <span class="n">photoImageView</span><span class="p">.</span><span class="n">image</span>
         <span class="kd">let</span> <span class="nv">rating</span> <span class="p">=</span> <span class="n">ratingControl</span><span class="p">.</span><span class="n">rating</span>
+
         <span class="c1">// Set the meal to be passed to MealListTableViewController after the unwind segue.</span>
         <span class="n">meal</span> <span class="p">=</span> <span class="n">Meal</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="n">rating</span><span class="p">)</span>
     <span class="p">}</span>
@@ -2677,9 +2756,9 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 </p>
 <p>现在，我们需要做的是将保存按钮与<code>unwindToMealList</code>方法连接起来：<br />
 1. 打开故事板，在画布上，按住&rdquo;Control&rdquo;键，拖动保存按钮到菜单场景的&rdquo;Exit&rdquo;上方。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_dragunwind_2x.png" /></center><br />
-接着会弹出一个对话框<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_unwindsegue_2x.png" /></center><br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_dragunwind_2x.png" /></center><br />
+    接着会弹出一个对话框<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_savebutton_unwindsegue_2x.png" /></center><br />
 2. 从对话框菜单中选择<code>unwindToMealList:</code>。 </p>
 <p><strong><em>检查点：</em></strong>运行应用，点击添加按钮，创建新的事物，然后点击保存，在食物列表中应该能够看到新建的食物。</p>
 <h3 id="_57"><a name="user-content-_57" href="#_57" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>用户未输入食物名时，禁止保存</h3>
@@ -2691,7 +2770,7 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <span class="p">}</span>
 </pre></div>
 <br />
-这个函数会在用户开始编辑的时候被调用。<br />
+    这个函数会在用户开始编辑的时候被调用。<br />
 2. 在上面的函数后面继续添加新函数：<br />
     <div class="codehilite"><pre><span class="n">fucn</span> <span class="n">checkValidMealName</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Disable the Save button if the text field is empty.</span>
@@ -2713,8 +2792,10 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <p>下面是完整的<code>viewDidLoad()</code>函数：<br />
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
     <span class="c1">// Handle the text field’s user input through delegate callbacks.</span>
     <span class="n">nameTextField</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+
     <span class="c1">// Enable the Save button only if the text field has a valid Meal name.</span>
     <span class="n">checkValidMealName</span><span class="p">()</span>
 <span class="p">}</span>
@@ -2733,12 +2814,12 @@ Xcode会创建一个定义了RatingControl的类文件:RatingControl.swift。<br
 <ol>
 <li>打开故事板，开启辅助编辑器，选中取消按钮。</li>
 <li>按住键盘上的&rdquo;Control&rdquo;并拖动取消按钮到代码中。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_cancelbutton_dragaction_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_cancelbutton_dragaction_2x.png" /></center></li>
 <li>设置&rdquo;Name&rdquo;为&rdquo;cancel&rdquo;。</li>
 <li>设置&rdquo;Type&rdquo;为&rdquo;UIBarButtonItem&rdquo;，其它选项保持默认。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_cancelbutton_addaction_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/8_cancelbutton_addaction_2x.png" /></center></li>
 <li>点击&rdquo;Connect&rdquo;。<br />
-Xcode会产生如下代码：<br />
+    Xcode会产生如下代码：<br />
     <div class="codehilite"><pre><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">cancel</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UIBarButtonItem</span><span class="p">)</span> <span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
@@ -2747,7 +2828,7 @@ Xcode会产生如下代码：<br />
     <div class="codehilite"><pre><span class="n">dismissViewControllerAnimated</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 </pre></div>
 <br />
-这一步会不存储任何信息退出食物场景。</li>
+    这一步会不存储任何信息退出食物场景。</li>
 </ol>
 <p><strong><em>检查点：</em></strong>运行应用，点击添加按钮，再点击取消按钮，应该能够不添加食物而直接返回到食物列表界面。</p>
 <h2 id="_59"><a name="user-content-_59" href="#_59" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>实现编辑与删除</h2>
@@ -2756,16 +2837,16 @@ Xcode会产生如下代码：<br />
 <li>返回标准编辑器，打开Storyboard。</li>
 <li>选中画布上的表视图单元。</li>
 <li>按住&rdquo;Control&rdquo;键，并拖动表单元到食物场景上。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_drag_tabletomealscene_2x.png" /></center><br />
-会弹出一个菜单。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_seguemenu_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_drag_tabletomealscene_2x.png" /></center><br />
+    会弹出一个菜单。<br />
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_seguemenu_2x.png" /></center></li>
 <li>选择&rdquo;show&rdquo;。</li>
 <li>拖动食物列表场景与食物场景之前的导航控制器以使新的<code>segue</code>显现。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_drag_navcontroller_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_drag_navcontroller_2x.png" /></center></li>
 <li>在画布上选中新建的<code>segue</code>。 <br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_selectsegue_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_selectsegue_2x.png" /></center></li>
 <li>在属性编辑器中，设置&rdquo;Identifier&rdquo;为&rdquo;ShowDetail&rdquo;。并按下回车键以确认。<br />
-<center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_inspector_attributes_segue_2x.png" /></center></li>
+    <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_inspector_attributes_segue_2x.png" /></center></li>
 </ol>
 <p>当<code>segue</code>被触发时，会将食物场景的视图控制器推入食物列表场景的导航控制器堆栈中。</p>
 <p><strong><em>检查点：</em></strong>运行应用，在食物列表场景中点击表单元，会导航到食物场景，但是内容为空。</p>
@@ -2776,6 +2857,7 @@ Xcode会产生如下代码：<br />
     <span class="c1">// 点击表单元</span>
     <span class="k">if</span> <span class="n">segue</span><span class="p">.</span><span class="n">identifier</span> <span class="p">==</span> <span class="s">&quot;ShowDetail&quot;</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">mealDetailViewController</span> <span class="p">=</span> <span class="n">segue</span><span class="p">.</span><span class="n">destinationViewController</span> <span class="kc">as</span><span class="p">!</span> <span class="n">MealViewController</span>
+
         <span class="c1">// Get the cell that generated this segue.</span>
         <span class="k">if</span> <span class="kd">let</span> <span class="nv">selectedMealCell</span> <span class="p">=</span> <span class="n">sender</span> <span class="kc">as</span><span class="p">?</span> <span class="n">MealTableViewCell</span> <span class="p">{</span>
             <span class="kd">let</span> <span class="nv">indexPath</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">indexPathForCell</span><span class="p">(</span><span class="n">selectedMealCell</span><span class="p">)</span><span class="o">!</span>
@@ -2789,12 +2871,16 @@ Xcode会产生如下代码：<br />
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p>在MealViewController.swift中我们需要实现部分工作来让用户界面正确地响应。在用户点击单元格时，我们应该显示该单元格的内容。<br />
 1. 打开MealViewController.swift，修改 <code>viewDidLoad()</code> 方法如下：</p>
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
     <span class="c1">// Handle the text field’s user input via delegate callbacks.</span>
     <span class="n">nameTextField</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+
     <span class="c1">// Set up views if editing an existing Meal.</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">meal</span> <span class="p">=</span> <span class="n">meal</span> <span class="p">{</span>
         <span class="n">navigationItem</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">name</span>
@@ -2802,10 +2888,13 @@ Xcode会产生如下代码：<br />
         <span class="n">photoImageView</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">photo</span>
         <span class="n">ratingControl</span><span class="p">.</span><span class="n">rating</span> <span class="p">=</span> <span class="n">meal</span><span class="p">.</span><span class="n">rating</span>
     <span class="p">}</span>
+
     <span class="c1">// Enable the Save button only if the text field has a valid Meal name.</span>
     <span class="n">checkValidMealName</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><strong><em>检查点：</em></strong>运行应用，点击表单元来导航到食物场景中，应该看到如下所示界面。但是这个时候我们点击保存按钮，会新建一个食物而不是修改，所以接下来我们需要修复这个功能点。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_sim_editmeal_2x.png" /></center></p>
 <p>修复这个功能点，我们需要更新<code>unwindToMealList(_:)</code>函数来处理两种不同的情况。更新后的函数如下：<br />
@@ -2839,6 +2928,7 @@ Xcode会产生如下代码：<br />
     <span class="c1">// Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.</span>
     <span class="c1">// 根据呈现样式的不同来决定使用哪一个dismiss</span>
     <span class="kd">let</span> <span class="nv">isPresentingInAddMealMode</span> <span class="p">=</span> <span class="n">presentingViewController</span> <span class="kc">is</span> <span class="bp">UINavigationController</span>
+
     <span class="k">if</span> <span class="n">isPresentingInAddMealMode</span> <span class="p">{</span>
         <span class="n">dismissViewControllerAnimated</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
     <span class="p">}</span>
@@ -2847,19 +2937,25 @@ Xcode会产生如下代码：<br />
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><strong><em>检查点：</em></strong>运行应用，在点击增加按钮后点击取消按钮，应该能够返回食物列表且不会增加新的食物。</p>
 <h3 id="_62"><a name="user-content-_62" href="#_62" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>删除食物</h3>
 <p>接下来，我们允许用户从食物列表中删除一个食物。我们需要在食物列表视图的导航栏上增加一个编辑按钮。<br />
 1. 打开MealTableViewController.swift。重写viewDidLoad()方法如下：</p>
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
     <span class="c1">// Use the edit button item provided by the table view controller.</span>
     <span class="c1">// 使用系统默认的编辑样式按钮。</span>
     <span class="n">navigationItem</span><span class="p">.</span><span class="n">leftBarButtonItem</span> <span class="p">=</span> <span class="n">editButtonItem</span><span class="p">()</span>
+
     <span class="c1">// Load the sample data.</span>
     <span class="n">loadSampleMeals</span><span class="p">()</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p><strong><em>检查点：</em></strong>运行应用，食物列表视图应该如下图所示。<br />
 <center><img alt="" src="https://developer.apple.com/library/prerelease/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/9_sim_editbutton_2x.png" /></center></p>
 <p>完成编辑功能，我们需要实现表视图的委托方法<code>tableView(_:commitEditingStyle:forRowAtIndexPath:)</code>。这个方法用来管理处于编辑状态时的表中行的管理。</p>
@@ -2907,13 +3003,18 @@ Xcode会产生如下代码：<br />
     <span class="n">aCoder</span><span class="p">.</span><span class="n">encodeInteger</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="n">PropertyKey</span><span class="p">.</span><span class="n">ratingKey</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p>解压函数（解码）代码：<br />
 <div class="codehilite"><pre><span class="c1">// required表明方法必须被实现；convenience表明是第二级初始化函数</span>
 <span class="kr">required</span> <span class="kr">convenience</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nv">name</span> <span class="p">=</span> <span class="n">aDecoder</span><span class="p">.</span><span class="n">decodeObjectForKey</span><span class="p">(</span><span class="n">PropertyKey</span><span class="p">.</span><span class="n">nameKey</span><span class="p">)</span> <span class="kc">as</span><span class="p">!</span> <span class="nb">String</span>
+
     <span class="c1">// Because photo is an optional property of Meal, use conditional cast.</span>
     <span class="kd">let</span> <span class="nv">photo</span> <span class="p">=</span> <span class="n">aDecoder</span><span class="p">.</span><span class="n">decodeObjectForKey</span><span class="p">(</span><span class="n">PropertyKey</span><span class="p">.</span><span class="n">photoKey</span><span class="p">)</span> <span class="kc">as</span><span class="p">?</span> <span class="bp">UIImage</span>
+
     <span class="kd">let</span> <span class="nv">rating</span> <span class="p">=</span> <span class="n">aDecoder</span><span class="p">.</span><span class="n">decodeIntegerForKey</span><span class="p">(</span><span class="n">PropertyKey</span><span class="p">.</span><span class="n">ratingKey</span><span class="p">)</span>
+
     <span class="c1">// Must call designated initializer.</span>
     <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">photo</span><span class="p">:</span> <span class="n">photo</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="n">rating</span><span class="p">)</span>
 <span class="p">}</span>
@@ -2925,7 +3026,9 @@ Xcode会产生如下代码：<br />
     <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">photo</span> <span class="p">=</span> <span class="n">photo</span>
     <span class="kc">self</span><span class="p">.</span><span class="n">rating</span> <span class="p">=</span> <span class="n">rating</span>
+
     <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+
     <span class="c1">// Initialization should fail if there is no name or if the rating is negative.</span>
     <span class="k">if</span> <span class="n">name</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="o">||</span> <span class="n">rating</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">nil</span>
@@ -3001,8 +3104,10 @@ Xcode会产生如下代码：<br />
 <p>现在，食物列表能够在合适的时间进行保存，我们还需要让食物信息在合适的时间被加载。接下来更改<code>viewDidLoad()</code>函数：<br />
 <div class="codehilite"><pre><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+
     <span class="c1">// Use the edit button item provided by the table view controller.</span>
     <span class="n">navigationItem</span><span class="p">.</span><span class="n">leftBarButtonItem</span> <span class="p">=</span> <span class="n">editButtonItem</span><span class="p">()</span>
+
     <span class="c1">// Load any saved meals, otherwise load sample data.</span>
     <span class="c1">// 加载已经保存的数据，如果没有就加载示例数据</span>
     <span class="k">if</span> <span class="kd">let</span> <span class="nv">savedMeals</span> <span class="p">=</span> <span class="n">loadMeals</span><span class="p">()</span> <span class="p">{</span>
@@ -3120,12 +3225,15 @@ Swift函数：<br />
 <div class="codehilite"><pre><span class="k">@property</span> <span class="p">(</span><span class="n">nullable</span><span class="p">)</span> <span class="kt">id</span>  <span class="n">nullableProperty</span><span class="p">;</span>
 <span class="k">@property</span> <span class="p">(</span><span class="n">nonnull</span><span class="p">)</span> <span class="kt">id</span> <span class="n">nonNullProperty</span><span class="p">;</span>
 <span class="k">@property</span> <span class="kt">id</span> <span class="n">unannotatedProperty</span><span class="p">;</span>
+
 <span class="n">NS_ASSUME_NONNULL_BEGIN</span>
 <span class="o">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="n">returnsNonNullValue</span><span class="p">;</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">takesNonNullParameter:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span>
 <span class="n">NS_ASSUME_NONNULL_END</span>
+
 <span class="o">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="n">returnsNullableValue</span><span class="p">;</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">takesNullableParameter:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span>
+
 <span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">returnsUnannotatedValue</span><span class="p">;</span>
 <span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">takesUnannotatedParameter:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">value</span><span class="p">;</span>
 </pre></div>
@@ -3134,10 +3242,13 @@ Swift函数：<br />
 <div class="codehilite"><pre><span class="kd">var</span> <span class="nv">nullableProperty</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">?</span>
 <span class="kd">var</span> <span class="nv">nonNullProperty</span><span class="p">:</span> <span class="nb">AnyObject</span>
 <span class="kd">var</span> <span class="nv">unannotatedProperty</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">!</span>
+
 <span class="kd">func</span> <span class="nf">returnsNonNullValue</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">AnyObject</span>
 <span class="kd">func</span> <span class="nf">takesNonNullParameter</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">)</span>
+
 <span class="kd">func</span> <span class="nf">returnsNullableValue</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">AnyObject</span><span class="p">?</span>
 <span class="kd">func</span> <span class="nf">takesNullableParameter</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">?)</span>
+
 <span class="kd">func</span> <span class="nf">returnsUnannotatedValue</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">AnyObject</span><span class="p">!</span>
 <span class="kd">func</span> <span class="nf">takesUnannotatedParameter</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">!)</span>
 </pre></div>
@@ -3180,6 +3291,8 @@ Swift函数：<br />
     <span class="cm">/* ... */</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <h3 id="_75"><a name="user-content-_75" href="#_75" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对象比较</h3>
 <p>在Swift中有两种类型的对象比较。第一是是相等比较<code>==</code>，比较对象的内容；第二种是恒等<code>===</code>，比较是否是同一个对象实例。</p>
 <h3 id="_76"><a name="user-content-_76" href="#_76" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>轻量级的范型</h3>
@@ -3201,13 +3314,16 @@ Swift函数：<br />
 <div class="codehilite"><pre><span class="kd">import</span> <span class="nc">UIKit</span>
 <span class="kd">class</span> <span class="nc">MyViewController</span><span class="p">:</span> <span class="bp">UIViewController</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nv">myButton</span> <span class="p">=</span> <span class="bp">UIButton</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="bp">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">50</span><span class="p">))</span>
+
     <span class="kr">override</span> <span class="kd">init</span><span class="p">?(</span><span class="n">nibName</span> <span class="n">nibNameOrNil</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">bundle</span> <span class="n">nibBundleOrNil</span><span class="p">:</span> <span class="bp">NSBundle</span><span class="p">?)</span> <span class="p">{</span>
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">nibName</span><span class="p">:</span> <span class="n">nibNameOrNil</span><span class="p">,</span> <span class="n">bundle</span><span class="p">:</span> <span class="n">nibBundleOrNil</span><span class="p">)</span>
         <span class="n">myButton</span><span class="p">.</span><span class="n">addTarget</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="s">&quot;tappedButton:&quot;</span><span class="p">,</span> <span class="n">forControlEvents</span><span class="p">:</span> <span class="p">.</span><span class="n">TouchUpInside</span><span class="p">)</span>
     <span class="p">}</span>
+
     <span class="kd">func</span> <span class="nf">tappedButton</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">!)</span> <span class="p">{</span>
         <span class="bp">print</span><span class="p">(</span><span class="s">&quot;tapped button&quot;</span><span class="p">)</span>
     <span class="p">}</span>
+
     <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span><span class="p">:</span> <span class="bp">NSCoder</span><span class="p">)</span> <span class="p">{</span>
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">coder</span><span class="p">)</span>
     <span class="p">}</span>
@@ -3268,6 +3384,8 @@ Swift函数：<br />
     <span class="bp">print</span><span class="p">(</span><span class="n">NSStringFromSize</span><span class="p">(</span><span class="n">fullScreenSize</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <h4 id="_81"><a name="user-content-_81" href="#_81" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>错误处理</h4>
 <p>捕获和处理错误，OC:<br />
 <div class="codehilite"><pre><span class="bp">NSFileManager</span> <span class="o">*</span><span class="n">fileManager</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSFileManager</span> <span class="n">defaultManager</span><span class="p">];</span>
@@ -3287,6 +3405,8 @@ Swift函数：<br />
     <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error: </span><span class="si">\(</span><span class="n">error</span><span class="p">.</span><span class="n">domain</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <p>抛出异常，OC:<br />
 <div class="codehilite"><pre><span class="c1">// an error occurred</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">errorPtr</span><span class="p">)</span> <span class="p">{</span>
@@ -3323,6 +3443,7 @@ Swift函数：<br />
         <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
         <span class="n">objectToObserve</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKeyPath</span><span class="p">:</span> <span class="s">&quot;myDate&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">New</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">myContext</span><span class="p">)</span>
     <span class="p">}</span>
+
     <span class="kr">override</span> <span class="kd">func</span> <span class="nf">observeValueForKeyPath</span><span class="p">(</span><span class="n">keyPath</span><span class="p">:</span> <span class="nb">String</span><span class="p">?,</span> <span class="n">ofObject</span> <span class="n">object</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">?,</span> <span class="n">change</span><span class="p">:</span> <span class="p">[</span><span class="bp">NSObject</span> <span class="p">:</span> <span class="nb">AnyObject</span><span class="p">]?,</span> <span class="n">context</span><span class="p">:</span> <span class="nb">UnsafeMutablePointer</span><span class="p">&lt;</span><span class="nb">Void</span><span class="p">&gt;)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="n">context</span> <span class="p">==</span> <span class="p">&amp;</span><span class="n">myContext</span> <span class="p">{</span>
             <span class="k">if</span> <span class="kd">let</span> <span class="nv">newValue</span> <span class="p">=</span> <span class="n">change</span><span class="p">?[</span><span class="n">NSKeyValueChangeNewKey</span><span class="p">]</span> <span class="p">{</span>
@@ -3332,6 +3453,7 @@ Swift函数：<br />
             <span class="kc">super</span><span class="p">.</span><span class="n">observeValueForKeyPath</span><span class="p">(</span><span class="n">keyPath</span><span class="p">,</span> <span class="n">ofObject</span><span class="p">:</span> <span class="n">object</span><span class="p">,</span> <span class="n">change</span><span class="p">:</span> <span class="n">change</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="n">context</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
+
     <span class="kd">deinit</span> <span class="p">{</span>
         <span class="n">objectToObserve</span><span class="p">.</span><span class="n">removeObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">forKeyPath</span><span class="p">:</span> <span class="s">&quot;myDate&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">:</span> <span class="p">&amp;</span><span class="n">myContext</span><span class="p">)</span>
     <span class="p">}</span>
@@ -3345,12 +3467,15 @@ Swift函数：<br />
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// object is not of type UIButton</span>
 <span class="p">}</span>
+
 <span class="k">if</span> <span class="kd">let</span> <span class="nv">dataSource</span> <span class="p">=</span> <span class="n">object</span> <span class="kc">as</span><span class="p">?</span> <span class="bp">UITableViewDataSource</span> <span class="p">{</span>
     <span class="c1">// object conforms to UITableViewDataSource and is bound to dataSource</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// object not conform to UITableViewDataSource</span>
 <span class="p">}</span>
 </pre></div>
+
+
 <h3 id="c-api"><a name="user-content-c-api" href="#c-api" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>与C API 进行交互</h3>
 <h4 id="_84"><a name="user-content-_84" href="#_84" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>基本类型</h4>
 <table>
@@ -3535,6 +3660,7 @@ Swift函数：<br />
 <div class="codehilite"><pre><span class="c1">// MyObjcClass.h</span>
 <span class="p">@</span><span class="kd">class</span> <span class="nc">MySwiftClass</span><span class="p">;</span>
 <span class="p">@</span><span class="kd">protocol</span> <span class="nc">MySwiftProtocol</span><span class="p">;</span>
+
 <span class="p">@</span><span class="n">interface</span> <span class="n">MyObjcClass</span> <span class="p">:</span> <span class="bp">NSObject</span>
 <span class="o">-</span> <span class="p">(</span><span class="n">MySwiftClass</span> <span class="o">*</span><span class="p">)</span><span class="n">returnSwiftClassInstance</span><span class="p">;</span>
 <span class="o">-</span> <span class="p">(</span><span class="n">id</span> <span class="p">&lt;</span><span class="n">MySwiftProtocol</span><span class="p">&gt;)</span><span class="n">returnInstanceAdoptingSwiftProtocol</span><span class="p">;</span>
@@ -3746,7 +3872,7 @@ Swift函数：<br />
 </li>
 <li><a href="#_89">真机调试</a></li>
 </ul>
-</div></article>
+</div>
 </div>
 <p style="text-align: right; color: gray;"><br>2015-07-07 09:11:44</p>
 </div>
