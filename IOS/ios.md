@@ -58,7 +58,7 @@ let myConstant = 42
 let explicitDouble: Double = 70
 ```
 
-需要将变量转换为另一个类型是，需要显式地进行转换。如下：
+需要将变量转换为另一个类型时，需要显式地进行转换。如下：
 
 ```Swift
 let label = "The width is"
