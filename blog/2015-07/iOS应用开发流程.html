@@ -2736,7 +2736,7 @@
 <span class="p">}</span>
 </pre></div>
 </p>
-<p>接下来，给MealTableViewController增加一个动作方法来实现转场。这个方法应该被标记为&rdquo;IBAciont&rdquo;，并且有一个segue参数(<code>UIStoryboardSegue</code>)。</p>
+<p>接下来，给MealTableViewController增加一个动作方法来实现转场。这个方法应该被标记为&rdquo;IBAction&rdquo;，并且有一个segue参数(<code>UIStoryboardSegue</code>)。</p>
 <p>打开MealTableViewController.swift，增加如下函数：<br />
 <div class="codehilite"><pre><span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">unwindToMealList</span><span class="p">(</span><span class="n">sender</span><span class="p">:</span> <span class="bp">UIStoryboardSegue</span><span class="p">)</span> <span class="p">{</span>
     <span class="cm">/*  as? 可选类型强制转换符，将源视图控制器强制转换为MealViewController类型。</span>

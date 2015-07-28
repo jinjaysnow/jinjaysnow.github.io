@@ -2087,7 +2087,7 @@ var meal = Meal?()
     }
     ```
 
-接下来，给MealTableViewController增加一个动作方法来实现转场。这个方法应该被标记为"IBAciont"，并且有一个segue参数(`UIStoryboardSegue`)。
+接下来，给MealTableViewController增加一个动作方法来实现转场。这个方法应该被标记为"IBAction"，并且有一个segue参数(`UIStoryboardSegue`)。
 
 打开MealTableViewController.swift，增加如下函数：
 ```Swift 
