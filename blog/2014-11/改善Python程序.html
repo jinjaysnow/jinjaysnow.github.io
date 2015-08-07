@@ -841,9 +841,9 @@ MathJax.Hub.Config({
 <p>函数申明应该做到合理、简单、易于使用。</p>
 <h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>原则三</h4>
 <p>函数参数设计应该考虑向下兼容。</p>
-<div class="codehilite"><pre><span class="vg">def</span><span class="w"> </span><span class="vg">readline</span><span class="p">(</span><span class="vg">filename</span><span class="p">)</span><span class="o">:</span><span class="w">                     </span><span class="err">###</span><span class="w"> </span><span class="err">第一版</span>
-<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="s2">&quot;file read completed&quot;</span>
-<span class="vg">def</span><span class="w"> </span><span class="vg">readline</span><span class="p">(</span><span class="vg">filename</span><span class="p">,</span><span class="w"> </span><span class="vg">logger</span><span class="o">=</span><span class="vg">logger</span><span class="o">.</span><span class="vg">info</span><span class="p">)</span><span class="w">  </span><span class="err">###</span><span class="w"> </span><span class="err">第二版，使用了默认参数，兼容了上一版</span>
+<div class="codehilite"><pre><span class="k">def</span> <span class="nf">readline</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>                     <span class="c">### 第一版</span>
+    <span class="k">print</span> <span class="s">&quot;file read completed&quot;</span>
+<span class="k">def</span> <span class="nf">readline</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>  <span class="c">### 第二版，使用了默认参数，兼容了上一版 </span>
 </pre></div>
 
 
@@ -872,20 +872,20 @@ MathJax.Hub.Config({
 
 
 <h3 id="assert"><a name="user-content-assert" href="#assert" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>利用assert语句来发现问题</h3>
-<div class="codehilite"><pre><span class="vg">assert</span><span class="w"> </span><span class="vg">expression1</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;,&quot;</span><span class="w"> </span><span class="vg">expression2</span><span class="p">]</span>
+<div class="codehilite"><pre><span class="k">assert</span> <span class="n">expression1</span> <span class="p">[</span><span class="s">&quot;,&quot;</span> <span class="n">expression2</span><span class="p">]</span>
 </pre></div>
 
 
 <p>断言实际是被设计用来捕获用户所定义的约束的，而不是用来捕获程序本身错误的，所以需要谨慎使用。</p>
 <h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数据交换值的时候不推荐使用中间变量</h3>
-<div class="codehilite"><pre><span class="vg">x</span><span class="p">,</span><span class="vg">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">y</span><span class="p">,</span><span class="vg">x</span>
+<div class="codehilite"><pre><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span><span class="n">x</span>
 </pre></div>
 
 
 <h3 id="type"><a name="user-content-type" href="#type" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>不推荐使用type来进行类型检查</h3>
 <p><strong>基于内建类型扩展的用户自定义类型，type函数并不能准确返回结果。</strong><br />
 正确做法是：如果类型有对应的工厂函数，可以使用工厂函数对类型进行相应的转换，如<code>list(listing)</code>，<code>str(name)</code>等，否则可以使用<code>isinstance()</code>函数来检测。</p>
-<div class="codehilite"><pre><span class="vg">isinstance</span><span class="p">(</span><span class="vg">object</span><span class="p">,</span><span class="w"> </span><span class="vg">classinfo</span><span class="p">)</span>
+<div class="codehilite"><pre><span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">classinfo</span><span class="p">)</span>
 </pre></div>
 
 
@@ -921,7 +921,7 @@ MathJax.Hub.Config({
 
 
 <h3 id="with"><a name="user-content-with" href="#with" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用with自动关闭资源</h3>
-<div class="codehilite"><pre><span class="n">with</span> <span class="n">expression</span> <span class="p">[</span><span class="n">as</span> <span class="n">target</span><span class="p">]</span><span class="o">:</span>
+<div class="codehilite"><pre><span class="k">with</span> <span class="n">expression</span> <span class="p">[</span><span class="k">as</span> <span class="n">target</span><span class="p">]:</span>
     <span class="n">codes</span>
 </pre></div>
 
@@ -1012,8 +1012,8 @@ MathJax.Hub.Config({
 </tbody>
 </table>
 <p>例：</p>
-<div class="codehilite"><pre><span class="vg">iitemdict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="c1">&#39;itemname&#39;:&#39;circumference&#39;, &#39;radius&#39;:3, &#39;value&#39;: match.pi*radius*2}</span>
-<span class="vg">print</span><span class="w"> </span><span class="s2">&quot;the %(itemname)s of a circle with radius %(radius)f is %(value)0.3f&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="vg">itemdict</span>
+<div class="codehilite"><pre><span class="n">iitemdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;itemname&#39;</span><span class="p">:</span><span class="s">&#39;circumference&#39;</span><span class="p">,</span> <span class="s">&#39;radius&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#39;value&#39;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">radius</span><span class="o">*</span><span class="mi">2</span><span class="p">}</span>
+<span class="k">print</span> <span class="s">&quot;the </span><span class="si">%(itemname)s</span><span class="s"> of a circle with radius </span><span class="si">%(radius)f</span><span class="s"> is </span><span class="si">%(value)0.3f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">itemdict</span>
 </pre></div>
 
 
@@ -1087,31 +1087,31 @@ MathJax.Hub.Config({
 
 <h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>区别对待可变对象和不可变对象</h3>
 <p>Python中一切皆对象，每一个对象都一个唯一的标示符(id())、类型(type())以及值。对象根据其值能否修改该分为可变对象和不可变对象，其中<strong>数字、字符串、元组</strong>属于不可变对象；字典、列表、字节数组属于可变对象。因此，字符串中某个字符不可修改。</p>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="nl">encoding:</span><span class="vg">utf</span><span class="il">-8</span>
-<span class="vg">class</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
-<span class="w">    </span><span class="s2">&quot;&quot;&quot;test student&quot;&quot;&quot;</span>
-<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">__init__</span><span class="p">(</span><span class="vg">self</span><span class="p">,</span><span class="w"> </span><span class="vg">name</span><span class="p">,</span><span class="w"> </span><span class="vg">course</span><span class="o">=</span><span class="p">[])</span><span class="o">:</span>
-<span class="w">        </span><span class="s2">&quot;&quot;&quot;init&quot;&quot;&quot;</span>
-<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">name</span>
-<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">course</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">course</span>
-<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">addcourse</span><span class="p">(</span><span class="vg">self</span><span class="p">,</span><span class="w"> </span><span class="vg">coursename</span><span class="p">)</span><span class="o">:</span>
-<span class="w">        </span><span class="vg">self</span><span class="o">.</span><span class="vg">course</span><span class="o">.</span><span class="vg">append</span><span class="p">(</span><span class="vg">coursename</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">printcourse</span><span class="p">(</span><span class="vg">self</span><span class="p">)</span><span class="o">:</span>
-<span class="w">        </span><span class="vg">for</span><span class="w"> </span><span class="vg">item</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="vg">self</span><span class="o">.</span><span class="nl">course:</span>
-<span class="w">            </span><span class="vg">print</span><span class="w"> </span><span class="vg">item</span>
+<div class="codehilite"><pre><span class="c"># encoding:utf-8</span>
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;test student&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">course</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="sd">&quot;&quot;&quot;init&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
+    <span class="k">def</span> <span class="nf">addcourse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coursename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coursename</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">printcourse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">item</span>
 
-<span class="vg">if</span><span class="w"> </span><span class="vg">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="c1">&#39;__main__&#39;:</span>
-<span class="w">    </span><span class="vg">stuA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="s2">&quot;Jin Jay&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&#39;s course:&quot;</span>
-<span class="w">    </span><span class="vg">stuA</span><span class="o">.</span><span class="vg">printcourse</span><span class="p">()</span>
-<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="s2">&quot;----------------&quot;</span>
-<span class="w">    </span><span class="vg">stuB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">Student</span><span class="p">(</span><span class="s2">&quot;Snow&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Chinese&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">addcourse</span><span class="p">(</span><span class="s2">&quot;Physics&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;&#39;s course:&quot;</span>
-<span class="w">    </span><span class="vg">stuB</span><span class="o">.</span><span class="vg">printcourse</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">stuA</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Jin Jay&quot;</span><span class="p">)</span>
+    <span class="n">stuA</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s">&quot;Math&quot;</span><span class="p">)</span>
+    <span class="n">stuA</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s">&quot;English&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">stuA</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot;&#39;s course:&quot;</span>
+    <span class="n">stuA</span><span class="o">.</span><span class="n">printcourse</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;----------------&quot;</span>
+    <span class="n">stuB</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Snow&quot;</span><span class="p">)</span>
+    <span class="n">stuB</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s">&quot;Chinese&quot;</span><span class="p">)</span>
+    <span class="n">stuB</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s">&quot;Physics&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">stuB</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot;&#39;s course:&quot;</span>
+    <span class="n">stuB</span><span class="o">.</span><span class="n">printcourse</span><span class="p">()</span>
 </pre></div>
 
 
@@ -1176,24 +1176,24 @@ MathJax.Hub.Config({
 </ol>
 <h3 id="staticmethodclassmethod"><a name="user-content-staticmethodclassmethod" href="#staticmethodclassmethod" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分清staticmethod和classmethod的适用场景</h3>
 <p>Python中的静态方法和类方法都依赖于装饰器来实现。其中静态方法的用法如下：</p>
-<div class="codehilite"><pre><span class="vg">class</span><span class="w"> </span><span class="vg">C</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
-<span class="w">    </span><span class="err">@</span><span class="vg">staticmethod</span>
-<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">f</span><span class="p">(</span><span class="vg">arg1</span><span class="p">,</span><span class="w"> </span><span class="vg">arg2</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span><span class="o">:</span>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
 </pre></div>
 
 
 <p>类方法的用法如下：</p>
-<div class="codehilite"><pre><span class="vg">class</span><span class="w"> </span><span class="vg">C</span><span class="p">(</span><span class="vg">object</span><span class="p">)</span><span class="o">:</span>
-<span class="w">    </span><span class="err">@</span><span class="vg">classmethod</span>
-<span class="w">    </span><span class="vg">def</span><span class="w"> </span><span class="vg">f</span><span class="p">(</span><span class="vg">cls</span><span class="p">,</span><span class="w"> </span><span class="vg">arg1</span><span class="p">,</span><span class="w"> </span><span class="vg">arg2</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span><span class="o">:</span>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
 </pre></div>
 
 
 <h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>掌握字符串基本用法</h3>
 <p>编写多行字符串小技巧：</p>
-<div class="codehilite"><pre><span class="vg">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="c1">&#39;select * &#39;</span>
-<span class="w">    </span><span class="c1">&#39;from atable &#39;</span>
-<span class="w">    </span><span class="c1">&#39;where afield=&quot;value&quot;&#39;)</span>
+<div class="codehilite"><pre><span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;select * &#39;</span>
+    <span class="s">&#39;from atable &#39;</span>
+    <span class="s">&#39;where afield=&quot;value&quot;&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -1214,8 +1214,8 @@ MathJax.Hub.Config({
     center(width[, fillchar])、ljust(width[, fillchar])、rjust(width[, fillchar])、zfill(width)、expandtabs([tabsize])</li>
 </ol>
 <h3 id="sortsorted"><a name="user-content-sortsorted" href="#sortsorted" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>按需选择sort()或者sorted()</h3>
-<div class="codehilite"><pre><span class="vg">sorted</span><span class="p">(</span><span class="vg">iterable</span><span class="p">[,</span><span class="w"> </span><span class="vg">cmp</span><span class="p">[,</span><span class="w"> </span><span class="vg">key</span><span class="p">[,</span><span class="w"> </span><span class="vg">reverse</span><span class="p">]]])</span>
-<span class="vg">s</span><span class="o">.</span><span class="vg">sort</span><span class="p">([</span><span class="vg">cmp</span><span class="p">[,</span><span class="w"> </span><span class="vg">key</span><span class="p">[,</span><span class="w"> </span><span class="vg">reverse</span><span class="p">]]])</span>
+<div class="codehilite"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="nb">cmp</span><span class="p">[,</span> <span class="n">key</span><span class="p">[,</span> <span class="n">reverse</span><span class="p">]]])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">sort</span><span class="p">([</span><span class="nb">cmp</span><span class="p">[,</span> <span class="n">key</span><span class="p">[,</span> <span class="n">reverse</span><span class="p">]]])</span>
 </pre></div>
 
 
@@ -1459,27 +1459,23 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span class="vg">logging</span><span class="o">.</span><span class="vg">basicConfig</span><span class="p">(</span>
-<span class="w">    </span><span class="vg">level</span><span class="o">=</span><span class="vg">logging</span><span class="o">.</span><span class="vg">DEBUG</span><span class="p">,</span>
-<span class="w">    </span><span class="vg">filename</span><span class="o">=</span><span class="c1">&#39;log.txt&#39;,</span>
-<span class="w">    </span><span class="vg">filemode</span><span class="o">=</span><span class="c1">&#39;w&#39;,</span>
-<span class="w">    </span><span class="vg">format</span><span class="o">=</span><span class="c1">&#39;%(asctime)s %(filename)s[line:%(lineno)d %(levelname)s %(message)s&#39;,</span>
+<div class="codehilite"><pre><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s">&#39;log.txt&#39;</span><span class="p">,</span>
+    <span class="n">filemode</span><span class="o">=</span><span class="s">&#39;w&#39;</span><span class="p">,</span>
+    <span class="n">format</span><span class="o">=</span><span class="s">&#39;</span><span class="si">%(asctime)s</span><span class="s"> </span><span class="si">%(filename)s</span><span class="s">[line:</span><span class="si">%(lineno)d</span><span class="s"> </span><span class="si">%(levelname)s</span><span class="s"> </span><span class="si">%(message)s</span><span class="s">&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
 
 <p><strong>logging使用建议</strong><br />
-1. 尽量为logging取一个名字而不是采用默认，这样当在不同的模块中使用的时候，其他模块只需要使用以下代码就可以方便地使用同一个logger，因为它本质上复合单例模式。</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">logging</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-</pre></div>
-
-
-<ol>
-<li>为了方便地找出问题所在，logging的名字建议以模块或者class来命名。logging名称遵循&rsquo;.&rsquo;划分的继承规则，根是root logger, logger a.b的父logger对象为a。</li>
-<li>logging只是线程安全的，不支持多进程写入同一个日志文件，因此对于多个进程，需要配置不同的日志文件。</li>
-</ol>
+1. 尽量为logging取一个名字而不是采用默认，这样当在不同的模块中使用的时候，其他模块只需要使用以下代码就可以方便地使用同一个logger，因为它本质上复合单例模式。<br />
+<code>Python
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+    logger=logging.getLogger(__name__)</code><br />
+2. 为了方便地找出问题所在，logging的名字建议以模块或者class来命名。logging名称遵循&rsquo;.&rsquo;划分的继承规则，根是root logger, logger a.b的父logger对象为a。<br />
+3. logging只是线程安全的，不支持多进程写入同一个日志文件，因此对于多个进程，需要配置不同的日志文件。</p>
 <h3 id="threading"><a name="user-content-threading" href="#threading" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用threading模块编写多线程程序</h3>
 <h3 id="queue"><a name="user-content-queue" href="#queue" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用Queue使多线程变成更安全</h3>
 <blockquote>
@@ -1707,6 +1703,184 @@ MathJax.Hub.Config({
 
 
 <p>安装以后可以使用paster命令</p>
+<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用列表生成式</h3>
+<div class="codehilite"><pre><span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="err"> </span>
+<span class="k">def</span> <span class="nf">square_generator</span><span class="p">(</span><span class="n">optional_parameter</span><span class="p">):</span>
+<span class="err">    </span><span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">num</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">optional_parameter</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="k">print</span> <span class="n">square_generator</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c"># &lt;generator object &lt;genexpr&gt; at 0x004E6418&gt;</span>
+
+<span class="c"># Option I</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">square_generator</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+<span class="err">    </span><span class="k">print</span> <span class="n">k</span>
+<span class="c"># 1, 16, 100, 4, 9</span>
+
+<span class="c"># Option II</span>
+<span class="n">g</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">square_generator</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">g</span>
+<span class="c"># [1, 16, 100, 4, 9]</span>
+</pre></div>
+
+
+<h3 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用装饰器</h3>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">decorator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+<span class="err">        </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;inside decorator.__init__()&quot;</span><span class="p">)</span>
+<span class="err">        </span><span class="n">f</span><span class="p">()</span> 
+<span class="c"># Prove that function definition has completed</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="err">        </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;inside decorator.__call__()&quot;</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="nd">@decorator</span>
+<span class="k">def</span> <span class="nf">function</span><span class="p">():</span>
+<span class="err">    </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;inside function()&quot;</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Finished decorating function()&quot;</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="n">function</span><span class="p">()</span>
+<span class="err"> </span>
+<span class="c"># inside decorator.__init__()</span>
+<span class="c"># inside function()</span>
+<span class="c"># Finished decorating function()</span>
+<span class="c"># inside decorator.__call__()</span>
+</pre></div>
+
+
+<ol>
+<li>语法糖<code>@decorator</code>相当于<code>function=decorator(function)</code>，在此调用<code>decorator</code>的<code>__init__</code>打印&rdquo;inside decorator.<strong>init</strong>()&rdquo;</li>
+<li>随后执行<code>f()</code>打印&rdquo;inside function()&rdquo;</li>
+<li>随后执行<code>print("Finished decorating function()")</code></li>
+<li>最后在调用<code>function</code>函数时，由于使用装饰器包装，因此执行<code>decorator</code>的<code>__call__</code>打印 &ldquo;inside decorator.<strong>call</strong>()&rdquo;。</li>
+</ol>
+<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>上下文管理库</h3>
+<p>通常如果想写一个上下文管理器，则需要定义一个类包含__enter__方法以及__exit__方法，如下：</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">time</span>
+<span class="k">class</span> <span class="nc">demo</span><span class="p">:</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="err">        </span><span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+<span class="err"> </span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="err">        </span><span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="err"> </span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_ty</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+<span class="err">        </span><span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="err">        </span><span class="k">print</span><span class="p">(</span><span class="s">&#39;{}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">))</span>
+<span class="err"> </span>
+<span class="k">with</span> <span class="n">demo</span><span class="p">(</span><span class="s">&#39;counting&#39;</span><span class="p">):</span>
+<span class="err">    </span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000000</span>
+<span class="err">    </span><span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="err">        </span><span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>上下文管理器被with声明所激活，这个API涉及到两个方法。<br />
+1. __enter__方法，当执行流进入with代码块时，__enter__方法将执行。并且它将返回一个可供上下文使用的对象。<br />
+2. 当执行流离开with代码块时，__exit__方法被调用，它将清理被使用的资源。</p>
+<p>contextlib模块包含了与上下文管理器和with声明相关的工具。利用@contextmanager装饰器改写上面那个例子：</p>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="err"> </span>
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+<span class="err">    </span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="err">    </span><span class="k">try</span><span class="p">:</span>
+<span class="err">        </span><span class="k">yield</span>
+<span class="err">    </span><span class="k">finally</span><span class="p">:</span>
+<span class="err">        </span><span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="err">        </span><span class="k">print</span><span class="p">(</span><span class="s">&#39;{}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+<span class="err"> </span>
+<span class="k">with</span> <span class="n">demo</span><span class="p">(</span><span class="s">&#39;counting&#39;</span><span class="p">):</span>
+<span class="err">    </span><span class="n">n</span> <span class="o">=</span> <span class="mi">10000000</span>
+<span class="err">    </span><span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="err">        </span><span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>上面这个例子，函数中yield之前的所有代码都类似于上下文管理器中__enter__方法的内容。而yield之后的所有代码都如__exit__方法的内容。如果执行过程中发生了异常，则会在yield语句触发。</p>
+<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>描述器</h3>
+<p>描述器决定了对象属性是如何被访问的。描述器的作用是定制当你想引用一个属性时所发生的操作。</p>
+<p>构建描述器的方法是至少定义以下三个方法中的一个。需要注意，下文中的instance是包含被访问属性的对象实例，而owner则是被描述器修辞的类。</p>
+<ol>
+<li><code>__get__(self, instance, owner)</code> – 这个方法是当属性被通过(value = obj.attr)的方式获取时调用，这个方法的返回值将被赋给请求此属性值的代码部分。</li>
+<li><code>__set__(self, instance, value)</code> – 这个方法是当希望设置属性的值(obj.attr = ‘value’)时被调用，该方法不会返回任何值。</li>
+<li><code>__delete__(self, instance)</code> – 当从一个对象中删除一个属性时(del obj.attr)，调用此方法。</li>
+</ol>
+<p>理解<code>instance</code>和<code>owner</code>，考虑如下代码：</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">Celsius</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+<span class="err">        </span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+<span class="err">        </span><span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+<span class="err">    </span><span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="err">        </span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="err">    </span><span class="n">celsius</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">()</span>
+<span class="err"> </span>
+<span class="n">temp</span><span class="o">=</span><span class="n">Temperature</span><span class="p">()</span>
+<span class="n">temp</span><span class="o">.</span><span class="n">celsius</span> 
+<span class="c">#calls Celsius.__get__</span>
+</pre></div>
+
+
+<p>上例中，<code>instance</code>指代<code>temp</code>，<code>owner</code>指代<code>Temperature</code>。</p>
+<p>LazyLoading Properties例子：</p>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">weakref</span>
+
+<span class="k">class</span> <span class="nc">lazyattribute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
+
+    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="nd">@lazyattribute</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Being lazy&quot;</span>
+        <span class="k">return</span> <span class="mi">42</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">f</span><span class="o">.</span><span class="n">bar</span>
+<span class="c"># Being lazy</span>
+
+<span class="c"># 42</span>
+<span class="k">print</span> <span class="n">f</span><span class="o">.</span><span class="n">bar</span>
+<span class="c"># 42</span>
+</pre></div>
+
+
+<p>描述器很好的总结了Python中的绑定方法(bound method)这个概念，绑定方法是经典类(classic classes)的实现核心。在经典类中，当在一个对象实例的字典中没有找到某个属性时，会继续到类的字典中查找，然后再到基类的字典中，就这么一直递归的查找下去。如果在类字典中找到这个属性，解释器会检查找到的对象是不是一个Python函数对象。如果是，则返回的并不是这个对象本身，而是返回一个柯里化(currying function)的包装器对象。当调用这个包装器时，它会首先在参数列表之前插入实例，然后再调用原函数。</p>
+<ol>
+<li>柯里化 – <a href="http://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">http://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96</a></li>
+<li>function，method，bound method及unbound method的区别。首先，函数(function)是由def或lambda创建的。当一个函数在class语句块中定义或是由type来创建时，它会转成一个非绑定方法(unbound method)，而当通过类实例(instance)来访问此方法的时候，它将转成绑定方法(bound method)，绑定方法会自动将实例作为第一个参数传入方法。综上所述，方法是出现在类中的函数，绑定方法是一个绑定了具体实例的方法，反之则是非绑定方法。</li>
+</ol>
+<h3 id="metaclasses"><a name="user-content-metaclasses" href="#metaclasses" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>元类(MetaClasses)</h3>
+<p>元类提供了一个改变Python类行为的有效方式。</p>
+<p>元类的定义是<strong>一个类的类</strong>。任何实例是它自己的类都是元类。</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">demo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="err">    </span><span class="k">pass</span>
+<span class="err"> </span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
+<span class="err"> </span>
+<span class="k">print</span> <span class="s">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+<span class="err"> </span>
+<span class="c"># Class of obj is &lt;class &#39;__main__.demo&#39;&gt;</span>
+<span class="c"># Class of obj is &lt;type &#39;type&#39;&gt;</span>
+</pre></div>
+
+
+<p>在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。<br />
+所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。<br />
+因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。</p>
 <div class="toc">
 <ul>
 <li><a href="#pythonc">Python与C语言的不同之处</a><ul>
@@ -1772,9 +1946,14 @@ MathJax.Hub.Config({
 <li><a href="#gil">理解GIL的局限性</a></li>
 <li><a href="#_20">对象的管理与垃圾回收</a></li>
 <li><a href="#paster">使用paster创建包</a></li>
+<li><a href="#_21">使用列表生成式</a></li>
+<li><a href="#_22">使用装饰器</a></li>
+<li><a href="#_23">上下文管理库</a></li>
+<li><a href="#_24">描述器</a></li>
+<li><a href="#metaclasses">元类(MetaClasses)</a></li>
 </ul>
 </div>
-			<p style="text-align: right; color: gray;"><br>2015-08-06 15:03:27</p>
+			<p style="text-align: right; color: gray;"><br>2015-08-07 09:34:34</p>
 		</div>
 	</div>
 	<div id="side">

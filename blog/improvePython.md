@@ -20,9 +20,12 @@ keywords: improve python
 #### 原则三
 函数参数设计应该考虑向下兼容。
 
-    def readline(filename):                     ### 第一版
-        print "file read completed"
-    def readline(filename, logger=logger.info)  ### 第二版，使用了默认参数，兼容了上一版 
+```Python
+def readline(filename):                     ### 第一版
+    print "file read completed"
+def readline(filename, logger=logger.info)  ### 第二版，使用了默认参数，兼容了上一版 
+```
+
 #### 原则四
 一个函数只做一件事，尽量保证函数语句粒度的一致性。
 
@@ -45,22 +48,30 @@ sys.modules[__name__] = _const()
 
 上面的代码对应的模块名未const，使用时只需要import const，便可定义常量了，例如：
 
-    import const
-    const.COMPANY = "APPLE"
+```Python
+import const
+const.COMPANY = "APPLE"
+```
 
 ### 利用assert语句来发现问题
 
-    assert expression1 ["," expression2]
+```Python
+assert expression1 ["," expression2]
+```
 断言实际是被设计用来捕获用户所定义的约束的，而不是用来捕获程序本身错误的，所以需要谨慎使用。
 ### 数据交换值的时候不推荐使用中间变量
 
-    x,y = y,x
+```Python
+x,y = y,x
+```
 
 ### 不推荐使用type来进行类型检查
 **基于内建类型扩展的用户自定义类型，type函数并不能准确返回结果。**  
 正确做法是：如果类型有对应的工厂函数，可以使用工厂函数对类型进行相应的转换，如`list(listing)`，`str(name)`等，否则可以使用`isinstance()`函数来检测。
 
-    isinstance(object, classinfo)
+```Python
+isinstance(object, classinfo)
+```
 
 ### 警惕eval()的安全漏洞
 > eval is evil.
@@ -91,8 +102,10 @@ sys.modules[__name__] = _const()
 
 ### 使用with自动关闭资源
 
-    with expression [as target]:
-        codes
+```Python
+with expression [as target]:
+    codes
+```
 
 ### 遵循异常处理的基本原则
 ![exceptionhandle.png](http://jinjaysnow.github.io/images/exceptionhandle.png)
@@ -129,8 +142,10 @@ sys.modules[__name__] = _const()
 
 例：
 
-    iitemdict = {'itemname':'circumference', 'radius':3, 'value': match.pi*radius*2}
-    print "the %(itemname)s of a circle with radius %(radius)f is %(value)0.3f" % itemdict
+```Python
+iitemdict = {'itemname':'circumference', 'radius':3, 'value': match.pi*radius*2}
+print "the %(itemname)s of a circle with radius %(radius)f is %(value)0.3f" % itemdict
+```
 #### format方式
 
     [[填充符][对齐方式]][符号][#][0][宽度][,][.精确度][转换类型]
@@ -167,7 +182,7 @@ sys.modules[__name__] = _const()
 ### 区别对待可变对象和不可变对象
 Python中一切皆对象，每一个对象都一个唯一的标示符(id())、类型(type())以及值。对象根据其值能否修改该分为可变对象和不可变对象，其中**数字、字符串、元组**属于不可变对象；字典、列表、字节数组属于可变对象。因此，字符串中某个字符不可修改。
 
-```
+```Python
 # encoding:utf-8
 class Student(object):
     """test student"""
@@ -254,22 +269,28 @@ Python支持可变长度的参数列表，可以通过在函数定义的时候�
 ### 分清staticmethod和classmethod的适用场景
 Python中的静态方法和类方法都依赖于装饰器来实现。其中静态方法的用法如下：
 
-    class C(object):
-        @staticmethod
-        def f(arg1, arg2, ...):
+```Python
+class C(object):
+    @staticmethod
+    def f(arg1, arg2, ...):
+```
 
 类方法的用法如下：
 
-    class C(object):
-        @classmethod
-        def f(cls, arg1, arg2, ...):
+```Python
+class C(object):
+    @classmethod
+    def f(cls, arg1, arg2, ...):
+```
 
 ### 掌握字符串基本用法
 编写多行字符串小技巧：
 
-    s = ('select * '
-        'from atable '
-        'where afield="value"')
+```Python
+s = ('select * '
+    'from atable '
+    'where afield="value"')
+```
 
 判断一个变量是否是字符串，使用isinstance(s, basestring).
 
@@ -289,8 +310,10 @@ Python中的静态方法和类方法都依赖于装饰器来实现。其中静�
 
 ### 按需选择sort()或者sorted()
 
-    sorted(iterable[, cmp[, key[, reverse]]])
-    s.sort([cmp[, key[, reverse]]])
+```Python
+sorted(iterable[, cmp[, key[, reverse]]])
+s.sort([cmp[, key[, reverse]]])
+```
 
 1. cmp为用户定义的任何比较函数，函数的参数为两个可比较的元素，函数根据地一个参数与第二个参数的关系依次返回-1、0、1
 2. key是带一个参数的函数，用来为每个元素提取比较值
@@ -303,15 +326,19 @@ Python中的静态方法和类方法都依赖于装饰器来实现。其中静�
 sorted()函数功能更强大，，使用它可以方便地对不同的数据结构进行排序：  
 **对字典排序**
 
-    phonebook = {'Linda': '7750', 'Bob': '9345', 'Carol': '5834'}
-    from operator import itemgetter
-    sorted_pb = sorted(phonebook.iteritems(), key=itemgetter(1))
+```Python
+phonebook = {'Linda': '7750', 'Bob': '9345', 'Carol': '5834'}
+from operator import itemgetter
+sorted_pb = sorted(phonebook.iteritems(), key=itemgetter(1))
+```
 
 **多维list排序**
 
-    from operator import itemgetter
-    gameresult = [['Bob', 95.00, 'A'], ['Alan', 86.0, 'C'], ['Mandy', 82.5,'A'], ['Bob', 86, 'E']]
-    sorted(gameresult, key=itemgetter(2, 1))
+```Python
+from operator import itemgetter
+gameresult = [['Bob', 95.00, 'A'], ['Alan', 86.0, 'C'], ['Mandy', 82.5,'A'], ['Bob', 86, 'E']]
+sorted(gameresult, key=itemgetter(2, 1))
+```
 
 ### 使用copy模块深拷贝对象
 **浅拷贝**  构造一个新的复合对象并将从原对象中发现的引用插入该对象中。
@@ -354,22 +381,26 @@ getboolean()将0、no、false、off转义为False，对应的1、yes、true、on
 
 ### 使用argparse处理命令行参数
 
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-o', '--outpu')
-    parser.add_argument('-v', dest='verbose', action='store_true')
-    args = parser.parse_args()
-    parser.add_argument('bar', type=argparser.FileType('w'))
-    parser.add_args(['output.txt'])
-    parser.add_argument('door', type=int, choices=range(1, 4))
+```Python
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('-o', '--outpu')
+parser.add_argument('-v', dest='verbose', action='store_true')
+args = parser.parse_args()
+parser.add_argument('bar', type=argparser.FileType('w'))
+parser.add_args(['output.txt'])
+parser.add_argument('door', type=int, choices=range(1, 4))
+```
 
 ### 使用pandas处理大型CSV文件
 CSV(Comma Separated Values)逗号分隔型值的纯文本格式文件。
 
-    import pandas
-    pandas.read_csv()
-    # 分块处理
-    pandas.read_table()
+```Python
+import pandas
+pandas.read_csv()
+# 分块处理
+pandas.read_table()
+```
 
 ### 一般情况下使用ElementTree解析XML
 
@@ -397,8 +428,10 @@ list(elem) | 根据传入的元素返回其所有的子节点
 
 ### 使用JSON序列化
 
-    try: import simplejson as json
-    except ImportError: import json
+```Python
+try: import simplejson as json
+except ImportError: import json
+```
 
 ### 使用traceback获取栈信息
 
@@ -439,20 +472,22 @@ datefmt | 日期格式
 level | 设置根logger的日志级别
 stream | 指定StreamHandler，这个参数若与filename冲突，忽略stream
 
-    logging.basicConfig(
-        level=logging.DEBUG,
-        filename='log.txt',
-        filemode='w',
-        format='%(asctime)s %(filename)s[line:%(lineno)d %(levelname)s %(message)s',
-    )
+```Python
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='log.txt',
+    filemode='w',
+    format='%(asctime)s %(filename)s[line:%(lineno)d %(levelname)s %(message)s',
+)
+```
 
 **logging使用建议**  
 1. 尽量为logging取一个名字而不是采用默认，这样当在不同的模块中使用的时候，其他模块只需要使用以下代码就可以方便地使用同一个logger，因为它本质上复合单例模式。
-
+    ```Python
     import logging
     logging.basicConfig(level=logging.DEBUG)
     logger=logging.getLogger(__name__)
-
+    ```
 2. 为了方便地找出问题所在，logging的名字建议以模块或者class来命名。logging名称遵循'.'划分的继承规则，根是root logger, logger a.b的父logger对象为a。
 3. logging只是线程安全的，不支持多进程写入同一个日志文件，因此对于多个进程，需要配置不同的日志文件。
 
@@ -687,6 +722,185 @@ Python自带的有一个distutils标准库：
 
 安装以后可以使用paster命令
 
+### 使用列表生成式
+```Python
+num = [1, 4, -5, 10, -7, 2, 3, -1]
+ 
+def square_generator(optional_parameter):
+    return (x ** 2 for x in num if x > optional_parameter)
+ 
+print square_generator(0)
+# <generator object <genexpr> at 0x004E6418>
+
+# Option I
+for k in square_generator(0):
+    print k
+# 1, 16, 100, 4, 9
+
+# Option II
+g = list(square_generator(0))
+print g
+# [1, 16, 100, 4, 9]
+```
+
+### 使用装饰器
+```Python
+class decorator(object):
+    def __init__(self, f):
+        print("inside decorator.__init__()")
+        f() 
+# Prove that function definition has completed
+    def __call__(self):
+        print("inside decorator.__call__()")
+ 
+@decorator
+def function():
+    print("inside function()")
+ 
+print("Finished decorating function()")
+ 
+function()
+ 
+# inside decorator.__init__()
+# inside function()
+# Finished decorating function()
+# inside decorator.__call__()
+```
+
+1. 语法糖`@decorator`相当于`function=decorator(function)`，在此调用`decorator`的`__init__`打印"inside decorator.__init__()"
+2. 随后执行`f()`打印"inside function()"
+3. 随后执行`print("Finished decorating function()")`
+4. 最后在调用`function`函数时，由于使用装饰器包装，因此执行`decorator`的`__call__`打印 "inside decorator.__call__()"。
+
+### 上下文管理库
+通常如果想写一个上下文管理器，则需要定义一个类包含__enter__方法以及__exit__方法，如下：
+```Python
+import time
+class demo:
+    def __init__(self, label):
+        self.label = label
+ 
+    def __enter__(self):
+        self.start = time.time()
+ 
+    def __exit__(self, exc_ty, exc_val, exc_tb):
+        end = time.time()
+        print('{}: {}'.format(self.label, end - self.start))
+ 
+with demo('counting'):
+    n = 10000000
+    while n > 0:
+        n -= 1
+```
+上下文管理器被with声明所激活，这个API涉及到两个方法。  
+1. __enter__方法，当执行流进入with代码块时，__enter__方法将执行。并且它将返回一个可供上下文使用的对象。
+2. 当执行流离开with代码块时，__exit__方法被调用，它将清理被使用的资源。
+
+contextlib模块包含了与上下文管理器和with声明相关的工具。利用@contextmanager装饰器改写上面那个例子：
+```Python
+from contextlib import contextmanager
+import time
+ 
+@contextmanager
+def demo(label):
+    start = time.time()
+    try:
+        yield
+    finally:
+        end = time.time()
+        print('{}: {}'.format(label, end - start))
+ 
+with demo('counting'):
+    n = 10000000
+    while n > 0:
+        n -= 1
+```
+
+上面这个例子，函数中yield之前的所有代码都类似于上下文管理器中__enter__方法的内容。而yield之后的所有代码都如__exit__方法的内容。如果执行过程中发生了异常，则会在yield语句触发。
+
+### 描述器
+描述器决定了对象属性是如何被访问的。描述器的作用是定制当你想引用一个属性时所发生的操作。
+
+构建描述器的方法是至少定义以下三个方法中的一个。需要注意，下文中的instance是包含被访问属性的对象实例，而owner则是被描述器修辞的类。
+
+1. `__get__(self, instance, owner)` – 这个方法是当属性被通过(value = obj.attr)的方式获取时调用，这个方法的返回值将被赋给请求此属性值的代码部分。
+2. `__set__(self, instance, value)` – 这个方法是当希望设置属性的值(obj.attr = ‘value’)时被调用，该方法不会返回任何值。
+3. `__delete__(self, instance)` – 当从一个对象中删除一个属性时(del obj.attr)，调用此方法。
+
+理解`instance`和`owner`，考虑如下代码：
+```Python
+class Celsius(object):
+    def __init__(self, value=0.0):
+        self.value = float(value)
+    def __get__(self, instance, owner):
+        return self.value
+    def __set__(self, instance, value):
+        self.value = float(value)
+ 
+class Temperature(object):
+    celsius = Celsius()
+ 
+temp=Temperature()
+temp.celsius 
+#calls Celsius.__get__
+```
+上例中，`instance`指代`temp`，`owner`指代`Temperature`。
+
+LazyLoading Properties例子：
+```Python
+import weakref
+
+class lazyattribute(object):
+    def __init__(self, f):
+        self.data = weakref.WeakKeyDictionary()
+        self.f = f
+
+    def __get__(self, obj, cls):
+        if obj not in self.data:
+            self.data[obj] = self.f(obj)
+        return self.data[obj]
+
+
+class Foo(object):
+    @lazyattribute
+    def bar(self):
+        print "Being lazy"
+        return 42
+
+f = Foo()
+
+print f.bar
+# Being lazy
+
+# 42
+print f.bar
+# 42
+```
+描述器很好的总结了Python中的绑定方法(bound method)这个概念，绑定方法是经典类(classic classes)的实现核心。在经典类中，当在一个对象实例的字典中没有找到某个属性时，会继续到类的字典中查找，然后再到基类的字典中，就这么一直递归的查找下去。如果在类字典中找到这个属性，解释器会检查找到的对象是不是一个Python函数对象。如果是，则返回的并不是这个对象本身，而是返回一个柯里化(currying function)的包装器对象。当调用这个包装器时，它会首先在参数列表之前插入实例，然后再调用原函数。
+
+1. 柯里化 – http://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96
+2. function，method，bound method及unbound method的区别。首先，函数(function)是由def或lambda创建的。当一个函数在class语句块中定义或是由type来创建时，它会转成一个非绑定方法(unbound method)，而当通过类实例(instance)来访问此方法的时候，它将转成绑定方法(bound method)，绑定方法会自动将实例作为第一个参数传入方法。综上所述，方法是出现在类中的函数，绑定方法是一个绑定了具体实例的方法，反之则是非绑定方法。
+
+### 元类(MetaClasses)
+元类提供了一个改变Python类行为的有效方式。
+
+元类的定义是**一个类的类**。任何实例是它自己的类都是元类。
+
+```Python
+class demo(object):
+    pass
+ 
+obj = demo()
+ 
+print "Class of obj is {0}".format(obj.__class__)
+print "Class of obj is {0}".format(demo.__class__)
+ 
+# Class of obj is <class '__main__.demo'>
+# Class of obj is <type 'type'>
+```
+在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。
+所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。
+因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。
 
 
 
