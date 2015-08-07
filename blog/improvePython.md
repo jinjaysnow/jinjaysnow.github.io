@@ -620,32 +620,36 @@ property是用来实现属性可管理性的built-in数据类型，其实只是�
 两种使用property的形式：  
 **形式一**
 
-    class Some_Calss(object):
-        def __init__(self):
-            self._somevalue = 0
-        def get_value(self):
-            return self._somevalue
-        def set_value(self, value):
-            self._somevalue = value
-        def del_attr(self):
-            del self._somevalue
-        x = property(get_value, set_value, del_attr, "......")
+```Python
+class Some_Calss(object):
+    def __init__(self):
+        self._somevalue = 0
+    def get_value(self):
+        return self._somevalue
+    def set_value(self, value):
+        self._somevalue = value
+    def del_attr(self):
+        del self._somevalue
+    x = property(get_value, set_value, del_attr, "......")
+```
 
 **形式二**
 
-    class Some_Clasee(object):
-        _x = None
-        def __init__(self):
-            self._x = None
-        @property
-        def x(self):
-            return self._x
-        @x.setter
-        def x(self, value):
-            self._x = value
-        @x.deleter
-        def x(self):
-            del self._x
+```Python
+class Some_Clasee(object):
+    _x = None
+    def __init__(self):
+        self._x = None
+    @property
+    def x(self):
+        return self._x
+    @x.setter
+    def x(self, value):
+        self._x = value
+    @x.deleter
+    def x(self):
+        del self._x
+```
 
 ### 使用中缀语法
 
@@ -752,7 +756,7 @@ class decorator(object):
 # Prove that function definition has completed
     def __call__(self):
         print("inside decorator.__call__()")
- 
+
 @decorator
 def function():
     print("inside function()")
@@ -809,7 +813,7 @@ def demo(label):
     finally:
         end = time.time()
         print('{}: {}'.format(label, end - start))
- 
+
 with demo('counting'):
     n = 10000000
     while n > 0:
@@ -894,7 +898,7 @@ obj = demo()
 
 print "Class of obj is {0}".format(obj.__class__)
 print "Class of obj is {0}".format(demo.__class__)
- 
+
 # Class of obj is <class '__main__.demo'>
 # Class of obj is <type 'type'>
 ```
