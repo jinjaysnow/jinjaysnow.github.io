@@ -725,16 +725,16 @@ Python自带的有一个distutils标准库：
 ### 使用列表生成式
 ```Python
 num = [1, 4, -5, 10, -7, 2, 3, -1]
- 
+
 def square_generator(optional_parameter):
-    return (x ** 2 for x in num if x > optional_parameter)
- 
+    return (x ** 2 for x in num if x > optional_parameter)
+
 print square_generator(0)
 # <generator object <genexpr> at 0x004E6418>
 
 # Option I
 for k in square_generator(0):
-    print k
+    print k
 # 1, 16, 100, 4, 9
 
 # Option II
@@ -746,21 +746,21 @@ print g
 ### 使用装饰器
 ```Python
 class decorator(object):
-    def __init__(self, f):
-        print("inside decorator.__init__()")
-        f() 
+    def __init__(self, f):
+        print ("inside decorator.__init__()")
+        f() 
 # Prove that function definition has completed
-    def __call__(self):
-        print("inside decorator.__call__()")
+    def __call__(self):
+        print("inside decorator.__call__()")
  
 @decorator
 def function():
-    print("inside function()")
- 
+    print("inside function()")
+
 print("Finished decorating function()")
- 
+
 function()
- 
+
 # inside decorator.__init__()
 # inside function()
 # Finished decorating function()
@@ -777,20 +777,20 @@ function()
 ```Python
 import time
 class demo:
-    def __init__(self, label):
-        self.label = label
- 
-    def __enter__(self):
-        self.start = time.time()
- 
-    def __exit__(self, exc_ty, exc_val, exc_tb):
-        end = time.time()
-        print('{}: {}'.format(self.label, end - self.start))
- 
+    def __init__(self, label):
+        self.label = label
+
+    def __enter__(self):
+        self.start = time.time()
+
+    def __exit__(self, exc_ty, exc_val, exc_tb):
+        end = time.time()
+        print('{}: {}'.format(self.label, end - self.start))
+
 with demo('counting'):
-    n = 10000000
-    while n > 0:
-        n -= 1
+    n = 10000000
+    while n > 0:
+        n -= 1
 ```
 上下文管理器被with声明所激活，这个API涉及到两个方法。  
 1. __enter__方法，当执行流进入with代码块时，__enter__方法将执行。并且它将返回一个可供上下文使用的对象。
@@ -800,20 +800,20 @@ contextlib模块包含了与上下文管理器和with声明相关的工具。利
 ```Python
 from contextlib import contextmanager
 import time
- 
+
 @contextmanager
 def demo(label):
-    start = time.time()
-    try:
-        yield
-    finally:
-        end = time.time()
-        print('{}: {}'.format(label, end - start))
+    start = time.time()
+    try:
+        yield
+    finally:
+        end = time.time()
+        print('{}: {}'.format(label, end - start))
  
 with demo('counting'):
-    n = 10000000
-    while n > 0:
-        n -= 1
+    n = 10000000
+    while n > 0:
+        n -= 1
 ```
 
 上面这个例子，函数中yield之前的所有代码都类似于上下文管理器中__enter__方法的内容。而yield之后的所有代码都如__exit__方法的内容。如果执行过程中发生了异常，则会在yield语句触发。
@@ -830,16 +830,16 @@ with demo('counting'):
 理解`instance`和`owner`，考虑如下代码：
 ```Python
 class Celsius(object):
-    def __init__(self, value=0.0):
-        self.value = float(value)
-    def __get__(self, instance, owner):
-        return self.value
-    def __set__(self, instance, value):
-        self.value = float(value)
- 
+    def __init__(self, value=0.0):
+        self.value = float(value)
+    def __get__(self, instance, owner):
+        return self.value
+    def __set__(self, instance, value):
+        self.value = float(value)
+
 class Temperature(object):
-    celsius = Celsius()
- 
+    celsius = Celsius()
+
 temp=Temperature()
 temp.celsius 
 #calls Celsius.__get__
@@ -888,10 +888,10 @@ print f.bar
 
 ```Python
 class demo(object):
-    pass
- 
+    pass
+
 obj = demo()
- 
+
 print "Class of obj is {0}".format(obj.__class__)
 print "Class of obj is {0}".format(demo.__class__)
  
@@ -901,7 +901,6 @@ print "Class of obj is {0}".format(demo.__class__)
 在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。
 所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。
 因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。
-
 
 
 [TOC]
