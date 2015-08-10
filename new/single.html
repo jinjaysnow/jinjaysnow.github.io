@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Material Design Lite</title>
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <!-- <link rel="stylesheet" href="material.min.css"> -->
+      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue-light_green.min.css" /> 
+      <!-- <link rel="stylesheet" href="styles.css"> -->
+      <link rel="stylesheet" type="text/css" href="t.css">
+    </head>
+    <body>
+
+<!-- Uses a header that contracts as the page scrolls down. -->
+<style>
+.waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}
+</style>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <!-- Top row, always visible -->
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">目录</span>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample"
+                 id="waterfall-exp"  placeholder="暂不可用" />
+        </div>
+      </div>
+    </div>
+    <!-- Bottom row, not visible on scroll -->
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="waterfall-demo-header-nav mdl-navigation">
+        <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+        <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+        <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+        <!-- <a class="mdl-navigation__link" href="">Link'kk</a> -->
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">目录</span>
+    <nav class="mdl-navigation">
+<!--       <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+
+ --><ul>
+<li><a href="#mac">Mac系统上的基本操作</a><ul>
+<li><a href="#updatedb">updatedb</a></li>
+<li><a href="#gdb">使用gdb</a><ul>
+<li><a href="#gdb_1">安装gdb</a></li>
+<li><a href="#_1">新建一个整数</a></li>
+<li><a href="#_2">确保证书始终被信任</a></li>
+<li><a href="#gdb_2">对GDB签名</a></li>
+</ul>
+</li>
+<li><a href="#mdfind">mdfind</a></li>
+</ul>
+</li>
+</ul>
+    </nav>
+  </div>
+
+        <main class="demo-main mdl-layout__content">
+        <div class="demo-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <h1 id="mac"><a name="user-content-mac" href="#mac" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Mac系统上的基本操作</h1>
+            <h2 id="updatedb"><a name="user-content-updatedb" href="#updatedb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>updatedb</h2>
+                                    <div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">ln</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="o">/</span><span class="vg">usr</span><span class="o">/</span><span class="vg">libexec</span><span class="o">/</span><span class="vg">locate</span><span class="o">.</span><span class="vg">updatedb</span><span class="w"> </span><span class="o">/</span><span class="vg">usr</span><span class="o">/</span><span class="vg">local</span><span class="o">/</span><span class="vg">bin</span><span class="o">/</span><span class="vg">updatedb</span>
+          </pre></div>
+          <p>通过上面的命令，可以生成一个链接，每次只需要使用<code>sudo updatedb</code>即可更新查找数据库。</p>
+          <h2 id="gdb"><a name="user-content-gdb" href="#gdb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用gdb</h2>
+          <h3 id="gdb_1"><a name="user-content-gdb_1" href="#gdb_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>安装gdb</h3>
+                              <div class="codehilite"><pre><span class="vg">brew</span><span class="w"> </span><span class="vg">tap</span><span class="w"> </span><span class="vg">homebrew</span><span class="o">/</span><span class="vg">dupes</span>
+                              <span class="vg">brew</span><span class="w"> </span><span class="vg">install</span><span class="w"> </span><span class="vg">gdb</span>
+        </pre></div>
+        <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>新建一个整数</h3>
+        <p>打开“钥匙串访问”程序，在主菜单选择<strong>“证书助理”&gt;“创建整数”</strong><br />
+        <img alt="gdb1" src="http://jinjaysnow.github.io/static/gdb/gdb1.png" /></p>
+        <p>然后输入证书名，比如<code>gdb-cert</code>，将证书类型更改为“代码签名”，并<strong>勾选“让我覆盖这些默认值”</strong>(<code>截图未勾选</code>)<br />
+        <img alt="gdb2" src="http://jinjaysnow.github.io/static/gdb/gdb2.png" /></p>
+        <p>继续，输入有效期，最大为999，我输入的是999<br />
+        <img alt="gdb3" src="http://jinjaysnow.github.io/static/gdb/gdb3.png" /></p>
+        <p>一直继续，直到指定证书的位置为“系统”<br />
+        <img alt="gdb4" src="http://jinjaysnow.github.io/static/gdb/gdb4.png" /></p>
+        <p>点击创建<br />
+        <img alt="gdb5" src="http://jinjaysnow.github.io/static/gdb/gdb5.png" /></p>
+        <p>成功创建</p>
+        <h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>确保证书始终被信任</h3>
+        <p>右击证书，选择“显示简介”<br />
+        <img alt="gdb6" src="http://jinjaysnow.github.io/static/gdb/gdb6.png" /></p>
+        <p>展开“信任”，将代码签名处的值更改为<strong>始终信任</strong><br />
+        <img alt="gdb7" src="http://jinjaysnow.github.io/static/gdb/gdb7.png" /></p>
+        <h3 id="gdb_2"><a name="user-content-gdb_2" href="#gdb_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>对GDB签名</h3>
+                        <div class="codehilite"><pre><span class="vg">codesign</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="vg">gdb</span><span class="o">-</span><span class="vg">cert</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="vg">which</span><span class="w"> </span><span class="vg">gdb</span><span class="p">)</span>
+      </pre></div>
+      <p>输入用户名和密码后成功</p>
+      <h2 id="mdfind"><a name="user-content-mdfind" href="#mdfind" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>mdfind</h2>
+      <p>mdfind是find与locate的结合版本，能够非常快速的匹配查找需要的内容，需要配合updatedb使用。</p>
+      <p style="text-align: right; color: gray;"><br>2014-11-25 09:14:15</p>
+    </div>
+  </div>
+  <footer class="demo-footer mdl-mini-footer">
+    <div class="mdl-mini-footer--left-section">
+      <ul class="mdl-mini-footer--link-list">
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Privacy and Terms</a></li>
+        <li><a href="#">User Agreement</a></li>
+      </ul>
+    </div>
+  </footer>
+  </main>
+</div>
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+</body>
+</html>
