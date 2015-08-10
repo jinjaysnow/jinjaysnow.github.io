@@ -72,10 +72,12 @@ p { margin:1em 0; }
 /* Images */
 img {
   max-width:100%;
-  border: 0;
+  /*border: 0;*/
   -ms-interpolation-mode: bicubic;
   vertical-align: middle;
   text-align: center;
+  display: block;
+  margin: auto;
 }
 
 /* Headers */

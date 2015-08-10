@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="date" content="2014-10">
+<meta name="keywords" content="浏览器显示引擎,browser engine">
+<meta name="description" content="编写一个简单的浏览器显示引擎，支持：解析html、解析css、布局、绘制图片。">
+<meta name="author" content="Jin Jay"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>编写浏览器显示引擎</title>
+
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <!-- <meta name="mobile-web-app-capable" content="yes"> -->
+    <!-- <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"> -->
+    <!-- Add to homescreen for Safari on iOS -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <!-- <meta name="apple-mobile-web-app-title" content="Material Design Lite"> -->
+    <!-- <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"> -->
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"> -->
+    <!-- <meta name="msapplication-TileColor" content="#3372DF"> -->
+
+    <!-- save to local storage -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <!-- random generate color -->
+      <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
+
+      <!-- template.css -->
+      <link rel="stylesheet" type="text/css" href="../../new/t.css">
+    </head>
+    <body>
+      <!-- Uses a header that contracts as the page scrolls down. -->
+      <style>
+      .waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
+      padding-right: 0;
+      }
+      </style>
+      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+          <!-- Top row, always visible -->
+          <div class="mdl-layout__header-row">
+            <!-- TOC -->
+            <span class="mdl-layout-title">目录</span>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+              mdl-textfield--floating-label mdl-textfield--align-right">
+              <label class="mdl-button mdl-js-button mdl-button--icon"
+                for="waterfall-exp">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" name="sample"
+                id="waterfall-exp"  placeholder="暂不可用" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom row, not visible on scroll -->
+          <div class="mdl-layout__header-row">
+            <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="waterfall-demo-header-nav mdl-navigation">
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+            </nav>
+          </div>
+        </header>
+        <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">目录</span>
+          <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#_1">程序设计及各模块的功能说明</a><ul>
+<li><a href="#_2">整体结构</a></li>
+<li><a href="#_3">文件读写模块</a></li>
+<li><a href="#html2dom">html2DOM</a></li>
+<li><a href="#css">CSS规则处理</a></li>
+</ul>
+</li>
+<li><a href="#_4">附加信息</a></li>
+</ul>
+</div>
+          </nav>
+        </div>
+        <!-- main outer -->
+        <main class="demo-main mdl-layout__content">
+        <!-- grid start -->
+        <div class="demo-container mdl-grid">
+          <!-- placeholder cell -->
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <div class="">
+              <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>程序设计及各模块的功能说明</h2>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>整体结构</h3>
+<!-- <img alt="1.png" src="1.png" /> -->
+
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>文件读写模块</h3>
+<p>为了从所有文件夹中读写文件，我们首先通过系统调用获取所有应处理的目录名，然后对指定目录中的文件进行读写。<br />
+这里，我们将目录名全部写到一个文件中，然后依次处理目录中的文件；对于html文件，我们处理”index.html”，对于css文件，我们通过html来确定文件名，并且进行处理。<br />
+CSS解析模块<br />
+在CSS解析模块，我们将解析部分分为两个部分进行，分别是选择器部分和规则部分。对于选择器部分，我们将所有的选择器存在一个字符串中，在后续阶段进行处理；而规则则放置在一个链中，方便我们进行调用。<br />
+选择器处理<br />
+选择器部分，我们将用‘ , ’分隔的一个选择器提取出来，将其中的元素名存储在数组中，并且记录元素的个数。为此，我们定义了如下的数据结构：</p>
+<div class="codehilite"><pre><span class="vg">typedef</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">selectNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">enum</span><span class="w"> </span><span class="vg">cssType</span><span class="w"> </span><span class="vg">type</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">char</span><span class="w">   </span><span class="vg">name</span><span class="p">[</span><span class="il">10</span><span class="p">][</span><span class="il">30</span><span class="p">];</span><span class="w">    </span><span class="o">//</span><span class="err">选择器元素数组</span>
+<span class="w">    </span><span class="vg">int</span><span class="w">    </span><span class="vg">nodeNum</span><span class="p">;</span><span class="w">         </span><span class="o">//</span><span class="err">选择器元素个数</span>
+<span class="p">}</span><span class="vg">selectNode</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="vg">pSelectNode</span><span class="p">;</span>
+</pre></div>
+
+
+<h3 id="html2dom"><a name="user-content-html2dom" href="#html2dom" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>html2DOM</h3>
+<p>将html转换为DOM树。我们的做法是先对html进行预处理，删除多余的空格，变成统一的风格。</p>
+<div class="codehilite"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;test.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;fs jl&quot;</span> <span class="na">id=</span><span class="s">&quot;fjsa&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+
+<p>如上所示，所有的多余空格都会被删去。</p>
+<p>然后我们使用正则表达式去匹配得到标签的类和ID。如</p>
+<div class="codehilite"><pre><span class="o">&lt;</span><span class="vg">link</span><span class="w"> </span><span class="vg">href</span><span class="o">=\</span><span class="s2">&quot;[^\&quot;</span><span class="p">]</span><span class="o">*\</span><span class="err">&quot;</span><span class="o">&gt;</span><span class="w">   </span><span class="err">#可以解析</span><span class="vg">css</span><span class="err">文件名</span>
+<span class="vg">class</span><span class="o">=\</span><span class="s2">&quot;[^\&quot;</span><span class="p">]</span><span class="o">*\</span><span class="err">&quot;</span><span class="w">         </span><span class="err">#可以解析类名</span>
+</pre></div>
+
+
+<p>然后我们保存节点的信息。</p>
+<p>DOM节点的结构为：</p>
+<div class="codehilite"><pre><span class="vg">typedef</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">DOMNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">enum</span><span class="w"> </span><span class="vg">TAG</span><span class="w">        </span><span class="vg">tag</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">struct</span><span class="w"> </span><span class="vg">DOMNode</span><span class="w">  </span><span class="o">*</span><span class="vg">sonNodes</span><span class="p">[</span><span class="vg">MAXSONNUM</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">int</span><span class="w">             </span><span class="vg">sonNum</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">struct</span><span class="w"> </span><span class="vg">DOMNode</span><span class="w">  </span><span class="o">*</span><span class="vg">fatherNode</span><span class="p">;</span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">节点属性相关</span>
+<span class="w">    </span><span class="vg">st_style</span><span class="w">        </span><span class="vg">style</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">char</span><span class="w">            </span><span class="vg">ID</span><span class="p">[</span><span class="il">20</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w">            </span><span class="vg">classes</span><span class="p">[</span><span class="il">20</span><span class="p">][</span><span class="il">20</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">int</span><span class="w">             </span><span class="vg">classNum</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="o">*</span><span class="w">          </span><span class="vg">text</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">如果是文本，需要申请内存</span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">节点适用的</span><span class="vg">css</span><span class="err">样式数组</span>
+<span class="w">    </span><span class="vg">DOMCSSES</span><span class="w"> </span><span class="o">*</span><span class="vg">csses</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">inheritStyle</span><span class="p">[</span><span class="il">7</span><span class="p">];</span>
+<span class="p">}</span><span class="vg">DOMTree</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="vg">pDOMNode</span><span class="p">;</span>
+</pre></div>
+
+
+<h3 id="css"><a name="user-content-css" href="#css" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>CSS规则处理</h3>
+<p>在规则处理模块，我们通过’{’和’}’作为起点和终点，对于一组规则进行解析。我们定义了如下数据结构，将每条规则存储在其中。</p>
+<div class="codehilite"><pre><span class="vg">typedef</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">rule</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">name</span><span class="p">[</span><span class="il">15</span><span class="p">];</span><span class="w">      </span><span class="o">//</span><span class="w">  </span><span class="err">存储规则名</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">namePos</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">value</span><span class="p">[</span><span class="il">30</span><span class="p">];</span><span class="w">     </span><span class="o">//</span><span class="w">  </span><span class="err">存储规则值</span>
+<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">valPos</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">struct</span><span class="w"> </span><span class="vg">rule</span><span class="o">*</span><span class="w"> </span><span class="vg">next</span><span class="p">;</span><span class="w">  </span><span class="o">//</span><span class="w">  </span><span class="err">指向下一条规则</span>
+<span class="p">}</span><span class="vg">rule</span><span class="p">;</span>
+</pre></div>
+
+
+<p><strong>错误规则处理</strong></p>
+<p>在CSS规则中，可能会出现规则之中没有用”；”隔开的情况，针对这种情况，我们进行了如下处理：在没有正确的匹配到”；”时，如果匹配到了其他特殊符号，如“：”，“}”，则根据后一条规则的属性名，可以确定”；”的位置，从而对CSS规则进行分割。</p>
+<p>CSS节点生成<br />
+在得到CSS选择器和CSS规则链后，我们对其进行分析，形成统一的数据结构，方便我们进行后续处理。在这个阶段，我们识别出每条规则的属性名和属性值，并存储选择器。为此我们定义了CSS节点数据结构，以方便进行存储。</p>
+<div class="codehilite"><pre><span class="vg">typedef</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">cssNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="vg">selectNode</span><span class="w"> </span><span class="o">*</span><span class="vg">snodes</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">display</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">position</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">width</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">height</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">top</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">bottom</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">left</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">right</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">padding</span><span class="p">[</span><span class="il">4</span><span class="p">][</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">border</span><span class="p">[</span><span class="il">4</span><span class="p">][</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">margin</span><span class="p">[</span><span class="il">4</span><span class="p">][</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">color</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">font_size</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">line_height</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">text_align</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">font_style</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">font_weight</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">line_break</span><span class="p">[</span><span class="il">10</span><span class="p">];</span>
+<span class="w">    </span><span class="vg">struct</span><span class="w"> </span><span class="vg">cssNode</span><span class="w"> </span><span class="o">*</span><span class="vg">next</span><span class="p">;</span>
+<span class="w">    </span><span class="vg">unsigned</span><span class="w"> </span><span class="nl">defineFlag:</span><span class="il">18</span><span class="p">;</span>
+<span class="p">}</span><span class="vg">cssList</span><span class="p">,</span><span class="w"> </span><span class="vg">cssNode</span><span class="p">;</span>
+</pre></div>
+
+
+<p>特别的，这里我们应用了位段来标记有哪些属性被定义了，这样在分析阶段就可以避免错误的赋值。<br />
+CSS计算模块<br />
+在对DOM树进行赋值之后，我们通过选择器的优先级对每个树节点中的CSS链进行排序，并且根据排序后的链对其属性值进行赋值。<br />
+在赋值之后，我们通过三次遍历来对树中的节点进行处理：第一次，我们从根开始向下进行先序遍历，并且记录所有不能确定的节点；第二次，我们从底向上进行遍历，对所有没有确定值，或者需要撑大的节点进行赋值；第三次，我们通过先序遍历，计算出每个节点的offset值。</p>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>附加信息</h2>
+<p>代码托管地址：<a href="https://github.com/jinjaysnow/SeedCup_QuarterFinal">2014种子杯复赛</a></p>
+ 
+              <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
+            </div>
+          </div>
+        </div>
+        <footer>
+            <p>
+              JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+            </p>
+            <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+        </footer>
+        </main>
+      </div>
+      <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    </body>
+  </html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="date" content="2014-11">
+<meta name="keywords" content="C语言 字典,C dict,C redis dict">
+<meta name="description" content="C语言实现字典结构(dict)，字典结构是键值结构，可以通过关键字获取相应的值，很多语言自带此种结构，比如Python。这里我们使用C语言实现一个字典数据类型。"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>C语言实现字典结构</title>
+
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <!-- <meta name="mobile-web-app-capable" content="yes"> -->
+    <!-- <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"> -->
+    <!-- Add to homescreen for Safari on iOS -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <!-- <meta name="apple-mobile-web-app-title" content="Material Design Lite"> -->
+    <!-- <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"> -->
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <!-- <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png"> -->
+    <!-- <meta name="msapplication-TileColor" content="#3372DF"> -->
+
+    <!-- save to local storage -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <!-- random generate color -->
+      <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
+
+      <!-- template.css -->
+      <link rel="stylesheet" type="text/css" href="../../new/t.css">
+    </head>
+    <body>
+      <!-- Uses a header that contracts as the page scrolls down. -->
+      <style>
+      .waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
+      padding-right: 0;
+      }
+      </style>
+      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+        <header class="mdl-layout__header mdl-layout__header--waterfall">
+          <!-- Top row, always visible -->
+          <div class="mdl-layout__header-row">
+            <!-- TOC -->
+            <span class="mdl-layout-title">目录</span>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+              mdl-textfield--floating-label mdl-textfield--align-right">
+              <label class="mdl-button mdl-js-button mdl-button--icon"
+                for="waterfall-exp">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" name="sample"
+                id="waterfall-exp"  placeholder="暂不可用" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom row, not visible on scroll -->
+          <div class="mdl-layout__header-row">
+            <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="waterfall-demo-header-nav mdl-navigation">
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+            </nav>
+          </div>
+        </header>
+        <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">目录</span>
+          <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#_1">简介</a></li>
+<li><a href="#_2">设计</a><ul>
+<li><a href="#_3">外部接口设计</a></li>
+</ul>
+</li>
+</ul>
+</div>
+          </nav>
+        </div>
+        <!-- main outer -->
+        <main class="demo-main mdl-layout__content">
+        <!-- grid start -->
+        <div class="demo-container mdl-grid">
+          <!-- placeholder cell -->
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <div class="">
+              <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>简介</h1>
+<p>C语言实现字典结构(dict)，字典结构是键值结构，可以通过关键字获取相应的值，很多语言自带此种结构，比如Python。这里我们使用C语言实现一个字典数据类型，主要参考的是redis中对字典的实现。</p>
+<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>设计</h1>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>外部接口设计</h2>
+<p>字典是一种数据类型，故定义：</p>
+<div class="codehilite"><pre><span class="vg">typedef</span><span class="w"> </span><span class="vg">struct</span><span class="w"> </span><span class="vg">dict</span><span class="w"> </span><span class="vg">Dict</span><span class="p">;</span>
+</pre></div>
+
+
+<p>一些基本的字典操作函数：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>函数</th>
+<th>算法复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建一个新字典</td>
+<td>dictCreate</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>添加新键值对到字典</td>
+<td>dictAdd</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>添加或更新给定键的值</td>
+<td>dictReplace</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>在字典中查找给定键所在的节点</td>
+<td>dictFind</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>在字典中查找给定键的值</td>
+<td>dictFetchValue</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>从字典中随机返回一个节点</td>
+<td>dictGetRandomKey</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>根据给定键，删除字典中的键值对</td>
+<td>dictDelete</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>清空并释放字典</td>
+<td>dictRelease</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>清空并重置（但不释放）字典</td>
+<td>dictEmpty</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>缩小字典</td>
+<td>dictResize</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>扩大字典</td>
+<td>dictExpand</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>对字典进行给定步数的rehash</td>
+<td>dictRehash</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>在给定毫秒内，对字典进行rehash</td>
+<td>dictRehashMilliseconds</td>
+<td>O(N)</td>
+</tr>
+</tbody>
+</table>
+ 
+              <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
+            </div>
+          </div>
+        </div>
+        <footer>
+            <p>
+              JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+            </p>
+            <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+        </footer>
+        </main>
+      </div>
+      <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    </body>
+  </html>

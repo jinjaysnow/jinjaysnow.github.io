@@ -12,6 +12,29 @@ import os, datetime, sys
 import json
 from MarkdownPreview import MarkdownCompiler
 
+# color of the web
+color = (
+    "blue-green",
+    "blue-indigo",
+    "blue-light_green",
+    "blue-red",
+    "deep_orange-blue",
+    "deep_orange-pink",
+    "deep_orange-red",
+    "deep_purple-blue",
+    "indigo-pink",
+    "lime-blue",
+    "orange-blue",
+    "pink-blue",
+    "pink-indigo",
+    "purple-blue",
+    "purple-green",
+    "red-blue",
+    "red-deep_orange",
+    "red-pink",
+    "teal-blue"
+)
+
 
 def jsonWrite(filename, data):
     with open(filename, 'w') as outfile:
@@ -30,7 +53,7 @@ def generateFile(filePath):
 
     # generate full blog html file
     mdc = MarkdownCompiler(filePath)
-    mdc.default_css = "../new/t.css"
+    mdc.default_css = "newmarkdown.css"
 
     finalHtml, body = mdc.run()
     # delete <div class="toc">
@@ -42,8 +65,11 @@ def generateFile(filePath):
         try:
             finalHtml = finalHtml.replace(toc_content, " ")
             finalHtml = finalHtml.replace("{{ TOC }}", toc_content)
+            from random import randint
+            color_num = randint(0, len(color))
+            finalHtml = finalHtml.replace("{{ COLOR }}", color[color_num])
         except Exception, e:
-            raise e
+            print e
 
     # add date
     finalHtml = finalHtml.replace('{{ DATE }}', "<p style=\"text-align: right; color: gray;\"><br>" + modifyTime.strftime("%Y-%m-%d %H:%M:%S") + u"</p>", 1)
