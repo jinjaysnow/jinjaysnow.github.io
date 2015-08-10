@@ -12,12 +12,15 @@ import os, datetime, sys
 import json
 from MarkdownPreview import MarkdownCompiler
 
+
 def jsonWrite(filename, data):
     with open(filename, 'w') as outfile:
         json.dump(data, outfile)
 
+
 def fileNameToUrl(fileName):
-    return fileName.replace(' ', "%20").replace("&","&amp;")
+    return fileName.replace(' ', "%20").replace("&", "&amp;")
+
 
 def generateFile(filePath):
     if not os.path.isfile(filePath):
@@ -27,18 +30,30 @@ def generateFile(filePath):
 
     # generate full blog html file
     mdc = MarkdownCompiler(filePath)
-    mdc.default_css = "mymarkdown.css"
+    mdc.default_css = "../new/t.css"
 
     finalHtml, body = mdc.run()
+    # delete <div class="toc">
+    import re
+    toc_pattern = re.compile('<div class="toc">.*?</div>', re.DOTALL)
+    match = toc_pattern.search(finalHtml)
+    if match:
+        toc_content = match.group(0)
+        try:
+            finalHtml = finalHtml.replace(toc_content, " ")
+            finalHtml = finalHtml.replace("{{ TOC }}", toc_content)
+        except Exception, e:
+            raise e
+
     # add date
     finalHtml = finalHtml.replace('{{ DATE }}', "<p style=\"text-align: right; color: gray;\"><br>" + modifyTime.strftime("%Y-%m-%d %H:%M:%S") + u"</p>", 1)
-    
+
     meta = mdc.settings.get("meta", {})
     try:
         fileName = meta["title"][0]
         dateFolder = meta["date"][0]
         brief = meta["description"][0]
-    except :
+    except:
         print "there is no essential meta"
         return
 
@@ -48,7 +63,7 @@ def generateFile(filePath):
     output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w",
                           encoding="utf-8", 
                           errors="xmlcharrefreplace")
-    
+
     output_file.write(finalHtml)
     output_file.close()
 

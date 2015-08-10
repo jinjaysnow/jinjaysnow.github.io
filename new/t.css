@@ -86,12 +86,12 @@ h1,h2,h3,h4,h5,h6 {
   position: relative;
 }
 h4,h5,h6{ font-weight: bold; }
-h1 { font-size:2.5em; border-bottom: 1px solid #ddd;}
-h2 { font-size:2em; border-bottom:1px solid #eee; padding-bottom: 5px; }
-h3 { font-size:1.5em; }
-h4 { font-size:1.2em; }
-h5 { font-size:1em; }
-h6 { font-size:0.9em; }
+h1 { font-size:2.5em !important; border-bottom: 1px solid #ddd;}
+h2 { font-size:2em !important; border-bottom:1px solid #eee; padding-bottom: 5px; }
+h3 { font-size:1.5em !important; }
+h4 { font-size:1.2em !important; }
+h5 { font-size:1em !important; }
+h6 { font-size:0.9em !important; }
 
 /* Block Quotes */
 blockquote {
@@ -336,3 +336,19 @@ td:not(.linenos) .linenodiv { padding: 0 !important; }
   border-bottom-right-radius: 3px;
 }
 
+footer {
+  text-align: center;
+  background-color: #424242;
+  padding: 32px 16px;
+  color: white;
+}
+
+.demo-content {
+  border-radius: 2px;
+  padding: 30px 56px;
+  margin-bottom: 80px;
+}
+
+body {
+  font-size: 16px;
+}
