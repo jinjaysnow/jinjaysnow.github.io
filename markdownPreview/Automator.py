@@ -66,9 +66,10 @@ def generateFile(filePath):
             finalHtml = finalHtml.replace(toc_content, " ")
             finalHtml = finalHtml.replace("{{ TOC }}", toc_content)
             from random import randint
-            color_num = randint(0, len(color))
+            color_num = randint(0, len(color)-1)
             finalHtml = finalHtml.replace("{{ COLOR }}", color[color_num])
         except Exception, e:
+            print "-----color error"
             print e
 
     # add date
