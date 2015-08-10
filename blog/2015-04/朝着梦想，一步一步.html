@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="date" content="2015-04">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2015-04">
 <meta name="keywords" content="我的大学生活">
 <meta name="description" content="我的大学生活">
 <meta name="author" content="JinJay 靳杰"><style>
@@ -98,7 +96,7 @@ MathJax.Hub.Config({
 });
 </script>
 <title>朝着梦想，一步一步</title>
-
+    <meta name="robots" content="all" />
     <!-- TODO: 移动设备配置 -->
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -111,68 +109,63 @@ MathJax.Hub.Config({
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="../../images/snow.jpg">
     <meta name="msapplication-TileColor" content="#3372DF">
-
     <!-- save to local storage -->
     <link href="../../mdl/icon.css" rel="stylesheet">
-      <!-- random generate color -->
-      <link rel="stylesheet" href="../../mdl/material.{{ COLOR }}.min.css" />
-
-      <!-- template.css -->
-      <link rel="stylesheet" type="text/css" href="../../new/t.css">
-    </head>
-    <body>
-      <!-- Uses a header that contracts as the page scrolls down. -->
-      <style>
-      .waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
-      padding-right: 0;
-      }
-      </style>
-      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
-        <header class="mdl-layout__header mdl-layout__header--waterfall">
-          <!-- Top row, always visible -->
-          <div class="mdl-layout__header-row">
-            <!-- TOC -->
-            <span class="mdl-layout-title">目录</span>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-              mdl-textfield--floating-label mdl-textfield--align-right">
-              <label class="mdl-button mdl-js-button mdl-button--icon"
-                for="waterfall-exp">
-                <i class="material-icons">search</i>
-              </label>
-              <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" name="sample"
-                id="waterfall-exp"  placeholder="暂不可用" />
-              </div>
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.{{ COLOR }}.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../new/t.css">
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    </style>
+    <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
             </div>
           </div>
-
-          <!-- Bottom row, not visible on scroll -->
-          <div class="mdl-layout__header-row">
-            <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation -->
-            <nav class="waterfall-demo-header-nav mdl-navigation">
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
-            </nav>
-          </div>
-        </header>
-        <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">目录</span>
-          <nav class="mdl-navigation">
-          {{ TOC }}
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
           </nav>
         </div>
-        <!-- main outer -->
-        <main class="demo-main mdl-layout__content">
-        <!-- grid start -->
-        <div class="demo-container mdl-grid">
-          <!-- placeholder cell -->
-          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-              <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>朝着梦想，一步一步 —— 我的大学生活</h1>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          {{ TOC }}
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>朝着梦想，一步一步 —— 我的大学生活</h1>
 <h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>关于我</h2>
 <p><img alt="Me" src="http://jinjaysnow.github.io/images/mine.png" /><br />
 靳杰，华中科技大学软件学院软件工程1102班。共青团员。前三年加权排名第19。在校期间获得过学习优秀奖，美国数学建模比赛三等奖等奖项。现保送至中国科学院自动化研究所，方向图像与视频处理，侧重于虚拟现实技术。</p>
@@ -203,18 +196,17 @@ email: <a href="mailto:709134513@qq.com">709134513@qq.com</a> 或 <a href="mailt
 <h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未来</h2>
 <p>原本打算考研进清华的，后来阴差阳错保研进了自动化所，也是醉了。不过，并不是说我真的就那样没有主见、听天由命，放弃准备了小半年的考研又去保研也是经过深思熟虑的。还有很多人问我：你学软件的，为什么要去自动化所，而不是去计算所或软件所？我想回答的是，选择自动化所更多的是兴趣与梦想。我自己对智能技术很感兴趣，而且目前来看社会信息化之后发展方向是社会智能化(具体说来，是从A3到I3的转变。A3(Automation)即工厂自动化、办公自动化和家庭自动化。I3(Intellectualization)即工厂智能化、办公智能化和家庭智能化。)，智能化技术拥有很大的前景，恰好自动化所在智能化技术上进行了大量的研究，并拥有国家重点实验室，所以我选择了自动化研究所。我相信学弟学妹们也都或多或少会有自己的兴趣爱好和梦想，能从事自己喜欢的事情是十分美妙的；所以建议学弟学妹们考虑自己未来的毕业走向的时候考虑社会热门方向的同时也多考虑一下自己的兴趣爱好。朝着梦想，一步一步，祝愿大家都能乘风破浪，直挂云帆。</p>
 <p><img alt="在实验室" src="http://jinjaysnow.github.io/images/me_in_lab.jpg" /><br />
-[TOC]</p>
-              <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
-          </div>
+[TOC]</p> <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
         </div>
-        <footer>
-            <p>
-              JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
-            </p>
-            <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
-        </footer>
-        </main>
       </div>
-      <script src="../../mdl/material.min.js"></script>
-    </body>
-  </html>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+    <script src="../../mdl/material.min.js"></script>
+  </body>
+</html>

@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="C语言知识点整理：指针、枚举、联合体、变长参数函数、文件操作、宏等等。">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="description" content="C语言知识点整理：指针、枚举、联合体、变长参数函数、文件操作、宏等等。">
 <meta name="author" content="Jin Jay">
 <meta name="codehilite" content="true">
 <meta name="date" content="2014-09">
@@ -99,7 +97,7 @@ MathJax.Hub.Config({
 });
 </script>
 <title>C语言知识点整理</title>
-
+    <meta name="robots" content="all" />
     <!-- TODO: 移动设备配置 -->
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -112,57 +110,52 @@ MathJax.Hub.Config({
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="../../images/snow.jpg">
     <meta name="msapplication-TileColor" content="#3372DF">
-
     <!-- save to local storage -->
     <link href="../../mdl/icon.css" rel="stylesheet">
-      <!-- random generate color -->
-      <link rel="stylesheet" href="../../mdl/material.red-pink.min.css" />
-
-      <!-- template.css -->
-      <link rel="stylesheet" type="text/css" href="../../new/t.css">
-    </head>
-    <body>
-      <!-- Uses a header that contracts as the page scrolls down. -->
-      <style>
-      .waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
-      padding-right: 0;
-      }
-      </style>
-      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
-        <header class="mdl-layout__header mdl-layout__header--waterfall">
-          <!-- Top row, always visible -->
-          <div class="mdl-layout__header-row">
-            <!-- TOC -->
-            <span class="mdl-layout-title">目录</span>
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-              mdl-textfield--floating-label mdl-textfield--align-right">
-              <label class="mdl-button mdl-js-button mdl-button--icon"
-                for="waterfall-exp">
-                <i class="material-icons">search</i>
-              </label>
-              <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" name="sample"
-                id="waterfall-exp"  placeholder="暂不可用" />
-              </div>
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../new/t.css">
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    </style>
+    <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
             </div>
           </div>
-
-          <!-- Bottom row, not visible on scroll -->
-          <div class="mdl-layout__header-row">
-            <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation -->
-            <nav class="waterfall-demo-header-nav mdl-navigation">
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
-              <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
-            </nav>
-          </div>
-        </header>
-        <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">目录</span>
-          <nav class="mdl-navigation">
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
           <div class="toc">
 <ul>
 <li><a href="#c">保研复试C语言复习</a><ul>
@@ -183,16 +176,16 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </div>
-          </nav>
-        </div>
-        <!-- main outer -->
-        <main class="demo-main mdl-layout__content">
-        <!-- grid start -->
-        <div class="demo-container mdl-grid">
-          <!-- placeholder cell -->
-          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-              <h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
 <h3 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C与指针</h3>
 <p><strong>函数指针</strong></p>
 <blockquote>
@@ -502,18 +495,17 @@ MathJax.Hub.Config({
 </pre></div>
 
 
- 
-              <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
-          </div>
+  <p style="text-align: right; color: gray;"><br>2015-07-05 21:38:55</p>
         </div>
-        <footer>
-            <p>
-              JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
-            </p>
-            <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
-        </footer>
-        </main>
       </div>
-      <script src="../../mdl/material.min.js"></script>
-    </body>
-  </html>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+    <script src="../../mdl/material.min.js"></script>
+  </body>
+</html>
