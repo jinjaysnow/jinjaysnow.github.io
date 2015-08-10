@@ -88,8 +88,8 @@ def generateFile(filePath):
         os.mkdir("../blog/" + dateFolder)
 
     output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w",
-                          encoding="utf-8", 
-                          errors="xmlcharrefreplace")
+                        encoding="utf-8",
+                        errors="xmlcharrefreplace")
 
     output_file.write(finalHtml)
     output_file.close()
@@ -97,21 +97,21 @@ def generateFile(filePath):
     # generate Brief File to be used by updateIndex
     if not os.path.isdir("../brief"):
         os.mkdir("../brief")
-    # change use json open
-    if meta.has_key("image"):
-        briefData = {"brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html"}
-        jsonWrite("../brief/" + fileName, briefData)
 
-    else:
-        briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html"}
-        jsonWrite("../brief/" + fileName, briefData)
-
-    # generate Keywords files
-    if not meta.has_key("keywords"):
+    if "keywords" not in meta:
         keywords = ["default"]
     else:
         keywords = meta["keywords"]
-    # print keywords
+    # change use json open
+    if "image" in meta:
+        briefData = {"brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html", "keywords": keywords}
+        jsonWrite("../brief/" + fileName, briefData)
+
+    else:
+        briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html", "keywords": keywords}
+        jsonWrite("../brief/" + fileName, briefData)
+
+    # generate Keywords files
     for keyword in keywords:
         print "write keywords file w+"
         if not os.path.isfile("keywords.json"):
@@ -122,7 +122,7 @@ def generateFile(filePath):
         else:
             with open("keywords.json") as f:
                 fc = json.load(f)
-            if not fc.has_key(keyword):
+            if keyword not in fc:
                 fc[keyword] = [dateFolder + "/" + fileNameToUrl(fileName) + ".html"]
             else:
                 if not (dateFolder + "/" +fileName + ".html") in fc[keyword]:
@@ -133,7 +133,7 @@ def generateFile(filePath):
             f.close()
 
 if __name__ == '__main__':
-    # When there is no args, it will generate all "../blog/.*md" files by default. 
+    # When there is no args, it will generate all "../blog/.*md" files by default.
     if len(sys.argv) == 1:
         currentDir = os.listdir('../blog/')
         import re

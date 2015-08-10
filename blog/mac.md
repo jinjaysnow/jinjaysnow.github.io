@@ -17,8 +17,8 @@ keywords: Mac updatedb
 
     brew tap homebrew/dupes
     brew install gdb
-### 新建一个整数
-打开“钥匙串访问”程序，在主菜单选择**“证书助理”>“创建整数”**
+### 新建一个证书
+打开“钥匙串访问”程序，在主菜单选择**“证书助理”>“创建证书”**
 ![gdb1](http://jinjaysnow.github.io/static/gdb/gdb1.png)
 
 然后输入证书名，比如`gdb-cert`，将证书类型更改为“代码签名”，并**勾选“让我覆盖这些默认值”**(`截图未勾选`)

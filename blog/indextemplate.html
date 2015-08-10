@@ -1,37 +1,60 @@
 <!DOCTYPE HTML>
 <html lang="zh">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta name="robots" content="all" />
-	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../stylesheets/blog.css">
-	<title>我的博客</title>
-	<link rel="shortcut icon" href="../images/bitbug_favicon.ico" />
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top" style="height: 56px; border-bottom: solid 1px #808080;" >
-		<ul class="navigation" style="padding-left: 30px;padding-right: 30px;">
-			<li><a href="http://jinjaysnow.github.io">主页</a></li>
-			<li><a href="http://jinjaysnow.github.io/blog/index.html">博客</a></li>
-			<li><a href="http://jinjaysnow.github.io/about.html">关于我</a></li>
-			<li class="motto" style="margin-top: 16px; float: right;">朝着梦想，一步一步！</li>
-		</ul>
-	</nav>
-
-	<div class="container" style="margin-top: 4em;">
-		<div class="row" style="margin-top: 20px;">
-{{BODY}}
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="robots" content="all" />
+		<title>我的博客</title>
+		<link rel="shortcut icon" href="../images/bitbug_favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../mdl/material.deep_purple-blue.min.css">
+		<style type="text/css">
+			div.mdl-grid {
+				margin: 30px 0px;
+			}
+			a{text-decoration: none;}
+			.my-title {
+				color: white;
+				height: 120px;
+			}
+		</style>
+	</head>
+	<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+		<!-- The drawer is always open in large screens. The header is always shown,
+		even in small screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+			mdl-layout--fixed-header">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+            		<span class="mdl-layout-title">朝着梦想，一步一步！</span>
+					<div class="mdl-layout-spacer"></div>
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+						mdl-textfield--floating-label mdl-textfield--align-right">
+						<nav class="mdl-navigation">
+							<a class="mdl-navigation__link" href="../index.html">主页</a>
+							<a class="mdl-navigation__link" href="#">博客</a>
+							<a class="mdl-navigation__link" href="../about.html">关于我</a>
+						</nav>
+					</div>
+				</div>
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">日期分类</span>
+				<nav class="mdl-navigation">
+				{{ DATE_FOLDER }}
+				</nav>
+			</div>
+			<main class="mdl-layout__content">
+				<div class="page-content">
+					{{BODY}}
+				</div>
+			</main>
+			<footer>
+				<p>
+					JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+				</p>
+				<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+			</footer>
 		</div>
-	</div>
-
-	<footer>
-		<p class="text-muted text-center">
-			JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
-		</p>
-		<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
-	</footer>
-<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</body>
+    	<script src="../mdl/material.min.js"></script>
+	</body>
 </html>
