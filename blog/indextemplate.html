@@ -38,6 +38,41 @@
 				color: white;
 			}
 		</style>
+		<script src="../mdl/material.min.js"></script>
+		<script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			// 获取元素子元素
+			var getChildNodes = function(ele){
+			    var childArr = ele.children || ele.childNodes,
+			    childArrTem = new Array();  //  临时数组，用来存储符合条件的节点
+			    for(var i = 0, len = childArr.length; i < len; i++){
+			        if(childArr[i].nodeType == 1){
+			            childArrTem.push(childArr[i]);
+			        }
+			    }
+			    return childArrTem;
+			}
+			// 用户点击事件
+			function selectDate(ele_id) {
+				var nav_node = document.getElementById("nav_date");
+				childNodes = getChildNodes(nav_node);
+				if (ele_id == "all") {
+					for (var i = childNodes.length - 1; i >= 1; i--) {
+						var classStr = "." + childNodes[i].id;
+						$(classStr).show();
+					};
+				} else {
+					for (var i = childNodes.length - 1; i >= 1; i--) {
+						var classStr = "." + childNodes[i].id;
+						if (ele_id == childNodes[i].id) {
+							$(classStr).show();
+						} else {
+							$(classStr).hide();
+						}
+					};
+				}
+			}
+		</script>
 	</head>
 	<body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 		<!-- The drawer is always open in large screens. The header is always shown,
@@ -59,7 +94,7 @@
 			</header>
 			<div class="mdl-layout__drawer" style="background: #fff;">
 				<span class="mdl-layout-title">日期分类</span>
-				<nav class="mdl-navigation">
+				<nav class="mdl-navigation" id="nav_date">
 					{{ DATE_FOLDER }}
 				</nav>
 			</div>
@@ -75,6 +110,5 @@
 			</footer>
 			</main>
 		</div>
-		<script src="../mdl/material.min.js"></script>
 	</body>
 </html>

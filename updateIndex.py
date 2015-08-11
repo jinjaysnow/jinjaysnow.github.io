@@ -46,13 +46,13 @@ def saveFinalFile(filePath, tempFilePath, keyword, tempData):
     finalTemp = load_utf8(tempFilePath).encode("utf-8")
     finalTemp = finalTemp.replace(keyword, tempData)
     # replace the DATA_FOLDER in blog/index.html
-    data_floder = '<a class="mdl-navigation__link" href="#">所有</a>'
-    temp = '\n<a class="mdl-navigation__link" href="#">%s</a>'
+    data_floder = '<a class="mdl-navigation__link" href="#all" id="all" onclick="selectDate(this.id)">所有</a>'
+    temp = '\n<a class="mdl-navigation__link" href="#%s" id="%s" onclick="selectDate(this.id)">%s</a>'
     try:
         currentDir = os.listdir('blog/')
         for a in currentDir:
             if "20" in a:
-                t2 = temp % (a)
+                t2 = temp % (a, a, a)
                 data_floder = data_floder + t2
         finalTemp = finalTemp.replace("{{ DATE_FOLDER }}", data_floder)
     except Exception, e:
@@ -86,6 +86,7 @@ for x in briefdir:
         template = textbox
         template = template.replace("{{BRIEF}}", tempData["brief"].encode("utf-8"))
     blogTemplate = blogTemplate.replace("{{BRIEF}}", tempData["brief"].encode("utf-8"))
+    blogTemplate = blogTemplate.replace("{{DATE_FOLDER}}", tempData["dateFolder"].encode("utf-8"))
     # replace color of blog index.html
     from random import randint
     color_num = randint(0, len(color)-1)

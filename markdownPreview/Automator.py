@@ -8,7 +8,9 @@
 ##########################
 
 import codecs
-import os, datetime, sys
+import os
+import datetime
+import sys
 import json
 from MarkdownPreview import MarkdownCompiler
 
@@ -87,9 +89,7 @@ def generateFile(filePath):
     if not os.path.isdir("../blog/" + dateFolder):
         os.mkdir("../blog/" + dateFolder)
 
-    output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w",
-                        encoding="utf-8",
-                        errors="xmlcharrefreplace")
+    output_file = codecs.open("../blog/" + dateFolder + "/" + fileName + ".html", "w", encoding="utf-8", errors="xmlcharrefreplace")
 
     output_file.write(finalHtml)
     output_file.close()
@@ -104,19 +104,19 @@ def generateFile(filePath):
         keywords = meta["keywords"]
     # change use json open
     if "image" in meta:
-        briefData = {"brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html", "keywords": keywords}
+        briefData = {"dateFolder": dateFolder, "brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html", "keywords": keywords}
         jsonWrite("../brief/" + fileName, briefData)
 
     else:
-        briefData = {"brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html", "keywords": keywords}
+        briefData = {"dateFolder": dateFolder, "brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html", "keywords": keywords}
         jsonWrite("../brief/" + fileName, briefData)
 
     # generate Keywords files
     for keyword in keywords:
         print "write keywords file w+"
         if not os.path.isfile("keywords.json"):
-            element = {keyword: [ dateFolder + "/" + fileName + ".html" ]}
-            f = open("keywords.json","w+")
+            element = {keyword: [dateFolder + "/" + fileName + ".html"]}
+            f = open("keywords.json", "w+")
             json.dump(element, f)
             f.close()
         else:
@@ -125,10 +125,10 @@ def generateFile(filePath):
             if keyword not in fc:
                 fc[keyword] = [dateFolder + "/" + fileNameToUrl(fileName) + ".html"]
             else:
-                if not (dateFolder + "/" +fileName + ".html") in fc[keyword]:
+                if not (dateFolder + "/" + fileName + ".html") in fc[keyword]:
                     fc[keyword].append(dateFolder + "/" + fileNameToUrl(fileName) + ".html")
             # delete duplicate elements in the list
-            f = open("keywords.json","w+")
+            f = open("keywords.json", "w+")
             json.dump(fc, f)
             f.close()
 
@@ -140,7 +140,7 @@ if __name__ == '__main__':
         pattern = re.compile(r".*md$")
         for afile in currentDir:
             if pattern.match(afile) is not None:
-                print "generate file ",afile
+                print "generate file ", afile
                 try:
                     generateFile('../blog/' + afile)
                 except Exception, e:
