@@ -112,7 +112,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -122,6 +122,11 @@ MathJax.Hub.Config({
     <style>
     .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
     padding-right: 0;
+    }
+    @media screen and (min-width: 992px) {
+      .mdl-layout__drawer {
+          display: none;
+      }
     }
     </style>
     <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
@@ -143,7 +148,7 @@ MathJax.Hub.Config({
         </div>
         <!-- Bottom row, not visible on scroll -->
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-tile">朝着梦想，一步一步！</span>
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation -->
           <nav class="waterfall-demo-header-nav mdl-navigation">
