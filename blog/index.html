@@ -2,11 +2,26 @@
 <html lang="zh">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="all" />
-		<title>我的博客</title>
+    	<meta name="Description" content="作者：Jin Jay 靳杰 Author，类别：blog 博客">
+		<title>博客</title>
+	    <!-- 移动设备配置 -->
+	    <!-- Add to homescreen for Chrome on Android -->
+	    <meta name="mobile-web-app-capable" content="yes">
+	    <link rel="icon" sizes="192x192" href="images/snow.jpg">
+	    <!-- Add to homescreen for Safari on iOS -->
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="apple-mobile-web-app-title" content="JinJay">
+	    <link rel="apple-touch-icon-precomposed" href="images/snow.jpg">
+	    <!-- Tile icon for Win8 (144x144 + tile color) -->
+	    <meta name="msapplication-TileImage" content="images/snow.jpg">
+	    <meta name="msapplication-TileColor" content="#3372DF">
 		<link rel="shortcut icon" href="../images/bitbug_favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="../mdl/material.deep_purple-blue.min.css">
+		<link href="https://cdn.css.net/fonts/icon?family=Material+Icons" rel="stylesheet">
 		<style type="text/css">
 			div.mdl-grid {
 				margin: 30px 0px;
@@ -15,6 +30,12 @@
 			.my-title {
 				color: white;
 				height: 120px;
+			}
+			footer {
+				text-align: center;
+				background-color: #212121;
+				padding: 16px;
+				color: white;
 			}
 		</style>
 	</head>
@@ -25,22 +46,21 @@
 			mdl-layout--fixed-header">
 			<header class="mdl-layout__header">
 				<div class="mdl-layout__header-row">
-            		<span class="mdl-layout-title">朝着梦想，一步一步！</span>
+					<span class="mdl-layout-title">朝着梦想，一步一步！</span>
 					<div class="mdl-layout-spacer"></div>
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
 						mdl-textfield--floating-label mdl-textfield--align-right">
 						<nav class="mdl-navigation">
 							<a class="mdl-navigation__link" href="../index.html">主页</a>
-							<a class="mdl-navigation__link" href="#">博客</a>
 							<a class="mdl-navigation__link" href="../about.html">关于我</a>
 						</nav>
 					</div>
 				</div>
 			</header>
-			<div class="mdl-layout__drawer">
+			<div class="mdl-layout__drawer" style="background: #fff;">
 				<span class="mdl-layout-title">日期分类</span>
 				<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="#">所有</a>
+					<a class="mdl-navigation__link" href="#">所有</a>
 <a class="mdl-navigation__link" href="#">2014-05</a>
 <a class="mdl-navigation__link" href="#">2014-08</a>
 <a class="mdl-navigation__link" href="#">2014-09</a>
@@ -54,10 +74,10 @@
 				</nav>
 			</div>
 			<main class="mdl-layout__content">
-				<div class="page-content">
-					<div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
+			<div class="page-content">
+				<div class="mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div class="mdl-card__title my-title" style="background: rgb(255, 87, 34);">
             <h2 class="mdl-card__title-text">C语言实现字典结构</h2>
         </div>
@@ -71,7 +91,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 188, 212); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 188, 212); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -79,11 +99,11 @@
             C语言 字典 C dict C redis dict 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(205, 220, 57);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(233, 30, 99);">
             <h2 class="mdl-card__title-text">C语言知识点整理</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -96,7 +116,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(33, 150, 243); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(76, 175, 80); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -104,11 +124,11 @@
             C语言 函数指针 枚举 联合体 宏定义 C文件操作 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(255, 87, 34);">
             <h2 class="mdl-card__title-text">Django & Tornado</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -121,7 +141,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 150, 136); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 188, 212); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -129,11 +149,11 @@
             Django, Tornado 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
             <h2 class="mdl-card__title-text">Free Software Movement</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -146,7 +166,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(205, 220, 57); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(156, 39, 176); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -154,11 +174,11 @@
             Free-Software-Movement 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
             <h2 class="mdl-card__title-text">Git服务器搭建</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -171,7 +191,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(139, 195, 74); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -179,11 +199,11 @@
             git server debian git服务器搭建 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">Git相关</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -196,7 +216,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -204,11 +224,11 @@
             git github 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
             <h2 class="mdl-card__title-text">iOS Capture EAGLView</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -221,7 +241,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(139, 195, 74); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(205, 220, 57); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -229,11 +249,11 @@
             iOS7, iOS8, EAGLView, snapshot OpenGLES view 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(76, 175, 80);">
             <h2 class="mdl-card__title-text">iOS多线程GCD</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -246,7 +266,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(205, 220, 57); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(63, 81, 181); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -254,11 +274,11 @@
             iOS GCD iOS多线程 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(76, 175, 80);">
             <h2 class="mdl-card__title-text">iOS应用开发流程</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -271,7 +291,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(139, 195, 74); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(63, 81, 181); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -279,10 +299,10 @@
             iOS; Swift; App 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
             <h2 class="mdl-card__title-text">iOS隐藏状态栏</h2>
         </div>
@@ -296,7 +316,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(255, 87, 34); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -304,10 +324,10 @@
             iOS开发 隐藏状态栏 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">linear algebra</h2>
         </div>
@@ -321,7 +341,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 150, 136); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -329,11 +349,11 @@
             Linear Algebra 线性代数 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(255, 87, 34);">
             <h2 class="mdl-card__title-text">Linux基本操作</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -346,7 +366,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(205, 220, 57); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 188, 212); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -354,11 +374,11 @@
             Linux 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
             <h2 class="mdl-card__title-text">Mac常用操作</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -371,7 +391,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(205, 220, 57); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -379,11 +399,11 @@
             Mac updatedb Mac OS X gdb 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(255, 87, 34);">
             <h2 class="mdl-card__title-text">MPI并行程序设计</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -396,7 +416,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 150, 136); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 188, 212); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -404,11 +424,11 @@
             MPI Mac OS 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(205, 220, 57);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
             <h2 class="mdl-card__title-text">MySQL常用操作</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -421,7 +441,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(33, 150, 243); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(205, 220, 57); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -429,11 +449,11 @@
             MySQL 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(233, 30, 99);">
             <h2 class="mdl-card__title-text">Nginx</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -446,7 +466,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(76, 175, 80); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -454,11 +474,11 @@
             Nginx 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
             <h2 class="mdl-card__title-text">Python抓取股票信息</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -471,7 +491,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(255, 87, 34); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -479,11 +499,11 @@
             Python 网页抓取 股票信息 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
             <h2 class="mdl-card__title-text">R语言学习之路</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -496,7 +516,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(156, 39, 176); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -504,11 +524,11 @@
             R 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 150, 136);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
             <h2 class="mdl-card__title-text">SceneKit与OpenGL结合</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -521,7 +541,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(233, 30, 99); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(205, 220, 57); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -529,10 +549,10 @@
             iOS SceneKit, iOS OpenGLES, SceneKit OpenGL 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
             <h2 class="mdl-card__title-text">Scheme语言学习</h2>
         </div>
@@ -546,7 +566,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(139, 195, 74); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(139, 195, 74); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -554,11 +574,11 @@
             Scheme 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(139, 195, 74);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">Use MarkDownPy</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -571,7 +591,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(3, 169, 244); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -579,11 +599,11 @@
             python markdown 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(255, 87, 34);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
             <h2 class="mdl-card__title-text">东软实习报告</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -596,7 +616,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 188, 212); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(255, 87, 34); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -604,11 +624,11 @@
             东软实习报告 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(139, 195, 74);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
             <h2 class="mdl-card__title-text">代码大全</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -621,7 +641,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(3, 169, 244); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(156, 39, 176); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -629,10 +649,10 @@
             code complete 代码大全 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">信安Pcap解析</h2>
         </div>
@@ -646,7 +666,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(0, 150, 136); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -654,11 +674,11 @@
             pcap parse 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(76, 175, 80);">
             <h2 class="mdl-card__title-text">微积分</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -671,7 +691,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(139, 195, 74); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(63, 81, 181); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -679,11 +699,11 @@
             微积分 Calculus 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(63, 81, 181);">
             <h2 class="mdl-card__title-text">搭建基于PPTP协议的VPN</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -696,7 +716,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(205, 220, 57); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -704,11 +724,11 @@
             pptp VPN 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(76, 175, 80);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(233, 30, 99);">
             <h2 class="mdl-card__title-text">改善Python程序</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -721,7 +741,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(63, 81, 181); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(76, 175, 80); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -729,11 +749,11 @@
             improve python 改善Python程序 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
             <h2 class="mdl-card__title-text">朝着梦想，一步一步</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -746,7 +766,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(139, 195, 74); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -754,11 +774,11 @@
             我的大学生活 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(139, 195, 74);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">概率论</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -771,7 +791,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(3, 169, 244); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -779,11 +799,11 @@
             无
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">浙大保研面试</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -796,7 +816,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -804,11 +824,11 @@
             Interview 浙大保研 计算机 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(33, 150, 243);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(139, 195, 74);">
             <h2 class="mdl-card__title-text">知乎面试</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -821,7 +841,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(139, 195, 74); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(3, 169, 244); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -829,11 +849,11 @@
             知乎面试 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(205, 220, 57);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
             <h2 class="mdl-card__title-text">编写正则表达式引擎</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -846,7 +866,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(33, 150, 243); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(255, 87, 34); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -854,11 +874,11 @@
             正则表达式引擎 regular expression engine 2014种子杯初赛 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(205, 220, 57);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">编写浏览器显示引擎</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -871,7 +891,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(33, 150, 243); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -879,11 +899,11 @@
             浏览器显示引擎 browser engine 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(0, 188, 212);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(0, 150, 136);">
             <h2 class="mdl-card__title-text">自动化所保研面试</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -896,7 +916,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(156, 39, 176); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(233, 30, 99); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -904,11 +924,11 @@
             Interview  AC 自动化所面试 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(76, 175, 80);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(0, 150, 136);">
             <h2 class="mdl-card__title-text">让搜索引擎索引你的网站</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -921,7 +941,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(63, 81, 181); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(233, 30, 99); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -929,11 +949,11 @@
             webmaster 网站站长 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div><div class="mdl-grid mdl-grid--no-spacing">
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
-    <div class="mdl-card mdl-cell mdl-cell--6-col">
-        <div class="mdl-card__title my-title" style="background: rgb(3, 169, 244);">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
+    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
+        <div class="mdl-card__title my-title" style="background: rgb(156, 39, 176);">
             <h2 class="mdl-card__title-text">面向对象编程</h2>
         </div>
         <div class="mdl-card__supporting-text">
@@ -946,7 +966,7 @@
         </div>
     </div>
     
-    <div class="mdl-card mdl-cell mdl-cell--2-col" style="background: rgb(255, 87, 34); color:white;">
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-cell--4-col-phone" style="background: rgb(0, 150, 136); color:white;">
         <div class="mdl-card__title my-title">
             <h2 class="mdl-card__title-text">关键词<h2>
         </div>
@@ -954,17 +974,17 @@
             OOP 
         </div>
     </div>
-    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100"></div>
+    <div class="mdl-card mdl-cell mdl-cell--2-col mdl-color--grey-100 mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
 </div>
-				</div>
-			</main>
+			</div>
 			<footer>
 				<p>
 					JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
 				</p>
 				<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
 			</footer>
+			</main>
 		</div>
-    	<script src="../mdl/material.min.js"></script>
+		<script src="../mdl/material.min.js"></script>
 	</body>
 </html>

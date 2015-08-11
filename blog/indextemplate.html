@@ -2,11 +2,26 @@
 <html lang="zh">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="robots" content="all" />
-		<title>我的博客</title>
+    	<meta name="Description" content="作者：Jin Jay 靳杰 Author，类别：blog 博客">
+		<title>博客</title>
+	    <!-- 移动设备配置 -->
+	    <!-- Add to homescreen for Chrome on Android -->
+	    <meta name="mobile-web-app-capable" content="yes">
+	    <link rel="icon" sizes="192x192" href="images/snow.jpg">
+	    <!-- Add to homescreen for Safari on iOS -->
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="apple-mobile-web-app-title" content="JinJay">
+	    <link rel="apple-touch-icon-precomposed" href="images/snow.jpg">
+	    <!-- Tile icon for Win8 (144x144 + tile color) -->
+	    <meta name="msapplication-TileImage" content="images/snow.jpg">
+	    <meta name="msapplication-TileColor" content="#3372DF">
 		<link rel="shortcut icon" href="../images/bitbug_favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="../mdl/material.deep_purple-blue.min.css">
+		<link href="https://cdn.css.net/fonts/icon?family=Material+Icons" rel="stylesheet">
 		<style type="text/css">
 			div.mdl-grid {
 				margin: 30px 0px;
@@ -15,6 +30,12 @@
 			.my-title {
 				color: white;
 				height: 120px;
+			}
+			footer {
+				text-align: center;
+				background-color: #212121;
+				padding: 16px;
+				color: white;
 			}
 		</style>
 	</head>
@@ -25,36 +46,35 @@
 			mdl-layout--fixed-header">
 			<header class="mdl-layout__header">
 				<div class="mdl-layout__header-row">
-            		<span class="mdl-layout-title">朝着梦想，一步一步！</span>
+					<span class="mdl-layout-title">朝着梦想，一步一步！</span>
 					<div class="mdl-layout-spacer"></div>
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
 						mdl-textfield--floating-label mdl-textfield--align-right">
 						<nav class="mdl-navigation">
 							<a class="mdl-navigation__link" href="../index.html">主页</a>
-							<a class="mdl-navigation__link" href="#">博客</a>
 							<a class="mdl-navigation__link" href="../about.html">关于我</a>
 						</nav>
 					</div>
 				</div>
 			</header>
-			<div class="mdl-layout__drawer">
+			<div class="mdl-layout__drawer" style="background: #fff;">
 				<span class="mdl-layout-title">日期分类</span>
 				<nav class="mdl-navigation">
-				{{ DATE_FOLDER }}
+					{{ DATE_FOLDER }}
 				</nav>
 			</div>
 			<main class="mdl-layout__content">
-				<div class="page-content">
-					{{BODY}}
-				</div>
-			</main>
+			<div class="page-content">
+				{{BODY}}
+			</div>
 			<footer>
 				<p>
 					JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
 				</p>
 				<script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
 			</footer>
+			</main>
 		</div>
-    	<script src="../mdl/material.min.js"></script>
+		<script src="../mdl/material.min.js"></script>
 	</body>
 </html>
