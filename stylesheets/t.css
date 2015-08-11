@@ -340,8 +340,8 @@ td:not(.linenos) .linenodiv { padding: 0 !important; }
 footer {
   text-align: center;
   background-color: #424242;
-  padding: 32px 16px;
-  color: white;
+  padding: 20px 16px;
+  color: white; 
 }
 
 .demo-content {
