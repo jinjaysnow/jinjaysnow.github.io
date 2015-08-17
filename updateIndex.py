@@ -50,6 +50,7 @@ def saveFinalFile(filePath, tempFilePath, keyword, tempData):
     temp = '\n<a class="mdl-navigation__link" href="#%s" id="%s" onclick="selectDate(this.id)">%s</a>'
     try:
         currentDir = os.listdir('blog/')
+        currentDir.reverse()
         for a in currentDir:
             if "20" in a:
                 t2 = temp % (a, a, a)
@@ -63,7 +64,28 @@ def saveFinalFile(filePath, tempFilePath, keyword, tempData):
     print "success generate ", filePath
 
 
+def dateCompare(a, b):
+    """比较两个brief文件的 dateFolder 字段大小和文件产生的时间大小来排序"""
+    with open("brief/" + a) as f:
+        tempA = json.load(f)
+    with open("brief/" + b) as f:
+        tempB = json.load(f)
+    if tempA["dateFolder"] > tempB["dateFolder"]:
+        return -1
+    elif tempA["dateFolder"] < tempB["dateFolder"]:
+        return 1
+
+    stat_x = os.stat("brief" + "/" + a)
+    stat_y = os.stat("brief" + "/" + b)
+    if stat_x.st_ctime > stat_y.st_ctime:
+        return -1
+    elif stat_x.st_ctime < stat_y.st_ctime:
+        return 1
+    else:
+        return 0
+
 briefdir = os.listdir("brief")
+briefdir.sort(dateCompare)
 
 textbox = load_utf8("templates/textbox.tm.html").encode("utf-8")
 imgbox = load_utf8("templates/imagebox.tm.html").encode("utf-8")
