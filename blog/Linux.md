@@ -21,4 +21,8 @@ keywords: Linux
 
     scp Jay@myserver/file1 file2
 
+
+### export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+
+
 [TOC]
