@@ -19,7 +19,7 @@ keywords: Linux
 
 ### 从远程服务器拷贝
 
-    scp Jay@myserver/file1 file2
+    scp Jay@myserver:path2file1 file2
 
 
 ### export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
