@@ -22,7 +22,22 @@ keywords: Linux
     scp Jay@myserver:path2file1 file2
 
 
-### export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+### 设置自定义的链接库路径 
+
+```
+export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+```
+
+### iptables设置
+```
+iptables -A INPUT -i lo -j ACCEPT
+```
+允许局域网所有连接
+
+```
+iptables -A INPUT -p tcp  --dport 8001:8004 -j REJECT
+```
+外网不允许访问8001到8004端口
 
 
 [TOC]

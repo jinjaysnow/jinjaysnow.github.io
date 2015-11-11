@@ -113,7 +113,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -165,7 +165,8 @@ MathJax.Hub.Config({
 <li><a href="#_2">修改密码</a></li>
 <li><a href="#_3">修改用户信息</a></li>
 <li><a href="#_4">从远程服务器拷贝</a></li>
-<li><a href="#export-ld_library_pathhomelibld_library_path">export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH</a></li>
+<li><a href="#_5">设置自定义的链接库路径</a></li>
+<li><a href="#iptables">iptables设置</a></li>
 </ul>
 </li>
 </ul>
@@ -200,8 +201,23 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<h3 id="export-ld_library_pathhomelibld_library_path"><a name="user-content-export-ld_library_pathhomelibld_library_path" href="#export-ld_library_pathhomelibld_library_path" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH</h3>
-  <p style="text-align: right; color: gray;"><br>2015-09-27 18:04:22</p>
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>设置自定义的链接库路径</h3>
+<div class="codehilite"><pre><span class="vg">export</span><span class="w"> </span><span class="vg">LD_LIBRARY_PATH</span><span class="o">=</span><span class="err">$</span><span class="vg">HOME</span><span class="o">/</span><span class="nl">lib:</span><span class="err">$</span><span class="vg">LD_LIBRARY_PATH</span>
+</pre></div>
+
+
+<h3 id="iptables"><a name="user-content-iptables" href="#iptables" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>iptables设置</h3>
+<div class="codehilite"><pre><span class="vg">iptables</span><span class="w"> </span><span class="o">-</span><span class="vg">A</span><span class="w"> </span><span class="kr">INPUT</span><span class="w"> </span><span class="o">-</span><span class="vg">i</span><span class="w"> </span><span class="vg">lo</span><span class="w"> </span><span class="o">-</span><span class="vg">j</span><span class="w"> </span><span class="vg">ACCEPT</span>
+</pre></div>
+
+
+<p>允许局域网所有连接</p>
+<div class="codehilite"><pre><span class="vg">iptables</span><span class="w"> </span><span class="o">-</span><span class="vg">A</span><span class="w"> </span><span class="kr">INPUT</span><span class="w"> </span><span class="o">-</span><span class="vg">p</span><span class="w"> </span><span class="vg">tcp</span><span class="w">  </span><span class="o">--</span><span class="vg">dport</span><span class="w"> </span><span class="il">8001</span><span class="o">:</span><span class="il">8004</span><span class="w"> </span><span class="o">-</span><span class="vg">j</span><span class="w"> </span><span class="vg">REJECT</span>
+</pre></div>
+
+
+<p>外网不允许访问8001到8004端口</p>
+  <p style="text-align: right; color: gray;"><br>2015-11-11 14:20:07</p>
         </div>
       </div>
       <footer>

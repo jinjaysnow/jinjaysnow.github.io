@@ -9,4 +9,7 @@ Icon?
 ehthumbs.db
 Thumbs.db
 *.pyc
+brief
+brief/*
+
 
