@@ -13,6 +13,7 @@ def load_settings(filename):
         fc = json.load(f)
     return fc
 
+
 class Settings(object):
     def __init__(self, settings_file, file_name):
         self.file_name = file_name
@@ -147,8 +148,3 @@ class Settings(object):
                 else:
                     value = unicode_str(value)
                 self._overrides["meta"][unicode_str(key)] = value
-
-
-# sets = Settings("MarkdownPreview.sublime-settings", "../first.md")
-# print sets._sub_settings
-# print sets._overrides

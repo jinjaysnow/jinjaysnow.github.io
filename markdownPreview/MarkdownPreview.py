@@ -8,7 +8,7 @@ import codecs
 import cgi
 
 
-import yaml
+# import yaml
 from markdown_settings import Settings
 from markdown_wrapper import StMarkdown as Markdown
 from lib.markdown_preview_lib.pygments.formatters import HtmlFormatter

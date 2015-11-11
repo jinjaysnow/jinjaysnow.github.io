@@ -78,6 +78,32 @@ except (ImportError, RuntimeError):  # pragma: no cover
         raise RuntimeError("ElementTree version 1.1 or higher is required")
 
 
+def iterate(elem, tag=None):
+    if hasattr(elem, 'iter'):
+        # Python 2.7+
+        return elem.iter(tag)
+    return elem.getiterator(tag)
+
+
+def itertext(elem, tag=None):
+    if hasattr(elem, 'itertext'):
+        # Python 2.7+
+        return elem.iter(tag)
+    return elem.getiterator(tag)
+
+
+def itertext(elem):
+    tag = elem.tag
+    if not isinstance(tag, string_type) and tag is not None:
+        return
+    if elem.text:
+        yield elem.text
+    for e in elem:
+        for s in itertext(e):
+            yield s
+        if e.tail:
+            yield e.tail
+
 """
 AUXILIARY GLOBAL FUNCTIONS
 =============================================================================

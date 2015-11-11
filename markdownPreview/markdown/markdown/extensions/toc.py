@@ -17,7 +17,8 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from . import Extension
 from ..treeprocessors import Treeprocessor
-from ..util import etree, parseBoolValue, AMP_SUBSTITUTE, HTML_PLACEHOLDER_RE, string_type
+from ..util import etree, parseBoolValue, AMP_SUBSTITUTE, HTML_PLACEHOLDER_RE, string_type, iterate, \
+    itertext
 import re
 import unicodedata
 
@@ -141,14 +142,14 @@ class TocTreeprocessor(Treeprocessor):
 
     def iterparent(self, root):
         ''' Iterator wrapper to get parent and child all at once. '''
-        for parent in root.iter():
+        for parent in iterate(root):
             for child in parent:
                 yield parent, child
 
     def replace_marker(self, root, elem):
         ''' Replace marker with elem. '''
         for (p, c) in self.iterparent(root):
-            text = ''.join(c.itertext()).strip()
+            text = ''.join(itertext(c)).strip()
             if not text:
                 continue
 
@@ -225,15 +226,15 @@ class TocTreeprocessor(Treeprocessor):
     def run(self, doc):
         # Get a list of id attributes
         used_ids = set()
-        for el in doc.iter():
+        for el in iterate(doc):
             if "id" in el.attrib:
                 used_ids.add(el.attrib["id"])
 
         toc_tokens = []
-        for el in doc.iter():
+        for el in iterate(doc):
             if isinstance(el.tag, string_type) and self.header_rgx.match(el.tag):
                 self.set_level(el)
-                text = ''.join(el.itertext()).strip()
+                text = ''.join(itertext(el)).strip()
 
                 # Do not override pre-existing ids
                 if "id" not in el.attrib:

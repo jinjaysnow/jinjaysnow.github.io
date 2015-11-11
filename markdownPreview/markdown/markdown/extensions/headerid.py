@@ -19,7 +19,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from . import Extension
 from ..treeprocessors import Treeprocessor
-from ..util import parseBoolValue
+from ..util import parseBoolValue, itertext
 from .toc import slugify, unique, stashedHTML2text
 import warnings
 
@@ -39,7 +39,7 @@ class HeaderIdTreeprocessor(Treeprocessor):
                     if "id" in elem.attrib:
                         id = elem.get('id')
                     else:
-                        id = stashedHTML2text(''.join(elem.itertext()), self.md)
+                        id = stashedHTML2text(''.join(itertext(elem)), self.md)
                         id = slugify(id, sep)
                     elem.set('id', unique(id, self.IDs))
                 if start_level:
