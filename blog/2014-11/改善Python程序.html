@@ -113,7 +113,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -206,6 +206,7 @@ MathJax.Hub.Config({
 <li><a href="#traceback">使用traceback获取栈信息</a></li>
 <li><a href="#logging">使用logging记录日志信息</a></li>
 <li><a href="#threading">使用threading模块编写多线程程序</a></li>
+<li><a href="#multiprocessing">使用multiprocessing编写多进程程序</a></li>
 <li><a href="#queue">使用Queue使多线程变成更安全</a></li>
 <li><a href="#_15">利用模块实现单例模式</a></li>
 <li><a href="#mixin">用mixin模式让程序更加灵活</a></li>
@@ -886,6 +887,16 @@ MathJax.Hub.Config({
 2. 为了方便地找出问题所在，logging的名字建议以模块或者class来命名。logging名称遵循&rsquo;.&rsquo;划分的继承规则，根是root logger, logger a.b的父logger对象为a。<br />
 3. logging只是线程安全的，不支持多进程写入同一个日志文件，因此对于多个进程，需要配置不同的日志文件。</p>
 <h3 id="threading"><a name="user-content-threading" href="#threading" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用threading模块编写多线程程序</h3>
+<h3 id="multiprocessing"><a name="user-content-multiprocessing" href="#multiprocessing" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用multiprocessing编写多进程程序</h3>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>        <span class="c"># CPU密集型</span>
+<span class="kn">from</span> <span class="nn">multiprocessing.dummy</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>  <span class="c"># IO密集型</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">single_hanlder</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+
+
 <h3 id="queue"><a name="user-content-queue" href="#queue" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用Queue使多线程变成更安全</h3>
 <blockquote>
 <p>程序中存在三种类型的bug：你的bug、我的bug和多线程。</p>
@@ -1290,7 +1301,7 @@ MathJax.Hub.Config({
 <p>在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。<br />
 所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。<br />
 因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。</p>
-  <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
+  <p style="text-align: right; color: gray;"><br>2015-11-16 08:32:12</p>
         </div>
       </div>
       <footer>

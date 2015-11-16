@@ -493,6 +493,18 @@ logging.basicConfig(
 
 ### 使用threading模块编写多线程程序
 
+### 使用multiprocessing编写多进程程序
+
+```Python
+from multiprocessing import Pool as ThreadPool        # CPU密集型
+from multiprocessing.dummy import Pool as ThreadPool  # IO密集型
+pool = ThreadPool(4)
+results = pool.map(single_hanlder, params)
+pool.close()
+pool.join()
+```
+
+
 ### 使用Queue使多线程变成更安全
 > 程序中存在三种类型的bug：你的bug、我的bug和多线程。
 
