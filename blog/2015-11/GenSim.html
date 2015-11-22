@@ -113,7 +113,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -200,7 +200,7 @@ MathJax.Hub.Config({
 <li>内存独立，没有必要一次把所有的训练语料库载入内容。</li>
 <li>对几个流行的向量空间算法进行了高效的实现，包括<strong>Tf-Idf</strong>, <strong>Latent Semantic Analysis</strong>, <strong>Latent Dirichlet Allocation</strong>, <strong>Random Projection</strong>;添加一个新的也非常容易。</li>
 <li>对几个流行的数据格式进行了IO包装和转换。</li>
-<li>文档相似度查询</li>
+<li>实现了文档相似度查询</li>
 </ul>
 <p>安装：</p>
 <div class="codehilite"><pre>pip install gensim
@@ -246,7 +246,7 @@ MathJax.Hub.Config({
 <span class="o">&gt;&gt;&gt;</span> <span class="n">texts</span> <span class="o">=</span> <span class="p">[[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">text</span> <span class="k">if</span> <span class="n">frequency</span><span class="p">[</span><span class="n">token</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span>          <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>   <span class="c"># 更改的输出格式</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>   <span class="c"># 更好的输出格式</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pprint</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
 <span class="p">[[</span><span class="s">&#39;human&#39;</span><span class="p">,</span> <span class="s">&#39;interface&#39;</span><span class="p">,</span> <span class="s">&#39;computer&#39;</span><span class="p">],</span>
  <span class="p">[</span><span class="s">&#39;survey&#39;</span><span class="p">,</span> <span class="s">&#39;user&#39;</span><span class="p">,</span> <span class="s">&#39;computer&#39;</span><span class="p">,</span> <span class="s">&#39;system&#39;</span><span class="p">,</span> <span class="s">&#39;response&#39;</span><span class="p">,</span> <span class="s">&#39;time&#39;</span><span class="p">],</span>
@@ -260,20 +260,20 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<p>当然，处理文档的方式有很多种；这里只是简单的将空格移除，然后将每一个单词小写。处理文档的方式太多也太有针对性，所以在这一方面并没有限制。一个文档代表的是从它里面可以提取出特征，怎样获得特征由你决定。下面介绍一种通用的方法(bag-of-words)，但是需要记住，不同的应用需要不同的特征，而且，garbage in, garbage out(输入了垃圾数据，便会输出垃圾结果)。。。</p>
+<p>当然，处理文档的方式有很多种；这里只是简单的将空格移除，然后将每一个单词小写。处理文档的方式太多也太有针对性，所以在这一方面并没有限制。一个文档代表的是从它里面可以提取出特征，怎样获得特征由你决定。下面介绍一种通用的方法，词袋(bag-of-words)，但是需要记住，不同的应用需要不同的特征，而且，garbage in, garbage out(输入了垃圾数据，便会输出垃圾结果)。。。</p>
 <p>为了将文档转化为向量，我们需要使用一个文档表示方法——词袋(bag-of-words)。每一个文档通过一个向量来表示，每一个向量都表示一个QA(question-answer)对，如下</p>
 <blockquote>
 <p>&ldquo;How many times does the word system appear in the document? Once.&rdquo;</p>
 </blockquote>
-<p>使用整形id来表示问题是十分有利的。问题和id之间的映射成为一个词典(dictionary):</p>
+<p>使用整型id来表示问题是十分有利的。问题和id之间的映射成为一个词典(dictionary):</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">dictionary</span> <span class="o">=</span> <span class="n">corpora</span><span class="o">.</span><span class="n">Dictionary</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;/tmp/deerwester.dict&#39;</span><span class="p">)</span> <span class="c"># store the dictionary, for future reference</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;/tmp/deerwester.dict&#39;</span><span class="p">)</span> <span class="c"># 保存以备之后使用</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
 <span class="n">Dictionary</span><span class="p">(</span><span class="mi">12</span> <span class="n">unique</span> <span class="n">tokens</span><span class="p">)</span>
 </pre></div>
 
 
-<p>这里我们给在语料库中的每一个单词分配了一个整形id，通过<code>gensim.corpora.dictionary.Dictionary</code>类。这一步会对文本进行清理，对文本计数，并作一些相关的统计。最后，我们能够发现在处理后的语料库中有12个的单独的单词，表示每一个文档能够通过这12个数字来表示(也即12维向量)。为了可视化单词和他们的id之间的映射，可以通过print来查看。</p>
+<p>这里我们给在语料库中的每一个单词分配了一个整型id，通过<code>gensim.corpora.dictionary.Dictionary</code>类。这一步会对文本进行清理，对文本计数，并作一些相关的统计。最后，我们能够发现在处理后的语料库中有12个的单独的单词，表示每一个文档能够通过这12个数字来表示(也即12维向量)。为了可视化单词和他们的id之间的映射，可以通过print来查看。</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">token2id</span><span class="p">)</span>
 <span class="p">{</span><span class="s">&#39;minors&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&#39;graph&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;system&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;trees&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s">&#39;eps&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">&#39;computer&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 <span class="s">&#39;survey&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;user&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&#39;human&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&#39;interface&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;response&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
@@ -288,7 +288,7 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<p>此处函数<code>doc2bow()</code>简单的计算每一个单词出现的数量，将单词与整形id结合返回一个向量。向量<code>[(0,1),(1,1)]</code>表示，在文档<code>Human computer interaction</code>中，单词<code>computer</code>(id为0)和<code>human</code>(id为1)只出现了一次；其他的单词出现0次。</p>
+<p>此处函数<code>doc2bow()</code>简单的计算每一个单词出现的数量，将单词与整型id结合返回一个向量。向量<code>[(0,1),(1,1)]</code>表示，在文档<code>Human computer interaction</code>中，单词<code>computer</code>(id为0)和<code>human</code>(id为1)只出现了一次；其他的单词出现0次。</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">dictionary</span><span class="o">.</span><span class="n">doc2bow</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">corpora</span><span class="o">.</span><span class="n">MmCorpus</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s">&#39;/tmp/deerwester.mm&#39;</span><span class="p">,</span> <span class="n">corpus</span><span class="p">)</span> <span class="c"># store to disk, for later use</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
@@ -321,7 +321,7 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<p>现在语料库是一个对象。我们还没有定义任何的方法来输出它，所以print只会显示对象在内存中的地址。并不十分有用。为了看到组成向量。我们可以在语料库上进行迭代并答应文档向量。</p>
+<p>现在语料库是一个对象。我们还没有定义任何的方法来输出它，所以print只会显示对象在内存中的地址。并不十分有用。为了看到组成向量。我们可以在语料库上进行迭代并打印文档向量。</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">vector</span> <span class="ow">in</span> <span class="n">corpus_memory_friendly</span><span class="p">:</span> <span class="c"># load one vector into memory at a time</span>
 <span class="o">...</span>     <span class="k">print</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
 <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
@@ -432,7 +432,7 @@ MathJax.Hub.Config({
 1. 显现我们语料库的隐藏结构，找到词与词之间的关系，并使用他们以更加语义化的方式来描述新的文档。<br />
 2. 使文档表示更加坚实。包括提升效率(新表示方法需要更少的资源)和功效(去除无效的数据，降噪)。</p>
 <h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>创建一个变换</h3>
-<p>变换是一个标准的Python对象，通常从一个训练的预料库中初始化。</p>
+<p>变换是一个标准的Python对象，通常从一个训练的语料库中初始化。</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">tfidf</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TfidfModel</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span> <span class="c"># 步骤1，初始化一个模型</span>
 </pre></div>
 
@@ -465,9 +465,9 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<p>在这个特定的例子中，我们能够转化之前用于训练的相同的语料库，但是结果是次要的。一旦变换模型被初始化，它就可以用在任何向量上(淡然，假定他们来自相同的向量空间),即使没有在训练的语料库中使用过。这通过LSA中被称为<code>folding-in</code>过程实现。</p>
+<p>在这个特定的例子中，我们能够转化之前用于训练的相同的语料库，但是结果是次要的。一旦变换模型被初始化，它就可以用在任何向量上(当然，假定他们来自相同的向量空间),即使没有在训练的语料库中使用过。这通过LSA中被称为<code>folding-in</code>过程实现。</p>
 <blockquote>
-<p>注：调用<code>model[corpus]</code>只会创建一个对酒的数据流的包装，真正的变换是在文档迭代的过程中飞速完成的。我们不能在调用<code>corpus_transformed=model[corpus]</code>时转换所有的语料库，因为这意味着保存结果到内存中，与gensim的内存独立相违背。如果需要多次迭代变换<code>corpus_transformed</code>,然后转换的开销很大，可以先将其序列化到磁盘上，然后继续使用。</p>
+<p>注：调用<code>model[corpus]</code>只会创建一个对旧的数据流的包装，真正的变换是在文档迭代的过程中飞速完成的。我们不能在调用<code>corpus_transformed=model[corpus]</code>时转换所有的语料库，因为这意味着保存结果到内存中，与gensim的内存独立相违背。如果需要多次迭代变换<code>corpus_transformed</code>,然后转换的开销很大，可以先将其序列化到磁盘上，然后继续使用。</p>
 </blockquote>
 <p>转换可以序列化，在一条链上：</p>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">lsi</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">LsiModel</span><span class="p">(</span><span class="n">corpus_tfidf</span><span class="p">,</span> <span class="n">id2word</span><span class="o">=</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">num_topics</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c"># 初始化一个LSI变换</span>
@@ -508,7 +508,7 @@ MathJax.Hub.Config({
 <h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>可使用的变换</h3>
 <p>Gensim包含一些流行的向量空间模型算法：</p>
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Tf–idf">Term Frequency * Inverse Document Frequency, Tf-Idf</a>接受词袋训练向量来初始化。在变换过程中，可以将一个向量转换为相同维度的向量，使得训练数据中的稀有特征的值得到增加。它最后将整形的向量转换为实数值，保留数字的维度不变。也可以可选地归一化结果向量为单位长度。</li>
+<li><a href="http://en.wikipedia.org/wiki/Tf–idf">Term Frequency * Inverse Document Frequency, Tf-Idf</a>接受词袋训练向量来初始化。在变换过程中，可以将一个向量转换为相同维度的向量，使得训练数据中的稀有特征的值得到增加。它最后将整型的向量转换为实数值，保留数字的维度不变。也可以可选地归一化结果向量为单位长度。</li>
 </ul>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">tfidfmodel</span><span class="o">.</span><span class="n">TfidfModel</span><span class="p">(</span><span class="n">bow_corpus</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
@@ -544,8 +544,10 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<p>gensim使用一个在线LDA参数评价的快速实现，可以在分布式集群上运行。<br />
-+ <a href="http://jmlr.csail.mit.edu/proceedings/papers/v15/wang11a/wang11a.pdf">Hierarchical Dirichlet Process, HDP</a>是一个非参数的贝叶斯方法(表示请求主题的缺省数目)：</p>
+<p>gensim使用一个在线LDA参数评价的快速实现，可以在分布式集群上运行。</p>
+<ul>
+<li><a href="http://jmlr.csail.mit.edu/proceedings/papers/v15/wang11a/wang11a.pdf">Hierarchical Dirichlet Process, HDP</a>是一个非参数的贝叶斯方法(表示请求主题的缺省数目)：</li>
+</ul>
 <div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">hdpmodel</span><span class="o">.</span><span class="n">HdpModel</span><span class="p">(</span><span class="n">bow_corpus</span><span class="p">,</span> <span class="n">id2word</span><span class="o">=</span><span class="n">dictionary</span><span class="p">)</span>
 </pre></div>
 
@@ -627,7 +629,7 @@ MathJax.Hub.Config({
 <li>存在一些需要更高效实现的地方(比如用C实现)，或者并行的实现。</li>
 <li>新的算法层出不穷。</li>
 </ul>
-  <p style="text-align: right; color: gray;"><br>2015-11-22 18:55:53</p>
+  <p style="text-align: right; color: gray;"><br>2015-11-22 21:55:17</p>
         </div>
       </div>
       <footer>
