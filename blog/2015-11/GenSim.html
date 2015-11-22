@@ -113,7 +113,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.orange-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -160,7 +160,7 @@ MathJax.Hub.Config({
         <nav class="mdl-navigation">
           <div class="toc">
 <ul>
-<li><a href="#gensim">gensim文档</a><ul>
+<li><a href="#gensim">Gensim文档</a><ul>
 <li><a href="#_1">语料库和向量空间</a><ul>
 <li><a href="#_2">将字符串转为向量</a></li>
 <li><a href="#_3">语料库流，一次处理一个文档</a></li>
@@ -194,14 +194,19 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="gensim"><a name="user-content-gensim" href="#gensim" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>gensim文档</h1>
+          <h1 id="gensim"><a name="user-content-gensim" href="#gensim" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Gensim文档</h1>
 <p>Gensim是一个免费的用来自动提取文档主题的Python库。特点：</p>
 <ul>
 <li>内存独立，没有必要一次把所有的训练语料库载入内容。</li>
-<li>对几个流行的乡里那个空间算法进行了高效的实现，包括<strong>Tf-Idf</strong>, <strong>Latent Semantic Analysis</strong>, <strong>Latent Dirichlet Allocation</strong>, <strong>Random Projection</strong>;添加一个新的也非常容易。</li>
+<li>对几个流行的向量空间算法进行了高效的实现，包括<strong>Tf-Idf</strong>, <strong>Latent Semantic Analysis</strong>, <strong>Latent Dirichlet Allocation</strong>, <strong>Random Projection</strong>;添加一个新的也非常容易。</li>
 <li>对几个流行的数据格式进行了IO包装和转换。</li>
 <li>文档相似度查询</li>
 </ul>
+<p>安装：</p>
+<div class="codehilite"><pre>pip install gensim
+</pre></div>
+
+
 <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>语料库和向量空间</h2>
 <p>使用以下代码来记录日志：</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">logging</span>
@@ -622,7 +627,7 @@ MathJax.Hub.Config({
 <li>存在一些需要更高效实现的地方(比如用C实现)，或者并行的实现。</li>
 <li>新的算法层出不穷。</li>
 </ul>
-  <p style="text-align: right; color: gray;"><br>2015-11-22 18:50:00</p>
+  <p style="text-align: right; color: gray;"><br>2015-11-22 18:55:53</p>
         </div>
       </div>
       <footer>

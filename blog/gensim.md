@@ -12,15 +12,19 @@ keywords: Gensim
           文本处理
 
 
-# gensim文档
+# Gensim文档
 
 Gensim是一个免费的用来自动提取文档主题的Python库。特点：
 
 + 内存独立，没有必要一次把所有的训练语料库载入内容。
-+ 对几个流行的乡里那个空间算法进行了高效的实现，包括**Tf-Idf**, **Latent Semantic Analysis**, **Latent Dirichlet Allocation**, **Random Projection**;添加一个新的也非常容易。
++ 对几个流行的向量空间算法进行了高效的实现，包括**Tf-Idf**, **Latent Semantic Analysis**, **Latent Dirichlet Allocation**, **Random Projection**;添加一个新的也非常容易。
 + 对几个流行的数据格式进行了IO包装和转换。
 + 文档相似度查询
 
+安装：
+```sh
+pip install gensim
+```
 
 ## 语料库和向量空间
 
