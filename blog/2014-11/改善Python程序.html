@@ -113,7 +113,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.pink-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -890,10 +890,29 @@ MathJax.Hub.Config({
 <h3 id="multiprocessing"><a name="user-content-multiprocessing" href="#multiprocessing" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用multiprocessing编写多进程程序</h3>
 <div class="codehilite"><pre><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>        <span class="c"># CPU密集型</span>
 <span class="kn">from</span> <span class="nn">multiprocessing.dummy</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">ThreadPool</span>  <span class="c"># IO密集型</span>
-<span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="n">cpu_nums</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">ThreadPool</span><span class="p">(</span><span class="n">cpu_nums</span><span class="p">)</span>
+<span class="c"># 单一参数</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">single_hanlder</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+<span class="c"># 多参数</span>
+<span class="k">def</span> <span class="nf">single_handle</span><span class="p">(</span><span class="n">s_dict</span><span class="p">,</span> <span class="n">s_list</span><span class="p">):</span>
+    <span class="n">s_dict</span><span class="p">[</span><span class="s">&#39;j&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s_list</span><span class="p">))</span>
+
+<span class="n">manager</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Manager</span><span class="p">()</span>
+<span class="n">s_d</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>        <span class="c"># 共享字典类型变量</span>
+<span class="n">s_l</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">gap</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s_l</span><span class="p">)</span><span class="o">/</span><span class="n">cpu_nums</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">jobs</span><span class="o">=</span> <span class="p">[</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">single_hanlder</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">s_d</span><span class="p">,</span> <span class="n">s_l</span><span class="p">[</span><span class="n">idx</span><span class="o">*</span><span class="n">gap</span><span class="p">:(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">gap</span><span class="p">]))</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cpu_nums</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">a_j</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="n">a_j</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a_j</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="n">a_j</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
 </pre></div>
 
 
@@ -1301,7 +1320,7 @@ MathJax.Hub.Config({
 <p>在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。<br />
 所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。<br />
 因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。</p>
-  <p style="text-align: right; color: gray;"><br>2015-11-16 08:32:12</p>
+  <p style="text-align: right; color: gray;"><br>2015-12-27 09:42:25</p>
         </div>
       </div>
       <footer>

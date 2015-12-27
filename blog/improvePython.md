@@ -498,10 +498,29 @@ logging.basicConfig(
 ```Python
 from multiprocessing import Pool as ThreadPool        # CPU密集型
 from multiprocessing.dummy import Pool as ThreadPool  # IO密集型
-pool = ThreadPool(4)
+import multiprocessing
+cpu_nums = multiprocessing.cpu_count()
+pool = ThreadPool(cpu_nums)
+# 单一参数
 results = pool.map(single_hanlder, params)
 pool.close()
 pool.join()
+
+# 多参数
+def single_handle(s_dict, s_list):
+    s_dict['j'] = 1
+    print ''.join(str(s_list))
+
+manager = multiprocessing.Manager()
+s_d = manager.dict()        # 共享字典类型变量
+s_l = range(1000)
+gap = int(len(s_l)/cpu_nums + 1)
+jobs= [multiprocessing.Process(target=single_hanlder, args=(s_d, s_l[idx*gap:(idx+1)*gap])) for idx in range(cpu_nums)]
+
+for a_j in jobs:
+    a_j.start()
+for a_j in jobs:
+    a_j.join()
 ```
 
 
