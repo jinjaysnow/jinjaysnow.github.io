@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jeb Bush Email Analysis">
+
+    <title>Jeb Bush Email Analysis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+</head>
+<body>
+<div id="graphic" style="width: 2048px; height: 2048px; display: block;">
+</div>
+
+<script type="text/javascript" src="echarts_force.js"></script>
+<script type="text/javascript">
+option = {
+    title : {
+        text: 'Jeb Bush Email',
+        subtext: '社交网络分析',
+        x:'right',
+        y:'bottom'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter : "{b}"
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            restore : {show: true},
+            magicType: {
+                show: true,
+                type: ['force', 'chord'],
+                option: {
+                    chord: {
+                        minRadius : 2,
+                        maxRadius : 20,
+                        ribbonType: false,
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    rotate: true
+                                },
+                                chordStyle: {
+                                    opacity: 0.2
+                                }
+                            }
+                        }
+                    },
+                    force: {
+                        minRadius : 2,
+                        maxRadius : 20,
+                        itemStyle : {
+                            normal : {
+                                label: {
+                                    show: false
+                                },
+                                linkStyle : {
+                                    opacity : 0.5
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            saveAsImage : {show: true}
+        }
+    },
+    legend : {
+        data : ['Jeb Bush', 'Others'],
+        orient : 'vertical',
+        x : 'left'
+    },
+    noDataEffect: 'none',
+    series :[{
+        //FIXME No data
+        type: 'force',
+    }],
+};
+var myChart = echarts.init(document.getElementById('graphic'));
+
+myChart.showLoading({
+    text: '正在努力的读取数据中...',    //loading话术
+});
+
+$.ajax({
+    url: 'http://jinjaysnow.github.io/echarts_data.json',
+    dataType: 'json',
+    success: function (data) {
+        option.series[0] = {
+            type: 'force',
+            name: 'webkit-dep',
+            itemStyle: {
+                normal : {
+                    linkStyle : {
+                        opacity : 0.5
+                    }
+                }
+            },
+            categories: data.categories,
+            nodes: data.nodes,
+            links: data.links,
+            symbolSize: 2,
+            minRadius: 2,
+            maxRadius: 20,
+            gravity: 1.1,
+            scaling: 1.1,
+            steps: 1,
+            large: true,
+            useWorker: true,
+            coolDown: 0.995,
+            ribbonType: true
+        };
+        myChart.setOption(option);
+        myChart.hideLoading();
+    }
+});
+</script>
+
+</body>
+</html>
