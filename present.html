@@ -11,12 +11,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <style>
     body, div {
-		display: block;
+        display: block;
         margin: auto;
         padding: 0;
         border: 0;
     }
-    #info {width: 20%; padding-left: 16px;}
+    #info {width: 20%;}
     #graphic {width: 80%; height: 768px;}
     @media 
     only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait), 
@@ -32,6 +32,13 @@
 <div id="info">
     <center>
         <p>Jeb Bush 邮件分析</p>
+            <span>请选择要加载的图形</span>
+            <select onchange="refresh(this.value)">
+                <option value="d_100_e" selected="selected">删除出现次数小于100的联系人后的社交图谱</option>
+                <option value="d_50_e">删除出现次数小于50的联系人后的社交图谱</option>
+                <option value="d_30_e">删除出现次数小于30的联系人后的社交图谱</option>
+                <option value="echarts_data">删除出现次数小于10的联系人后的社交图谱</option>
+            </select>
     </center>
 </div>
 <div id="graphic" style="width: 1024px; height: 768px; display: block;">
@@ -111,7 +118,7 @@ myChart.showLoading({
 });
 
 $.ajax({
-    url: 'http://jinjaysnow.github.io/echarts_data.json',
+    url: 'http://jinjaysnow.github.io/d_100_e.json',
     dataType: 'json',
     success: function (data) {
         option.series[0] = {
@@ -142,6 +149,47 @@ $.ajax({
         myChart.hideLoading();
     }
 });
+
+function refresh(s_graphic) {
+
+myChart.clear();
+myChart.showLoading({
+    text: '正在努力的读取数据中...',    //loading话术
+});
+
+$.ajax({
+    url: 'http://jinjaysnow.github.io/' + s_graphic + '.json',
+    dataType: 'json',
+    success: function (data) {
+        option.series[0] = {
+            type: 'force',
+            name: 'webkit-dep',
+            itemStyle: {
+                normal : {
+                    linkStyle : {
+                        opacity : 0.5
+                    }
+                }
+            },
+            categories: data.categories,
+            nodes: data.nodes,
+            links: data.links,
+            symbolSize: 2,
+            minRadius: 2,
+            maxRadius: 20,
+            gravity: 1.1,
+            scaling: 1.1,
+            steps: 1,
+            large: true,
+            useWorker: true,
+            coolDown: 0.995,
+            ribbonType: true
+        };
+        myChart.setOption(option);
+        myChart.hideLoading();
+    }
+});
+}
 </script>
 
 </body>
