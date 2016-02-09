@@ -13,6 +13,12 @@
 		<priority>1.0</priority>
 	</url>
 		<url>
+		<loc>http://jinjaysnow.github.io/blog/2016-01/集群智能.html</loc>
+		<lastmod>2016-02-09</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
 		<loc>http://jinjaysnow.github.io/blog/2015-11/GenSim.html</loc>
 		<lastmod>2015-11-22</lastmod>
 		<changefreq>monthly</changefreq>
@@ -61,13 +67,13 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-11/Mac常用操作.html</loc>
-		<lastmod>2015-11-22</lastmod>
+		<loc>http://jinjaysnow.github.io/blog/2014-11/改善Python程序.html</loc>
+		<lastmod>2015-12-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
 		<url>
-		<loc>http://jinjaysnow.github.io/blog/2014-11/改善Python程序.html</loc>
+		<loc>http://jinjaysnow.github.io/blog/2014-11/Mac常用操作.html</loc>
 		<lastmod>2015-11-22</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
