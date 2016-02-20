@@ -31,6 +31,12 @@
 		<priority>0.9</priority>
 	</url>
 		<url>
+		<loc>http://jinjaysnow.github.io/blog/2015-07/iOS应用开发流程.html</loc>
+		<lastmod>2016-02-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
 		<loc>http://jinjaysnow.github.io/blog/2015-04/MySQL常用操作.html</loc>
 		<lastmod>2015-11-22</lastmod>
 		<changefreq>monthly</changefreq>
