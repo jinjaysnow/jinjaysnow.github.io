@@ -1,26 +1,29 @@
 # -*- encoding: UTF-8 -*-
+import cgi
+import codecs
+import json
 import os
 import re
-import json
-import codecs
-import cgi
-import traceback
 import sys
+import traceback
 
+
+from urllib import pathname2url, url2pathname
+from urlparse import urlparse, urlunparse
+
+import markdown.extensions.codehilite as codehilite
 
 from markdown_settings import Settings
+
 from markdown_wrapper import StMarkdown as Markdown
-from urllib2 import Request, urlopen, HTTPError, URLError
-from urllib import quote, url2pathname, pathname2url
-from urlparse import urlparse, urlunparse
-import markdown.extensions.codehilite as codehilite
+
+from pygments.formatters import get_formatter_by_name
 
 pygments_local = {
     'github': 'pygments_css/github.css',
     'github2014': 'pygments_css/github2014.css'
 }
 
-from pygments.formatters import get_formatter_by_name
 try:
     PYGMENTS_AVAILABLE = codehilite.pygments
 except:
@@ -49,23 +52,28 @@ DEFAULT_EXT = [
     "admonition"
 ]
 
+
 def load_settings(filename):
     with open(filename) as f:
         fc = json.load(f)
     return fc
+
 
 def getTempMarkdownPreviewPath(filename):
     ''' return a permanent full path of the temp markdown preview file '''
     # TODO: 文件路径
     return "../test.html"
 
+
 def save_utf8(filename, text):
     with codecs.open(filename, 'w', encoding='utf-8')as f:
         f.write(text)
 
+
 def load_utf8(filename):
     with codecs.open(filename, 'r', encoding='utf-8') as f:
         return f.read()
+
 
 def load_resource(filename):
     ''' return file contents for files within the package root folder '''
@@ -76,28 +84,6 @@ def load_resource(filename):
 def exists_resource(filename):
     # TODO: filename
     return os.path.isfile(filename)
-
-
-# TODO: 暂时不需要
-# def new_view(window, text, scratch=False):
-#     ''' create a new view and paste text content
-#         return the new view.
-#         Optionally can be set as scratch.
-#     '''
-
-#     new_view = window.new_file()
-#     if scratch:
-#         new_view.set_scratch(True)
-#     if is_ST3():
-#         new_view.run_command('append', {
-#             'characters': text,
-#         })
-#     else:  # 2.x
-#         new_edit = new_view.begin_edit()
-#         new_view.insert(new_edit, 0, text)
-#         new_view.end_edit(new_edit)
-#     return new_view
-
 
 
 def get_references(file_name, encoding="utf-8"):
@@ -113,6 +99,7 @@ def get_references(file_name, encoding="utf-8"):
         else:
             print("Could not find reference file %s!", file_name)
     return text
+
 
 def parse_url(url):
     """
@@ -135,33 +122,14 @@ def parse_url(url):
         # Maybe just a url fragment
         is_url = True
     elif scheme == '' or RE_PATH.match(scheme):
-        if sublime.platform() == "windows":
-            if scheme == 'file' and RE_WIN_DRIVE.match(netloc):
-                # file://c:/path
-                path = netloc + path
-                netloc = ''
-                scheme = ''
-                is_absolute = True
-            elif RE_WIN_DRIVE.match(scheme):
-                # c:/path
-                path = '%s:%s' % (scheme, path)
-                scheme = ''
-                is_absolute = True
-            elif scheme != '' or netloc != '':
-                # Unknown url scheme
-                is_url = True
-            elif path.startswith('//'):
-                # //Some/Network/location
-                is_absolute = True
+        if scheme not in ('', 'file') and netloc != '':
+            # A non-nix filepath or strange url
+            is_url = True
         else:
-            if scheme not in ('', 'file') and netloc != '':
-                # A non-nix filepath or strange url
-                is_url = True
-            else:
-                # Check if nix path is absolute or not
-                if path.startswith('/'):
-                    is_absolute = True
-                scheme = ''
+            # Check if nix path is absolute or not
+            if path.startswith('/'):
+                is_absolute = True
+            scheme = ''
     return (scheme, netloc, path, params, query, fragment, is_url, is_absolute)
 
 
@@ -222,7 +190,6 @@ def repl_absolute(m, base_path):
         pass
 
     return link
-
 
 
 class CriticDump(object):
@@ -298,7 +265,8 @@ class Compiler(object):
     default_css = "markdown.css"
     filename = "../first.md"
     html_template = None
-    def __init__(self, file_name, html_template = None):
+
+    def __init__(self, file_name, html_template=None):
         self.filename = file_name
 
     def isurl(self, css_name):
@@ -659,7 +627,7 @@ class Compiler(object):
             title = self.meta_title
         else:
             title = self.filename
-        
+
         # TODO: I changed here
         if not title:
             fn = self.filename
@@ -735,132 +703,6 @@ class Compiler(object):
         return html, body
 
 
-class GithubCompiler(Compiler):
-    default_css = "github.css"
-
-    def curl_convert(self, data):
-        try:
-            import subprocess
-
-            # It looks like the text does NOT need to be escaped and
-            # surrounded with double quotes.
-            # Tested in ubuntu 13.10, python 2.7.5+
-            shell_safe_json = data.decode('utf-8')
-            curl_args = [
-                'curl',
-                '-H',
-                'Content-Type: application/json',
-                '-d',
-                shell_safe_json,
-                'https://api.github.com/markdown'
-            ]
-
-            github_oauth_token = self.settings.get('github_oauth_token')
-            if github_oauth_token:
-                curl_args[1:1] = [
-                    '-u',
-                    github_oauth_token
-                ]
-
-            markdown_html = subprocess.Popen(curl_args, stdout=subprocess.PIPE).communicate()[0].decode('utf-8')
-            return markdown_html
-        except subprocess.CalledProcessError:
-            print('cannot use github API to convert markdown. SSL is not included in your Python installation. And using curl didn\'t work either')
-        return None
-
-    def preprocessor_critic(self, text):
-        ''' Stip out multi-markdown critic marks.  Accept changes by default '''
-        return CriticDump().dump(text, self.settings.get("strip_critic_marks", "accept") == "accept")
-
-    def parser_specific_preprocess(self, text):
-        if self.settings.get("strip_critic_marks", "accept") in ["accept", "reject"]:
-            text = self.preprocessor_critic(text)
-        return text
-
-    def parser_specific_postprocess(self, html):
-        ''' Post-processing for github API '''
-
-        if self.settings.get("github_inject_header_ids", False):
-            html = self.postprocess_inject_header_id(html)
-        return html
-
-    def postprocess_inject_header_id(self, html):
-        ''' Insert header ids when no anchors are present '''
-        unique = {}
-
-        def header_to_id(text):
-            if text is None:
-                return ''
-            # Strip html tags and lower
-            id = RE_TAGS.sub('', text).lower()
-            # Remove non word characters or non spaces and dashes
-            # Then convert spaces to dashes
-            id = RE_WORD.sub('', id).replace(' ', '-')
-            # Encode anything that needs to be
-            return quote(id)
-
-        def inject_id(m):
-            id = header_to_id(m.group('text'))
-            if id == '':
-                return m.group(0)
-            # Append a dash and number for uniqueness if needed
-            value = unique.get(id, None)
-            if value is None:
-                unique[id] = 1
-            else:
-                unique[id] += 1
-                id += "-%d" % value
-            return m.group('open')[:-1] + (' id="%s">' % id) + m.group('text') + m.group('close')
-
-        RE_TAGS = re.compile(r'''</?[^>]*>''')
-        RE_WORD = re.compile(r'''[^\w\- ]''')
-        RE_HEADER = re.compile(r'''(?P<open><h([1-6])>)(?P<text>.*?)(?P<close></h\2>)''', re.DOTALL)
-        return RE_HEADER.sub(inject_id, html)
-
-    def parser_specific_convert(self, markdown_text):
-        ''' convert input markdown to HTML, with github or builtin parser '''
-
-        markdown_html = _CANNOT_CONVERT
-        github_oauth_token = self.settings.get('github_oauth_token')
-
-        # use the github API
-        github_mode = self.settings.get('github_mode', 'gfm')
-        data = {
-            "text": markdown_text,
-            "mode": github_mode
-        }
-        data = json.dumps(data).encode('utf-8')
-
-        try:
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            if github_oauth_token:
-                headers['Authorization'] = "token %s" % github_oauth_token
-            url = "https://api.github.com/markdown"
-            request = Request(url, data, headers)
-            markdown_html = urlopen(request).read().decode('utf-8')
-        except HTTPError:
-            e = sys.exc_info()[1]
-            if e.code == 401:
-                print('github API auth failed. Please check your OAuth token.')
-            else:
-                print('github API responded in an unfashion way :/')
-        except URLError:
-            # Maybe this is a Linux-install of ST which doesn't bundle with SSL support
-            # So let's try wrapping curl instead
-            markdown_html = self.curl_convert(data)
-        except:
-            e = sys.exc_info()[1]
-            print(e)
-            traceback.print_exc()
-            print('cannot use github API to convert markdown. Please check your settings.')
-        else:
-            print('converted markdown with github API successfully')
-
-        return markdown_html
-
-
 class MultiMarkdownCompiler(Compiler):
     default_css = "markdown.css"
 
@@ -904,6 +746,7 @@ class MarkdownCompiler(Compiler):
                     style = get_formatter_by_name('html', style=pygments_style).get_style_defs('.codehilite pre')
                 except Exception:
                     pygments_style = 'github'
+
             if style is None:
                 style = load_resource(pygments_local[pygments_style]) % {
                     'css_class': ''.join(['.' + x for x in css_class.split(' ') if x])
@@ -972,7 +815,7 @@ class MarkdownCompiler(Compiler):
                 # Don't allow 'no_css' with non internal themes.
                 # Replace the setting with the correct name if the style was invalid.
                 original = pygments_css
-                pygments_css = self.set_highlight(pygments_css, css_class)
+                pygments_css = self.set_highlight(pygments_style, css_class)
                 if pygments_css in pygments_local:
                     extensions[count] = re_no_classes.sub('', re_pygments.sub('', e))
                 elif original != pygments_css:
