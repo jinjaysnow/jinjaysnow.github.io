@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 ##########################
 # Author: Jinjay
 # Created On: 201408
@@ -8,13 +8,14 @@
 ##########################
 
 import codecs
-import os
 import datetime
-import sys
 import json
-from MarkdownPreview import MarkdownCompiler
+import os
+import sys
 
-# color of the web
+from newmarkdownpreview import MarkdownCompiler
+
+# color of the html for google material design
 color = (
     "blue-green",
     "blue-indigo",
@@ -68,7 +69,7 @@ def generateFile(filePath):
             finalHtml = finalHtml.replace(toc_content, " ")
             finalHtml = finalHtml.replace("{{ TOC }}", toc_content)
             from random import randint
-            color_num = randint(0, len(color)-1)
+            color_num = randint(0, len(color) - 1)
             finalHtml = finalHtml.replace("{{ COLOR }}", color[color_num])
         except Exception, e:
             print "-----color error"

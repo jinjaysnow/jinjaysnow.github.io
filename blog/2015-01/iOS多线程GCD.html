@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -180,28 +181,28 @@ MathJax.Hub.Config({
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
           <p>参考资源：<a href="http://blog.csdn.net/totogo2010/article/details/8016129">http://blog.csdn.net/totogo2010/article/details/8016129</a></p>
-<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>简介</h2>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>简介</h2>
 <p>Grand Central Dispatch 简称（GCD）是苹果公司开发多线程处理技术。GCD的工作原理是让一个程序，根据可用的处理资源，安排他们在任何可用的处理器核心上平行排队执行特定的任务。这个任务可以是一个函数或者一个程序段(block)。</p>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常见用法</h2>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>常见用法</h2>
 <p>GCD中的队列为<code>dispatch queue</code>，主要有以下三种：<br />
 1. <strong>Serial。</strong> Serial queue通常用于同步访问特定的资源或数据。当你创建多个Serial queue时，虽然它们各自是同步执行的，但Serial queue与Serial queue之间是并发执行的。<br />
 2. <strong>Concurrent。</strong> 可以并发的执行多个任务，任务顺序是随机的。<br />
 3. <strong>Main Dispatch Queue。</strong> 全局可用的serial queue，在应用程序主线程上进行执行。</p>
-<h3 id="dispatch_async"><a name="user-content-dispatch_async" href="#dispatch_async" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>dispatch_async</h3>
+<h3 id="dispatch_async"><a name="user-content-dispatch_async" href="#dispatch_async" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_async</h3>
 <p>为了避免界面在处理耗时的操作时卡死，比如读取网络数据，IO,数据库读写等，我们可以在另外一个线程中处理这些操作，然后通知主线程更新界面。GCD处理代码框架如下：</p>
-<div class="codehilite"><pre><span class="vg">dispatch_async</span><span class="p">(</span><span class="vg">dispatch_get_global_queue</span><span class="p">(</span><span class="vg">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span><span class="w"> </span><span class="il">0</span><span class="p">),</span><span class="w"> </span><span class="o">^</span><span class="p">{</span>
-<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">耗时的操作</span>
-<span class="w">    </span><span class="vg">dispatch_async</span><span class="p">(</span><span class="vg">dispatch_get_main_queue</span><span class="p">(),</span><span class="w"> </span><span class="o">^</span><span class="p">{</span>
-<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">更新界面</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">});</span>
+<div class="codehilite"><pre><span></span>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 耗时的操作
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更新界面
+    });
+});
 </pre></div>
 
 
-<h3 id="dispatch95group95async"><a name="user-content-dispatch95group95async" href="#dispatch95group95async" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>dispatch_group_async</h3>
+<h3 id="dispatch95group95async"><a name="user-content-dispatch95group95async" href="#dispatch95group95async" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_group_async</h3>
 <p>dispatch_group_async可以实现监听一组任务是否完成，完成后得到通知执行其他的操作。这个方法很有用，比如你执行三个下载任务，当三个任务都下载完成后你才通知界面说完成的了。示例代码：</p>
-<div class="codehilite"><pre><span class="kt">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="kt">dispatch_group_t</span> <span class="n">group</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
+<div class="codehilite"><pre><span></span><span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">dispatch_group_t</span> <span class="n">group</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
 <span class="n">dispatch_group_async</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
     <span class="p">[</span><span class="bp">NSThread</span> <span class="nl">sleepForTimeInterval</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;group1&quot;</span><span class="p">);</span>
@@ -221,9 +222,9 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<h3 id="dispatch95barrier95async"><a name="user-content-dispatch95barrier95async" href="#dispatch95barrier95async" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>dispatch_barrier_async</h3>
+<h3 id="dispatch95barrier95async"><a name="user-content-dispatch95barrier95async" href="#dispatch95barrier95async" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_barrier_async</h3>
 <p>dispatch_barrier_async是在前面的任务执行结束后它才执行，而且它后面的任务等它执行完成之后才会执行。示例代码：</p>
-<div class="codehilite"><pre><span class="kt">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_queue_create</span><span class="p">(</span><span class="s">&quot;gcdtest.rongfzh.yc&quot;</span><span class="p">,</span> <span class="n">DISPATCH_QUEUE_CONCURRENT</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_queue_create</span><span class="p">(</span><span class="s">&quot;gcdtest.rongfzh.yc&quot;</span><span class="p">,</span> <span class="n">DISPATCH_QUEUE_CONCURRENT</span><span class="p">);</span>
 <span class="n">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
     <span class="p">[</span><span class="bp">NSThread</span> <span class="nl">sleepForTimeInterval</span><span class="p">:</span><span class="mi">2</span><span class="p">];</span>
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;dispatch_async1&quot;</span><span class="p">);</span>
@@ -243,11 +244,11 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<h3 id="dispatch95apply"><a name="user-content-dispatch95apply" href="#dispatch95apply" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>dispatch_apply</h3>
+<h3 id="dispatch95apply"><a name="user-content-dispatch95apply" href="#dispatch95apply" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_apply</h3>
 <p>执行某段代码n次。</p>
-<div class="codehilite"><pre><span class="vg">dispatch_apply</span><span class="p">(</span><span class="il">5</span><span class="p">,</span><span class="w"> </span><span class="vg">globalQ</span><span class="p">,</span><span class="w"> </span><span class="o">^</span><span class="p">(</span><span class="vg">size_t</span><span class="w"> </span><span class="vg">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">执行</span><span class="il">5</span><span class="err">次</span>
-<span class="p">});</span>
+<div class="codehilite"><pre><span></span>dispatch_apply(5, globalQ, ^(size_t index) {
+    // 执行5次
+});
 </pre></div>
 
 

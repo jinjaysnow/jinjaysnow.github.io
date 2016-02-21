@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.red-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -242,13 +243,13 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>高等数学微积分</h1>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>初等函数</h2>
+          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>高等数学微积分</h1>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>初等函数</h2>
 <blockquote>
 <p>由常数和基本初等函数经过有限次的四则运算和有限次的函数复合步骤所构成并可用一个式子表示的函数成为初等函数。  </p>
 </blockquote>
-<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极限</h3>
-<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>数列极限</h4>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>极限</h3>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数列极限</h4>
 <p>$\{x_n\}$为一数列，若$\exists  a$，$\forall $给定的正数$\epsilon $，$\exists$正整数$N$，使得$n &gt; N$时，有$|x_n - a| &lt; \epsilon $，则称常数$a$是数列$\{x_n\}$的极限，$\lim _{n\rightarrow \infty}{x_n} = a$.</p>
 <ol>
 <li>极限的唯一性：如果{$x_n$}收敛，那么它的极限唯一。</li>
@@ -256,27 +257,27 @@ MathJax.Hub.Config({
 <li>收敛数列的保号性：$\lim _{n\rightarrow \infty}{x_n} = a$，且$a &gt; 0$，则$\exists N &gt; 0, n &gt; N$时，$x_n &gt; 0$。</li>
 <li>收敛数列与其子数列间的关系：如果{$x_n$}收敛于a，则它的任意子数列也收敛于a。</li>
 </ol>
-<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>函数极限</h4>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>函数极限</h4>
 <ol>
 <li>函数极限的唯一性：如果$\lim _{x\rightarrow x_0}{f(x)}$存在，那么这极限唯一。</li>
 <li>函数极限的局部有界性：如果$ \lim _{x\rightarrow x_0}{f(x)}=A$， 则$\exists$常数$M&gt;0$和$\delta &gt;0$，使得当$0&lt;|x-x_0|&lt;\delta$时，有$|f(x)|\le M$。</li>
 <li>函数极限的局部保号性：如果$\lim _{x\rightarrow x_0}{f(x)}=A$，且$A&gt;0$（或$A&lt;0$），则$\exists \delta &gt;0$，使得当$0&lt;|x-x_0|&lt;\delta$时，有$f(x)&gt;0$（或$f(x)&lt;0$）。</li>
 <li>函数极限与数列极限的关系：如果$\lim _{x\rightarrow x_0}{f(x)}$存在，{$x_n$}为函数$f(x)$定义域内任一收敛于$x_0$的数列，且满足$x_n\neq x_0(n\in N^*)$，则相应的函数值数列{$f(x_n)$}必收敛，且$\lim _{n\rightarrow \infty}{f(x_n)}=\lim _{x\rightarrow x_0}{f(x)}$。</li>
 </ol>
-<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极限存在准则</h4>
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>极限存在准则</h4>
 <ol>
 <li>夹逼准则：若{$x_n$}、{$y_n$}、{$z_n$}满足，当$n&lt;n_0$时，$y_n\le x_n \le z_n$，且$\lim _{n\rightarrow \infty}{y_n}=a,\lim _{n\rightarrow \infty}{z_n}=a$，则{$x_n$}的极限存在，且$\lim _{n\rightarrow \infty}{x_n}=a$。</li>
 <li>单调有界数列必有极限。</li>
 </ol>
-<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>间断点</h3>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>间断点</h3>
 <p>如果$x_0$是函数f(x)的间断点，但左极限$f(x_0^-)$和右极限$f(x_0^+)$都存在，则称$x_0$为f(x)的第一类间断点，不是第一类间断点的任何间断点都称为第二类间断点。<br />
 在第一类间断点中，$f(x_0^-)=f(x_0^+)$称可去间断点，否则为跳跃间断点。</p>
-<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>零点定理</h3>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>零点定理</h3>
 <p>设函数f(x)在闭区间[a,b]上连续，且f(a)与f(b)异号，则在开区间(a,b)内至少有一点$\xi$，使得$f(\xi)=0$。</p>
-<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>介值定理</h3>
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>介值定理</h3>
 <p>设f(x)在[a,b]上连续，且f(a)=A,f(b)=B，那么对A与B之间任意的一个数C，在(a,b)内至少有一点$\xi$，使得$f(\xi)=C$。</p>
-<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>导数</h2>
-<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>求导法则</h3>
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导数</h2>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>求导法则</h3>
 <ol>
 <li>$[\mu(x)\pm \nu(x)]^\prime = \mu(x)^\prime\pm \nu(x)^\prime$</li>
 <li>$[\mu(x)\nu(x)]^\prime=\mu^\prime(x)\nu(x)+\mu(x)\nu^\prime(x)$</li>
@@ -287,7 +288,7 @@ MathJax.Hub.Config({
     设y=f($\mu$)，而$\mu=g(x)$且$f(\mu)$与g(x)均可导，则f[g(x)]的符合导数为：<br />
     $$\frac{dy}{dx}=\frac{dy}{d\mu}\cdot\frac{d\mu}{dx}\quad or \quad y^\prime(x)=f^\prime(\mu)\cdot g^\prime(x)$$</li>
 </ol>
-<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用导数表</h3>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>常用导数表</h3>
 <table>
 <thead>
 <tr>
@@ -324,32 +325,32 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
-<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>罗尔定理</h3>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>罗尔定理</h3>
 <p>如果函数f(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③在区间端点处的函数值相等，即f(a)=f(b)；那么在(a,b)内至少有一点$\xi (a&lt;\xi &lt;b)$，使得$f^\prime(\xi)=0$。</p>
-<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>拉格朗日中值定理</h3>
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>拉格朗日中值定理</h3>
 <p>如果函数f(x)满足①在闭区间[a,b]上连续；②在开区间(a,b)内可导；那么在(a,b)内至少有一点$\xi(a&lt;\xi&lt;b)$，使等式$f(b)-f(a)=f^\prime(\xi)(b-a)$成立。</p>
-<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>柯西中值定理</h3>
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>柯西中值定理</h3>
 <p>如果函数f(x)及F(x)满足①在区间[a,b]上连续；②在开区间(a,b)内可导；③对任一$x\in(a,b)$，$F^\prime(x)\neq 0$，那么在(a,b)内至少存在一点$\xi$，使等式$\frac{f(b)-f(a)}{F(b)-F(a)}=\frac{f^\prime(\xi)}{F^\prime(\xi)}$成立。</p>
-<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>洛必达法则</h3>
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>洛必达法则</h3>
 <p>设①当$x\rightarrow a$时，函数f(x)及F(x)都趋近于0；②在点a的某去心邻域内，$f^\prime(x)$及$F^\prime(x)$都存在且$F^\prime(x)\neq0$；③$\lim _{x\rightarrow a}\frac{f(x)}{F(x)}=\lim _{x\rightarrow a}\frac{f^\prime(x)}{F^\prime(x)}$。</p>
-<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>泰勒中值定理</h3>
+<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>泰勒中值定理</h3>
 <p>如果函数f(x)在含有$x_0$的某个开区间(a,b)内具有直到(n+1)阶的导数，则$\forall x\in(a,b)$，有$$f(x)=f(x_0)+f^\prime(x_0)(x-x_0)+\frac{f^{\prime\prime}(x_0)}{2}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)_)}{n!}(x-x_0)^n+R_n(x),$$其中$R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。</p>
-<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>凹凸性</h3>
+<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>凹凸性</h3>
 <p>设f(x)在(a,b)内具有一阶和二阶导数，在[a,b]上连续，则<br />
 (1) 若在(a,b)内$f^{\prime\prime}&gt;0$，则f(x)在[a,b]上是凹函数。即：$$f(\frac{x_1+x_2}2)&lt;\frac{f(x_1)+f(x_2)}2$$<br />
 (2) 若在(a,b)内$f^{\prime\prime}&lt;0$，则f(x)在[a,b]上是凸函数。即：$$f(\frac{x_1+x_2}2)&gt;\frac{f(x_1)+f(x_2)}2$$</p>
-<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>拐点的求法</h3>
+<h3 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>拐点的求法</h3>
 <ol>
 <li>求$f^{\prime\prime}(x)$</li>
 <li>令$f^{\prime\prime}(x)=0$，解出这个方程在区间I内的实数根，并求出在区间I内$f^{\prime\prime}(x)$不存在的点</li>
 <li>对步骤2中求出的每一个是跟或二阶导数不存在的点$x_0$，检查$f^{\prime\prime}(x_0^-)$，$f^{\prime\prime}(x_0^+)$，符号相反时，$x_0$是拐点。</li>
 </ol>
-<h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极值</h3>
+<h3 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>极值</h3>
 <p>设函数f(x)在$x_0$处可导，且在$x_0$处取得极值，那么$f^\prime(x)=0$.[<strong>必要条件</strong>]<br />
 设f(x)在$x_0$处具有二阶导数且$f^\prime(x_0)=0,f^{\prime\prime}(x_0)\neq0$，那么<br />
 (1)当$f^{\prime\prime}(x)&lt;0$时，函数f(x)在$x_0$处取得极大值。<br />
 (2)当$f^{\prime\prime}(x)&gt;0$时，函数f(x)在$x_0$处取得极小值。</p>
-<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>高阶导数</h3>
+<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>高阶导数</h3>
 <table>
 <thead>
 <tr>
@@ -372,8 +373,8 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
-<h2 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>积分</h2>
-<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用积分表</h3>
+<h2 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>积分</h2>
+<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>常用积分表</h3>
 <table>
 <thead>
 <tr>
@@ -413,18 +414,18 @@ MathJax.Hub.Config({
 </tbody>
 </table>
 <p><code>注：积分省略了最后的常数项</code></p>
-<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第一类换元法</h3>
+<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第一类换元法</h3>
 <p>设$f(\mu)$具有原函数，$\mu=\varphi(x)$可导，则有$\int f(\varphi(x))\varphi^\prime(x)dx=[f(\mu)d\mu]_{\mu=\varphi(x)}$。</p>
-<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第二类换元法</h3>
+<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第二类换元法</h3>
 <p>设$x=\varphi(t)$是单调的、可导的函数，并且$\varphi^\prime(t)\neq0$，又设$f[\varphi(t)],\varphi^\prime(t)$具有原函数，则有$\int f(x)dx=[\int f[\varphi(t)]\varphi^\prime(t)dt]_{t=\varphi^{-1}(x)}$。</p>
-<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分部积分法</h3>
+<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分部积分法</h3>
 <p>$$\int \mu\nu^\prime dx= \mu\nu-\int\mu\prime\nu dx$$</p>
-<h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>定积分中值定理</h3>
+<h3 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定积分中值定理</h3>
 <p>如果函数f(x)在积分区间[a,b]上连续，则在[a,b]上至少存在一个点$\xi$，有$$\int _a^bf(x)dx=f(\xi)(b-a).\quad (a\le \xi \le b)$$</p>
-<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>微分方程</h2>
-<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>分离变量法</h3>
+<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>微分方程</h2>
+<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分离变量法</h3>
 <p>$$y^\prime = f(x)g(y)$$</p>
-<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>一阶线性微分方程</h3>
+<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一阶线性微分方程</h3>
 <p>$$y^\prime + P(x)y=Q(x)$$</p>
 <blockquote>
 <p>$\quad\quad\quad\quad\quad\quad\nu(x)\frac{dy}{dx} + P(x)\nu(x)y=\nu(x)Q(x)$<br />
@@ -434,8 +435,8 @@ MathJax.Hub.Config({
   $\quad\quad\quad\quad\quad\quad\quad \nu(x)=e^{\int P(x)dx}\quad 故，$</p>
 </blockquote>
 <p>$$y = e^{-\int P(x)dx}[\int Q(x)e^{\int P(x)dx}dx + C]$$</p>
-<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>二阶常系数</h3>
-<h4 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>齐次方程</h4>
+<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>二阶常系数</h3>
+<h4 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>齐次方程</h4>
 <p>$$y^{\prime\prime}+py^\prime+q=0$$<br />
 特征方程为：$r^2+pr+q=0$<br />
 1. 两个不同实数根<br />
@@ -444,35 +445,35 @@ MathJax.Hub.Config({
     $$y=(C_1+C_2x)e^{r_{12}x}$$<br />
 3. 共轭复根<br />
     $$r_{1,2}=\alpha\pm\beta i, y=e^{\alpha x}(C_1\cos \beta+C_2\sin \beta x)$$</p>
-<h4 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>非齐次方程</h4>
+<h4 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>非齐次方程</h4>
 <p>$$y^{\prime\prime}+py^\prime+q=P_m(x)e^{ax}$$<br />
 求特解：<br />
 $$令\quad y=x^kQ_m(x)e^{ax}$$<br />
 $$k = \begin{cases} {0, \quad a不是特征根} \\ {1, \quad a为单重特征根} \\ {2, \quad a为双重特征根} \end{cases}$$<br />
 $Q_m(x)为x的m次多项式，系数待定。$</p>
-<h2 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>向量</h2>
-<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>叉乘</h3>
+<h2 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>向量</h2>
+<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>叉乘</h3>
 <p>$$\overrightarrow { a } \times \overrightarrow { b } = \begin{vmatrix} \overrightarrow{i} &amp; \overrightarrow{j} &amp; \overrightarrow{k} \\ x_1 &amp; y_1 &amp;z_1 \\ x_2 &amp; y_2 &amp; z_2  \end{vmatrix}$$</p>
-<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>混合积</h3>
+<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>混合积</h3>
 <p>$$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=\begin{vmatrix} x_{ 1 } &amp; y_{ 1 } &amp; z_{ 1 } \\ x_{ 2 } &amp; y_{ 2 } &amp; z_{ 2 } \\x_3&amp;y_3&amp;z_3\end{vmatrix}$$</p>
-<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>公式</h3>
+<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公式</h3>
 <p>两向量平行：$\overrightarrow{a}\times\overrightarrow{b}=\overrightarrow{0}$<br />
 $\overrightarrow{a},\overrightarrow{b},\overrightarrow{c}$共面：$\overrightarrow{a}\overrightarrow{b}\overrightarrow{c}=0$</p>
-<h2 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数</h2>
-<h3 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多元函数可微性</h3>
+<h2 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多元函数</h2>
+<h3 id="_39"><a name="user-content-_39" href="#_39" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多元函数可微性</h3>
 <p>$$\lim _{ \begin{matrix} \Delta x\rightarrow 0 \\ \Delta y\rightarrow 0 \end{matrix} }{ \begin{vmatrix} \frac { \Delta z-f_ { x }(x_ { 0 },y_ { 0 })\Delta x-f_ y(x_ 0,y_ 0)\Delta y }{ \sqrt { \Delta x^{ 2 }+\Delta y^{ 2 } }  }  \end{vmatrix} }=0 $$</p>
-<h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>隐函数</h3>
+<h3 id="_40"><a name="user-content-_40" href="#_40" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>隐函数</h3>
 <p>$$\frac{dy}{dx}=-\frac{F^\prime_x}{F^\prime_y}$$</p>
-<h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>条件极值</h3>
+<h3 id="_41"><a name="user-content-_41" href="#_41" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>条件极值</h3>
 <p>$f(x,y)$在条件$\varphi(x,y)=0$下的极值：<br />
 构造$\quad F(x,y,\lambda)=f(x,y)+\lambda\varphi(x,y)$，解<br />
 $$\begin{cases} \frac { \partial F }{ \partial x } =\frac { \partial f }{ \partial x } +\lambda \frac { \partial \varphi  }{ \partial x } =0 \\ \frac { \partial F }{ \partial y } =\frac { \partial f }{ \partial y } +\lambda \frac { \partial \varphi  }{ \partial y } =0 \\ \frac { \partial F }{ \partial \lambda  } = \varphi (x,y)=0 \end{cases}$$</p>
-<h3 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>平面曲线积分</h3>
+<h3 id="_42"><a name="user-content-_42" href="#_42" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>平面曲线积分</h3>
 <p><img alt="曲线积分" src="../../images/quxianjifen.png" /></p>
-<h3 id="_43"><a name="user-content-_43" href="#_43" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>空间曲线积分</h3>
+<h3 id="_43"><a name="user-content-_43" href="#_43" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>空间曲线积分</h3>
 <p>$$\int _LPdx+Qdy+Rdx$$<br />
 $$\nabla \times\overrightarrow{F}=\begin{vmatrix}  \overrightarrow{i}&amp;\overrightarrow{j}&amp;\overrightarrow{k} \\ \frac{\partial}{\partial x}&amp; \frac{\partial}{\partial y}&amp;\frac{\partial}{\partial z}\\P&amp;Q&amp;R \end{vmatrix}$$</p>
-<h3 id="_44"><a name="user-content-_44" href="#_44" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>曲面积分</h3>
+<h3 id="_44"><a name="user-content-_44" href="#_44" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>曲面积分</h3>
 <ol>
 <li>一投<br />
     $z=Z(x,y)$投影到%xoy%上得到$D_{xy}$</li>
@@ -481,16 +482,16 @@ $$\nabla \times\overrightarrow{F}=\begin{vmatrix}  \overrightarrow{i}&amp;\overr
 <li>三定号<br />
     曲面的侧确定面积微元符号</li>
 </ol>
-<h4 id="_45"><a name="user-content-_45" href="#_45" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>柱坐标</h4>
+<h4 id="_45"><a name="user-content-_45" href="#_45" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>柱坐标</h4>
 <p>$$\iiint _{\Omega}{f(x,y,z)dv}=\iiint_\Omega{f(r\cos \theta,r\sin \theta,z)rdrd\theta dz}$$<br />
 适用于$f(x,y,z)=\varphi(z)g(x^2+y^2)$</p>
-<h4 id="_46"><a name="user-content-_46" href="#_46" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>球坐标</h4>
+<h4 id="_46"><a name="user-content-_46" href="#_46" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>球坐标</h4>
 <p>$$\iiint _{ \Omega  }{ f(x,y,z)dv } =\iiint _{ \Omega  }{ f(r\sin\varphi\cos  \theta ,r\sin\varphi\sin  \theta ,r\cos\varphi)r^2\sin\varphi drd\theta d\varphi } $$<br />
 适用于$f(x,y,z)=\varphi(x^2+y^2+z^2)$</p>
-<h2 id="_47"><a name="user-content-_47" href="#_47" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>极限</h2>
-<h3 id="_48"><a name="user-content-_48" href="#_48" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>几何级数</h3>
+<h2 id="_47"><a name="user-content-_47" href="#_47" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>极限</h2>
+<h3 id="_48"><a name="user-content-_48" href="#_48" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>几何级数</h3>
 <p>$$\sum _{ n=0 }^{ \infty  }{ q^{ n } } =\begin{cases} q=1,\quad \quad 发散 \\ q=-1,\quad 不存在 \\ |q|&gt;1,\quad \quad发散\\|q|&lt;1,\quad\quad收敛 \end{cases}$$</p>
-<h3 id="p-"><a name="user-content-p-" href="#p-" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>p-级数</h3>
+<h3 id="p-"><a name="user-content-p-" href="#p-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>p-级数</h3>
 <p>$$\sum_{n=0}^{\infty}{\frac{1}{n^p} } =\begin{cases} p=1,\quad\quad \quad发散 \\ 0&lt; p &lt;1,\quad 发散 \\ p&gt;1,\quad\quad\quad 收敛 \end{cases}$$</p>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
         </div>

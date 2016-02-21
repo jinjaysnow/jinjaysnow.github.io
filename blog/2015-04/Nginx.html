@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -173,42 +174,42 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>测试配置是否正确</h1>
+          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>测试配置是否正确</h1>
 <p><code>nginx -t</code></p>
-<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>反向代理配置</h1>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">配置工作的进程数</span>
-<span class="vg">worker_processes</span><span class="w">  </span><span class="il">4</span><span class="p">;</span>
+<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>反向代理配置</h1>
+<div class="codehilite"><pre><span></span><span class="err">#</span> <span class="err">配置工作的进程数</span>
+<span class="nt">worker_processes</span>  <span class="nt">4</span><span class="o">;</span>
 
-<span class="err">#</span><span class="w"> </span><span class="err">连接数</span>
-<span class="vg">events</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">worker_connections</span><span class="w"> </span><span class="il">1024</span><span class="p">;</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="vg">use</span><span class="w"> </span><span class="vg">epoll</span><span class="p">;</span><span class="w"> </span><span class="err">根据系统配置是否使用</span><span class="vg">epoll</span>
+<span class="err">#</span> <span class="err">连接数</span>
+<span class="nt">events</span> <span class="p">{</span>
+    <span class="n">worker_connections</span> <span class="m">1024</span><span class="p">;</span>
+    <span class="err">#</span> <span class="n">use</span> <span class="n">epoll</span><span class="p">;</span> <span class="err">根据系统配置是否使用</span><span class="n">epoll</span>
 <span class="p">}</span>
 
-<span class="err">#</span><span class="w"> </span><span class="err">反向代理配置</span>
-<span class="vg">http</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">分发</span>
-<span class="w">    </span><span class="vg">upstream</span><span class="w"> </span><span class="vg">tornadoes</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">#服务器配置：</span><span class="w"> </span><span class="err">权重越大，分配概率越大</span>
-<span class="w">        </span><span class="vg">server</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="il">8881</span><span class="w"> </span><span class="vg">weight</span><span class="o">=</span><span class="il">1</span><span class="p">;</span>
-<span class="w">        </span><span class="vg">server</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="il">8882</span><span class="w"> </span><span class="vg">weight</span><span class="o">=</span><span class="il">1</span><span class="p">;</span>
-<span class="w">        </span><span class="vg">server</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="il">8883</span><span class="w"> </span><span class="vg">weight</span><span class="o">=</span><span class="il">1</span><span class="p">;</span>
-<span class="w">        </span><span class="vg">server</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="o">:</span><span class="il">8884</span><span class="w"> </span><span class="vg">weight</span><span class="o">=</span><span class="il">1</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="err">#</span> <span class="err">反向代理配置</span>
+<span class="nt">http</span> <span class="p">{</span>
+    <span class="err">#</span> <span class="err">分发</span>
+    <span class="n">upstream</span> <span class="n">tornadoes</span> <span class="err">{</span>
+        <span class="err">#服务器配置：</span> <span class="err">权重越大，分配概率越大</span>
+        <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">8881</span> <span class="n">weight</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>
+        <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">8882</span> <span class="n">weight</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>
+        <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">8883</span> <span class="n">weight</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>
+        <span class="n">server</span> <span class="m">127</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">:</span><span class="m">8884</span> <span class="n">weight</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<span class="w">    </span><span class="vg">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="vg">listen</span><span class="w"> </span><span class="il">8888</span><span class="p">;</span>
-<span class="w">        </span><span class="vg">server_name</span><span class="w"> </span><span class="vg">localhost</span><span class="p">;</span>
-<span class="w">        </span><span class="vg">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="vg">proxy_pass</span><span class="w"> </span><span class="nl">http:</span><span class="o">//</span><span class="vg">tornadoes</span><span class="p">;</span>
-<span class="w">            </span><span class="vg">proxy_pass_header</span><span class="w"> </span><span class="vg">Server</span><span class="p">;</span>
-<span class="w">            </span><span class="vg">proxy_set_header</span><span class="w"> </span><span class="vg">Host</span><span class="w"> </span><span class="err">$</span><span class="vg">http_host</span><span class="p">;</span>
-<span class="w">            </span><span class="vg">proxy_redirect</span><span class="w"> </span><span class="vg">off</span><span class="p">;</span>
-<span class="w">            </span><span class="vg">proxy_set_header</span><span class="w"> </span><span class="vg">X</span><span class="o">-</span><span class="vg">Real</span><span class="o">-</span><span class="vg">IP</span><span class="w"> </span><span class="err">$</span><span class="vg">remote_addr</span><span class="p">;</span>
-<span class="w">            </span><span class="vg">proxy_set_header</span><span class="w"> </span><span class="vg">X</span><span class="o">-</span><span class="vg">Scheme</span><span class="w"> </span><span class="err">$</span><span class="vg">scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+    <span class="nt">server</span> <span class="p">{</span>
+        <span class="n">listen</span> <span class="m">8888</span><span class="p">;</span>
+        <span class="n">server_name</span> <span class="n">localhost</span><span class="p">;</span>
+        <span class="n">location</span> <span class="o">/</span> <span class="err">{</span>
+            <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">://</span><span class="n">tornadoes</span><span class="p">;</span>
+            <span class="n">proxy_pass_header</span> <span class="n">Server</span><span class="p">;</span>
+            <span class="n">proxy_set_header</span> <span class="n">Host</span> <span class="err">$</span><span class="n">http_host</span><span class="p">;</span>
+            <span class="n">proxy_redirect</span> <span class="n">off</span><span class="p">;</span>
+            <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span> <span class="err">$</span><span class="n">remote_addr</span><span class="p">;</span>
+            <span class="n">proxy_set_header</span> <span class="n">X</span><span class="o">-</span><span class="n">Scheme</span> <span class="err">$</span><span class="n">scheme</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="err">}</span>
+<span class="err">}</span>
 </pre></div>
 
 

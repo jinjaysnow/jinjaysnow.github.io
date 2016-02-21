@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -178,7 +179,7 @@ MathJax.Hub.Config({
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
           <h3 id="r"><a href="https://github.com/jinjaysnow/R">学习R语言之路</a></h3>
 <hr />
-<h4 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>记录学到的一些函数</h4>
+<h4 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>记录学到的一些函数</h4>
 <p>安装包 install.packages(packageName)</p>
 <p>使用包require()/libarary()</p>
 <p>list() 列表类型，访问使用$ 或 [[]] </p>
@@ -188,26 +189,25 @@ MathJax.Hub.Config({
 <p>environment只能通过子变量名来访问（使用operator $ or [[），它的子变量没有排序，所以不能通过id来访问。<br />
 environment在做为参数传入程序时，并不进行拷贝，而是传递一个地址。这就意味着我们在编写程序时可以使用environment来实现以形参的形式来对数据进行修改。</p>
 </blockquote>
-<div class="codehilite"><pre>f <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">();</span>
+<p><div class="codehilite"><pre><span></span>f <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">();</span>
 enviroment<span class="p">(</span>f<span class="p">);</span>
 <span class="kp">mget</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="kc">...</span><span class="p">),</span> envir <span class="o">=</span> env<span class="p">,</span> ifnotfound<span class="o">=</span><span class="kc">NA</span><span class="p">);</span><span class="c1"># 获取所有的环境值</span>
 </pre></div>
-
-
-<p>contour(matrix): 绘制矩阵的等高线图</p>
+<br />
+contour(matrix): 绘制矩阵的等高线图</p>
 <p>persp(matrix, expand = 0.2): 矩阵透视图, expand参数可选，表示z轴放大比例</p>
 <p>image(matrix): 矩阵彩色热图</p>
 <p>barplot(x): 绘制条形图</p>
 <p>abline(h=?,v=?): 绘制一条参考的直线，h代表水平线，v代表垂直线</p>
 <p>mean(): 平均值 median(): 众数 sd(): 方差 </p>
 <p>legend(): 在图的某一个位置做标记对图进行说明</p>
-<div class="codehilite"><pre>legend<span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;gems&quot;</span><span class="p">,</span> <span class="s">&quot;gold&quot;</span><span class="p">,</span> <span class="s">&quot;silver&quot;</span><span class="p">),</span> pch<span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span>legend<span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;gems&quot;</span><span class="p">,</span> <span class="s">&quot;gold&quot;</span><span class="p">,</span> <span class="s">&quot;silver&quot;</span><span class="p">),</span> pch<span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
 <p>读取文件中的数据 csv格式： read.csv(filename) 返回一个frame对象</p>
 <p>通用读取文件的方法</p>
-<div class="codehilite"><pre>read.table<span class="p">(</span><span class="kp">file</span><span class="p">,</span> header <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> quote <span class="o">=</span> <span class="s">&quot;\&quot;&#39;&quot;</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span>read.table<span class="p">(</span><span class="kp">file</span><span class="p">,</span> header <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">,</span> quote <span class="o">=</span> <span class="s">&quot;\&quot;&#39;&quot;</span><span class="p">,</span>
            dec <span class="o">=</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="kp">row.names</span><span class="p">,</span> col.names<span class="p">,</span>
            as.is <span class="o">=</span> <span class="o">!</span>stringsAsFactors<span class="p">,</span>
            na.strings <span class="o">=</span> <span class="s">&quot;NA&quot;</span><span class="p">,</span> colClasses <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span> nrows <span class="o">=</span> <span class="m">-1</span><span class="p">,</span>
@@ -221,7 +221,7 @@ enviroment<span class="p">(</span>f<span class="p">);</span>
 </pre></div>
 
 
-<div class="codehilite"><pre>plot（x<span class="p">,</span> y<span class="p">,</span> xlab<span class="o">=</span><span class="s">&quot;recall&quot;</span><span class="p">,</span> ylab<span class="o">=</span><span class="s">&quot;precision&quot;</span><span class="p">,</span> type<span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> lty<span class="o">=</span><span class="m">1</span><span class="p">,</span> col<span class="o">=</span><span class="m">3</span><span class="p">,</span> xlim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> ylim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.04</span><span class="p">),</span> lab<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> las<span class="o">=</span><span class="m">1</span><span class="p">,</span> mgp<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3.</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tck<span class="o">=</span><span class="m">0.02</span><span class="p">,</span> xaxs<span class="o">=</span><span class="s">&quot;i&quot;</span><span class="p">,</span> yaxs<span class="o">=</span><span class="s">&quot;i&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span>plot（x<span class="p">,</span> y<span class="p">,</span> xlab<span class="o">=</span><span class="s">&quot;recall&quot;</span><span class="p">,</span> ylab<span class="o">=</span><span class="s">&quot;precision&quot;</span><span class="p">,</span> type<span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span> lty<span class="o">=</span><span class="m">1</span><span class="p">,</span> col<span class="o">=</span><span class="m">3</span><span class="p">,</span> xlim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> ylim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0.04</span><span class="p">),</span> lab<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> las<span class="o">=</span><span class="m">1</span><span class="p">,</span> mgp<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3.</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tck<span class="o">=</span><span class="m">0.02</span><span class="p">,</span> xaxs<span class="o">=</span><span class="s">&quot;i&quot;</span><span class="p">,</span> yaxs<span class="o">=</span><span class="s">&quot;i&quot;</span><span class="p">)</span>
 
 xlim：这是x轴数据的边界；
 
@@ -241,7 +241,7 @@ yaxs<span class="o">=</span><span class="s">&quot;i&quot;</span> Axis styles <sp
 </pre></div>
 
 
-<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>外存存取数据</h4>
+<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>外存存取数据</h4>
 <table>
 <thead>
 <tr>

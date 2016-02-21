@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.pink-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -183,21 +184,21 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="mac"><a name="user-content-mac" href="#mac" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Mac系统上的基本操作</h1>
-<h2 id="updatedb"><a name="user-content-updatedb" href="#updatedb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>updatedb</h2>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">ln</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="o">/</span><span class="vg">usr</span><span class="o">/</span><span class="vg">libexec</span><span class="o">/</span><span class="vg">locate</span><span class="o">.</span><span class="vg">updatedb</span><span class="w"> </span><span class="o">/</span><span class="vg">usr</span><span class="o">/</span><span class="vg">local</span><span class="o">/</span><span class="vg">bin</span><span class="o">/</span><span class="vg">updatedb</span>
+          <h1 id="mac"><a name="user-content-mac" href="#mac" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Mac系统上的基本操作</h1>
+<h2 id="updatedb"><a name="user-content-updatedb" href="#updatedb" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>updatedb</h2>
+<div class="codehilite"><pre><span></span>sudo ln -s /usr/libexec/locate.updatedb /usr/local/bin/updatedb
 </pre></div>
 
 
 <p>通过上面的命令，可以生成一个链接，每次只需要使用<code>sudo updatedb</code>即可更新查找数据库。</p>
-<h2 id="gdb"><a name="user-content-gdb" href="#gdb" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用gdb</h2>
-<h3 id="gdb_1"><a name="user-content-gdb_1" href="#gdb_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>安装gdb</h3>
-<div class="codehilite"><pre><span class="vg">brew</span><span class="w"> </span><span class="vg">tap</span><span class="w"> </span><span class="vg">homebrew</span><span class="o">/</span><span class="vg">dupes</span>
-<span class="vg">brew</span><span class="w"> </span><span class="vg">install</span><span class="w"> </span><span class="vg">gdb</span>
+<h2 id="gdb"><a name="user-content-gdb" href="#gdb" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用gdb</h2>
+<h3 id="gdb_1"><a name="user-content-gdb_1" href="#gdb_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>安装gdb</h3>
+<div class="codehilite"><pre><span></span>brew tap homebrew/dupes
+brew install gdb
 </pre></div>
 
 
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>新建一个证书</h3>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>新建一个证书</h3>
 <p>打开“钥匙串访问”程序，在主菜单选择<strong>“证书助理”&gt;“创建证书”</strong><br />
 <img alt="gdb1" src="http://jinjaysnow.github.io/static/gdb/gdb1.png" /></p>
 <p>然后输入证书名，比如<code>gdb-cert</code>，将证书类型更改为“代码签名”，并<strong>勾选“让我覆盖这些默认值”</strong>(<code>截图未勾选</code>)<br />
@@ -209,18 +210,18 @@ MathJax.Hub.Config({
 <p>点击创建<br />
 <img alt="gdb5" src="http://jinjaysnow.github.io/static/gdb/gdb5.png" /></p>
 <p>成功创建</p>
-<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>确保证书始终被信任</h3>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>确保证书始终被信任</h3>
 <p>右击证书，选择“显示简介”<br />
 <img alt="gdb6" src="http://jinjaysnow.github.io/static/gdb/gdb6.png" /></p>
 <p>展开“信任”，将代码签名处的值更改为<strong>始终信任</strong><br />
 <img alt="gdb7" src="http://jinjaysnow.github.io/static/gdb/gdb7.png" /></p>
-<h3 id="gdb_2"><a name="user-content-gdb_2" href="#gdb_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>对GDB签名</h3>
-<div class="codehilite"><pre><span class="vg">codesign</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="vg">gdb</span><span class="o">-</span><span class="vg">cert</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="vg">which</span><span class="w"> </span><span class="vg">gdb</span><span class="p">)</span>
+<h3 id="gdb_2"><a name="user-content-gdb_2" href="#gdb_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对GDB签名</h3>
+<div class="codehilite"><pre><span></span>codesign -s gdb-cert $(which gdb)
 </pre></div>
 
 
 <p>输入用户名和密码后成功</p>
-<h2 id="mdfind"><a name="user-content-mdfind" href="#mdfind" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>mdfind</h2>
+<h2 id="mdfind"><a name="user-content-mdfind" href="#mdfind" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>mdfind</h2>
 <p>mdfind是find与locate的结合版本，能够非常快速的匹配查找需要的内容，需要配合updatedb使用。</p>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
         </div>

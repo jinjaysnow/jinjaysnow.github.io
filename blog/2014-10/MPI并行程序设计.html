@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -179,15 +180,15 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="mpi"><a name="user-content-mpi" href="#mpi" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>MPI并行程序设计</h1>
+          <h1 id="mpi"><a name="user-content-mpi" href="#mpi" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>MPI并行程序设计</h1>
 <p>学习资料主要来源：清华大学《高性能计算之并行编程技术——MPI并行程序设计》。</p>
-<h2 id="mpi_1"><a name="user-content-mpi_1" href="#mpi_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>MPI简介</h2>
+<h2 id="mpi_1"><a name="user-content-mpi_1" href="#mpi_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>MPI简介</h2>
 <ol>
 <li>MPI是一个库，而不是一门语言。</li>
 <li>MPI是一种标准或规范的代表，而不特指某一个对它的具体实现。所有并行计算机制造商都提供对MPI的支持，可以在网上免费得到MPI在不同并行计算技上的实现，一个正确的MPI程序，可以不加修改地在所有的并行计算机上运行。</li>
 <li>MPI是一种消息传递编程模型。MPI的最终目的是服务于进程间通信这一目标的。</li>
 </ol>
-<h2 id="open-mpi"><a name="user-content-open-mpi" href="#open-mpi" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Open-MPI安装</h2>
+<h2 id="open-mpi"><a name="user-content-open-mpi" href="#open-mpi" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Open-MPI安装</h2>
 <p>本文主要使用<a href="http://www.open-mpi.org/">OpenMPI</a>这个实现版本。计算机为Mac mini 2012年版本，运行Mac OS，Intel i5处理器。语言采用C和C++。<br />
 步骤：<br />
 1. 在<a href="http://www.open-mpi.org/"><a href="http://www.open-mpi.org/"><a href="http://www.open-mpi.org/">http://www.open-mpi.org/</a></a></a>下载界面下载最新的稳定版本源代码压缩包<br />
@@ -196,47 +197,45 @@ MathJax.Hub.Config({
 4. <code>make all install</code><br />
 5. 完毕<br />
 6. 可以进入<a href="http://mtt.open-mpi.org/"><a href="http://mtt.open-mpi.org/"><a href="http://mtt.open-mpi.org/">http://mtt.open-mpi.org/</a></a></a>进行在线测试是否安装成功。</p>
-<h2 id="hello-world"><a name="user-content-hello-world" href="#hello-world" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>第一个程序hello world</h2>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="s2">&quot;mpi.h&quot;</span>
-<span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
-<span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">math</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<h2 id="hello-world"><a name="user-content-hello-world" href="#hello-world" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第一个程序hello world</h2>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;mpi.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
 
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">myid</span><span class="p">,</span><span class="w"> </span><span class="vg">numprocs</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">namelen</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">char</span><span class="w"> </span><span class="vg">processor_name</span><span class="p">[</span><span class="vg">MPI_MAX_PROCESSOR_NAME</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">myid</span><span class="p">,</span> <span class="n">numprocs</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">namelen</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">processor_name</span><span class="p">[</span><span class="n">MPI_MAX_PROCESSOR_NAME</span><span class="p">];</span>
 
-<span class="w">    </span><span class="vg">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">argv</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">MPI_Comm_rank</span><span class="p">(</span><span class="vg">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">myid</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">MPI_Comm_size</span><span class="p">(</span><span class="vg">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">numprocs</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">MPI_Get_processor_name</span><span class="p">(</span><span class="vg">processor_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="vg">namelen</span><span class="p">);</span>
+    <span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+    <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">myid</span><span class="p">);</span>
+    <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numprocs</span><span class="p">);</span>
+    <span class="n">MPI_Get_processor_name</span><span class="p">(</span><span class="n">processor_name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">namelen</span><span class="p">);</span>
 
-<span class="w">    </span><span class="vg">fprintf</span><span class="p">(</span><span class="vg">stderr</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;To beautiful you! Process %d of %d on %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">myid</span><span class="p">,</span><span class="w"> </span><span class="vg">numprocs</span><span class="p">,</span><span class="w"> </span><span class="vg">processor_name</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">MPI_Finalize</span><span class="p">();</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;To beautiful you! Process %d of %d on %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">myid</span><span class="p">,</span> <span class="n">numprocs</span><span class="p">,</span> <span class="n">processor_name</span><span class="p">);</span>
+    <span class="n">MPI_Finalize</span><span class="p">();</span>
 
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编译运行</h2>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">编译</span><span class="p">,</span><span class="err">将</span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="err">文件编译成可运行文件</span><span class="vg">source</span>
-<span class="vg">mpicc</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">c</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span>
-<span class="vg">mpiCC</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">cc</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span><span class="o">++</span>
-<span class="vg">mpic</span><span class="o">++</span><span class="w"> </span><span class="vg">source</span><span class="o">.</span><span class="vg">cc</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">source</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="vg">C</span><span class="o">++</span><span class="p">,</span><span class="err">用于大小写敏感的文件系统</span>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编译运行</h2>
+<p><div class="codehilite"><pre><span></span># 编译,将source.c文件编译成可运行文件source
+mpicc source.c -o source   # C
+mpiCC source.cc -o source  # C++
+mpic++ source.cc -o source # C++,用于大小写敏感的文件系统
 
-<span class="err">#</span><span class="w"> </span><span class="err">运行</span><span class="p">,</span><span class="err">并行程序需要多个进程</span><span class="p">,</span><span class="err">故需要开启多个源程序进行运算</span>
-<span class="vg">mpiexec</span><span class="w"> </span><span class="o">-</span><span class="vg">n</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="o">./</span><span class="vg">source</span>
+# 运行,并行程序需要多个进程,故需要开启多个源程序进行运算
+mpiexec -n 2 ./source
 </pre></div>
-
-
-<p>e.g. 编译运行第一个程序hello world得到的结果为：</p>
-<div class="codehilite"><pre><span class="vg">To</span><span class="w"> </span><span class="vg">beautiful</span><span class="w"> </span><span class="vg">you!</span><span class="w"> </span><span class="vg">Process</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">of</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">tp2</span>
-<span class="vg">To</span><span class="w"> </span><span class="vg">beautiful</span><span class="w"> </span><span class="vg">you!</span><span class="w"> </span><span class="vg">Process</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">of</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">tp1</span>
+<br />
+e.g. 编译运行第一个程序hello world得到的结果为：<br />
+<div class="codehilite"><pre><span></span>To beautiful you! Process 0 of 2 on tp2
+To beautiful you! Process 1 of 2 on tp1
 </pre></div>
-
-
-<h2 id="to-be-continued"><a name="user-content-to-be-continued" href="#to-be-continued" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>To be continued&hellip;未完待续</h2>
+</p>
+<h2 id="to-be-continued"><a name="user-content-to-be-continued" href="#to-be-continued" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>To be continued&hellip;未完待续</h2>
 <p><strong>由于缺少多个CPU共同组成的计算机系统，多核与并行程序设计学习不能更有效的进行，所以暂时停止MPI的学习。</strong></p>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
         </div>

@@ -14,6 +14,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -114,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -173,7 +174,7 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h3 id="dyld-library-not-loaded-rpathlibswiftcoredylib-error"><a name="user-content-dyld-library-not-loaded-rpathlibswiftcoredylib-error" href="#dyld-library-not-loaded-rpathlibswiftcoredylib-error" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>dyld: Library not loaded: @rpath/libswiftCore.dylib Error</h3>
+          <h3 id="dyld-library-not-loaded-rpathlibswiftcoredylib-error"><a name="user-content-dyld-library-not-loaded-rpathlibswiftcoredylib-error" href="#dyld-library-not-loaded-rpathlibswiftcoredylib-error" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dyld: Library not loaded: @rpath/libswiftCore.dylib Error</h3>
 <p>新建Swift项目，真机运行时出现上述标题错误时，可以采用如下链接中给出的方法进行调试：<a href="http://stackoverflow.com/questions/26024100/dyld-library-not-loaded-rpath-libswiftcore-dylib">http://stackoverflow.com/questions/26024100/dyld-library-not-loaded-rpath-libswiftcore-dylib</a> 。</p>
 <p>我个人的电脑上使用的是将“Keychain Access”（钥匙串访问）中的相应证书中的信任从<strong>始终信任</strong>切换为<strong>使用系统默认</strong>来解决的这个问题。</p>
 <p><img alt="" src="http://jinjaysnow.github.io/images/keychain_trust.png" /></p>

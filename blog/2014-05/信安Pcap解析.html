@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-red.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -180,18 +181,18 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="pcap"><a name="user-content-pcap" href="#pcap" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>信息安全解析pcap包获取网页内容</h2>
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤一</h3>
+          <h2 id="pcap"><a name="user-content-pcap" href="#pcap" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>信息安全解析pcap包获取网页内容</h2>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤一</h3>
 <p>解析pcap包，将使用ipv4和TCP协议的包取出生成新的pcap包。即读取pcap包内容，判断并取出对应的ip协议的协议版本字段为4且服务类型为TCP的报文，重新组装后生成新的pcap包。</p>
-<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤二</h3>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤二</h3>
 <p>读取步骤一生成的pcap包，按照<strong>(源ip,目的ip,源port,目的port)</strong>四元组进行hash，得到包含相同的四元组值的hash表。 </p>
-<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤三</h3>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤三</h3>
 <p>由于唯一的四元组能够确定唯一的tcp连接，故步骤二得到的hash表每一个关键字都对应的是一个文件。这一步考虑seq和ack的次序对hash表中每一个关键字链表进行<strong>排序</strong>。使用冒泡排序。</p>
-<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤四</h3>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤四</h3>
 <p>步骤三得到的链表可能会出现有多余的包，这一次遍历链表<strong>去掉重复的包</strong>。</p>
-<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤五</h3>
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤五</h3>
 <p>得到了有序的包的链表后，现在将TCP上层应用层协议HTTP中的数据进行按顺序组装，便可得到重组文件。</p>
-<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>总结</h3>
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>总结</h3>
 <p>pcap包解析重组文件的整体思路如上，思路比较清晰，但是需要关注的细节很多，比如大小端问题，需要足够小心仔细。</p>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
         </div>

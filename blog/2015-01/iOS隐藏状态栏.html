@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.red-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -173,23 +174,23 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方法一</h2>
+          <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>方法一</h2>
 <p>在ViewController中，调用相应的方法。</p>
-<div class="codehilite"><pre><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="vg">BOOL</span><span class="p">)</span><span class="vg">prefersStatusBarHidden</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="vg">YES</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="codehilite"><pre><span></span>- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 </pre></div>
 
 
 <p>在viewDidLoad方法中调用上面的函数</p>
-<div class="codehilite"><pre><span class="p">[</span><span class="nb">self</span> <span class="n">prefersStatusBarHidden</span><span class="p">];</span>
+<div class="codehilite"><pre><span></span><span class="p">[</span><span class="nb">self</span> <span class="n">prefersStatusBarHidden</span><span class="p">];</span>
 </pre></div>
 
 
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方法二</h2>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>方法二</h2>
 <p>修改plist文件</p>
-<div class="codehilite"><pre><span class="vg">Status</span><span class="w"> </span><span class="vg">bar</span><span class="w"> </span><span class="vg">is</span><span class="w"> </span><span class="vg">initially</span><span class="w"> </span><span class="vg">hidden</span><span class="w"> </span><span class="err">设为</span><span class="w"> </span><span class="vg">YES</span>
-<span class="vg">View</span><span class="w"> </span><span class="vg">controller</span><span class="o">-</span><span class="vg">based</span><span class="w"> </span><span class="vg">status</span><span class="w"> </span><span class="vg">bar</span><span class="w"> </span><span class="vg">appearance</span><span class="w"> </span><span class="err">设为</span><span class="w"> </span><span class="vg">NO</span>
+<div class="codehilite"><pre><span></span>Status bar is initially hidden 设为 YES
+View controller-based status bar appearance 设为 NO
 </pre></div>
 
 

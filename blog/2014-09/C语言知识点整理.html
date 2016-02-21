@@ -14,6 +14,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -114,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -188,162 +189,159 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
-<h3 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C与指针</h3>
+          <h2 id="c"><a name="user-content-c" href="#c" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>保研复试C语言复习</h2>
+<h3 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C与指针</h3>
 <p><strong>函数指针</strong></p>
 <blockquote>
 <p>函数指针是指向函数的指针变量。C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数，就如同用指针变量可引用其他类型变量一样。函数指针有两个用途：调用函数和做函数的参数。</p>
 </blockquote>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<p><div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
-<span class="vg">int</span><span class="w"> </span><span class="vg">maxAB</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="vg">a</span><span class="o">&gt;</span><span class="vg">b</span><span class="o">?</span><span class="nl">a:</span><span class="vg">b</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">maxAB</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="o">?</span><span class="nl">a</span><span class="p">:</span><span class="n">b</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="vg">int</span><span class="w"> </span><span class="vg">minAB</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="vg">a</span><span class="o">&gt;</span><span class="vg">b</span><span class="o">?</span><span class="nl">b:</span><span class="vg">a</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">minAB</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="o">?</span><span class="nl">b</span><span class="p">:</span><span class="n">a</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="o">//</span><span class="w"> </span><span class="err">指针函数作为参数</span>
-<span class="vg">void</span><span class="w"> </span><span class="vg">funPAsArg</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">f</span><span class="p">)(</span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">b</span><span class="p">),</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">b</span><span class="p">){</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;result: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">f</span><span class="p">)(</span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">b</span><span class="p">));</span>
+<span class="c1">// 指针函数作为参数</span>
+<span class="kt">void</span> <span class="nf">funPAsArg</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">),</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;result: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">));</span>
 <span class="p">}</span>
 
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="vg">unsigned</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="vg">x80000000</span><span class="p">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="vg">a</span><span class="o">=</span><span class="il">2147483648</span>
-<span class="w">    </span><span class="vg">unsigned</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="vg">xffffffff</span><span class="p">;</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="vg">b</span><span class="o">=</span><span class="il">4294967295</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">a</span><span class="p">;</span><span class="w">                      </span><span class="o">//</span><span class="w"> </span><span class="vg">m</span><span class="o">=</span><span class="il">-2147483648</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">-2</span><span class="o">^</span><span class="il">31</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">b</span><span class="p">;</span><span class="w">                      </span><span class="o">//</span><span class="w"> </span><span class="vg">n</span><span class="o">=</span><span class="il">-1</span>
-<span class="w">    </span><span class="vg">unsigned</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="vg">b</span><span class="p">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span><span class="vg">x</span><span class="o">=</span><span class="il">2147483649</span>
-<span class="w">    </span><span class="vg">unsigned</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="vg">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">b</span><span class="p">;</span><span class="w">         </span><span class="o">//</span><span class="w"> </span><span class="vg">y</span><span class="o">=</span><span class="il">2147483647</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">m</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="vg">n</span><span class="p">;</span><span class="w">                  </span><span class="o">//</span><span class="w"> </span><span class="vg">k</span><span class="o">=</span><span class="il">-2147483647</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">n</span><span class="p">;</span><span class="w">                  </span><span class="o">//</span><span class="w"> </span><span class="vg">j</span><span class="o">=</span><span class="il">2147483647</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">funcpointer</span><span class="p">)(</span><span class="vg">int</span><span class="p">,</span><span class="w"> </span><span class="vg">int</span><span class="p">);</span><span class="w">   </span><span class="o">//</span><span class="w"> </span><span class="err">定义函数指针</span>
-<span class="w">    </span><span class="vg">funcpointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">maxAB</span><span class="p">;</span><span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="err">函数指针赋值</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;funcpointer: %x\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">funcpointer</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">funPAsArg</span><span class="p">(</span><span class="vg">funcpointer</span><span class="p">,</span><span class="w"> </span><span class="vg">m</span><span class="p">,</span><span class="w"> </span><span class="vg">n</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">funcpointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">minAB</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;minAB: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">funcpointer</span><span class="p">)(</span><span class="vg">m</span><span class="p">,</span><span class="w"> </span><span class="vg">n</span><span class="p">));</span>
-<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="err">计算机内部对数的运算</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;a=%u, b=%u, m=%d, n=%d, x=%u, y=%u, k=%d, j=%d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">b</span><span class="p">,</span><span class="w"> </span><span class="vg">m</span><span class="p">,</span><span class="w"> </span><span class="vg">n</span><span class="p">,</span><span class="w"> </span><span class="vg">x</span><span class="w"> </span><span class="p">,</span><span class="vg">y</span><span class="w"> </span><span class="p">,</span><span class="vg">k</span><span class="w"> </span><span class="p">,</span><span class="vg">j</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;a=%x, b=%x, m=%x, n=%x, x=%x, y=%x, k=%x, j=%x\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">a</span><span class="p">,</span><span class="w"> </span><span class="vg">b</span><span class="p">,</span><span class="w"> </span><span class="vg">m</span><span class="p">,</span><span class="w"> </span><span class="vg">n</span><span class="p">,</span><span class="w"> </span><span class="vg">x</span><span class="w"> </span><span class="p">,</span><span class="vg">y</span><span class="w"> </span><span class="p">,</span><span class="vg">k</span><span class="w"> </span><span class="p">,</span><span class="vg">j</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x80000000</span><span class="p">;</span>    <span class="c1">// a=2147483648</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0xffffffff</span><span class="p">;</span>    <span class="c1">// b=4294967295</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>                      <span class="c1">// m=-2147483648 = -2^31</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>                      <span class="c1">// n=-1</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>         <span class="c1">// x=2147483649</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>         <span class="c1">// y=2147483647</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">n</span><span class="p">;</span>                  <span class="c1">// k=-2147483647</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">n</span><span class="p">;</span>                  <span class="c1">// j=2147483647</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">funcpointer</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>   <span class="c1">// 定义函数指针</span>
+    <span class="n">funcpointer</span> <span class="o">=</span> <span class="n">maxAB</span><span class="p">;</span>            <span class="c1">// 函数指针赋值</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;funcpointer: %x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">funcpointer</span><span class="p">);</span>
+    <span class="n">funPAsArg</span><span class="p">(</span><span class="n">funcpointer</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+    <span class="n">funcpointer</span> <span class="o">=</span> <span class="n">minAB</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;minAB: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">funcpointer</span><span class="p">)(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span>
+    <span class="c1">// 计算机内部对数的运算</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;a=%u, b=%u, m=%d, n=%d, x=%u, y=%u, k=%d, j=%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="p">,</span><span class="n">y</span> <span class="p">,</span><span class="n">k</span> <span class="p">,</span><span class="n">j</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;a=%x, b=%x, m=%x, n=%x, x=%x, y=%x, k=%x, j=%x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span> <span class="p">,</span><span class="n">y</span> <span class="p">,</span><span class="n">k</span> <span class="p">,</span><span class="n">j</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
-
-
-<p><strong>指针变量</strong></p>
+<br />
+<strong>指针变量</strong></p>
 <blockquote>
 <p>存放地址的变量称为指针变量。指针变量是一种特殊的变量，它不同于一般的变量，一般变量存放的是数据本身，而指针变量存放的是数据的地址。</p>
 </blockquote>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(){</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">a</span><span class="p">[</span><span class="il">4</span><span class="p">][</span><span class="il">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="il">1</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">,</span><span class="w"> </span><span class="il">3</span><span class="p">,</span><span class="w"> </span><span class="il">4</span><span class="p">,</span>
-<span class="w">        </span><span class="il">5</span><span class="p">,</span><span class="w"> </span><span class="il">6</span><span class="p">,</span><span class="w"> </span><span class="il">7</span><span class="p">,</span><span class="w"> </span><span class="il">8</span><span class="p">,</span>
-<span class="w">        </span><span class="il">9</span><span class="p">,</span><span class="w"> </span><span class="il">1</span><span class="p">,</span><span class="w"> </span><span class="il">2</span><span class="p">,</span><span class="w"> </span><span class="il">3</span><span class="p">,</span>
-<span class="w">        </span><span class="il">4</span><span class="p">,</span><span class="w"> </span><span class="il">5</span><span class="p">,</span><span class="w"> </span><span class="il">6</span><span class="p">,</span><span class="w"> </span><span class="il">7</span>
-<span class="w">    </span><span class="p">};</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="vg">p</span><span class="p">)[</span><span class="il">4</span><span class="p">];</span><span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="vg">p</span><span class="err">指向有四个整形元素的数组</span>
-<span class="w">    </span><span class="vg">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">a</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;%d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="vg">p</span><span class="o">+</span><span class="il">1</span><span class="p">))[</span><span class="il">2</span><span class="p">]);</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span>
+    <span class="p">};</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)[</span><span class="mi">4</span><span class="p">];</span>    <span class="c1">// p指向有四个整形元素的数组</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">))[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>几个基本概念</h3>
-<h4 id="switch"><a name="user-content-switch" href="#switch" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>switch()语句</h4>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>几个基本概念</h3>
+<h4 id="switch"><a name="user-content-switch" href="#switch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>switch()语句</h4>
 <p>switch(c)语句中c可以是int, long, char, unsigned int。不能是浮点型数据。case语句中也不能有变量。</p>
-<h4 id="for"><a name="user-content-for" href="#for" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>for循环</h4>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="p">,</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;First = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Second = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">),</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="il">3</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="vg">i</span><span class="p">,</span><span class="w"> </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Third = %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;Fourth = %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<h4 id="for"><a name="user-content-for" href="#for" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>for循环</h4>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;First = %d &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Second = %d &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">,</span> <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Third = %d &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Fourth = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>输出结果为</p>
-<div class="codehilite"><pre><span class="vg">First</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">0</span>
-<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
-<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">Fourth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span>
-<span class="vg">Third</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span><span class="vg">Second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span>
+<p>输出结果为<br />
+<div class="codehilite"><pre><span></span>First = 0 Second = 0 Fourth = 0
+Third = 1 Second = 1 Fourth = 1
+Third = 2 Second = 2 Fourth = 2
+Third = 3 Second = 3 
 </pre></div>
-
-
-<h4 id="while"><a name="user-content-while" href="#while" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>while循环</h4>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">while</span><span class="p">(</span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;first = %d &quot;</span><span class="p">,</span><span class="vg">i</span><span class="p">),</span><span class="w"> </span><span class="o">--</span><span class="vg">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;second = %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">i</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+</p>
+<h4 id="while"><a name="user-content-while" href="#while" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>while循环</h4>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;first = %d &quot;</span><span class="p">,</span><span class="n">i</span><span class="p">),</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;second = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>输出结果为</p>
-<div class="codehilite"><pre><span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">3</span><span class="w"> </span><span class="vg">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span>
-<span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">2</span><span class="w"> </span><span class="vg">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
-<span class="vg">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span>
+<p>输出结果为<br />
+<div class="codehilite"><pre><span></span>first = 3 second = 2
+first = 2 second = 1
+first = 1
+</pre></div>
+</p>
+<h4 id="const"><a name="user-content-const" href="#const" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>const</h4>
+<div class="codehilite"><pre><span></span>const int *p        // 指针变量p可变，而p指向的数据元素不能变
+int * const p       // 指针变量p不可变，而p指向的数据元素可变
+const int * const p // 指针变量p不可变，p指向的元素也不能变
 </pre></div>
 
 
-<h4 id="const"><a name="user-content-const" href="#const" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>const</h4>
-<div class="codehilite"><pre><span class="vg">const</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="vg">p</span><span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">可变，而</span><span class="vg">p</span><span class="err">指向的数据元素不能变</span>
-<span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">p</span><span class="w">       </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">不可变，而</span><span class="vg">p</span><span class="err">指向的数据元素可变</span>
-<span class="vg">const</span><span class="w"> </span><span class="vg">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="vg">p</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">指针变量</span><span class="vg">p</span><span class="err">不可变，</span><span class="vg">p</span><span class="err">指向的元素也不能变</span>
-</pre></div>
-
-
-<h4 id="union"><a name="user-content-union" href="#union" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>union联合类型</h4>
+<h4 id="union"><a name="user-content-union" href="#union" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>union联合类型</h4>
 <blockquote>
 <p>联合数据类型（Union）是一种特殊的数据类型。它可以实现：以一种数据类型存储数据，以另一种数据类型来读取数据。程序员可以根据不同的需要，以不同的数据类型来读取联合类型中的数据。也就是说，在一些情况下，以一种数据类型来读取联合类型中的数据，而在另一些情况下，又以另一种数据类型来读取其数据。 <code>联合类型的所有成员在同一时刻只能有一个起作用，因此他占用的内存空间是所有成员中最大那个的大小。</code></p>
 </blockquote>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdio</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
-<span class="vg">union</span><span class="w"> </span><span class="vg">number</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">int</span><span class="w"> </span><span class="vg">x</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">long</span><span class="w"> </span><span class="vg">y</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">double</span><span class="w"> </span><span class="vg">z</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="k">union</span> <span class="n">number</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">y</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">z</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="vg">int</span><span class="w"> </span><span class="vg">main</span><span class="p">(</span><span class="vg">int</span><span class="w"> </span><span class="vg">argc</span><span class="p">,</span><span class="w"> </span><span class="vg">char</span><span class="w"> </span><span class="vg">const</span><span class="w"> </span><span class="o">*</span><span class="vg">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="vg">union</span><span class="w"> </span><span class="vg">number</span><span class="w"> </span><span class="vg">num</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">num</span><span class="o">.</span><span class="vg">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">22</span><span class="p">;</span>
-<span class="w">    </span><span class="vg">printf</span><span class="p">(</span><span class="s2">&quot;%d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="vg">num</span><span class="o">.</span><span class="vg">x</span><span class="p">);</span>
-<span class="w">    </span><span class="vg">return</span><span class="w"> </span><span class="il">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="k">union</span> <span class="n">number</span> <span class="n">num</span><span class="p">;</span>
+    <span class="n">num</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>枚举类型</h4>
+<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>枚举类型</h4>
 <blockquote>
 <p>如果一个变量只有有限的可能的值，则可以定义为枚举类型，变量的值只限于列举出来的值。</p>
 </blockquote>
-<div class="codehilite"><pre><span class="vg">enum</span><span class="w"> </span><span class="vg">Weekday</span><span class="p">{</span><span class="vg">sun</span><span class="p">,</span><span class="w"> </span><span class="vg">mon</span><span class="p">,</span><span class="w"> </span><span class="vg">tue</span><span class="p">,</span><span class="w"> </span><span class="vg">wed</span><span class="p">,</span><span class="w"> </span><span class="vg">thu</span><span class="p">,</span><span class="w"> </span><span class="vg">fri</span><span class="p">,</span><span class="w"> </span><span class="vg">sat</span><span class="p">};</span>
-<span class="vg">enum</span><span class="w"> </span><span class="vg">Weekday</span><span class="w"> </span><span class="vg">workday</span><span class="p">,</span><span class="w"> </span><span class="vg">weekend</span><span class="p">;</span>
-<span class="vg">workday</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">mon</span><span class="p">;</span>
-<span class="vg">weekday</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">sun</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><span class="k">enum</span> <span class="n">Weekday</span>{<span class="n">sun</span>, <span class="n">mon</span>, <span class="n">tue</span>, <span class="n">wed</span>, <span class="n">thu</span>, <span class="n">fri</span>, <span class="n">sat</span>};
+<span class="k">enum</span> <span class="n">Weekday</span> <span class="n">workday</span>, <span class="n">weekend</span>;
+<span class="n">workday</span> = <span class="n">mon</span>;
+<span class="n">weekday</span> = <span class="n">sun</span>;
 </pre></div>
 
 
-<h3 id="c_2"><a name="user-content-c_2" href="#c_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>C语言变长参数函数</h3>
+<h3 id="c_2"><a name="user-content-c_2" href="#c_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C语言变长参数函数</h3>
 <p>变长参数应用模版：</p>
-<div class="codehilite"><pre><span class="err">#</span><span class="vg">include</span><span class="w"> </span><span class="o">&lt;</span><span class="vg">stdarg</span><span class="o">.</span><span class="vg">h</span><span class="o">&gt;</span>
-<span class="vg">function</span><span class="w"> </span><span class="p">(</span><span class="vg">parmN</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">)</span>
-<span class="vg">va_list</span><span class="w"> </span><span class="vg">pvar</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdarg.h&gt;</span><span class="cp"></span>
+<span class="n">function</span> <span class="p">(</span><span class="n">parmN</span><span class="p">,</span> <span class="p">...)</span>
+<span class="kt">va_list</span> <span class="n">pvar</span><span class="p">;</span>
 <span class="err">……………………………</span>
-<span class="vg">va_start</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">,</span><span class="w"> </span><span class="vg">parmN</span><span class="p">);</span>
-<span class="vg">while</span><span class="p">()</span>
+<span class="n">va_start</span> <span class="p">(</span><span class="n">pvar</span><span class="p">,</span> <span class="n">parmN</span><span class="p">);</span>
+<span class="k">while</span><span class="p">()</span>
 <span class="p">{</span>
-<span class="w">    </span><span class="err">……………………</span>
-<span class="w">    </span><span class="vg">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">va_arg</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">,</span><span class="w"> </span><span class="vg">type</span><span class="p">);</span>
-<span class="w">    </span><span class="err">……………………</span>
+    <span class="err">……………………</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">va_arg</span> <span class="p">(</span><span class="n">pvar</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+    <span class="err">……………………</span>
 <span class="p">}</span>
-<span class="vg">va_end</span><span class="w"> </span><span class="p">(</span><span class="vg">pvar</span><span class="p">);</span>
+<span class="n">va_end</span> <span class="p">(</span><span class="n">pvar</span><span class="p">);</span>
 </pre></div>
 
 
@@ -376,7 +374,7 @@ MathJax.Hub.Config({
 </table>
 <p><code>va_arg(pvar, int)</code>将参数作为整形处理<br />
 <code>va_arg(pvar, char *)</code>将参数作为字符串指针处理</p>
-<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>常用文件操作</h3>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>常用文件操作</h3>
 <table>
 <thead>
 <tr>
@@ -474,27 +472,27 @@ MathJax.Hub.Config({
 </tbody>
 </table>
 <p><code>注：如果是二进制文件需要在字母后加b</code></p>
-<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>宏</h3>
-<div class="codehilite"><pre><span class="c1">// 得到指定地址上的一个字节或字</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">MEM_B</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="k">byte</span> <span class="o">*</span><span class="p">)(</span><span class="n">x</span><span class="p">)))</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">MEM_W</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="n">word</span> <span class="o">*</span><span class="p">)(</span><span class="n">x</span><span class="p">)))</span>
-<span class="c1">// 求最大值最小值</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">MAX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="p">(((</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">?</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">MIN</span><span class="p">(</span><span class="no">A</span><span class="p">,</span><span class="no">B</span><span class="p">)</span> <span class="p">({</span> <span class="n">__typeof__</span><span class="p">(</span><span class="no">A</span><span class="p">)</span> <span class="n">__a</span> <span class="o">=</span> <span class="p">(</span><span class="no">A</span><span class="p">);</span> <span class="n">__typeof__</span><span class="p">(</span><span class="no">B</span><span class="p">)</span> <span class="n">__b</span> <span class="o">=</span> <span class="p">(</span><span class="no">B</span><span class="p">);</span> <span class="n">__a</span> <span class="o">&lt;</span> <span class="n">__b</span> <span class="o">?</span> <span class="n">__a</span> <span class="o">:</span> <span class="n">__b</span><span class="p">;</span> <span class="p">})</span>
-<span class="c1">// 得到一个字的高位和底位字节</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">WORD_LO</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">((</span><span class="k">byte</span><span class="p">)((</span><span class="n">word</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">255</span><span class="p">))</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">WORD_HI</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">((</span><span class="k">byte</span><span class="p">)((</span><span class="n">word</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mh">8</span><span class="p">))</span>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>宏</h3>
+<div class="codehilite"><pre><span></span><span class="x">// 得到指定地址上的一个字节或字</span>
+<span class="x">#define MEM_B(x) (*((byte *)(x)))</span>
+<span class="x">#define MEM_W(x) (*((word *)(x)))</span>
+<span class="x">// 求最大值最小值</span>
+<span class="x">#define MAX(x,y) (((x) &gt; (y)) ? (x) : (y))</span>
+<span class="x">#define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a &lt; __b ? __a : __b; })</span>
+<span class="x">// 得到一个字的高位和底位字节</span>
+<span class="x">#define WORD_LO(x) ((byte)((word)(x) &amp; 255))</span>
+<span class="x">#define WORD_HI(x) ((byte)((word)(x) &gt;&gt; 8))</span>
 
-<span class="c1">// 宏定义里用#的地方宏参数不会展开（作为字符串）</span>
-<span class="p">#</span><span class="n">define</span> <span class="no">FILL</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span><span class="n">a</span><span class="p">,</span> <span class="p">#</span><span class="n">a</span><span class="p">}</span>
-<span class="k">enum</span> <span class="no">STATE</span><span class="p">{</span><span class="no">OPEN</span><span class="p">,</span> <span class="no">CLOSE</span><span class="p">};</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="no">MSG</span><span class="p">{</span>
-    <span class="no">STATE</span> <span class="n">state</span><span class="p">;</span>
-    <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">;</span>
-<span class="p">}</span><span class="no">MSG</span><span class="p">;</span>
-<span class="no">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="no">FILL</span><span class="p">(</span><span class="no">OPEN</span><span class="p">),</span> <span class="no">FILL</span><span class="p">(</span><span class="no">CLOSE</span><span class="p">)};</span>
-<span class="err">相当于：</span>
-<span class="no">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{{</span><span class="no">OPEN</span><span class="p">,</span> <span class="s">&quot;OPEN&quot;</span><span class="p">},</span> <span class="p">{</span><span class="no">CLOSE</span><span class="p">,</span> <span class="s">&quot;CLOSE&quot;</span><span class="p">}};</span>
+<span class="x">// 宏定义里用#的地方宏参数不会展开（作为字符串）</span>
+<span class="x">#define FILL(a) {a, #a}</span>
+<span class="x">enum STATE{OPEN, CLOSE};</span>
+<span class="x">typedef struct MSG{</span>
+<span class="x">    STATE state;</span>
+<span class="x">    const char *msg;</span>
+<span class="x">}MSG;</span>
+<span class="x">MSG _msg[] = {FILL(OPEN), FILL(CLOSE)};</span>
+<span class="x">相当于：</span>
+<span class="x">MSG _msg[] = </span><span class="cp">{{</span><span class="nv">OPEN</span><span class="o">,</span> <span class="s2">&quot;OPEN&quot;</span><span class="o">},</span> <span class="o">{</span><span class="nv">CLOSE</span><span class="o">,</span> <span class="s2">&quot;CLOSE&quot;</span><span class="cp">}}</span><span class="x">;</span>
 </pre></div>
 
 

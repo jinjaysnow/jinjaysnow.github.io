@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -172,8 +173,8 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="snapshot-vieweaglview-in-ios7-or-later"><a name="user-content-snapshot-vieweaglview-in-ios7-or-later" href="#snapshot-vieweaglview-in-ios7-or-later" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>snapshot view/EAGLView in iOS7 or later</h2>
-<div class="codehilite"><pre><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">snapshot:</span><span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span><span class="p">){</span>
+          <h2 id="snapshot-vieweaglview-in-ios7-or-later"><a name="user-content-snapshot-vieweaglview-in-ios7-or-later" href="#snapshot-vieweaglview-in-ios7-or-later" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>snapshot view/EAGLView in iOS7 or later</h2>
+<div class="codehilite"><pre><span></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">snapshot:</span><span class="p">(</span><span class="bp">UIView</span> <span class="o">*</span><span class="n">view</span><span class="p">){</span>
     <span class="n">UIGraphicsBeginImageContext</span><span class="p">(</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">size</span><span class="p">);</span>
     <span class="p">[</span><span class="nb">self</span> <span class="nl">drawViewHierarchyInRect</span><span class="p">:</span><span class="n">view</span><span class="p">.</span><span class="n">frame</span> <span class="nl">afterScreenUpdates</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
     <span class="bp">UIImage</span> <span class="o">*</span><span class="n">image</span> <span class="o">=</span> <span class="n">UIGraphicsGetImageFromCurrentImageContext</span><span class="p">();</span>

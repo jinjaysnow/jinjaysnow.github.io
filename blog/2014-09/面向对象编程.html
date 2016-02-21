@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -190,36 +191,36 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>面向对象编程</h2>
-<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>基本特点与特征</h3>
+          <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>面向对象编程</h2>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>基本特点与特征</h3>
 <p>系统的基本模块是对象，系统的功能是通过对象直接的交互完成的。<br />
 现实世界中，对象一般可以表示为：属性 + 行为。  </p>
-<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>对象的特征</h4>
+<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对象的特征</h4>
 <ol>
 <li>每一个对象必须有一个名字区别于其他对象</li>
 <li>用属性来描述对象的某些特征</li>
 <li>有一组操作，每组操作决定对象的一种行为</li>
 <li>对象的行为可分为两类：一类是作用于自身的行为；另一类是作用于其他对象的行为</li>
 </ol>
-<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>类与对象</h4>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>类与对象</h4>
 <p>类是一组具有相同属性和行为的对象的抽象。类和对象是抽象和具体的关系。</p>
-<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>面向对象软件开发的核心工作流</h4>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>面向对象软件开发的核心工作流</h4>
 <p>OOA(面向对象分析)、OOD(面向对象设计)、OOP(面向对象编程)  </p>
-<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>面向对象三大特征</h4>
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>面向对象三大特征</h4>
 <p><strong>封装、继承、多态</strong><br />
 <strong>抽象</strong>是通过特定的实例（对象）抽取共同性质后形成概念的过程。<br />
 <strong>封装</strong>是指把数据和实现操作的代码几种起来放在对象内部，并尽可能隐蔽对象的内部细节。<br />
 <strong>继承</strong>是指一个对象从另一个对象中获得属性和方法的过程，继承机制允许派生类继承基类的数据和操作（即数据成员和成员函数）。<br />
 <strong>多态性</strong>是指不同的对象收到消息时产生多种不同的行为方式。</p>
 <p>面向对象程序特征：程序 = 对象 + 消息。  </p>
-<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>用例图</h3>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>用例图</h3>
 <p>用例图(Use Case diagram)是用来为系统的功能建模，由用例和参与者构成。通常一个用例代表系统的一个功能。一个用例由一些列动作或时间流构成。<br />
 用例描述包括：简要说明，主事件流，其他事件流，前提条件，事后条件。</p>
-<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>类图</h3>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>类图</h3>
 <p>类图(Class diagram)用来显示系统中的类，以及类之间是如何彼此相关联的（显示了系统的静态结构）。</p>
-<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>序列图</h3>
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>序列图</h3>
 <p>序列图(Sequence diagram)用来显示具体用例（或用例的一部分）的详细动作或事件流程，把用例表达的需求转化为进一步、更加正式的精细表达。</p>
-<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>三层设计</h3>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>三层设计</h3>
 <p>Model(模型层)、View(视图层)、Control(控制层)<br />
 关系：用户仅与View层交互，View层仅与Control层交互，Control层仅与Model层交互，Model层处理数据的存储和检索。<br />
 优点：</p>
@@ -232,19 +233,19 @@ MathJax.Hub.Config({
 <li>利于各层代码的重用</li>
 </ol>
 </blockquote>
-<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>抽象类</h3>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>抽象类</h3>
 <p>抽象类(Abstract class)，是不可实例化的类，只作为继承层次中的超类使用，定义抽象类的目的是提供合适的超类，使其他类可以继承它，以实现共享。是一种&rdquo;is a&rdquo;关系。</p>
-<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>多态</h3>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多态</h3>
 <p>多态(Polymorphism)：用同一个名字定义不同的方法。多态允许将子类的对象当做超类的对象调用。</p>
-<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>接口</h3>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>接口</h3>
 <p>接口(interface)是常量和抽象方法的集合，可以看做一个纯的抽象类。是一种&rdquo;like a&rdquo;关系。</p>
-<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>构造方法</h3>
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>构造方法</h3>
 <ol>
 <li>该方法的名字必须与类的名字相同</li>
 <li>该方法用关键字new 调用</li>
 <li>构造方法不含返回值</li>
 </ol>
-<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>方法重载与重写</h3>
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>方法重载与重写</h3>
 <p><strong>重载(overloading)</strong><br />
 1. 方法名相同<br />
 2. 方法的参数类型，个数，顺序至少有一项不相同<br />

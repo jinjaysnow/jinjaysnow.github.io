@@ -7,17 +7,23 @@ extensions = [
     'magiclink',
     'tasklist',
     'headeranchor',
+    'superfences',
     'nl2br'
 ]
 
+extension_configs = {}
+
 
 class GithubExtension(Extension):
-    """Add various extensions to Markdown class"""
+    """Add various extensions to Markdown class."""
 
     def extendMarkdown(self, md, md_globals):
-        """Register extension instances"""
-        md.registerExtensions(extensions, self.config)
+        """Register extension instances."""
+
+        md.registerExtensions(extensions, extension_configs)
 
 
-def makeExtension(configs={}):
-    return GithubExtension(configs=dict(configs))
+def makeExtension(*args, **kwargs):
+    """Return extension."""
+
+    return GithubExtension(*args, **kwargs)

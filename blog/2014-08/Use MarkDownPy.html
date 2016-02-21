@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.orange-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -175,24 +176,24 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="pygmentize-css"><a name="user-content-pygmentize-css" href="#pygmentize-css" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>pygmentize 产生代码高亮的css文件</h2>
-<div class="codehilite"><pre><span class="vg">pygmentize</span><span class="w"> </span><span class="o">-</span><span class="vg">S</span><span class="w"> </span><span class="vg">default</span><span class="w"> </span><span class="o">-</span><span class="vg">f</span><span class="w"> </span><span class="vg">html</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="vg">default</span><span class="o">.</span><span class="vg">css</span>
+          <h2 id="pygmentize-css"><a name="user-content-pygmentize-css" href="#pygmentize-css" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>pygmentize 产生代码高亮的css文件</h2>
+<div class="codehilite"><pre><span></span>pygmentize -S default -f html &gt; default.css
 </pre></div>
 
 
-<h2 id="markdown_py-html"><a name="user-content-markdown_py-html" href="#markdown_py-html" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>markdown_py 产生html文件</h2>
-<div class="codehilite"><pre><span class="vg">markdown_py</span><span class="o">/</span><span class="vg">markdown2</span><span class="w"> </span><span class="o">\*\*.</span><span class="vg">md</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">\*\*.</span><span class="vg">html</span>
+<h2 id="markdown_py-html"><a name="user-content-markdown_py-html" href="#markdown_py-html" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>markdown_py 产生html文件</h2>
+<div class="codehilite"><pre><span></span>markdown_py/markdown2 \*\*.md &gt; \*\*.html
 </pre></div>
 
 
-<h2 id="mako-template"><a name="user-content-mako-template" href="#mako-template" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>mako 将template变为最终的文件</h2>
-<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
-<span class="k">print</span> <span class="n">Template</span><span class="p">(</span><span class="s">&quot;hello ${data}!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+<h2 id="mako-template"><a name="user-content-mako-template" href="#mako-template" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>mako 将template变为最终的文件</h2>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">mako.template</span> <span class="kn">import</span> <span class="n">Template</span>
+<span class="k">print</span> <span class="n">Template</span><span class="p">(</span><span class="s2">&quot;hello ${data}!&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<h2 id="mako-template_1"><a name="user-content-mako-template_1" href="#mako-template_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>mako Template 使用</h2>
-<div class="codehilite"><pre><span class="c">% for x in SomeList: // SomeList 不需要用${}括起来</span>
+<h2 id="mako-template_1"><a name="user-content-mako-template_1" href="#mako-template_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>mako Template 使用</h2>
+<div class="codehilite"><pre><span></span><span class="c">% for x in SomeList: // SomeList 不需要用${}括起来</span>
     <span class="n">print</span> $<span class="p">{</span><span class="n">x</span><span class="p">}</span>
 <span class="c">% endfor</span>
 </pre></div>

@@ -14,6 +14,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -114,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -235,17 +236,17 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>代码大全</h1>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>需求</h2>
+          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>代码大全</h1>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>需求</h2>
 <p>应付客户提出的新功能：“咦，这听起来是一个很不错的主意。不过由于它不是需求文档里的内容，我会整理一份修订过的进度表和成本估计表，这样你可以决定是现在实施，还是过一阵子再说。”</p>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>架构</h2>
-<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>架构设计的重要意义</h3>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>架构</h2>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>架构设计的重要意义</h3>
 <blockquote>
 <p>如果你要盖一个简单的建筑物&ndash;比如一个狗屋&ndash;你只需要去木材店买一些木头和钉子，一个下午就做好了，如果你忘了弄一个门，或是犯了什么错误，那也没什么大不了的，修改一下或者干脆从头再来就是了。你的损失也就是一个下午的时间。如果你写1000行代码时采用了错误的设计，你还可以重构甚至从头再来，不会损失太多。  </p>
 <p>如果你是在建一栋房子，那么这个建造过程就会复杂得多，而糟糕的设计所引发的后果也更严重。狗屋与房子建造的重要区别就在于设计蓝图，也就是软件的架构设计上。</p>
 </blockquote>
 <p>精心计划，并非意味着事无巨细的计划或者过度的计划。你可以把房屋结构性的支撑规划清楚，而在日后再决定是用木地板还是地毯。</p>
-<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>架构的典型组成部分</h3>
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>架构的典型组成部分</h3>
 <ol>
 <li>程序组织（Program Organnization），也即模块结构</li>
 <li>主要的类（Major Classes）</li>
@@ -272,8 +273,8 @@ MathJax.Hub.Config({
 <p>如果你不能向一个六岁的小孩解释某件事，那么你自己就没有真正理解它。<br />
 ——Albert Einstein （爱因斯坦）</p>
 </blockquote>
-<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>设计</h2>
-<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>关键的设计概念</h3>
+<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设计</h2>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>关键的设计概念</h3>
 <p><strong><em>软件的首要技术使命是管理复杂度。</em></strong></p>
 <blockquote>
 <p>有两种设计软件的方式：一种方法是让设计非常简单，看上去明显没有缺陷；另一种方法是让设计非常复杂，看上去没有明显缺陷。<br />
@@ -281,7 +282,7 @@ MathJax.Hub.Config({
 <p>你已陷入复杂度的沼泽的一个现象就是，你发现自己顽固地用一种明显毫无作用的方法——至少在外人眼里。这就像是一个遇到车子抛锚的蠢货一样——他把水放到电池里然后把烟灰缸倒掉。<br />
 ——P.J. Plauger</p>
 </blockquote>
-<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>理想的设计特征</h3>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>理想的设计特征</h3>
 <ol>
 <li>最小的复杂度（Minimal complexity）</li>
 <li>易于维护（Ease of maintenance）</li>
@@ -295,10 +296,10 @@ MathJax.Hub.Config({
 <li>层次性（stratification）:系统应该能在任一层次上观察而不需要进入其他层次</li>
 <li>标准技术（Standard techniques）:尽量使用标准化的、常用的方法</li>
 </ol>
-<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>设计的层次</h3>
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设计的层次</h3>
 <p><img src="../../images/levelsOfDesign.png"><br />
 系统首先被组织为子系统。子系统被进一步分解为类，然后类又被分解为子程序和数据。每个子程序的内部也需要进行设计。</p>
-<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>启发式设计</h3>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>启发式设计</h3>
 <p>· 寻找现实设计的对象<br />
 · 形成一致的抽象<br />
 · 封装实现的细节<br />
@@ -307,21 +308,21 @@ MathJax.Hub.Config({
 · 找出容易改变的区域<br />
 · 保持松散耦合<br />
 · 探寻通用的设计模式  </p>
-<h4 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>使用启发式方法的原则</h4>
+<h4 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用启发式方法的原则</h4>
 <p>G·波利亚《怎样解题》（《How to Solve It》，1957）</p>
-<div class="codehilite"><pre><span class="nl">1</span><span class="o">.</span><span class="w"> </span><span class="err">理解问题。</span>
-<span class="w">    </span><span class="err">未知量是什么？现有的数据是什么？条件是什么？</span>
-<span class="nl">2</span><span class="o">.</span><span class="w"> </span><span class="err">设计一个计划。找出现有数据和未知量之间的联系。如果你找不出其中的联系，那么可能还得考虑些辅助性的问题。</span>
-<span class="w">    </span><span class="err">在此之前你遇见过这一问题吗？或者曾经遇见过与此差别不大的问题？</span>
-<span class="w">    </span><span class="err">你使用了全部的数据吗？使用了全部的条件？考虑了该问题所涉及的所有核心概念了没？</span>
-<span class="nl">3</span><span class="o">.</span><span class="w"> </span><span class="err">执行着一个计划</span>
-<span class="w">    </span><span class="err">执行你的求解计划，检查每一步。确定每一步都是正确的吗？</span>
-<span class="nl">4</span><span class="o">.</span><span class="w"> </span><span class="err">回顾</span>
-<span class="w">    </span><span class="err">核对结果，核对论据，考虑能不能用其他方法来得出这个结果？你能一眼看出来吗？你能在其它问题上使用这一结果或方法吗？</span>
+<div class="codehilite"><pre><span></span>1. 理解问题。
+    未知量是什么？现有的数据是什么？条件是什么？
+2. 设计一个计划。找出现有数据和未知量之间的联系。如果你找不出其中的联系，那么可能还得考虑些辅助性的问题。
+    在此之前你遇见过这一问题吗？或者曾经遇见过与此差别不大的问题？
+    你使用了全部的数据吗？使用了全部的条件？考虑了该问题所涉及的所有核心概念了没？
+3. 执行着一个计划
+    执行你的求解计划，检查每一步。确定每一步都是正确的吗？
+4. 回顾
+    核对结果，核对论据，考虑能不能用其他方法来得出这个结果？你能一眼看出来吗？你能在其它问题上使用这一结果或方法吗？
 </pre></div>
 
 
-<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>设计实践</h3>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设计实践</h3>
 <blockquote>
 <p>设计是一种迭代过程，你并非只能从A点进行到B点，而是可以从A点到达B点，再从B点返回到A点。</p>
 </blockquote>
@@ -339,8 +340,8 @@ MathJax.Hub.Config({
 <li><strong>记录设计成果</strong><br />
   写Wiki，写总结邮件，保留设计挂图，使用CRC(类、职责、合作者)卡片，在适当的细节层创建UML图。</li>
 </ol>
-<h2 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>类</h2>
-<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>良好的类接口</h3>
+<h2 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>类</h2>
+<h3 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>良好的类接口</h3>
 <ol>
 <li>提供成对的服务</li>
 <li>把不相关的信息转移到其他类中</li>
@@ -351,7 +352,7 @@ MathJax.Hub.Config({
 <blockquote>
 <p>每当你发现自己是通过查看类的内部实现来得知该如何使用这个类的时候，你就不是在针对接口编程了，而是透过接口正对内部实现编程了。</p>
 </blockquote>
-<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>良好的封装</h3>
+<h3 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>良好的封装</h3>
 <ol>
 <li>尽可能地限制类和成员的可访问性</li>
 <li>不要公开暴露成员数据</li>
@@ -364,7 +365,7 @@ MathJax.Hub.Config({
 <blockquote>
 <p>不知道怎样去使用一个类时，应告诉类的开发者，让开发者check out，修改接口文档后check in，然后告诉你“看看现在你知不知道该怎么用它了”。</p>
 </blockquote>
-<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>类的设计与实现</h3>
+<h3 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>类的设计与实现</h3>
 <ol>
 <li><strong>包含关系（has a）</strong><br />
     警惕超过7个数据成员的类，人们在做其他事情时能记住的离散项目的个数是$7 \pm 2$。如果一个类包含超过7个数据成员，考虑把它分解为几个更小的类。</li>
@@ -384,7 +385,7 @@ MathJax.Hub.Config({
     用私用（private）构造函数来强制实现单例属性。<br />
     优先采用深层副本，除非论证可行，才采用浅层副本。[对象的深层副本是对象成员数据逐项赋值的结果;而浅层副本则往往只是指向或引用同一个实际对象]</li>
 </ol>
-<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>类的作用</h3>
+<h3 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>类的作用</h3>
 <blockquote>
 <p>为现实世界建模<br />
 降低和隔离复杂度<br />
@@ -393,22 +394,22 @@ MathJax.Hub.Config({
 把相关操作包装到一起<br />
 实现某种特定的结构</p>
 </blockquote>
-<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>避免创建的类</h3>
+<h3 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>避免创建的类</h3>
 <p><strong>避免创建万能类</strong><br />
 <strong>消除无关紧要的类</strong><br />
 <strong>避免用动词命名的类</strong></p>
-<h2 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>子程序</h2>
+<h2 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>子程序</h2>
 <p>按照输入-参数-输出的顺序排列参数。<br />
 把子程序的参数个数限制在大约7个以内。<br />
 宏子程序：用大括号括起含有多条语句的宏。</p>
-<h2 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>防御式编程</h2>
-<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保护程序免遭非法输入数据的破坏</h3>
+<h2 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>防御式编程</h2>
+<h3 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>保护程序免遭非法输入数据的破坏</h3>
 <ol>
 <li>检查所有来源于外部的数据的值</li>
 <li>检查子程序所有输入参数的值</li>
 <li>决定如何处理错误的输入数据</li>
 </ol>
-<h3 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>断言</h3>
+<h3 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>断言</h3>
 <p>断言是指在 <em>开发期间</em> 使用的、让程序在运行时进行自检的代码（通常是一个子程序或宏）。<br />
 1. 用错误处理代码来处理预期会发生的状况，用断言来处理绝不应该发生的状况<br />
 2. 避免把需要执行的代码放到断言中<br />
@@ -416,7 +417,7 @@ MathJax.Hub.Config({
     前条件是子程序或类在调用子程序或实例化对象之前要确保为真的属性。<br />
     后条件是子程序或类在执行结束后要确保为真的属性。<br />
 4. 对于高健壮性的代码，应该先使用断言再处理错误</p>
-<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>错误处理</h3>
+<h3 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>错误处理</h3>
 <ol>
 <li>返回中立值</li>
 <li>换用下一个正确的数据</li>
@@ -428,14 +429,14 @@ MathJax.Hub.Config({
 <li>当错误发生时显示出错消息</li>
 <li>关闭程序</li>
 </ol>
-<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>异常</h3>
+<h3 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>异常</h3>
 <p>异常是把代码中的错误或异常事件传递给调用方代码的一种特殊手段。<br />
 1. 只有在真正例外的情况下才抛出异常<br />
 2. 避免在构造函数和析构函数中抛出异常，除非你在同一地方把它们破获<br />
 3. 在宜昌消息中加入关于导致异常发生的全部信息<br />
 4. 考虑创建一个集中的异常报告机制</p>
-<h2 id="pseudocode"><a name="user-content-pseudocode" href="#pseudocode" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>伪代码(Pseudocode)</h2>
-<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>通过伪代码编程过程创建子程序</h3>
+<h2 id="pseudocode"><a name="user-content-pseudocode" href="#pseudocode" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>伪代码(Pseudocode)</h2>
+<h3 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>通过伪代码编程过程创建子程序</h3>
 <ol>
 <li>检查先决条件</li>
 <li>定义子程序要解决的问题</li>
@@ -450,9 +451,9 @@ MathJax.Hub.Config({
 <li>检查伪代码</li>
 <li>在伪代码中试验一些想法，留下最好的想法（迭代）</li>
 </ol>
-<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编写子程序的代码</h3>
+<h3 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编写子程序的代码</h3>
 <p><img src="../../images/pseudocode.png"></p>
-<h2 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>变量和数据</h2>
+<h2 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>变量和数据</h2>
 <p>程序主体中仅能出现的文字量就是0和1，任何其他文字量都应该换成描述性的表示。  </p>
 <p><strong>整数</strong><br />
 检查整数除法，7/10不等于0.7，而是0或负无穷大！<br />
@@ -471,25 +472,25 @@ C语言中长度为n的字符需要n+1字节的存储空间。<br />
 用狗牌来检测损毁的内存。（狗牌即编辑字段）<br />
 在删除或者释放指针之后把它们设为空值。<br />
 编写覆盖子程序，集中实现避免指针相关的问题。</p>
-<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>语句</h2>
-<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>条件语句</h3>
+<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>语句</h2>
+<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>条件语句</h3>
 <p>把正常情况的处理放在if后面而不要放在else后面。<br />
 把最常见的情况放在最前面，且确保所有的情况都考虑到了。<br />
 case语句中default字句只用于检查真正的默认情况。</p>
-<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>循环控制</h3>
+<h3 id="_30"><a name="user-content-_30" href="#_30" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>循环控制</h3>
 <p>把初始化代码放在循环前面。<br />
 一个循环只做一件事。<br />
 使循环终止条件看起来很明显。<br />
 避免出现依赖于循环下表最终取值的代码（将最终值赋给一个变量）。  </p>
-<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>递归</h3>
+<h3 id="_31"><a name="user-content-_31" href="#_31" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>递归</h3>
 <p>确认递归能够停止。<br />
 使用安全计数器防止出现无穷递归。  </p>
-<h3 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>表驱动法</h3>
+<h3 id="_32"><a name="user-content-_32" href="#_32" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>表驱动法</h3>
 <p>用查表的方法获取数据。常用方法：<br />
 1. 直接查询<br />
 2. 索引查询<br />
 3. 分段查询</p>
-<h3 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>结构化编程</h3>
+<h3 id="_33"><a name="user-content-_33" href="#_33" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结构化编程</h3>
 <p>一个应用程序应该只采用一些单入单出的控制结构。有三个组成部分：<br />
 1. 顺序<br />
     一组按照先后顺序执行的语句。<br />
@@ -497,12 +498,12 @@ case语句中default字句只用于检查真正的默认情况。</p>
     一种有选择的执行语句的控制结构。<br />
 3. 迭代<br />
     一种使一组语句多次执行的控制结构。</p>
-<h2 id="code-improvement"><a name="user-content-code-improvement" href="#code-improvement" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>代码改善(Code Improvement)</h2>
+<h2 id="code-improvement"><a name="user-content-code-improvement" href="#code-improvement" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>代码改善(Code Improvement)</h2>
 <blockquote>
 <p>在得到认可并形成文字之前，非正式的复查过程往往会在多年的开发文化中为程序员们代代传授。强调复查的理由显而易见，因为对最优秀的程序员来说，他们自己极少会在文字中提到复查；而对那些水平很差的程序员而言，他们往往又坚信自己的代码无懈可击，认定复查毫无必要。<br />
 ——Daniel Freedman 和 Gerald Weinberg</p>
 </blockquote>
-<h3 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>结对编程</h3>
+<h3 id="_34"><a name="user-content-_34" href="#_34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结对编程</h3>
 <p>在进行结对编程的时候，以为程序员编写代码，另外以为注意有没有出现错误，并考虑某些策略性的问题，例如代码的编写是否正确，正在编写的代码是否所需等。结对编程应注意：<br />
 1. 用编码规范来支持结对编程<br />
 2. 不要让结对编程编程旁观<br />
@@ -510,7 +511,7 @@ case语句中default字句只用于检查真正的默认情况。</p>
 4. 避免新手组合<br />
 5. 不要强迫程序员与自己关系紧张的人组队<br />
 6. 确定一个组长</p>
-<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>正式检查</h3>
+<h3 id="_35"><a name="user-content-_35" href="#_35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>正式检查</h3>
 <p>详查（正式检查）角色：<br />
 1. 主持人<br />
     负责保证详查以特定的速度进行，在技术上必须能够胜任，主要负责管理详查的其他方面，例如分派复查设计和代码的人物，分发详查所需的核对表，预定会议室，报告详查结果，以及负责跟踪详查会议上指派的任务。<br />
@@ -523,7 +524,7 @@ case语句中default字句只用于检查真正的默认情况。</p>
 <p><strong>详查中的自尊心</strong><br />
 进行详查的目的是发现设计或代码中的缺陷，而不是探索替代方案，或者争论谁对谁错，其目的绝不应该是批评作者的设计或者代码。因为设计或者代码收到了批评，作者可能感到自己难辞其咎，所以很自然地作者会觉得代码让他脸上无光。作者应该预料到他会听到对某些缺陷的批评，而那些其实并不是缺陷，还有许多是有争议的。尽管如此，作者应该承认每一个所谓的缺陷，然后继续详查。<strong><em>承认一个批评并不意味着作者认同批评的内容。</em></strong>在复查之后，作者可以独自对每一个问题进行思考，判断它是否真的是一个缺陷。<br />
 评论员也必须记住，最终是由作者来负责决定如何处理缺陷。我们应该享受寻找缺陷的了却，但每一个评论员必须尊重作者决定如何解决某个错误的最终权力。</p>
-<h2 id="testing"><a name="user-content-testing" href="#testing" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>测试(Testing)</h2>
+<h2 id="testing"><a name="user-content-testing" href="#testing" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>测试(Testing)</h2>
 <p>测试是一种检查错误的方法，而调试意味着错误已经被发现，要做的是诊断错误并消灭造成这些错误的根本原因。测试包括：<br />
 1. 单元测试<br />
     将一个程序员或者一个开发团队所编写的，一个完整的类、子程序或者小程序，从完整的系统中隔离出来进行测试。<br />
@@ -540,13 +541,13 @@ case语句中default字句只用于检查真正的默认情况。</p>
     测试者无法了解测试对象内部工作机制的测试。<br />
 2. 白盒测试<br />
     测试者清楚待测试对象内部工作机制的测试。</p>
-<h2 id="debugging"><a name="user-content-debugging" href="#debugging" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>调试(Debugging)</h2>
+<h2 id="debugging"><a name="user-content-debugging" href="#debugging" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>调试(Debugging)</h2>
 <p>调试是确定错误根本原因并纠正此错误的过程。  </p>
 <blockquote>
 <p>程序员们往往不愿意使用现成的数据来约束他们的推理。他们往往喜欢进行琐碎和无理性的修改，而且他们通常不愿意推翻以前不正确的修改。<br />
 ——Iris Vessey</p>
 </blockquote>
-<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>寻找缺陷</h3>
+<h3 id="_36"><a name="user-content-_36" href="#_36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>寻找缺陷</h3>
 <ol>
 <li>将错误状态稳定下来</li>
 <li>确定错误的来源<br />
@@ -558,7 +559,7 @@ case语句中default字句只用于检查真正的默认情况。</p>
 <li>对所修补的地方进行测试</li>
 <li>查找是否还有类似的错误</li>
 </ol>
-<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>修正缺陷</h3>
+<h3 id="_37"><a name="user-content-_37" href="#_37" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修正缺陷</h3>
 <p>在动手之前先要理解问题<br />
 理解程序本身，而不仅仅是问题<br />
 验证对错误的分析<br />
@@ -569,13 +570,13 @@ case语句中default字句只用于检查真正的默认情况。</p>
 检查自己的改动<br />
 增加能暴露问题的单元测试<br />
 休息一下</p>
-<h2 id="refactoring"><a name="user-content-refactoring" href="#refactoring" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>重构(Refactoring)</h2>
+<h2 id="refactoring"><a name="user-content-refactoring" href="#refactoring" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>重构(Refactoring)</h2>
 <blockquote>
 <p>所有成功的软件都经历过改变。<br />
 ——Fred Brooks</p>
 </blockquote>
 <p>在不改变软件外部行为的前提下，对其内部结构进行改变，使之更容易理解并便于修改。  </p>
-<h1 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
+<h1 id="_38"><a name="user-content-_38" href="#_38" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>
         </div>
       </div>

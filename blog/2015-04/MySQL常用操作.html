@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -185,27 +186,27 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>授权</h1>
-<div class="codehilite"><pre><span class="k">grant</span> <span class="k">insert</span><span class="p">,</span> <span class="k">drop</span><span class="p">,</span> <span class="k">update</span><span class="p">,</span> <span class="k">select</span><span class="p">,</span> <span class="k">create</span> <span class="k">on</span> <span class="k">database</span><span class="p">.</span><span class="k">table</span> <span class="k">to</span> <span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span> <span class="n">indentified</span> <span class="k">by</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
-<span class="n">flush</span> <span class="n">privileges</span><span class="p">;</span>
+          <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>授权</h1>
+<div class="codehilite"><pre><span></span><span class="k">grant</span> <span class="k">insert</span><span class="p">,</span> <span class="k">drop</span><span class="p">,</span> <span class="k">update</span><span class="p">,</span> <span class="k">select</span><span class="p">,</span> <span class="k">create</span> <span class="k">on</span> <span class="k">database</span><span class="p">.</span><span class="k">table</span> <span class="k">to</span> <span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span> <span class="n">indentified</span> <span class="k">by</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+<span class="k">flush</span> <span class="n">privileges</span><span class="p">;</span>
 </pre></div>
 
 
-<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>视图</h1>
-<div class="codehilite"><pre><span class="k">create</span> <span class="n">view</span> <span class="nf">myview</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="k">as</span> <span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span> <span class="k">from</span> <span class="n">atable</span><span class="p">;</span>
+<h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>视图</h1>
+<div class="codehilite"><pre><span></span><span class="k">create</span> <span class="n">view</span> <span class="nf">myview</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span> <span class="k">as</span> <span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">passwd</span> <span class="k">from</span> <span class="n">atable</span><span class="p">;</span>
 </pre></div>
 
 
-<h1 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>增删改查</h1>
-<div class="codehilite"><pre><span class="k">insert</span> <span class="k">into</span> <span class="nf">atable</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">);</span>
+<h1 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>增删改查</h1>
+<div class="codehilite"><pre><span></span><span class="k">insert</span> <span class="k">into</span> <span class="nf">atable</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">);</span>
 <span class="k">drop</span> <span class="k">table</span> <span class="n">atable</span><span class="p">;</span>
 <span class="k">update</span> <span class="n">atable</span> <span class="kt">set</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span><span class="n">passwd</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">,</span> <span class="n">xx</span><span class="p">);</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">atable</span><span class="p">;</span>
 </pre></div>
 
 
-<h1 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>创建表格</h1>
-<div class="codehilite"><pre><span class="k">create</span> <span class="k">table</span> <span class="k">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="nf">atable</span><span class="p">(</span>
+<h1 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建表格</h1>
+<div class="codehilite"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="k">if</span> <span class="k">not</span> <span class="k">exists</span> <span class="nf">atable</span><span class="p">(</span>
     <span class="n">id</span> <span class="kt">int</span> <span class="k">unsigned</span> <span class="k">not</span> <span class="no">null</span> <span class="kp">auto_increment</span><span class="p">,</span>
     <span class="n">username</span> <span class="kt">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">not</span> <span class="no">null</span><span class="p">,</span>
     <span class="n">password</span> <span class="kt">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">not</span> <span class="no">null</span><span class="p">,</span>
@@ -214,50 +215,50 @@ MathJax.Hub.Config({
 </pre></div>
 
 
-<h1 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>备份</h1>
-<div class="codehilite"><pre><span class="vg">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="vg">hhost</span><span class="w"> </span><span class="o">-</span><span class="vg">Pport</span><span class="w"> </span><span class="o">-</span><span class="vg">uuser</span><span class="w"> </span><span class="o">-</span><span class="vg">ppassword</span><span class="w"> </span><span class="o">--</span><span class="vg">all</span><span class="o">-</span><span class="vg">databases</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="vg">all</span><span class="o">.</span><span class="vg">sql</span>
+<h1 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>备份</h1>
+<div class="codehilite"><pre><span></span>mysqldump -hhost -Pport -uuser -ppassword --all-databases &gt; all.sql
 </pre></div>
 
 
-<h1 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>事件定时器</h1>
-<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>查看是否开启，三种方法</h2>
-<div class="codehilite"><pre><span class="vg">SHOW</span><span class="w"> </span><span class="vg">VARIABLES</span><span class="w"> </span><span class="vg">LIKE</span><span class="w"> </span><span class="c1">&#39;event_scheduler&#39;;</span>
-<span class="vg">SELECT</span><span class="w"> </span><span class="err">@@</span><span class="vg">event_scheduler</span><span class="p">;</span>
-<span class="vg">SHOW</span><span class="w"> </span><span class="vg">PROCESSLIST</span><span class="p">;</span>
+<h1 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>事件定时器</h1>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>查看是否开启，三种方法</h2>
+<div class="codehilite"><pre><span></span>SHOW VARIABLES LIKE &#39;event_scheduler&#39;;
+SELECT @@event_scheduler;
+SHOW PROCESSLIST;
 </pre></div>
 
 
-<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>开启事件机制</h2>
-<div class="codehilite"><pre><span class="vg">SET</span><span class="w"> </span><span class="vg">GLOBAL</span><span class="w"> </span><span class="vg">event_scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="p">;</span>
-<span class="vg">SET</span><span class="w"> </span><span class="err">@@</span><span class="vg">global</span><span class="o">.</span><span class="vg">event_scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="il">1</span><span class="p">;</span>
-<span class="vg">SET</span><span class="w"> </span><span class="vg">GLOBAL</span><span class="w"> </span><span class="vg">event_scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">ON</span><span class="p">;</span>
-<span class="vg">SET</span><span class="w"> </span><span class="err">@@</span><span class="vg">global</span><span class="o">.</span><span class="vg">event_scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">ON</span><span class="p">;</span>
+<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>开启事件机制</h2>
+<div class="codehilite"><pre><span></span>SET GLOBAL event_scheduler = 1;
+SET @@global.event_scheduler = 1;
+SET GLOBAL event_scheduler = ON;
+SET @@global.event_scheduler = ON;
 </pre></div>
 
 
-<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>事件权限查看</h2>
-<div class="codehilite"><pre><span class="vg">SELECT</span><span class="w"> </span><span class="vg">HOST</span><span class="p">,</span><span class="vg">USER</span><span class="p">,</span><span class="vg">Event_priv</span><span class="w"> </span><span class="vg">FROM</span><span class="w"> </span><span class="vg">mysql</span><span class="o">.</span><span class="vg">user</span><span class="p">;</span>
+<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>事件权限查看</h2>
+<div class="codehilite"><pre><span></span>SELECT HOST,USER,Event_priv FROM mysql.user;
 </pre></div>
 
 
-<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>事件权限分配</h2>
-<div class="codehilite"><pre><span class="vg">UPDATE</span><span class="w"> </span><span class="vg">mysql</span><span class="o">.</span><span class="vg">user</span><span class="w"> </span><span class="vg">SET</span><span class="w"> </span><span class="vg">Event_priv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">&#39;Y&#39; WHERE HOST=&#39;%&#39; AND USER=&#39;auser&#39;;</span>
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>事件权限分配</h2>
+<div class="codehilite"><pre><span></span>UPDATE mysql.user SET Event_priv = &#39;Y&#39; WHERE HOST=&#39;%&#39; AND USER=&#39;auser&#39;;
 </pre></div>
 
 
-<h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>创建事件</h2>
-<div class="codehilite"><pre><span class="vg">create</span><span class="w"> </span><span class="vg">event</span><span class="w"> </span><span class="p">[</span><span class="vg">if</span><span class="w"> </span><span class="vg">not</span><span class="w"> </span><span class="vg">exists</span><span class="p">]</span><span class="w"> </span><span class="vg">event_name</span>
-<span class="vg">on</span><span class="w"> </span><span class="vg">schedule</span><span class="w"> </span><span class="vg">schedule</span>
-<span class="p">[</span><span class="vg">on</span><span class="w"> </span><span class="vg">completion</span><span class="w"> </span><span class="p">[</span><span class="vg">not</span><span class="p">]</span><span class="w"> </span><span class="vg">preserve</span><span class="p">]</span>
-<span class="p">[</span><span class="vg">enable</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="vg">disable</span><span class="p">]</span>
-<span class="p">[</span><span class="vg">comment</span><span class="w"> </span><span class="c1">&#39;comment&#39;]</span>
-<span class="vg">do</span><span class="w"> </span><span class="vg">sql_statement</span><span class="p">;</span>
+<h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建事件</h2>
+<div class="codehilite"><pre><span></span>create event [if not exists] event_name
+on schedule schedule
+[on completion [not] preserve]
+[enable | disable]
+[comment &#39;comment&#39;]
+do sql_statement;
 </pre></div>
 
 
-<h2 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>事件开启与关闭</h2>
-<div class="codehilite"><pre><span class="vg">alter</span><span class="w"> </span><span class="vg">event</span><span class="w"> </span><span class="vg">e_test</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">completion</span><span class="w"> </span><span class="vg">preserve</span><span class="w"> </span><span class="vg">enable</span><span class="p">;</span>
-<span class="vg">alter</span><span class="w"> </span><span class="vg">event</span><span class="w"> </span><span class="vg">e_test</span><span class="w"> </span><span class="vg">on</span><span class="w"> </span><span class="vg">completion</span><span class="w"> </span><span class="vg">preserve</span><span class="w"> </span><span class="vg">disable</span><span class="p">;</span>
+<h2 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>事件开启与关闭</h2>
+<div class="codehilite"><pre><span></span>alter event e_test on completion preserve enable;
+alter event e_test on completion preserve disable;
 </pre></div>
 
 

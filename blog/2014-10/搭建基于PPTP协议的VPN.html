@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -188,91 +189,91 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h1 id="pptpvpn"><a name="user-content-pptpvpn" href="#pptpvpn" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>搭建基于PPTP协议的VPN</h1>
-<h2 id="pptp"><a name="user-content-pptp" href="#pptp" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>PPTP配置</h2>
-<h3 id="pptp_1"><a name="user-content-pptp_1" href="#pptp_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>安装PPTP</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">apt</span><span class="o">-</span><span class="vg">get</span><span class="w"> </span><span class="vg">install</span><span class="w"> </span><span class="vg">pptpd</span>
+          <h1 id="pptpvpn"><a name="user-content-pptpvpn" href="#pptpvpn" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>搭建基于PPTP协议的VPN</h1>
+<h2 id="pptp"><a name="user-content-pptp" href="#pptp" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>PPTP配置</h2>
+<h3 id="pptp_1"><a name="user-content-pptp_1" href="#pptp_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>安装PPTP</h3>
+<div class="codehilite"><pre><span></span>sudo apt-get install pptpd
 </pre></div>
 
 
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>修改配置文件</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">vim</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">pptpd</span><span class="o">.</span><span class="vg">conf</span>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改配置文件</h3>
+<div class="codehilite"><pre><span></span>sudo vim /etc/pptpd.conf
 </pre></div>
 
 
 <p>将文件最后两行注释的内容更改为未注释状态</p>
-<div class="codehilite"><pre><span class="vg">localip</span><span class="w"> </span><span class="mf">192.168.0.1</span>
-<span class="vg">remoteip</span><span class="w"> </span><span class="mf">192.168.2.10</span><span class="il">-100</span>
+<div class="codehilite"><pre><span></span>localip 192.168.0.1
+remoteip 192.168.2.10-100
 </pre></div>
 
 
 <p>这里localip是VPN连接后服务器的IP地址，remoteip是客户端可分配的IP范围。</p>
-<h3 id="dns"><a name="user-content-dns" href="#dns" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>编辑DNS配置</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">vim</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">ppp</span><span class="o">/</span><span class="vg">pptpd</span><span class="o">-</span><span class="vg">options</span>
+<h3 id="dns"><a name="user-content-dns" href="#dns" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编辑DNS配置</h3>
+<div class="codehilite"><pre><span></span>sudo vim /etc/ppp/pptpd-options
 </pre></div>
 
 
 <p>找到ms-dns这项，去掉前面的#号，修改为Google的DNS</p>
-<div class="codehilite"><pre><span class="vg">ms</span><span class="o">-</span><span class="vg">dns</span><span class="w"> </span><span class="mf">8.8.8.8</span>
-<span class="vg">ms</span><span class="o">-</span><span class="vg">dns</span><span class="w"> </span><span class="mf">8.8.4.4</span>
+<div class="codehilite"><pre><span></span>ms-dns 8.8.8.8
+ms-dns 8.8.4.4
 </pre></div>
 
 
-<h3 id="vpn"><a name="user-content-vpn" href="#vpn" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>添加VPN账号</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">vim</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">ppp</span><span class="o">/</span><span class="vg">chap</span><span class="o">-</span><span class="vg">secrets</span>
+<h3 id="vpn"><a name="user-content-vpn" href="#vpn" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加VPN账号</h3>
+<div class="codehilite"><pre><span></span>sudo vim /etc/ppp/chap-secrets
 </pre></div>
 
 
 <p>添加账号密码，样例：</p>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="vg">Secrets</span><span class="w"> </span><span class="vg">for</span><span class="w"> </span><span class="vg">authentication</span><span class="w"> </span><span class="vg">using</span><span class="w"> </span><span class="vg">CHAP</span>
-<span class="err">#</span><span class="w"> </span><span class="vg">client</span><span class="w">        </span><span class="vg">server</span><span class="w">  </span><span class="vg">secret</span><span class="w">                  </span><span class="vg">IP</span><span class="w"> </span><span class="vg">addresses</span>
-<span class="s2">&quot;test&quot;</span><span class="w">          </span><span class="vg">pptpd</span><span class="w">   </span><span class="s2">&quot;test12345678&quot;</span><span class="w">          </span><span class="o">*</span>
+<div class="codehilite"><pre><span></span># Secrets for authentication using CHAP
+# client        server  secret                  IP addresses
+&quot;test&quot;          pptpd   &quot;test12345678&quot;          *
 </pre></div>
 
 
 <p>账号密码用双引号括起来保证是一个完整的字符串，无二义。</p>
-<h2 id="nat"><a name="user-content-nat" href="#nat" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>配置NAT</h2>
-<h3 id="ipv4-forward"><a name="user-content-ipv4-forward" href="#ipv4-forward" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>开启ipv4 forward</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">vim</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">sysctl</span><span class="o">.</span><span class="vg">conf</span>
+<h2 id="nat"><a name="user-content-nat" href="#nat" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>配置NAT</h2>
+<h3 id="ipv4-forward"><a name="user-content-ipv4-forward" href="#ipv4-forward" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>开启ipv4 forward</h3>
+<div class="codehilite"><pre><span></span>sudo vim /etc/sysctl.conf
 </pre></div>
 
 
 <p>添加内容</p>
-<div class="codehilite"><pre><span class="vg">net</span><span class="o">.</span><span class="vg">ipv4</span><span class="o">.</span><span class="vg">ip_forward</span><span class="o">=</span><span class="il">1</span>
+<div class="codehilite"><pre><span></span>net.ipv4.ip_forward=1
 </pre></div>
 
 
 <p>保存退出后运行命令</p>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">sysctl</span><span class="w"> </span><span class="o">-</span><span class="vg">p</span>
+<div class="codehilite"><pre><span></span>sudo sysctl -p
 </pre></div>
 
 
-<h3 id="nat_1"><a name="user-content-nat_1" href="#nat_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>建立NAT</h3>
+<h3 id="nat_1"><a name="user-content-nat_1" href="#nat_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>建立NAT</h3>
 <p>使用以下命令安装iptables</p>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">apt</span><span class="o">-</span><span class="vg">get</span><span class="w"> </span><span class="vg">install</span><span class="w"> </span><span class="vg">iptables</span>
+<div class="codehilite"><pre><span></span>sudo apt-get install iptables
 </pre></div>
 
 
 <p>安装成功后，运行命令：</p>
-<div class="codehilite"><pre><span class="vg">iptables</span><span class="w"> </span><span class="o">-</span><span class="vg">t</span><span class="w"> </span><span class="vg">nat</span><span class="w"> </span><span class="o">-</span><span class="vg">A</span><span class="w"> </span><span class="vg">POSTROUTING</span><span class="w"> </span><span class="o">-</span><span class="vg">s</span><span class="w"> </span><span class="mf">192.168.2.0</span><span class="o">/</span><span class="il">24</span><span class="w"> </span><span class="o">-</span><span class="vg">o</span><span class="w"> </span><span class="vg">eth0</span><span class="w"> </span><span class="o">-</span><span class="vg">j</span><span class="w"> </span><span class="vg">MASQUERADE</span>
+<div class="codehilite"><pre><span></span>iptables -t nat -A POSTROUTING -s 192.168.2.0/24 -o eth0 -j MASQUERADE
 </pre></div>
 
 
 <p>将客户端的信息转交给eth0网卡转发。<code>192.168.2.0/24</code>修改为自己定义的客户端IP范围，<code>eth0</code>修改为自己的网卡代码(使用<code>ifconfig</code>查看)。</p>
-<h3 id="nat_2"><a name="user-content-nat_2" href="#nat_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>保存NAT配置</h3>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="vg">iptables</span><span class="o">-</span><span class="vg">save</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">pptpd</span><span class="o">.</span><span class="vg">conf</span>
-<span class="vg">sudo</span><span class="w"> </span><span class="vg">vim</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">network</span><span class="o">/</span><span class="vg">interfaces</span>
+<h3 id="nat_2"><a name="user-content-nat_2" href="#nat_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>保存NAT配置</h3>
+<div class="codehilite"><pre><span></span>sudo iptables-save &gt; /etc/pptpd.conf
+sudo vim /etc/network/interfaces
 </pre></div>
 
 
 <p>在eth0后面加上一句：</p>
-<div class="codehilite"><pre><span class="vg">pre</span><span class="o">-</span><span class="vg">up</span><span class="w"> </span><span class="vg">iptables</span><span class="o">-</span><span class="vg">restore</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">iptables</span><span class="o">-</span><span class="vg">rules</span>
+<div class="codehilite"><pre><span></span>pre-up iptables-restore &lt; /etc/iptables-rules
 </pre></div>
 
 
 <p>这样每次重启后，iptables不会丢失。</p>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>开启服务</h2>
-<div class="codehilite"><pre><span class="vg">sudo</span><span class="w"> </span><span class="o">/</span><span class="vg">etc</span><span class="o">/</span><span class="vg">init</span><span class="o">.</span><span class="vg">d</span><span class="o">/</span><span class="vg">pptpd</span><span class="w"> </span><span class="vg">restart</span>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>开启服务</h2>
+<div class="codehilite"><pre><span></span>sudo /etc/init.d/pptpd restart
 </pre></div>
 
 

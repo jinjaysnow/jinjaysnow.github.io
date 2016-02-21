@@ -14,6 +14,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -114,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-indigo.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -182,101 +183,95 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="python"><a name="user-content-python" href="#python" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Python抓取股票信息</h2>
+          <h2 id="python"><a name="user-content-python" href="#python" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Python抓取股票信息</h2>
 <p>主要参考信息来源：<a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html"><a href="http://blog.sciencenet.cn/blog-461456-455211.html">http://blog.sciencenet.cn/blog-461456-455211.html</a></a></a></p>
-<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤一：获取所有的股票代码</h3>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤一：获取所有的股票代码</h3>
 <p>可以在网上搜索股票代码一览表获得，我自己是在东方财富网上获取的，获取时间为2014年10月8日，通过提取html内容得到一个<a href="../../static/stock/codes.txt">codes.txt</a></p>
-<h3 id="python_1"><a name="user-content-python_1" href="#python_1" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤二：Python抓取股票信息</h3>
-<p>主要通过<code>http://hq.sinajs.cn/list=%s</code>获取当日股票信息，其中%s为股票代码，得到的是一个JavaScript的语句，需要转化成Python可以识别的语句。新浪的股票数据接口实例：</p>
-<div class="codehilite"><pre><span class="nl">http:</span><span class="o">//</span><span class="vg">hq</span><span class="o">.</span><span class="vg">sinajs</span><span class="o">.</span><span class="vg">cn</span><span class="o">/</span><span class="vg">list</span><span class="o">=</span><span class="vg">sh601006</span>
+<h3 id="python_1"><a name="user-content-python_1" href="#python_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤二：Python抓取股票信息</h3>
+<p>主要通过<code>http://hq.sinajs.cn/list=%s</code>获取当日股票信息，其中%s为股票代码，得到的是一个JavaScript的语句，需要转化成Python可以识别的语句。新浪的股票数据接口实例：<br />
+<div class="codehilite"><pre><span></span>http://hq.sinajs.cn/list=sh601006
 </pre></div>
-
-
-<p>返回数据为：</p>
-<div class="codehilite"><pre><span class="vg">var</span><span class="w"> </span><span class="vg">hq_str_sh601006</span><span class="o">=</span><span class="s2">&quot;大秦铁路,7.90,7.93,7.92,7.98,7.89,7.91,7.92,29388117,232721144,34300,7.91,117258,7.90,262584,7.89,261200,7.88,138300,7.87,8800,7.92,80770,7.93,364800,7.94,473882,7.95,336194,7.96,2014-10-09,15:03:04,00&quot;</span><span class="p">;</span>
+<br />
+返回数据为：<br />
+<div class="codehilite"><pre><span></span><span class="nt">var</span> <span class="nt">hq_str_sh601006</span><span class="o">=</span><span class="s2">&quot;大秦铁路,7.90,7.93,7.92,7.98,7.89,7.91,7.92,29388117,232721144,34300,7.91,117258,7.90,262584,7.89,261200,7.88,138300,7.87,8800,7.92,80770,7.93,364800,7.94,473882,7.95,336194,7.96,2014-10-09,15:03:04,00&quot;</span><span class="o">;</span>
 </pre></div>
-
-
-<p>数据意义：</p>
-<div class="codehilite"><pre><span class="nl">0</span><span class="err">：”大秦铁路”，股票名字；</span>
-<span class="nl">1</span><span class="err">：”</span><span class="mf">7.90</span><span class="err">″，今日开盘价；</span>
-<span class="nl">2</span><span class="err">：”</span><span class="mf">7.93</span><span class="err">″，昨日收盘价；</span>
-<span class="nl">3</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，当前价格；</span>
-<span class="nl">4</span><span class="err">：”</span><span class="mf">7.98</span><span class="err">″，今日最高价；</span>
-<span class="nl">5</span><span class="err">：”</span><span class="mf">7.89</span><span class="err">″，今日最低价；</span>
-<span class="nl">6</span><span class="err">：”</span><span class="mf">7.91</span><span class="err">″，竞买价，即“买一”报价；</span>
-<span class="nl">7</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，竞卖价，即“卖一”报价；</span>
-<span class="nl">8</span><span class="err">：”</span><span class="il">29388117</span><span class="err">″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；</span>
-<span class="nl">9</span><span class="err">：”</span><span class="il">232721144</span><span class="err">″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；</span>
-<span class="nl">10</span><span class="err">：”</span><span class="il">34300</span><span class="err">″，“买一”申请</span><span class="il">34300</span><span class="err">股；</span>
-<span class="nl">11</span><span class="err">：”</span><span class="mf">7.91</span><span class="err">″，“买一”报价；</span>
-<span class="nl">12</span><span class="err">：”</span><span class="il">117258</span><span class="err">″，“买二”</span>
-<span class="nl">13</span><span class="err">：”</span><span class="mf">7.90</span><span class="err">″，“买二”</span>
-<span class="nl">14</span><span class="err">：”</span><span class="il">262584</span><span class="err">″，“买三”</span>
-<span class="nl">15</span><span class="err">：”</span><span class="mf">7.89</span><span class="err">″，“买三”</span>
-<span class="nl">16</span><span class="err">：”</span><span class="il">261200</span><span class="err">″，“买四”</span>
-<span class="nl">17</span><span class="err">：”</span><span class="mf">7.88</span><span class="err">″，“买四”</span>
-<span class="nl">18</span><span class="err">：”</span><span class="il">138300</span><span class="err">″，“买五”</span>
-<span class="nl">19</span><span class="err">：”</span><span class="mf">7.87</span><span class="err">″，“买五”</span>
-<span class="nl">20</span><span class="err">：”</span><span class="il">8800</span><span class="err">″，“卖一”申报</span><span class="il">3100</span><span class="err">股，即</span><span class="il">31</span><span class="err">手；</span>
-<span class="nl">21</span><span class="err">：”</span><span class="mf">7.92</span><span class="err">″，“卖一”报价</span>
-<span class="p">(</span><span class="il">22</span><span class="p">,</span><span class="w"> </span><span class="il">23</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">24</span><span class="p">,</span><span class="w"> </span><span class="il">25</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">26</span><span class="p">,</span><span class="il">27</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="il">28</span><span class="p">,</span><span class="w"> </span><span class="il">29</span><span class="p">)</span><span class="err">分别为“卖二”至“卖四的情况”</span>
-<span class="nl">30</span><span class="err">：”</span><span class="il">2014-10-09</span><span class="err">″，日期；</span>
-<span class="nl">31</span><span class="err">：”</span><span class="il">15</span><span class="o">:</span><span class="il">03</span><span class="o">:</span><span class="il">04</span><span class="err">″，时间；</span>
+<br />
+数据意义：<br />
+<div class="codehilite"><pre><span></span>0：”大秦铁路”，股票名字；
+1：”7.90″，今日开盘价；
+2：”7.93″，昨日收盘价；
+3：”7.92″，当前价格；
+4：”7.98″，今日最高价；
+5：”7.89″，今日最低价；
+6：”7.91″，竞买价，即“买一”报价；
+7：”7.92″，竞卖价，即“卖一”报价；
+8：”29388117″，成交的股票数，由于股票交易以一百股为基本单位，所以在使用时，通常把该值除以一百；
+9：”232721144″，成交金额，单位为“元”，为了一目了然，通常以“万元”为成交金额的单位，所以通常把该值除以一万；
+10：”34300″，“买一”申请34300股；
+11：”7.91″，“买一”报价；
+12：”117258″，“买二”
+13：”7.90″，“买二”
+14：”262584″，“买三”
+15：”7.89″，“买三”
+16：”261200″，“买四”
+17：”7.88″，“买四”
+18：”138300″，“买五”
+19：”7.87″，“买五”
+20：”8800″，“卖一”申报3100股，即31手；
+21：”7.92″，“卖一”报价
+(22, 23), (24, 25), (26,27), (28, 29)分别为“卖二”至“卖四的情况”
+30：”2014-10-09″，日期；
+31：”15:03:04″，时间；
 </pre></div>
-
-
-<p>Python抓取部分代码为:</p>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="vg">code</span><span class="err">为股票代码</span>
-<span class="vg">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;http://hq.sinajs.cn/list=%s&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="vg">code</span>
-<span class="vg">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">urllib2</span><span class="o">.</span><span class="vg">urlopen</span><span class="p">(</span><span class="vg">url</span><span class="p">)</span>
-<span class="vg">javascriptInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">response</span><span class="o">.</span><span class="vg">read</span><span class="p">()</span>
-<span class="err">#</span><span class="w"> </span><span class="err">解析成</span><span class="vg">python</span><span class="err">可识别的信息</span>
-<span class="vg">pythonInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">javascriptInfo</span><span class="p">[</span><span class="il">4</span><span class="o">:</span><span class="p">]</span>
-<span class="vg">exec</span><span class="p">(</span><span class="vg">pythonInfo</span><span class="p">)</span>
-<span class="vg">company</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;hq_str_&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="vg">code</span>
-<span class="vg">companyInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">eval</span><span class="p">(</span><span class="vg">company</span><span class="p">)</span>
-<span class="vg">companyInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">companyInfo</span><span class="o">.</span><span class="vg">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</p>
+<p>Python抓取部分代码为:<br />
+<div class="codehilite"><pre><span></span># code为股票代码
+url = &quot;http://hq.sinajs.cn/list=%s&quot; % code
+response = urllib2.urlopen(url)
+javascriptInfo = response.read()
+# 解析成python可识别的信息
+pythonInfo = javascriptInfo[4:]
+exec(pythonInfo)
+company = &quot;hq_str_&quot; + code
+companyInfo = eval(company)
+companyInfo = companyInfo.split(&quot;,&quot;)
 </pre></div>
-
-
-<p>通过执行上述代码便在companyInfo中存储了股票相应的信息。</p>
-<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤三：筛选出自己感兴趣的股票</h3>
+<br />
+通过执行上述代码便在companyInfo中存储了股票相应的信息。</p>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤三：筛选出自己感兴趣的股票</h3>
 <p>在这里，我设置筛选条件为<code>当前股票价格&lt;5元</code>，然后获取月K线图。通过观察月K线来确定是否投资。<br />
 月K线获取的url为：<code>http://image.sinajs.cn/newchart/monthly/n/%s.gif</code>，%s为股票代码。<br />
-实例：</p>
-<div class="codehilite"><pre><span class="nl">http:</span><span class="o">//</span><span class="vg">image</span><span class="o">.</span><span class="vg">sinajs</span><span class="o">.</span><span class="vg">cn</span><span class="o">/</span><span class="vg">newchart</span><span class="o">/</span><span class="vg">monthly</span><span class="o">/</span><span class="vg">n</span><span class="o">/</span><span class="vg">sh000001</span><span class="o">.</span><span class="vg">gif</span>
+实例：<br />
+<div class="codehilite"><pre><span></span>http://image.sinajs.cn/newchart/monthly/n/sh000001.gif
 </pre></div>
+<br />
+<img src="../../static/stock/sh000001.gif"></p>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤四：股票数量众多，采用多线程加速获取数据</h3>
+<p>一般来说，浏览器使用的线程数为4，此处我们也每次采用4个线程。<br />
+<div class="codehilite"><pre><span></span># 单个线程进行的工作
+def singleHandle(codes, hello):
+    print hello
+    for code in codes:
+        # 去除code中的空白字符
+        code = code.strip()
+        # 获取信息
+        getComInfo(code)
 
-
-<p><img src="../../static/stock/sh000001.gif"></p>
-<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤四：股票数量众多，采用多线程加速获取数据</h3>
-<p>一般来说，浏览器使用的线程数为4，此处我们也每次采用4个线程。  </p>
-<div class="codehilite"><pre><span class="err">#</span><span class="w"> </span><span class="err">单个线程进行的工作</span>
-<span class="vg">def</span><span class="w"> </span><span class="vg">singleHandle</span><span class="p">(</span><span class="vg">codes</span><span class="p">,</span><span class="w"> </span><span class="vg">hello</span><span class="p">)</span><span class="o">:</span>
-<span class="w">    </span><span class="vg">print</span><span class="w"> </span><span class="vg">hello</span>
-<span class="w">    </span><span class="vg">for</span><span class="w"> </span><span class="vg">code</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="nl">codes:</span>
-<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">去除</span><span class="vg">code</span><span class="err">中的空白字符</span>
-<span class="w">        </span><span class="vg">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vg">code</span><span class="o">.</span><span class="vg">strip</span><span class="p">()</span>
-<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">获取信息</span>
-<span class="w">        </span><span class="vg">getComInfo</span><span class="p">(</span><span class="vg">code</span><span class="p">)</span>
-
-<span class="err">#</span><span class="w"> </span><span class="err">每次四个线程获取股票信息</span>
-<span class="vg">def</span><span class="w"> </span><span class="vg">multiHandle</span><span class="p">(</span><span class="vg">fourcodes</span><span class="p">,</span><span class="w"> </span><span class="vg">hello</span><span class="p">)</span><span class="o">:</span>
-<span class="w">    </span><span class="vg">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="vg">threading</span><span class="o">.</span><span class="vg">Thread</span><span class="p">(</span><span class="vg">target</span><span class="o">=</span><span class="vg">singleHandle</span><span class="p">,</span><span class="w"> </span><span class="vg">args</span><span class="o">=</span><span class="p">(</span><span class="vg">codes</span><span class="p">,</span><span class="w"> </span><span class="vg">hello</span><span class="p">))</span><span class="w"> </span><span class="vg">for</span><span class="w"> </span><span class="vg">codes</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="vg">fourcodes</span><span class="p">]</span>
-<span class="w">    </span><span class="vg">for</span><span class="w"> </span><span class="vg">t</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="nl">threads:</span>
-<span class="w">        </span><span class="vg">t</span><span class="o">.</span><span class="vg">start</span><span class="p">()</span>
-<span class="w">    </span><span class="vg">for</span><span class="w"> </span><span class="vg">t</span><span class="w"> </span><span class="vg">in</span><span class="w"> </span><span class="nl">threads:</span>
-<span class="w">        </span><span class="vg">t</span><span class="o">.</span><span class="vg">join</span><span class="p">()</span>
+# 每次四个线程获取股票信息
+def multiHandle(fourcodes, hello):
+    threads = [threading.Thread(target=singleHandle, args=(codes, hello)) for codes in fourcodes]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
 </pre></div>
-
-
-<p>注意：hello字段基本无用，主要是使用一个参数时，Python的线程函数会报参数个数的错误。我尝试去解决它，不过目前无解。</p>
-<h3 id="k"><a name="user-content-k" href="#k" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>步骤五：显示满足条件的股票月K线</h3>
+<br />
+注意：hello字段基本无用，主要是使用一个参数时，Python的线程函数会报参数个数的错误。我尝试去解决它，不过目前无解。</p>
+<h3 id="k"><a name="user-content-k" href="#k" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>步骤五：显示满足条件的股票月K线</h3>
 <p>虽然可以直接一张一张的翻看图片，但是每次都需要点击鼠标，比较麻烦。我将产生的文件地址写入一个HTML文件中，通过浏览器便可以在一个界面里显示所有的图片文件，便于分析。  </p>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>总结</h2>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>总结</h2>
 <p>Python的网络库很容易上手抓取网页数据，这里只是简单的应用了一下，没有使用正则表达式匹配等手段获取局部数据，程序可以改进的地方还有很多。比如对股票的详细筛选：获取满足条件的股票数据，通过进一步获取更多的信息（公司详情，股本结构等），来进行股票投资。  </p>
-<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>程序源码</h2>
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>程序源码</h2>
 <p><a href="../../static/stock/getinfo.py">抓取信息程序源码</a><br />
 <a href="../../static/stock/generateHTML.py">生成网页文件源码</a></p>
   <p style="text-align: right; color: gray;"><br>2015-09-23 20:32:21</p>

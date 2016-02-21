@@ -13,6 +13,7 @@
 .codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
 .codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
 .codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
 .codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
 .codehilite pre .cp { color: #009999 } /* Comment.Preproc */
 .codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
@@ -113,7 +114,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -173,20 +174,20 @@ MathJax.Hub.Config({
         <!-- placeholder cell -->
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
-          <h2 id="robotstxt"><a name="user-content-robotstxt" href="#robotstxt" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Robots.txt</h2>
+          <h2 id="robotstxt"><a name="user-content-robotstxt" href="#robotstxt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Robots.txt</h2>
 <p>在网站根目录下放置一个文本档案，告诉搜索引擎如何处理你的目录信息。<br />
 如：</p>
-<div class="codehilite"><pre><span class="vg">User</span><span class="o">-</span><span class="nl">Agent:</span><span class="w"> </span><span class="o">*</span>
-<span class="nl">Disallow:</span><span class="w"> </span><span class="o">/</span><span class="vg">brief</span><span class="o">/</span>
-<span class="nl">Disallow:</span><span class="w"> </span><span class="o">/</span><span class="vg">markdownPreview</span><span class="o">/</span>
-<span class="nl">Disallow:</span><span class="w"> </span><span class="o">/</span><span class="vg">templates</span><span class="o">/</span>
+<div class="codehilite"><pre><span></span>User-Agent: *
+Disallow: /brief/
+Disallow: /markdownPreview/
+Disallow: /templates/
 </pre></div>
 
 
-<h2 id="sitemapxml"><a name="user-content-sitemapxml" href="#sitemapxml" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>sitemap.xml</h2>
+<h2 id="sitemapxml"><a name="user-content-sitemapxml" href="#sitemapxml" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>sitemap.xml</h2>
 <p>使用网站地图文件sitemap.xml告诉搜索引擎文档内容。<br />
 如：</p>
-<div class="codehilite"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;urlset</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;url&gt;</span>
         <span class="nt">&lt;loc&gt;</span>http://jinjaysnow.github.io/<span class="nt">&lt;/loc&gt;</span>
