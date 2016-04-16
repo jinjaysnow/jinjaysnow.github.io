@@ -9,7 +9,7 @@ keywords: zsh
 
 # 安装zsh
 ## 下载zsh源代码
-下载最新发行版zsh源代码![http://www.zsh.org/pub/zsh.tar.gz](http://www.zsh.org/pub/zsh.tar.gz)，解压后进入zsh源代码目录。
+下载最新发行版zsh源代码`http://www.zsh.org/pub/zsh.tar.gz`，解压后进入zsh源代码目录。
 
 ## 配置zsh编译安装选项
 这里，主要设置zsh的安装目录，让zsh安装在用户目录下，供用户访问
