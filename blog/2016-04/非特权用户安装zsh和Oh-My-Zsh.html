@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -207,10 +207,15 @@ zsh默认会安装到<code>$HOME/bin</code>目录下.</p>
 <br />
 则表明安装zsh成功.</p>
 <h1 id="oh-my-zsh"><a name="user-content-oh-my-zsh" href="#oh-my-zsh" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>安装Oh My Zsh</h1>
-<p>直接通过<code>sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"</code>安装失败时，需要手动更改安装的shell脚本。首先下载脚本:<br />
-<div class="codehilite"><pre><span></span>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+<p>直接通过<br />
+<div class="codehilite"><pre><span></span>sh -c <span class="s2">&quot;</span><span class="k">$(</span>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </p>
+<p>安装失败时，需要手动更改安装的shell脚本。首先下载脚本:</p>
+<div class="codehilite"><pre><span></span>wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+</pre></div>
+
+
 <p>修改脚本，删除如下代码：<br />
 <div class="codehilite"><pre><span></span><span class="nv">CHECK_ZSH_INSTALLED</span><span class="o">=</span><span class="k">$(</span>grep /zsh$ /etc/shells <span class="p">|</span> wc -l<span class="k">)</span>
 <span class="k">if</span> <span class="o">[</span> ! <span class="nv">$CHECK_ZSH_INSTALLED</span> -ge <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
@@ -221,7 +226,7 @@ zsh默认会安装到<code>$HOME/bin</code>目录下.</p>
 </pre></div>
 </p>
 <p>保存后退出，运行<code>sh install.sh</code>完成安装。</p>
-  <p style="text-align: right; color: gray;"><br>2016-04-16 12:54:05</p>
+  <p style="text-align: right; color: gray;"><br>2016-04-16 13:27:40</p>
         </div>
       </div>
       <footer>

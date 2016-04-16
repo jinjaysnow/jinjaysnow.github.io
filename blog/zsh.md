@@ -37,7 +37,13 @@ exec `which zsh` -l           # 设置登录为zsh
 则表明安装zsh成功.
 
 # 安装Oh My Zsh
-直接通过`sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"`安装失败时，需要手动更改安装的shell脚本。首先下载脚本:
+直接通过
+```sh
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+```
+
+安装失败时，需要手动更改安装的shell脚本。首先下载脚本:
+
 ```sh
 wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
 ```
