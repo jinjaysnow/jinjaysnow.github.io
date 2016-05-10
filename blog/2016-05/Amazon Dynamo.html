@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2016-05">
+<meta name="keywords" content="Amazon Dynamo,DynamoDB">
+<meta name="author" content="Jin Jay">
+<meta name="description" content="Amazon Dynamo调研，简介。"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>Amazon Dynamo</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#cap">CAP理论</a></li>
+<li><a href="#dynamo">Dynamo</a><ul>
+<li><a href="#dynamo_1">Dynamo背景条件</a><ul>
+<li><a href="#1">1、系统假设与要求</a></li>
+<li><a href="#2sla">2、服务水平协议（SLA）</a></li>
+<li><a href="#3">3、设计考虑（复制数据）</a></li>
+</ul>
+</li>
+<li><a href="#_1">关键技术</a><ul>
+<li><a href="#_2">数据分区</a></li>
+<li><a href="#_3">数据复制</a></li>
+<li><a href="#_4">数据版本合并</a></li>
+<li><a href="#_5">故障检测</a></li>
+<li><a href="#_6">故障处理</a></li>
+<li><a href="#_7">读写操作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_8">参考文献</a></li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="cap"><a name="user-content-cap" href="#cap" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CAP理论</h1>
+<p>CAP理论主张任何基于网络的数据共享系统，都最多只能拥有以下三条中的两条：</p>
+<ol>
+<li>数据一致性（Consistency），等同于所有节点访问同一份最新的数据副本；</li>
+<li>对数据更新具备高可用性（Availability）；</li>
+<li>能容忍网络分区（Partition tolerance）</li>
+</ol>
+<h1 id="dynamo"><a name="user-content-dynamo" href="#dynamo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Dynamo</h1>
+<p>Dynamo是Amazon开发的一款高可用的分布式KV系统。根据CAP原则 (Consistency, Availability, Partition tolerance)，Dynamo是一个AP系统，只保证最终一致性。Dynamo满足：通过一致性哈希满足P，用复制满足A，用对象版本与向量时钟满足C。用牺牲C来满足高可用的A，但是最终会一致。但是，是牺牲C满足A，还是牺牲A满足C，可以根据NWR模型来调配，以达到收益成本平衡。</p>
+<p>Dynamo的三个主要概念：</p>
+<ul>
+<li>Key-Value：Key用来唯一标识一个数据对象，Value标识数据对象具体内容，只能通过Key对该对象进行读写操作。</li>
+<li>节点(node)：指一台物理主机。主要有 协调请求(request coordination)、成员及故障检测(membership and failure detection) 和 本地持久化(local persistence engine) 三大功能组件，底层的数据持久化存储一般使用Berkeley DB TDS。</li>
+<li>实例(instance)：每个实例由一组节点组成，从应用层看，实例提供IO功能。实例上的节点可以位于不同IDC以保证容灾。</li>
+</ul>
+<h2 id="dynamo_1"><a name="user-content-dynamo_1" href="#dynamo_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Dynamo背景条件</h2>
+<h3 id="1"><a name="user-content-1" href="#1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1、系统假设与要求</h3>
+<p>（1）查询模型<br />
+基于Key-Value模型，而不是SQL即关系模型。存储对象比较小，通常小于1MB。</p>
+<p>（2）ACID属性<br />
+传统的关系数据库中，用ACID（A原子性、C一致性、I隔离性、D持久性）来保证事务，在保证ACID的前提下往往有很差的可用性。Dynamo用弱一致性C来达到高可用，不提供数据隔离I，只允许单Key更新。</p>
+<p>（3）效率<br />
+在廉价的机器上满足SLA，通过配置来满足延时和吞吐量的要求，因此，必须在性能、成本、可用性和持久性保证之间做权衡。</p>
+<p>（4）其它假设<br />
+Dynamo仅在Amazon内部使用，因此，认为其使用环境是可信赖的。</p>
+<h3 id="2sla"><a name="user-content-2sla" href="#2sla" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2、服务水平协议（SLA）</h3>
+<p>所谓服务水平协议是指客户端和服务端在某几个指标上达成一致的一个协议，通常包括客户端请求API的速率、服务端的预期延时，比如：在客户端每秒500个请求负载的高峰时，99.9%的响应时间为300毫秒。<br />
+一般业界，对这种面向性能的SLA采用平均数（average）、中值（median）和预期变化（expected variance）。但是这些指标只能对大多数客户端有良好体验，而不是所有。为了解决这个问题，Dynamo采用99.9%百分位来代替这些指标。</p>
+<h3 id="3"><a name="user-content-3" href="#3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3、设计考虑（复制数据）</h3>
+<p>传统的数据复制算法，在出现故障时，为了保证数据一致性被迫牺牲掉可用性，即：与其不能确定数据是否正确，不如让数据一直不可用直到数据绝对正确时。</p>
+<p>但是，一个高度灵活的系统应该能够让用户知道在何种情况下能到达哪些属性，Dynamo就是如此。</p>
+<p>对于故障是常态的系统来说，采用乐观复制技术可以提供系统的可用性，但带来的问题是需要检测并协调解决冲突，协调解决冲突的过程又包含两个问题，即：何时协调和由谁协调。Dynamo的设计是数据存储最终一致，即所有更新操作最终到达所有副本。</p>
+<p>（1）何时协调<br />
+无外乎两种情况：写或者读时协调冲突。<br />
+传统数据存储在写时协调冲突，即如果给定时间内数据不能达到所要求的所有或大多数副本数，则写入可能会被拒绝。<br />
+Amazon认为拒绝客户的更新操作会导致糟糕的用户体验，典型应用是购物车服务，即使出现故障，客户仍然可以向购物车添加或者删除物品，基于此，Dynamo的目标定位为“永远可写”（always writable）即数据存储的“写”是高可用的。也就是说Dynamo为了确保“写”永远不会被拒绝，那么数据存储在读时协调冲突。</p>
+<p>（2）由谁协调<br />
+无外乎两种情况：由数据存储本身或客户端应用程序来协调。<br />
+如果是数据存储本身协调，则只能使用简单策略来协调冲突的更新操作，比如：“最后一次写入获胜”（last write wins）。<br />
+如果是客户端应用程序协调，则应用程序可以根据业务需求来选择最适合协调冲突的方法。<br />
+Dynamo选择了后者，典型应用还是购物车服务，返回所有数据对象版本，最后选择合并完冲突的版本。</p>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>关键技术</h2>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数据分区</h3>
+<p>Hash算法：使用MD5对Key进行Hash以产生一个128位的标识符，以此确定Key的存储节点。</p>
+<p>Dynamo采用一致哈希完成数据分区。在一致性哈希中，哈希函数的输出范围为一个圆环，如下图所示，系统中每个节点映射到环中某个位置，而Key也被Hash到环中某个位置，Key从其被映射的位置开始沿顺时针方向找到第一个位置比其大的节点作为其存储节点，换个角度说，就是每个系统节点负责从其映射的位置起到逆时针方向的第一个系统节点间的区域。</p>
+<p><center><img alt="dynamo key" src="http://s3.amazonaws.com/wernervogels/public/sosp/sosp-figure2-small.png" /></center></p>
+<p>一致性哈希最大的优点在于节点的扩容与缩容，只影响其直接的邻居节点，而对其它节点没有影响。Dynamo对一致哈希进行了改进，引入了虚拟节点。这样一个实际的物理节点会分布到环上的成百上千个虚节点上，可以带来如下好处：</p>
+<ul>
+<li>如果一个节点不可用（故障或者维护），该节点的负载可以均匀的分散到其他可用节点上；</li>
+<li>如果一个节点重新可用，或者新加入一个节点，新增节点可以接受到和原来节点大致相同的请求量；</li>
+<li>虚节点的数目可以根据物理机器的容量调整，以保证不容量的机型达到相应的负载。</li>
+</ul>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数据复制</h3>
+<p>为了实现高可用，Dynamo将每个数据复制到N台主机上，其中N是每个实例（per-instance）的配置参数，建议值为3。每个Key被分配到一个协调器（coordinator）节点，协调器节点管理其负责范围内的复制数据项，其除了在本地存储其责任范围内的每个Key外，还复制这些Key到环上顺时针方向的N-1个后继节点。这样，系统中每个节点负责环上从其自己位置开始到第N个前驱节点间的一段区域。具体逻辑上图，图中节点B除了在本地存储键K外，还在节点C和D处复制键K，这样节点D将存储落在范围(A, B]、(B, C]和(C, D]上的所有键。</p>
+<p>对于一个特定的键都有一个首选节点列表，由于虚拟节点的存在，为了解决节点故障的问题，构建首先节点列表时会跳过环上某些位置，让这些节点分别位于不同的物理节点上，以保证高可用。</p>
+<p>为了保证复制时数据副本的一致性，Dynamo采用类似于Quorum系统的一致性协议实现。这里涉及到三个关键参数(N, R, W)，其中，N是指数据对象复制到N台主机，协调器负责将数据复制到N-1个节点上，亚马逊建议N配置为3，R代表一次成功的读取操作中最小参与节点数量，W代表一次成功的写操作中最小参与节点数量。R+W&gt;N，则会产生类似于Quorum的效果。该模型中，读（写）延迟由最慢的R(W)复制副本决定，为了得到比较小的延迟，R和W通常配置为小于N。亚马逊建议(N, R, W)设置为(3, 2, 2)以兼顾性能与可用性。R和W直接影响性能、扩展性和一致性，如果W设置为1，则一个实例中只要有一个节点可用，也不影响写操作，如果R设置为1，只要有一个节点可用，也不会影响读请求，R和W值过小则影响一致性，过大则可用性，因此，需要在R和W两个值之间平衡，这也是Dynamo的一个亮点之一。</p>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数据版本合并</h3>
+<p>Dynamo为了保证高可用，对每份数据都复制了多份（建议3份），在数据没有被异步复制到所有副本前，如果有get操作会取到不一致的数据，但是Dynamo提供最终一致性。在亚马逊平台中，购物车就是这种情况的典型应用，为了保证购物车永远可用，对任何一个副本的任何一次更改操作的结果都会当做一个数据版本存储起来，这样当用户get时就会取到多个版本，这样也就需要做数据版本合并了。Dynamo将合并工作推给应用程序，在这里就是购物车get时处理。</p>
+<p>Dynamo用向量时钟来标识同一数据在不同节点上多个副本之间的因果关系。向量时钟实际上就是一个列表，列表的每个节点是一个(node, counter)对，即(节点，计数器)列表。数据版本之间的关系要么是因果关系，要么是平行关系，关系判断依赖于计数器值大小，如果第一个时钟对象的计数器小于或等于所有其它时钟对象的计数器时则是因果关系，那么因是果的祖先可以认为是旧版数据而直接忽略，否则是平行关系，那么就认为数据版本产生了冲突，需要协调并合并。</p>
+<p>在Dynamo中，当客户端更新一个对象时，必须指定更新哪个版本数据，更新版本依赖于早期get操作时获得的向量时钟。</p>
+<p><center><img alt="向量时钟" src="http://s3.amazonaws.com/wernervogels/public/sosp/sosp-figure3-small.png" /></center></p>
+<h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>故障检测</h3>
+<p>（1）Ring Membership<br />
+每个节点启动时存储自己在环上的映射信息并持久化到磁盘上，然后每个节点每隔一秒随机选择一个对等节点，通过Gossip协议传播节点的映射i信息，最终每个节点都知道对等节点所处理范围，即每个节点都可以直接转发一个key的读/写操作到正确的数据集节点，而不需要经过中间路由或者跳。</p>
+<p>（2）External Discovery<br />
+如果人工分别往Dynamo环中加入节点A和B，则Ring Membership不会立即检测到这一变化，而出现暂时逻辑分裂的Dynamo环（A和B都认为自己在环中，但是互相不知道对方存在）。Dynamo用External Discovery来解决这个问题，即有些Dynamo节点充当种子节点的角色，在非种子节点中配置种子节点的IP，所有非种子节点都与种子节点协调成员关系 。</p>
+<p>（3）Failure Detection<br />
+Dynamo采用类Gossip协议来实现去中心化的故障检测，使系统中的每个节点都可以了解其它节点的加入和离开。</p>
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>故障处理</h3>
+<p>在一个节点出现临时性故障时，数据会自动进入列表中的下一个节点进行写操作，并标记为handoff数据，在收到通知需要原节点恢复时重新把数据推回去。这能使系统的写入成功大大提升。</p>
+<p>为了更快的检测副本之间是否不一致，Dynamo使用MerkleTree。MerkleTree是一个hash值构成的树，每个叶子节点是Key的hash值，然后中间节点是所有儿子节点的hash值，这样每个子节点的变动都会反应到上层父节点。使用MerkleTree为数据建立索引，只要任意数据有变动，都将快速反馈出来，可以提速数据变动时的查找。</p>
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>读写操作</h3>
+<p>读取和写入由请求协调组件执行，每个客户端请求都将导致在处理该请求的节点上创建一个状态机，每个状态机都包含以下逻辑：</p>
+<ol>
+<li>标识负责一个key的节点；</li>
+<li>发送请求；</li>
+<li>等待回应；</li>
+<li>可能的重试处理；</li>
+<li>加工和包装返回客户端响应。</li>
+</ol>
+<p>每个状态机实例只处理一个客户端请求，如果是一个读请求，则状态机如下：</p>
+<ol>
+<li>发送读请求到相应结点；</li>
+<li>等待所需的最低数量的响应；</li>
+<li>如果在给定的时间内收到的响应太少，则请求失败；</li>
+<li>否则收集所有数据的版本，并确定要返回的版本；</li>
+<li>如果启用版本合并，则执行语法协调并生成一个对客户端不透明的写上下文，其中包含一个囊括所有版本的向量时钟。</li>
+<li>返回读取响应给客户端后，状态机等待一段时间以接受任何悬而未决的响应，如果任何响应返回了过时的版本，则协调员用最新版本更新这些节点，以完成读修复。</li>
+</ol>
+<p>写请求通常跟随在读请求之后，则协调员由读操作答复最快的节点充当，这种优化能提高读写一致性。</p>
+<h1 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h1>
+<p><a href="http://www.infoq.com/cn/articles/cap-twelve-years-later-how-the-rules-have-changed">CAP理论十二年回顾：&rdquo;规则&rdquo;变了</a><br />
+<a href="http://blog.jqian.net/post/dynamo.html">Dynamo分布式系统</a><br />
+<a href="http://www.linuxeye.com/architecture/1679.html">Amazon Dynamo系统架构</a><br />
+<a href="http://blog.jqian.net/post/dynamo.html">Dynamo分布式系统</a></p>
+  <p style="text-align: right; color: gray;"><br>2016-05-10 10:35:09</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
