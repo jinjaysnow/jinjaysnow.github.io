@@ -22,12 +22,15 @@ Samza是一个流处理框架:
 Samza提供了一个checkpoint检查点的机制，即使一个job崩溃，或机器宕机，网络故障或者其他情况下，Samza能保证消息不会丢失。
 
 如果一个Samza的组件出现故障，需要将组件重启(一般在另一台机器上)并恢复处理。为了实现这个过程，一个组件定时为每一个任务实例的当前的状态创建检查点。
-![offset](https://samza.apache.org/img/0.7.0/learn/documentation/container/checkpointing.svg)
+
+<center>![offset](https://samza.apache.org/img/0.7.0/learn/documentation/container/checkpointing.svg)</center>
 
 当一个Samza组件启动时，会寻找最近的检查点，并从该检查点处开始消费消息流。如果前一个组件出现故障，最近的检查点可能与当前的位置有一个微小的滞后(也即，这个job在上一次检查点写入后可能已经消费了一些消息)，但是我们不能确定。在这种情况下，这个job可能再次处理这一小部分消息。
 
 这个保证被称为“至少一次处理”：Samza保证job不会丢失任何消息，即使组件重启。然而，对于job来说，在一个组件重启时，它可能会看到某一个相同消息超过一次。
 
+# 参考文献
+[Apache Samza官方文档](https://samza.apache.org/learn/documentation/0.7.0)
 
 [TOC]
 
