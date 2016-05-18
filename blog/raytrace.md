@@ -53,7 +53,7 @@ keywords: 光线追踪
 }
 
 .popup {
-  margin: 70px auto;
+  margin: 130px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
@@ -96,13 +96,13 @@ keywords: 光线追踪
 </style>
 
 <div class="box">
-    <a class="button" href="#popup1">启动光线追踪动画</a>
+    <a class="button" href="#popup1" onclick="resume();">启动光线追踪动画</a>
 </div>
 
 <div id="popup1" class="overlay">
     <div class="popup">
         <h2>光线追踪实时渲染</h2>
-        <a class="close" href="#">&times;</a>
+        <a class="close" href="#" onclick="stop();">&times;</a>
         <div class="content">
             <center>
                 <canvas id="paper"  height="200"></canvas>
@@ -121,13 +121,12 @@ var pixels; // 像素点
 var screen_width = 320; // 宽
 var screen_height = 200; // 高
 var frame = 0;   // 帧
+var animate = 0; // 是否动画
 
 // 初始化
 function init() {
     ctx = document.getElementById('paper').getContext('2d');
     pixels = ctx.createImageData(screen_width, screen_height);
-    draw();
-    // setInterval(draw, 1000 / 25);
 };
 // 绘制
 function draw() {
@@ -135,7 +134,19 @@ function draw() {
     ctx.putImageData(pixels, 0, 0);
     // 通过frame更新位置
     frame++;
+    if (animate) {
+        setTimeout(draw, 1000/25);
+    };
 };
+// 暂停
+function stop() {
+    animate = 0;
+}
+// 恢复
+function resume() {
+    animate = 1;
+    setTimeout(draw, 1000);
+}
 
 /* 向量类
  * 默认初始化为(0,0,0)
@@ -855,7 +866,7 @@ $$
 
 
 
-
+# 未完待续
 
 
 

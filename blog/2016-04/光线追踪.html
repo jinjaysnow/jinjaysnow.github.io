@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -180,6 +180,7 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
+<li><a href="#_8">未完待续</a></li>
 </ul>
 </div>
         </nav>
@@ -239,7 +240,7 @@ MathJax.Hub.Config({
 }
 
 .popup {
-  margin: 70px auto;
+  margin: 130px auto;
   padding: 20px;
   background: #fff;
   border-radius: 5px;
@@ -282,13 +283,13 @@ MathJax.Hub.Config({
 </style>
 
 <div class="box">
-    <a class="button" href="#popup1">启动光线追踪动画</a>
+    <a class="button" href="#popup1" onclick="resume();">启动光线追踪动画</a>
 </div>
 
 <div id="popup1" class="overlay">
     <div class="popup">
         <h2>光线追踪实时渲染</h2>
-        <a class="close" href="#">&times;</a>
+        <a class="close" href="#" onclick="stop();">&times;</a>
         <div class="content">
             <center>
                 <canvas id="paper"  height="200"></canvas>
@@ -308,13 +309,12 @@ var pixels; // 像素点
 var screen_width = 320; // 宽
 var screen_height = 200; // 高
 var frame = 0;   // 帧
+var animate = 0; // 是否动画
 
 // 初始化
 function init() {
     ctx = document.getElementById('paper').getContext('2d');
     pixels = ctx.createImageData(screen_width, screen_height);
-    draw();
-    // setInterval(draw, 1000 / 25);
 };
 // 绘制
 function draw() {
@@ -322,7 +322,19 @@ function draw() {
     ctx.putImageData(pixels, 0, 0);
     // 通过frame更新位置
     frame++;
+    if (animate) {
+        setTimeout(draw, 1000/25);
+    };
 };
+// 暂停
+function stop() {
+    animate = 0;
+}
+// 恢复
+function resume() {
+    animate = 1;
+    setTimeout(draw, 1000);
+}
 
 /* 向量类
  * 默认初始化为(0,0,0)
@@ -1068,7 +1080,8 @@ N_1^2 \cdot (1 - \frac{(\vec A \cdot \vec N)^2}{\vec A \cdot \vec A}) &amp; = N_
 \vec A \cdot \vec B &amp; &gt; 0<br />
 \end{align*}<br />
 $$</p>
-  <p style="text-align: right; color: gray;"><br>2016-05-10 11:24:57</p>
+<h1 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
+  <p style="text-align: right; color: gray;"><br>2016-05-18 11:03:50</p>
         </div>
       </div>
       <footer>
