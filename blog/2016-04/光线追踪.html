@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -176,11 +176,13 @@ MathJax.Hub.Config({
 <li><a href="#_5">物体求交</a></li>
 <li><a href="#_6">计算漫反射光</a></li>
 <li><a href="#_7">计算折射光</a></li>
+<li><a href="#_8">计算镜面反射光</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_8">未完待续</a></li>
+<li><a href="#_9">参考文献</a></li>
+<li><a href="#_10">未完待续</a></li>
 </ul>
 </div>
         </nav>
@@ -965,7 +967,7 @@ window.onload = function() {init();};
 </tbody>
 </table>
 <h2 id="scene"><a name="user-content-scene" href="#scene" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Scene设计</h2>
-<p>一个<code>Scene</code>包含多个<code>Light</code>和多个<code>Solid</code>。<code>Scene</code>中运行光线追踪算法，故而包含<code>raytrace</code>方法。该方法接收一个光线<code>ray</code>作为参数，返回颜色值。</p>
+<p>一个<code>Scene</code>包含多个<code>Light</code>和多个<code>Solid</code>。<code>Scene</code>中运行光线追踪算法，故而包含<code>raytrace</code>方法。该方法接收一个视线光线<code>ray</code>作为参数，返回颜色值。</p>
 <table>
 <thead>
 <tr>
@@ -1020,12 +1022,12 @@ window.onload = function() {init();};
     <span class="p">}</span>
     <span class="nx">interpoint</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">solids</span><span class="p">.</span><span class="nx">intersection</span><span class="p">(</span><span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解光线与场景中物体的最近交点</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">interpoint</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 有交点</span>
-        <span class="nx">diffuse_color</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">calculate_diffuse</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">);</span> <span class="c1">// 求解场景在交点处的漫反射光</span>
-        <span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">get_refraction_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
+        <span class="nx">diffuse_color</span> <span class="o">=</span> <span class="nx">calculate_diffuse</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">);</span> <span class="c1">// 求解场景在交点处的漫反射光</span>
+        <span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">get_refraction_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
         <span class="nx">refraction_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">refraction_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归求解折射光颜色</span>
-        <span class="nx">reflection_ray</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">get_reflection_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
-        <span class="nx">reflection_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">reflection_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nx">diffuse_color</span> <span class="o">+</span> <span class="nx">refraction_color</span> <span class="o">+</span> <span class="nx">reflection_color</span><span class="p">);</span>
+        <span class="nx">reflection_ray</span> <span class="o">=</span> <span class="nx">get_reflection_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
+        <span class="nx">reflection_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">reflection_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">diffuse_color</span> <span class="o">+</span> <span class="nx">refraction_color</span> <span class="o">+</span> <span class="nx">reflection_color</span><span class="p">);</span> <span class="c1">// 返回颜色值</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">background_color</span><span class="p">;</span> <span class="c1">// 无交点时返回背景颜色</span>
     <span class="p">}</span>
@@ -1052,12 +1054,12 @@ window.onload = function() {init();};
 <p>$$<br />
 direction = \lgroup \frac{x - \frac{width}{2}}{ratio}, \frac{x - \frac{height}{2}}{ratio}, focus \rgroup \cdot transform<br />
 $$</p>
-<p>其中$width, height$分别为<code>View</code>的宽高属性值，$ratio$为三维空间中每单位长度在图像像素平面上占用的像素比率，由<code>View</code>控制。$focus$是摄像机的焦距。$transform$是摄像机为中心的坐标系与三维场景空间的坐标系转换矩阵，可以根据<code>camera</code>的<code>direction</code>属性求解。我们可以通过更改<code>Camera</code>的<code>direction</code>来生成不同摄像机方向上的图像帧，然后制作动画。</p>
+<p>其中$width, height$分别为<code>View</code>的宽高属性值，$ratio$为三维空间中每单位长度在图像像素平面上占用的像素比率，由<code>View</code>控制。$focus$是摄像机的焦距。$transform$是摄像机为中心的坐标系与三维场景空间的坐标系转换矩阵，可以根据<code>camera</code>的<code>direction</code>属性求解。我们可以通过更改<code>Camera</code>的<code>direction</code>来生成不同摄像机方向上的图像帧，组合这些图像帧可以得到摄像机移动的动画效果。</p>
 <h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>物体求交</h3>
 <p>基本流程：对场景中的每一个物体与入射进行求交，如果存在交点就添加到一个临时的交点数组中，接着遍历该数组，得到距离最近的那个交点，及该交点处的相关信息。相关信息包括交点位置，交点处的法线，交点所在的物体颜色信息等等。故而定义求交后的返回信息结构如下：</p>
 <div class="codehilite"><pre><span></span><span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">point</span><span class="o">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="c1">// 交点坐标</span>
-    <span class="nx">distance</span><span class="p">,</span> <span class="o">+</span><span class="kc">Infinity</span><span class="p">,</span> <span class="c1">// 交点到光远点的距离</span>
+    <span class="nx">distance</span><span class="o">:</span> <span class="o">+</span><span class="kc">Infinity</span><span class="p">,</span> <span class="c1">// 交点到光源点的距离</span>
     <span class="nx">normal</span><span class="o">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="c1">// 交点处的法线</span>
     <span class="nx">solid</span><span class="o">:</span> <span class="nx">solid</span><span class="p">,</span> <span class="c1">// 交点所在的物体，用于求解折射光线、获取交点处的颜色</span>
 <span class="p">}</span>
@@ -1072,16 +1074,31 @@ $$</p>
 <h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算折射光</h3>
 <p><img alt="折射" src="../../images/refraction.PNG" /><br />
 折射光计算需要了解折射面上下的折射率。折射过程满足$\sin\theta_1\cdot N_1 = \sin\theta_2\cdot N_2$。三维情况下如何求解折射方向？</p>
-<p>记入射光线方向为$\vec A = (x_a, y_a, z_a)$,法线方向为$\vec N = (x_n, y_n, z_n)$,折射方向为$\vec B = (x_b, y_b, z_b)$，三个向量在同一个平面内，则有三向量的混合积为0，有</p>
+<p>记单位长度的入射光线方向为$\vec a = (x_a, y_a, z_a)$,单位长度的法线方向为$\vec n = (x_n, y_n, z_n)$,单位长度的折射方向为$\vec b = (x_b, y_b, z_b)$，三个向量在同一个平面内，则有三向量的混合积为0(或者有$\vec B$可以由$\vec A$和$\vec N$表示)有</p>
 <p>$$<br />
-\begin{align*}<br />
-\vec A \times \vec B \cdot \vec C &amp; = 0 \\ <br />
-N_1^2 \cdot (1 - \frac{(\vec A \cdot \vec N)^2}{\vec A \cdot \vec A}) &amp; = N_2^2 \cdot(1-\frac{(\vec B \cdot \vec N)^2}{\vec B \cdot \vec B}) \\ <br />
-\vec A \cdot \vec B &amp; &gt; 0<br />
-\end{align*}<br />
+\begin{cases}<br />
+\vec b = \vec a + k \cdot \vec n  \\ <br />
+N_1^2 \cdot (1 - (\vec a \cdot \vec n)^2) &amp; = N_2^2 \cdot(1-(\vec b \cdot \vec n)^2) <br />
+\end{cases}<br />
 $$</p>
-<h1 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
-  <p style="text-align: right; color: gray;"><br>2016-05-18 11:03:50</p>
+<p>化解上式我们可以得到关于$k$的二次方程：</p>
+<p>$$k^2 + 2(\vec a\cdot \vec n)k + (1-(\frac{N_2}{N_1})^2) = 0$$</p>
+<p>求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线：</p>
+<div class="codehilite"><pre><span></span><span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">uniform_light</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">*</span> <span class="nx">uniform_normal</span>
+</pre></div>
+
+
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算镜面反射光</h3>
+<p><img alt="镜面反射" src="../../images/mirror.png" /></p>
+<p>镜面反射光线计算可用向量计算简洁的得出，如上图中的入射光线A，反射光线B可以按如下计算：</p>
+<p>$\vec B = \vec A + 2(\vec N - \vec A) = 2 \vec N - \vec A$</p>
+<p>实际计算时，对于单位长度的入射光线$\vec a$和单位长度的折射光线$\vec n$，有</p>
+<p>$\vec b = \vec a - 2(\vec a\cdot \vec n)\vec n$</p>
+<h1 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h1>
+<p><a href="http://antirez.com/misc/rt.html">jsrt</a><br />
+<a href="http://www.cosinekitty.com/raytrace/contents.html">Fundamentals of Ray Tracing</a></p>
+<h1 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
+  <p style="text-align: right; color: gray;"><br>2016-05-20 16:57:52</p>
         </div>
       </div>
       <footer>

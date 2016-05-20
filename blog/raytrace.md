@@ -764,7 +764,7 @@ View -|- Camera
 |position<br> direction<br> focus|
 
 ## Scene设计
-一个`Scene`包含多个`Light`和多个`Solid`。`Scene`中运行光线追踪算法，故而包含`raytrace`方法。该方法接收一个光线`ray`作为参数，返回颜色值。
+一个`Scene`包含多个`Light`和多个`Solid`。`Scene`中运行光线追踪算法，故而包含`raytrace`方法。该方法接收一个视线光线`ray`作为参数，返回颜色值。
 
 |Scene|
 |----|
@@ -799,12 +799,12 @@ function raytrace(ray, depth) {
     }
     interpoint = scene.solids.intersection(ray); // 求解光线与场景中物体的最近交点
     if (interpoint) { // 有交点
-        diffuse_color = scene.calculate_diffuse(interpoint); // 求解场景在交点处的漫反射光
-        refraction_ray = scene.get_refraction_ray(interpoint, ray); // 求解交点处的折射光线
+        diffuse_color = calculate_diffuse(interpoint); // 求解场景在交点处的漫反射光
+        refraction_ray = get_refraction_ray(interpoint, ray); // 求解交点处的折射光线
         refraction_color = raytrace(refraction_ray, depth + 1); // 递归求解折射光颜色
-        reflection_ray = scene.get_reflection_ray(interpoint, ray); // 求解交点处的折射光线
-        reflection_color = raytrace(reflection_ray, depth + 1);
-        return (diffuse_color + refraction_color + reflection_color);
+        reflection_ray = get_reflection_ray(interpoint, ray); // 求解交点处的折射光线
+        reflection_color = raytrace(reflection_ray, depth + 1); // 递归
+        return (diffuse_color + refraction_color + reflection_color); // 返回颜色值
     } else {
         return background_color; // 无交点时返回背景颜色
     }
@@ -826,7 +826,7 @@ $$
 direction = \lgroup \frac{x - \frac{width}{2}}{ratio}, \frac{x - \frac{height}{2}}{ratio}, focus \rgroup \cdot transform
 $$
 
-其中$width, height$分别为`View`的宽高属性值，$ratio$为三维空间中每单位长度在图像像素平面上占用的像素比率，由`View`控制。$focus$是摄像机的焦距。$transform$是摄像机为中心的坐标系与三维场景空间的坐标系转换矩阵，可以根据`camera`的`direction`属性求解。我们可以通过更改`Camera`的`direction`来生成不同摄像机方向上的图像帧，然后制作动画。
+其中$width, height$分别为`View`的宽高属性值，$ratio$为三维空间中每单位长度在图像像素平面上占用的像素比率，由`View`控制。$focus$是摄像机的焦距。$transform$是摄像机为中心的坐标系与三维场景空间的坐标系转换矩阵，可以根据`camera`的`direction`属性求解。我们可以通过更改`Camera`的`direction`来生成不同摄像机方向上的图像帧，组合这些图像帧可以得到摄像机移动的动画效果。
 
 ###  物体求交
 基本流程：对场景中的每一个物体与入射进行求交，如果存在交点就添加到一个临时的交点数组中，接着遍历该数组，得到距离最近的那个交点，及该交点处的相关信息。相关信息包括交点位置，交点处的法线，交点所在的物体颜色信息等等。故而定义求交后的返回信息结构如下：
@@ -834,7 +834,7 @@ $$
 ```javascript
 result = {
     point: (0, 0, 0), // 交点坐标
-    distance, +Infinity, // 交点到光远点的距离
+    distance: +Infinity, // 交点到光源点的距离
     normal: (0, 0, 0), // 交点处的法线
     solid: solid, // 交点所在的物体，用于求解折射光线、获取交点处的颜色
 }
@@ -853,20 +853,43 @@ $$diffuse\\_color = solid.color \times \sum^{Lights}\_{light}(light.color \cdot 
 ![折射](../../images/refraction.PNG)
 折射光计算需要了解折射面上下的折射率。折射过程满足$\sin\theta\_1\cdot N\_1 = \sin\theta\_2\cdot N\_2$。三维情况下如何求解折射方向？
 
-记入射光线方向为$\vec A = (x\_a, y\_a, z\_a)$,法线方向为$\vec N = (x\_n, y\_n, z\_n)$,折射方向为$\vec B = (x\_b, y\_b, z\_b)$，三个向量在同一个平面内，则有三向量的混合积为0，有
+记单位长度的入射光线方向为$\vec a = (x\_a, y\_a, z\_a)$,单位长度的法线方向为$\vec n = (x\_n, y\_n, z\_n)$,单位长度的折射方向为$\vec b = (x\_b, y\_b, z\_b)$，三个向量在同一个平面内，则有三向量的混合积为0(或者有$\vec B$可以由$\vec A$和$\vec N$表示)有
 
 $$
-\begin{align\*}
-\vec A \times \vec B \cdot \vec C & = 0 \\\\ 
-N\_1^2 \cdot (1 - \frac{(\vec A \cdot \vec N)^2}{\vec A \cdot \vec A}) & = N\_2^2 \cdot(1-\frac{(\vec B \cdot \vec N)^2}{\vec B \cdot \vec B}) \\\\ 
-\vec A \cdot \vec B & > 0
-\end{align\*}
+\begin{cases}
+\vec b = \vec a + k \cdot \vec n  \\\\ 
+N\_1^2 \cdot (1 - (\vec a \cdot \vec n)^2) & = N\_2^2 \cdot(1-(\vec b \cdot \vec n)^2) 
+\end{cases}
 $$
 
+化解上式我们可以得到关于$k$的二次方程：
+
+$$k^2 + 2(\vec a\cdot \vec n)k + (1-(\frac{N\_2}{N\_1})^2) = 0$$
+
+求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线：
+
+```javascript
+refraction_ray = uniform_light + k * uniform_normal
+```
+
+### 计算镜面反射光
+![镜面反射](../../images/mirror.png)
+
+镜面反射光线计算可用向量计算简洁的得出，如上图中的入射光线A，反射光线B可以按如下计算：
+
+$\vec B = \vec A + 2(\vec N - \vec A) = 2 \vec N - \vec A$
+
+实际计算时，对于单位长度的入射光线$\vec a$和单位长度的折射光线$\vec n$，有
+
+$\vec b = \vec a - 2(\vec a\cdot \vec n)\vec n$
 
 
+# 参考文献
+[jsrt](http://antirez.com/misc/rt.html)
+[Fundamentals of Ray Tracing](http://www.cosinekitty.com/raytrace/contents.html)
 
 # 未完待续
+
 
 
 
