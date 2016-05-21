@@ -842,7 +842,7 @@ View -|- Camera
 ```javascript
 matte_color = intensity * k * (direction * nomral);
 ```
-其中，intensity为光源光强度，k为漫反射系数(0, 1)之间，direction为光线方向单位向量，normal为发现方向单位向量。
+其中，intensity为光源光强度，k为漫反射系数(0, 1)之间，direction为光线方向单位向量，normal为法线方向单位向量。
 
 折射光和镜面反射光强度按照Fresnel定律组合:
 
