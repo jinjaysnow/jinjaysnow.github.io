@@ -637,9 +637,15 @@ Scene.prototype = {
         ray.origin = camera.position;
         for (var x = 0; x < screen_width; x++) {
             for (var y = 0; y < screen_height; y++) {
-                ray.direction.set((x-screen_width/2)/100,
+                // ray.direction.set((x-screen_width/2)/100,
+                //                   (y-screen_height/2)/100,
+                //                   camera.focus);
+                // ray.direction = xyzMultTransform(ray.direction, camera.transform);
+                var direction = [(x-screen_width/2)/100,
                                   (y-screen_height/2)/100,
-                                  4);
+                                  camera.focus];
+                direction = xyzMultTransform(direction, camera.transform);
+                ray.direction.set(direction[0], direction[1], direction[2]);
                 ray.direction.normalize();
                 var trace = this.traceRay(ray,0);
                 var offset = x*4+y*4*screen_width;
@@ -653,7 +659,11 @@ Scene.prototype = {
 }
 function Camera() {
     this.position = new Vector();
-    this.transform = null;
+    this.transform = [[1,0,0,0],
+                      [0,1,0,0],
+                      [0,0,1,0],
+                      [0,0,0,1]];
+    this.focus = 4.0;
 }
 
 // 场景
@@ -723,10 +733,47 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -4);
 
+// 绕Y轴旋转矩阵
+function makeRotateY(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[1.0, 0.0, 0.0, 0.0],
+            [0.0, cos_theta, -sin_theta, 0.0],
+            [0.0, sin_theta, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+}
+// 动画过程
 function computeScene() {
-    sphere1.o.center.x = Math.cos(frame/10);
-    sphere1.o.center.z = Math.sin(frame/10);
+    var p = parseInt(frame / 36);
+    if ( p == 0 || p == 3) {
+        var angle =  5.0 * frame * Math.PI / 180.0;
+        sphere1.o.center.x = Math.cos(angle);
+        sphere1.o.center.z = Math.sin(angle);
+        // 旋转摄像机
+        if (frame < 18) {
+            var theta = -5 * frame * Math.PI / 180.0;
+            camera.position.y = 4.0 * Math.sin(theta);
+            camera.position.z = -4.0 * Math.cos(theta);
+            camera.transform = makeRotateY( 5 * frame);
+        } else if (frame < 36) {
+            var theta = -5 * (36 - frame) * Math.PI / 180.0;
+            camera.position.y = 4.0 * Math.sin(theta);
+            camera.position.z = -4.0 * Math.cos(theta);
+            camera.transform = makeRotateY( 5 * (36 - frame));
+        };
+    } else {
+        var zpos = -4;
+        if (frame >= 72) {
+            z_pos = (frame - 72) / 9.0 - 8;
+        } else {
+            z_pos = -4 - (frame - 36) / 9.0;
+        }
+        camera.position.z = z_pos;
+    };
     scene.traceScene(camera);
+    if (frame >= 143) {
+        frame = 0;
+    };
 }
 window.onload = function() {init();};
 </script>
@@ -790,7 +837,16 @@ View -|- Camera
 # 详细设计
 ## 光线追踪模型
 ![raytrace](../../images/raytrace.PNG)
-投影到视图的光由三部分组成：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪。递归形式的追踪过程伪代码如下：
+投影到视图的光由三部分组成：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：
+
+```javascript
+matte_color = intensity * k * (direction * nomral);
+```
+其中，intensity为光源光强度，k为漫反射系数(0, 1)之间，direction为光线方向单位向量，normal为发现方向单位向量。
+
+折射光和镜面反射光强度按照Fresnel定律组合:
+
+递归形式的追踪过程伪代码如下：
 
 ```javascript
 function raytrace(ray, depth) {
