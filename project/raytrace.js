@@ -50,7 +50,7 @@ document.querySelector('.popups-cont__overlay').addEventListener('click', closeH
 /*********************Ray Tracing*********************/
 var ctx; // 绘制context
 var pixels; // 像素点
-var screen_width = 800; // 宽
+var screen_width = 900; // 宽
 var screen_height = 600; // 高
 var frame = 0; // 帧
 var animate = 0; // 是否动画
@@ -163,7 +163,8 @@ Sphere.prototype = {
             x /= this.radius;
             y /= this.radius;
             z /= this.radius;
-            return { x: x, y: y, z: z };
+            var result = new Vector(x, y, z);
+            return result;
         },
         /* 球面求交
          * 输入参数: ray
@@ -192,11 +193,15 @@ Sphere.prototype = {
                 var root2 = b + d;
                 if (root2 > 0) {
                     if (root1 < 0) {
-                        if (root2 < distance) { distance = root2;
-                            type = -1; }
+                        if (root2 < distance) {
+                            distance = root2;
+                            type = -1;
+                        }
                     } else {
-                        if (root1 < distance) { distance = root1;
-                            type = 1; }
+                        if (root1 < distance) {
+                            distance = root1;
+                            type = 1;
+                        }
                     }
                 }
             }
@@ -228,35 +233,35 @@ function Plane(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
     this.d = -(nx * x1 + ny * y1 + nz * z1);
 }
 Plane.prototype = {
-        normalToPoint: function(x, y, z) {
-            return this.normal;
-        },
-        intersect: function(ray) {
-            var type = 0;
-            var distance = +Infinity;
-            // 首先检查是否与平面相交
-            var ndotrd = (this.normal.x * ray.direction.x) +
-                (this.normal.y * ray.direction.y) +
-                (this.normal.z * ray.direction.z);
-            if (ndotrd) {
-                // 计算交点距离
-                var ndoro = (this.normal.x * ray.origin.x) +
-                    (this.normal.y * ray.origin.y) +
-                    (this.normal.z * ray.origin.z);
-                distance = -(ndoro + this.d) / ndotrd;
-                // 只有距离为正值时才会相交
-                if (distance > 0) type = 1;
-            }
-            return { type: type, dist: distance };
+    normalToPoint: function(x, y, z) {
+        return this.normal;
+    },
+    intersect: function(ray) {
+        var type = 0;
+        var distance = +Infinity;
+        // 首先检查是否与平面相交
+        var ndotrd = (this.normal.x * ray.direction.x) +
+            (this.normal.y * ray.direction.y) +
+            (this.normal.z * ray.direction.z);
+        if (ndotrd) {
+            // 计算交点距离
+            var ndoro = (this.normal.x * ray.origin.x) +
+                (this.normal.y * ray.origin.y) +
+                (this.normal.z * ray.origin.z);
+            distance = -(ndoro + this.d) / ndotrd;
+            // 只有距离为正值时才会相交
+            if (distance > 0) type = 1;
         }
+        return { type: type, dist: distance };
     }
-    /* 多面体
-     * 通过data构造形状
-     * vertices, 顶点坐标;
-     * faces, 面的顶点索引数组;(一个面由多个顶点组成) 
-     * center, 中心点，作为多面体的内部的一点，用于对物体进行变换
-     * transform, 物体的变换，平移旋转等操作
-     */
+};
+/* 多面体
+ * 通过data构造形状
+ * vertices, 顶点坐标;
+ * faces, 面的顶点索引数组;(一个面由多个顶点组成) 
+ * center, 中心点，作为多面体的内部的一点，用于对物体进行变换
+ * transform, 物体的变换，平移旋转等操作
+ */
 function Geometry(data) {
     this.type = 'Geometry';
     this.center = data['center'];
@@ -292,7 +297,7 @@ function Geometry(data) {
 function getQuadrant(x, y) {
     if (x >= 0 && y >= 0)
         return 0;
-    else if (x < 0 && y >= 1)
+    else if (x < 0 && y >= 0)
         return 1;
     else if (x < 0 && y < 0)
         return 2;
@@ -326,138 +331,160 @@ function xyzMultTransform(xyz, transform) {
     return result;
 };
 Geometry.prototype = {
-        makeTransform: function() {
-            this.center = xyzMultTransform(this.center, this.transform);
-            for (var i = this.vertices.length - 1; i >= 0; i--) {
-                this.vertices[i] = xyzMultTransform(this.vertices[i], this.transform);
+    makeTransform: function() {
+        this.center = xyzMultTransform(this.center, this.transform);
+        for (var i = this.vertices.length - 1; i >= 0; i--) {
+            this.vertices[i] = xyzMultTransform(this.vertices[i], this.transform);
+        };
+        this.buildPlanes();
+    },
+    // 构造面所在的平面，及包围球体
+    buildPlanes: function() {
+        this.faces_plane = [];
+        for (var i = 0; i <= this.faces.length - 1; i++) {
+            var f = this.faces[i];
+            var v0 = this.vertices[f[0]];
+            var v1 = this.vertices[f[1]];
+            var v2 = this.vertices[f[2]];
+            this.faces_plane[i] = new Plane(v0[0], v0[1], v0[2],
+                v1[0], v1[1], v1[2],
+                v2[0], v2[1], v2[2]);
+        };
+        for (var i = this.vertices.length - 1; i >= 0; i--) {
+            var v = this.vertices[i];
+            var c = this.center;
+            var vc = new Vector(v[0] - c[0], v[1] - c[1], v[2] - v[2]);
+            var l = vc.magnitude();
+            this.radius = this.radius > l ? this.radius : l;
+        };
+    },
+    // 求解交点法线
+    normalToPoint: function(x, y, z) {
+        var index = 0;
+        var distance = +Infinity;
+
+        for (var i = this.faces_plane.length - 1; i >= 0; i--) {
+            var p_n = this.faces_plane[i].normal;
+            var p_d = this.faces_plane[i].d;
+            // if (Math.abs(x*p_n.x + y*p_n.y + z*p_n.z + p_d) < 1e-16) {
+            //     planes.push(this.faces_plane[i]);
+            // };
+            var p_distance = Math.abs(x * p_n.x + y * p_n.y + z * p_n.z + p_d);
+            if (distance > p_distance) {
+                distance = p_distance;
+                index = i;
             };
-            this.buildPlanes();
-        },
-        // 构造面所在的平面，及包围球体
-        buildPlanes: function() {
-            this.faces_plane = [];
-            for (var i = 0; i <= this.faces.length - 1; i++) {
+        };
+        if (distance > 1e-6) {
+            console.log(distance);
+        };
+        // 复制normal对象，放置更改normal初始值
+        var n = this.faces_plane[index].normal;
+        var normal = new Vector(n.x, n.y, n.z);
+        normal.normalize();
+        var v0 = this.vertices[this.faces[index][0]];
+        var cv = new Vector(this.center[0] - v0[0],
+            this.center[1] - v0[1],
+            this.center[2] - v0[2]);
+        if (normal.dot_product(cv) < 0) {
+            normal.x = -normal.x;
+            normal.y = -normal.y;
+            normal.z = -normal.z;
+        };
+        return normal;
+    },
+    intersect: function(ray) {
+        var type = 0;
+        var distance = +Infinity;
+
+        // 光线源点到中心的向量
+        x = this.center[0] - ray.origin.x;
+        y = this.center[1] - ray.origin.y;
+        z = this.center[2] - ray.origin.z;
+
+        var result = [];
+        for (var i = 0; i <= this.faces_plane.length - 1; i++) {
+            // 先看是否与每一个平面相交
+            var p = this.faces_plane[i];
+            result[i] = p.intersect(ray);
+            if (result[i].type != 0) {
+                // 检查是否在多边形内部，使用改进的弧长法
                 var f = this.faces[i];
-                var v0 = this.vertices[f[0]];
-                var v1 = this.vertices[f[1]];
-                var v2 = this.vertices[f[2]];
-                this.faces_plane[i] = new Plane(v0[0], v0[1], v0[2],
-                    v1[0], v1[1], v1[2],
-                    v2[0], v2[1], v2[2]);
-            };
-            for (var i = this.vertices.length - 1; i >= 0; i--) {
-                var v = this.vertices[i];
-                var c = this.center;
-                var vc = new Vector(v[0] - c[0], v[1] - c[1], v[2] - v[2]);
-                var l = vc.magnitude();
-                this.radius = this.radius > l ? this.radius : l;
-            };
-        },
-        // 求解交点法线
-        normalToPoint: function(x, y, z) {
-            var index = 0;
-            var distance = +Infinity;
+                distance = result[i].dist;
+                // 与该平面的交点坐标
+                var pp = [ray.origin.x + ray.direction.x * distance,
+                         ray.origin.y + ray.direction.y * distance,
+                         ray.origin.z + ray.direction.z * distance];
 
-            for (var i = this.faces_plane.length - 1; i >= 0; i--) {
-                var p_n = this.faces_plane[i].normal;
-                var p_d = this.faces_plane[i].d;
-                // if (Math.abs(x*p_n.x + y*p_n.y + z*p_n.z + p_d) < 1e-16) {
-                //     planes.push(this.faces_plane[i]);
-                // };
-                var p_distance = Math.abs(x * p_n.x + y * p_n.y + z * p_n.z + p_d);
-                if (distance > p_distance) {
-                    distance = p_distance;
-                    index = i;
+                // 三维点变为二维点坐标
+                var n = p.normal;
+                var discard = 0;
+                if (Math.abs(n.x) < Math.abs(n.y)) {
+                    discard = 1;
                 };
-            };
-            if (distance > 1e-6) {
-                console.log(distance);
-            };
-            return this.faces_plane[index].normal;
-        },
-        intersect: function(ray) {
-            var type = 0;
-            var distance = +Infinity;
+                if (Math.abs(n.x) < Math.abs(n.z)) {
+                    discard = 2;
+                };
+                if (discard != 0) {
+                    if (Math.abs(n.y) > Math.abs(n.z)) {
+                        discard = 1;
+                    } else {
+                        discard = 2;
+                    }
+                };
+                var coord = [];
+                for (var j = 0; j < f.length; j++) {
+                    var iii = [0,1,2];
+                    iii.splice(discard, 1);
+                    var v = this.vertices[f[j]];
+                    var deltax = v[iii[0]] - pp[iii[0]],
+                        deltay = v[iii[1]] - pp[iii[1]];
+                    coord[j] = [deltax, deltay];
+                };
+                coord[f.length] = coord[0]; // coord中存放的是移动坐标系后的顶点的坐标
 
-            // 光线源点到中心的向量
-            x = this.center[0] - ray.origin.x;
-            y = this.center[1] - ray.origin.y;
-            z = this.center[2] - ray.origin.z;
-            // (x,y,z)·(x,y,z)
-            var xyz_dot = (x * x) + (y * y) + (z * z);
-            // (x,y,z)·(rdx,rdy,rdz)
-            var b = (x * ray.direction.x) + (y * ray.direction.y) + (z * ray.direction.z);
-            // 看是否与外围球体相交
-            var disc = b * b - xyz_dot + this.radius * this.radius;
-            if (disc > 0) {
-                var result = [];
-                for (var i = 0; i <= this.faces_plane.length - 1; i++) {
-                    // 先看是否与每一个平面相交
-                    var p = this.faces_plane[i];
-                    result[i] = p.intersect(ray);
-                    if (result[i].type == 1) {
-                        // 检查是否在多边形内部，使用改进的弧长法
-                        var f = this.faces[i];
-                        distance = result[i].dist;
-                        var px = ray.origin.x + ray.direction.x * distance,
-                            py = ray.origin.y + ray.direction.y * distance;
+                var n = 0;
+                var on_line = false;
 
-                        // 该平面点的分布
-                        var coord = [];
-                        for (var j = 0; j < f.length; j++) {
-                            var v = this.vertices[f[j]];
-                            var deltax = v[0] - px,
-                                deltay = v[1] - py;
-                            coord[j] = [deltax, deltay];
-                        };
-                        coord[f.length] = coord[0]; // coord中存放的是移动坐标系后的顶点的坐标
-
-                        var n = 0;
-                        var on_line = false;
-                        for (var j = 1; j <= coord.length - 1; j++) {
-                            // 获取点所在的象限
-                            var g0 = getQuadrant(coord[j - 1][0], coord[j - 1][1]);
-                            var g1 = getQuadrant(coord[j][0], coord[j][1]);
-                            // 弧长增量
-                            var addition = signTable[g0][g1];
-                            if (addition == 2) {
-                                var f = coord[j][1] * coord[j - 1][0] - coord[j][0] * coord[j - 1][1];
-                                if (f > 0) {
-                                    addition = 2;
-                                } else if (f == 0) {
-                                    on_line = true;
-                                    break;
-                                } else {
-                                    addition = -2;
-                                }
-                            };
-                            n += addition;
-                        };
-                        if (n == 0 && on_line) {
-                            result[i].type = 0;
-                        };
+                for (var j = 1; j <= coord.length - 1; j++) {
+                    // 获取点所在的象限
+                    var g0 = getQuadrant(coord[j - 1][0], coord[j - 1][1]);
+                    var g1 = getQuadrant(coord[j][0], coord[j][1]);
+                    // 弧长增量
+                    var addition = signTable[g0][g1];
+                    if (addition == 2) {
+                        var f = coord[j][1] * coord[j - 1][0] - coord[j][0] * coord[j - 1][1];
+                        if (f > 0) {
+                            addition = 2;
+                        } else if (f == 0) {
+                            on_line = true;
+                            break;
+                        } else {
+                            addition = -2;
+                        }
                     };
+                    n += addition;
                 };
-                for (var i = result.length - 1; i >= 0; i--) {
-                    if (result[i].type != 0) {
-                        type = result[i].type;
-                        // type = -1;
-                        distance = (distance > result[i].dist) ? result[i].dist : distance;
-                    };
+                if (!on_line && n == 0) {
+                    result[i].type = 0;
                 };
-                // if (type != 0) {
-                //     // 光源在内部还是外部
-
-                // };
             };
-            return { type: type, dist: distance };
-        }
+        };
+        for (var i = result.length - 1; i >= 0; i--) {
+            if (result[i].type != 0) {
+                type = result[i].type;
+                // type = -1;
+                distance = (distance > result[i].dist) ? result[i].dist : distance;
+            };
+        };
+        return { type: type, dist: distance};
     }
-    // 灯光
+};
+// 灯光
 function Light() {
     this.type = "light";
     this.center = new Vector();
-}
+};
 // 物体
 function Solid(name, o) {
     this.name = name;
@@ -635,11 +662,11 @@ var g_data = {
         [-1, 0, -1],
         [1, 0, -1],
         [1, 0, 1],
-        [0, 0, 1],
-        [-2, 2, -2],
-        [2, 2, -2],
-        [2, 2, 2],
-        [-2, 2, 2]
+        [-1, 0, 1],
+        [-1, 2, -1],
+        [1, 2, -1],
+        [1, 2, 1],
+        [-1, 2, 1]
     ],
     'faces': [
         [0, 1, 2, 3],
@@ -652,19 +679,19 @@ var g_data = {
 };
 
 var geometry = new Geometry(g_data);
-var scale_t = [
-    [0.1, 0, 0],
-    [0, 0.1, 0],
-    [0, 0, 0.1]
-];
-geometry.transform = transformMulTransform(geometry.transform, scale_t);
-geometry.makeTransform();
-// var gg = scene.addObject(new Solid("Geometry", geometry));
-// gg.color.r = 1;
-// gg.color.g = .5;
-// gg.color.b = .5;
-// gg.specularity = .5;
-// gg.reflection = .3;
+// var scale_t = [
+//     [0.1, 0, 0],
+//     [0, 0.1, 0],
+//     [0, 0, 0.1]
+// ];
+// geometry.transform = transformMulTransform(geometry.transform, scale_t);
+// geometry.makeTransform();
+var gg = scene.addObject(new Solid("Geometry", geometry));
+gg.color.r = 1.0;
+gg.color.g = 0.3;
+gg.color.b = 0.3;
+gg.specularity = .5;
+gg.reflection = .1;
 
 var plane = scene.addObject(new Solid("Ground", new Plane(0, .5, -2, 0, .5, -4, 2, .5, -2)));
 
@@ -675,12 +702,13 @@ var light3 = scene.addLight(new Solid("Light 3", new Light()));
 var camera = new Camera();
 
 sphere1.o.radius = 0.5;
+sphere1.o.center.x = -3.0;
 
-sphere2.o.center.x = 0;
+sphere2.o.center.x = 3.0;
 sphere2.o.radius = 0.5;
-light1.o.center.set(4, -1, -2);
-light2.o.center.set(-1, -1, -2);
-light3.o.center.set(1, -6, -2);
+light1.o.center.set(4, -1, -6);
+light2.o.center.set(-6, -1, -6);
+light3.o.center.set(6, -6, -6);
 light1.color.r = .5;
 light1.color.g = .5;
 light1.color.b = .5;
@@ -691,20 +719,25 @@ light3.color.r = .4;
 light3.color.g = .4;
 light3.color.b = .4;
 sphere1.color.r = 1;
-sphere1.color.g = .3;
-sphere1.color.b = .3;
+sphere1.color.g = 1;
+sphere1.color.b = 0;
 sphere1.specularity = .5;
 sphere1.reflection = .1;
-sphere2.color.r = .3;
+sphere2.color.r = 0.;
 sphere2.color.g = 1;
-sphere2.color.b = .3;
+sphere2.color.b = 0.;
 sphere2.specularity = .5;
 sphere2.reflection = .1;
 plane.color.r = .3;
 plane.color.g = .3;
 plane.color.b = .3;
 
-camera.position = new Vector(0, 0, -4);
+camera.position = new Vector(0, 0, -6);
+camera.focus = 6.0;
+var theta = -45 * Math.PI / 180.0;
+camera.position.y = 6.0 * Math.sin(theta);
+camera.position.z = -6.0 * Math.cos(theta);
+camera.transform = makeRotateY(45);
 
 // 绕Y轴旋转矩阵
 function makeRotateY(angle) {
@@ -719,9 +752,9 @@ function makeRotateY(angle) {
 }
 // 动画过程
 function computeScene() {
-    var st=new Date().getTime();
+    var st = new Date().getTime();
     scene.traceScene(camera);
-    var st2=new Date().getTime() - st;
+    var st2 = new Date().getTime() - st;
     ssss.push(st2);
 }
 window.onload = function() { init(); };
