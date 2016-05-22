@@ -571,6 +571,20 @@ Scene.prototype = {
                 // 漫反射 
                 var cosine = normal.x * lx + normal.y * ly + normal.z * lz;
                 if (cosine < 0) cosine = 0;
+                // 简单的纹理，只对下方的平面有效
+                if (obj.name == "Ground") {
+                    var temp_x = Math.abs(Math.ceil(x)) % 2;
+                    var temp_y = Math.abs(Math.ceil(z)) % 2;
+                    if (temp_x == temp_y) {
+                        obj.color.r = 1.0;
+                        obj.color.g = 1.0;
+                        obj.color.b = 1.0;
+                    } else {
+                        obj.color.r = 0.1;
+                        obj.color.g = 0.1;
+                        obj.color.b = 0.1;
+                    };
+                };
                 color.r += cosine * obj.color.r * light.color.r;
                 color.g += cosine * obj.color.g * light.color.g;
                 color.b += cosine * obj.color.b * light.color.b;
@@ -590,7 +604,7 @@ Scene.prototype = {
                     }
                 }
                 // 镜面反射
-                if (obj.reflection > 0 && depth < 3) {
+                if (obj.reflection > 0 && depth < 5) {
                     var rr = new Ray();
                     var dotnr = (ray.direction.x * normal.x) +
                         (ray.direction.y * normal.y) +
@@ -654,8 +668,6 @@ function Camera() {
 
 // 场景
 var scene = new Scene();
-var sphere1 = scene.addObject(new Solid("Sphere 1", new Sphere()));
-var sphere2 = scene.addObject(new Solid("Sphere 2", new Sphere()));
 var g_data = {
     'center': [0, 0, 0],
     'vertices': [
@@ -701,6 +713,14 @@ var light3 = scene.addLight(new Solid("Light 3", new Light()));
 
 var camera = new Camera();
 
+var sphere1 = scene.addObject(new Solid("Sphere 1", new Sphere()));
+var sphere2 = scene.addObject(new Solid("Sphere 2", new Sphere()));
+var sphere3 = scene.addObject(new Solid("Sphere 3", new Sphere()));
+sphere3.o.radius = 1.0;
+sphere3.o.center.z = 3;
+sphere3.specularity = 1.0;
+sphere3.reflection = 1.0;
+
 sphere1.o.radius = 1.0;
 sphere1.o.center.x = -3.0;
 
@@ -721,8 +741,8 @@ light3.color.b = .4;
 sphere1.color.r = 1;
 sphere1.color.g = 1;
 sphere1.color.b = 0;
-sphere1.specularity = .5;
-sphere1.reflection = .1;
+sphere1.specularity = 1.0;
+sphere1.reflection = .0;
 sphere2.color.r = 0.;
 sphere2.color.g = 1;
 sphere2.color.b = 0.;
