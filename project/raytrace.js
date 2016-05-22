@@ -234,7 +234,9 @@ function Plane(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
 }
 Plane.prototype = {
     normalToPoint: function(x, y, z) {
-        return this.normal;
+        var n = new Vector(this.normal.x, this.normal.y, this.normal.z);
+        n.normalize();
+        return n;
     },
     intersect: function(ray) {
         var type = 0;
@@ -386,7 +388,7 @@ Geometry.prototype = {
         var cv = new Vector(this.center[0] - v0[0],
             this.center[1] - v0[1],
             this.center[2] - v0[2]);
-        if (normal.dot_product(cv) < 0) {
+        if (normal.dot_product(cv) > 0) {
             normal.x = -normal.x;
             normal.y = -normal.y;
             normal.z = -normal.z;
@@ -622,7 +624,7 @@ Scene.prototype = {
         if (x < screen_width) {
             for (var y = 0; y < screen_height; y++) {
                 var direction = [(x - screen_width / 2) / 100,
-                    (y - screen_height / 2) / 100,
+                    -(y - screen_height / 2) / 100,
                     camera.focus
                 ];
                 direction = xyzMultTransform(direction, camera.transform);
@@ -630,13 +632,11 @@ Scene.prototype = {
                 ray.direction.normalize();
                 var trace = this.traceRay(ray, 0);
                 var offset = x * 4 + y * 4 * screen_width;
-                pixels.data[offset + 3] = 255;
                 pixels.data[offset + 0] = trace.color.r * 255;
                 pixels.data[offset + 1] = trace.color.g * 255;
                 pixels.data[offset + 2] = trace.color.b * 255;
             }
             ctx.putImageData(pixels, 0, 0);
-            // setTimeout(function() {  }, 1000 / 25);
         };
     }
 }
@@ -657,16 +657,16 @@ var scene = new Scene();
 var sphere1 = scene.addObject(new Solid("Sphere 1", new Sphere()));
 var sphere2 = scene.addObject(new Solid("Sphere 2", new Sphere()));
 var g_data = {
-    'center': [0, 1, 0],
+    'center': [0, 0, 0],
     'vertices': [
-        [-1, 0, -1],
-        [1, 0, -1],
-        [1, 0, 1],
-        [-1, 0, 1],
-        [-1, 2, -1],
-        [1, 2, -1],
-        [1, 2, 1],
-        [-1, 2, 1]
+        [-1, -1, -1],
+        [1, -1, -1],
+        [1, -1, 1],
+        [-1, -1, 1],
+        [-1, 1, -1],
+        [1, 1, -1],
+        [1, 1, 1],
+        [-1, 1, 1]
     ],
     'faces': [
         [0, 1, 2, 3],
@@ -679,13 +679,13 @@ var g_data = {
 };
 
 var geometry = new Geometry(g_data);
-// var scale_t = [
-//     [0.1, 0, 0],
-//     [0, 0.1, 0],
-//     [0, 0, 0.1]
-// ];
-// geometry.transform = transformMulTransform(geometry.transform, scale_t);
-// geometry.makeTransform();
+var scale_t = [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1]
+];
+geometry.transform = transformMulTransform(geometry.transform, scale_t);
+geometry.makeTransform();
 var gg = scene.addObject(new Solid("Geometry", geometry));
 gg.color.r = 1.0;
 gg.color.g = 0.3;
@@ -693,7 +693,7 @@ gg.color.b = 0.3;
 gg.specularity = .5;
 gg.reflection = .1;
 
-var plane = scene.addObject(new Solid("Ground", new Plane(0, .5, -2, 0, .5, -4, 2, .5, -2)));
+var plane = scene.addObject(new Solid("Ground", new Plane(2, -1, 0, 0, -1, -4, 2, -1, 2)));
 
 var light1 = scene.addLight(new Solid("Light 1", new Light()));
 var light2 = scene.addLight(new Solid("Light 2", new Light()));
@@ -701,14 +701,14 @@ var light3 = scene.addLight(new Solid("Light 3", new Light()));
 
 var camera = new Camera();
 
-sphere1.o.radius = 0.5;
+sphere1.o.radius = 1.0;
 sphere1.o.center.x = -3.0;
 
 sphere2.o.center.x = 3.0;
-sphere2.o.radius = 0.5;
-light1.o.center.set(4, -1, -6);
-light2.o.center.set(-6, -1, -6);
-light3.o.center.set(6, -6, -6);
+sphere2.o.radius = 1;
+light1.o.center.set(4, 8, -6);
+light2.o.center.set(-6, 8, -6);
+light3.o.center.set(6, 6, -6);
 light1.color.r = .5;
 light1.color.g = .5;
 light1.color.b = .5;
@@ -734,10 +734,10 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -6);
 camera.focus = 6.0;
-var theta = -45 * Math.PI / 180.0;
+var theta = 45 * Math.PI / 180.0;
 camera.position.y = 6.0 * Math.sin(theta);
 camera.position.z = -6.0 * Math.cos(theta);
-camera.transform = makeRotateY(45);
+camera.transform = makeRotateY(-45);
 
 // 绕Y轴旋转矩阵
 function makeRotateY(angle) {

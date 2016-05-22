@@ -879,7 +879,7 @@ function raytrace(ray, depth) {
 其中,`origin`坐标等于`Camera`的position属性。`direction`由下式生成。
 
 $$
-direction = \lgroup \frac{x - \frac{width}{2}}{ratio}, \frac{x - \frac{height}{2}}{ratio}, focus \rgroup \cdot transform
+direction = \lgroup \frac{x - \frac{width}{2}}{ratio}, -\frac{y - \frac{height}{2}}{ratio}, focus \rgroup \cdot transform
 $$
 
 其中$width, height$分别为`View`的宽高属性值，$ratio$为三维空间中每单位长度在图像像素平面上占用的像素比率，由`View`控制。$focus$是摄像机的焦距。$transform$是摄像机为中心的坐标系与三维场景空间的坐标系转换矩阵，可以根据`camera`的`direction`属性求解。我们可以通过更改`Camera`的`direction`来生成不同摄像机方向上的图像帧，组合这些图像帧可以得到摄像机移动的动画效果。
