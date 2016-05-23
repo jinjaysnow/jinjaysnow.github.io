@@ -154,63 +154,72 @@ function Sphere() {
     this.radius = 1.0;
 }
 Sphere.prototype = {
-        // 球体上一点的法线
-        normalToPoint: function(x, y, z) {
-            x -= this.center.x;
-            y -= this.center.y;
-            z -= this.center.z;
-            // 归一化 
-            x /= this.radius;
-            y /= this.radius;
-            z /= this.radius;
-            var result = new Vector(x, y, z);
-            return result;
-        },
-        /* 球面求交
-         * 输入参数: ray
-         * 返回值: type和dist(距离).
-         * Type的值:
-         * 0: 无交点
-         * 1: 相交，视点在球体内部
-         * -1: 相交，视点在球体外部
-         * 注意，ray的direction需要归一化
-         */
-        intersect: function(ray) {
-            var x, y, z, distance = +Infinity;
-            // 光线源点到射线的向量
-            x = this.center.x - ray.origin.x;
-            y = this.center.y - ray.origin.y;
-            z = this.center.z - ray.origin.z;
-            // (x,y,z)·(x, y, z)
-            var xyz_dot = (x * x) + (y * y) + (z * z);
-            var b = (x * ray.direction.x) + (y * ray.direction.y) + (z * ray.direction.z);
-            var disc = b * b - xyz_dot + this.radius * this.radius;
+    // 球体上一点的法线
+    normalToPoint: function(x, y, z) {
+        x -= this.center.x;
+        y -= this.center.y;
+        z -= this.center.z;
+        // 归一化 
+        x /= this.radius;
+        y /= this.radius;
+        z /= this.radius;
+        var result = new Vector(x, y, z);
+        return result;
+    },
+    /* 球面求交
+     * 输入参数: ray
+     * 返回值: type和dist(距离).
+     * Type的值:
+     * 0: 无交点
+     * 1: 相交，视点在球体外部
+     * 2: 相交，视点在球体内部
+     * 注意，ray的direction需要归一化
+     */
+    intersect: function(ray) {
+        var x, y, z, distance = +Infinity;
+        // 光线源点到射线的向量
+        x = this.center.x - ray.origin.x;
+        y = this.center.y - ray.origin.y;
+        z = this.center.z - ray.origin.z;
+        // (x,y,z)·(x, y, z)
+        var xyz_dot = (x * x) + (y * y) + (z * z);
+        var b = (x * ray.direction.x) + (y * ray.direction.y) + (z * ray.direction.z);
+        var disc = b * b - xyz_dot + this.radius * this.radius;
 
-            var type = 0;
-            if (disc > 0) {
-                var d = Math.sqrt(disc);
-                var root1 = b - d;
-                var root2 = b + d;
-                if (root2 > 0) {
-                    if (root1 < 0) {
-                        if (root2 < distance) {
-                            distance = root2;
-                            type = -1;
-                        }
-                    } else {
-                        if (root1 < distance) {
-                            distance = root1;
-                            type = 1;
-                        }
+        var type = 0;
+        if (disc > 0) {
+            var d = Math.sqrt(disc);
+            var root1 = b - d;
+            var root2 = b + d;
+            if (root2 > 0) {
+                if (root1 < 0) {
+                    if (root2 < distance) {
+                        distance = root2;
+                        type = 2;
+                    }
+                } else {
+                    if (root1 < distance) {
+                        distance = root1;
+                        type = 1;
                     }
                 }
             }
-            return { type: type, dist: distance };
         }
-    }
-    /* 平面
-     * 三个点确定一个平面
-     */
+        return { type: type, dist: distance };
+    },
+    isInside: function(x, y, z) {
+        var distance = (x - this.center.x) * (x - this.center.x)
+                     + (y - this.center.y) * (y - this.center.y)
+                     + (z - this.center.z) * (z - this.center.z);
+        if (distance <= this.radius * this.radius) {
+            return true;
+        };
+        return false;
+    },
+};
+/* 平面
+ * 三个点确定一个平面
+ */
 function Plane(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
     /* 平面内部表示为:
      * ax + by + cz + d = 0
@@ -231,7 +240,7 @@ function Plane(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
     // 代入一点坐标求解d
     this.normal = new Vector(nx, ny, nz);
     this.d = -(nx * x1 + ny * y1 + nz * z1);
-}
+};
 Plane.prototype = {
     normalToPoint: function(x, y, z) {
         var n = new Vector(this.normal.x, this.normal.y, this.normal.z);
@@ -280,19 +289,11 @@ function Geometry(data) {
             v1[0], v1[1], v1[2],
             v2[0], v2[1], v2[2]);
     };
-    // 求解最大的包围半径
-    this.radius = -Infinity;
-    for (var i = data['vertices'].length - 1; i >= 0; i--) {
-        var v = data['vertices'][i];
-        var c = data['center'];
-        var vc = new Vector(v[0] - c[0], v[1] - c[1], v[2] - v[2]);
-        var l = vc.magnitude();
-        this.radius = this.radius > l ? this.radius : l;
-    };
     this.transform = [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]
     ];
 };
 
@@ -305,7 +306,7 @@ function getQuadrant(x, y) {
         return 2;
     else
         return 3;
-}
+};
 var signTable = [
     [0, 1, 2, -1],
     [-1, 0, 1, 2],
@@ -315,11 +316,12 @@ var signTable = [
 
 function transformMulTransform(t1, t2) {
     var result = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
         var t = [];
-        t[0] = t1[i][0] * t2[0][0] + t1[i][1] * t2[1][0] + t1[i][2] * t2[2][0];
-        t[1] = t1[i][0] * t2[0][1] + t1[i][1] * t2[1][1] + t1[i][2] * t2[2][1];
-        t[2] = t1[i][0] * t2[0][2] + t1[i][1] * t2[1][2] + t1[i][2] * t2[2][2];
+        t[0] = t1[i][0] * t2[0][0] + t1[i][1] * t2[1][0] + t1[i][2] * t2[2][0] + t1[i][3] * t2[3][0];
+        t[1] = t1[i][0] * t2[0][1] + t1[i][1] * t2[1][1] + t1[i][2] * t2[2][1] + t1[i][3] * t2[3][1];
+        t[2] = t1[i][0] * t2[0][2] + t1[i][1] * t2[1][2] + t1[i][2] * t2[2][2] + t1[i][3] * t2[3][2];
+        t[3] = t1[i][0] * t2[0][3] + t1[i][1] * t2[1][3] + t1[i][2] * t2[2][3] + t1[i][3] * t2[3][3];
         result[i] = t;
     };
     return result;
@@ -327,9 +329,12 @@ function transformMulTransform(t1, t2) {
 
 function xyzMultTransform(xyz, transform) {
     var result = [];
-    result[0] = xyz[0] * transform[0][0] + xyz[1] * transform[1][0] + xyz[2] * transform[2][0];
-    result[1] = xyz[0] * transform[0][1] + xyz[1] * transform[1][1] + xyz[2] * transform[2][1];
-    result[2] = xyz[0] * transform[0][2] + xyz[1] * transform[1][2] + xyz[2] * transform[2][2];
+    result[0] = xyz[0] * transform[0][0] + xyz[1] * transform[1][0] + xyz[2] * transform[2][0] + 1 * transform[3][0];
+    result[1] = xyz[0] * transform[0][1] + xyz[1] * transform[1][1] + xyz[2] * transform[2][1] + 1 * transform[3][1];
+    result[2] = xyz[0] * transform[0][2] + xyz[1] * transform[1][2] + xyz[2] * transform[2][2] + 1 * transform[3][2];
+    result[3] = xyz[0] * transform[0][3] + xyz[1] * transform[1][3] + xyz[2] * transform[2][3] + 1 * transform[3][3];
+    // var new_xyz = [result[0] / result[3], result[1] / result[3], result[2]/ result[3]];
+    // var new_xyz = [result[0]]
     return result;
 };
 Geometry.prototype = {
@@ -352,13 +357,6 @@ Geometry.prototype = {
                 v1[0], v1[1], v1[2],
                 v2[0], v2[1], v2[2]);
         };
-        for (var i = this.vertices.length - 1; i >= 0; i--) {
-            var v = this.vertices[i];
-            var c = this.center;
-            var vc = new Vector(v[0] - c[0], v[1] - c[1], v[2] - v[2]);
-            var l = vc.magnitude();
-            this.radius = this.radius > l ? this.radius : l;
-        };
     },
     // 求解交点法线
     normalToPoint: function(x, y, z) {
@@ -368,9 +366,6 @@ Geometry.prototype = {
         for (var i = this.faces_plane.length - 1; i >= 0; i--) {
             var p_n = this.faces_plane[i].normal;
             var p_d = this.faces_plane[i].d;
-            // if (Math.abs(x*p_n.x + y*p_n.y + z*p_n.z + p_d) < 1e-16) {
-            //     planes.push(this.faces_plane[i]);
-            // };
             var p_distance = Math.abs(x * p_n.x + y * p_n.y + z * p_n.z + p_d);
             if (distance > p_distance) {
                 distance = p_distance;
@@ -415,8 +410,9 @@ Geometry.prototype = {
                 distance = result[i].dist;
                 // 与该平面的交点坐标
                 var pp = [ray.origin.x + ray.direction.x * distance,
-                         ray.origin.y + ray.direction.y * distance,
-                         ray.origin.z + ray.direction.z * distance];
+                    ray.origin.y + ray.direction.y * distance,
+                    ray.origin.z + ray.direction.z * distance
+                ];
 
                 // 三维点变为二维点坐标
                 var n = p.normal;
@@ -436,7 +432,7 @@ Geometry.prototype = {
                 };
                 var coord = [];
                 for (var j = 0; j < f.length; j++) {
-                    var iii = [0,1,2];
+                    var iii = [0, 1, 2];
                     iii.splice(discard, 1);
                     var v = this.vertices[f[j]];
                     var deltax = v[iii[0]] - pp[iii[0]],
@@ -472,15 +468,37 @@ Geometry.prototype = {
                 };
             };
         };
+        var index = 0; // 用于追踪交点所在的面
         for (var i = result.length - 1; i >= 0; i--) {
             if (result[i].type != 0) {
                 type = result[i].type;
-                // type = -1;
-                distance = (distance > result[i].dist) ? result[i].dist : distance;
+                if (distance > result[i].dist) {
+                    distance = result[i].dist;
+                    index = i;
+                };
+                // 判断视点是否在内部
+                if (this.isInside(ray.origin.x, ray.origin.y, ray.origin.z)) {
+                    type = 2;
+                };
             };
         };
-        return { type: type, dist: distance};
-    }
+        return { type: type, dist: distance, index: index};
+    },
+    isInside: function(x, y, z) {
+        var result = false;
+        // 与每个平面交点距离，看是否小于到中心的距离
+        var ray = new Ray();
+        ray.origin.set(this.center[0], this.center[1], this.center[2]);
+        // center to xyz
+        ray.direction.set(x-this.center[0], y-this.center[1], z-this.center[2]);
+        var xyz2center = ray.direction.magnitude();
+        ray.direction.normalize();
+        var min_result = this.intersect(ray);
+        if (min_result.dist >= xyz2center) {
+            result = true;
+        };
+        return result;
+    },
 };
 // 灯光
 function Light() {
@@ -494,12 +512,35 @@ function Solid(name, o) {
     this.color = { r: 1, g: 1, b: 1 };
     this.specularity = 0;
     this.reflection = 0;
-}
+    this.refraction = 0;
+};
 // 场景
 function Scene() {
     this.objects = [];
     this.lights = [];
-}
+};
+// 计算反射光线方向
+function reflect(ray, normal) {
+    var cosI = -(ray.direction.x * normal.x + ray.direction.y * normal.y + ray.direction.z * normal.z);
+    var dx = ray.direction.x + 2 * cosI * normal.x,
+        dy = ray.direction.y + 2 * cosI * normal.y,
+        dz = ray.direction.z + 2 * cosI * normal.z;
+    var direction = new Vector(dx, dy, dz);
+    direction.normalize();
+    return direction;
+};
+// 计算折射光线方向，返回方向和反射率，rSchlick2系数
+// 产生新的光线
+function setNewRayWithBais(x, y, z, direction) {
+    var sray = new Ray();
+    sray.origin.set(x, y, z);
+    // 增加一小点，避免光线与当前点相交
+    sray.origin.x += direction.x / 10000;
+    sray.origin.y += direction.y / 10000;
+    sray.origin.z += direction.z / 10000;
+    sray.direction = direction;
+    return sray;
+};
 Scene.prototype = {
     addObject: function(o) {
         this.objects.push(o);
@@ -513,6 +554,7 @@ Scene.prototype = {
         var obj = null;
         var color = { r: 0, g: 0, b: 0 };
         var distance = +Infinity;
+        var temp_result = null; // 用于记录与多面体相交时的index
         for (var j = 0; j < this.objects.length; j++) {
             var test_obj = this.objects[j];
             var res = test_obj.o.intersect(ray);
@@ -520,6 +562,7 @@ Scene.prototype = {
                 if (obj == null || res.dist < distance) {
                     obj = test_obj;
                     distance = res.dist;
+                    temp_result = res;
                 }
             }
         }
@@ -531,10 +574,15 @@ Scene.prototype = {
                 z = ray.origin.z + ray.direction.z * distance;
             // 交点处的法线
             var normal = obj.o.normalToPoint(x, y, z);
+            if (temp_result.type == 2) {
+                normal.x = -normal.x;
+                normal.y = -normal.y;
+                normal.z = -normal.z;
+            };
 
-            for (var j = 0; j < this.lights.length; j++) {
+            for (var j = 0; j < this.lights.length && obj.refraction == 0; j++) {
                 var light = this.lights[j];
-                // 计算光线到交点的向量
+                // 计算光线到交点的向量，考虑实时运行速度，不采用Vector对象（对象创建耗时）
                 var lx = light.o.center.x - x;
                 var ly = light.o.center.y - y;
                 var lz = light.o.center.z - z;
@@ -545,6 +593,7 @@ Scene.prototype = {
                 ly /= len;
                 lz /= len;
                 // 阴影计算
+                // pldistance: 交点到光源的距离 sray: 交点到光源的光线
                 var pldistance = Math.sqrt(
                     (x - light.o.center.x) * (x - light.o.center.x) +
                     (y - light.o.center.y) * (y - light.o.center.y) +
@@ -567,14 +616,15 @@ Scene.prototype = {
                         break;
                     }
                 }
-                if (shadow) continue; // 如果被遮挡，则计算下一个光线
+                if (shadow) continue; // 如果被遮挡，此处被遮挡，计算下一个光线
+
                 // 漫反射 
                 var cosine = normal.x * lx + normal.y * ly + normal.z * lz;
                 if (cosine < 0) cosine = 0;
                 // 简单的纹理，只对下方的平面有效
                 if (obj.name == "Ground") {
-                    var temp_x = Math.abs(Math.ceil(x)) % 2;
-                    var temp_y = Math.abs(Math.ceil(z)) % 2;
+                    var temp_x = Math.abs(Math.floor(x)) % 2;
+                    var temp_y = Math.abs(Math.floor(z)) % 2;
                     if (temp_x == temp_y) {
                         obj.color.r = 1.0;
                         obj.color.g = 1.0;
@@ -585,10 +635,34 @@ Scene.prototype = {
                         obj.color.b = 0.1;
                     };
                 };
+                // 简单的纹理，对立方体有效
+                if (obj.name == "Cube") {
+                    if (temp_result.index == 1) {
+                        obj.color.r = .918;
+                        obj.color.g = 0.;
+                        obj.color.b = 0.436;
+                    } else if (temp_result.index == 2){
+                        obj.color.r = 0.433;
+                        obj.color.g = .254;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 3){
+                        obj.color.r = 0;
+                        obj.color.g = 0;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 4){
+                        obj.color.r = 1.0;
+                        obj.color.g = 0.254;
+                        obj.color.b = 0.214;
+                    } else if (temp_result.index == 5) {
+                        obj.color.r = 0.133;
+                        obj.color.g = 1.0;
+                        obj.color.b = 1.0;
+                    };
+                };
                 color.r += cosine * obj.color.r * light.color.r;
                 color.g += cosine * obj.color.g * light.color.g;
                 color.b += cosine * obj.color.b * light.color.b;
-                // 折射
+                // 高光
                 if (obj.specularity > 0) {
                     var vrx = lx - normal.x * cosine * 2,
                         vry = ly - normal.y * cosine * 2,
@@ -625,6 +699,47 @@ Scene.prototype = {
                     color.b += rcolor.color.b * obj.reflection;
                 }
             }
+
+            // TODO: 透明物体的折射和反射
+            if (obj.refraction > 0 && depth < 5) {
+                // 为了简便起见，定义所有的物体折射率为1.1，外部空间为1.0
+                var n1 = 1.0, n2 = 1.1;
+                if (temp_result.type == 2) {
+                    n1 = 1.1;
+                    n2 = 1.0;
+                };
+                // var refraction = refract(ray, normal, n1, n2);
+                var facingratio = -(ray.direction.x * normal.x + ray.direction.y * normal.y + ray.direction.z * normal.z);
+                var r0 = (n1 - n2) / (n1 + n2);
+                var mix = r0 * r0, a = Math.pow(1 - facingratio, 5); // mix是入射角度接近0时的材质的反射系数，
+                var fresneleffect = mix + a * (1 - mix);
+                var cosi = facingratio;
+                var eta = n2 / n1;
+                var k = 1 - eta * eta * (1 - cosi * cosi);
+                var refraction_x = ray.direction.x * eta + normal.x * (eta * cosi - Math.sqrt(k)),
+                    refraction_y = ray.direction.y * eta + normal.y * (eta * cosi - Math.sqrt(k)),
+                    refraction_z = ray.direction.z * eta + normal.z * (eta * cosi - Math.sqrt(k));
+                var refraction_direction = new Vector(refraction_x, refraction_y, refraction_z);
+
+                refraction_direction.normalize();
+
+                var reflection = reflect(ray, normal);
+                var next_reflection = this.traceRay(setNewRayWithBais(x, y, z, reflection), depth + 1);
+                // if (refraction.reflectance < 1.0) {
+                var next_refraction = this.traceRay(setNewRayWithBais(x, y, z, refraction_direction), depth + 1);
+
+                color.r = (fresneleffect * next_reflection.color.r + (1.0 - fresneleffect) * next_refraction.color.r * obj.refraction) * obj.color.r;
+                color.g = (fresneleffect * next_reflection.color.g + (1.0 - fresneleffect) * next_refraction.color.g * obj.refraction) * obj.color.g;
+                color.b = (fresneleffect * next_reflection.color.b + (1.0 - fresneleffect) * next_refraction.color.b * obj.refraction) * obj.color.b;
+                // } else {
+                //     // 全反射
+                //     color.r = refraction.fresneleffect * next_reflection.color.r ;
+                //     color.g = refraction.fresneleffect * next_reflection.color.r ;
+                //     color.b = refraction.fresneleffect * next_reflection.color.r ;
+                // };
+
+            };
+
             if (color.r > 1) color.r = 1;
             if (color.g > 1) color.g = 1;
             if (color.b > 1) color.b = 1;
@@ -637,8 +752,7 @@ Scene.prototype = {
         var x = frame;
         if (x < screen_width) {
             for (var y = 0; y < screen_height; y++) {
-                var direction = [(x - screen_width / 2) / 100,
-                    -(y - screen_height / 2) / 100,
+                var direction = [(x - screen_width / 2) / 100, -(y - screen_height / 2) / 100,
                     camera.focus
                 ];
                 direction = xyzMultTransform(direction, camera.transform);
@@ -653,7 +767,7 @@ Scene.prototype = {
             ctx.putImageData(pixels, 0, 0);
         };
     }
-}
+};
 
 function Camera() {
     this.position = new Vector();
@@ -664,7 +778,39 @@ function Camera() {
         [0, 0, 0, 1]
     ];
     this.focus = 4.0;
-}
+};
+
+// 绕Y轴旋转矩阵
+function makeRotateY(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, cos_theta, -sin_theta, 0.0],
+        [0.0, sin_theta, cos_theta, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+    ];
+};
+// 平移矩阵
+function makeTransition(x, y, z) {
+    var matrix = [
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [x, y, z, 1]
+    ];
+    return matrix;
+};
+// 放缩变换
+function makeScale(x, y, z) {
+    var matrix = [
+        [x, 0, 0, 0],
+        [0, y, 0, 0],
+        [0, 0, z, 0],
+        [0, 0, 0, 1]
+    ];
+    return matrix;
+};
 
 // 场景
 var scene = new Scene();
@@ -691,25 +837,68 @@ var g_data = {
 };
 
 var geometry = new Geometry(g_data);
-var scale_t = [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1]
-];
-geometry.transform = transformMulTransform(geometry.transform, scale_t);
+var scale_t = makeScale(0.5, 0.5, 0.5);
+var transitiony = makeTransition(-2, -0.5, 2);
+geometry.transform = transformMulTransform(scale_t, transitiony);
 geometry.makeTransform();
-var gg = scene.addObject(new Solid("Geometry", geometry));
+var gg = scene.addObject(new Solid("Cube", geometry));
 gg.color.r = 1.0;
 gg.color.g = 0.3;
 gg.color.b = 0.3;
 gg.specularity = .5;
-gg.reflection = .1;
+gg.reflection = .0;
 
+// 六面体数据
+var six_data = {
+    'center': [0, 1, 0],
+    'vertices': [
+        [-1, -1, -1],
+        [1, -1, -1],
+        [2, -1, 0],
+        [1, -1, 1],
+        [-1, -1, 1],
+        [-2, -1, 0],
+
+        [-1, 3, -1],
+        [1, 3, -1],
+        [2, 3, 0],
+        [1, 3, 1],
+        [-1, 3, 1],
+        [-2, 3, 0],
+    ],
+    'faces': [
+        [0, 1, 2, 3, 4, 5],
+        [0, 1, 7, 6],
+        [1, 2, 8, 7],
+        [2, 3, 9, 8],
+        [3, 4, 10, 9],
+        [4, 5, 11, 10],
+        [5, 0, 6, 11],
+        [6, 7, 8, 9, 10, 11],
+    ],
+};
+var six = new Geometry(six_data);
+var scalehalf = makeScale(0.5, 0.5, 0.5);
+var transitionyz = makeTransition(0, 0, -2);
+six.transform = transformMulTransform(scalehalf, transitionyz);
+six.makeTransform();
+var hexagon = scene.addObject(new Solid("Hexagon", six));
+hexagon.refraction = 0.9;
+hexagon.color.r = 1.0;
+hexagon.color.g = 1.;
+hexagon.color.b = 1.0;
+hexagon.specularity = 0.0;
+hexagon.reflection = 0.0;
+
+// 平面构建时要注意平面的法线方向
 var plane = scene.addObject(new Solid("Ground", new Plane(2, -1, 0, 0, -1, -4, 2, -1, 2)));
 
 var light1 = scene.addLight(new Solid("Light 1", new Light()));
 var light2 = scene.addLight(new Solid("Light 2", new Light()));
 var light3 = scene.addLight(new Solid("Light 3", new Light()));
+// 在上方增加一个光源
+var light4 = scene.addLight(new Solid("Light 4", new Light()));
+light3.o.center.set(0, 10, 0);
 
 var camera = new Camera();
 
@@ -722,7 +911,8 @@ sphere3.specularity = 1.0;
 sphere3.reflection = 1.0;
 
 sphere1.o.radius = 1.0;
-sphere1.o.center.x = -3.0;
+sphere1.o.center.x = -3.2;
+sphere1.o.center.y = 0.5;
 
 sphere2.o.center.x = 3.0;
 sphere2.o.radius = 1;
@@ -740,9 +930,10 @@ light3.color.g = .4;
 light3.color.b = .4;
 sphere1.color.r = 1;
 sphere1.color.g = 1;
-sphere1.color.b = 0;
-sphere1.specularity = 1.0;
-sphere1.reflection = .0;
+sphere1.color.b = 1.0;
+// sphere1.specularity = 1.0;
+// sphere1.reflection = .1;
+sphere1.refraction = 1.0;
 sphere2.color.r = 0.;
 sphere2.color.g = 1;
 sphere2.color.b = 0.;
@@ -754,22 +945,11 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -6);
 camera.focus = 6.0;
-var theta = 45 * Math.PI / 180.0;
-camera.position.y = 6.0 * Math.sin(theta);
-camera.position.z = -6.0 * Math.cos(theta);
-camera.transform = makeRotateY(-45);
+var theta = 30 * Math.PI / 180.0;
+camera.position.y = 8.0 * Math.sin(theta);
+camera.position.z = -8.0 * Math.cos(theta);
+camera.transform = makeRotateY(-30);
 
-// 绕Y轴旋转矩阵
-function makeRotateY(angle) {
-    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
-    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
-    return [
-        [1.0, 0.0, 0.0, 0.0],
-        [0.0, cos_theta, -sin_theta, 0.0],
-        [0.0, sin_theta, cos_theta, 0.0],
-        [0.0, 0.0, 0.0, 1.0]
-    ];
-}
 // 动画过程
 function computeScene() {
     var st = new Date().getTime();
