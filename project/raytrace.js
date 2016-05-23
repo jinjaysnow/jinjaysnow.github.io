@@ -407,11 +407,11 @@ Geometry.prototype = {
             if (result[i].type != 0) {
                 // 检查是否在多边形内部，使用改进的弧长法
                 var f = this.faces[i];
-                distance = result[i].dist;
+                var t_distance = result[i].dist;
                 // 与该平面的交点坐标
-                var pp = [ray.origin.x + ray.direction.x * distance,
-                    ray.origin.y + ray.direction.y * distance,
-                    ray.origin.z + ray.direction.z * distance
+                var pp = [ray.origin.x + ray.direction.x * t_distance,
+                    ray.origin.y + ray.direction.y * t_distance,
+                    ray.origin.z + ray.direction.z * t_distance
                 ];
 
                 // 三维点变为二维点坐标
@@ -659,6 +659,38 @@ Scene.prototype = {
                         obj.color.b = 1.0;
                     };
                 };
+                // 简单的纹理，对Hexagon有效
+                if (obj.name == "Hexagon") {
+                    if (temp_result.index == 1) {
+                        obj.color.r = .918;
+                        obj.color.g = 0.;
+                        obj.color.b = 0.436;
+                    } else if (temp_result.index == 2){
+                        obj.color.r = 0.433;
+                        obj.color.g = .254;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 3){
+                        obj.color.r = 0;
+                        obj.color.g = 0;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 4){
+                        obj.color.r = 1.0;
+                        obj.color.g = 0.254;
+                        obj.color.b = 0.214;
+                    } else if (temp_result.index == 5) {
+                        obj.color.r = 0.133;
+                        obj.color.g = 1.0;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 6) {
+                        obj.color.g = 0.133;
+                        obj.color.r = 1.0;
+                        obj.color.b = 1.0;
+                    } else if (temp_result.index == 7) {
+                        obj.color.b = 0.133;
+                        obj.color.g = 1.0;
+                        obj.color.r = 1.0;
+                    };
+                };
                 color.r += cosine * obj.color.r * light.color.r;
                 color.g += cosine * obj.color.g * light.color.g;
                 color.b += cosine * obj.color.b * light.color.b;
@@ -883,11 +915,11 @@ var transitionyz = makeTransition(0, 0, -2);
 six.transform = transformMulTransform(scalehalf, transitionyz);
 six.makeTransform();
 var hexagon = scene.addObject(new Solid("Hexagon", six));
-hexagon.refraction = 0.9;
+hexagon.refraction = 1.0;
 hexagon.color.r = 1.0;
 hexagon.color.g = 1.;
 hexagon.color.b = 1.0;
-hexagon.specularity = 0.0;
+hexagon.specularity = 0.8;
 hexagon.reflection = 0.0;
 
 // 平面构建时要注意平面的法线方向
@@ -945,10 +977,10 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -6);
 camera.focus = 6.0;
-var theta = 30 * Math.PI / 180.0;
+var theta = 90 * Math.PI / 180.0;
 camera.position.y = 8.0 * Math.sin(theta);
 camera.position.z = -8.0 * Math.cos(theta);
-camera.transform = makeRotateY(-30);
+camera.transform = makeRotateY(-90);
 
 // 动画过程
 function computeScene() {
