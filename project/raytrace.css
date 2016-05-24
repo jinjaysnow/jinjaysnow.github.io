@@ -59,8 +59,8 @@ body {
 .popup {
   z-index: 2;
   position: relative;
-  width: 100% !important;
-  height: 100% !important;
+  width: 1024px;
+  height: 700px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
