@@ -49,8 +49,8 @@ document.querySelector('.popups-cont__overlay').addEventListener('click', closeH
 /*********************Ray Tracing*********************/
 var ctx; // 绘制context
 var pixels; // 像素点
-var screen_width = 900; // 宽
-var screen_height = 600; // 高
+var screen_width = 960; // 宽
+var screen_height = 540; // 高
 var frame = 0; // 帧
 var animate = 0; // 是否动画
 
