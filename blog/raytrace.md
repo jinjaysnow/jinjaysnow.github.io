@@ -733,13 +733,31 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -4);
 
-// 绕Y轴旋转矩阵
-function makeRotateY(angle) {
+// 绕X轴旋转矩阵
+function makeRotateX(angle) {
     var sin_theta = Math.sin(angle / 180.0 * Math.PI);
     var cos_theta = Math.cos(angle / 180.0 * Math.PI);
     return [[1.0, 0.0, 0.0, 0.0],
             [0.0, cos_theta, -sin_theta, 0.0],
             [0.0, sin_theta, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+}
+// 绕Y轴旋转矩阵
+function makeRotateY(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, 0.0, -sin_theta, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [sin_theta, 0.0, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+}
+// 绕Z轴旋转矩阵
+function makeRotateZ(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, -sin_theta, 0.0, 0.0],
+            [sin_theta, cos_theta, 0.0, 0.0],
+            [0.0, 0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0, 1.0]];
 }
 // 动画过程
@@ -754,21 +772,25 @@ function computeScene() {
             var theta = -5 * frame * Math.PI / 180.0;
             camera.position.y = 4.0 * Math.sin(theta);
             camera.position.z = -4.0 * Math.cos(theta);
-            camera.transform = makeRotateY( 5 * frame);
+            camera.transform = makeRotateX( 5 * frame);
         } else if (frame < 36) {
             var theta = -5 * (36 - frame) * Math.PI / 180.0;
             camera.position.y = 4.0 * Math.sin(theta);
             camera.position.z = -4.0 * Math.cos(theta);
-            camera.transform = makeRotateY( 5 * (36 - frame));
+            camera.transform = makeRotateX( 5 * (36 - frame));
         };
     } else {
-        var zpos = -4;
-        if (frame >= 72) {
-            z_pos = (frame - 72) / 9.0 - 8;
-        } else {
-            z_pos = -4 - (frame - 36) / 9.0;
-        }
-        camera.position.z = z_pos;
+        // var zpos = -4;
+        // if (frame >= 72) {
+        //     z_pos = (frame - 72) / 9.0 - 8;
+        // } else {
+        //     z_pos = -4 - (frame - 36) / 9.0;
+        // }
+        // camera.position.z = z_pos;
+        var theta = -10 * (frame - 36) * Math.PI / 180.0;
+        camera.position.x = 4.0 * Math.sin(theta);
+        camera.position.z = -4.0 * Math.cos(theta);
+        camera.transform = makeRotateY(10 * (frame - 36));
     };
     scene.traceScene(camera);
     if (frame >= 143) {

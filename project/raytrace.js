@@ -1,5 +1,4 @@
-// js only creates and insert parts + click events adds classes
-
+// 按钮动画效果
 var numOfPieces = 6 * 6;
 
 var frag = document.createDocumentFragment();
@@ -55,12 +54,13 @@ var screen_height = 600; // 高
 var frame = 0; // 帧
 var animate = 0; // 是否动画
 
-var ssss = []; // 确定执行时间
+var start_time = null;
+var ssss = []; // 存储每一帧的执行时间
 
 // 初始化
 function init() {
-    ctx = document.getElementById('paper').getContext('2d');
-    pixels = ctx.createImageData(screen_width, screen_height);
+    ctx = document.getElementById('paper').getContext('2d'); // 获取画布
+    pixels = ctx.createImageData(screen_width, screen_height); // 填充的像素
     for (var i = 0; i < pixels.data.length; i += 4) {
         pixels.data[i + 0] = 000;
         pixels.data[i + 1] = 000;
@@ -71,12 +71,14 @@ function init() {
 };
 // 绘制
 function draw() {
-    computeScene(); // 旋转物体后重新计算场景
+    computeScene(); // 计算一帧
     // 通过frame更新动画过程
     frame++;
     if (frame == screen_width) {
         console.log(Math.max.apply(null, ssss));
         console.log(Math.min.apply(null, ssss));
+        var end_time = new Date().getTime();
+        console.log(end_time - start_time);
     };
     if (animate && frame < screen_width) {
         setTimeout(draw, 5);
@@ -85,14 +87,15 @@ function draw() {
 // 暂停
 function stop() {
     animate = 0;
-}
+};
 // 恢复
 function resume() {
+    start_time = new Date().getTime();
     if (frame < screen_width) {
         animate = 1;
         setTimeout(draw, 1000);
     };
-}
+};
 
 /* 向量类
  * 默认初始化为(0,0,0)
@@ -135,7 +138,7 @@ Vector.prototype = {
         var r = new Vector(this.x - v.x, this.y - v.y, this.z - v.z);
         return r;
     }
-}
+};
 
 /* 光线
  * origin: 源点
@@ -195,7 +198,7 @@ Sphere.prototype = {
                 if (root1 < 0) {
                     if (root2 < distance) {
                         distance = root2;
-                        type = 2;
+                        type = 2; // 实现在物体内部
                     }
                 } else {
                     if (root1 < distance) {
@@ -207,16 +210,15 @@ Sphere.prototype = {
         }
         return { type: type, dist: distance };
     },
-    isInside: function(x, y, z) {
-        var distance = (x - this.center.x) * (x - this.center.x)
-                     + (y - this.center.y) * (y - this.center.y)
-                     + (z - this.center.z) * (z - this.center.z);
+    isInside: function(x, y, z) { // 判断点(x,y,z)是否在内部
+        var distance = (x - this.center.x) * (x - this.center.x) + (y - this.center.y) * (y - this.center.y) + (z - this.center.z) * (z - this.center.z);
         if (distance <= this.radius * this.radius) {
             return true;
         };
         return false;
     },
 };
+
 /* 平面
  * 三个点确定一个平面
  */
@@ -266,6 +268,7 @@ Plane.prototype = {
         return { type: type, dist: distance };
     }
 };
+
 /* 多面体
  * 通过data构造形状
  * vertices, 顶点坐标;
@@ -297,6 +300,7 @@ function Geometry(data) {
     ];
 };
 
+// 获取x,y坐标的象限，用于判断点是否在多边形内部
 function getQuadrant(x, y) {
     if (x >= 0 && y >= 0)
         return 0;
@@ -307,13 +311,14 @@ function getQuadrant(x, y) {
     else
         return 3;
 };
+// 符号表，点在象限之间移动的弧长变化
 var signTable = [
     [0, 1, 2, -1],
     [-1, 0, 1, 2],
     [2, -1, 0, 1],
     [1, 2, -1, 0]
 ];
-
+// 4x4矩阵相乘
 function transformMulTransform(t1, t2) {
     var result = [];
     for (var i = 0; i < 4; i++) {
@@ -326,7 +331,7 @@ function transformMulTransform(t1, t2) {
     };
     return result;
 };
-
+// xyz坐标乘以transform，在xyz后面添加1后相乘 xyz * transform (xyz在左边)
 function xyzMultTransform(xyz, transform) {
     var result = [];
     result[0] = xyz[0] * transform[0][0] + xyz[1] * transform[1][0] + xyz[2] * transform[2][0] + 1 * transform[3][0];
@@ -482,7 +487,7 @@ Geometry.prototype = {
                 };
             };
         };
-        return { type: type, dist: distance, index: index};
+        return { type: type, dist: distance, index: index };
     },
     isInside: function(x, y, z) {
         var result = false;
@@ -490,7 +495,7 @@ Geometry.prototype = {
         var ray = new Ray();
         ray.origin.set(this.center[0], this.center[1], this.center[2]);
         // center to xyz
-        ray.direction.set(x-this.center[0], y-this.center[1], z-this.center[2]);
+        ray.direction.set(x - this.center[0], y - this.center[1], z - this.center[2]);
         var xyz2center = ray.direction.magnitude();
         ray.direction.normalize();
         var min_result = this.intersect(ray);
@@ -510,9 +515,9 @@ function Solid(name, o) {
     this.name = name;
     this.o = o;
     this.color = { r: 1, g: 1, b: 1 };
-    this.specularity = 0;
-    this.reflection = 0;
-    this.refraction = 0;
+    this.specularity = 0; // 高光
+    this.reflection = 0; // 镜面效果
+    this.refraction = 0; // 折射效果
 };
 // 场景
 function Scene() {
@@ -529,7 +534,6 @@ function reflect(ray, normal) {
     direction.normalize();
     return direction;
 };
-// 计算折射光线方向，返回方向和反射率，rSchlick2系数
 // 产生新的光线
 function setNewRayWithBais(x, y, z, direction) {
     var sray = new Ray();
@@ -541,6 +545,7 @@ function setNewRayWithBais(x, y, z, direction) {
     sray.direction = direction;
     return sray;
 };
+
 Scene.prototype = {
     addObject: function(o) {
         this.objects.push(o);
@@ -580,6 +585,7 @@ Scene.prototype = {
                 normal.z = -normal.z;
             };
 
+            // 不透明物体可以计算镜面反射和漫反射及高光效果
             for (var j = 0; j < this.lights.length && obj.refraction == 0; j++) {
                 var light = this.lights[j];
                 // 计算光线到交点的向量，考虑实时运行速度，不采用Vector对象（对象创建耗时）
@@ -598,14 +604,7 @@ Scene.prototype = {
                     (x - light.o.center.x) * (x - light.o.center.x) +
                     (y - light.o.center.y) * (y - light.o.center.y) +
                     (z - light.o.center.z) * (z - light.o.center.z));
-                var sray = new Ray();
-
-                sray.origin.set(x, y, z);
-                // 增加一小点，避免光线与当前点相交
-                sray.origin.x += lx / 10000;
-                sray.origin.y += ly / 10000;
-                sray.origin.z += lz / 10000;
-                sray.direction.set(lx, ly, lz);
+                var sray = setNewRayWithBais(x, y, z, new Vector(lx, ly, lz));
                 var shadow = false;
 
                 for (var i = 0; i < this.objects.length; i++) {
@@ -641,15 +640,15 @@ Scene.prototype = {
                         obj.color.r = .918;
                         obj.color.g = 0.;
                         obj.color.b = 0.436;
-                    } else if (temp_result.index == 2){
+                    } else if (temp_result.index == 2) {
                         obj.color.r = 0.433;
                         obj.color.g = .254;
                         obj.color.b = 1.0;
-                    } else if (temp_result.index == 3){
+                    } else if (temp_result.index == 3) {
                         obj.color.r = 0;
                         obj.color.g = 0;
                         obj.color.b = 1.0;
-                    } else if (temp_result.index == 4){
+                    } else if (temp_result.index == 4) {
                         obj.color.r = 1.0;
                         obj.color.g = 0.254;
                         obj.color.b = 0.214;
@@ -659,36 +658,25 @@ Scene.prototype = {
                         obj.color.b = 1.0;
                     };
                 };
-                // 简单的纹理，对Hexagon有效
-                if (obj.name == "Hexagon") {
-                    if (temp_result.index == 1) {
-                        obj.color.r = .918;
-                        obj.color.g = 0.;
-                        obj.color.b = 0.436;
-                    } else if (temp_result.index == 2){
+
+                // 简单的纹理，对 tetrahedron  有效
+                if (obj.name == "Tetrahedron") {
+                    if (temp_result.index == 0) {
                         obj.color.r = 0.433;
                         obj.color.g = .254;
                         obj.color.b = 1.0;
-                    } else if (temp_result.index == 3){
-                        obj.color.r = 0;
-                        obj.color.g = 0;
-                        obj.color.b = 1.0;
-                    } else if (temp_result.index == 4){
-                        obj.color.r = 1.0;
-                        obj.color.g = 0.254;
-                        obj.color.b = 0.214;
-                    } else if (temp_result.index == 5) {
+                    } else if (temp_result.index == 1) {
                         obj.color.r = 0.133;
                         obj.color.g = 1.0;
                         obj.color.b = 1.0;
-                    } else if (temp_result.index == 6) {
-                        obj.color.g = 0.133;
+                    } else if (temp_result.index == 2) {
                         obj.color.r = 1.0;
-                        obj.color.b = 1.0;
-                    } else if (temp_result.index == 7) {
-                        obj.color.b = 0.133;
-                        obj.color.g = 1.0;
-                        obj.color.r = 1.0;
+                        obj.color.g = 0.0;
+                        obj.color.b = 0.004;
+                    } else if (temp_result.index == 3) {
+                        obj.color.r = 0.560;
+                        obj.color.g = 0.269;
+                        obj.color.b = 0.999;
                     };
                 };
                 color.r += cosine * obj.color.r * light.color.r;
@@ -711,17 +699,7 @@ Scene.prototype = {
                 }
                 // 镜面反射
                 if (obj.reflection > 0 && depth < 5) {
-                    var rr = new Ray();
-                    var dotnr = (ray.direction.x * normal.x) +
-                        (ray.direction.y * normal.y) +
-                        (ray.direction.z * normal.z);
-                    rr.origin.set(x, y, z);
-                    rr.direction.set(ray.direction.x - 2 * normal.x * dotnr,
-                        ray.direction.y - 2 * normal.y * dotnr,
-                        ray.direction.z - 2 * normal.z * dotnr);
-                    rr.origin.x += rr.direction.x / 10000;
-                    rr.origin.y += rr.direction.y / 10000;
-                    rr.origin.z += rr.direction.z / 10000;
+                    var rr = setNewRayWithBais(x, y, z, reflect(ray, normal));
                     var rcolor = this.traceRay(rr, depth + 1);
                     color.r *= 1 - obj.reflection;
                     color.g *= 1 - obj.reflection;
@@ -731,11 +709,11 @@ Scene.prototype = {
                     color.b += rcolor.color.b * obj.reflection;
                 }
             }
-
             // TODO: 透明物体的折射和反射
             if (obj.refraction > 0 && depth < 5) {
                 // 为了简便起见，定义所有的物体折射率为1.1，外部空间为1.0
-                var n1 = 1.0, n2 = 1.1;
+                var n1 = 1.0,
+                    n2 = 1.1;
                 if (temp_result.type == 2) {
                     n1 = 1.1;
                     n2 = 1.0;
@@ -743,7 +721,8 @@ Scene.prototype = {
                 // var refraction = refract(ray, normal, n1, n2);
                 var facingratio = -(ray.direction.x * normal.x + ray.direction.y * normal.y + ray.direction.z * normal.z);
                 var r0 = (n1 - n2) / (n1 + n2);
-                var mix = r0 * r0, a = Math.pow(1 - facingratio, 5); // mix是入射角度接近0时的材质的反射系数，
+                var mix = r0 * r0,
+                    a = Math.pow(1 - facingratio, 5); // mix是入射角度接近0时的材质的反射系数，
                 var fresneleffect = mix + a * (1 - mix);
                 var cosi = facingratio;
                 var eta = n2 / n1;
@@ -757,19 +736,11 @@ Scene.prototype = {
 
                 var reflection = reflect(ray, normal);
                 var next_reflection = this.traceRay(setNewRayWithBais(x, y, z, reflection), depth + 1);
-                // if (refraction.reflectance < 1.0) {
                 var next_refraction = this.traceRay(setNewRayWithBais(x, y, z, refraction_direction), depth + 1);
 
                 color.r = (fresneleffect * next_reflection.color.r + (1.0 - fresneleffect) * next_refraction.color.r * obj.refraction) * obj.color.r;
                 color.g = (fresneleffect * next_reflection.color.g + (1.0 - fresneleffect) * next_refraction.color.g * obj.refraction) * obj.color.g;
                 color.b = (fresneleffect * next_reflection.color.b + (1.0 - fresneleffect) * next_refraction.color.b * obj.refraction) * obj.color.b;
-                // } else {
-                //     // 全反射
-                //     color.r = refraction.fresneleffect * next_reflection.color.r ;
-                //     color.g = refraction.fresneleffect * next_reflection.color.r ;
-                //     color.b = refraction.fresneleffect * next_reflection.color.r ;
-                // };
-
             };
 
             if (color.r > 1) color.r = 1;
@@ -812,8 +783,8 @@ function Camera() {
     this.focus = 4.0;
 };
 
-// 绕Y轴旋转矩阵
-function makeRotateY(angle) {
+// 绕X轴旋转矩阵
+function makeRotateX(angle) {
     var sin_theta = Math.sin(angle / 180.0 * Math.PI);
     var cos_theta = Math.cos(angle / 180.0 * Math.PI);
     return [
@@ -822,6 +793,24 @@ function makeRotateY(angle) {
         [0.0, sin_theta, cos_theta, 0.0],
         [0.0, 0.0, 0.0, 1.0]
     ];
+};
+// 绕Y轴旋转矩阵
+function makeRotateY(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, 0.0, -sin_theta, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [sin_theta, 0.0, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+};
+// 绕Z轴旋转矩阵
+function makeRotateZ(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, -sin_theta, 0.0, 0.0],
+            [sin_theta, cos_theta, 0.0, 0.0],
+            [0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
 };
 // 平移矩阵
 function makeTransition(x, y, z) {
@@ -846,7 +835,8 @@ function makeScale(x, y, z) {
 
 // 场景
 var scene = new Scene();
-var g_data = {
+// 立方体数据
+var cube_data = {
     'center': [0, 0, 0],
     'vertices': [
         [-1, -1, -1],
@@ -868,34 +858,35 @@ var g_data = {
     ],
 };
 
-var geometry = new Geometry(g_data);
-var scale_t = makeScale(0.5, 0.5, 0.5);
-var transitiony = makeTransition(-2, -0.5, 2);
+var geometry = new Geometry(cube_data);
+var scale_t = makeScale(0.55, 0.55, 0.55); // 缩放
+var transitiony = makeTransition(-2, -0.5, 2); // 平移
 geometry.transform = transformMulTransform(scale_t, transitiony);
 geometry.makeTransform();
-var gg = scene.addObject(new Solid("Cube", geometry));
-gg.color.r = 1.0;
-gg.color.g = 0.3;
-gg.color.b = 0.3;
-gg.specularity = .5;
-gg.reflection = .0;
+var cube = scene.addObject(new Solid("Cube", geometry));
+cube.color.r = 1.0;
+cube.color.g = 0.3;
+cube.color.b = 0.3;
+cube.specularity = .5;
+cube.reflection = .0;
 
 // 六面体数据
+var sqrt3 = Math.sqrt(3);
 var six_data = {
     'center': [0, 1, 0],
     'vertices': [
-        [-1, -1, -1],
-        [1, -1, -1],
+        [-1, -1, -sqrt3],
+        [1, -1, -sqrt3],
         [2, -1, 0],
-        [1, -1, 1],
-        [-1, -1, 1],
+        [1, -1, sqrt3],
+        [-1, -1, sqrt3],
         [-2, -1, 0],
 
-        [-1, 3, -1],
-        [1, 3, -1],
+        [-1, 3, -sqrt3],
+        [1, 3, -sqrt3],
         [2, 3, 0],
-        [1, 3, 1],
-        [-1, 3, 1],
+        [1, 3, sqrt3],
+        [-1, 3, sqrt3],
         [-2, 3, 0],
     ],
     'faces': [
@@ -910,17 +901,45 @@ var six_data = {
     ],
 };
 var six = new Geometry(six_data);
-var scalehalf = makeScale(0.5, 0.5, 0.5);
-var transitionyz = makeTransition(0, 0, -2);
+var scalehalf = makeScale(0.45, 0.45, 0.45); // 放缩
+var transitionyz = makeTransition(0, -0.5, -2); // 平移
 six.transform = transformMulTransform(scalehalf, transitionyz);
 six.makeTransform();
 var hexagon = scene.addObject(new Solid("Hexagon", six));
-hexagon.refraction = 1.0;
-hexagon.color.r = 1.0;
-hexagon.color.g = 1.;
-hexagon.color.b = 1.0;
+hexagon.refraction = 0.9;
+hexagon.color.r = 0.552;
+hexagon.color.g = 0.018;
+hexagon.color.b = 0.907;
+hexagon.refraction = 0.9;
 hexagon.specularity = 0.8;
 hexagon.reflection = 0.0;
+
+// 正四面体
+var four_data = {
+    'center': [0, Math.sqrt(2) / 4.0, 0],
+    'vertices': [
+        [0, 0, -1],
+        [sqrt3 / 2, 0, 0.5],
+        [-sqrt3 / 2, 0, 0.5],
+        [0, Math.sqrt(2), 0],
+    ],
+    'faces': [
+        [0, 1, 2],
+        [1, 2, 3],
+        [2, 3, 0],
+        [0, 1, 3]
+    ],
+};
+var four = new Geometry(four_data);
+var four_scale = makeScale(0.8, 0.8, 0.8);
+four.transform = transformMulTransform(four_scale, makeTransition(1.8, -0.5, 1.8));
+four.makeTransform();
+var tetrahedron = scene.addObject(new Solid("Tetrahedron", four));
+tetrahedron.color.r = 0.996;
+tetrahedron.color.g = 1.0;
+tetrahedron.color.b = 0.243;
+tetrahedron.specularity = 1.0;
+tetrahedron.reflection = 0.0;
 
 // 平面构建时要注意平面的法线方向
 var plane = scene.addObject(new Solid("Ground", new Plane(2, -1, 0, 0, -1, -4, 2, -1, 2)));
@@ -928,65 +947,79 @@ var plane = scene.addObject(new Solid("Ground", new Plane(2, -1, 0, 0, -1, -4, 2
 var light1 = scene.addLight(new Solid("Light 1", new Light()));
 var light2 = scene.addLight(new Solid("Light 2", new Light()));
 var light3 = scene.addLight(new Solid("Light 3", new Light()));
-// 在上方增加一个光源
-var light4 = scene.addLight(new Solid("Light 4", new Light()));
-light3.o.center.set(0, 10, 0);
-
-var camera = new Camera();
-
-var sphere1 = scene.addObject(new Solid("Sphere 1", new Sphere()));
-var sphere2 = scene.addObject(new Solid("Sphere 2", new Sphere()));
-var sphere3 = scene.addObject(new Solid("Sphere 3", new Sphere()));
-sphere3.o.radius = 1.0;
-sphere3.o.center.z = 3;
-sphere3.specularity = 1.0;
-sphere3.reflection = 1.0;
-
-sphere1.o.radius = 1.0;
-sphere1.o.center.x = -3.2;
-sphere1.o.center.y = 0.5;
-
-sphere2.o.center.x = 3.0;
-sphere2.o.radius = 1;
 light1.o.center.set(4, 8, -6);
 light2.o.center.set(-6, 8, -6);
 light3.o.center.set(6, 6, -6);
 light1.color.r = .5;
 light1.color.g = .5;
 light1.color.b = .5;
-light2.color.r = .3;
-light2.color.g = .3;
-light2.color.b = .3;
+light2.color.r = .6;
+light2.color.g = .6;
+light2.color.b = .6;
 light3.color.r = .4;
 light3.color.g = .4;
 light3.color.b = .4;
+
+// 具有折射效果的透明球
+var sphere1 = scene.addObject(new Solid("Sphere 1", new Sphere()));
+sphere1.o.radius = 1.0;
+sphere1.o.center.x = -3.2;
+sphere1.o.center.y = 0.2;
 sphere1.color.r = 1;
 sphere1.color.g = 1;
-sphere1.color.b = 1.0;
-// sphere1.specularity = 1.0;
-// sphere1.reflection = .1;
+sphere1.color.b = 1;
 sphere1.refraction = 1.0;
+
+// 部分反射，高光
+var sphere2 = scene.addObject(new Solid("Sphere 2", new Sphere()));
+sphere2.o.center.x = 3.0;
+sphere2.o.radius = 1;
 sphere2.color.r = 0.;
 sphere2.color.g = 1;
 sphere2.color.b = 0.;
 sphere2.specularity = .5;
 sphere2.reflection = .1;
-plane.color.r = .3;
-plane.color.g = .3;
-plane.color.b = .3;
 
+// 球镜，高光及完全的镜面反射。
+var sphere3 = scene.addObject(new Solid("Sphere 3", new Sphere()));
+sphere3.o.radius = 1.0;
+sphere3.o.center.z = 3;
+sphere3.specularity = 1.0;
+sphere3.reflection = 1.0;
+
+// 天空球体
+var sky = scene.addObject(new Solid("Sky", new Sphere()));
+sky.o.radius = 100000;
+sky.color = {r: 0.5, g: 0.5, b: 0.5};
+
+// 摄像机
+var camera = new Camera();
 camera.position = new Vector(0, 0, -6);
-camera.focus = 6.0;
-var theta = 90 * Math.PI / 180.0;
-camera.position.y = 8.0 * Math.sin(theta);
-camera.position.z = -8.0 * Math.cos(theta);
-camera.transform = makeRotateY(-90);
+camera.focus = 6.0; // 画面长度为9.0 x 6.0
+var angleInX= 90; // 摄像机旋转
+var theta = angleInX * Math.PI / 180.0;
+
+var angleInY= 180;
+var beta = angleInY * Math.PI / 180.0;
+
+camera.position.x = 4.0 * Math.sin(beta); // 绕y轴旋转时，x会改变
+camera.position.y = 8.0 * Math.sin(theta); // 绕x轴旋转时，y会改变
+camera.position.z = -8.0 * Math.cos(theta) * Math.cos(beta); // 绕x轴旋转时，z会改变
+
+var angleInSelfY = 30;
+
+var x_transform = makeRotateX(-angleInX);
+var y_transform = makeRotateY(-angleInY);
+var selfy_transform = makeRotateY(-angleInSelfY);
+
+var t_trans = transformMulTransform(x_transform, y_transform);
+camera.transform = transformMulTransform(t_trans, selfy_transform);
 
 // 动画过程
 function computeScene() {
     var st = new Date().getTime();
     scene.traceScene(camera);
     var st2 = new Date().getTime() - st;
-    ssss.push(st2);
+    ssss.push(st2); // 记录一帧的渲染时间
 }
 window.onload = function() { init(); };
