@@ -798,19 +798,23 @@ function makeRotateX(angle) {
 function makeRotateY(angle) {
     var sin_theta = Math.sin(angle / 180.0 * Math.PI);
     var cos_theta = Math.cos(angle / 180.0 * Math.PI);
-    return [[cos_theta, 0.0, -sin_theta, 0.0],
-            [0.0, 1.0, 0.0, 0.0],
-            [sin_theta, 0.0, cos_theta, 0.0],
-            [0.0, 0.0, 0.0, 1.0]];
+    return [
+        [cos_theta, 0.0, -sin_theta, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [sin_theta, 0.0, cos_theta, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+    ];
 };
 // 绕Z轴旋转矩阵
 function makeRotateZ(angle) {
     var sin_theta = Math.sin(angle / 180.0 * Math.PI);
     var cos_theta = Math.cos(angle / 180.0 * Math.PI);
-    return [[cos_theta, -sin_theta, 0.0, 0.0],
-            [sin_theta, cos_theta, 0.0, 0.0],
-            [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0]];
+    return [
+        [cos_theta, -sin_theta, 0.0, 0.0],
+        [sin_theta, cos_theta, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+    ];
 };
 // 平移矩阵
 function makeTransition(x, y, z) {
@@ -990,30 +994,18 @@ sphere3.reflection = 1.0;
 // 天空球体
 var sky = scene.addObject(new Solid("Sky", new Sphere()));
 sky.o.radius = 100000;
-sky.color = {r: 0.5, g: 0.5, b: 0.5};
+sky.color = { r: 0.5, g: 0.5, b: 0.5 };
 
 // 摄像机
 var camera = new Camera();
 camera.position = new Vector(0, 0, -6);
 camera.focus = 6.0; // 画面长度为9.0 x 6.0
-var angleInX= 90; // 摄像机旋转
+
+var angleInX = 45; // 摄像机旋转
 var theta = angleInX * Math.PI / 180.0;
-
-var angleInY= 180;
-var beta = angleInY * Math.PI / 180.0;
-
-camera.position.x = 4.0 * Math.sin(beta); // 绕y轴旋转时，x会改变
 camera.position.y = 8.0 * Math.sin(theta); // 绕x轴旋转时，y会改变
-camera.position.z = -8.0 * Math.cos(theta) * Math.cos(beta); // 绕x轴旋转时，z会改变
-
-var angleInSelfY = 30;
-
-var x_transform = makeRotateX(-angleInX);
-var y_transform = makeRotateY(-angleInY);
-var selfy_transform = makeRotateY(-angleInSelfY);
-
-var t_trans = transformMulTransform(x_transform, y_transform);
-camera.transform = transformMulTransform(t_trans, selfy_transform);
+camera.position.z = -8.0 * Math.cos(theta); // 绕x轴旋转时，z会改变
+camera.transform = makeRotateX(-angleInX);
 
 // 动画过程
 function computeScene() {
