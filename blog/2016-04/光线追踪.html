@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.red-deep_orange.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -923,13 +923,31 @@ plane.color.b = .3;
 
 camera.position = new Vector(0, 0, -4);
 
-// 绕Y轴旋转矩阵
-function makeRotateY(angle) {
+// 绕X轴旋转矩阵
+function makeRotateX(angle) {
     var sin_theta = Math.sin(angle / 180.0 * Math.PI);
     var cos_theta = Math.cos(angle / 180.0 * Math.PI);
     return [[1.0, 0.0, 0.0, 0.0],
             [0.0, cos_theta, -sin_theta, 0.0],
             [0.0, sin_theta, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+}
+// 绕Y轴旋转矩阵
+function makeRotateY(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, 0.0, -sin_theta, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [sin_theta, 0.0, cos_theta, 0.0],
+            [0.0, 0.0, 0.0, 1.0]];
+}
+// 绕Z轴旋转矩阵
+function makeRotateZ(angle) {
+    var sin_theta = Math.sin(angle / 180.0 * Math.PI);
+    var cos_theta = Math.cos(angle / 180.0 * Math.PI);
+    return [[cos_theta, -sin_theta, 0.0, 0.0],
+            [sin_theta, cos_theta, 0.0, 0.0],
+            [0.0, 0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0, 1.0]];
 }
 // 动画过程
@@ -944,21 +962,25 @@ function computeScene() {
             var theta = -5 * frame * Math.PI / 180.0;
             camera.position.y = 4.0 * Math.sin(theta);
             camera.position.z = -4.0 * Math.cos(theta);
-            camera.transform = makeRotateY( 5 * frame);
+            camera.transform = makeRotateX( 5 * frame);
         } else if (frame < 36) {
             var theta = -5 * (36 - frame) * Math.PI / 180.0;
             camera.position.y = 4.0 * Math.sin(theta);
             camera.position.z = -4.0 * Math.cos(theta);
-            camera.transform = makeRotateY( 5 * (36 - frame));
+            camera.transform = makeRotateX( 5 * (36 - frame));
         };
     } else {
-        var zpos = -4;
-        if (frame >= 72) {
-            z_pos = (frame - 72) / 9.0 - 8;
-        } else {
-            z_pos = -4 - (frame - 36) / 9.0;
-        }
-        camera.position.z = z_pos;
+        // var zpos = -4;
+        // if (frame >= 72) {
+        //     z_pos = (frame - 72) / 9.0 - 8;
+        // } else {
+        //     z_pos = -4 - (frame - 36) / 9.0;
+        // }
+        // camera.position.z = z_pos;
+        var theta = -10 * (frame - 36) * Math.PI / 180.0;
+        camera.position.x = 4.0 * Math.sin(theta);
+        camera.position.z = -4.0 * Math.cos(theta);
+        camera.transform = makeRotateY(10 * (frame - 36));
     };
     scene.traceScene(camera);
     if (frame >= 143) {
@@ -1045,7 +1067,7 @@ window.onload = function() {init();};
 </tbody>
 </table>
 <h2 id="solid"><a name="user-content-solid" href="#solid" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Solid设计</h2>
-<p>物体<code>Solid</code>是对真实物体的建模，包含形状、颜色、材质等信息。</p>
+<p>物体<code>Solid</code>是对真实物体的建模，包含形状、颜色、材质等信息，在光线追踪算法中，使用的材质信息主要有反射系数(reflection)，高光系数(specularity)和透明度(transparency)。故有：</p>
 <table>
 <thead>
 <tr>
@@ -1054,7 +1076,7 @@ window.onload = function() {init();};
 </thead>
 <tbody>
 <tr>
-<td>data<br>material<br>color</td>
+<td>data<br>color<br>specularity<br>reflection<br>transparency</td>
 </tr>
 </tbody>
 </table>
@@ -1062,25 +1084,58 @@ window.onload = function() {init();};
 <h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>详细设计</h1>
 <h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>光线追踪模型</h2>
 <p><img alt="raytrace" src="../../images/raytrace.PNG" /><br />
-投影到视图的光由三部分组成：漫反射光<code>diffuse</code>，镜面反射光<code>Mirror</code>，折射光<code>Refraction</code>。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：</p>
-<p><div class="codehilite"><pre><span></span><span class="nx">matte_color</span> <span class="o">=</span> <span class="nx">intensity</span> <span class="o">*</span> <span class="nx">k</span> <span class="o">*</span> <span class="p">(</span><span class="nx">direction</span> <span class="o">*</span> <span class="nx">nomral</span><span class="p">);</span>
+投影到视图的光可能存在三种光：漫反射光<code>diffuse</code>，镜面反射光<code>Mirror</code>，折射光<code>Refraction</code>。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：</p>
+<div class="codehilite"><pre><span></span><span class="nx">matte_color</span> <span class="o">=</span> <span class="nx">solid_color</span> <span class="o">*</span> <span class="nx">light_color</span> <span class="o">*</span> <span class="nx">k</span> <span class="o">*</span> <span class="p">(</span><span class="nx">direction</span> <span class="o">*</span> <span class="nx">nomral</span><span class="p">);</span>
 </pre></div>
-<br />
-其中，intensity为光源光强度，k为漫反射系数(0, 1)之间，direction为光线方向单位向量，normal为法线方向单位向量。</p>
-<p>折射光和镜面反射光强度按照Fresnel定律组合:</p>
-<p>递归形式的追踪过程伪代码如下：</p>
+
+
+<p>其中，solid_color为物体颜色，light_color为光的颜色，k为漫反射系数，direction为光线方向单位向量，normal为法线方向单位向量。</p>
+<p>当物体有高光效果时，对物体颜色进行高光计算，高光效果与<strong>光线的镜面反射方向和视线方向的夹角</strong>有关，只有在一定夹角范围内才具有高光，高光体现为物体上某些地方比周围具有更高的光强：</p>
+<div class="codehilite"><pre><span></span><span class="nx">solid_color</span> <span class="o">+=</span> <span class="nx">light_color</span> <span class="o">*</span> <span class="nx">specularity</span> <span class="o">*</span> <span class="nx">pow</span><span class="p">(</span><span class="nx">cosSigma</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span>
+</pre></div>
+
+
+<p>其中，cosSigma为光线的镜面反射方向与视线方向的夹角(为正有效)。</p>
+<p>当物体可以进行镜面反射时，需要对光线进行镜面反射求解镜面反射光：</p>
+<div class="codehilite"><pre><span></span><span class="nx">solid_color</span> <span class="o">=</span> <span class="nx">reflection_color</span> <span class="o">*</span> <span class="nx">reflection</span><span class="p">;</span>
+</pre></div>
+
+
+<p>其中，reflection为反射系数，reflection_color为镜面反射颜色。</p>
+<p>当物体具有一定透明效果时，物体表面颜色有折射光和镜面反射光组合而来，且折射光和镜面反射光强度按照Fresnel定律组合，即：</p>
+<div class="codehilite"><pre><span></span><span class="nx">color</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fresnel</span> <span class="o">*</span> <span class="nx">reflection</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">fresnel</span><span class="p">)</span> <span class="o">*</span> <span class="nx">refraction</span> <span class="o">*</span> <span class="nx">transparency</span><span class="p">)</span> <span class="o">*</span> <span class="nx">solid_color</span><span class="p">;</span>
+</pre></div>
+
+
+<p>其中，fresnel为Fresnel系数，transparency为物体的透明度。</p>
+<p>此外，如果物体被遮挡，需要对物体表面的颜色添加阴影。</p>
+<p>综上，递归形式的追踪过程代码如下：</p>
 <div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">ray</span><span class="p">,</span> <span class="nx">depth</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">depth</span> <span class="o">&gt;</span> <span class="nx">MAX_DEPTH</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 递归的最大深度</span>
         <span class="k">return</span> <span class="nx">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// 到达最大递归深度时返回0值</span>
     <span class="p">}</span>
     <span class="nx">interpoint</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">solids</span><span class="p">.</span><span class="nx">intersection</span><span class="p">(</span><span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解光线与场景中物体的最近交点</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">interpoint</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 有交点</span>
-        <span class="nx">diffuse_color</span> <span class="o">=</span> <span class="nx">calculate_diffuse</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">);</span> <span class="c1">// 求解场景在交点处的漫反射光</span>
-        <span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">get_refraction_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
-        <span class="nx">refraction_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">refraction_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归求解折射光颜色</span>
-        <span class="nx">reflection_ray</span> <span class="o">=</span> <span class="nx">get_reflection_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
-        <span class="nx">reflection_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">reflection_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nx">diffuse_color</span> <span class="o">+</span> <span class="nx">refraction_color</span> <span class="o">+</span> <span class="nx">reflection_color</span><span class="p">);</span> <span class="c1">// 返回颜色值</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">transparency</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">fresnel</span> <span class="o">=</span> <span class="nx">calculate_fresnel</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span>
+            <span class="nx">reflection_ray</span> <span class="o">=</span> <span class="nx">get_reflection_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的反射光线</span>
+            <span class="nx">reflection_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">reflection_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归</span>
+            <span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">get_refraction_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的折射光线</span>
+            <span class="nx">refraction_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">refraction_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归求解折射光颜色</span>
+            <span class="k">return</span> <span class="nx">fresnel</span> <span class="o">*</span> <span class="nx">reflection_color</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nx">fresnel</span><span class="p">)</span> <span class="o">*</span> <span class="nx">refraction</span> <span class="o">*</span> <span class="nx">transparency</span><span class="p">;</span> <span class="c1">// 返回颜色值</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="nx">light</span> <span class="k">in</span> <span class="nx">Lights</span> <span class="p">{</span>
+                <span class="nx">diffuse_color</span> <span class="o">=</span> <span class="nx">calculate_diffuse</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">);</span> <span class="c1">// 求解场景在交点处的漫反射光</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">specularity</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">specular_color</span> <span class="o">=</span> <span class="nx">calculate_specular</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">);</span> <span class="c1">// 求解场景在交点处的高光</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">reflection</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">reflection_ray</span> <span class="o">=</span> <span class="nx">get_reflection_ray</span><span class="p">(</span><span class="nx">interpoint</span><span class="p">,</span> <span class="nx">ray</span><span class="p">);</span> <span class="c1">// 求解交点处的镜面光线</span>
+                    <span class="nx">reflection_color</span> <span class="o">=</span> <span class="nx">raytrace</span><span class="p">(</span><span class="nx">reflection_ray</span><span class="p">,</span> <span class="nx">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// 递归</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">diffuse_color</span> <span class="o">+</span> <span class="nx">reflection</span> <span class="o">*</span> <span class="nx">reflection_color</span> <span class="o">+</span> <span class="nx">specularity</span> <span class="o">*</span> <span class="nx">specular_color</span><span class="p">);</span> <span class="c1">// 返回颜色值</span>
+        <span class="p">}</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">background_color</span><span class="p">;</span> <span class="c1">// 无交点时返回背景颜色</span>
     <span class="p">}</span>
@@ -1136,7 +1191,7 @@ N_1^2 \cdot (1 - (\vec a \cdot \vec n)^2) &amp; = N_2^2 \cdot(1-(\vec b \cdot \v
 $$</p>
 <p>化解上式我们可以得到关于$k$的二次方程：</p>
 <p>$$k^2 + 2(\vec a\cdot \vec n)k + (1-(\frac{N_2}{N_1})^2) = 0$$</p>
-<p>求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线：</p>
+<p>求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线方向：</p>
 <div class="codehilite"><pre><span></span><span class="nx">refraction_ray</span> <span class="o">=</span> <span class="nx">uniform_light</span> <span class="o">+</span> <span class="nx">k</span> <span class="o">*</span> <span class="nx">uniform_normal</span>
 </pre></div>
 
@@ -1151,7 +1206,7 @@ $$</p>
 <p><a href="http://antirez.com/misc/rt.html">jsrt</a><br />
 <a href="http://www.cosinekitty.com/raytrace/contents.html">Fundamentals of Ray Tracing</a></p>
 <h1 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
-  <p style="text-align: right; color: gray;"><br>2016-05-22 09:15:57</p>
+  <p style="text-align: right; color: gray;"><br>2016-05-28 15:27:13</p>
         </div>
       </div>
       <footer>

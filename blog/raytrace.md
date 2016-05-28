@@ -848,18 +848,18 @@ View -|- Camera
 |position<br>color|
 
 ## Solid设计
-物体`Solid`是对真实物体的建模，包含形状、颜色、材质等信息。
+物体`Solid`是对真实物体的建模，包含形状、颜色、材质等信息，在光线追踪算法中，使用的材质信息主要有反射系数(reflection)，高光系数(specularity)和透明度(transparency)。故有：
 
 |Solid|
 |----|
-|data<br>material<br>color|
+|data<br>color<br>specularity<br>reflection<br>transparency|
 
 `注：data包括物体的形状，位置等信息。`
 
 # 详细设计
 ## 光线追踪模型
 ![raytrace](../../images/raytrace.PNG)
-投影到视图的光由三部分组成：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：
+投影到视图的光可能存在三种光：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：
 
 ```javascript
 matte_color = solid_color * light_color * k * (direction * nomral);
@@ -867,9 +867,33 @@ matte_color = solid_color * light_color * k * (direction * nomral);
 
 其中，solid_color为物体颜色，light_color为光的颜色，k为漫反射系数，direction为光线方向单位向量，normal为法线方向单位向量。
 
-折射光和镜面反射光强度按照Fresnel定律组合:
+当物体有高光效果时，对物体颜色进行高光计算，高光效果与**光线的镜面反射方向和视线方向的夹角**有关，只有在一定夹角范围内才具有高光，高光体现为物体上某些地方比周围具有更高的光强：
 
-递归形式的追踪过程伪代码如下：
+```javascript
+solid_color += light_color * specularity * pow(cosSigma, 64);
+```
+
+其中，cosSigma为光线的镜面反射方向与视线方向的夹角(为正有效)。
+
+当物体可以进行镜面反射时，需要对光线进行镜面反射求解镜面反射光：
+
+```javascript
+solid_color = reflection_color * reflection;
+```
+
+其中，reflection为反射系数，reflection_color为镜面反射颜色。
+
+当物体具有一定透明效果时，物体表面颜色有折射光和镜面反射光组合而来，且折射光和镜面反射光强度按照Fresnel定律组合，即：
+
+```javascript
+color = (fresnel * reflection + (1 - fresnel) * refraction * transparency) * solid_color;
+```
+
+其中，fresnel为Fresnel系数，transparency为物体的透明度。
+
+此外，如果物体被遮挡，需要对物体表面的颜色添加阴影。
+
+综上，递归形式的追踪过程代码如下：
 
 ```javascript
 function raytrace(ray, depth) {
@@ -878,12 +902,26 @@ function raytrace(ray, depth) {
     }
     interpoint = scene.solids.intersection(ray); // 求解光线与场景中物体的最近交点
     if (interpoint) { // 有交点
-        diffuse_color = calculate_diffuse(interpoint); // 求解场景在交点处的漫反射光
-        refraction_ray = get_refraction_ray(interpoint, ray); // 求解交点处的折射光线
-        refraction_color = raytrace(refraction_ray, depth + 1); // 递归求解折射光颜色
-        reflection_ray = get_reflection_ray(interpoint, ray); // 求解交点处的折射光线
-        reflection_color = raytrace(reflection_ray, depth + 1); // 递归
-        return (diffuse_color + refraction_color + reflection_color); // 返回颜色值
+        if (transparency) {
+            fresnel = calculate_fresnel(interpoint, ray);
+            reflection_ray = get_reflection_ray(interpoint, ray); // 求解交点处的反射光线
+            reflection_color = raytrace(reflection_ray, depth + 1); // 递归
+            refraction_ray = get_refraction_ray(interpoint, ray); // 求解交点处的折射光线
+            refraction_color = raytrace(refraction_ray, depth + 1); // 递归求解折射光颜色
+            return fresnel * reflection_color + (1 - fresnel) * refraction * transparency; // 返回颜色值
+        } else {
+            for light in Lights {
+                diffuse_color = calculate_diffuse(interpoint); // 求解场景在交点处的漫反射光
+                if (specularity) {
+                    specular_color = calculate_specular(interpoint); // 求解场景在交点处的高光
+                }
+                if (reflection) {
+                    reflection_ray = get_reflection_ray(interpoint, ray); // 求解交点处的镜面光线
+                    reflection_color = raytrace(reflection_ray, depth + 1); // 递归
+                }
+            }
+            return (diffuse_color + reflection * reflection_color + specularity * specular_color); // 返回颜色值
+        }
     } else {
         return background_color; // 无交点时返回背景颜色
     }
@@ -945,7 +983,7 @@ $$
 
 $$k^2 + 2(\vec a\cdot \vec n)k + (1-(\frac{N\_2}{N\_1})^2) = 0$$
 
-求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线：
+求解二次方程可能会得到两个k值，根据折射定理，使得$\vec a\cdot \vec b$值更大的k值为所求的折射光线的系数，进而得到折射光线方向：
 
 ```javascript
 refraction_ray = uniform_light + k * uniform_normal
