@@ -862,9 +862,10 @@ View -|- Camera
 投影到视图的光由三部分组成：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：
 
 ```javascript
-matte_color = intensity * k * (direction * nomral);
+matte_color = solid_color * light_color * k * (direction * nomral);
 ```
-其中，intensity为光源光强度，k为漫反射系数(0, 1)之间，direction为光线方向单位向量，normal为法线方向单位向量。
+
+其中，solid_color为物体颜色，light_color为光的颜色，k为漫反射系数，direction为光线方向单位向量，normal为法线方向单位向量。
 
 折射光和镜面反射光强度按照Fresnel定律组合:
 
