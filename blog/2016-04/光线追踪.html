@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://fonts.useso.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -173,16 +173,21 @@ MathJax.Hub.Config({
 <li><a href="#_2">详细设计</a><ul>
 <li><a href="#_3">光线追踪模型</a><ul>
 <li><a href="#_4">生成初始入射光线</a></li>
-<li><a href="#_5">物体求交</a></li>
-<li><a href="#_6">计算漫反射光</a></li>
-<li><a href="#_7">计算折射光</a></li>
-<li><a href="#_8">计算镜面反射光</a></li>
+<li><a href="#_5">物体求交</a><ul>
+<li><a href="#_6">球体求交</a></li>
+<li><a href="#_7">平面求交</a></li>
+<li><a href="#_8">多面体求交</a></li>
+</ul>
+</li>
+<li><a href="#_9">计算漫反射光</a></li>
+<li><a href="#_10">计算折射光</a></li>
+<li><a href="#_11">计算镜面反射光</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_9">参考文献</a></li>
-<li><a href="#_10">未完待续</a></li>
+<li><a href="#_12">参考文献</a></li>
+<li><a href="#_13">未完待续</a></li>
 </ul>
 </div>
         </nav>
@@ -1174,12 +1179,82 @@ $$</p>
 </pre></div>
 
 
-<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算漫反射光</h3>
+<h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>球体求交</h4>
+<p>球体的信息包含球心坐标center和半径radius。与光线求交：</p>
+<p><center><img alt="球面求交" src="http://jinjaysnow.github.io/images/sphere_inter.PNG" /></center></p>
+<h4 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>平面求交</h4>
+<p>三点确定一个平面，平面数据结构包含三个不在同一条直线上的点的坐标$P_1(x_1, y_1, z_1), P_2(x_2, y_2, z_2), P_3(x_3, y_3, z_3)$。平面内部表示为</p>
+<p>$$ax+by+cz+d=0$$</p>
+<p>(a,b,c)为平面的法线方向。通过三点坐标求解(a,b,c,d):</p>
+<p>$$<br />
+\vec n = (a, b, c) \\<br />
+\vec {P_1P_2}\vec {P_1P_3}\vec n = 0 \\<br />
+\vec n \cdot P_1 + d = 0<br />
+$$</p>
+<p>与光线求交：<br />
+1. 先检查是否与平面平行，判断$\vec n \cdot \vec d = 0$，其中$\vec d$为光线方向。<br />
+2. 不平行的情况下，计算交点距离。</p>
+<p><center><img alt="平面求交" src="http://jinjaysnow.github.io/images/plane_inter.png" /></center></p>
+<h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多面体求交</h4>
+<p>多面体有多个顶点和多个面，故而包含一个vertices和faces数组，为了方便操作，添加一个center中心点坐标，便于计算交点法线的方向。完整的多面体数据结构如下:</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>类型，默认为&rdquo;Geometry&rdquo;</td>
+</tr>
+<tr>
+<td>center</td>
+<td>多面体中心坐标</td>
+</tr>
+<tr>
+<td>vertices</td>
+<td>顶点坐标数组</td>
+</tr>
+<tr>
+<td>faces</td>
+<td>面的顶点索引数组，一个面有多个顶点组成，使用顶点索引表示顶点</td>
+</tr>
+<tr>
+<td>faces_plane</td>
+<td>通过faces构建的面平面，用于求交过程</td>
+</tr>
+<tr>
+<td>transform</td>
+<td>多面体当前位置的变换，用于更改多面体的位置，大小</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>与光线求交时，依次对每个面进行求交，与各个面距离最近的那个即为所求。</li>
+<li>与面求交时直接采用与平面求交的方法，求得交点后，判断交点是否在顶点围成的多边形内部。</li>
+</ol>
+<p>采用弧长法判断交点是否在多边形内部：</p>
+<ol>
+<li>降维，交点所在的法线为$\vec n$，去掉$\vec n$中数值最大的分量坐标组合成新的坐标$(x\prime ,y\prime )$，并应用到所有该面的顶点坐标及交点坐标;</li>
+<li>将坐标原点移到交点P处，各个象限点的符号分别为(+, +),(-,+),(-,-),(+,-)。若某个坐标为0，则符号为+。符号对变换与弧长变化的关系：<div class="codehilite"><pre><span></span>[0, 1, 2, -1], // 第一象限到一，二，三，四象限
+[-1, 0, 1, 2], // 第二象限到一，二，三，四象限
+[2, -1, 0, 1], // 第三象限到一，二，三，四象限
+[1, 2, -1, 0], // 第四象限到一，二，三，四象限
+</pre></div>
+
+
+</li>
+</ol>
+<p>其中1表示$\pi / 2$; -1表示$\pi/2$; 2表示$\pm \pi$, 此时，设$(x_i, y_i)$和$(x_{i+1}, y_{i+1})$为边的起点和终点坐标，计算$$f = y_{i+1}x_i - x_{i+1}y_i $$若$f=0$，则边穿过坐标原点。若$f&gt;0$，则弧长加$\pi$；若$f&lt;0$，则弧长减少$\pi$。</p>
+<p>最后，代数和为0，点在多边形外部；代数和为$2\pi$，点在多边形内部；代数和为0，点在多边形边上。</p>
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算漫反射光</h3>
 <p>基本流程：对场景中的每一个光源，计算是否可以直接到达交点(交点与光源的连线不与任何物体相交)。如果可以到达，返回该光源作用于该点的漫反射光颜色；如果不能到达，则该光源在该点的漫反射光作用为0。</p>
 <p>计算漫反射的公式如下：</p>
 <p>$$diffuse\_color = solid.color \times \sum^{Lights}_{light}(light.color \cdot distance \cdot \cos\theta)$$</p>
 <p>其中，$solid.color$为物体表面的颜色，$light.color$为光源颜色，$distance$为交点与光源的距离，$\theta$为交点与光源连线与该点处法线的夹角。</p>
-<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算折射光</h3>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算折射光</h3>
 <p><img alt="折射" src="../../images/refraction.PNG" /><br />
 折射光计算需要了解折射面上下的折射率。折射过程满足$\sin\theta_1\cdot N_1 = \sin\theta_2\cdot N_2$。三维情况下如何求解折射方向？</p>
 <p>记单位长度的入射光线方向为$\vec a = (x_a, y_a, z_a)$,单位长度的法线方向为$\vec n = (x_n, y_n, z_n)$,单位长度的折射方向为$\vec b = (x_b, y_b, z_b)$，三个向量在同一个平面内，则有三向量的混合积为0(或者有$\vec B$可以由$\vec A$和$\vec N$表示)有</p>
@@ -1196,17 +1271,17 @@ $$</p>
 </pre></div>
 
 
-<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算镜面反射光</h3>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算镜面反射光</h3>
 <p><img alt="镜面反射" src="../../images/mirror.png" /></p>
 <p>镜面反射光线计算可用向量计算简洁的得出，如上图中的入射光线A，反射光线B可以按如下计算：</p>
 <p>$\vec B = \vec A + 2(\vec N - \vec A) = 2 \vec N - \vec A$</p>
 <p>实际计算时，对于单位长度的入射光线$\vec a$和单位长度的折射光线$\vec n$，有</p>
 <p>$\vec b = \vec a - 2(\vec a\cdot \vec n)\vec n$</p>
-<h1 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h1>
+<h1 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参考文献</h1>
 <p><a href="http://antirez.com/misc/rt.html">jsrt</a><br />
 <a href="http://www.cosinekitty.com/raytrace/contents.html">Fundamentals of Ray Tracing</a></p>
-<h1 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
-  <p style="text-align: right; color: gray;"><br>2016-05-28 15:27:13</p>
+<h1 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
+  <p style="text-align: right; color: gray;"><br>2016-05-31 09:45:26</p>
         </div>
       </div>
       <footer>
