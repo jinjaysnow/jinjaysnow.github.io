@@ -802,7 +802,7 @@ window.onload = function() {init();};
 
 # 架构设计
 3D成像模型
-<center>![ray trace model](../../images/raytrace_model.PNG)</center>
+<center>![ray trace model](http://jinjaysnow.github.io/images/raytrace_model.PNG)</center>
 模型中的基本元素：摄像机、场景物体、光源。呈现给用户的是摄像机拍摄到的场景的一部分。
 
 对成像过程进行建模:用户视图是View类，View类包含Camera和Scene，Scene包含Light和Solid。
@@ -858,7 +858,7 @@ View -|- Camera
 
 # 详细设计
 ## 光线追踪模型
-![raytrace](../../images/raytrace.PNG)
+![raytrace](http://jinjaysnow.github.io/images/raytrace.PNG)
 投影到视图的光可能存在三种光：漫反射光`diffuse`，镜面反射光`Mirror`，折射光`Refraction`。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：
 
 ```javascript
@@ -1020,7 +1020,7 @@ $$diffuse\\_color = solid.color \times \sum^{Lights}\_{light}(light.color \cdot 
 其中，$solid.color$为物体表面的颜色，$light.color$为光源颜色，$distance$为交点与光源的距离，$\theta$为交点与光源连线与该点处法线的夹角。
 
 ### 计算折射光
-![折射](../../images/refraction.PNG)
+![折射](http://jinjaysnow.github.io/images/refraction.PNG)
 折射光计算需要了解折射面上下的折射率。折射过程满足$\sin\theta\_1\cdot N\_1 = \sin\theta\_2\cdot N\_2$。三维情况下如何求解折射方向？
 
 记单位长度的入射光线方向为$\vec a = (x\_a, y\_a, z\_a)$,单位长度的法线方向为$\vec n = (x\_n, y\_n, z\_n)$,单位长度的折射方向为$\vec b = (x\_b, y\_b, z\_b)$，三个向量在同一个平面内，则有三向量的混合积为0(或者有$\vec B$可以由$\vec A$和$\vec N$表示)有
@@ -1043,7 +1043,7 @@ refraction_ray = uniform_light + k * uniform_normal
 ```
 
 ### 计算镜面反射光
-![镜面反射](../../images/mirror.png)
+![镜面反射](http://jinjaysnow.github.io/images/mirror.png)
 
 镜面反射光线计算可用向量计算简洁的得出，如上图中的入射光线A，反射光线B可以按如下计算：
 
