@@ -15,7 +15,7 @@ keywords: C语言
 **函数指针**
 >函数指针是指向函数的指针变量。C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数，就如同用指针变量可引用其他类型变量一样。函数指针有两个用途：调用函数和做函数的参数。
 
-```
+```C
 #include <stdio.h>
 
 int maxAB(int a, int b) {
@@ -53,7 +53,7 @@ int main(){
 **指针变量**
 >存放地址的变量称为指针变量。指针变量是一种特殊的变量，它不同于一般的变量，一般变量存放的是数据本身，而指针变量存放的是数据的地址。
 
-```
+```C
 #include <stdio.h>
 
 int main(){
@@ -76,7 +76,7 @@ int main(){
 switch(c)语句中c可以是int, long, char, unsigned int。不能是浮点型数据。case语句中也不能有变量。
 
 #### for循环
-```
+```C
 #include <stdio.h>
 int main(int argc, char const *argv[]) {
     int i = 0;
@@ -96,7 +96,7 @@ Third = 3 Second = 3
 ```
 
 #### while循环
-```
+```C
 #include <stdio.h>
 int main(int argc, char const *argv[]) {
     int i = 3;
@@ -115,7 +115,7 @@ first = 1
 ```
 
 #### const
-```
+```C
 const int *p        // 指针变量p可变，而p指向的数据元素不能变
 int * const p       // 指针变量p不可变，而p指向的数据元素可变
 const int * const p // 指针变量p不可变，p指向的元素也不能变
@@ -124,7 +124,7 @@ const int * const p // 指针变量p不可变，p指向的元素也不能变
 #### union联合类型
 >联合数据类型（Union）是一种特殊的数据类型。它可以实现：以一种数据类型存储数据，以另一种数据类型来读取数据。程序员可以根据不同的需要，以不同的数据类型来读取联合类型中的数据。也就是说，在一些情况下，以一种数据类型来读取联合类型中的数据，而在另一些情况下，又以另一种数据类型来读取其数据。 `联合类型的所有成员在同一时刻只能有一个起作用，因此他占用的内存空间是所有成员中最大那个的大小。`
 
-```
+```C
 #include <stdio.h>
 union number {
     int x;
@@ -142,7 +142,7 @@ int main(int argc, char const *argv[]) {
 #### 枚举类型
 > 如果一个变量只有有限的可能的值，则可以定义为枚举类型，变量的值只限于列举出来的值。
 
-```
+```C
 enum Weekday{sun, mon, tue, wed, thu, fri, sat};
 enum Weekday workday, weekend;
 workday = mon;
@@ -208,26 +208,28 @@ weekday = sun;
 
 ### 宏
 
-    // 得到指定地址上的一个字节或字
-    #define MEM_B(x) (*((byte *)(x)))
-    #define MEM_W(x) (*((word *)(x)))
-    // 求最大值最小值
-    #define MAX(x,y) (((x) > (y)) ? (x) : (y))
-    #define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
-    // 得到一个字的高位和底位字节
-    #define WORD_LO(x) ((byte)((word)(x) & 255))
-    #define WORD_HI(x) ((byte)((word)(x) >> 8))
-    
-    // 宏定义里用#的地方宏参数不会展开（作为字符串）
-    #define FILL(a) {a, #a}
-    enum STATE{OPEN, CLOSE};
-    typedef struct MSG{
-        STATE state;
-        const char *msg;
-    }MSG;
-    MSG _msg[] = {FILL(OPEN), FILL(CLOSE)};
-    相当于：
-    MSG _msg[] = {{OPEN, "OPEN"}, {CLOSE, "CLOSE"}};
+```C
+// 得到指定地址上的一个字节或字
+#define MEM_B(x) (*((byte *)(x)))
+#define MEM_W(x) (*((word *)(x)))
+// 求最大值最小值
+#define MAX(x,y) (((x) > (y)) ? (x) : (y))
+#define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
+// 得到一个字的高位和底位字节
+#define WORD_LO(x) ((byte)((word)(x) & 255))
+#define WORD_HI(x) ((byte)((word)(x) >> 8))
+
+// 宏定义里用#的地方宏参数不会展开（作为字符串）
+#define FILL(a) {a, #a}
+enum STATE{OPEN, CLOSE};
+typedef struct MSG{
+    STATE state;
+    const char *msg;
+}MSG;
+MSG _msg[] = {FILL(OPEN), FILL(CLOSE)};
+// 相当于：
+MSG _msg[] = {{OPEN, "OPEN"}, {CLOSE, "CLOSE"}};
+```
 
 
 

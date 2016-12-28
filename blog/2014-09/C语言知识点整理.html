@@ -116,7 +116,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_purple-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -293,9 +293,9 @@ first = 1
 </pre></div>
 </p>
 <h4 id="const"><a name="user-content-const" href="#const" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>const</h4>
-<div class="codehilite"><pre><span></span>const int *p        // 指针变量p可变，而p指向的数据元素不能变
-int * const p       // 指针变量p不可变，而p指向的数据元素可变
-const int * const p // 指针变量p不可变，p指向的元素也不能变
+<div class="codehilite"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span>        <span class="c1">// 指针变量p可变，而p指向的数据元素不能变</span>
+<span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">p</span>       <span class="c1">// 指针变量p不可变，而p指向的数据元素可变</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">p</span> <span class="c1">// 指针变量p不可变，p指向的元素也不能变</span>
 </pre></div>
 
 
@@ -322,10 +322,10 @@ const int * const p // 指针变量p不可变，p指向的元素也不能变
 <blockquote>
 <p>如果一个变量只有有限的可能的值，则可以定义为枚举类型，变量的值只限于列举出来的值。</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><span class="k">enum</span> <span class="n">Weekday</span>{<span class="n">sun</span>, <span class="n">mon</span>, <span class="n">tue</span>, <span class="n">wed</span>, <span class="n">thu</span>, <span class="n">fri</span>, <span class="n">sat</span>};
-<span class="k">enum</span> <span class="n">Weekday</span> <span class="n">workday</span>, <span class="n">weekend</span>;
-<span class="n">workday</span> = <span class="n">mon</span>;
-<span class="n">weekday</span> = <span class="n">sun</span>;
+<div class="codehilite"><pre><span></span><span class="k">enum</span> <span class="n">Weekday</span><span class="p">{</span><span class="n">sun</span><span class="p">,</span> <span class="n">mon</span><span class="p">,</span> <span class="n">tue</span><span class="p">,</span> <span class="n">wed</span><span class="p">,</span> <span class="n">thu</span><span class="p">,</span> <span class="n">fri</span><span class="p">,</span> <span class="n">sat</span><span class="p">};</span>
+<span class="k">enum</span> <span class="n">Weekday</span> <span class="n">workday</span><span class="p">,</span> <span class="n">weekend</span><span class="p">;</span>
+<span class="n">workday</span> <span class="o">=</span> <span class="n">mon</span><span class="p">;</span>
+<span class="n">weekday</span> <span class="o">=</span> <span class="n">sun</span><span class="p">;</span>
 </pre></div>
 
 
@@ -474,30 +474,30 @@ const int * const p // 指针变量p不可变，p指向的元素也不能变
 </table>
 <p><code>注：如果是二进制文件需要在字母后加b</code></p>
 <h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>宏</h3>
-<div class="codehilite"><pre><span></span><span class="x">// 得到指定地址上的一个字节或字</span>
-<span class="x">#define MEM_B(x) (*((byte *)(x)))</span>
-<span class="x">#define MEM_W(x) (*((word *)(x)))</span>
-<span class="x">// 求最大值最小值</span>
-<span class="x">#define MAX(x,y) (((x) &gt; (y)) ? (x) : (y))</span>
-<span class="x">#define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a &lt; __b ? __a : __b; })</span>
-<span class="x">// 得到一个字的高位和底位字节</span>
-<span class="x">#define WORD_LO(x) ((byte)((word)(x) &amp; 255))</span>
-<span class="x">#define WORD_HI(x) ((byte)((word)(x) &gt;&gt; 8))</span>
+<div class="codehilite"><pre><span></span><span class="c1">// 得到指定地址上的一个字节或字</span>
+<span class="cp">#define MEM_B(x) (*((byte *)(x)))</span>
+<span class="cp">#define MEM_W(x) (*((word *)(x)))</span>
+<span class="c1">// 求最大值最小值</span>
+<span class="cp">#define MAX(x,y) (((x) &gt; (y)) ? (x) : (y))</span>
+<span class="cp">#define MIN(A,B) ({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a &lt; __b ? __a : __b; })</span>
+<span class="c1">// 得到一个字的高位和底位字节</span>
+<span class="cp">#define WORD_LO(x) ((byte)((word)(x) &amp; 255))</span>
+<span class="cp">#define WORD_HI(x) ((byte)((word)(x) &gt;&gt; 8))</span>
 
-<span class="x">// 宏定义里用#的地方宏参数不会展开（作为字符串）</span>
-<span class="x">#define FILL(a) {a, #a}</span>
-<span class="x">enum STATE{OPEN, CLOSE};</span>
-<span class="x">typedef struct MSG{</span>
-<span class="x">    STATE state;</span>
-<span class="x">    const char *msg;</span>
-<span class="x">}MSG;</span>
-<span class="x">MSG _msg[] = {FILL(OPEN), FILL(CLOSE)};</span>
-<span class="x">相当于：</span>
-<span class="x">MSG _msg[] = </span><span class="cp">{{</span><span class="nv">OPEN</span><span class="o">,</span> <span class="s2">&quot;OPEN&quot;</span><span class="o">},</span> <span class="o">{</span><span class="nv">CLOSE</span><span class="o">,</span> <span class="s2">&quot;CLOSE&quot;</span><span class="cp">}}</span><span class="x">;</span>
+<span class="c1">// 宏定义里用#的地方宏参数不会展开（作为字符串）</span>
+<span class="cp">#define FILL(a) {a, #a}</span>
+<span class="k">enum</span> <span class="n">STATE</span><span class="p">{</span><span class="n">OPEN</span><span class="p">,</span> <span class="n">CLOSE</span><span class="p">};</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">MSG</span><span class="p">{</span>
+    <span class="n">STATE</span> <span class="n">state</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span><span class="n">MSG</span><span class="p">;</span>
+<span class="n">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="n">FILL</span><span class="p">(</span><span class="n">OPEN</span><span class="p">),</span> <span class="n">FILL</span><span class="p">(</span><span class="n">CLOSE</span><span class="p">)};</span>
+<span class="c1">// 相当于：</span>
+<span class="n">MSG</span> <span class="n">_msg</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{{</span><span class="n">OPEN</span><span class="p">,</span> <span class="s">&quot;OPEN&quot;</span><span class="p">},</span> <span class="p">{</span><span class="n">CLOSE</span><span class="p">,</span> <span class="s">&quot;CLOSE&quot;</span><span class="p">}};</span>
 </pre></div>
 
 
-  <p style="text-align: right; color: gray;"><br>2016-08-09 09:18:23</p>
+  <p style="text-align: right; color: gray;"><br>2016-12-28 18:51:34</p>
         </div>
       </div>
       <footer>
