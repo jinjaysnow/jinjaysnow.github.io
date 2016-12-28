@@ -54,7 +54,7 @@ struct CostFunctor {
 		residual[0] = T(10.0) - x[0];
 		return true;
 	}
-}
+};
 
 int main(int argc, char** argv) {
   google::InitGoogleLogging(argv[0]);
@@ -83,6 +83,38 @@ int main(int argc, char** argv) {
             << " -> " << x << "\n";
   return 0;
 }
+```
+
+编写对应的`CMakeList.txt`:
+
+```CMake
+CMAKE_MINIMUM_REQUIRED(VERSION 3.7)
+# 项目名
+PROJECT(HelloWorld)
+# 指定ceres
+FIND_PACKAGE(ceres REQUIRED)
+# 需要eigen库
+INCLUDE_DIRECTORIES(${EIGEN_INCLUDE_DIR})
+# 目标文件
+ADD_EXECUTABLE(
+  helloword
+  helloword.cc
+)
+# 链接ceres
+target_link_libraries(
+  helloworld
+  ceres
+)
+```
+
+编译运行
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./helloworld
 ```
 
 ### 微分

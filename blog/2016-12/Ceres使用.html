@@ -115,7 +115,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -232,9 +232,9 @@ $\frac12(10-x)^2$</p>
         <span class="n">residual</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
-<span class="p">}</span>
+<span class="p">};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">google</span><span class="o">::</span><span class="n">InitGoogleLogging</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 
   <span class="c1">// 变量及其初始值</span>
@@ -261,6 +261,36 @@ $\frac12(10-x)^2$</p>
             <span class="o">&lt;&lt;</span> <span class="s">&quot; -&gt; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+
+
+<p>编写对应的<code>CMakeList.txt</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nb">CMAKE_MINIMUM_REQUIRED</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.7</span><span class="p">)</span>
+<span class="c"># 项目名</span>
+<span class="nb">PROJECT</span><span class="p">(</span><span class="s">HelloWorld</span><span class="p">)</span>
+<span class="c"># 指定ceres</span>
+<span class="nb">FIND_PACKAGE</span><span class="p">(</span><span class="s">ceres</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="c"># 需要eigen库</span>
+<span class="nb">INCLUDE_DIRECTORIES</span><span class="p">(</span><span class="o">${</span><span class="nv">EIGEN_INCLUDE_DIR</span><span class="o">}</span><span class="p">)</span>
+<span class="c"># 目标文件</span>
+<span class="nb">ADD_EXECUTABLE</span><span class="p">(</span>
+  <span class="s">helloword</span>
+  <span class="s">helloword.cc</span>
+<span class="p">)</span>
+<span class="c"># 链接ceres</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>
+  <span class="s">helloworld</span>
+  <span class="s">ceres</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>编译运行</p>
+<div class="codehilite"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake ..
+make
+./helloworld
 </pre></div>
 
 
@@ -514,7 +544,7 @@ $$y=e^{mx+c}$$</p>
 </pre></div>
 
 
-  <p style="text-align: right; color: gray;"><br>2016-12-28 18:46:06</p>
+  <p style="text-align: right; color: gray;"><br>2016-12-28 21:15:09</p>
         </div>
       </div>
       <footer>
