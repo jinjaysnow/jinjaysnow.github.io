@@ -13,6 +13,12 @@
 		<priority>1.0</priority>
 	</url>
 		<url>
+		<loc>http://jinjaysnow.github.io/blog/2016-12/Ceres使用.html</loc>
+		<lastmod>2016-12-28</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
 		<loc>http://jinjaysnow.github.io/blog/2016-05/LinkedIn%20Samza.html</loc>
 		<lastmod>2016-09-13</lastmod>
 		<changefreq>monthly</changefreq>
