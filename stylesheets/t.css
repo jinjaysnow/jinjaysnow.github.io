@@ -98,8 +98,17 @@ h6 { font-size:0.9em !important; }
 blockquote {
   color:#666666;
   margin:0;
-  padding-left: 3em;
+  padding: 0 15px;
+  font-style: normal; 
   border-left: 0.5em #EEE solid;
+}
+blockquote:before{
+  content: none;
+  margin-left: 0;
+}
+blockquote:after{
+  content: none;
+  margin-left: 0;
 }
 hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
 

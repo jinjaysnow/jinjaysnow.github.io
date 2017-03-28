@@ -56,8 +56,10 @@
 .codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
 .codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
 .codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
 .codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
 .codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
 .codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
 .codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
 .codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
@@ -68,9 +70,11 @@
 .codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
 .codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
 .codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
 .codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
 .codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
 .codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
 .codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
@@ -115,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -266,14 +270,14 @@ MathJax.Hub.Config({
     <span class="k">class</span> <span class="nc">ConstError</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span> <span class="k">pass</span>
     <span class="k">class</span> <span class="nc">ConstCaseError</span><span class="p">(</span><span class="n">ConstError</span><span class="p">):</span> <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConstError</span><span class="p">,</span> <span class="s2">&quot;Can&#39;t change const. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
             <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConstCaseError</span><span class="p">,</span> <span class="s1">&#39;const name &quot;</span><span class="si">%s</span><span class="s1">&quot; is not all uppercase&#39;</span> <span class="o">%</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">_const</span><span class="p">()</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">_const</span><span class="p">()</span>
 </pre></div>
 
 
@@ -484,14 +488,14 @@ MathJax.Hub.Config({
 </tbody>
 </table>
 <p>例：</p>
-<div class="codehilite"><pre><span></span><span class="s2">&quot;The number {0:,} inn hex is:{0:#x}, the number {1} in oct is {1:#o}&quot;</span><span class="nc">.format</span><span class="o">(</span><span class="nt">4746</span><span class="o">,</span> <span class="nt">45</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><span class="s2">&quot;The number {0:,} inn hex is:{0:#x}, the number {1} in oct is {1:#o}&quot;</span><span class="p">.</span><span class="nc">format</span><span class="o">(</span><span class="nt">4746</span><span class="o">,</span> <span class="nt">45</span><span class="o">)</span>
 <span class="err">输出为：</span><span class="s1">&#39;the number4,746 in hex is: 0x128a, the number 45 in oct is 0o55&#39;</span>
 
-<span class="s2">&quot;the max number is {max}, the min number is {min}, the averagenumber is {average:0.3f}&quot;</span><span class="nc">.format</span><span class="o">(</span><span class="nt">max</span><span class="o">=</span><span class="nt">189</span><span class="o">,</span> <span class="nt">min</span><span class="o">=</span><span class="nt">12</span><span class="nc">.6</span><span class="o">,</span> <span class="nt">average</span><span class="o">=</span><span class="nt">23</span><span class="nc">.5</span><span class="o">)</span>
+<span class="s2">&quot;the max number is {max}, the min number is {min}, the averagenumber is {average:0.3f}&quot;</span><span class="p">.</span><span class="nc">format</span><span class="o">(</span><span class="nt">max</span><span class="o">=</span><span class="nt">189</span><span class="o">,</span> <span class="nt">min</span><span class="o">=</span><span class="nt">12</span><span class="p">.</span><span class="nc">6</span><span class="o">,</span> <span class="nt">average</span><span class="o">=</span><span class="nt">23</span><span class="p">.</span><span class="nc">5</span><span class="o">)</span>
 <span class="err">输出为：</span><span class="s1">&#39;the max number is 189, the min number is 12.6, the averagenumber is 23.500&#39;</span>
 
 <span class="nt">point</span> <span class="o">=</span> <span class="o">(</span><span class="nt">1</span><span class="o">,</span><span class="nt">3</span><span class="o">)</span>
-<span class="s1">&#39;X:{0</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s1">};Y:{0</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="s1">}&#39;</span><span class="nc">.format</span><span class="o">(</span><span class="nt">point</span><span class="o">)</span>
+<span class="s1">&#39;X:{0</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span><span class="s1">};Y:{0</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="s1">}&#39;</span><span class="p">.</span><span class="nc">format</span><span class="o">(</span><span class="nt">point</span><span class="o">)</span>
 <span class="err">输出为：</span><span class="s1">&#39;X:1;Y:3&#39;</span>
 </pre></div>
 
@@ -501,7 +505,7 @@ MathJax.Hub.Config({
 <div class="codehilite"><pre><span></span><span class="c1"># encoding:utf-8</span>
 <span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;test student&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">course</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">course</span><span class="o">=</span><span class="p">[]):</span>
         <span class="sd">&quot;&quot;&quot;init&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">course</span> <span class="o">=</span> <span class="n">course</span>
@@ -511,7 +515,7 @@ MathJax.Hub.Config({
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">course</span><span class="p">:</span>
             <span class="k">print</span> <span class="n">item</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">stuA</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Jin Jay&quot;</span><span class="p">)</span>
     <span class="n">stuA</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
     <span class="n">stuA</span><span class="o">.</span><span class="n">addcourse</span><span class="p">(</span><span class="s2">&quot;English&quot;</span><span class="p">)</span>
@@ -596,7 +600,7 @@ Physics
 <p>类方法的用法如下：</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
 </pre></div>
 
 
@@ -681,11 +685,11 @@ Physics
 <span class="na">db</span> <span class="o">=</span> <span class="s">example</span>
 
 
-<span class="err">import</span> <span class="err">ConfigParser</span>
+<span class="na">import ConfigParser</span>
 <span class="na">conf</span> <span class="o">=</span> <span class="s">ConfigParser.ConfigParser()</span>
-<span class="err">conf.read(&#39;format.conf&#39;)</span>
-<span class="err">print</span> <span class="err">conf.get(&#39;db1&#39;,</span> <span class="err">&#39;conn_str&#39;)</span>
-<span class="err">print</span> <span class="err">conf.get(&#39;db2&#39;,</span> <span class="err">&#39;conn_str&#39;)</span>
+<span class="na">conf.read(&#39;format.conf&#39;)</span>
+<span class="na">print conf.get(&#39;db1&#39;, &#39;conn_str&#39;)</span>
+<span class="na">print conf.get(&#39;db2&#39;, &#39;conn_str&#39;)</span>
 </pre></div>
 
 
@@ -883,7 +887,7 @@ Physics
 1. 尽量为logging取一个名字而不是采用默认，这样当在不同的模块中使用的时候，其他模块只需要使用以下代码就可以方便地使用同一个logger，因为它本质上复合单例模式。<br />
     <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 <br />
 2. 为了方便地找出问题所在，logging的名字建议以模块或者class来命名。logging名称遵循&rsquo;.&rsquo;划分的继承规则，根是root logger, logger a.b的父logger对象为a。<br />
@@ -929,7 +933,7 @@ Physics
 <p>多线程下载实例：</p>
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">Queue</span><span class="o">,</span> <span class="nn">threading</span><span class="o">,</span> <span class="nn">urllib2</span>
 <span class="k">class</span> <span class="nc">DownloadThread</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">):</span>
         <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="n">__init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -947,7 +951,7 @@ Physics
                 <span class="n">chunk</span> <span class="o">=</span> <span class="n">urlhandler</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span> <span class="k">break</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;http://www.python.org/moin/WebProgramming&quot;</span><span class="p">,</span>
             <span class="s2">&quot;https://www.createspace.com&quot;</span><span class="p">,</span>
             <span class="s2">&quot;http://wiki.python.org/moin/Documentation&quot;</span>
@@ -976,7 +980,7 @@ Physics
     <span class="n">bases</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">checked</span><span class="p">():</span>
         <span class="n">base</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">mixins</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-    <span class="n">people</span><span class="o">.</span><span class="n">__bases__</span> <span class="o">+=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span>
+    <span class="n">people</span><span class="o">.</span><span class="vm">__bases__</span> <span class="o">+=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">people</span>
 </pre></div>
 
@@ -1042,7 +1046,7 @@ Physics
 <p>两种使用property的形式：<br />
 <strong>形式一</strong></p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Some_Calss</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_somevalue</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_somevalue</span>
@@ -1057,7 +1061,7 @@ Physics
 <p><strong>形式二</strong></p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Some_Clasee</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">_x</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1167,11 +1171,11 @@ for line in producer():
 
 <h3 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用装饰器</h3>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">decorator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
         <span class="k">print</span> <span class="p">(</span><span class="s2">&quot;inside decorator.__init__()&quot;</span><span class="p">)</span>
         <span class="n">f</span><span class="p">()</span> 
 <span class="c1"># Prove that function definition has completed</span>
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">print</span><span class="p">(</span><span class="s2">&quot;inside decorator.__call__()&quot;</span><span class="p">)</span>
 
 <span class="nd">@decorator</span>
@@ -1199,13 +1203,13 @@ for line in producer():
 <p>通常如果想写一个上下文管理器，则需要定义一个类包含__enter__方法以及__exit__方法，如下：<br />
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="k">class</span> <span class="nc">demo</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_ty</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_ty</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">))</span>
 
@@ -1248,11 +1252,11 @@ for line in producer():
 </ol>
 <p>理解<code>instance</code>和<code>owner</code>，考虑如下代码：<br />
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Celsius</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
-    <span class="k">def</span> <span class="nf">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instance</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Temperature</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -1268,11 +1272,11 @@ for line in producer():
 <div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">weakref</span>
 
 <span class="k">class</span> <span class="nc">lazyattribute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">f</span>
 
-    <span class="k">def</span> <span class="nf">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__get__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">obj</span><span class="p">]</span>
@@ -1307,8 +1311,8 @@ for line in producer():
 
 <span class="n">obj</span> <span class="o">=</span> <span class="n">demo</span><span class="p">()</span>
 
-<span class="k">print</span> <span class="s2">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Class of obj is {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
 
 <span class="c1"># Class of obj is &lt;class &#39;__main__.demo&#39;&gt;</span>
 <span class="c1"># Class of obj is &lt;type &#39;type&#39;&gt;</span>
@@ -1317,7 +1321,7 @@ for line in producer():
 在上例中，我们定义了一个类demo，并且生成了一个该类的对象obj。首先，可以看到obj的__class__是demo。有意思的来了，那么demo的class又是什么呢？可以看到demo的__class__是type。<br />
 所以说type是python类的类，换句话说，上例中的obj是一个demo的对象，而demo本身又是type的一个对象。<br />
 因此type就是一个元类，而且是python中最常见的元类，因为它是python中所有类的默认元类。</p>
-  <p style="text-align: right; color: gray;"><br>2016-08-09 09:18:23</p>
+  <p style="text-align: right; color: gray;"><br>2017-03-27 20:26:00</p>
         </div>
       </div>
       <footer>

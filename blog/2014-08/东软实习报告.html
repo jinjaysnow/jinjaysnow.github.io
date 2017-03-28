@@ -56,8 +56,10 @@
 .codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
 .codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
 .codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
 .codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
 .codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
 .codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
 .codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
 .codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
@@ -68,9 +70,11 @@
 .codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
 .codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
 .codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
 .codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
 .codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
 .codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
 .codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
@@ -443,7 +447,7 @@ next    # 在断电时，继续执行但不进入函数内部
 <span class="kt">pid_t</span> <span class="nf">fork</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>       <span class="c1">// 父子进程不共享数据，随机运行，返回0给子进程pid_t</span>
 <span class="kt">pid_t</span> <span class="nf">vfork</span><span class="p">();</span>          <span class="c1">// 父子进程共享数据，子进程先运行</span>
 <span class="c1">// exec系列系统调用</span>
-<span class="kt">int</span> <span class="nf">execl</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="p">...</span> <span class="o">/*</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="mi">0</span> <span class="err">*/</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">execl</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">arg0</span><span class="p">,</span> <span class="p">...</span> <span class="cm">/*, (char *)</span><span class="mi">0</span> <span class="err">*/</span><span class="p">);</span>
 <span class="c1">// 将path所指路径的映像载入内存，替换当前进程的映像。execl是可变参数的，但参数列表必须以NULL(0)结尾</span>
 <span class="c1">// 终止进程</span>
 <span class="kt">void</span> <span class="nf">exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">);</span>
@@ -548,7 +552,7 @@ int sqlite3_exec(sqlite3*, const char *sql, int(*callback)(void*,int,char**,char
 <li>对公司文化并没有太多接触，如果公司能够让学员们与正式员工多接触，多参与到他们的项目讨论中更有益于了解软件公司项目运作过程。</li>
 <li>因为软件学院的实习（应该叫做实训）与其他学院不同，实训并没有见识到很多实际的问题，都是一些自己在学校里做项目能够遇到的，如果能够接触到工业界的项目肯定很有意义。比如服务器访问量达到百万级的应用、分布式计算程序设计等等。</li>
 </ol>
-  <p style="text-align: right; color: gray;"><br>2016-08-09 09:18:23</p>
+  <p style="text-align: right; color: gray;"><br>2017-03-27 20:26:00</p>
         </div>
       </div>
       <footer>
