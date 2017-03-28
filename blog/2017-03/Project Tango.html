@@ -120,7 +120,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -183,8 +183,34 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
+<li><a href="#tango_1">Tango服务集成</a><ul>
+<li><a href="#cc">C/C++应用</a></li>
+<li><a href="#java">Java应用</a></li>
+<li><a href="#unity">Unity应用</a></li>
+</ul>
+</li>
 <li><a href="#_8">运动追踪</a><ul>
-<li><a href="#_9">使用</a></li>
+<li><a href="#_9">使用</a><ul>
+<li><a href="#c">C</a></li>
+<li><a href="#java_1">Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_10">区域学习</a><ul>
+<li><a href="#_11">使用</a><ul>
+<li><a href="#c_1">C</a></li>
+<li><a href="#java_2">Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_12">深度感知</a><ul>
+<li><a href="#_13">使用</a><ul>
+<li><a href="#c_2">C</a></li>
+<li><a href="#java_3">Java</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -422,11 +448,535 @@ $$Diagonal \quad FOV = 2*atan(sqrt((width/2fx)^2 + (height/2fy)^2)) = 2 * \arcta
 
 
 <p>通过选择合适的坐标帧对来计算两个设备组件的外部参数。</p>
+<h2 id="tango_1"><a name="user-content-tango_1" href="#tango_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Tango服务集成</h2>
+<p>使用Tango服务，需要在<code>AndroidManifest.xml</code>中设置:<br />
+<div class="codehilite"><pre><span></span> <span class="nt">&lt;uses-library</span>
+      <span class="na">android:name=</span><span class="s">&quot;com.projecttango.libtango_device2&quot;</span>
+      <span class="na">android:required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</p>
+<p>在使用任何Tango API前，必须做以下步骤：<br />
+1. 绑定并启动Tango服务。<br />
+2. 定义Tango配置信息。<br />
+3. 开始追踪数据。</p>
+<p>有第4个步为可选，可以检测Tango核心的版本。如果选择实现这一步，那么确保它是第一步操作。上述三个步骤不可缺少，顺序也不可更改。</p>
+<h3 id="cc"><a name="user-content-cc" href="#cc" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C/C++应用</h3>
+<p>C/C++应用的服务绑定代码需要通过Java层来实现。对于JNI代码，添加一个服务绑定函数到<code>activity</code>来开启Tango，对于native C/C++来说，添加服务绑定函数到<code>NativeActivity</code>的Java包装器中。在实例代码<code>TangoInitializationHelper.java</code>中包装了大多数的绑定函数，建议直接重用这部分代码。注意Tango函数，包括设置和获取ADF元数据，和设置Tango配置，只能在服务绑定后调用。</p>
+<p>使用<code>TangoInitializationHelper</code>，在Activity类中，添加如下代码：<br />
+<div class="codehilite"><pre><span></span><span class="c1">// 连接Tango服务</span>
+<span class="n">ServiceConnection</span> <span class="n">mTangoServiceConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServiceConnection</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceConnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 同步避免Tango在连接中途丢失连接</span>
+    <span class="kd">synchronized</span> <span class="o">(</span><span class="n">HelloMotionTrackingActivity</span><span class="o">.</span><span class="na">this</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// 通过JNI设置绑定对象到C API</span>
+      <span class="c1">// 调用TangoService_setBinder(env, service);</span>
+
+      <span class="c1">// 现在可以调用Tango函数，比如</span>
+      <span class="c1">// TangoService_connect(config);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceDisconnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 如果Tango崩溃或升级等，需要在这里处理</span>
+  <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+  <span class="n">TangoInitializationHelper</span><span class="o">.</span><span class="na">bindTangoService</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">mTangoServiceConnection</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+  <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">unbindService</span><span class="o">(</span><span class="n">mTangoServiceConnection</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</p>
+<h3 id="java"><a name="user-content-java" href="#java" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Java应用</h3>
+<p>Java应用需要集成Tango Mira发行包<code>libtango_clinet.jar</code>，里面包含了最新的Tango构造函数。</p>
+<div class="codehilite"><pre><span></span> <span class="n">Tango</span> <span class="n">mTango</span><span class="o">;</span>
+
+ <span class="nd">@Override</span>
+ <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+   <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+
+   <span class="c1">// 初始化Tango服务作为一个一般的Android服务</span>
+   <span class="c1">// 由于我们在onPause中调用mTango.disconnect(),这会解除Tango服务绑定，</span>
+   <span class="c1">// 因而每次调用onResume，需要创建一个新的tango对象</span>
+   <span class="n">mTango</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Tango</span><span class="o">(</span><span class="n">MotionTrackingActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// Tango准备完成后传递一个可运行对象给UI线程调用，这个可运行对象在新线程运行</span>
+        <span class="c1">// 当tango准备OK后，我们只在没有UI线程改变参与时安全的调用tango 函数。</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// 配置并运行Tango</span>
+            <span class="n">TangoConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">getConfig</span><span class="o">(</span><span class="n">mConfig</span><span class="o">.</span><span class="na">CONFIG_TYPE_CURRENT</span><span class="o">);</span>
+            <span class="n">mTango</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">mConfig</span><span class="o">);</span>
+       <span class="o">}</span>
+     <span class="o">});</span>
+ <span class="o">}</span>
+
+ <span class="nd">@Override</span>
+ <span class="n">Protected</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span> <span class="o">{</span>
+   <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+   <span class="c1">// 解除Tango Service的绑定，如果不解除，将会收到服务泄露异常。</span>
+   <span class="n">mTango</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
+ <span class="o">}</span>
+</pre></div>
+
+
+<h3 id="unity"><a name="user-content-unity" href="#unity" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Unity应用</h3>
+<p>只需导入<code>TangoUnitySDK.unitypackage</code>即可。</p>
 <h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>运动追踪</h2>
 <p>运动追踪指Tango设备能够在三维空间追踪自己的运动和方向。设备上下前后左右移动和旋转都可以知晓。与鼠标的功能类似，但是不限于二维平面，在整个三维空间中都可以使用。</p>
 <h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用</h3>
-<p>设备在三维空间运动时，会以最高100次每秒的速度来计算位置和方向。每次计算的结果称为设备的位姿。Tango API 提供了两种方式来获取位姿数据：回调函数来获取实时最近的位姿更新和获取一个指定时间的位姿测量值的函数。返回的数据主要由两部分组成：平移向量和旋转四元数。位姿配置为特定的<strong>引用帧对</strong>，必须指定一个目标帧及它相对应的基础帧，给出的数据是目标帧相对于基础帧的相对位姿。</p>
-  <p style="text-align: right; color: gray;"><br>2017-03-28 10:40:57</p>
+<p>设备在三维空间运动时，会以最高100次每秒的速度来计算位置和方向。每次计算的结果称为设备的位姿。Tango API 提供了两种方式来获取位姿数据：回调函数来获取实时最近的位姿更新值和获取一个指定时间的位姿测量值的函数。返回的数据主要由两部分组成：平移向量和旋转四元数。位姿配置为特定的<strong>引用帧对</strong>，必须指定一个目标帧及它相对应的基础帧，给出的数据是目标帧相对于基础帧的相对位姿。</p>
+<p>Tango使用视觉-惯性测量，VIO，来实现运动追踪。标准的视觉测量使用相机图像来确定位姿变化，通过查看在图像中的相同特征点的不同位置。视觉-惯性测量使用了惯性传感器来辅助视觉测量。这使得Tango设备可以在三维空间中更精确的测量方向和运动情况。</p>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>. Tango并不提供全局定位或使用GPS来定位。只是追踪一个区域内设备的相对位置变化。<br />
+. Tango和Android不是硬实时系统。主要是因为Android的Linux内核不能提供在设备上运动软件的执行时间的强制保障。所以，Tango是一个软实时系统。所有来自Tango的数据会包括一个时间戳，精度为1微秒。<br />
+. 学习区域的同时追踪用户当前的位置通常称为即时定位与地图构建，即SLAM。</p>
+<h4 id="c"><a name="user-content-c" href="#c" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C</h4>
+<p>正常的运动追踪系统包含三个状态：<code>TANGO_POSE_INITIALIZING</code>,<code>TANGO_POSE_VALID</code>和<code>TANGO_POSE_INVALID</code>。第一个状态表明系统当前还未准备好，位姿数据不可获取。第二个状态表明系统工作正常。第三个状态表明系统认为测量值无效，需要重新初始化。<code>TANGO_POSE_UNKNOWN</code>状态用于所有其它情况。</p>
+<p>当处于<code>TANGO_POSE_INVALID</code>时，系统有两种方式重新初始化。如果<code>config_enable_auto_recovery</code>设置为true，那么系统会直接进入<code>TANGO_POSE_INITIALIZING</code>状态。会使用上一个有效的位姿作为恢复的起点。如果设置为false，系统将会暂停并一直返回<code>TANGO_POSE_INVALID</code>直到<code>TangoService_resetMotionTracking()</code>被调用。与自动恢复不同，这一步会重置起点为原点。系统状态在位姿<code>status_pose</code>中获取。</p>
+<p>为了使用运动追踪，必要配置<code>TangoConfig</code>的<code>config_enable_motion_tracking</code>为true，在默认状态下，已经设置为true。</p>
+<p>获得位姿数据，还需要设置要使用的坐标帧对，对于基本的运动追踪，有两个组合选项：设备相对于服务开始的位姿，和设备相对前一帧的位姿。相对于服务开始，位姿数据可以在回调函数和轮询形式中获得。而相对于前一阵的位姿，只能在回调函数中获得。</p>
+<blockquote>
+<p>基于回调函数</p>
+</blockquote>
+<p>使用回调函数的方法，需要定义坐标帧对，并构造<code>onPoseAvailable()</code>回调函数，示例如下：</p>
+<div class="codehilite"><pre><span></span><span class="n">TangoCoordinateFramePair</span> <span class="n">pairs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="p">{</span> <span class="n">TANGO_COORDINATE_FRAME_START_OF_SERVICE</span><span class="p">,</span>
+      <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span> <span class="p">},</span> <span class="p">{</span>
+      <span class="n">TANGO_COORDINATE_FRAME_PREVIOUS_DEVICE_POSE</span><span class="p">,</span>
+      <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">onPoseAvailable</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">context</span><span class="p">,</span> <span class="k">const</span> <span class="n">TangoPoseData</span><span class="o">*</span> <span class="n">pose</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">TANTANGO_COORDINATE_FRAME_START_OF_SERVICE</span>
+      <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 处理相对于服务开始的位姿数据</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_PREVIOUS_DEVICE_POSE</span>
+      <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 处理相对于上一帧的位姿数据</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>然后将回调函数绑定到<code>TangoService_connectOnPoseAvailable</code>。<br />
+<div class="codehilite"><pre><span></span><span class="c1">// 回调函数会在服务连接时被调用</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">TangoService_connectOnPoseAvailable</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">onPoseAvailable</span><span class="p">)</span>
+    <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<blockquote>
+<p>基于轮询</p>
+</blockquote>
+<p>使用轮询方式，需要先指定坐标帧对。对于简单的运动追踪，需要设置为相对于服务开始。<br />
+<div class="codehilite"><pre><span></span><span class="n">TangoCoordinateFramePair</span> <span class="n">frames_of_reference</span><span class="p">;</span>
+<span class="n">frames_of_reference</span><span class="p">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">TANGO_COORDINATE_FRAME_START_OF_SERVICE</span><span class="p">;</span>
+<span class="n">frames_of_reference</span><span class="p">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span><span class="p">;</span>
+</pre></div>
+</p>
+<p>然后按需调用<code>TangoService_getPoseAtTime()</code>，下面的示例，时间戳设定为0.0来获取最近的位姿。如果指定一个特定的时间戳，系统将会返回一个在确定时间处的插值位姿，时间戳是相对于是被启动的时间。<br />
+<div class="codehilite"><pre><span></span><span class="c1">// 查询 100 个位姿在~30Hz.</span>
+<span class="n">TangoPoseData</span> <span class="n">pose</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">usleep</span><span class="p">(</span><span class="mi">33000</span><span class="p">);</span>
+  <span class="n">TangoService_getPoseAtTime</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">frames_of_reference</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pose</span><span class="p">);</span>
+  <span class="c1">// pose包含了最近的位姿数据</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<h4 id="java_1"><a name="user-content-java_1" href="#java_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Java</h4>
+<p>与使用C类似，示例代码如下：</p>
+<blockquote>
+<p>基于回调</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setTangoListeners</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">TangoCoordinateFramePair</span><span class="o">&gt;</span> <span class="n">framePairs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">TangoCoordinateFramePair</span><span class="o">&gt;();</span>
+    <span class="n">framePairs</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">TangoCoordinateFramePair</span><span class="o">(</span>
+        <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_START_OF_SERVICE</span><span class="o">,</span>
+        <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_DEVICE</span><span class="o">));</span>
+
+    <span class="c1">// Listen for new Tango data</span>
+    <span class="n">mTango</span><span class="o">.</span><span class="na">connectListener</span><span class="o">(</span><span class="n">framePairs</span><span class="o">,</span> <span class="k">new</span> <span class="n">OnTangoUpdateListener</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPoseAvailable</span><span class="o">(</span><span class="kd">final</span> <span class="n">TangoPoseData</span> <span class="n">pose</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Process pose data from device with respect to start of service</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onXyzIjAvailable</span><span class="o">(</span><span class="n">TangoXyzIjData</span> <span class="n">arg0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// We need this callback even if we don&#39;t use it</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onTangoEvent</span><span class="o">(</span><span class="kd">final</span> <span class="n">TangoEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// This callback also has to be here</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>基于轮询</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="n">TangoCoordinateFramePair</span> <span class="n">frames_of_reference</span><span class="o">;</span>
+<span class="n">frames_of_reference</span><span class="o">.</span><span class="na">baseFrame</span> <span class="o">=</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_START_OF_SERVICE</span><span class="o">;</span>
+<span class="n">frames_of_reference</span><span class="o">.</span><span class="na">targetFrame</span> <span class="o">=</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_DEVICE</span><span class="o">;</span>
+
+<span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">pollingUpdatePeriodMilliseconds</span> <span class="o">=</span> <span class="mi">66</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                 <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">pollingUpdatePeriodMilliseconds</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                 <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="kd">final</span> <span class="n">TangoPoseData</span> <span class="n">queryPoseStartDevice</span> <span class="o">=</span>
+                    <span class="n">mTango</span><span class="o">.</span><span class="na">getPoseAtTime</span><span class="o">(</span><span class="mf">0.0</span><span class="o">,</span> <span class="n">frames_of_reference</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TangoErrorException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
+
+
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>区域学习</h2>
+<p>区域学习指设备能够看见并记忆环境空间的视觉特征的能力，特征包括边、角和其它唯一的特征，这样设备能够在之后辨识出区域。为了实现这个功能，Tango在设备上存储了可识别的视觉特征的数学描述。允许设备快速匹配它当前看到的内容。当Tango设备学习了一个区域后，它可以在运动追踪的基础上提供改进的信息：</p>
+<ol>
+<li>通过执行“偏移修正”，提升轨迹的精确性。</li>
+<li>通过执行“重定位”，来确定设备在已经学习的区域内的位置。</li>
+</ol>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用</h3>
+<h4 id="c_1"><a name="user-content-c_1" href="#c_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C</h4>
+<p>在<code>TangoConfig</code>中有两个配置选项与区域学习相关。</p>
+<p>第一个是<code>config_load_area_description_UUID</code>选项，如果设置了一个UUID，对应的区域描述文件ADF会被加载，然后执行重定位。</p>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">TangoConfig_setString</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;config_load_area_description_UUID&quot;</span><span class="p">,</span>
+                          <span class="s">&quot;ADF UUID to load&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>第二个选项是<code>config_enbale_learning_mode</code>，设置为true，设备将构建当前节点的一个区域描述。<br />
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">TangoConfig_setBool</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;config_enable_learning_mode&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">)</span>
+    <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<p>区域描述可以在之后使用<code>TangoService_saveAreaDescription()</code>来保存，这个调用会运行较长时间，所以不要在UI线程上调用。</p>
+<blockquote>
+<p>使用结合区域学习的运动追踪</p>
+</blockquote>
+<p>通常，与使用基本的运动追踪类似，需要定义感兴趣的坐标帧对，然后使用回调或轮询。对于区域学习，有两个坐标帧对。</p>
+<p><code>base == TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</code>和<code>target == TANGO_COORDINATE_FRAME_DEVICE</code>组合可以获取设备相对于区域苗淑原点的位姿，包括便宜修证。如果加载了ADF，位姿数据只有在重定位到ADF且原点与ADF相同时才可使用。如果没有加载ADF，那么位姿数据在初始化后直接可用，且原点与服务开始时相同。</p>
+<p><code>base == TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</code>和<code>target == TANGO_COORDINATE_FRAME_START_OF_SERVICE</code>组合提供区域描述文件和服务开始之间的位置偏移。这个组合只有在重定位发生时更新。</p>
+<p>应用应该使用<code>TANGO_COORDINATE_FRAME_DEVICE</code>相对于<code>TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</code>来追踪设备的运动，且使用<code>TANGO_COORDINATE_FRAME_START_OF_SERVICE</code>相对于<code>TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</code>作为重定位信号。</p>
+<div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">onPoseAvailable</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">context</span><span class="p">,</span> <span class="k">const</span> <span class="n">TangoPoseData</span><span class="o">*</span> <span class="n">pose</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 获取设备相对于ADF的位姿</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</span>
+      <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_DEVICE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 处理新的ADF</span>
+  <span class="p">}</span>
+  <span class="c1">// 获取服务开始相对于ADF的位姿</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">base</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_AREA_DESCRIPTION</span>
+      <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">-&gt;</span><span class="n">frame</span><span class="p">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">TANGO_COORDINATE_FRAME_START_OF_SERVICE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 处理重定位</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>使用ADF<br />
+ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数据包括键值对。</p>
+</blockquote>
+<p>设定元数据<br />
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">TangoData</span><span class="o">::</span><span class="n">SetUUIDMetadataValue</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">uuid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value_size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">TangoAreaDescriptionMetadata</span> <span class="n">metadata</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoService_getAreaDescriptionMetadata</span><span class="p">(</span><span class="n">uuid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">metadata</span><span class="p">)</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;TangoService_getAreaDescriptionMetadata(): Failed&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoAreaDescriptionMetadata_set</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value_size</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;TangoAreaDescriptionMetadata_set(): Failed&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoService_saveAreaDescriptionMetadata</span><span class="p">(</span><span class="n">uuid</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;TangoService_saveAreaDescriptionMetadata(): Failed&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<p>获取元数据<br />
+<div class="codehilite"><pre><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">TangoData</span><span class="o">::</span><span class="n">GetUUIDMetadataValue</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">uuid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">value</span><span class="p">;</span>
+  <span class="n">TangoAreaDescriptionMetadata</span> <span class="n">metadata</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoService_getAreaDescriptionMetadata</span><span class="p">(</span><span class="n">uuid</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">metadata</span><span class="p">)</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;TangoService_getAreaDescriptionMetadata(): Failed&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoAreaDescriptionMetadata_get</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;TangoAreaDescriptionMetadata_get(): Failed&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<p>显示所有的UUID<br />
+<div class="codehilite"><pre><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">uuid_list</span><span class="p">;</span>
+
+<span class="c1">// uuid_list将包含一个逗号分隔的UUID列表</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">TangoService_getAreaDescriptionUUIDList</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uuid_list</span><span class="p">)</span> <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOGI</span><span class="p">(</span><span class="s">&quot;TangoService_getAreaDescriptionUUIDList&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 解析uuid列表来得到单个的uuid</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">uuid_list</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">uuid_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOGI</span><span class="p">(</span><span class="s">&quot;uuid list: %s&quot;</span><span class="p">,</span> <span class="n">uuid_list</span><span class="p">);</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">adf_list</span><span class="p">;</span>
+
+  <span class="kt">char</span><span class="o">*</span> <span class="n">parsing_char</span><span class="p">;</span>
+  <span class="n">parsing_char</span> <span class="o">=</span> <span class="n">strtok</span><span class="p">(</span><span class="n">uuid_list</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">);</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">parsing_char</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">string</span><span class="p">(</span><span class="n">parsing_char</span><span class="p">);</span>
+    <span class="n">LOGI</span><span class="p">(</span><span class="s">&quot;parsed: %s&quot;</span><span class="p">,</span> <span class="n">parsing_char</span><span class="p">);</span>
+    <span class="n">adf_list</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">parsing_char</span> <span class="o">=</span> <span class="n">strtok</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">list_size</span> <span class="o">=</span> <span class="n">adf_list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="n">LOGI</span><span class="p">(</span><span class="s">&quot;Loaded ADF: %s&quot;</span><span class="p">,</span> <span class="n">adf_list</span><span class="p">[</span><span class="n">list_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">TangoConfig_setString</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;config_load_area_description_UUID&quot;</span><span class="p">,</span>
+                            <span class="n">adf_list</span><span class="p">[</span><span class="n">list_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="n">c_str</span><span class="p">())</span> <span class="o">!=</span>
+      <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;config_load_area_description_uuid Failed&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;No area description file available, no file loaded.&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<h4 id="java_2"><a name="user-content-java_2" href="#java_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Java</h4>
+<blockquote>
+<p>加载区域描述</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+    <span class="n">mConfig</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">KEY_STRING_AREADESCRIPTION</span><span class="o">,</span> <span class="n">uuid</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TangoErrorException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 处理错误情况</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">fullUUIDList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="c1">// 返回UUID列表</span>
+<span class="n">fullUUIDList</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">listAreaDescriptions</span><span class="o">();</span>
+
+<span class="c1">// 加载最近的ADF</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">fullUUIDList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">mConfig</span><span class="o">.</span><span class="na">putString</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">KEY_STRING_AREADESCRIPTION</span><span class="o">,</span>
+                       <span class="n">fullUUIDList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">fullUUIDList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">));</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>学习模式</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+    <span class="n">TangoConfig</span> <span class="n">mConfig</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">getConfig</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">CONFIG_TYPE_CURRENT</span><span class="o">);</span>
+    <span class="n">mConfig</span><span class="o">.</span><span class="na">putBoolean</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">KEY_BOOLEAN_LEARNINGMODE</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TangoErrorException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 处理错误情况</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>使用<code>Tango.saveAreaDescription()</code>来保存ADF。</p>
+<blockquote>
+<p>使用结合区域学习的运动追踪</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPoseAvailable</span><span class="o">(</span><span class="n">TangoPoseData</span> <span class="n">pose</span><span class="o">)</span> <span class="o">{</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">pose</span><span class="o">.</span><span class="na">baseFrame</span> <span class="o">==</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_AREA_DESCRIPTION</span>
+        <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">.</span><span class="na">targetFrame</span> <span class="o">==</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_DEVICE</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 处理新的ADF</span>
+<span class="o">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">pose</span><span class="o">.</span><span class="na">baseFrame</span> <span class="o">==</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_AREA_DESCRIPTION</span>
+        <span class="o">&amp;&amp;</span> <span class="n">pose</span><span class="o">.</span><span class="na">targetFrame</span> <span class="o">==</span> <span class="n">TangoPoseData</span><span class="o">.</span><span class="na">COORDINATE_FRAME_START_OF_SERVICE</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 处理重定位</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>使用ADF</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="c1">// 获取UUID名称</span>
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">(</span><span class="n">String</span> <span class="n">uuid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">TangoAreaDescriptionMetaData</span> <span class="n">metadata</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TangoAreaDescriptionMetaData</span><span class="o">();</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">loadAreaDescriptionMetaData</span><span class="o">(</span><span class="n">uuid</span><span class="o">);</span>
+    <span class="kt">byte</span><span class="o">[]</span> <span class="n">nameBytes</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">TangoAreaDescriptionMetaData</span><span class="o">.</span><span class="na">KEY_NAME</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nameBytes</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">nameBytes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span> <span class="c1">// Do something if null</span>
+<span class="o">}</span>
+
+
+<span class="c1">// 设置</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">uuid</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="n">TangoAreaDescriptionMetaData</span> <span class="n">metadata</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TangoAreaDescriptionMetaData</span><span class="o">();</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">loadAreaDescriptionMetaData</span><span class="o">(</span><span class="n">uuid</span><span class="o">);</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">TangoAreaDescriptionMetaData</span><span class="o">.</span><span class="na">KEY_NAME</span><span class="o">,</span> <span class="n">name</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+    <span class="n">mTango</span><span class="o">.</span><span class="na">saveAreaDescriptionMetadata</span><span class="o">(</span><span class="n">uuid</span><span class="o">,</span> <span class="n">metadata</span><span class="o">);</span>
+<span class="o">}</span>
+
+
+<span class="c1">// 获取所有UUID</span>
+<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mFullUUIDList</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">mFullUUIDList</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">listAreaDescriptions</span><span class="o">();</span>
+<span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="n">TangoErrorException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// handle the errors</span>
+<span class="o">}</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">mFullUUIDList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// handle the fact that there&#39;s no ADFs stored</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h2 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>深度感知</h2>
+<p>深度感知指设备能够了解到距离真实世界物体的距离。实现深度感知，Tango设备使用了深度技术，包括结构光、飞行时间和双目。结构光和飞行时间需要使用一个红外发射器和红外接收器。双目不需要。</p>
+<p>深度感知可以用于：<br />
+. 游戏，检测用户是否到达一个墙壁或其他物体。<br />
+. 结合深度感知与运动追踪，设备可以测量区域中处于不同帧中的两点距离。<br />
+. 深度数据可以与彩色图形数据匹配来实现点云贴纹理。</p>
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用</h3>
+<h4 id="c_2"><a name="user-content-c_2" href="#c_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C</h4>
+<p>默认的<code>TangoConfig</code>中<code>config_enable_depth</code>为false，为了使用深度感知，需要设置为true.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// 开启深度</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">TangoConfig_setBool</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;config_enable_depth&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+
+<span class="c1">// 指定点云模式为XYZC</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="n">TangoConfig_setInt32</span><span class="p">(</span><span class="n">tango_config_</span><span class="p">,</span> <span class="s">&quot;config_depth_mode&quot;</span><span class="p">,</span>
+                           <span class="n">TANGO_POINTCLOUD_XYZC</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<blockquote>
+<p>定义回调函数<br />
+回调函数需要负责分配内存<br />
+<div class="codehilite"><pre><span></span><span class="c1">// 获取设备最大的顶点数</span>
+<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">TangoConfig_getInt32</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;max_point_cloud_elements&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">temp</span><span class="p">)</span> <span class="o">!=</span>
+    <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">LOGE</span><span class="p">(</span><span class="s">&quot;Get max_point_cloud_elements Failed&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">max_vertex_count</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+
+<span class="c1">// 分配深度缓存(每一个点云有四个值：X,Y,Z和C)</span>
+<span class="n">depth_data_buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">float</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">max_vertex_count</span><span class="p">];</span>
+</pre></div>
+</p>
+</blockquote>
+<p>定义<code>onPointCloudAvailable()</code>回调，不要在毁掉的数据上进行任何处理，只有在回调返回时才能接收到新数据。<br />
+<div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">onPointCloudAvailable</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">context</span><span class="p">,</span> <span class="k">const</span> <span class="n">TangoPointCloud</span><span class="o">*</span> <span class="n">point_cloud</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">depth_data_buffer</span><span class="p">,</span> <span class="n">point_cloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">,</span> <span class="n">point_cloud</span><span class="o">-&gt;</span><span class="n">num_points</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+  <span class="c1">// 处理任何其它必要的数据点云输出</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<p>最后，绑定回调函数.<br />
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">TangoService_connectOnPointCloudAvailable</span><span class="p">(</span><span class="n">onPointCloudAvailable</span><span class="p">)</span> <span class="o">!=</span> <span class="n">TANGO_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 处理错误情况</span>
+<span class="p">}</span>
+</pre></div>
+</p>
+<h4 id="java_3"><a name="user-content-java_3" href="#java_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Java</h4>
+<p>配置Tango<br />
+<div class="codehilite"><pre><span></span><span class="k">try</span> <span class="o">{</span>
+    <span class="n">mConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TangoConfig</span><span class="o">();</span>
+    <span class="n">mConfig</span> <span class="o">=</span> <span class="n">mTango</span><span class="o">.</span><span class="na">getConfig</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">CONFIG_TYPE_CURRENT</span><span class="o">);</span>
+    <span class="n">mConfig</span><span class="o">.</span><span class="na">putBoolean</span><span class="o">(</span><span class="n">TangoConfig</span><span class="o">.</span><span class="na">KEY_BOOLEAN_DEPTH</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">TangoErrorException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 处理错误情况</span>
+<span class="o">}</span>
+</pre></div>
+</p>
+<p>定义回调函数<br />
+<div class="codehilite"><pre><span></span>private void setTangoListeners() {
+    final ArrayList&lt;TangoCoordinateFramePair&gt; framePairs = new ArrayList&lt;TangoCoordinateFramePair&gt;();
+    framePairs.add(new TangoCoordinateFramePair(
+        TangoPoseData.COORDINATE_FRAME_START_OF_SERVICE,
+        TangoPoseData.COORDINATE_FRAME_DEVICE));
+
+    // 监听新的Tango数据
+    mTango.connectListener(framePairs, new OnTangoUpdateListener() {
+
+        @Override
+        public void onXyzIjAvailable(TangoXyzIjData arg0) {
+            byte[] buffer = new byte[xyzIj.xyzCount * 3 * 4];
+            FileInputStream fileStream = new FileInputStream(
+                     xyzIj.xyzParcelFileDescriptor.getFileDescriptor());
+            try {
+                fileStream.read(buffer,
+                        xyzIj.xyzParcelFileDescriptorOffset, buffer.length);
+                fileStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 不要在毁掉内部处理数据，因为只有处理完成后才能接受新的数据
+        }
+
+        @Override
+        public void onPoseAvailable(final TangoPoseData pose) {
+            // 处理来自设备相对于服务开始的位姿数据
+        }
+
+        @Override
+        public void onTangoEvent(final TangoEvent event) {
+            // 处理Tango事件回调
+        }}
+
+    });
+</pre></div>
+</p>
+  <p style="text-align: right; color: gray;"><br>2017-03-28 15:30:24</p>
         </div>
       </div>
       <footer>
