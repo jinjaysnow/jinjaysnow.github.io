@@ -120,7 +120,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.pink-indigo.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -708,9 +708,9 @@ $$Diagonal \quad FOV = 2*atan(sqrt((width/2fx)^2 + (height/2fy)^2)) = 2 * \arcta
 
 
 <blockquote>
-<p>使用ADF<br />
-ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数据包括键值对。</p>
+<p>使用ADF</p>
 </blockquote>
+<p>ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数据包括键值对。</p>
 <p>设定元数据<br />
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">TangoData</span><span class="o">::</span><span class="n">SetUUIDMetadataValue</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">uuid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value_size</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">TangoAreaDescriptionMetadata</span> <span class="n">metadata</span><span class="p">;</span>
@@ -898,8 +898,9 @@ ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数�
 
 
 <blockquote>
-<p>定义回调函数<br />
-回调函数需要负责分配内存<br />
+<p>定义回调函数</p>
+</blockquote>
+<p>回调函数需要负责分配内存</p>
 <div class="codehilite"><pre><span></span><span class="c1">// 获取设备最大的顶点数</span>
 <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">TangoConfig_getInt32</span><span class="p">(</span><span class="n">config_</span><span class="p">,</span> <span class="s">&quot;max_point_cloud_elements&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">temp</span><span class="p">)</span> <span class="o">!=</span>
@@ -912,8 +913,8 @@ ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数�
 <span class="c1">// 分配深度缓存(每一个点云有四个值：X,Y,Z和C)</span>
 <span class="n">depth_data_buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">float</span><span class="p">[</span><span class="mi">4</span> <span class="o">*</span> <span class="n">max_vertex_count</span><span class="p">];</span>
 </pre></div>
-</p>
-</blockquote>
+
+
 <p>定义<code>onPointCloudAvailable()</code>回调，不要在毁掉的数据上进行任何处理，只有在回调返回时才能接收到新数据。<br />
 <div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">onPointCloudAvailable</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">context</span><span class="p">,</span> <span class="k">const</span> <span class="n">TangoPointCloud</span><span class="o">*</span> <span class="n">point_cloud</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">memcpy</span><span class="p">(</span><span class="n">depth_data_buffer</span><span class="p">,</span> <span class="n">point_cloud</span><span class="o">-&gt;</span><span class="n">points</span><span class="p">,</span> <span class="n">point_cloud</span><span class="o">-&gt;</span><span class="n">num_points</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
@@ -976,7 +977,7 @@ ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数�
     });
 </pre></div>
 </p>
-  <p style="text-align: right; color: gray;"><br>2017-03-28 15:30:24</p>
+  <p style="text-align: right; color: gray;"><br>2017-03-28 15:43:46</p>
         </div>
       </div>
       <footer>

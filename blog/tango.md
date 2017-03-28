@@ -474,6 +474,7 @@ static void onPoseAvailable(void* context, const TangoPoseData* pose) {
 ```
 
 > 使用ADF
+
 ADF具有一些可以使用的元数据，所以不必单独使用UUID。元数据包括键值对。
 
 设定元数据
@@ -667,7 +668,9 @@ if (ret != TANGO_SUCCESS) {
 
 
 > 定义回调函数
+
 回调函数需要负责分配内存
+
 ```C++
 // 获取设备最大的顶点数
 int temp = 0;
