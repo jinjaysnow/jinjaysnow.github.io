@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2017-04">
+<meta name="keywords" content="cmake,中文翻译,使用入门">
+<meta name="author" content="Jin Jay">
+<meta name="description" content="CMake文档中文翻译，使用入门。"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>CMake使用</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#cmake">cmake构建系统</a><ul>
+<li><a href="#_1">二进制目标</a><ul>
+<li><a href="#_2">二进制可执行文件</a></li>
+<li><a href="#_3">二进制库类型</a><ul>
+<li><a href="#_4">一般库文件</a><ul>
+<li><a href="#apple-frameworks">Apple Frameworks</a></li>
+</ul>
+</li>
+<li><a href="#_5">对象库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_6">构建配置和使用要求</a><ul>
+<li><a href="#_7">目标属性</a></li>
+<li><a href="#_8">传递使用要求</a></li>
+<li><a href="#_9">兼容接口属性</a></li>
+<li><a href="#_10">属性来源调试</a></li>
+<li><a href="#_11">使用产生器表达式配置构建</a><ul>
+<li><a href="#include">include目录和使用要求</a></li>
+<li><a href="#_12">链接库与产生器表达式</a></li>
+</ul>
+</li>
+<li><a href="#_13">接口库</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cmake_1">CMake命令</a></li>
+<li><a href="#cmake_2">CMake编译特性</a><ul>
+<li><a href="#_14">编译器特性要求</a></li>
+<li><a href="#_15">可选的编译器特性</a></li>
+<li><a href="#_16">条件编译选项</a></li>
+</ul>
+</li>
+<li><a href="#cmake_3">CMake产生式</a><ul>
+<li><a href="#_17">逻辑表达式</a></li>
+<li><a href="#_18">信息表达式</a></li>
+<li><a href="#_19">输出表达式</a></li>
+</ul>
+</li>
+<li><a href="#cmake_4">CMake模块</a></li>
+<li><a href="#cmake_5">CMake工具链</a><ul>
+<li><a href="#_20">语言</a></li>
+<li><a href="#_21">交叉编译</a></li>
+</ul>
+</li>
+<li><a href="#cmake_6">CMake变量</a><ul>
+<li><a href="#_22">信息变量</a></li>
+<li><a href="#_23">行为变量</a></li>
+<li><a href="#_24">系统描述变量</a></li>
+<li><a href="#_25">控制构建的变量</a></li>
+<li><a href="#_26">语言变量</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="cmake"><a name="user-content-cmake" href="#cmake" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>cmake构建系统</h1>
+<p>基于CMake的构建系统组织为一系列的高层次的逻辑目标。每一个目标对应一个可执行文件或库文件，或是一个包含自定义命令的自定义目标文件。目标之间依赖关系在cmake构建系统中表示,来确定构建的顺序和响应改变的规则。</p>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>二进制目标</h2>
+<p>可执行文件和库文件使用<code>add_executale()</code>和<code>add_library()</code>来命令来定义。生成的文件会有平台相关的特定的前缀、后缀和扩展名。二进制目标间的依赖关系使用<code>target_link_libraries()</code>命令来表示。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">archive.cpp</span> <span class="s">zip.cpp</span> <span class="s">lzma.cpp</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">zipapp</span> <span class="s">zipapp.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">zipapp</span> <span class="s">archive</span><span class="p">)</span>
+</pre></div>
+
+
+<p>上述例子中<code>arvhive</code>被定义为一个静态库，包含来自<code>archive.cpp</code>, <code>zip.cpp</code>, <code>lzma.cpp</code>的编译后的对象。<code>zipapp</code>是一个可执行文件通过编译链接<code>zipapp.cpp</code>得到。在链接<code>zipapp</code>可执行文件时，<code>archive</code>静态库会被链入。</p>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>二进制可执行文件</h3>
+<p><code>add_executable()</code>命令定义一个可执行目标：</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">mytool</span> <span class="s">mytool.cpp</span><span class="p">)</span>
+</pre></div>
+
+
+<p>类似于<code>add_custom_command(COMMAND)</code>这种在构建时产生可运行规则的命令，可以使用一个<code>EXECUTABLE</code>目标作为<code>COMMAND</code>。构建系统规则会保证在运行这个命令前构建出这个可执行文件。</p>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>二进制库类型</h3>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一般库文件</h4>
+<p>默认情况下，<code>add_library()</code>命令定义一个静态库，除非指定一个特定的类型。指定类型可以使用下面的命令格式</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">SHARED</span> <span class="s">archive.cpp</span> <span class="s">zip.cpp</span> <span class="s">lzma.cpp</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">STATIC</span> <span class="s">archive.cpp</span> <span class="s">zip.cpp</span> <span class="s">lzma.cpp</span><span class="p">)</span>
+</pre></div>
+
+
+<p><code>BUILD_SHARED_LIBS</code>变量会改变<code>add_library()</code>的默认构建行为。</p>
+<p>总的来说，某一个库是<code>SHARED</code>或<code>STATIC</code>基本不会对构建系统有影响——命令，依赖配置和其它API的工作过程与库类型无关。但<code>MODULE</code>库类型比较特殊，这个库生成后并不参与链接——也即不会用于<code>target_link_libraries</code>命令中。<code>MODULE</code>库类型是使用运行时技术作为一个插件被加载。如果库并不导出任何非托管的符号(比如，Windows DLL，C++/CLI DLL)，那么这个库需要设定为不是一个<code>SHARED</code>类型的库，因为CMake要求<code>SHARED</code>类型库导出至少一个符号。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">MODULE</span> <span class="s">7z.cpp</span><span class="p">)</span>
+</pre></div>
+
+
+<h5 id="apple-frameworks"><a name="user-content-apple-frameworks" href="#apple-frameworks" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Apple Frameworks</h5>
+<p>一个<code>SHARED</code>类型库在OS X和iOS Framework Bundle下需要被标记<code>FRAMEWORK</code>属性。<code>MAOSX_FRAMEWORK_IDENTIFIER</code>设置<code>CFBundleIdentifier</code>键并唯一表示这个bundle.</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">MyFramework</span> <span class="s">SHARED</span> <span class="s">MyFramework.cpp</span><span class="p">)</span>
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="s">MyFramework</span> <span class="s">PROPERTIES</span>
+    <span class="s">FRAMEWORK</span> <span class="s">TRUE</span>
+    <span class="s">FRAMEWORK_VERSION</span> <span class="s">A</span>
+    <span class="s">MACOSX_FRAMEWORK_IDENTIFIER</span> <span class="s">org.cmake.MyFramework</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对象库</h4>
+<p><code>OBJECT</code>库类型也是不参与链接的类型。它定义了参与编译的源文件的对象文件的集合。对象文件集合可以用于作为其他目标的源输入。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">OBJECT</span> <span class="s">archive.app</span> <span class="s">zip.cpp</span> <span class="s">lzma.cpp</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">archive_Extras</span> <span class="s">STATIC</span> <span class="o">$&lt;</span><span class="nv">TARGET_OBJECTS:archive</span><span class="o">&gt;</span> <span class="s">extras.cpp</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">test_exe</span> <span class="o">$&lt;</span><span class="nv">TARGET_OBJECTS:archive</span><span class="o">&gt;</span> <span class="s">test.cpp</span><span class="p">)</span>
+</pre></div>
+
+
+<p><code>OBJECT</code>类型库只能在构建系统中作为源输入使用——不能安装、导出或在<code>target_link_libraries()</code>中使用——也不可以作为<code>TARGET</code>在<code>add_custom_command(TARGET)</code>中使用。<br />
+虽然对象类型库在<code>target_link_libraries()</code>中不能直接使用，但是，可以使用一个<code>INTERFACE_SOURCES</code>目标属性设置为<code>$&lt;TARGET_OBJETS:ojblib&gt;</code>的接口库间接地链接。</p>
+<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>构建配置和使用要求</h2>
+<p><code>target_include_directories()</code>, <code>target_compile_definitions()</code>和<code>target_compile_options()</code>命令用来配置构建系统及二进制目标的使用要求。这些命令分别指定了<code>INCLUDE_DIRECTORIES</code>, <code>COMPILE_DEFINITIONS</code>和<code>COMPILE_OPTIONS</code>目标属性，以及<code>INTERFACE_INCLUDE_DIRECTORIES</code>, <code>INTERFACE_COMPILE_DEFINITIONS</code>和<code>INTERFACE_COMPILE_OPTIONS</code>目标属性。</p>
+<p>每一个命令有<code>PRIVATE</code>, <code>PUBLIC</code>和<code>INTERFACE</code>模式。<code>PRIVATE</code>模式指定目标属性的非接口变量；<code>INTERFACE</code>模式指定接口变量；<code>PUBLIC</code>模式指定非接口和接口变量。</p>
+<div class="codehilite"><pre><span></span><span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">archive</span>
+    <span class="s">PRIVATE</span> <span class="s">BUILDING_WITH_LZMA</span>
+    <span class="s">INTERFACE</span> <span class="s">USING_ARCHIVE_LIB</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>目标属性</h3>
+<p><code>INCLUDE_DIRECTORIES</code>属性会按照属性的出现顺序添加<code>-I</code>或<code>-isystem</code>前缀到编译器命令。<br />
+<code>COMPILE_DEFINITIONS</code>属性会按照一个未指定的顺序添加<code>-D</code>或<code>/D</code>前缀到编译器命令。<code>DEFINE_SYMBOL</code>目标属性也会作为一个编译器定义量<code>SHARED</code>或<code>MODULE</code>添加。<br />
+<code>COMPILE_OPTIONS</code>会在shell中转义并添加，一些编译选项有特殊的处理，比如<code>POSITION_INDEPENDENT_CODE</code>。</p>
+<p><code>INTERFACE_</code>开头的目标属性是使用要求声明——指定必须使用的内容需要正确编译并链接，对任意的二进制目标，每个目标上在<code>target_link_libraries9)</code>命令中指定的每一个<code>INTERFACE_</code>属性的内容会被采用。</p>
+<div class="codehilite"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">srcs</span> <span class="s">archive.cpp</span> <span class="s">zip.cpp</span><span class="p">)</span>
+<span class="nb">if</span> <span class="p">(</span><span class="s">LZMA_FOUND</span><span class="p">)</span>
+  <span class="nb">list</span><span class="p">(</span><span class="s">APPEND</span> <span class="s">srcs</span> <span class="s">lzma.cpp</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">SHARED</span> <span class="o">${</span><span class="nv">srcs</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">if</span> <span class="p">(</span><span class="s">LZMA_FOUND</span><span class="p">)</span>
+  <span class="c"># archive库源文件使用-DBUILDING_WITH_LZMA选项编译</span>
+  <span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">archive</span> <span class="s">PRIVATE</span> <span class="s">BUILDING_WITH_LZMA</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">archive</span> <span class="s">INTERFACE</span> <span class="s">USING_ARCHIVE_LIB</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">consumer</span><span class="p">)</span>
+<span class="c"># 使用-DUSING_ARCHIVE_LIB来链接构建consumer</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">consumer</span> <span class="s">archive</span><span class="p">)</span>
+</pre></div>
+
+
+<p>因而一般需要源目录和相应的构建目录添加到<code>INCLUDE_DIRECTORIES</code>，<code>CMAKE_INCLUDE_CURRENT_DIR</code>变量可以用来添加相应的目录到所有目标的<code>INCLUDE_DIRECTORIES</code>中。变量<code>CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE</code>可以开启来添加相应的<code>INTERFACE_INCLUDE_DIRECTORIES</code>。</p>
+<h3 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>传递使用要求</h3>
+<p>目标的使用要求可以传递给依赖者。<code>target_link_libraries()</code>命令有<code>PRIVATE</code>, <code>INTERFACE</code>和<code>PUBLIC</code>关键词来控制这个传播。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">archive</span> <span class="s">archive.cpp</span><span class="p">)</span>
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">archive</span> <span class="s">INTERFACE</span> <span class="s">USING_ARCHIVE_LIB</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">serialization</span> <span class="s">serialization.cpp</span><span class="p">)</span>
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">serialization</span> <span class="s">INTERFACE</span> <span class="s">USING_SERIALIZATION_LIB</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">archiveExtras</span> <span class="s">extras.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">archiveExtras</span> <span class="s">PUBLIC</span> <span class="s">archive</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">archiveExtras</span> <span class="s">PRIVATE</span> <span class="s">serialization</span><span class="p">)</span>
+<span class="c"># archiveExtras使用-DUSING_ARCHIVE_LIB和-DUSING_SERIALIZATION_LIB编译</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">consumer</span> <span class="s">consumer.cpp</span><span class="p">)</span>
+<span class="c"># consumer使用—DUSING_ARCHIVE_LIB编译</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">consumer</span> <span class="s">archiveExtras</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>兼容接口属性</h3>
+<h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>属性来源调试</h3>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用产生器表达式配置构建</h3>
+<p>构建配置可以使用<code>generator expressions</code>来包括一些内容。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">lib1Version2</span> <span class="s">SHARED</span> <span class="s">lib1_v2.cpp</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">lib1Version2</span> <span class="s">PROPERTY</span> <span class="s">INTERFACE_CONTAINER_SIZE_REQUIRED</span> <span class="s">200</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">lib1Version2</span> <span class="s">APPEND</span> <span class="s">PROPERTY</span>
+  <span class="s">COMPATIBLE_INTERFACE_NUMBER_MAX</span> <span class="s">CONTAINER_SIZE_REQUIRED</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">exe1</span> <span class="s">exe1.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">exe1</span> <span class="s">lib1Version2</span><span class="p">)</span>
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">exe1</span> <span class="s">PRIVATE</span>
+    <span class="s">CONTAINER_SIZE=</span><span class="o">$&lt;</span><span class="nv">TARGET_PROPERTY:CONTAINER_SIZE_REQUIRED</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>示例中，<code>exe1</code>源文件会使用<code>-DCONTAINER_SIZE=200</code>来编译。</p>
+<h4 id="include"><a name="user-content-include" href="#include" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>include目录和使用要求</h4>
+<p>在指定位置使用要求时include目录需要额外考虑。<code>target_include_directories()</code>命令用于此处。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">lib1</span> <span class="s">lib1.cpp</span><span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">lib1</span> <span class="s">PRIVATE</span>
+  <span class="s">/absolute/path</span>
+  <span class="s">relative/path</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h4 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>链接库与产生器表达式</h4>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">lib1</span> <span class="s">lib1.cpp</span><span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">lib2</span> <span class="s">lib2.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">lib1</span> <span class="s">PUBLIC</span>
+  <span class="o">$&lt;</span><span class="nv">$&lt;TARGET_PROPERTY:POSITION_INDEPENDENT_CODE</span><span class="o">&gt;</span><span class="s">:lib2&gt;</span>
+<span class="p">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">lib3</span> <span class="s">lib3.cpp</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span> <span class="s">lib3</span> <span class="s">PROPERTY</span> <span class="s">INTERFACE_POSITION_INDEPENDENT_CODE</span> <span class="s">ON</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">exe1</span> <span class="s">exe1.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">exe1</span> <span class="s">lib1</span> <span class="s">lib3</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>接口库</h3>
+<p>接口库主要使用场景是只有头文件的库，比如<code>Eigen</code>库。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Eigen</span> <span class="s">INTERFACE</span><span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">Eigen</span> <span class="s">INTERFACE</span>
+  <span class="o">$&lt;</span><span class="nv">BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src</span><span class="o">&gt;</span>
+  <span class="o">$&lt;</span><span class="nv">INSTALL_INTERFACE:include/Eigen</span><span class="o">&gt;</span>
+<span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">exe1</span> <span class="s">exe1.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">exe1</span> <span class="s">Eigen</span><span class="p">)</span>
+</pre></div>
+
+
+<p>这里<code>Eigen</code>目标的使用要求在编译时就生效了，在链接时并不生效。</p>
+<h1 id="cmake_1"><a name="user-content-cmake_1" href="#cmake_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake命令</h1>
+<p>常用命令列表</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">add_compile_options</td>
+<td align="left">添加编译选项</td>
+</tr>
+<tr>
+<td align="left">add_custom_command</td>
+<td align="left">添加自定义的构建规则</td>
+</tr>
+<tr>
+<td align="left">add_custom_target</td>
+<td align="left">添加自定义目标</td>
+</tr>
+<tr>
+<td align="left">add_definitions</td>
+<td align="left">添加<code>-D</code>定义标志到源文件的编译过程</td>
+</tr>
+<tr>
+<td align="left">add_dependencies</td>
+<td align="left">在顶级目标间添加依赖</td>
+</tr>
+<tr>
+<td align="left">add_executable</td>
+<td align="left">添加一个可执行文件并指定源文件</td>
+</tr>
+<tr>
+<td align="left">add_library</td>
+<td align="left">添加库文件对象</td>
+</tr>
+<tr>
+<td align="left">add_subdirectory</td>
+<td align="left">添加一个构建的子目录</td>
+</tr>
+<tr>
+<td align="left">aux_source_directory</td>
+<td align="left">找出一个目录下的所有源文件</td>
+</tr>
+<tr>
+<td align="left">break</td>
+<td align="left">while语句break</td>
+</tr>
+<tr>
+<td align="left">cmake_host_system_information</td>
+<td align="left">查询目标系统的配置信息</td>
+</tr>
+<tr>
+<td align="left">cmake_minimum_required</td>
+<td align="left">配置需要的最小cmake版本</td>
+</tr>
+<tr>
+<td align="left">cmake_parse_arguments</td>
+<td align="left">在宏或函数中解析参数</td>
+</tr>
+<tr>
+<td align="left">cmake_policy</td>
+<td align="left">设置CMake policy</td>
+</tr>
+<tr>
+<td align="left">configure_file</td>
+<td align="left">赋值文件到另一个位置并更改内容</td>
+</tr>
+<tr>
+<td align="left">continue</td>
+<td align="left">while语句continue</td>
+</tr>
+<tr>
+<td align="left">create_test_sourcelist</td>
+<td align="left">创建测试源文件列表构建测试程序</td>
+</tr>
+<tr>
+<td align="left">define_property</td>
+<td align="left">定义和管理自定义属性</td>
+</tr>
+<tr>
+<td align="left">elseif, else</td>
+<td align="left">用于判断语句</td>
+</tr>
+<tr>
+<td align="left">enable_language</td>
+<td align="left">开启特定的语言支持</td>
+</tr>
+<tr>
+<td align="left">enable_testing</td>
+<td align="left">开启测试</td>
+</tr>
+<tr>
+<td align="left">end(foreach,function,if,macro,while)</td>
+<td align="left">语句结束</td>
+</tr>
+<tr>
+<td align="left">execute_process</td>
+<td align="left">执行一个或多个子进程</td>
+</tr>
+<tr>
+<td align="left">export</td>
+<td align="left">从构建树导出目标给外部项目使用</td>
+</tr>
+<tr>
+<td align="left">file</td>
+<td align="left">文件读写操作命令</td>
+</tr>
+<tr>
+<td align="left">find_file</td>
+<td align="left">找出一个文件的全路径</td>
+</tr>
+<tr>
+<td align="left">find_library</td>
+<td align="left">搜索一个库</td>
+</tr>
+<tr>
+<td align="left">find_package</td>
+<td align="left">搜索并加载外部项目的设置</td>
+</tr>
+<tr>
+<td align="left">find_path</td>
+<td align="left">查找包含一个文件的路径</td>
+</tr>
+<tr>
+<td align="left">find_program</td>
+<td align="left">查找一个可执行程序，未找到时返回-NOTFOUND</td>
+</tr>
+<tr>
+<td align="left">foreach,if,function</td>
+<td align="left">命令关键字</td>
+</tr>
+<tr>
+<td align="left">get_cmake_property</td>
+<td align="left">获取cmake属性</td>
+</tr>
+<tr>
+<td align="left">get_directory_property</td>
+<td align="left">获取目录属性</td>
+</tr>
+<tr>
+<td align="left">get_filename_component</td>
+<td align="left">获取一个文件的组件</td>
+</tr>
+<tr>
+<td align="left">get_(source_file,target,test)_property</td>
+<td align="left">属性获取</td>
+</tr>
+<tr>
+<td align="left">include_directories</td>
+<td align="left">添加include目录</td>
+</tr>
+<tr>
+<td align="left">include_regular_expression</td>
+<td align="left">设置在依赖检测时使用的正则表达式</td>
+</tr>
+<tr>
+<td align="left">include</td>
+<td align="left">加载并运行在一个文件或<strong>模块</strong>中的cmake代码</td>
+</tr>
+<tr>
+<td align="left">install</td>
+<td align="left">生成项目的安装规则</td>
+</tr>
+<tr>
+<td align="left">link_directories</td>
+<td align="left">指定库搜寻的目录</td>
+</tr>
+<tr>
+<td align="left">link_libraries</td>
+<td align="left">链接库到目标</td>
+</tr>
+<tr>
+<td align="left">list</td>
+<td align="left">列表操作，后接其他命令，如LENGTH,FIND INSERT,SORT</td>
+</tr>
+<tr>
+<td align="left">load_cache</td>
+<td align="left">从另一个项目的cmake缓存中加载值</td>
+</tr>
+<tr>
+<td align="left">macro</td>
+<td align="left">定义宏</td>
+</tr>
+<tr>
+<td align="left">math</td>
+<td align="left">数学表达式</td>
+</tr>
+<tr>
+<td align="left">message</td>
+<td align="left">输出信息</td>
+</tr>
+<tr>
+<td align="left">option</td>
+<td align="left">提供用户可以选择开启或关闭的选项</td>
+</tr>
+<tr>
+<td align="left">project</td>
+<td align="left">定义项目相关信息</td>
+</tr>
+<tr>
+<td align="left">remove_definitions</td>
+<td align="left">移除<code>-D</code>选项</td>
+</tr>
+<tr>
+<td align="left">return</td>
+<td align="left">从一个文件，目录或函数返回</td>
+</tr>
+<tr>
+<td align="left">separate_arguments</td>
+<td align="left">解析以空格分开的参数到为一个逗号分隔的列表</td>
+</tr>
+<tr>
+<td align="left">set_directory_properties</td>
+<td align="left">设置目录属性</td>
+</tr>
+<tr>
+<td align="left">set_property</td>
+<td align="left">设置属性</td>
+</tr>
+<tr>
+<td align="left">set</td>
+<td align="left">设置变量</td>
+</tr>
+<tr>
+<td align="left">set_(source_files,target,tests)_properties</td>
+<td align="left">设置顺序性</td>
+</tr>
+<tr>
+<td align="left">source_group</td>
+<td align="left">定义源文件组来用于IDE项目生成</td>
+</tr>
+<tr>
+<td align="left">string</td>
+<td align="left">字符串操作，FIND,REPLACE,APPEND等</td>
+</tr>
+<tr>
+<td align="left">target_compile_definitions</td>
+<td align="left">目标编译声明</td>
+</tr>
+<tr>
+<td align="left">target_compile_features</td>
+<td align="left">编译特性</td>
+</tr>
+<tr>
+<td align="left">target_compile_options</td>
+<td align="left">目标编译选项</td>
+</tr>
+<tr>
+<td align="left">target_include_directories</td>
+<td align="left">给目标添加include目录</td>
+</tr>
+<tr>
+<td align="left">target_link_libraries</td>
+<td align="left">目标链接库</td>
+</tr>
+<tr>
+<td align="left">target_sources</td>
+<td align="left">给目标添加源文件</td>
+</tr>
+<tr>
+<td align="left">try_compile</td>
+<td align="left">尝试编译源代码</td>
+</tr>
+<tr>
+<td align="left">try_run</td>
+<td align="left">尝试运行可执行程序</td>
+</tr>
+<tr>
+<td align="left">unset</td>
+<td align="left">取消变量设置</td>
+</tr>
+<tr>
+<td align="left">variable_watch</td>
+<td align="left">变量值改变检测</td>
+</tr>
+<tr>
+<td align="left">while</td>
+<td align="left">循环</td>
+</tr>
+</tbody>
+</table>
+<h1 id="cmake_2"><a name="user-content-cmake_2" href="#cmake_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake编译特性</h1>
+<p>项目源文件可能依赖于编译器的一些特性，主要有三种使用场景：编译器特性要求，可选的编译特性和条件编译选项。</p>
+<h2 id="_14"><a name="user-content-_14" href="#_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编译器特性要求</h2>
+<p>使用<code>target_compile_features()</code>来指定特性需求，例如需要编译器支持<code>cxx_constexpr</code>特性。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">mylib</span> <span class="s">requires_constexpr.cpp</span><span class="p">)</span>
+<span class="nb">target_compile_features</span><span class="p">(</span><span class="s">mylib</span> <span class="s">PRIVATE</span> <span class="s">cxx_constexpr</span><span class="p">)</span>
+</pre></div>
+
+
+<p>CMake处理时会确保使用的C++编译器兼容这个特性，并添加必要的标志，比如<code>-std=gnu++11</code>，如果不兼容则返回<code>FATAL_ERROR</code>。</p>
+<h2 id="_15"><a name="user-content-_15" href="#_15" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>可选的编译器特性</h2>
+<p>编译器拥有某一个特性时采用该特性，否则不采用。</p>
+<h2 id="_16"><a name="user-content-_16" href="#_16" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>条件编译选项</h2>
+<div class="codehilite"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">foo</span> <span class="s">INTERFACE</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">with_variadics</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/with_variadics</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">no_variadics</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/no_variadics</span><span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">foo</span>
+    <span class="s">INTERFACE</span>
+    <span class="s2">&quot;$&lt;$&lt;COMPILE_FEATURES:cxx_variadic_templates&gt;:${with_variadics}&gt;&quot;</span>
+    <span class="s2">&quot;$&lt;$&lt;NOT:$&lt;COMPILE_FEATURES:cxx_variadic_templates&gt;&gt;:${no_variadics}&gt;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h1 id="cmake_3"><a name="user-content-cmake_3" href="#cmake_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake产生式</h1>
+<p>产生式(generator expressions)在构建系统生成过程中产生构建配置特定的信息。产生式可以用于条件链接，条件定义等。</p>
+<h2 id="_17"><a name="user-content-_17" href="#_17" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>逻辑表达式</h2>
+<p>逻辑表达式用于产生条件输出，基本的表达式是0和1，因为其它的逻辑表达式计算结果为0或1，可以组合为条件输出。</p>
+<div class="codehilite"><pre><span></span><span class="err">$&lt;$&lt;CONFIG:Debug&gt;:DEBUG_MODE&gt;</span>
+</pre></div>
+
+
+<p>在<code>Debug</code>配置使用时，展开<code>DEBUG_MODE</code>，否则不展开。</p>
+<div class="codehilite"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">myapp</span> <span class="s">main.cpp</span> <span class="s">foo.c</span> <span class="s">bar.cpp</span><span class="p">)</span>
+<span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">myapp</span>
+  <span class="s">PRIVATE</span> <span class="o">$&lt;</span><span class="nv">$&lt;COMPILE_LANGUAGE:CXX</span><span class="o">&gt;</span><span class="s">:COMPILING_CXX&gt;</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">myapp</span>
+  <span class="s">PRIVATE</span> <span class="o">$&lt;</span><span class="nv">$&lt;COMPILE_LANGUAGE:CXX</span><span class="o">&gt;</span><span class="s">:/opt/foo/cxx_headers&gt;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="_18"><a name="user-content-_18" href="#_18" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>信息表达式</h2>
+<div class="codehilite"><pre><span></span><span class="nb">include_directories</span><span class="p">(</span><span class="s">/usr/include/</span><span class="o">$&lt;</span><span class="nv">CXX_COMPILER_ID</span><span class="o">&gt;</span><span class="s">/</span><span class="p">)</span>
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th align="left">常用表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$&lt;CONFIG></td>
+<td align="left">配置文件名</td>
+</tr>
+<tr>
+<td align="left">$&lt;PLATFORM_ID></td>
+<td align="left">平台的CMake ID</td>
+</tr>
+<tr>
+<td align="left">$&lt;C(XX)_COMPILER_ID></td>
+<td align="left">编译器ID</td>
+</tr>
+<tr>
+<td align="left">$&lt;C(XX)_COMPILER_VERSION></td>
+<td align="left">编译器版本</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_FILE:target></td>
+<td align="left">目标文件的全路径</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_FILE_NAME:target></td>
+<td align="left">目标文件名(.exe, .so.1.2, .a)</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_FILE_DIR:target></td>
+<td align="left">目标文件的文件夹</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_LINKER_FILE:target></td>
+<td align="left">目标文件使用的链接文件</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_LINKER_FILE_(NAME,DIR):target></td>
+<td align="left">目标文件使用的链接文件名称，路径</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_SONAME_FILE_(NAME,DIR):target></td>
+<td align="left">目标文件相关的so文件信息</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_PDB_FILE_(NAME,DIR):target></td>
+<td align="left">目标文件相关的pdb文件信息</td>
+</tr>
+<tr>
+<td align="left">$&lt;INSTALL_PREFIX></td>
+<td align="left">安装前缀</td>
+</tr>
+<tr>
+<td align="left">$&lt;COMPILE_LANGUAGE></td>
+<td align="left">源文件的编译语言</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_19"><a name="user-content-_19" href="#_19" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>输出表达式</h2>
+<div class="codehilite"><pre><span></span><span class="err">-I$&lt;JOIN:$&lt;TARGET_PROPERTY:INCLUDE_DIRECTORIES&gt;,</span> <span class="err">-I&gt;</span>
+</pre></div>
+
+
+<p>示例生成在<code>INCLUDE_DIRECTOIRES</code>目标属性中的字符串，并使用<code>-I</code>前缀。</p>
+<table>
+<thead>
+<tr>
+<th align="left">常用输出表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">$&lt;0:&hellip;></td>
+<td align="left">空字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;1:&hellip;></td>
+<td align="left">&hellip;中的内容</td>
+</tr>
+<tr>
+<td align="left">$&lt;JOIN:list, &hellip;></td>
+<td align="left">将&hellip;中的内容于list内容组合</td>
+</tr>
+<tr>
+<td align="left">$&lt;ANGLE-R></td>
+<td align="left">符号<code>&gt;</code></td>
+</tr>
+<tr>
+<td align="left">$&lt;COMMA></td>
+<td align="left">符号<code>.</code></td>
+</tr>
+<tr>
+<td align="left">$&lt;SEMICOLON></td>
+<td align="left">符号<code>;</code></td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_NAME:&hellip;></td>
+<td align="left">标记&hellip;为一个目标的名字</td>
+</tr>
+<tr>
+<td align="left">$&lt;LINK_ONLY:&hellip;></td>
+<td align="left">只有在链接时产生内容，否则为空</td>
+</tr>
+<tr>
+<td align="left">$&lt;INSTALL_INTERFACE:&hellip;></td>
+<td align="left">在使用<code>install(EXPORT)</code>时产生内容，否则为空字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;BUILD_INTERFACE:&hellip;></td>
+<td align="left">在使用<code>export()</code>时产生内容，否则为空字符串</td>
+</tr>
+<tr>
+<td align="left">$&lt;LOWER_CASE:&hellip;></td>
+<td align="left">转为小写字符</td>
+</tr>
+<tr>
+<td align="left">$&lt;UPPER_CASE:&hellip;></td>
+<td align="left">转为大写字符</td>
+</tr>
+<tr>
+<td align="left">$&lt;MAKE_C_IDENTIFIER:&hellip;></td>
+<td align="left">转为C标识符</td>
+</tr>
+<tr>
+<td align="left">$&lt;TARGET_OBJECTS:objLib></td>
+<td align="left">来自objLib构建中的对象列表</td>
+</tr>
+<tr>
+<td align="left">$&lt;SHELL_PATH:&hellip;></td>
+<td align="left">转换为shell路径样式</td>
+</tr>
+</tbody>
+</table>
+<h1 id="cmake_4"><a name="user-content-cmake_4" href="#cmake_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake模块</h1>
+<p>先使用<code>include()</code>命令添加模块，再调用模块类的宏。</p>
+<table>
+<thead>
+<tr>
+<th align="left">模块</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">AddFileDependencies</td>
+<td align="left">添加给定的文件作为源文件的依赖项</td>
+</tr>
+<tr>
+<td align="left">BundleUtilities</td>
+<td align="left">用于处理Mac上.app的工具函数集</td>
+</tr>
+<tr>
+<td align="left">Check(C,CXX,Fortran)CompilerFlag</td>
+<td align="left">检查编译器是否支持给定的标志</td>
+</tr>
+<tr>
+<td align="left">Check(C,CXX,Fortran)SourceCompiles</td>
+<td align="left">检查给定的代码是否编译链接到一个可执行文件中</td>
+</tr>
+<tr>
+<td align="left">Check(C,CXX,Fortran)SourceRuns</td>
+<td align="left">检查是否编译运行给定的代码</td>
+</tr>
+<tr>
+<td align="left">CheckCXXSymbolExists</td>
+<td align="left">检查符号是否存在在C++中</td>
+</tr>
+<tr>
+<td align="left">CheckFunctionExists</td>
+<td align="left">检查是否函数是否存在</td>
+</tr>
+<tr>
+<td align="left">CheckIncludeFileCXX</td>
+<td align="left">检查是否在C++中能够include一个文件</td>
+</tr>
+<tr>
+<td align="left">CheckIncludeFile</td>
+<td align="left">检查是否在C中能够include一个文件</td>
+</tr>
+<tr>
+<td align="left">CheckIncludeFiles</td>
+<td align="left">检查是否在C中能够include一个或多个文件</td>
+</tr>
+<tr>
+<td align="left">CheckLanguage</td>
+<td align="left">检查语言</td>
+</tr>
+<tr>
+<td align="left">CheckLibraryExists</td>
+<td align="left">检查库文件是否存在</td>
+</tr>
+<tr>
+<td align="left">CheckPrototypeDefinition</td>
+<td align="left">检测原型定义是否正确</td>
+</tr>
+<tr>
+<td align="left">CheckStructHasMember</td>
+<td align="left">检查结构体</td>
+</tr>
+<tr>
+<td align="left">CheckSymbolExists</td>
+<td align="left">检查符号是否存在</td>
+</tr>
+<tr>
+<td align="left">CheckTypeSize</td>
+<td align="left">检查类型是否存在，存在则返回大小</td>
+</tr>
+<tr>
+<td align="left">CheckVariableExists</td>
+<td align="left">C变量是否存在</td>
+</tr>
+<tr>
+<td align="left">CMakeAddFortranSubdirectory</td>
+<td align="left">添加Fortran子文件夹</td>
+</tr>
+<tr>
+<td align="left">CMakeBackwardCompatibilityCXX</td>
+<td align="left">C++向后兼容</td>
+</tr>
+<tr>
+<td align="left">CMakeDependentOption</td>
+<td align="left">依赖选项</td>
+</tr>
+<tr>
+<td align="left">CMakeDetermineVSServicePack</td>
+<td align="left">确定Visual Studio服务包</td>
+</tr>
+<tr>
+<td align="left">CMakeExpandImportedTargets</td>
+<td align="left">展开导入目标</td>
+</tr>
+<tr>
+<td align="left">CMakeFindDependencyMacro</td>
+<td align="left">查找依赖宏</td>
+</tr>
+<tr>
+<td align="left">CMakeFindPackageMo de</td>
+<td align="left">命令行<code>--find-package</code></td>
+</tr>
+<tr>
+<td align="left">CMakePackageConfigHelpers</td>
+<td align="left">配置文件相关</td>
+</tr>
+<tr>
+<td align="left">CMakePrintHelpers</td>
+<td align="left">输出属性和变量</td>
+</tr>
+<tr>
+<td align="left">CMakePushCheckState</td>
+<td align="left">管理变量</td>
+</tr>
+<tr>
+<td align="left">ExternalData</td>
+<td align="left">外部数据管理</td>
+</tr>
+<tr>
+<td align="left">ExternalProject</td>
+<td align="left">外部项目</td>
+</tr>
+<tr>
+<td align="left">Find(*)</td>
+<td align="left">查找*库文件,如FindZLIB</td>
+</tr>
+<tr>
+<td align="left">InstallRequiredSystemLibraries</td>
+<td align="left">安装必要的系统库</td>
+</tr>
+<tr>
+<td align="left">ProcessorCount</td>
+<td align="left">处理器个数</td>
+</tr>
+<tr>
+<td align="left">TestBigEndian</td>
+<td align="left">测试大小端</td>
+</tr>
+<tr>
+<td align="left">TestCXXAcceptsFlag</td>
+<td align="left">测试C++的标识符</td>
+</tr>
+</tbody>
+</table>
+<h1 id="cmake_5"><a name="user-content-cmake_5" href="#cmake_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake工具链</h1>
+<p>通常CMake自动确定主机构建的工具链，但在交叉编译场景下，可以指定一个工具链文件来配置编译器及相应工具的路径。</p>
+<h2 id="_20"><a name="user-content-_20" href="#_20" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>语言</h2>
+<p>使用<code>project()</code>命令指定语言，语言会指定相应的内建变量。默认为：</p>
+<div class="codehilite"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">C_Only</span> <span class="s">C</span><span class="p">)</span>
+</pre></div>
+
+
+<p><code>enable_language()</code>用来开启语言支持。</p>
+<div class="codehilite"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">MyProject</span> <span class="s">NONE</span><span class="p">)</span> <span class="c"># NONE不指定语言</span>
+<span class="nb">enable_language</span><span class="p">(</span><span class="s">CXX</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="_21"><a name="user-content-_21" href="#_21" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>交叉编译</h2>
+<p>使用<code>-DCMAKE_TOOLCHAIN_FILE=path/to/file</code>命令行参数来指定编译器值。典型的交叉编译工具链如下：</p>
+<div class="codehilite"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_NAME</span> <span class="s">Linux</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_PROCESSOR</span> <span class="s">arm</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSROOT</span> <span class="s">/home/devel/rasp-pi-rootfs</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_STAGING_PREFIX</span> <span class="s">/home/devel/stage</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">tools</span> <span class="s">/home/devel/gcc-4.7-linaro-rpi-gnueabihf</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER</span> <span class="o">${</span><span class="nv">tools</span><span class="o">}</span><span class="s">/bin/arm-linux-gnueabihf-gcc</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER</span> <span class="o">${</span><span class="nv">tools</span><span class="o">}</span><span class="s">/bin/arm-linux-gnueabihf-g++</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</span> <span class="s">NEVER</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</span> <span class="s">ONLY</span><span class="p">)</span>       
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</span> <span class="s">ONLY</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_PACKAGE</span> <span class="s">ONLY</span><span class="p">)</span>
+</pre></div>
+
+
+<h1 id="cmake_6"><a name="user-content-cmake_6" href="#cmake_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CMake变量</h1>
+<h2 id="_22"><a name="user-content-_22" href="#_22" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>信息变量</h2>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CMAKE_ARGC</td>
+<td align="left">返回命令行模式下的参数个数</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ARGV0</td>
+<td align="left">第一个参数，类似有CMAKE_ARGV1</td>
+</tr>
+<tr>
+<td align="left">CMAKE_AR</td>
+<td align="left">打包静态库的工具名称</td>
+</tr>
+<tr>
+<td align="left">CMAKE_BINARY_DIR</td>
+<td align="left">构建书的顶级路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CACHEFILE_DIR</td>
+<td align="left">CMakeCache.txt文件的目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CACHE_MAJOR_VERSION</td>
+<td align="left">版本号，类似还有MINOR,PATCH_VERSION</td>
+</tr>
+<tr>
+<td align="left">CMAKE_COMMAND</td>
+<td align="left">cmake命令的路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CROSSCOMPILING</td>
+<td align="left">返回是否是交叉编译</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CROSSCOMPILING_EMULATOR</td>
+<td align="left">返回交叉编译可运行目标机器程序的命令</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CTEST_COMMAND</td>
+<td align="left">返回ctest命令的全路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_BINARY_DIR</td>
+<td align="left">返回当前处理二进制文件的文件夹</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_LIST_(DIR,FILE,LINE)</td>
+<td align="left">返回当前列表的目录，全路径，行号</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CURRENT_SOURCE_DIR</td>
+<td align="left">当前源代码文件夹</td>
+</tr>
+<tr>
+<td align="left">CMAKE_DL_LIBS</td>
+<td align="left">包含<code>dlopen</code>和<code>dlclose</code>的库名</td>
+</tr>
+<tr>
+<td align="left">CMAKE_EXECUTABLE_SUFFIX</td>
+<td align="left">可执行后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_HOME_DIRECTORY</td>
+<td align="left">返回主目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_IMPORT_LIBRARY_(PREFIX,SUFFIX)</td>
+<td align="left">导入链接库的前缀,后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_JOB_POOL_(COMPILE,LINK)</td>
+<td align="left">JOB_POOL编译链接的属性</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LINK_LIBRARY_SUFFIX</td>
+<td align="left">链接库的后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_(MAJOR,MINOR,PATCH)_VERSION</td>
+<td align="left">版本号</td>
+</tr>
+<tr>
+<td align="left">CMAKE_MAKE_PROGRAM</td>
+<td align="left">本地构建的工具，有make,ninja,Xcode,vs等</td>
+</tr>
+<tr>
+<td align="left">CMAKE_MATCH_COUNT</td>
+<td align="left">最近正则表达式匹配的数目</td>
+</tr>
+<tr>
+<td align="left">CMAKE_MINIMUM_REQUIRED_VERSION</td>
+<td align="left">CMake的版本要求</td>
+</tr>
+<tr>
+<td align="left">CMAKE_PROJECT_NAME</td>
+<td align="left">cmake项目名</td>
+</tr>
+<tr>
+<td align="left">CMAKE_RANLIB</td>
+<td align="left">UNIX上随机库的名称</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ROOT</td>
+<td align="left">运行cmake的安装目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SHARED_LIBRARY_(PREFIX,SUFFIX)</td>
+<td align="left">共享库前后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SHARED_MODULE_(PREFIX,SUFFIX)</td>
+<td align="left">共享模块前后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SIZEOF_VOID_P</td>
+<td align="left">void指针的大小，确定是否是64位</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SKIP_INSTALL_RULES</td>
+<td align="left">是否跳过安装</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SKIP_RPATH</td>
+<td align="left">如果为true，则不添加运行时路径信息</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SOURCE_DIR</td>
+<td align="left">源代码文件夹</td>
+</tr>
+<tr>
+<td align="left">CMAKE_STATIC_LIBRARY_(PREFIX,SUFFIX)</td>
+<td align="left">静态库前后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_TOOLCHAIN_FILE</td>
+<td align="left">交叉编译工具链文件</td>
+</tr>
+<tr>
+<td align="left">CMAKE_VERBOSE_MAKEFILE</td>
+<td align="left">开启makefile的长输出</td>
+</tr>
+<tr>
+<td align="left">CMAKE_VERSION</td>
+<td align="left">CMake的版本号</td>
+</tr>
+<tr>
+<td align="left">CMAKE_VS_DEVENV_COMMAND</td>
+<td align="left">cmake vs开发环境命令<code>devenv.exe</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_VS_MSBUILD_COMMAND</td>
+<td align="left"><code>MSBuild.exe</code></td>
+</tr>
+<tr>
+<td align="left">PROJECT_BINARY_DIR</td>
+<td align="left">项目构建目录</td>
+</tr>
+<tr>
+<td align="left"><PROJECT-NAME>_BINARY_DIR</td>
+<td align="left">某个项目的二进制目录</td>
+</tr>
+<tr>
+<td align="left">PROJECT_NAME</td>
+<td align="left">项目名</td>
+</tr>
+<tr>
+<td align="left"><PROJECT-NAME>_SOURCE_DIR</td>
+<td align="left">指定的项目源码目录</td>
+</tr>
+<tr>
+<td align="left"><PROJECT-NAME>_VERSION</td>
+<td align="left">项目版本</td>
+</tr>
+<tr>
+<td align="left">PROJECT_SOURCE_DIR</td>
+<td align="left">项目源码目录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_23"><a name="user-content-_23" href="#_23" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>行为变量</h2>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BUILD_SHARED_LIBS</td>
+<td align="left">在<code>add_library()</code>时构建共享库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_BUILD_TYPE</td>
+<td align="left">构建类型,<code>Debug</code>,<code>Release</code>,<code>RelWithDebInfo</code>,<code>MinSizeRel</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_COLOR_MAKEFILE</td>
+<td align="left">开启颜色输出</td>
+</tr>
+<tr>
+<td align="left">CMAKE_DEBUG_TARGET_PROPERTIES</td>
+<td align="left">开启目标属性的跟踪输出</td>
+</tr>
+<tr>
+<td align="left">CMAKE_DEPENDS_IN_PROJECT_ONLY</td>
+<td align="left">只考虑在工程目录下的依赖</td>
+</tr>
+<tr>
+<td align="left">CMAKE_DISABLE_FIND_PACKAGE_<PackageName></td>
+<td align="left">关闭对应包的<code>find_package()</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_ECLIPSE_MAKE_ARGUMENTS</td>
+<td align="left">ECLIPSE项目的make参数</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ERROR_DEPRECATED</td>
+<td align="left">是否指出弃用函数的错误</td>
+</tr>
+<tr>
+<td align="left">CMAKE_EXPORT_COMPILE_COMMANDS</td>
+<td align="left">开启或关闭编译命令的输出</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_LIBRARY_(PREFIXES,SUFFIXS)</td>
+<td align="left">寻找库时的前后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_ROOT_PATH</td>
+<td align="left">列出搜索的主目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</td>
+<td align="left">INCLUDE目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</td>
+<td align="left">库目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_ROOT_PATH_MODE_PACKAGE</td>
+<td align="left">包目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</td>
+<td align="left">程序目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_IGNORE_PATH</td>
+<td align="left">忽略目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INCLUDE_PATH</td>
+<td align="left">INCLUDE目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INCLUDE_DIRECTORIES_BEFORE</td>
+<td align="left">目录先后</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INSTALL_MESSAGE</td>
+<td align="left">安装信息，ALWAYS,LAZY,NEVER</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INSTALL_PREFIX</td>
+<td align="left">安装前缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LIBRARY_PATH</td>
+<td align="left">库路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_MODULE_PATH</td>
+<td align="left">模块路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_NOT_USING_CONFIG_FLAGS</td>
+<td align="left">跳过_BUILD_TYPE</td>
+</tr>
+<tr>
+<td align="left">CMAKE_PREFIX_PATH</td>
+<td align="left">路径前缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_PROGRAM_PATH</td>
+<td align="left">程序路径,影响<code>find_program()</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_PROJECT_<PROJECT-NAME>_INCLUDE</td>
+<td align="left">项目INCLUDE路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SYSTEM_IGNORE_PATH</td>
+<td align="left">忽略路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SYSTEM_INCLUDE_PATH</td>
+<td align="left">系统include路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SYSTEM_LIBRARY_PATH</td>
+<td align="left">系统库路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SYSTEM_PREFIX_PATH</td>
+<td align="left">系统前缀路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SYSTEM_PROGRAM_PATH</td>
+<td align="left">系统程序路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_USER_MAKE_RULES_OVERRIDE</td>
+<td align="left">用户规则覆盖</td>
+</tr>
+<tr>
+<td align="left">CMAKE_WARN_DEPRECATED</td>
+<td align="left">警告</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_24"><a name="user-content-_24" href="#_24" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>系统描述变量</h2>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">APPLE</td>
+<td align="left">OS X 系统</td>
+</tr>
+<tr>
+<td align="left">BORLAND</td>
+<td align="left">BORLAND编译器</td>
+</tr>
+<tr>
+<td align="left">CMAKE_CL_64</td>
+<td align="left">Microsoft 64位</td>
+</tr>
+<tr>
+<td align="left">CMAKE_HOST_APPLE</td>
+<td align="left">OS X主机</td>
+</tr>
+<tr>
+<td align="left">CMAKE_HOST_SOLARIS</td>
+<td align="left">SOLARIS主机</td>
+</tr>
+<tr>
+<td align="left">CMAKE_(HOST_)SYSTEM_NAME</td>
+<td align="left">主机名称</td>
+</tr>
+<tr>
+<td align="left">CMAKE_(HOST_)SYSTEM_PROCESSOR</td>
+<td align="left">主机处理器</td>
+</tr>
+<tr>
+<td align="left">CMAKE_(HOST_)SYSTEM</td>
+<td align="left">主机系统</td>
+</tr>
+<tr>
+<td align="left">CMAKE_(HOST_)SYSTEM_VERSION</td>
+<td align="left">主机版本</td>
+</tr>
+<tr>
+<td align="left">CMAKE_HOST_UNIX</td>
+<td align="left">是否UNIX主机</td>
+</tr>
+<tr>
+<td align="left">CMAKE_HOST_WIN32</td>
+<td align="left">是否Windows</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LIBRARY_ARCHITECTURE_REGEX</td>
+<td align="left">库架构正则表达式</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LIBRARY_ARCHITECTURE</td>
+<td align="left">库的架构</td>
+</tr>
+<tr>
+<td align="left">CYGWIN</td>
+<td align="left">是否Cygwin</td>
+</tr>
+<tr>
+<td align="left">ENV</td>
+<td VAR="VAR" align="left">访问环境变量$ENV</td>
+</tr>
+<tr>
+<td align="left">MINGW</td>
+<td align="left">是否mingw</td>
+</tr>
+<tr>
+<td align="left">MSVC(11,12,14)</td>
+<td align="left">vs版本</td>
+</tr>
+<tr>
+<td align="left">UNIX</td>
+<td align="left">是否UNIX</td>
+</tr>
+<tr>
+<td align="left">WIN32</td>
+<td align="left">会搜否Win32</td>
+</tr>
+<tr>
+<td align="left">XCODE_VERSION</td>
+<td align="left">XCODE版本</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_25"><a name="user-content-_25" href="#_25" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>控制构建的变量</h2>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CMAKE_ANDROID_ANT_ADDITIONAL_OPTIONS</td>
+<td align="left">Android ant额外选项</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_API</td>
+<td align="left">android api</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_API_MIN</td>
+<td align="left">Android最小的API</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_ARCH</td>
+<td align="left">Android默认架构，armv7-a,arm64-v8a,x64等</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_ASSETS_DIRECTORIES</td>
+<td align="left">Android 资源文件</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_JAR_DEPENDENCIES</td>
+<td align="left">Android Jar依赖</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_JAR_DIRECTORIES</td>
+<td align="left">Android Jar目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_JAVA_SOURCE_DIR</td>
+<td align="left">Android Java源代码目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_NATIVE_LIB_DEPENDENCIES</td>
+<td align="left">Android 本地库依赖</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_NATIVE_LIB_DIRECTORIES</td>
+<td align="left">Android 本地库目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_SKIP_ANT_STEP</td>
+<td align="left">跳过ant</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ANDROID_STL_TYPE</td>
+<td align="left">STL类型，<code>gnustl_static</code>,<code>gnustl_shared</code>等</td>
+</tr>
+<tr>
+<td align="left">CMAKE_BUILD_WITH_INSTALL_RPATH</td>
+<td align="left">构建时使用安转运行时目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;CONFIG>_POSTFIX</td>
+<td align="left">配置的后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_DEBUG_POSTFIX</td>
+<td align="left">调试后缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_ENABLE_EXPORTS</td>
+<td align="left">开启导出</td>
+</tr>
+<tr>
+<td align="left">CMAKE_GNUtoMS</td>
+<td align="left">将GNU库(.dll.a)转为MS格式(.lib)</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INCLUDE_CURRENT_DIR</td>
+<td align="left">当前include目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INSTALL_NAME_DIR</td>
+<td align="left">安装目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_INSTALL_RPATH</td>
+<td align="left">安装运行时目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_IOS_INSTALL_COMBINED</td>
+<td align="left">构建设备和模拟器目标属性</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LIBRARY_PATH_FLAG</td>
+<td align="left">库路径标志，默认为<code>-L</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_LINK_DEPENDS_NO_SHARED</td>
+<td align="left">依赖于无共享库的链接</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LINK_INTERFACE_LIBRARIES</td>
+<td align="left">链接接口库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_LINK_LIBRARY_FLAG</td>
+<td align="left">链接库标志，默认为<code>-l</code></td>
+</tr>
+<tr>
+<td align="left">CMAKE_MODULE_LINKER_FLAGS</td>
+<td align="left">模块链接标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_NINJA_OUTPUT_PATH_PREFIX</td>
+<td align="left">Ninja输出路径前缀</td>
+</tr>
+<tr>
+<td align="left">CMAKE_POSITION_INDEPENDENT_CODE</td>
+<td align="left">位置无关代码属性声明</td>
+</tr>
+<tr>
+<td align="left">CMAKE_RUNTIME_OUTPUT_DIRECTORY</td>
+<td align="left">运行时输出路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SHARED_LINKER_FLAGS</td>
+<td align="left">共享库链接标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SKIP_BUILD_RPATH</td>
+<td align="left">跳过构建时的运行时路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_SKIP_INSTALL_RPATH</td>
+<td align="left">跳过安装运行时路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_STATIC_LINKER_FLAGS</td>
+<td align="left">静态库链接标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_USE_RELATIVE_PATHS</td>
+<td align="left">使用相对路径</td>
+</tr>
+<tr>
+<td align="left">CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS</td>
+<td align="left">windows DLL 导出所有符号</td>
+</tr>
+<tr>
+<td align="left">CMAKE_WIN32_EXECUTABLE</td>
+<td align="left">win32可执行文件</td>
+</tr>
+<tr>
+<td align="left">EXECUTABLE_OUTPUT_PATH</td>
+<td align="left">执行输出路径</td>
+</tr>
+<tr>
+<td align="left">LIBRARY_OUTPUT_PATH</td>
+<td align="left">库输出路径</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_26"><a name="user-content-_26" href="#_26" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>语言变量</h2>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">CMAKE_COMPILER_IS_GNU&lt;LANG></td>
+<td align="left">如果是GNU编译器则返回true</td>
+</tr>
+<tr>
+<td align="left">CMAKE_C(XX)_COMPILE_FEATURES</td>
+<td align="left">C/C++编译特性</td>
+</tr>
+<tr>
+<td align="left">CMAKE_C(XX)_EXTENSIONS</td>
+<td align="left">C/C++扩展</td>
+</tr>
+<tr>
+<td align="left">CMAKE_C(XX)_STANDARD</td>
+<td align="left">C/C++标准</td>
+</tr>
+<tr>
+<td align="left">CMAKE_C(XX)_STANDARD_REQUIRED</td>
+<td align="left">C/C++需要的标准</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_ARCHIVE_APPEND</td>
+<td align="left">打包添加的内容</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILE_OBJECT</td>
+<td align="left">对象编译</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER_ABI</td>
+<td align="left">编译API</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER_ID</td>
+<td align="left">编译ID</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER</td>
+<td align="left">编译器</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER_EXTERNAL_TOOLCHAIN</td>
+<td align="left">编译器外部工具链</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER_TARGET</td>
+<td align="left">编译目标</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_COMPILER_VERSION</td>
+<td align="left">编译器版本</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_CREATE_SHARED_LIBRARY</td>
+<td align="left">是否创建共享库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_CREATE_SHARED_MODULE</td>
+<td align="left">是否创建共享模块</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_CREATE_STATIC_LIBRARY</td>
+<td align="left">是否创建静态库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_FLAGS_DEBUG</td>
+<td align="left">Debug标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_FLAGS_MINSIZEREL</td>
+<td align="left">minsizerel 标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_FLAGS_RELEASE</td>
+<td align="left">release 标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_FLAGS_RELWITHDEBINFO</td>
+<td align="left">relwithdebinfo 标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_FLAGS</td>
+<td align="left">标志</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_IGNORE_EXTENSIONS</td>
+<td align="left">忽略扩展</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_IMPLICIT_INCLUDE_DIRECTORIES</td>
+<td align="left">隐式include目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_IMPLICIT_LINK_DIRECTORIES</td>
+<td align="left">隐式链接目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_IMPLICIT_LINK_LIBRARIES</td>
+<td align="left">隐式链接库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_LIBRARY_ARCHITECTURE</td>
+<td align="left">库架构</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_LINKER_PREFERENCE_PROPAGATES</td>
+<td align="left">库引用传递</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_LINKER_PREFERENCE</td>
+<td align="left">库引用</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_LINK_EXECUTABLE</td>
+<td align="left">链接可执行文件</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_OUTPUT_EXTENSION</td>
+<td align="left">输出扩展</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_PLATFORM_ID</td>
+<td align="left">平台ID</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_SIMULATE_ID</td>
+<td align="left">模拟器ID</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_SIZEOF_DATA_PTR</td>
+<td align="left">数据指针大小</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_SOURCE_FILE_EXTENSIONS</td>
+<td align="left">源文件扩展名</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_STANDARD_INCLUDE_DIRECTORIES</td>
+<td align="left">标准include目录</td>
+</tr>
+<tr>
+<td align="left">CMAKE_&lt;LANG>_STANDARD_LIBRARIES</td>
+<td align="left">标准库</td>
+</tr>
+<tr>
+<td align="left">CMAKE_USER_MAKE_RULES_OVERRIDE_&lt;LANG></td>
+<td align="left">是否覆盖用户定义规则</td>
+</tr>
+</tbody>
+</table>
+  <p style="text-align: right; color: gray;"><br>2017-04-09 10:18:31</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
