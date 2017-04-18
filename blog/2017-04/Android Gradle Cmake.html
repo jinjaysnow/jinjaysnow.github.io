@@ -216,7 +216,7 @@ MathJax.Hub.Config({
 <p>假定将库文件加放置在<code>src</code>文件夹下。项目名为<code>SenseDataApp</code>，自动生成的源文件<code>native-lib.cpp</code>更名为<code>SenseDataApp.cpp</code>。</p>
 <h2 id="cmakeliststxt"><a name="user-content-cmakeliststxt" href="#cmakeliststxt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改CMakeLists.txt添加构建依赖</h2>
 <p><code>CMakeLists.txt</code>文件主要配置include路径和库文件路径，在构建过程中使得目标库能够正常构建。</p>
-<div class="codehilite"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">version</span> <span class="s">3.4.1</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.4.1</span><span class="p">)</span>
 <span class="c"># 添加include路径</span>
 <span class="nb">include_directories</span><span class="p">(</span><span class="s">src/lib_tango_client_api/include</span>
                     <span class="s">src/lib_tango_support_api/include</span>

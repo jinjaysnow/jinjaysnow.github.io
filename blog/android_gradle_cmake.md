@@ -47,7 +47,7 @@ libtango_client_api
 `CMakeLists.txt`文件主要配置include路径和库文件路径，在构建过程中使得目标库能够正常构建。
 
 ```CMake
-cmake_minimum_required(version 3.4.1)
+cmake_minimum_required(VERSION 3.4.1)
 # 添加include路径
 include_directories(src/lib_tango_client_api/include
                     src/lib_tango_support_api/include
