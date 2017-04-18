@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2017-04">
+<meta name="keywords" content="Android,cmake,gradle">
+<meta name="author" content="Jin Jay">
+<meta name="description" content="使用Android Studio进行Android Native应用开发，选用Gradle和CMake构建工具的组合。介绍如何添加预构建的第三方库。"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>Android Gradle Cmake</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#cc">新建C/C++工程</a></li>
+<li><a href="#_1">添加第三方预构建库</a><ul>
+<li><a href="#_2">第三方预构建库的结构</a></li>
+<li><a href="#cmakeliststxt">修改CMakeLists.txt添加构建依赖</a></li>
+<li><a href="#buildgradle">配置build.gradle文件</a></li>
+<li><a href="#_3">添加库文件加载代码</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <p>本文介绍使用Android Studio进行Android的C/C++项目开发。构建工具使用Gradle和CMake的组合，这个组合是Android Studio的默认组合。主要讲解添加第三方预构建库，及使用方法。</p>
+<p>进行Android Native应用开发的前提是安装必要的工具，可使用Android Studio自带的Android SDK Tools管理工具，下载安装CMake, Android SDK Platform-Tools, Android SDK Build-Tools, NDK。</p>
+<h1 id="cc"><a name="user-content-cc" href="#cc" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>新建C/C++工程</h1>
+<p>直接使用Android Studio新建空的Native项目，自动生成的主要文件有:</p>
+<div class="codehilite"><pre><span></span><span class="err">build.gradle</span>                         <span class="c"># gradle配置文件</span>
+<span class="err">CMakeLists.txt</span>                       <span class="c"># CMake配置文件</span>
+<span class="err">src/main/java/**/MainActivity.java</span>   <span class="c"># 应用入口</span>
+<span class="err">src/main/cpp/native-lib.cpp</span>          <span class="c"># Native开发示例文件</span>
+</pre></div>
+
+
+<h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加第三方预构建库</h1>
+<p>作为示例，以添加Google Tango的<code>libtango_client_api.so</code>和<code>libtango_support_api.so</code>为例，介绍用法。</p>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第三方预构建库的结构</h2>
+<div class="codehilite"><pre><span></span>libtango_client_api
+  |----include
+        |----tango_client_api.h
+  |----lib
+        |----arm64-v8a
+               |----libtango_client_api.so
+        |----armeabi-v7a
+               |----libtango_client_api.so
+        |----x86
+               |----libtango_client_api.so
+</pre></div>
+
+
+<p><code>libtango_support_api</code>结构与<code>libtango_client_api</code>结构类似，都有<code>include</code>文件夹和<code>lib</code>文件夹，<code>lib</code>文件夹下有预编译好的不同的<code>ABI</code>平台的库文件。</p>
+<p>假定将库文件加放置在<code>src</code>文件夹下。项目名为<code>SenseDataApp</code>，自动生成的源文件<code>native-lib.cpp</code>更名为<code>SenseDataApp.cpp</code>。</p>
+<h2 id="cmakeliststxt"><a name="user-content-cmakeliststxt" href="#cmakeliststxt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改CMakeLists.txt添加构建依赖</h2>
+<p><code>CMakeLists.txt</code>文件主要配置include路径和库文件路径，在构建过程中使得目标库能够正常构建。</p>
+<div class="codehilite"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">version</span> <span class="s">3.4.1</span><span class="p">)</span>
+<span class="c"># 添加include路径</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="s">src/lib_tango_client_api/include</span>
+                    <span class="s">src/lib_tango_support_api/include</span>
+                    <span class="s">src/main/cpp</span><span class="p">)</span>
+<span class="c"># 设置目标库</span>
+<span class="nb">add_library</span><span class="p">(</span> <span class="s">sense-data-app</span>
+             <span class="s">SHARED</span>
+             <span class="s">src/main/cpp/SenseDataApp.cpp</span> <span class="p">)</span>
+
+<span class="c"># log库为Android自带的库，使用find_library(变量名 库名) 命令可自动找出log库的依赖</span>
+<span class="nb">find_library</span><span class="p">(</span> <span class="s">log-lib</span> <span class="s">log</span> <span class="p">)</span>
+
+<span class="c"># 添加tango库文件及指定库文件位置</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">Tango_LIBRARY</span> <span class="s">SHARED</span> <span class="s">IMPORTED</span><span class="p">)</span>
+<span class="nb">set_target_properties</span><span class="p">(</span> <span class="s">Tango_LIBRARY</span>
+                       <span class="s">PROPERTIES</span> <span class="s">IMPORTED_LOCATION</span>
+                       <span class="c"># ${CMAKE_CURRENT_SOURCE_DIR}指代CMakeLists.txt文件的位置，为了确保能够找到库文件，使用绝对路径</span>
+                       <span class="c"># ${ANDROID_ABI}可以指代不同ABI平台对应的字符串</span>
+                       <span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src/lib_tango_client_api/lib/</span><span class="o">${</span><span class="nv">ANDROID_ABI</span><span class="o">}</span><span class="s">/libtango_client_api.so</span> <span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">Tango_support_LIBRARY</span> <span class="s">SHARED</span> <span class="s">IMPORTED</span><span class="p">)</span>
+<span class="nb">set_target_properties</span><span class="p">(</span> <span class="s">Tango_support_LIBRARY</span>
+                       <span class="s">PROPERTIES</span> <span class="s">IMPORTED_LOCATION</span>
+                       <span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src/lib_tango_support_api/lib/</span><span class="o">${</span><span class="nv">ANDROID_ABI</span><span class="o">}</span><span class="s">/libtango_support_api.so</span> <span class="p">)</span>
+
+<span class="c"># 配置库的依赖关系</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span> <span class="s">sense-data-app</span>
+                       <span class="o">${</span><span class="nv">log-lib</span><span class="o">}</span>
+                       <span class="s">Tango_LIBRARY</span>
+                       <span class="s">Tango_support_LIBRARY</span> <span class="p">)</span>
+</pre></div>
+
+
+<h2 id="buildgradle"><a name="user-content-buildgradle" href="#buildgradle" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>配置build.gradle文件</h2>
+<p><code>build.gradle</code>主要配置ABI信息和将预编译的库文件打包到最终的apk文件中。<strong>如果不配置库文件的打包，会出现运行时的<code>library not found</code>错误。</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">android</span> <span class="o">{</span>
+    <span class="n">defaultConfig</span> <span class="o">{</span>
+        <span class="c1">// 指定平台对应的abi</span>
+        <span class="n">ndk</span> <span class="o">{</span>
+            <span class="n">abiFilters</span> <span class="s1">&#39;x86&#39;</span><span class="o">,</span> <span class="s1">&#39;armeabi-v7a&#39;</span><span class="o">,</span> <span class="s1">&#39;arm64-v8a&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+   <span class="n">externalNativeBuild</span> <span class="o">{</span>
+        <span class="n">cmake</span> <span class="o">{</span>
+            <span class="n">path</span> <span class="s2">&quot;CMakeLists.txt&quot;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="c1">// 设置jni库文件位置，打包到apk中</span>
+    <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span> <span class="o">{</span>
+        <span class="n">jniLibs</span><span class="o">.</span><span class="na">srcDirs</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;src/lib_tango_client_api/lib&quot;</span><span class="o">,</span> <span class="s2">&quot;src/lib_tango_support_api/lib&quot;</span><span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加库文件加载代码</h2>
+<p>由于已进将依赖关系写入到目标库<code>sense-data-app</code>中，故而只需加载<code>sensedataapp</code>动态库即可。</p>
+<p>在<code>MainActivity.java</code>的<code>MainActivity</code>类中添加如下代码:</p>
+<div class="codehilite"><pre><span></span>static {
+    System.loadLibrary(&quot;sense-data-app&quot;);
+}
+</pre></div>
+
+
+<p>在Android Studio中点击构建即可正常构建运行。</p>
+  <p style="text-align: right; color: gray;"><br>2017-04-18 20:13:19</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
