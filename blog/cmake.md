@@ -645,4 +645,221 @@ CMAKE_<LANG\>_STANDARD_INCLUDE_DIRECTORIES | 标准include目录
 CMAKE_<LANG\>_STANDARD_LIBRARIES | 标准库
 CMAKE_USER_MAKE_RULES_OVERRIDE_<LANG\> | 是否覆盖用户定义规则
 
+# 如何找到库文件
+cmake使用`find_package`命令来查找库文件。下面简单介绍如何在CMake项目中使用外部库文件，并编写自己的查找模块。
+
+## 使用外部库
+CMake自带多个模块`moudles`来辅助查找相对知名的库和包。可以在命令行中输入`cmake --help-module-list`来获得当前CMake支持的模块。或者找出模块路径并在其中查找，在Ubuntu Linux系统上，模块路径是`/usr/share/cmake/Modules/`.
+
+现在考虑寻找`bzip2`库。存在一个`FindBZip2.cmake`的模块，使用`find_package(BZip2)`来调用模块时，CMake会自动填入多个变量，可在后续脚本中使用。变量名的列表，可以使用`cmake --help-module FindBZip2`来获取。
+
+举例来说，考虑一个很简单的使用bzip2的程序，即编译器需要知道`bzlib.h`的位置，链接器需要找到`bzip2`库文件。
+
+```CMake
+# 指定CMake的版本要求
+cmake_minimum_required(VERSION 2.8)
+# 项目名
+project(helloworld)
+# 可执行文件配置
+add_executable(helloworld hello.c)
+# 查找BZip2库
+find_package (BZip2)
+if (BZIP2_FOUND)
+  include_directories(${BZIP_INCLUDE_DIRS})
+  target_link_libraries (helloworld ${BZIP2_LIBRARIES})
+endif (BZIP2_FOUND)
+```
+
+可以使用`cmake`和`make VERBOSE=1`来验证编译器和链接器是否收到了正确的标志。
+
+## 使用CMake Modules中当前没有的外部库
+假定要使用`LibXML++`库，CMake并没有改库的模块，但是可以在网络上寻找到一个`FidLibXML++.cmake`文件，那么可以在`CMakeLists.txt`中编写如下代码：
+
+```CMake
+find_package(LibXML++ REQUIRED)
+include_directories(${LibXML++_INCLUDE_DIRS})
+set(LIBS ${LIBS} ${LibXML++_LIBRARIES})
+```
+
+然后需要将`FindLibXML++.cmake`文件放到CMake模块路径下。由于CMake并不自带该文件，所以需要手动添加到工程中。在项目根目录下创建`cmake/Modules`文件夹，并在主目录`CMakeLists.txt`文件中，添加如下代码：
+
+```CMake
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+```
+
+最后，将CMake模块文件放入到文件夹中即可。
+
+通常上述步骤可以解决大多数问题，但是一些库需要额外的配置，需要留心查看`FindSometing.cmake`文件来继续配置。
+
+### 带有组件的包
+有些库依赖于一个或多个独立的库或组件。一个有代表性的例子就是Qt库，它可以包括QtOpenGL和QtXml等组件。要使用这些组件，需要使用下面的命令：
+
+```CMake
+find_package(Qt COMPONENTS QtOpenGL QtXml REQUIRED)
+```
+
+## package如何工作的
+`find_package()`命令会在module路径下查找`Find<name>.cmake`。首先CMake检查所有在`${CMAKE_MODULE_PATH}`变量中的目录，然后在自己的模块路径下查找`<CMAKE_ROOT>/share/cmake-x.y/Modules`。
+
+如果没有找到这样的文件，那么cmake会继续寻找`<Name>Config.cmake`或`<lower-case-name>-config.cmake`。这些文件中会硬编码安装库文件的相应变量值。
+
+前者称为模块模式，后面称为配置模式。对于模块模式，无论包有没有被找到，以下变量都会定义：
+
+- `<NAME>_FOUND`
+- `<NAME>_INCLUDE_DIRS`或`<NAME>_INCLUDES`
+- `<NAME>_LIBRARIES`或`<NAME>_LIBRARIES`或`<NAME>_LIBS`
+- `<NAME>_DEFINITIONS`
+
+所有这些都在`Find<name>.cmake`文件中定义。
+
+对于配置模式，需要手动编写配置文件。
+
+### 如何编写一个ProjectConfig.cmake文件
+假定一个项目有如下结构:
+
+```
+FooBar/
+|-- CMakeLists.txt
+|-- FooBarConfig.cmake.in
+|-- FooBarConfigVersion.cmake.in
+|-- foo/
+|   |-- CMakeLists.txt
+|   |-- config.h.in
+|   |-- foo.h
+|   `-- foo.c
+`-- bar/
+    |-- CMakeLists.txt
+    `-- bar.c
+```
+
+`FooBar/CMakeLists.txt`文件的简单示例如下：
+
+```CMake
+cmake_minimum_required(VERSION 2.8)
+project(FooBar C)
+ 
+set(FOOBAR_MAJOR_VERSION 0)
+set(FOOBAR_MINOR_VERSION 1)
+set(FOOBAR_PATCH_VERSION 0)
+set(FOOBAR_VERSION ${FOOBAR_MAJOR_VERSION}.${FOOBAR_MINOR_VERSION}.${FOOBAR_PATCH_VERSION})
+ 
+# 提供选项供用户重载安装目录
+set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
+set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
+set(INSTALL_INCLUDE_DIR include CACHE PATH
+  "Installation directory for header files")
+if(WIN32 AND NOT CYGWIN)
+  set(DEF_INSTALL_CMAKE_DIR CMake)
+else()
+  set(DEF_INSTALL_CMAKE_DIR lib/CMake/FooBar)
+endif()
+set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
+  "Installation directory for CMake files")
+ 
+# 使相对路径转变为绝对路径
+foreach(p LIB BIN INCLUDE CMAKE)
+  set(var INSTALL_${p}_DIR)
+  if(NOT IS_ABSOLUTE "${${var}}")
+    set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
+  endif()
+endforeach()
+ 
+# 设添加nclude-directoreis
+include_directories(
+  "${PROJECT_SOURCE_DIR}"   # 找到foo/foo.h
+  "${PROJECT_BINARY_DIR}")  # 找到foo/config.h
+ 
+# 添加子目录
+add_subdirectory(foo)
+add_subdirectory(bar)
+ 
+# ===============================
+ 
+# 添加所有的目标到构建树的导出集合
+export(TARGETS foo bar
+  FILE "${PROJECT_BINARY_DIR}/FooBarTargets.cmake")
+ 
+# 导出包
+export(PACKAGE FooBar)
+ 
+# 创建FooBarConfig.cmake和FooBarConfigVersion文件
+file(RELATIVE_PATH REL_INCLUDE_DIR "${INSTALL_CMAKE_DIR}"
+   "${INSTALL_INCLUDE_DIR}")
+
+# 构建
+set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+configure_file(FooBarConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/FooBarConfig.cmake" @ONLY)
+
+# 安装
+set(CONF_INCLUDE_DIRS "\${FOOBAR_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+configure_file(FooBarConfig.cmake.in
+  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/FooBarConfig.cmake" @ONLY)
+# 构建和安装
+configure_file(FooBarConfigVersion.cmake.in
+  "${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake" @ONLY)
+ 
+# 安装FooBarConfig.cmake和FooBarConfigVersion.cmake
+install(FILES
+  "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/FooBarConfig.cmake"
+  "${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake"
+  DESTINATION "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+ 
+# 安装导出集合到安装树
+install(EXPORT FooBarTargets DESTINATION
+  "${INSTALL_CMAKE_DIR}" COMPONENT dev)
+```
+
+## 关于pkg-config
+`pkg-config`是一个内建的工具，基于`.pc`文件，记录库文件和头文件的位置。一般在类Unix系统上存在。CMake包括一些定义好的函数来使用`pkg-config`。这些函数在CMake的模块目录下的`FindPkgConfig.cmake`文件中，可以帮助处理`pkg-config`支持的库。
+
+## 编写find modules
+首先，要注意名称和前缀。要保证名称完全匹配。模块的基本操作需要遵循以下顺序：
+
+- 使用`find_package`来检测一个库依赖的其他库
+  - 参数`QUIETLY`和`REQUIRED`需要前置
+- 可选的使用pkg-config来检测路径
+- 使用`find_path`和`find_library`来分别查找头文件和库文件
+  - 使用`pkg-config`得到的路径只用来提示在哪里去找
+  - CMake也有很多其他硬编码的位置
+  - 结果应保存到变量`<name>_INCLUDE_DIR`和`<name>_LIBRARY`中(注意是单数，而不是复数，后面没有加S)
+- 设置`<name>_INCLUDE_DIRS`为`<name>_INCLUDE_DIR <dependency1>_LIBRARIES ...`
+- 设置`<name>_LIBRARIES`为`<name>_LIBRARY <dependency1>_LIBRARIES ...`
+  - 依赖使用复数形式，包自身使用`find_path`和`find_library`给出的单数形式
+- 调用`find_package_handle_standard_ars()`宏来设置`<name>_FOUND`变量并输出一个成功或失败的消息
+
+```CMake
+# - 寻找LibXml2
+# 定义的变量
+#  LIBXML2_FOUND - System has LibXml2
+#  LIBXML2_INCLUDE_DIRS - The LibXml2 include directories
+#  LIBXML2_LIBRARIES - The libraries needed to use LibXml2
+#  LIBXML2_DEFINITIONS - Compiler switches required for using LibXml2
+
+find_package(PkgConfig)
+pkg_check_modules(PC_LIBXML QUIET libxml-2.0)
+set(LIBXML2_DEFINITIONS ${PC_LIBXML_CFLAGS_OTHER})
+
+find_path(LIBXML2_INCLUDE_DIR libxml/xpath.h
+          HINTS ${PC_LIBXML_INCLUDEDIR} ${PC_LIBXML_INCLUDE_DIRS}
+          PATH_SUFFIXES libxml2 )
+
+find_library(LIBXML2_LIBRARY NAMES xml2 libxml2
+             HINTS ${PC_LIBXML_LIBDIR} ${PC_LIBXML_LIBRARY_DIRS} )
+
+include(FindPackageHandleStandardArgs)
+# handle the QUIETLY and REQUIRED arguments and set LIBXML2_FOUND to TRUE
+find_package_handle_standard_args(LibXml2  DEFAULT_MSG
+                                  LIBXML2_LIBRARY LIBXML2_INCLUDE_DIR)
+
+mark_as_advanced(LIBXML2_INCLUDE_DIR LIBXML2_LIBRARY )
+
+set(LIBXML2_LIBRARIES ${LIBXML2_LIBRARY} )
+set(LIBXML2_INCLUDE_DIRS ${LIBXML2_INCLUDE_DIR} )
+```
+
+
+
+
+
 [TOC]

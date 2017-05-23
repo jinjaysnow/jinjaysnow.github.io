@@ -75,7 +75,7 @@
 .codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
 .codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
 .codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
-.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script>
 MathJax.Hub.Config({
   config: ["MMLorHTML.js"],
@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.teal-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.pink-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -219,6 +219,20 @@ MathJax.Hub.Config({
 <li><a href="#_24">系统描述变量</a></li>
 <li><a href="#_25">控制构建的变量</a></li>
 <li><a href="#_26">语言变量</a></li>
+</ul>
+</li>
+<li><a href="#_27">如何找到库文件</a><ul>
+<li><a href="#_28">使用外部库</a></li>
+<li><a href="#cmake-modules">使用CMake Modules中当前没有的外部库</a><ul>
+<li><a href="#_29">带有组件的包</a></li>
+</ul>
+</li>
+<li><a href="#package">package如何工作的</a><ul>
+<li><a href="#projectconfigcmake">如何编写一个ProjectConfig.cmake文件</a></li>
+</ul>
+</li>
+<li><a href="#pkg-config">关于pkg-config</a></li>
+<li><a href="#find-modules">编写find modules</a></li>
 </ul>
 </li>
 </ul>
@@ -1789,7 +1803,203 @@ MathJax.Hub.Config({
 </tr>
 </tbody>
 </table>
-  <p style="text-align: right; color: gray;"><br>2017-04-09 10:18:31</p>
+<h1 id="_27"><a name="user-content-_27" href="#_27" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何找到库文件</h1>
+<p>cmake使用<code>find_package</code>命令来查找库文件。下面简单介绍如何在CMake项目中使用外部库文件，并编写自己的查找模块。</p>
+<h2 id="_28"><a name="user-content-_28" href="#_28" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用外部库</h2>
+<p>CMake自带多个模块<code>moudles</code>来辅助查找相对知名的库和包。可以在命令行中输入<code>cmake --help-module-list</code>来获得当前CMake支持的模块。或者找出模块路径并在其中查找，在Ubuntu Linux系统上，模块路径是<code>/usr/share/cmake/Modules/</code>.</p>
+<p>现在考虑寻找<code>bzip2</code>库。存在一个<code>FindBZip2.cmake</code>的模块，使用<code>find_package(BZip2)</code>来调用模块时，CMake会自动填入多个变量，可在后续脚本中使用。变量名的列表，可以使用<code>cmake --help-module FindBZip2</code>来获取。</p>
+<p>举例来说，考虑一个很简单的使用bzip2的程序，即编译器需要知道<code>bzlib.h</code>的位置，链接器需要找到<code>bzip2</code>库文件。</p>
+<div class="codehilite"><pre><span></span><span class="c"># 指定CMake的版本要求</span>
+<span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8</span><span class="p">)</span>
+<span class="c"># 项目名</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">helloworld</span><span class="p">)</span>
+<span class="c"># 可执行文件配置</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">helloworld</span> <span class="s">hello.c</span><span class="p">)</span>
+<span class="c"># 查找BZip2库</span>
+<span class="nb">find_package</span> <span class="p">(</span><span class="s">BZip2</span><span class="p">)</span>
+<span class="nb">if</span> <span class="p">(</span><span class="s">BZIP2_FOUND</span><span class="p">)</span>
+  <span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">BZIP_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+  <span class="nb">target_link_libraries</span> <span class="p">(</span><span class="s">helloworld</span> <span class="o">${</span><span class="nv">BZIP2_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">endif</span> <span class="p">(</span><span class="s">BZIP2_FOUND</span><span class="p">)</span>
+</pre></div>
+
+
+<p>可以使用<code>cmake</code>和<code>make VERBOSE=1</code>来验证编译器和链接器是否收到了正确的标志。</p>
+<h2 id="cmake-modules"><a name="user-content-cmake-modules" href="#cmake-modules" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用CMake Modules中当前没有的外部库</h2>
+<p>假定要使用<code>LibXML++</code>库，CMake并没有改库的模块，但是可以在网络上寻找到一个<code>FidLibXML++.cmake</code>文件，那么可以在<code>CMakeLists.txt</code>中编写如下代码：</p>
+<div class="codehilite"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">LibXML++</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">LibXML++_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">LIBS</span> <span class="o">${</span><span class="nv">LIBS</span><span class="o">}</span> <span class="o">${</span><span class="nv">LibXML++_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+
+
+<p>然后需要将<code>FindLibXML++.cmake</code>文件放到CMake模块路径下。由于CMake并不自带该文件，所以需要手动添加到工程中。在项目根目录下创建<code>cmake/Modules</code>文件夹，并在主目录<code>CMakeLists.txt</code>文件中，添加如下代码：</p>
+<div class="codehilite"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_MODULE_PATH</span> <span class="o">${</span><span class="nv">CMAKE_MODULE_PATH</span><span class="o">}</span> <span class="s2">&quot;${CMAKE_SOURCE_DIR}/cmake/Modules/&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>最后，将CMake模块文件放入到文件夹中即可。</p>
+<p>通常上述步骤可以解决大多数问题，但是一些库需要额外的配置，需要留心查看<code>FindSometing.cmake</code>文件来继续配置。</p>
+<h3 id="_29"><a name="user-content-_29" href="#_29" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>带有组件的包</h3>
+<p>有些库依赖于一个或多个独立的库或组件。一个有代表性的例子就是Qt库，它可以包括QtOpenGL和QtXml等组件。要使用这些组件，需要使用下面的命令：</p>
+<div class="codehilite"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">Qt</span> <span class="s">COMPONENTS</span> <span class="s">QtOpenGL</span> <span class="s">QtXml</span> <span class="s">REQUIRED</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="package"><a name="user-content-package" href="#package" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>package如何工作的</h2>
+<p><code>find_package()</code>命令会在module路径下查找<code>Find&lt;name&gt;.cmake</code>。首先CMake检查所有在<code>${CMAKE_MODULE_PATH}</code>变量中的目录，然后在自己的模块路径下查找<code>&lt;CMAKE_ROOT&gt;/share/cmake-x.y/Modules</code>。</p>
+<p>如果没有找到这样的文件，那么cmake会继续寻找<code>&lt;Name&gt;Config.cmake</code>或<code>&lt;lower-case-name&gt;-config.cmake</code>。这些文件中会硬编码安装库文件的相应变量值。</p>
+<p>前者称为模块模式，后面称为配置模式。对于模块模式，无论包有没有被找到，以下变量都会定义：</p>
+<ul>
+<li><code>&lt;NAME&gt;_FOUND</code></li>
+<li><code>&lt;NAME&gt;_INCLUDE_DIRS</code>或<code>&lt;NAME&gt;_INCLUDES</code></li>
+<li><code>&lt;NAME&gt;_LIBRARIES</code>或<code>&lt;NAME&gt;_LIBRARIES</code>或<code>&lt;NAME&gt;_LIBS</code></li>
+<li><code>&lt;NAME&gt;_DEFINITIONS</code></li>
+</ul>
+<p>所有这些都在<code>Find&lt;name&gt;.cmake</code>文件中定义。</p>
+<p>对于配置模式，需要手动编写配置文件。</p>
+<h3 id="projectconfigcmake"><a name="user-content-projectconfigcmake" href="#projectconfigcmake" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何编写一个ProjectConfig.cmake文件</h3>
+<p>假定一个项目有如下结构:</p>
+<div class="codehilite"><pre><span></span>FooBar/
+|-- CMakeLists.txt
+|-- FooBarConfig.cmake.in
+|-- FooBarConfigVersion.cmake.in
+|-- foo/
+|   |-- CMakeLists.txt
+|   |-- config.h.in
+|   |-- foo.h
+|   `-- foo.c
+`-- bar/
+    |-- CMakeLists.txt
+    `-- bar.c
+</pre></div>
+
+
+<p><code>FooBar/CMakeLists.txt</code>文件的简单示例如下：</p>
+<div class="codehilite"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">2.8</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">FooBar</span> <span class="s">C</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">FOOBAR_MAJOR_VERSION</span> <span class="s">0</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">FOOBAR_MINOR_VERSION</span> <span class="s">1</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">FOOBAR_PATCH_VERSION</span> <span class="s">0</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">FOOBAR_VERSION</span> <span class="o">${</span><span class="nv">FOOBAR_MAJOR_VERSION</span><span class="o">}</span><span class="s">.</span><span class="o">${</span><span class="nv">FOOBAR_MINOR_VERSION</span><span class="o">}</span><span class="s">.</span><span class="o">${</span><span class="nv">FOOBAR_PATCH_VERSION</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># 提供选项供用户重载安装目录</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INSTALL_LIB_DIR</span> <span class="s">lib</span> <span class="s">CACHE</span> <span class="s">PATH</span> <span class="s2">&quot;Installation directory for libraries&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INSTALL_BIN_DIR</span> <span class="s">bin</span> <span class="s">CACHE</span> <span class="s">PATH</span> <span class="s2">&quot;Installation directory for executables&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INSTALL_INCLUDE_DIR</span> <span class="s">include</span> <span class="s">CACHE</span> <span class="s">PATH</span>
+  <span class="s2">&quot;Installation directory for header files&quot;</span><span class="p">)</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">WIN32</span> <span class="s">AND</span> <span class="s">NOT</span> <span class="s">CYGWIN</span><span class="p">)</span>
+  <span class="nb">set</span><span class="p">(</span><span class="s">DEF_INSTALL_CMAKE_DIR</span> <span class="s">CMake</span><span class="p">)</span>
+<span class="nb">else</span><span class="p">()</span>
+  <span class="nb">set</span><span class="p">(</span><span class="s">DEF_INSTALL_CMAKE_DIR</span> <span class="s">lib/CMake/FooBar</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INSTALL_CMAKE_DIR</span> <span class="o">${</span><span class="nv">DEF_INSTALL_CMAKE_DIR</span><span class="o">}</span> <span class="s">CACHE</span> <span class="s">PATH</span>
+  <span class="s2">&quot;Installation directory for CMake files&quot;</span><span class="p">)</span>
+
+<span class="c"># 使相对路径转变为绝对路径</span>
+<span class="nb">foreach</span><span class="p">(</span><span class="s">p</span> <span class="s">LIB</span> <span class="s">BIN</span> <span class="s">INCLUDE</span> <span class="s">CMAKE</span><span class="p">)</span>
+  <span class="nb">set</span><span class="p">(</span><span class="s">var</span> <span class="s">INSTALL_</span><span class="o">${</span><span class="nv">p</span><span class="o">}</span><span class="s">_DIR</span><span class="p">)</span>
+  <span class="nb">if</span><span class="p">(</span><span class="s">NOT</span> <span class="s">IS_ABSOLUTE</span> <span class="s2">&quot;${${var}}&quot;</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="o">${</span><span class="nv">var</span><span class="o">}</span> <span class="s2">&quot;${CMAKE_INSTALL_PREFIX}/${${var}}&quot;</span><span class="p">)</span>
+  <span class="nb">endif</span><span class="p">()</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+
+<span class="c"># 设添加nclude-directoreis</span>
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="s2">&quot;${PROJECT_SOURCE_DIR}&quot;</span>   <span class="c"># 找到foo/foo.h</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}&quot;</span><span class="p">)</span>  <span class="c"># 找到foo/config.h</span>
+
+<span class="c"># 添加子目录</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">foo</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">bar</span><span class="p">)</span>
+
+<span class="c"># ===============================</span>
+
+<span class="c"># 添加所有的目标到构建树的导出集合</span>
+<span class="nb">export</span><span class="p">(</span><span class="s">TARGETS</span> <span class="s">foo</span> <span class="s">bar</span>
+  <span class="s">FILE</span> <span class="s2">&quot;${PROJECT_BINARY_DIR}/FooBarTargets.cmake&quot;</span><span class="p">)</span>
+
+<span class="c"># 导出包</span>
+<span class="nb">export</span><span class="p">(</span><span class="s">PACKAGE</span> <span class="s">FooBar</span><span class="p">)</span>
+
+<span class="c"># 创建FooBarConfig.cmake和FooBarConfigVersion文件</span>
+<span class="nb">file</span><span class="p">(</span><span class="s">RELATIVE_PATH</span> <span class="s">REL_INCLUDE_DIR</span> <span class="s2">&quot;${INSTALL_CMAKE_DIR}&quot;</span>
+   <span class="s2">&quot;${INSTALL_INCLUDE_DIR}&quot;</span><span class="p">)</span>
+
+<span class="c"># 构建</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CONF_INCLUDE_DIRS</span> <span class="s2">&quot;${PROJECT_SOURCE_DIR}&quot;</span> <span class="s2">&quot;${PROJECT_BINARY_DIR}&quot;</span><span class="p">)</span>
+<span class="nb">configure_file</span><span class="p">(</span><span class="s">FooBarConfig.cmake.in</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}/FooBarConfig.cmake&quot;</span> <span class="s">@ONLY</span><span class="p">)</span>
+
+<span class="c"># 安装</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CONF_INCLUDE_DIRS</span> <span class="s2">&quot;\${FOOBAR_CMAKE_DIR}/${REL_INCLUDE_DIR}&quot;</span><span class="p">)</span>
+<span class="nb">configure_file</span><span class="p">(</span><span class="s">FooBarConfig.cmake.in</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/FooBarConfig.cmake&quot;</span> <span class="s">@ONLY</span><span class="p">)</span>
+<span class="c"># 构建和安装</span>
+<span class="nb">configure_file</span><span class="p">(</span><span class="s">FooBarConfigVersion.cmake.in</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake&quot;</span> <span class="s">@ONLY</span><span class="p">)</span>
+
+<span class="c"># 安装FooBarConfig.cmake和FooBarConfigVersion.cmake</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">FILES</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/FooBarConfig.cmake&quot;</span>
+  <span class="s2">&quot;${PROJECT_BINARY_DIR}/FooBarConfigVersion.cmake&quot;</span>
+  <span class="s">DESTINATION</span> <span class="s2">&quot;${INSTALL_CMAKE_DIR}&quot;</span> <span class="s">COMPONENT</span> <span class="s">dev</span><span class="p">)</span>
+
+<span class="c"># 安装导出集合到安装树</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">EXPORT</span> <span class="s">FooBarTargets</span> <span class="s">DESTINATION</span>
+  <span class="s2">&quot;${INSTALL_CMAKE_DIR}&quot;</span> <span class="s">COMPONENT</span> <span class="s">dev</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="pkg-config"><a name="user-content-pkg-config" href="#pkg-config" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>关于pkg-config</h2>
+<p><code>pkg-config</code>是一个内建的工具，基于<code>.pc</code>文件，记录库文件和头文件的位置。一般在类Unix系统上存在。CMake包括一些定义好的函数来使用<code>pkg-config</code>。这些函数在CMake的模块目录下的<code>FindPkgConfig.cmake</code>文件中，可以帮助处理<code>pkg-config</code>支持的库。</p>
+<h2 id="find-modules"><a name="user-content-find-modules" href="#find-modules" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>编写find modules</h2>
+<p>首先，要注意名称和前缀。要保证名称完全匹配。模块的基本操作需要遵循以下顺序：</p>
+<ul>
+<li>使用<code>find_package</code>来检测一个库依赖的其他库</li>
+<li>参数<code>QUIETLY</code>和<code>REQUIRED</code>需要前置</li>
+<li>可选的使用pkg-config来检测路径</li>
+<li>使用<code>find_path</code>和<code>find_library</code>来分别查找头文件和库文件</li>
+<li>使用<code>pkg-config</code>得到的路径只用来提示在哪里去找</li>
+<li>CMake也有很多其他硬编码的位置</li>
+<li>结果应保存到变量<code>&lt;name&gt;_INCLUDE_DIR</code>和<code>&lt;name&gt;_LIBRARY</code>中(注意是单数，而不是复数，后面没有加S)</li>
+<li>设置<code>&lt;name&gt;_INCLUDE_DIRS</code>为<code>&lt;name&gt;_INCLUDE_DIR &lt;dependency1&gt;_LIBRARIES ...</code></li>
+<li>设置<code>&lt;name&gt;_LIBRARIES</code>为<code>&lt;name&gt;_LIBRARY &lt;dependency1&gt;_LIBRARIES ...</code></li>
+<li>依赖使用复数形式，包自身使用<code>find_path</code>和<code>find_library</code>给出的单数形式</li>
+<li>调用<code>find_package_handle_standard_ars()</code>宏来设置<code>&lt;name&gt;_FOUND</code>变量并输出一个成功或失败的消息</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c"># - 寻找LibXml2</span>
+<span class="c"># 定义的变量</span>
+<span class="c">#  LIBXML2_FOUND - System has LibXml2</span>
+<span class="c">#  LIBXML2_INCLUDE_DIRS - The LibXml2 include directories</span>
+<span class="c">#  LIBXML2_LIBRARIES - The libraries needed to use LibXml2</span>
+<span class="c">#  LIBXML2_DEFINITIONS - Compiler switches required for using LibXml2</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">PkgConfig</span><span class="p">)</span>
+<span class="nb">pkg_check_modules</span><span class="p">(</span><span class="s">PC_LIBXML</span> <span class="s">QUIET</span> <span class="s">libxml-2.0</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">LIBXML2_DEFINITIONS</span> <span class="o">${</span><span class="nv">PC_LIBXML_CFLAGS_OTHER</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">find_path</span><span class="p">(</span><span class="s">LIBXML2_INCLUDE_DIR</span> <span class="s">libxml/xpath.h</span>
+          <span class="s">HINTS</span> <span class="o">${</span><span class="nv">PC_LIBXML_INCLUDEDIR</span><span class="o">}</span> <span class="o">${</span><span class="nv">PC_LIBXML_INCLUDE_DIRS</span><span class="o">}</span>
+          <span class="s">PATH_SUFFIXES</span> <span class="s">libxml2</span> <span class="p">)</span>
+
+<span class="nb">find_library</span><span class="p">(</span><span class="s">LIBXML2_LIBRARY</span> <span class="s">NAMES</span> <span class="s">xml2</span> <span class="s">libxml2</span>
+             <span class="s">HINTS</span> <span class="o">${</span><span class="nv">PC_LIBXML_LIBDIR</span><span class="o">}</span> <span class="o">${</span><span class="nv">PC_LIBXML_LIBRARY_DIRS</span><span class="o">}</span> <span class="p">)</span>
+
+<span class="nb">include</span><span class="p">(</span><span class="s">FindPackageHandleStandardArgs</span><span class="p">)</span>
+<span class="c"># handle the QUIETLY and REQUIRED arguments and set LIBXML2_FOUND to TRUE</span>
+<span class="nb">find_package_handle_standard_args</span><span class="p">(</span><span class="s">LibXml2</span>  <span class="s">DEFAULT_MSG</span>
+                                  <span class="s">LIBXML2_LIBRARY</span> <span class="s">LIBXML2_INCLUDE_DIR</span><span class="p">)</span>
+
+<span class="nb">mark_as_advanced</span><span class="p">(</span><span class="s">LIBXML2_INCLUDE_DIR</span> <span class="s">LIBXML2_LIBRARY</span> <span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">LIBXML2_LIBRARIES</span> <span class="o">${</span><span class="nv">LIBXML2_LIBRARY</span><span class="o">}</span> <span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">LIBXML2_INCLUDE_DIRS</span> <span class="o">${</span><span class="nv">LIBXML2_INCLUDE_DIR</span><span class="o">}</span> <span class="p">)</span>
+</pre></div>
+
+
+  <p style="text-align: right; color: gray;"><br>2017-04-20 20:47:38</p>
         </div>
       </div>
       <footer>
