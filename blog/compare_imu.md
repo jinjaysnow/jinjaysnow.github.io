@@ -193,14 +193,10 @@ $$AD(t)=\sqrt{AVAR(t)}$$
 
 > 加速计Allan Variance
 
-图中虚线表示实际数据产生的曲线，实线表示基于实际数据拟使用最小二乘拟合
+图中虚线表示实际数据产生的曲线，实线表示基于实际数据拟使用最小二乘拟合各项系数。
 
 ![iPhone Acc Allan Variance](../../images/iphone_acc_allan.png)
 ![iPad Acc Allan Variance](../../images/ipad_acc_allan.png)
-
-('white', 0.0090073450077528504),
-             ('flicker', 0.00031339118089950978),
-             ('walk', 7.0754864851964759e-07),
 
 iPhone 6参数 | Bias Instability | 加速度随机游走
 ----|----|----
