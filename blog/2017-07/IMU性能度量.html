@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.deep_purple-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -545,11 +545,90 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 <h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结果</h2>
 <p>iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。但加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方向，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备收到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。</p>
 <h2 id="todo"><a name="user-content-todo" href="#todo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>TODO</h2>
-<ol>
-<li>采集数十小时的设备静止数据进行分析。</li>
-<li>基于加速计和陀螺仪数据实现简单的惯性导航系统。</li>
-</ol>
-  <p style="text-align: right; color: gray;"><br>2017-07-13 14:39:59</p>
+<p><strong>1.采集数十小时的设备静止数据进行分析。</strong></p>
+<p>采集8.5小时数据绘制的Allan Variance图。</p>
+<p><img alt="iPhone acc 8.5h" src="../../images/iphone_allan_acc.png" /><br />
+<center>iPhone6静止8.5小时的加速计Allan方差分析</center></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>quantization</th>
+<th>white</th>
+<th>x_params</th>
+<th>flicker</th>
+<th>walk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x轴</td>
+<td>2.036605913865e-03</td>
+<td>8.787034448905e-03</td>
+<td>3.842003262693e-04</td>
+<td>1.434705682799e-06</td>
+<td>2.920101145273e-09</td>
+</tr>
+<tr>
+<td>y轴</td>
+<td>0.000000000000e+00</td>
+<td>9.467511485760e-03</td>
+<td>6.351823845897e-04</td>
+<td>1.172745998124e-05</td>
+<td>2.082541807133e-08</td>
+</tr>
+<tr>
+<td>z轴</td>
+<td>0.000000000000e+00</td>
+<td>1.085228494629e-02</td>
+<td>7.092289945368e-04</td>
+<td>4.422579509429e-06</td>
+<td>8.614174995923e-09</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="iPhone gyr 8.5h" src="../../images/iphone_allan_gyr.png" /><br />
+<center>iPhone6静止8.5小时的陀螺仪Allan方差分析</center></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>quantization</th>
+<th>white</th>
+<th>x_params</th>
+<th>flicker</th>
+<th>walk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>roll轴</td>
+<td>2.591604522717e-04</td>
+<td>7.280523999135e-04</td>
+<td>4.384859460983e-05</td>
+<td>5.046802826819e-07</td>
+<td>5.263176166678e-10</td>
+</tr>
+<tr>
+<td>pitch轴</td>
+<td>0.000000000000e+00</td>
+<td>1.111262674864e-03</td>
+<td>4.131491400990e-05</td>
+<td>1.971495693847e-07</td>
+<td>4.176582313217e-10</td>
+</tr>
+<tr>
+<td>yaw轴</td>
+<td>0.000000000000e+00</td>
+<td>6.824313983321e-04</td>
+<td>3.052670874270e-05</td>
+<td>1.772773607659e-07</td>
+<td>0.000000000000e+00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2.基于加速计和陀螺仪数据实现简单的惯性导航系统。</strong></p>
+  <p style="text-align: right; color: gray;"><br>2017-07-13 20:01:32</p>
         </div>
       </div>
       <footer>
