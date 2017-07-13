@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2017-07">
+<meta name="keywords" content="IMU,Allan Variance,Error,Calibration">
+<meta name="description" content="标定移动设备上的惯性传感器，介绍误差来源及对iPhone 6和iPad Pro上IMU的对比分析。">
+<meta name="author" content="Jin Jay"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>IMU性能度量</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#iphone6ipad-pro">iPhone6、iPad Pro惯性传感器性能对比</a><ul>
+<li><a href="#_1">参数</a></li>
+<li><a href="#_2">标定</a><ul>
+<li><a href="#_3">误差来源</a></li>
+<li><a href="#_4">结果</a></li>
+</ul>
+</li>
+<li><a href="#_5">对比分析</a><ul>
+<li><a href="#_6">静止状态下的传感器性能对比</a></li>
+<li><a href="#allan-variance">Allan Variance分析</a></li>
+</ul>
+</li>
+<li><a href="#_7">结果</a></li>
+<li><a href="#todo">TODO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="iphone6ipad-pro"><a name="user-content-iphone6ipad-pro" href="#iphone6ipad-pro" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>iPhone6、iPad Pro惯性传感器性能对比</h1>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>参数</h2>
+<table>
+<thead>
+<tr>
+<th>机型</th>
+<th>iPhone6</th>
+<th>iPad Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上市时间</td>
+<td>2014.9</td>
+<td>2015.9</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>iOS 11.0 beta2</td>
+<td>iOS 11.0 beta2</td>
+</tr>
+<tr>
+<td>CPU型号</td>
+<td>A8</td>
+<td>A9X</td>
+</tr>
+<tr>
+<td>IMU型号</td>
+<td>InvenSense MP67B</td>
+<td>InvenSense MP67B</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>标定</h2>
+<h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>误差来源</h3>
+<p>参考文档: <a href="http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-696.pdf">An introduction to inertial navigation</a></p>
+<blockquote>
+<p>加速计</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>误差类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bias,零偏</td>
+<td>输出信号与真值间的偏移量，单位$m/s^2$</td>
+</tr>
+<tr>
+<td>Noise,白噪声</td>
+<td>环境中的噪声影响，一般是零均值的随机误差，单位 $m/s/\sqrt{h}$</td>
+</tr>
+<tr>
+<td>Temperature Effects,温度影响</td>
+<td>由于温度变化对系统性能产生的影响，高度非线性，一般由厂商在硬件内部进行修正</td>
+</tr>
+<tr>
+<td>Calibration, 标定误差</td>
+<td>尺度因子误差，坐标轴非正交，未对齐和加速计输出的非线性误差</td>
+</tr>
+<tr>
+<td>Bias Instability,零偏扰动</td>
+<td>加速计零偏的随机游走</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>陀螺仪</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>误差类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bias,零偏</td>
+<td>输出信号与真值间的偏移量，单位$°/h$</td>
+</tr>
+<tr>
+<td>Noise,白噪声</td>
+<td>环境中的噪声影响，一般认为是零均值的随机误差，单位$°/ \sqrt{h}$</td>
+</tr>
+<tr>
+<td>Temperature Effects,温度影响</td>
+<td>由于温度变化对系统性能产生的影响，高度非线性，一般由厂商在硬件内部进行修正</td>
+</tr>
+<tr>
+<td>Calibration, 标定误差</td>
+<td>尺度因子误差，坐标轴非正交，未对齐和加速计输出的非线性误差</td>
+</tr>
+<tr>
+<td>Bias Instability,零偏扰动</td>
+<td>陀螺仪零偏的随机游走，常用单位为$°/h$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结果</h3>
+<p>标定算法：<a href="https://bitbucket.org/alberto_pretto/imu_tk">IMU_TK</a></p>
+<blockquote>
+<p>加速计</p>
+</blockquote>
+<p>标定依据：在静止状态下，加速计的三轴测量值确定的加速度应等于本地的重力加速度。</p>
+<p>$$<br />
+a^o = T^aK^a(a^s + b^a + v^a)<br />
+$$<br />
+测量值 = 坐标轴旋转 * 尺度因子 (真实值 + 零偏 + 白噪声)</p>
+<div class="codehilite"><pre><span></span>             <span class="n">iPhone6</span>                   <span class="o">|</span>               <span class="n">iPad</span> <span class="n">Pro</span>
+<span class="c1"># 坐标轴误差校准                               </span>
+           <span class="mi">1</span>  <span class="o">-</span><span class="mf">0.00221245</span>  <span class="mf">0.000912477</span> <span class="o">|</span>          <span class="mi">1</span> <span class="mf">0.000917927</span>   <span class="mf">0.0018841</span>
+           <span class="mi">0</span>            <span class="mi">1</span> <span class="o">-</span><span class="mf">0.000198147</span> <span class="o">|</span>          <span class="mi">0</span>           <span class="mi">1</span>  <span class="o">-</span><span class="mf">0.0011969</span>
+          <span class="o">-</span><span class="mi">0</span>            <span class="mi">0</span>            <span class="mi">1</span> <span class="o">|</span>         <span class="o">-</span><span class="mi">0</span>           <span class="mi">0</span>           <span class="mi">1</span>
+<span class="c1"># 尺度校准</span>
+    <span class="mf">0.998609</span>            <span class="mi">0</span>            <span class="mi">0</span> <span class="o">|</span>    <span class="mf">1.00324</span>           <span class="mi">0</span>           <span class="mi">0</span>
+           <span class="mi">0</span>     <span class="mf">0.999106</span>            <span class="mi">0</span> <span class="o">|</span>          <span class="mi">0</span>     <span class="mf">1.00145</span>           <span class="mi">0</span>
+           <span class="mi">0</span>            <span class="mi">0</span>     <span class="mf">0.996096</span> <span class="o">|</span>          <span class="mi">0</span>           <span class="mi">0</span>    <span class="mf">0.998371</span>
+<span class="c1"># 零偏校准</span>
+                            <span class="mf">0.00658852</span> <span class="o">|</span>     <span class="mf">0.1052</span>
+                              <span class="mf">0.122912</span> <span class="o">|</span>  <span class="mf">0.0268708</span>
+                           <span class="o">-</span><span class="mf">0.00764916</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0361952</span>
+</pre></div>
+
+
+<blockquote>
+<p>陀螺仪</p>
+</blockquote>
+<p>标定依据：IMU从一个静止状态切换到另一个静止状态下加速计所测量得到的重力向量变化值等于使用陀螺仪方向积分算法计算得到的方向变化。</p>
+<p>$$g^o = T^gK^g(g^s + b^g + v^g)$$<br />
+测量值 = 坐标轴旋转 * 尺度因子 (真实值 + 零偏 + 白噪声)</p>
+<div class="codehilite"><pre><span></span>                <span class="n">iPhone6</span>                <span class="o">|</span>             <span class="n">iPad</span> <span class="n">Pro</span>
+<span class="c1"># 坐标轴旋转量校准</span>
+           <span class="mi">1</span>  <span class="mf">0.000109637</span>  <span class="o">-</span><span class="mf">0.00138577</span> <span class="o">|</span>           <span class="mi">1</span>  <span class="mf">0.00276909</span> <span class="mf">0.000878412</span>
+<span class="o">-</span><span class="mf">0.000623062</span>            <span class="mi">1</span>   <span class="o">-</span><span class="mf">0.0039999</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.00261206</span>           <span class="mi">1</span>  <span class="mf">0.00113335</span>
+ <span class="mf">5.65993e-05</span>   <span class="mf">0.00400731</span>            <span class="mi">1</span> <span class="o">|</span>  <span class="mf">0.00107458</span>  <span class="mf">0.00368646</span>           <span class="mi">1</span>
+<span class="c1"># 尺度校准</span>
+     <span class="mf">1.00294</span>            <span class="mi">0</span>            <span class="mi">0</span> <span class="o">|</span>     <span class="mf">1.00173</span>           <span class="mi">0</span>           <span class="mi">0</span>
+           <span class="mi">0</span>      <span class="mf">1.00406</span>            <span class="mi">0</span> <span class="o">|</span>           <span class="mi">0</span>    <span class="mf">0.999191</span>           <span class="mi">0</span>
+           <span class="mi">0</span>            <span class="mi">0</span>      <span class="mf">1.00344</span> <span class="o">|</span>           <span class="mi">0</span>           <span class="mi">0</span>    <span class="mf">0.999748</span>
+<span class="c1"># 零偏校准</span>
+                            <span class="o">-</span><span class="mf">0.0184523</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.0254976</span>
+                             <span class="mf">0.0326501</span> <span class="o">|</span>  <span class="mf">0.00988707</span>
+                            <span class="o">-</span><span class="mf">0.0162517</span> <span class="o">|</span>  <span class="o">-</span><span class="mf">0.0127728</span>
+</pre></div>
+
+
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对比分析</h2>
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>静止状态下的传感器性能对比</h3>
+<p>分析方法：统计了设备静止两个小时的数据，先绘制数据变化曲线来大致分析性能；然后采用Allan Variance分析数据，来定量计算传感器的性能参数。需要提及的是，惯性传感器性能参数一般需要静止放置采集数十个小时的数据，此处采集两个小时数据主要是考虑到一般用户的使用时间平均值。</p>
+<blockquote>
+<p>静止720000秒(两小时)的数据对比</p>
+</blockquote>
+<p><img alt="iPhone 6加速计测量值" src="../../images/iphone_acc_7200.png" /><br />
+<img alt="iPad Pro加速计测量值" src="../../images/ipad_acc_7200.png" /></p>
+<p>上图:iPhone6静止7200秒的原始加速计数值随时间的变化曲线。<br />
+下图:iPad Pro静止7200秒的原始加速计数值随时间的变化曲线。<br />
+数据统计信息如下：</p>
+<div class="codehilite"><pre><span></span><span class="c1"># iPhone6 加速计统计信息</span>
+      <span class="n">x</span>        <span class="n">y</span>          <span class="n">z</span>
+<span class="n">mean</span> <span class="o">-</span><span class="mf">0.035517</span> <span class="mf">0.151579</span>  <span class="o">-</span><span class="mf">9.846777</span>
+<span class="n">std</span>  <span class="mf">0.008939</span>  <span class="mf">0.009675</span>  <span class="mf">0.009832</span>
+<span class="nb">min</span>  <span class="o">-</span><span class="mf">0.081281</span> <span class="mf">0.105231</span>  <span class="o">-</span><span class="mf">9.895323</span>
+<span class="mi">25</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.041464</span> <span class="mf">0.145048</span>  <span class="o">-</span><span class="mf">9.853410</span>
+<span class="mi">50</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.035476</span> <span class="mf">0.151335</span>  <span class="o">-</span><span class="mf">9.846823</span>
+<span class="mi">75</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.029489</span> <span class="mf">0.157772</span>  <span class="o">-</span><span class="mf">9.840087</span>
+<span class="nb">max</span>  <span class="mf">0.007484</span>  <span class="mf">0.206870</span>  <span class="o">-</span><span class="mf">9.797127</span>
+
+<span class="c1"># iPad 测量值统计信息</span>
+      <span class="n">x</span>       <span class="n">y</span>         <span class="n">z</span>
+<span class="n">mean</span> <span class="mf">0.148356</span>   <span class="o">-</span><span class="mf">0.027715</span>   <span class="o">-</span><span class="mf">9.844957</span>
+<span class="n">std</span>  <span class="mf">0.009364</span>   <span class="mf">0.005995</span>    <span class="mf">0.011061</span>
+<span class="nb">min</span>  <span class="mf">0.102986</span>   <span class="o">-</span><span class="mf">0.051942</span>   <span class="o">-</span><span class="mf">9.898466</span>
+<span class="mi">25</span><span class="o">%</span>  <span class="mf">0.142055</span>   <span class="o">-</span><span class="mf">0.031884</span>   <span class="o">-</span><span class="mf">9.852362</span>
+<span class="mi">50</span><span class="o">%</span>  <span class="mf">0.148342</span>   <span class="o">-</span><span class="mf">0.027992</span>   <span class="o">-</span><span class="mf">9.844877</span>
+<span class="mi">75</span><span class="o">%</span>  <span class="mf">0.154628</span>   <span class="o">-</span><span class="mf">0.023801</span>   <span class="o">-</span><span class="mf">9.837543</span>
+<span class="nb">max</span>  <span class="mf">0.200284</span>   <span class="mf">0.005688</span>    <span class="o">-</span><span class="mf">9.787696</span>
+</pre></div>
+
+
+<p>对比图像及统计信息，可以发现在静止状态下，iPhone6与iPad Pro的各个轴的测量值受环境噪声影响变化的范围为$\pm 0.05m/s^2$，二者的稳定性能都较好，下图展示使用小波滤波去除高频噪声后的数值图。从滤波后的图中，可以看出对于iPhone6，在720000末尾时刻附近，加速计度数受到了外部较大的扰动，会对我们在进行Allan Variance分析时造成影响；对于iPad Pro设备，在470000时刻附近，设备收到了小幅扰动，也会对我们进行Allan Variance分析造成影响。</p>
+<p><img alt="iPhone 6加速计滤波" src="../../images/iphone_acc_wavelet.png" /><br />
+<img alt="iPad Pro加速计滤波" src="../../images/ipad_acc_wavelet.png" /><br />
+上图:iPhone 6加速计测量值滤波。下图:iPad Pro加速计测量值滤波。</p>
+<blockquote>
+<p>陀螺仪</p>
+</blockquote>
+<p><img alt="iPhone 6陀螺仪测量值" src="../../images/iphone_gyr_7200.png" /><br />
+<img alt="iPad Pro陀螺仪测量值" src="../../images/ipad_gyr_7200.png" /></p>
+<p>上图:iPhone 6静止2000秒的原始陀螺仪数值随时间的变化曲线。<br />
+下图:iPad Pro静止2000秒的原始陀螺仪数值随时间的变化曲线。<br />
+统计信息如下：</p>
+<div class="codehilite"><pre><span></span><span class="c1">#iPhone6</span>
+      <span class="n">roll</span>      <span class="n">pitch</span>     <span class="n">yaw</span>
+<span class="n">mean</span> <span class="o">-</span><span class="mf">0.021478</span> <span class="mf">0.032021</span>  <span class="o">-</span><span class="mf">0.016064</span>
+<span class="n">std</span>  <span class="mf">0.000730</span>  <span class="mf">0.000733</span>  <span class="mf">0.000625</span>
+<span class="nb">min</span>  <span class="o">-</span><span class="mf">0.024588</span> <span class="mf">0.028623</span>  <span class="o">-</span><span class="mf">0.019294</span>
+<span class="mi">25</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.022445</span> <span class="mf">0.031809</span>  <span class="o">-</span><span class="mf">0.016094</span>
+<span class="mi">50</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.021383</span> <span class="mf">0.031813</span>  <span class="o">-</span><span class="mf">0.016089</span>
+<span class="mi">75</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.021382</span> <span class="mf">0.032872</span>  <span class="o">-</span><span class="mf">0.016085</span>
+<span class="nb">max</span>  <span class="o">-</span><span class="mf">0.017120</span> <span class="mf">0.035008</span>  <span class="o">-</span><span class="mf">0.013947</span>
+
+<span class="c1">#iPad</span>
+         <span class="n">roll</span>        <span class="n">pitch</span>    <span class="n">yaw</span>
+<span class="n">mean</span> <span class="o">-</span><span class="mf">0.027756</span>  <span class="mf">0.008330</span>    <span class="o">-</span><span class="mf">0.013746</span>
+<span class="n">std</span>   <span class="mf">0.000732</span>  <span class="mf">0.000737</span>    <span class="mf">0.000564</span>
+<span class="nb">min</span>  <span class="o">-</span><span class="mf">0.030833</span>  <span class="mf">0.004116</span>    <span class="o">-</span><span class="mf">0.016073</span>
+<span class="mi">25</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.028682</span>  <span class="mf">0.008391</span>    <span class="o">-</span><span class="mf">0.013931</span>
+<span class="mi">50</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.027622</span>  <span class="mf">0.008397</span>    <span class="o">-</span><span class="mf">0.013928</span>
+<span class="mi">75</span><span class="o">%</span>  <span class="o">-</span><span class="mf">0.027616</span>  <span class="mf">0.008404</span>    <span class="o">-</span><span class="mf">0.013922</span>
+<span class="nb">max</span>  <span class="o">-</span><span class="mf">0.024425</span>  <span class="mf">0.011610</span>    <span class="o">-</span><span class="mf">0.011783</span>
+</pre></div>
+
+
+<p>类似加速计，采用小波滤波去除噪声后的陀螺仪测量值变化情况如下图。</p>
+<p><img alt="iPhone 6陀螺仪滤波" src="../../images/iphone_gyr_wavelet.png" /><br />
+<img alt="iPad Pro陀螺仪滤波" src="../../images/ipad_gyr_wavelet.png" /></p>
+<h3 id="allan-variance"><a name="user-content-allan-variance" href="#allan-variance" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Allan Variance分析</h3>
+<p>对于一个给定的平均时间t, Allan Variance的计算过程如下：</p>
+<ol>
+<li>将所有时刻的数据按照时间长度t划分。</li>
+<li>在每一份上计算平均值${a(t)_1, a(t)_2, \cdots , a(t)_n}$，其中n为份数。</li>
+<li>Allan <br />
+  $$AVAR(t) = \frac{1}{2(n-1)}\sum_{i}(a(t)_{i+1}-a(t)_i)^2$$</li>
+</ol>
+<p>确定噪声特性时，Allan Deviation由下式给定:<br />
+$$AD(t)=\sqrt{AVAR(t)}$$<br />
+使用log-log来绘制随平均时间t的变化。</p>
+<p>标准的Allan Variance图如下图所示：</p>
+<p><img alt="Allan Variance" src="../../images/allan_variance.png" /></p>
+<p>下面对iPhone6和iPad Pro设备进行Allan方差分析，需要提及的是，在上述分析中，测得iPhone6在720000时刻末尾受到了外部较大的扰动，会影响分析，故而选定[0:719000]时刻之间的数据进行分析。</p>
+<blockquote>
+<p>加速计Allan Variance</p>
+</blockquote>
+<p>图中虚线表示实际数据产生的曲线，实线表示基于实际数据拟使用最小二乘拟合</p>
+<p><img alt="iPhone Acc Allan Variance" src="../../images/iphone_acc_allan.png" /><br />
+<img alt="iPad Acc Allan Variance" src="../../images/ipad_acc_allan.png" /></p>
+<p>(&lsquo;white&rsquo;, 0.0090073450077528504),<br />
+             (&lsquo;flicker&rsquo;, 0.00031339118089950978),<br />
+             (&lsquo;walk&rsquo;, 7.0754864851964759e-07),</p>
+<table>
+<thead>
+<tr>
+<th>iPhone 6参数</th>
+<th>Bias Instability</th>
+<th>加速度随机游走</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x轴</td>
+<td>0.00031339118089950978 $m/s^2$</td>
+<td s="s">0.00900734500775285038 $m/s^2/\sqrt</td>
+</tr>
+<tr>
+<td>y轴</td>
+<td>0.00059266534623396135 $m/s^2$</td>
+<td s="s">0.00978029252483184584 $m/s^2/\sqrt</td>
+</tr>
+<tr>
+<td>z轴</td>
+<td>0.00028523714305156200 $m/s^2$</td>
+<td s="s">0.00999934941654948527 $m/s^2/\sqrt</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>iPad Pro参数</th>
+<th>Bias Instability</th>
+<th>加速度随机游走</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x轴</td>
+<td>0.00106918429453465962 $m/s^2$</td>
+<td s="s">0.00745781762060129024 $m/s^2/\sqrt</td>
+</tr>
+<tr>
+<td>y轴</td>
+<td>0.00014150320967146692 $m/s^2$</td>
+<td s="s">0.00596410135694045752 $m/s^2/\sqrt</td>
+</tr>
+<tr>
+<td>z轴</td>
+<td>0.00071630683170711572 $m/s^2$</td>
+<td s="s">0.01094867249117151102 $m/s^2/\sqrt</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>陀螺仪Allan Variance</p>
+</blockquote>
+<p><img alt="iPhone Gyr Allan Variance" src="../../images/iphone_gyr_allan.png" /><br />
+<img alt="iPad Gyr Allan Variance" src="../../images/ipad_gyr_allan.png" /></p>
+<table>
+<thead>
+<tr>
+<th>iPhone 6参数</th>
+<th>Bias Instability</th>
+<th>角度随机游走</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>roll轴</td>
+<td>0.00000958949814246141 $°/s$</td>
+<td>0.00074476637902596220 $°/\sqrt {s}$</td>
+</tr>
+<tr>
+<td>pitch轴</td>
+<td>0.00003329700350509466 $°/s$</td>
+<td>0.00077487980339896868 $°/\sqrt {s}$</td>
+</tr>
+<tr>
+<td>yaw轴</td>
+<td>0.00003092355420404677 $°/s$</td>
+<td>0.00065633846881467763 $°/\sqrt {s}$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>iPad Pro参数</th>
+<th>Bias Instability</th>
+<th>角度随机游走</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>roll轴</td>
+<td>0.00003481153129870388 $°/s$</td>
+<td>0.00078542607142304433 $°/\sqrt {s}$</td>
+</tr>
+<tr>
+<td>pitch轴</td>
+<td>0.00006181899789760461 $°/s$</td>
+<td>0.00075425826751018582 $°/\sqrt {s}$</td>
+</tr>
+<tr>
+<td>yaw轴</td>
+<td>0.00003160778722050383 $°/s$</td>
+<td>0.00059731859848418528 $°/\sqrt {s}$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结果</h2>
+<p>iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。但加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方向，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备收到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。</p>
+<h2 id="todo"><a name="user-content-todo" href="#todo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>TODO</h2>
+<ol>
+<li>采集数十小时的设备静止数据进行分析。</li>
+<li>基于加速计和陀螺仪数据实现简单的惯性导航系统。</li>
+</ol>
+  <p style="text-align: right; color: gray;"><br>2017-07-13 11:20:01</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
