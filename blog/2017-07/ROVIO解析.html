@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2017-07">
+<meta name="keywords" content="ROVIO,Visual Inertial Odometry,EKF,SLAM">
+<meta name="description" content="ETHZ ASL 基于EKF的鲁棒视觉惯性测量分析。">
+<meta name="author" content="Jin Jay"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>ROVIO解析</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#rovio">ROVIO解析</a><ul>
+<li><a href="#_1">滤波结构和状态参数</a></li>
+<li><a href="#_2">滤波器的状态传递过程</a></li>
+<li><a href="#_3">滤波器更新过程</a></li>
+<li><a href="#patch">多层次patch特征处理</a><ul>
+<li><a href="#structure-and-wraping">Structure and wraping</a></li>
+<li><a href="#alignment-equations-and-qr-decomposition">Alignment Equations and QR-decomposition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_4">未完待续&hellip;</a></li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="rovio"><a name="user-content-rovio" href="#rovio" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>ROVIO解析</h1>
+<p>基于EKF的鲁棒视觉惯性测量<a href="https://github.com/ethz-asl/rovio">Robust Visual Inertial Odometry, ROVIO</a></p>
+<p>作者：<a href="https://scholar.google.com/citations?user=fn6GhgoAAAAJ">Michael Bloesch</a></p>
+<p>作者博士论文集：<a href="http://e-collection.library.ethz.ch/eserv/eth:50763/eth-50763-02.pdf">Docteral thesis</a></p>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>滤波结构和状态参数</h2>
+<p>基于扩展卡尔曼滤波:<strong>惯性测量用于滤波器的状态传递过程；视觉信息在滤波器更新阶段使用。</strong></p>
+<p>定义三个坐标系：<br />
+惯性世界坐标帧：$ I $<br />
+IMU固定坐标帧：$ B $<br />
+相机固定坐标帧：$ V $</p>
+<p>对于N个视觉特征点，滤波器状态如下表：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>坐标系</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$r$</td>
+<td>在IMU固定坐标系$B$中</td>
+<td>IMU在IMU坐标系中的坐标</td>
+</tr>
+<tr>
+<td>$v$</td>
+<td>在IMU固定坐标系$B$中</td>
+<td>IMU在IMU坐标系中的速度</td>
+</tr>
+<tr>
+<td>$q$</td>
+<td>从IMU坐标系$B$映射到世界坐标系$I$</td>
+<td>IMU在师姐坐标系中的姿态</td>
+</tr>
+<tr>
+<td>$b_f$</td>
+<td>IMU坐标系$B$中</td>
+<td>加速计偏差</td>
+</tr>
+<tr>
+<td>$b_w$</td>
+<td>IMU坐标系$B$中</td>
+<td>陀螺仪偏差</td>
+</tr>
+<tr>
+<td>$c$</td>
+<td>IMU坐标系$B$中</td>
+<td>IMU-相机外参的平移部分</td>
+</tr>
+<tr>
+<td>$z$</td>
+<td>从IMU坐标$B$到相机坐标系$V$</td>
+<td>IMU-相机外参的旋转部分</td>
+</tr>
+<tr>
+<td>$u_i$</td>
+<td>相机坐标系$V$中</td>
+<td>特征点i在V中的bearing向量</td>
+</tr>
+<tr>
+<td>$\rho_i$</td>
+<td>无</td>
+<td>特征i的距离参数</td>
+</tr>
+</tbody>
+</table>
+<p>上述参数中$u_i$和$\rho_i$是将特征点参数化为相对于当前帧的bearing向量和距离参数。这两个参数来自于<a href="https://spiral.imperial.ac.uk/bitstream/10044/1/5743/1/inverse-depth-slam.pdf">Montiel</a>发表的逆深度参数化的工作。[TODO] </p>
+<p>参数$(q,z\in SO(3))$，单位向量$u_i \in S^2$。根据<a href="https://arxiv.org/abs/1107.1119">Hertzberg</a>的方法来执行计算差分和微分。[TODO]</p>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>滤波器的状态传递过程</h2>
+<p>记加速计测量值，$\tilde{f}$,和旋转测量值$\tilde{w}$。<br />
+修正零偏和噪声影响后的IMU加速度和角速度为：</p>
+<p>$$<br />
+\hat f = \tilde f - b_f - \omega _f \\<br />
+\hat \omega = \tilde \omega  - b_\omega - \omega_\omega <br />
+$$</p>
+<p>将IMU加速度和角速度转化给相机，乘以旋转外参，使用$ ^{\times} $表示向量的斜对称矩阵，有：</p>
+<p>$$<br />
+\begin{align*}<br />
+{\hat v} _V &amp; = z(v + {\hat \omega} ^ \times c) \\ <br />
+{\hat {\omega}} _V &amp; = z({\hat {\omega}}) <br />
+\end{align*}<br />
+$$</p>
+<p>构造EKF的连续微分方程如下：</p>
+<p>$$<br />
+\begin{align*}<br />
+\dot{r} &amp; = -\hat{\omega}^\times r + v + \omega _r; &amp; 位置的导数=速度=角速度\times 当前位置+当前速度+速度+位置白噪声 \\<br />
+\dot{v} &amp; = -\hat{\omega}^\times v + \hat{f} + q^{-1}(g); &amp; 速度的导数=加速度=角速度\times 当前速度+加速度测量值-重力加速度 \\<br />
+\dot{q} &amp; = -q(\hat{\omega}); &amp; 姿态=当前姿态\cdot 角速度 \cdot \delta t, 求导有： 姿态的导数= 当前姿态\cdot 角速度 \\<br />
+\dot{b}_f &amp; = \omega _{bf}; &amp; 加速计零偏的导数为0，需要加上白噪声的影响，故而加速计零偏导数=白噪声 \\ <br />
+\dot{b}_{\omega} &amp; = \omega _{bw}; &amp; 陀螺仪零偏的导数为0，需要加上白噪声的影响，故而陀螺仪零偏导数=白噪声 \\ <br />
+\dot{c} &amp; = \omega_c; &amp; IMU与相机的平移外参导数为0，加上白噪声的影响，故而平移外参导数=白噪声 \\<br />
+\dot{z} &amp; = \omega_z; &amp; IMU与相机的旋转外参导数为0，加上白噪声的影响，故而旋转外参导数=白噪声 \\<br />
+\hat{u}_i &amp; = N^T(u_i)\hat{\omega}_V - \begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}N^T(u_i)\frac{\hat{v}_V}{d(\rho _i) + \omega_{u, i}}; &amp; \\<br />
+\hat{\rho}_i &amp;= -u^T_i \hat{v}_V/d^{\prime}(\rho_i) + \omega_{\rho, i}; &amp; <br />
+\end{align*}<br />
+$$</p>
+<p>其中，$N^T(u)$将在bearing向量$u$附近将三维向量投影到二维切线空间。具体细节作者还没有公布 <code>still under review...</code>。[TODO, $N^T(u)的计算过程在作者博士论文集最后一篇论文中给出$]</p>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>滤波器更新过程</h2>
+<p>对每一帧图像执行一次状态更新。已知相机内部参数，可以计算出bearing向量在图像帧中的像素坐标$p=\pi (u)$。对每一个预测会出现在当前图像中的特征点，计算一个二维的线性约束$b_i(\pi(\hat u _i ))$。这个线性约束编码了特征的亮度误差，可以直接作为Kalman更新的innovation。</p>
+<p>$$y_i = b_i(\pi(\hat u _i)) + n_i$$<br />
+相应的Jacobian矩阵为：<br />
+$$H_i = A_i(\pi(\hat u _i))\frac{d\pi}{d_u}(\hat u _i)$$</p>
+<p>通过计算图像中存在的特征点的上述约束，可以执行标准的EKF更新。不过，在新特征点初始化还有较大的距离不确定度时，更新过程可能失败。为了避免新初始化的特征点具有较大的不确定性造成的影响，执行了一个基于patch的特征搜索选择合适的特征点。</p>
+<p>对于移动的物体或其他干扰，基于Mahalanobis的外点检测用于更新步骤。对比预测的innovation协方差及获得的innovation，然后加权范数查过某一个阈值的测量值。</p>
+<h2 id="patch"><a name="user-content-patch" href="#patch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多层次patch特征处理</h2>
+<p>预测阶段，多层次patch特征的新位置使用IMU运动模型来计算。特别地，如果外参的标定和特征距离参数收敛，那么会给出特征位置一个高精度的预测。</p>
+<p>单个特征的处理流程如图：</p>
+<p><img alt="rovio feature" src="../../images/rovio_feature.png" /></p>
+<h3 id="structure-and-wraping"><a name="user-content-structure-and-wraping" href="#structure-and-wraping" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Structure and wraping</h3>
+<p>对于一个给定的图像金字塔(因子为2的下采样)和一个给定的bearing向量$u$，多层次的patch通过在每一个图像层次$l$相应的像素坐标$p=\pi(u)$处提取固定大小(8x8像素)的patch组合得到。跟踪这个特征对于模糊图像具有鲁棒性。</p>
+<h3 id="alignment-equations-and-qr-decomposition"><a name="user-content-alignment-equations-and-qr-decomposition" href="#alignment-equations-and-qr-decomposition" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Alignment Equations and QR-decomposition</h3>
+<p>使用亮度误差来预对齐特征或者更新滤波状态。对于图像$I_l$给定的一个图像金字塔和一个给定的多层次patch特征(坐标为$p$，patches $P_l$), 亮度误差由下式计算：<br />
+图像层次$l$和patch像素$p_j$:<br />
+$e_{l,j} = P_l(p_j) - I_l(ps_l + Wp_j) -m$</p>
+<p>其中尺度$s_l = 0.5^l$指代下采样。减去平均的亮度误差$m$，可以得到帧间的亮度变化。</p>
+<p>应用QR分解来简化计算过程。</p>
+<h1 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续&hellip;</h1>
+  <p style="text-align: right; color: gray;"><br>2017-07-14 21:57:30</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
+
