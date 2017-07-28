@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -347,7 +347,7 @@ $$<br />
 <h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>静止状态下的传感器性能对比</h3>
 <p>分析方法：统计了设备静止两个小时的数据，先绘制数据变化曲线来大致分析性能；然后采用Allan Variance分析数据，来定量计算传感器的性能参数。需要提及的是，惯性传感器性能参数一般需要静止放置采集数十个小时的数据，此处采集两个小时数据主要是考虑到一般用户的使用时间平均值。</p>
 <blockquote>
-<p>静止720000秒(两小时)的数据对比</p>
+<p>静止7200秒(两小时)的数据对比</p>
 </blockquote>
 <p><img alt="iPhone 6加速计测量值" src="../../images/iphone_acc_7200.png" /><br />
 <img alt="iPad Pro加速计测量值" src="../../images/ipad_acc_7200.png" /></p>
@@ -385,8 +385,8 @@ $$<br />
 </blockquote>
 <p><img alt="iPhone 6陀螺仪测量值" src="../../images/iphone_gyr_7200.png" /><br />
 <img alt="iPad Pro陀螺仪测量值" src="../../images/ipad_gyr_7200.png" /></p>
-<p>上图:iPhone 6静止2000秒的原始陀螺仪数值随时间的变化曲线。<br />
-下图:iPad Pro静止2000秒的原始陀螺仪数值随时间的变化曲线。<br />
+<p>上图:iPhone 6静止7200秒的原始陀螺仪数值随时间的变化曲线。<br />
+下图:iPad Pro静止7200秒的原始陀螺仪数值随时间的变化曲线。<br />
 统计信息如下：</p>
 <div class="codehilite"><pre><span></span><span class="c1">#iPhone6</span>
       <span class="n">roll</span>      <span class="n">pitch</span>     <span class="n">yaw</span>
@@ -418,7 +418,7 @@ $$<br />
 <ol>
 <li>将所有时刻的数据按照时间长度t划分。</li>
 <li>在每一份上计算平均值${a(t)_1, a(t)_2, \cdots , a(t)_n}$，其中n为份数。</li>
-<li>Allan <br />
+<li>Allan Variance<br />
   $$AVAR(t) = \frac{1}{2(n-1)}\sum_{i}(a(t)_{i+1}-a(t)_i)^2$$</li>
 </ol>
 <p>确定噪声特性时，Allan Deviation由下式给定:<br />
@@ -426,6 +426,45 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 使用log-log来绘制随平均时间t的变化。</p>
 <p>标准的Allan Variance图如下图所示：</p>
 <p><img alt="Allan Variance" src="../../images/allan_variance.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Allan 标准差</th>
+<th>系数</th>
+<th>双对数曲线斜率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$AD(t) = \sqrt 3 Q/t$</td>
+<td>量化噪声系数Quantization Noise</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>$AD(t) = R / \sqrt t $</td>
+<td>角速度随机游走/白噪声 Random Walk/White Noise</td>
+<td>-1/2</td>
+</tr>
+<tr>
+<td>$AD(t) = 0.664B $</td>
+<td>零偏不稳定性Bias InStability, Flicker</td>
+<td>0</td>
+</tr>
+<tr>
+<td>$AD(t) = Wt/\sqrt 3 $</td>
+<td>速率随机游走系数Rate Random Walk</td>
+<td>1/2</td>
+</tr>
+<tr>
+<td>$AD(t) = Rt/\sqrt 2 $</td>
+<td>速率斜坡系数Rate Ramp</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>各项噪声相互独立，则Allan方差为：<br />
+$$AVAR(t) = \frac{3Q^2}{t^2} + \frac{N^2}{t} + (0.6648B)^2 + \frac{K^2}{3}t + \frac{R^2}{2}t^2$$<br />
+可以通过拟合上式求解出各项噪声系数。</p>
 <p>下面对iPhone6和iPad Pro设备进行Allan方差分析，需要提及的是，在上述分析中，测得iPhone6在720000时刻末尾受到了外部较大的扰动，会影响分析，故而选定[0:719000]时刻之间的数据进行分析。</p>
 <blockquote>
 <p>加速计Allan Variance</p>
@@ -543,7 +582,7 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 </tbody>
 </table>
 <h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>结果</h2>
-<p>iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。但加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方向，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备收到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。</p>
+<p>iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。从加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方面，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备受到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。</p>
 <h2 id="todo"><a name="user-content-todo" href="#todo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>TODO</h2>
 <p><strong>1.采集数十小时的设备静止数据进行分析。</strong></p>
 <p>采集8.5小时数据绘制的Allan Variance图。</p>
@@ -628,7 +667,7 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 </tbody>
 </table>
 <p><strong>2.基于加速计和陀螺仪数据实现简单的惯性导航系统。</strong></p>
-  <p style="text-align: right; color: gray;"><br>2017-07-14 16:27:28</p>
+  <p style="text-align: right; color: gray;"><br>2017-07-21 15:42:10</p>
         </div>
       </div>
       <footer>

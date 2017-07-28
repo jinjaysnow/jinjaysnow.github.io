@@ -100,7 +100,7 @@ $$g^o = T^gK^g(g^s + b^g + v^g)$$
 
 分析方法：统计了设备静止两个小时的数据，先绘制数据变化曲线来大致分析性能；然后采用Allan Variance分析数据，来定量计算传感器的性能参数。需要提及的是，惯性传感器性能参数一般需要静止放置采集数十个小时的数据，此处采集两个小时数据主要是考虑到一般用户的使用时间平均值。
 
-> 静止720000秒(两小时)的数据对比
+> 静止7200秒(两小时)的数据对比
 
 ![iPhone 6加速计测量值](../../images/iphone_acc_7200.png)
 ![iPad Pro加速计测量值](../../images/ipad_acc_7200.png)
@@ -142,8 +142,8 @@ max  0.200284   0.005688    -9.787696
 ![iPhone 6陀螺仪测量值](../../images/iphone_gyr_7200.png)
 ![iPad Pro陀螺仪测量值](../../images/ipad_gyr_7200.png)
 
-上图:iPhone 6静止2000秒的原始陀螺仪数值随时间的变化曲线。
-下图:iPad Pro静止2000秒的原始陀螺仪数值随时间的变化曲线。
+上图:iPhone 6静止7200秒的原始陀螺仪数值随时间的变化曲线。
+下图:iPad Pro静止7200秒的原始陀螺仪数值随时间的变化曲线。
 统计信息如下：
 
 ```python
@@ -178,7 +178,7 @@ max  -0.024425  0.011610    -0.011783
 
 1. 将所有时刻的数据按照时间长度t划分。
 2. 在每一份上计算平均值${a(t)\_1, a(t)_2, \cdots , a(t)\_n}$，其中n为份数。
-3. Allan 
+3. Allan Variance
   $$AVAR(t) = \frac{1}{2(n-1)}\sum\_{i}(a(t)\_{i+1}-a(t)\_i)^2$$
 
 确定噪声特性时，Allan Deviation由下式给定:
@@ -188,6 +188,18 @@ $$AD(t)=\sqrt{AVAR(t)}$$
 标准的Allan Variance图如下图所示：
 
 ![Allan Variance](../../images/allan_variance.png)
+
+Allan 标准差 | 系数| 双对数曲线斜率
+----:------|------:-------|------:--------
+$AD(t) = \sqrt 3 Q/t$ | 量化噪声系数Quantization Noise | -1
+$AD(t) = N / \sqrt t $ | 角速度随机游走/白噪声 Random Walk/White Noise | -0.5
+$AD(t) = 0.664B $ | 零偏不稳定性Bias InStability, Flicker| 0
+$AD(t) = Wt/\sqrt 3 $ | 速率随机游走系数Rate Random Walk| 0.5
+$AD(t) = Rt/\sqrt 2 $ | 速率斜坡系数Rate Ramp | 1
+
+各项噪声相互独立，则Allan方差为：
+$$AVAR(t) = \frac\{3Q^2\}\{t^2\} + \frac\{N^2\}\{t\} + (0.6648B)^2 + \frac\{W^2\}\{3\}t + \frac\{R^2\}\{2\}t^2$$
+可以通过拟合上式求解出各项噪声系数。
 
 下面对iPhone6和iPad Pro设备进行Allan方差分析，需要提及的是，在上述分析中，测得iPhone6在720000时刻末尾受到了外部较大的扰动，会影响分析，故而选定[0:719000]时刻之间的数据进行分析。
 
@@ -230,7 +242,7 @@ yaw轴 | 0.00003160778722050383 $°/s$ | 0.00059731859848418528 $°/\sqrt \{s\}$
 
 
 ## 结果
-iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。但加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方向，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备收到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。
+iPad Pro和iPhone6使用的IMU型号相同，性能相差不大。从加速计数据来看，iPad Pro和iPhone6受白噪声影响的加速度随机游走大致相同，不过bias稳定性方面，iPad Pro性能比iPhone6要差一些，问题出现在数据获取阶段，在使用小波变换后得到的iPad Pro 加速计x轴和z轴的变化情况可以看出，在大约470000时刻出现了一次向上的波动，也即设备受到了外部扰动，导致了设备不是出于静止状态。相对地，在470000时刻，陀螺仪测量的扰动不明显，iPhone6与iPad Pro的Allan Variance分析表明二者的性能十分接近，Bias Instability大致相同。
 
 ## TODO
 
