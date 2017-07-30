@@ -13,8 +13,20 @@
 		<priority>1.0</priority>
 	</url>
 		<url>
+		<loc>http://jinjaysnow.github.io/blog/2017-07/状态估计.html</loc>
+		<lastmod>2017-07-30</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
 		<loc>http://jinjaysnow.github.io/blog/2017-07/IMU性能度量.html</loc>
-		<lastmod>2017-07-13</lastmod>
+		<lastmod>2017-07-21</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.9</priority>
+	</url>
+		<url>
+		<loc>http://jinjaysnow.github.io/blog/2017-07/ROVIO解析.html</loc>
+		<lastmod>2017-07-14</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.9</priority>
 	</url>
