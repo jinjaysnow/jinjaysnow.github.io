@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -247,7 +247,7 @@ $$y_{w,t} ^S = w_{t} ^S + b_{w,t} ^S + e_{w,t} ^S$$其中，上标$S$表示处�
 $$y_{w,t} ^W = R_t^{W/S}(w_{t} ^S + b_{w,t} ^S + e_{w,t}^S) \label{a8} \tag{8}$$</p>
 <h4 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>加速计测量模型</h4>
 <p>加速计测量线性加速度，受零偏$b_{a,t}$和噪声$e_{a,t}$的影响：<br />
-$$y_{a,t}^W = a_t^W + b_{a,t}^W + e_{a,t}^W$$加速计的测量值中包含重力：<br />
+$$y_{a,t}^S = a_t^S + b_{a,t}^S + e_{a,t}^S$$加速计的测量值中包含重力：<br />
 $$a^W = R^{W/S}(a^S-g^S)$$<br />
 由于加速度测量值主要来自重力向量，姿态估计中常常假定线性加速度大约为0：<br />
 $$<br />
@@ -258,13 +258,13 @@ $$m^W = ( 0 \quad \cos\delta \quad \sin\delta)$$假定$\left\| m^W \right\|_2 = 
 $$y_{m, t}^S = R_t^{S/W}m^W + e_{m,t}^S$$</p>
 <h3 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>运动模型</h3>
 <p>使用四元数表示方向，方向$q$和角速度$w$的关系如下：<br />
-$$\frac{dq}{dt} = \frac 12 S(\omega)q = \frac 1 2 \overline S(q)\omega$$<br />
-其中$S(\omega)$是角速度的四维斜对称矩阵，$\overline S(q)$表示将四元数转化为$4\times 3$矩阵。<br />
+$$\frac{dq}{dt} = \frac 12 S(w)q = \frac 1 2 \overline S(q)w$$<br />
+其中$S(w)$是角速度的四维斜对称矩阵，$\overline S(q)$表示将四元数转化为$4\times 3$矩阵。<br />
 $$S(\omega)=\begin{pmatrix}<br />
-0 &amp; -\omega_x &amp; -\omega_y&amp;-\omega_z \\<br />
-\omega_x &amp; 0 &amp; \omega_z &amp; -\omega_y \\<br />
-\omega_y &amp; -\omega_z &amp; 0 &amp; \omega_x \\<br />
-\omega_z &amp; \omega_y &amp; -\omega_x &amp; 0<br />
+0 &amp; -w_x &amp; -w_y&amp;-w_z \\<br />
+w_x &amp; 0 &amp; w_z &amp; -w_y \\<br />
+w_y &amp; -w_z &amp; 0 &amp; w_x \\<br />
+w_z &amp; w_y &amp; -w_x &amp; 0<br />
 \end{pmatrix}\quad <br />
 \overline S(q) = \begin{pmatrix}<br />
 -q_1 &amp; -q_2 &amp; -q_3 \\<br />
@@ -274,7 +274,7 @@ q_3 &amp; q_0 &amp; -q_1 \\<br />
 \end{pmatrix}<br />
 $$</p>
 <h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>姿态估计状态空间模型</h3>
-<p>根据四元数的特征，不考虑惯性传感器零偏，假设没有线性加速度，磁力计只测量本地的地磁强度，有如下的运动模型<br />
+<p>根据四元数的特征，不考虑惯性传感器零偏，假设没有线性加速度，磁力计只测量本地的地磁强度，有如下的模型<br />
 $$<br />
 \begin{align*}<br />
 q_{t+1} &amp;= e^{\frac {\Delta t}2S(y_{w,t}+e_{w,t})}q_t\\<br />
@@ -290,11 +290,11 @@ y_{m,t} &amp;= R_t^{S/W}m^W+e_{m,t} \label{b3} \tag{10c}<br />
 大多数情况下，缺乏对参数$\theta$的先验信息。不过可以使用合理的值来建模参数。比如，对于陀螺仪的零偏可以假定很小，但是可以为正数也可以为负数。合理的先验假设为:<br />
 $$b_{w,t}\sim N(0, \delta_w^2I_3)$$<br />
 一般，在没有额外的信息确定先验时，可以假定服从一个有大致的方差的正态分布。<br />
-对于手机姿态的先验，通常使用第一帧加速计和磁力计的采样值来确定。假定加速计之测量重力向量且磁力计只测量本地的地磁强度。所以加速计可以提供设备的竖直倾角，尽管磁力计也可以提供这个信息，但是实际中加速计提供的信息更加精确。磁力计用来提供南北方向信息，将地磁场和磁力计投影到水平面上来得到。基于给定两个坐标帧下的两个(或更多)线性无关的向量可以确定两个坐标帧间的旋转这一事实，可以求解出设备在世界坐标系中的旋转。故而将这重力方向向量和南北方向向量归一化，有：<br />
+对于手机姿态的先验，通常使用第一帧加速计和磁力计的采样值来确定。假定加速计只测量重力向量且磁力计只测量本地的地磁强度。所以加速计可以提供设备的竖直倾角，尽管磁力计也可以提供这个信息，但是实际中加速计提供的信息更加精确。磁力计用来提供南北方向信息，将地磁场和磁力计投影到水平面上来得到。基于给定两个坐标帧下的两个(或更多)线性无关的向量可以确定两个坐标帧间的旋转这一事实，可以求解出设备在世界坐标系中的旋转。故而将这重力方向向量和南北方向向量归一化，有：<br />
 $$<br />
 \begin{eqnarray}<br />
 g^W &amp;= &amp; \begin{pmatrix} 0 &amp; 0 &amp; -1\end{pmatrix} ^T, \quad \quad &amp; g^S &amp;= \frac{y_{a,1}} {\left\|y_{a,1}\right\|_2} \label{b4} \tag{11a} \\<br />
-m^W &amp;= &amp; \begin{pmatrix} 0 &amp; 1 &amp; 0\end{pmatrix}^T, \quad \quad &amp; m^s &amp;= g^S \times ( \frac{y_{m,1}} {\left\|y_{m,1}\right\|_2} \times g^S ) \label{b5} \tag{11b}<br />
+m^W &amp;= &amp; \begin{pmatrix} 0 &amp; 1 &amp; 0\end{pmatrix}^T, \quad \quad &amp; m^S &amp;= g^S \times ( \frac{y_{m,1}} {\left\|y_{m,1}\right\|_2} \times g^S ) \label{b5} \tag{11b}<br />
 \end{eqnarray}<br />
 $$从这四个向量中求解出两个坐标帧相对的旋转，可转化为求解以下优化问题：<br />
 $$<br />
@@ -482,7 +482,7 @@ K_t &amp;= P_tH_t^TS_t^{-1} \\<br />
 \end{align*}<br />
 $$</p>
 <p>经过一次时间更新方程和两次加速计与磁力计的更新，可以估计出系统状态。</p>
-  <p style="text-align: right; color: gray;"><br>2017-07-28 16:17:00</p>
+  <p style="text-align: right; color: gray;"><br>2017-07-29 14:15:22</p>
         </div>
       </div>
       <footer>
