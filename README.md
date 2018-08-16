@@ -1,7 +1,6 @@
-jinjaysnow.github.io
+ijinjay.github.io
 ====================
 
-created for blog
-
+update
 ---
 code first or design first as a beginner? That is a question. I am going to design first.
