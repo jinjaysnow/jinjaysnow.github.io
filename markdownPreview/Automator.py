@@ -105,11 +105,11 @@ def generateFile(filePath):
         keywords = meta["keywords"]
     # change use json open
     if "image" in meta:
-        briefData = {"dateFolder": dateFolder, "brief": brief, "imgurl": "http://jinjaysnow.github.io/" + meta["image"][0], "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileName+".html", "keywords": keywords}
+        briefData = {"dateFolder": dateFolder, "brief": brief, "imgurl": "http://ijinjay.github.io/" + meta["image"][0], "url": "http://ijinjay.github.io/blog/"+dateFolder+"/"+fileName+".html", "keywords": keywords}
         jsonWrite("../brief/" + fileName, briefData)
 
     else:
-        briefData = {"dateFolder": dateFolder, "brief": brief, "url": "http://jinjaysnow.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html", "keywords": keywords}
+        briefData = {"dateFolder": dateFolder, "brief": brief, "url": "http://ijinjay.github.io/blog/"+dateFolder+"/"+fileNameToUrl(fileName)+".html", "keywords": keywords}
         jsonWrite("../brief/" + fileName, briefData)
 
     # generate Keywords files

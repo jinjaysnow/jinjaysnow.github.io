@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Play Piano</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .octave {
+        position: relative;
+        font-size: 0;
+        width: 50%;
+        float: left;
+    }
+
+    .octave button {
+        line-height: 30px;
+        width: 14.285%;
+        font-size: 16px;
+        padding-top: 270px;
+        background-color: #EEE;
+        border: 1px solid #999;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .octave button:before {
+        content: " ";
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .octave .black {
+        position: absolute;
+        transform: translate(-50%, 0%);
+        background-color: #333;
+        color: #FFF;
+        padding-top: 170px;
+        z-index: 3;
+    }
+
+    .octave button.playing {
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .octave button.playing:before {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 40%, rgba(0, 0, 0, 0.25) 80%);
+    }
+    </style>
+</head>
+
+<body translate="no">
+    <div class="keyboard">
+        <div class="octave">
+            <button type="button" class="C">Q</button>
+            <button type="button" class="Db black">2</button>
+            <button type="button" class="D">W</button>
+            <button type="button" class="Eb black">3</button>
+            <button type="button" class="E">E</button>
+            <button type="button" class="F">R</button>
+            <button type="button" class="Gb black">5</button>
+            <button type="button" class="G">T</button>
+            <button type="button" class="Ab black">6</button>
+            <button type="button" class="A">Y</button>
+            <button type="button" class="Bb black">7</button>
+            <button type="button" class="B">U</button>
+        </div>
+        <div class="octave">
+            <button type="button" class="C">Z</button>
+            <button type="button" class="Db black">S</button>
+            <button type="button" class="D">X</button>
+            <button type="button" class="Eb black">D</button>
+            <button type="button" class="E">C</button>
+            <button type="button" class="F">V</button>
+            <button type="button" class="Gb black">G</button>
+            <button type="button" class="G">B</button>
+            <button type="button" class="Ab black">H</button>
+            <button type="button" class="A">N</button>
+            <button type="button" class="Bb black">J</button>
+            <button type="button" class="B">M</button>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+    $(function() {
+        var AudioCtx = window.AudioContext || window.webkitAudioContext,
+            $keyboard = $('.keyboard'),
+            $buttons = $keyboard.find('button'),
+            charMap = {},
+            keyList = [],
+            char, audioCtx = new AudioCtx(),
+            oscMap = {},
+            mouseDown = null;
+        for (var i = 0; i < $buttons.length; i++) {
+            char = $buttons[i].innerHTML;
+            keyList.push(charMap[char] = {
+                $button: $($buttons[i]),
+                index: i,
+                char: char,
+                playing: false
+            });
+        }
+
+        function getFreq(i) {
+            return 220 * Math.pow(2, (i + 3) / 12);
+        }
+
+        function playNote(obj, playing) {
+            if (obj && obj.playing != playing) {
+                obj.playing = playing;
+                if (playing) {
+                    if (!obj.osc) {
+                        obj.osc = audioCtx.createOscillator();
+                        obj.osc.type = 'square';
+                        obj.osc.frequency.value = getFreq(obj.index);
+                        obj.osc.connect(audioCtx.destination);
+                    }
+                    obj.osc.start();
+                } else {
+                    if (obj.osc) {
+                        obj.osc.stop();
+                        obj.osc = null;
+                    }
+                }
+                obj.$button[playing ? 'addClass' : 'removeClass']('playing');
+            }
+        }
+        $(window).on('keydown keyup', function(e) {
+            var c = e.originalEvent.key || '';
+            playNote(charMap[c.toUpperCase()], e.type == 'keydown');
+        });
+        $keyboard
+            .on('mousedown mouseup touchstart touchend', 'button', function(e) {
+                var c = this.innerHTML;
+                mouseDown = (e.type == 'mousedown') || (e.type == 'touchstart');
+                playNote(charMap[c.toUpperCase()], mouseDown);
+            })
+            .on('mouseenter mouseleave touchenter touchleave', 'button', function(e) {
+                if (mouseDown) {
+                    var c = this.innerHTML;
+                    playNote(
+                        charMap[c.toUpperCase()],
+                        e.type == 'mouseenter' || e.type == 'touchenter'
+                    );
+                }
+            });
+    })
+    </script>
+</body>
+
+</html>

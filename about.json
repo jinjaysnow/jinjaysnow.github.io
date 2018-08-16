@@ -201,11 +201,11 @@
           },
           "type": "TextBox",
           "size": 48,
-          "text": "<font face=\"Droid Sans Mono, monospace\">你可以在</font><a href=\"http://null\" style=\"font-weight: bold; font-family: 'Droid Sans Mono', monospace;\">新浪微博</a><font face=\"Droid Sans Mono, monospace\">，</font><font face=\"Ubuntu, sans-serif\"><a href=\"http://github.com/jinjaysnow\"><b>GitHub</b></a></font><font face=\"Droid Sans Mono, monospace\">找到我<br></font>当然，<br><font face=\"Droid Sans Mono, monospace\">如果你会翻墙的话，</font><br><a href=\"http://www.facebook.com/jinjaysnow\" style=\"font-family: Ubuntu, sans-serif; font-weight: bold;\">Facebook</a><font face=\"Droid Sans Mono, monospace\">，</font><b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\">T</a></font></b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\" style=\"font-weight: bold;\">witter</a>里也有我的身影</font><br>",
+          "text": "<font face=\"Droid Sans Mono, monospace\">你可以在</font><a href=\"http://null\" style=\"font-weight: bold; font-family: 'Droid Sans Mono', monospace;\">新浪微博</a><font face=\"Droid Sans Mono, monospace\">，</font><font face=\"Ubuntu, sans-serif\"><a href=\"http://github.com/ijinjay\"><b>GitHub</b></a></font><font face=\"Droid Sans Mono, monospace\">找到我<br></font>当然，<br><font face=\"Droid Sans Mono, monospace\">如果你会翻墙的话，</font><br><a href=\"http://www.facebook.com/ijinjay\" style=\"font-family: Ubuntu, sans-serif; font-weight: bold;\">Facebook</a><font face=\"Droid Sans Mono, monospace\">，</font><b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\">T</a></font></b><font face=\"Ubuntu, sans-serif\"><a href=\"http://twitter.com/jinjaysnow\" style=\"font-weight: bold;\">witter</a>里也有我的身影</font><br>",
           "selected": false
         },
         {
-          "src": "http://jinjaysnow.github.io/images/bitbug_favicon.ico",
+          "src": "http://ijinjay.github.io/images/bitbug_favicon.ico",
           "type": "Image",
           "x": 789,
           "y": 503,
@@ -309,11 +309,11 @@
           },
           "type": "TextBox",
           "size": 64,
-          "text": "<font face=\"Droid Sans Mono, monospace\">感谢您的来访<br>点击<a href=\"http://jinjaysnow.github.io\" style=\"font-weight: bold;\">这里</a>返回我的主页</font><br>",
+          "text": "<font face=\"Droid Sans Mono, monospace\">感谢您的来访<br>点击<a href=\"http://ijinjay.github.io\" style=\"font-weight: bold;\">这里</a>返回我的主页</font><br>",
           "selected": false
         },
         {
-          "src": "http://jinjaysnow.github.io/images/me.png",
+          "src": "http://ijinjay.github.io/images/me.png",
           "type": "Image",
           "x": 675,
           "y": 114,

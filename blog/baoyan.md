@@ -24,7 +24,7 @@ Zhejiang University is one of Chinese famous universities. And Hangzhou is a nic
 
 ### 中文
 #### 说说你的项目经历
-[我的项目经历](http://jinjaysnow.github.io/about.html#_2)
+[我的项目经历](http://ijinjay.github.io/about.html#_2)
 
 #### 你认为C和C++的区别是什么？
 C++是C的一个超集，C++支持面向对象和STL（范型）。C能实现的C++都能实现，反过来也一样。本质上，C++更利于编程人员实现好的软件设计，因为面向对象的出现就源自软件工程设计上的一些问题。

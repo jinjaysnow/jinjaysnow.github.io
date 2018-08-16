@@ -5,7 +5,7 @@ description: 学习R语言的一些问题整理，心得体会。
 keywords: R
 
 
-### [学习R语言之路](https://github.com/jinjaysnow/R)
+### [学习R语言之路](https://github.com/ijinjay/R)
 
 ---
 

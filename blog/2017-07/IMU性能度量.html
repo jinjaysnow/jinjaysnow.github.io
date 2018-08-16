@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-light_green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -155,9 +155,9 @@ MathJax.Hub.Config({
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation -->
           <nav class="waterfall-demo-header-nav mdl-navigation">
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/about.html">关于我</a>
           </nav>
         </div>
       </header>
@@ -441,9 +441,9 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 <td>-1</td>
 </tr>
 <tr>
-<td>$AD(t) = R / \sqrt t $</td>
+<td>$AD(t) = N / \sqrt t $</td>
 <td>角速度随机游走/白噪声 Random Walk/White Noise</td>
-<td>-1/2</td>
+<td>-0.5</td>
 </tr>
 <tr>
 <td>$AD(t) = 0.664B $</td>
@@ -453,7 +453,7 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 <tr>
 <td>$AD(t) = Wt/\sqrt 3 $</td>
 <td>速率随机游走系数Rate Random Walk</td>
-<td>1/2</td>
+<td>0.5</td>
 </tr>
 <tr>
 <td>$AD(t) = Rt/\sqrt 2 $</td>
@@ -463,7 +463,7 @@ $$AD(t)=\sqrt{AVAR(t)}$$<br />
 </tbody>
 </table>
 <p>各项噪声相互独立，则Allan方差为：<br />
-$$AVAR(t) = \frac{3Q^2}{t^2} + \frac{N^2}{t} + (0.6648B)^2 + \frac{K^2}{3}t + \frac{R^2}{2}t^2$$<br />
+$$AVAR(t) = \frac{3Q^2}{t^2} + \frac{N^2}{t} + (0.6648B)^2 + \frac{W^2}{3}t + \frac{R^2}{2}t^2$$<br />
 可以通过拟合上式求解出各项噪声系数。</p>
 <p>下面对iPhone6和iPad Pro设备进行Allan方差分析，需要提及的是，在上述分析中，测得iPhone6在720000时刻末尾受到了外部较大的扰动，会影响分析，故而选定[0:719000]时刻之间的数据进行分析。</p>
 <blockquote>
@@ -667,12 +667,12 @@ $$AVAR(t) = \frac{3Q^2}{t^2} + \frac{N^2}{t} + (0.6648B)^2 + \frac{K^2}{3}t + \f
 </tbody>
 </table>
 <p><strong>2.基于加速计和陀螺仪数据实现简单的惯性导航系统。</strong></p>
-  <p style="text-align: right; color: gray;"><br>2017-07-21 15:42:10</p>
+  <p style="text-align: right; color: gray;"><br>2018-08-16 15:39:24</p>
         </div>
       </div>
       <footer>
         <p>
-          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+          JinJay's blog<a href="https://github.com/ijinjay" target="_blank">@JinJay</a>.
         </p>
         <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
       </footer>

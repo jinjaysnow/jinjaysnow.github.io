@@ -108,7 +108,7 @@ with expression [as target]:
 ```
 
 ### 遵循异常处理的基本原则
-![exceptionhandle.png](http://jinjaysnow.github.io/images/exceptionhandle.png)
+![exceptionhandle.png](http://ijinjay.github.io/images/exceptionhandle.png)
 
 1. 注意异常的粒度，不推荐在try中放入过多的代码。
 2. 谨慎使用单独的except语句处理所有异常，最好能定位具体的异常。
@@ -646,7 +646,7 @@ property是用来实现属性可管理性的built-in数据类型，其实只是�
 2. 更好的管理属性的访问。
 3. 代码可维护性更好。
 4. 控制属性访问权限，提高数据安全性。
-![property](http://jinjaysnow.github.io/images/property.png)
+![property](http://ijinjay.github.io/images/property.png)
 
 两种使用property的形式：  
 **形式一**

@@ -100,7 +100,7 @@ CSS计算模块
 
 
 ## 附加信息
-代码托管地址：[2014种子杯复赛](https://github.com/jinjaysnow/SeedCup_QuarterFinal)
+代码托管地址：[2014种子杯复赛](https://github.com/ijinjay/SeedCup_QuarterFinal)
 
 
 

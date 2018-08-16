@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>http://jinjaysnow.github.io/</loc>
+		<loc>http://ijinjay.github.io/</loc>
 		<lastmod>2014-10-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>
 	</url>
 	<url>
-		<loc>http://jinjaysnow.github.io/blog/index.html</loc>
+		<loc>http://ijinjay.github.io/blog/index.html</loc>
 		<lastmod>2014-10-16</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>1.0</priority>

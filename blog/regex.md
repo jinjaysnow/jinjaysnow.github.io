@@ -15,7 +15,7 @@ keywords: 正则表达式引擎
 ### 程序设计及各模块的功能说明
 #### 整体设计
 程序流程图
-![ 程序流程图 ](http://jinjaysnow.github.io/static/reg/1.png)
+![ 程序流程图 ](http://ijinjay.github.io/static/reg/1.png)
 ** 基本数据结构说明 **
 字符节点类型  
 
@@ -60,13 +60,13 @@ NFA链头节点
     } Branch;
 
 #### 文件读取模块
-![文件](http://jinjaysnow.github.io/static/reg/2.jpeg) 
+![文件](http://ijinjay.github.io/static/reg/2.jpeg) 
 
 #### NFA生成模块
-![NFA](http://jinjaysnow.github.io/static/reg/3.png)
+![NFA](http://ijinjay.github.io/static/reg/3.png)
 
 #### 字符处理流程：
-![NFA结构](http://jinjaysnow.github.io/static/reg/4.jpg)
+![NFA结构](http://ijinjay.github.io/static/reg/4.jpg)
  
 #### 元字符和反义元字符处理
 顺序对模式字符串进行读取，在处理到字符的时候，我们会产生新的节点保存到链表中，然后将其类型存储在pStateNode->WordNode.type中。为了方便处理，我们定义了如下枚举，来方便我们对不确定的情况进行处理，而对于已经确定的字符，由于其值一定小于256，因此我们直接将它保存在type中。
@@ -146,7 +146,7 @@ NFA链头节点
 拥有完整的NFA链和匹配字符串，我们从NFA链的头结点开始，对字符串进行处理。如果字符串中的下一段内容，能够满足当前节点的要求，则将结果保存下来，并转移到下一个节点。每一个类型的节点都定义了一个相应的函数，如果匹配成功就继续匹配，不成功就返回失败，进行下一个次循环匹配。
 
 匹配过程示例：
-![匹配过程](http://jinjaysnow.github.io/static/reg/5.jpg)
+![匹配过程](http://ijinjay.github.io/static/reg/5.jpg)
 #### 重复匹配
 首先要说的是，我们没有实现贪婪匹配，没有实现贪婪回退的代码，这是我们程序的不足之处。然后处理重复匹配是通过节点的状态类型来做的，如果一个节点是可重复类型，便会有一个while循环（*、+匹配）或for循环（{n,m}）。
 
@@ -179,7 +179,7 @@ NFA链头节点
 在得到每个匹配的结果后，我们将匹配的每个结果写入文件中。此时根据处理的序号生成文件名，并将所得结果写入文件当中。
 
 ### 附加信息
-代码托管地址：[2014种子杯](https://github.com/jinjaysnow/2014SeedCup)
+代码托管地址：[2014种子杯](https://github.com/ijinjay/2014SeedCup)
 
 
 

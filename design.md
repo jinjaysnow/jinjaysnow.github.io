@@ -3,7 +3,7 @@ Brief:   This is a design file of my blog.
 Authors: Jin Jay
 Date:    2014-08
 codehilite: false
-base_url: http://jinjaysnow.github.io
+base_url: http://ijinjay.github.io
 
 ## Universal
 ```

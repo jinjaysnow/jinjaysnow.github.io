@@ -31,11 +31,11 @@ Xcode是苹果的集成开发环境，包括源代码编辑器，图形用户界
 
 #### 新建Playground
 1. 打开Xcode，选择Get started with a playground
-    <center>![](http://jinjaysnow.github.io/IOS/p1.png)</center>
+    <center>![](http://ijinjay.github.io/IOS/p1.png)</center>
 2. 输入文件名,并点击next
-    <center>![](http://jinjaysnow.github.io/IOS/p2.png)</center>
+    <center>![](http://ijinjay.github.io/IOS/p2.png)</center>
 3. 选择需要放置文件的位置后，点击create，创建新文件。
-    <center>![](http://jinjaysnow.github.io/IOS/p3.png)</center>
+    <center>![](http://ijinjay.github.io/IOS/p3.png)</center>
 
 进入编辑模式，左侧为代码编辑区，右侧为实时的运算结果。接下来介绍的Swift基本知识的代码都可以在左侧代码编辑区编写。
 
@@ -439,7 +439,7 @@ import UIKit
 
 ## 熟悉Xcode
 Xcode工作空间布局如下：
-<center>![](http://jinjaysnow.github.io/IOS/w.png)</center>
+<center>![](http://ijinjay.github.io/IOS/w.png)</center>
 
 ## 运行模拟器
 iOS模拟器可以模拟多种设备，在开发中经常使用。新建的工程可以直接在模拟器中运行，在模拟器中运行App有以下步骤。
@@ -614,7 +614,7 @@ Storyboard文件是应用的用户接口的可视化表示，它可以呈现内�
 
 ### 查看大纲视图
 1. 在Storyboard中找到大纲视图开关。
-    <center>![](http://jinjaysnow.github.io/IOS/outline.png)</center>
+    <center>![](http://ijinjay.github.io/IOS/outline.png)</center>
 2. 如果大纲视图是关闭状态，点击大纲视图开关以打开大纲视图。
 
 在画布左侧的大纲视图展示了在故事板中的对象的层级关系。

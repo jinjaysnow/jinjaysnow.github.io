@@ -30,7 +30,7 @@ Linux系统编程从介绍 Vim编辑器开始，然后是 gcc编译器的使用�
 ```
 man ls # 查看ls命令的帮助信息
 ```
-<img src="http://jinjaysnow.github.io/images/manls.png">
+<img src="http://ijinjay.github.io/images/manls.png">
 > 其他常用命令
 
 ```
@@ -313,7 +313,7 @@ int recv(int socket, void *buffer, size_t length, int flags); // 接收数据
 
 ### 概要设计阶段
 进入概要设计阶段，产生了概要设计文档。主要对模块，函数接口等进行设计。系统模块图如下：
-![概要设计结构图](http://jinjaysnow.github.io/images/design.png)
+![概要设计结构图](http://ijinjay.github.io/images/design.png)
 作为评审负责人，我主要完成了概要设计文档的评审工作，写作了概要设计评审记录。此外，对设计中的技术点进行调查分析，主要包括QT的网络库使用、QT文件配置和Redis数据库的使用。
 
 ### 编码阶段

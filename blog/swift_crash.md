@@ -14,6 +14,6 @@ keywords:   dyld
 
 我个人的电脑上使用的是将“Keychain Access”（钥匙串访问）中的相应证书中的信任从**始终信任**切换为**使用系统默认**来解决的这个问题。
 
-![](http://jinjaysnow.github.io/images/keychain_trust.png)
+![](http://ijinjay.github.io/images/keychain_trust.png)
 
 [TOC]

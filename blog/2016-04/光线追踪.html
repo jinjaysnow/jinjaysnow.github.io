@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.pink-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.red-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -155,9 +155,9 @@ MathJax.Hub.Config({
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation -->
           <nav class="waterfall-demo-header-nav mdl-navigation">
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io">主页</a>
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/blog/">博客</a>
-            <a class="mdl-navigation__link" href="http://jinjaysnow.github.io/about.html">关于我</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/about.html">关于我</a>
           </nav>
         </div>
       </header>
@@ -1001,7 +1001,7 @@ window.onload = function() {init();};
 
 <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>架构设计</h1>
 <p>3D成像模型<br />
-<center><img alt="ray trace model" src="http://jinjaysnow.github.io/images/raytrace_model.PNG" /></center><br />
+<center><img alt="ray trace model" src="http://ijinjay.github.io/images/raytrace_model.PNG" /></center><br />
 模型中的基本元素：摄像机、场景物体、光源。呈现给用户的是摄像机拍摄到的场景的一部分。</p>
 <p>对成像过程进行建模:用户视图是View类，View类包含Camera和Scene，Scene包含Light和Solid。</p>
 <div class="codehilite"><pre><span></span>View -|- Camera
@@ -1092,7 +1092,7 @@ window.onload = function() {init();};
 <p><code>注：data包括物体的形状，位置等信息。</code></p>
 <h1 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>详细设计</h1>
 <h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>光线追踪模型</h2>
-<p><img alt="raytrace" src="http://jinjaysnow.github.io/images/raytrace.PNG" /><br />
+<p><img alt="raytrace" src="http://ijinjay.github.io/images/raytrace.PNG" /><br />
 投影到视图的光可能存在三种光：漫反射光<code>diffuse</code>，镜面反射光<code>Mirror</code>，折射光<code>Refraction</code>。光线追踪从反方向对光进行追踪，使用Phong光照模型，漫反射光的强度与入射角度有关：</p>
 <div class="codehilite"><pre><span></span><span class="nx">matte_color</span> <span class="o">=</span> <span class="nx">solid_color</span> <span class="o">*</span> <span class="nx">light_color</span> <span class="o">*</span> <span class="nx">k</span> <span class="o">*</span> <span class="p">(</span><span class="nx">direction</span> <span class="o">*</span> <span class="nx">nomral</span><span class="p">);</span>
 </pre></div>
@@ -1185,7 +1185,7 @@ $$</p>
 
 <h4 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>球体求交</h4>
 <p>球体的信息包含球心坐标center和半径radius。与光线求交：</p>
-<p><center><img alt="球面求交" src="http://jinjaysnow.github.io/images/sphere_inter.PNG" /></center></p>
+<p><center><img alt="球面求交" src="http://ijinjay.github.io/images/sphere_inter.PNG" /></center></p>
 <h4 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>平面求交</h4>
 <p>三点确定一个平面，平面数据结构包含三个不在同一条直线上的点的坐标$P_1(x_1, y_1, z_1), P_2(x_2, y_2, z_2), P_3(x_3, y_3, z_3)$。平面内部表示为</p>
 <p>$$ax+by+cz+d=0$$</p>
@@ -1198,7 +1198,7 @@ $$</p>
 <p>与光线求交：<br />
 1. 先检查是否与平面平行，判断$\vec n \cdot \vec d = 0$，其中$\vec d$为光线方向。<br />
 2. 不平行的情况下，计算交点距离。</p>
-<p><center><img alt="平面求交" src="http://jinjaysnow.github.io/images/plane_inter.png" /></center></p>
+<p><center><img alt="平面求交" src="http://ijinjay.github.io/images/plane_inter.png" /></center></p>
 <h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>多面体求交</h4>
 <p>多面体有多个顶点和多个面，故而包含一个vertices和faces数组，为了方便操作，添加一个center中心点坐标，便于计算交点法线的方向。完整的多面体数据结构如下:</p>
 <table>
@@ -1259,7 +1259,7 @@ $$</p>
 <p>$$diffuse\_color = solid.color \times \sum^{Lights}_{light}(light.color \cdot distance \cdot \cos\theta)$$</p>
 <p>其中，$solid.color$为物体表面的颜色，$light.color$为光源颜色，$distance$为交点与光源的距离，$\theta$为交点与光源连线与该点处法线的夹角。</p>
 <h3 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算折射光</h3>
-<p><img alt="折射" src="http://jinjaysnow.github.io/images/refraction.PNG" /><br />
+<p><img alt="折射" src="http://ijinjay.github.io/images/refraction.PNG" /><br />
 折射光计算需要了解折射面上下的折射率。折射过程满足$\sin\theta_1\cdot N_1 = \sin\theta_2\cdot N_2$。三维情况下如何求解折射方向？</p>
 <p>记单位长度的入射光线方向为$\vec a = (x_a, y_a, z_a)$,单位长度的法线方向为$\vec n = (x_n, y_n, z_n)$,单位长度的折射方向为$\vec b = (x_b, y_b, z_b)$，三个向量在同一个平面内，则有三向量的混合积为0(或者有$\vec B$可以由$\vec A$和$\vec N$表示)有</p>
 <p>$$<br />
@@ -1276,7 +1276,7 @@ $$</p>
 
 
 <h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>计算镜面反射光</h3>
-<p><img alt="镜面反射" src="http://jinjaysnow.github.io/images/mirror.png" /></p>
+<p><img alt="镜面反射" src="http://ijinjay.github.io/images/mirror.png" /></p>
 <p>镜面反射光线计算可用向量计算简洁的得出，如上图中的入射光线A，反射光线B可以按如下计算：</p>
 <p>$\vec B = \vec A + 2(\vec N - \vec A) = 2 \vec N - \vec A$</p>
 <p>实际计算时，对于单位长度的入射光线$\vec a$和单位长度的折射光线$\vec n$，有</p>
@@ -1285,12 +1285,12 @@ $$</p>
 <p><a href="http://antirez.com/misc/rt.html">jsrt</a><br />
 <a href="http://www.cosinekitty.com/raytrace/contents.html">Fundamentals of Ray Tracing</a></p>
 <h1 id="_13"><a name="user-content-_13" href="#_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>未完待续</h1>
-  <p style="text-align: right; color: gray;"><br>2017-03-27 20:26:00</p>
+  <p style="text-align: right; color: gray;"><br>2018-08-16 16:15:50</p>
         </div>
       </div>
       <footer>
         <p>
-          JinJay's blog<a href="https://github.com/jinjaysnow" target="_blank">@JinJay</a>.
+          JinJay's blog<a href="https://github.com/ijinjay" target="_blank">@JinJay</a>.
         </p>
         <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
       </footer>

@@ -7,7 +7,7 @@
 专业：软件工程  
 姓名：靳杰  
 联系电话：18607106575  
-电子邮件：jinjaysnow@gmail.com / 709134513@qq.com  
+电子邮件：ijinjay@gmail.com / 709134513@qq.com  
 
 ## 学习与实践
 
