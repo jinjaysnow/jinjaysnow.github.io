@@ -73,11 +73,13 @@
     </div>
     <audio src="http://ijinjay.github.io/music/littlestar.mp3" id="mp3" loop autoplay></audio>
 
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <!-- Swiper JS -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
-    var swiper = new Swiper('.swiper-container', {
+    $(document).ready(function () {
+      var swiper = new Swiper('.swiper-container', {
         direction: 'vertical',
         pagination: {
             el: '.swiper-pagination',
@@ -86,6 +88,7 @@
         autoplay: {
           delay: 10000,
         },
+      });
     });
     </script>
 </body>
