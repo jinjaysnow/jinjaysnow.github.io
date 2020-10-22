@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.deep_purple-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -191,12 +191,12 @@ MathJax.Hub.Config({
           <h1 id="git"><a name="user-content-git" href="#git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git服务器搭建</h1>
 <p>参考文档：<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000">搭建Git服务器</a></p>
 <h2 id="git_1"><a name="user-content-git_1" href="#git_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>安装git</h2>
-<div class="codehilite"><pre><span></span>sudo apt-get install git
+<div class="codehilite"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">git</span>
 </pre></div>
 
 
 <h2 id="gitgit"><a name="user-content-gitgit" href="#gitgit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建一个git用户,用来运行git服务</h2>
-<div class="codehilite"><pre><span></span>sudo adduser git
+<div class="codehilite"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">git</span>
 </pre></div>
 
 
@@ -204,12 +204,12 @@ MathJax.Hub.Config({
 <p>收集所有需要登录的用户的公钥，就是他们自己的<code>id_rsa.pub</code>文件，把所有公钥导入到<code>/home/git/.ssh/authorized_keys</code>文件里，一行一个。</p>
 <h1 id="git_2"><a name="user-content-git_2" href="#git_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>初始化Git仓库</h1>
 <p>先选定一个目录作为Git仓库，假定是/sources/test.git，在/sources目录下输入命令：</p>
-<div class="codehilite"><pre><span></span>sudo git init --bare test.git
+<div class="codehilite"><pre><span></span><span class="n">sudo</span> <span class="n">git</span> <span class="n">init</span> <span class="c1">--bare test.git</span>
 </pre></div>
 
 
 <p>Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：</p>
-<div class="codehilite"><pre><span></span>sudo chown -R git:git test.git
+<div class="codehilite"><pre><span></span><span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">git</span><span class="p">:</span><span class="n">git</span> <span class="n">test</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
 
 
@@ -227,7 +227,7 @@ MathJax.Hub.Config({
 <p>这样，git用户可以正常通过ssh使用git，但无法登录shell，因为我们为git用户指定的git-shell每次一登录就自动退出。</p>
 <h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>克隆远程仓库</h2>
 <p>现在，可以通过git clone命令克隆远程仓库了，在各自的电脑上运行</p>
-<div class="codehilite"><pre><span></span>git clone git@server:sources/test.git
+<div class="codehilite"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">git</span><span class="nv">@server</span><span class="err">:</span><span class="n">sources</span><span class="o">/</span><span class="n">test</span><span class="p">.</span><span class="n">git</span><span class="w"></span>
 </pre></div>
 
 

@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.indigo-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -188,36 +188,36 @@ MathJax.Hub.Config({
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
           <h2 id="linux"><a name="user-content-linux" href="#linux" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Linux相关操作</h2>
 <h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>创建新用户</h3>
-<div class="codehilite"><pre><span></span>usradd -d /usr/Jay -m Jay   # 创建一个用户名为Jay,用户目录为/usr/Jay的账户
+<div class="codehilite"><pre><span></span><span class="n">usradd</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">Jay</span> <span class="o">-</span><span class="n">m</span> <span class="n">Jay</span>   <span class="o">#</span> <span class="err">创建一个用户名为</span><span class="n">Jay</span><span class="p">,</span><span class="err">用户目录为</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">Jay</span><span class="err">的账户</span>
 </pre></div>
 
 
 <h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改密码</h3>
-<div class="codehilite"><pre><span></span>passwd Jay  # 修改用户Jay的密码
+<div class="codehilite"><pre><span></span><span class="n">passwd</span> <span class="n">Jay</span>  <span class="o">#</span> <span class="err">修改用户</span><span class="n">Jay</span><span class="err">的密码</span>
 </pre></div>
 
 
 <h3 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改用户信息</h3>
-<div class="codehilite"><pre><span></span>usermod Jay
+<div class="codehilite"><pre><span></span><span class="n">usermod</span> <span class="n">Jay</span>
 </pre></div>
 
 
 <h3 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从远程服务器拷贝</h3>
-<div class="codehilite"><pre><span></span>scp Jay@myserver:path2file1 file2
+<div class="codehilite"><pre><span></span><span class="n">scp</span><span class="w"> </span><span class="n">Jay</span><span class="nv">@myserver</span><span class="err">:</span><span class="n">path2file1</span><span class="w"> </span><span class="n">file2</span><span class="w"></span>
 </pre></div>
 
 
 <h3 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>设置自定义的链接库路径</h3>
-<div class="codehilite"><pre><span></span>export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
+<div class="codehilite"><pre><span></span><span class="n">export</span> <span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="err">$</span><span class="n">LD_LIBRARY_PATH</span>
 </pre></div>
 
 
 <h3 id="iptables"><a name="user-content-iptables" href="#iptables" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>iptables设置</h3>
-<p><div class="codehilite"><pre><span></span>iptables -A INPUT -i lo -j ACCEPT
+<p><div class="codehilite"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">A</span> <span class="k">INPUT</span> <span class="o">-</span><span class="n">i</span> <span class="n">lo</span> <span class="o">-</span><span class="n">j</span> <span class="n">ACCEPT</span>
 </pre></div>
 <br />
 允许局域网所有连接</p>
-<p><div class="codehilite"><pre><span></span>iptables -A INPUT -p tcp  --dport 8001:8004 -j REJECT
+<p><div class="codehilite"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">A</span> <span class="k">INPUT</span> <span class="o">-</span><span class="n">p</span> <span class="n">tcp</span>  <span class="c1">--dport 8001:8004 -j REJECT</span>
 </pre></div>
 <br />
 外网不允许访问8001到8004端口</p>

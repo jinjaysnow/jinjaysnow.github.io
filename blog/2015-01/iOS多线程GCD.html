@@ -195,12 +195,12 @@ MathJax.Hub.Config({
 3. <strong>Main Dispatch Queue。</strong> 全局可用的serial queue，在应用程序主线程上进行执行。</p>
 <h3 id="dispatch_async"><a name="user-content-dispatch_async" href="#dispatch_async" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_async</h3>
 <p>为了避免界面在处理耗时的操作时卡死，比如读取网络数据，IO,数据库读写等，我们可以在另外一个线程中处理这些操作，然后通知主线程更新界面。GCD处理代码框架如下：</p>
-<div class="codehilite"><pre><span></span>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 耗时的操作
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // 更新界面
-    });
-});
+<div class="codehilite"><pre><span></span><span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">^</span><span class="err">{</span>
+    <span class="o">//</span> <span class="err">耗时的操作</span>
+    <span class="n">dispatch_async</span><span class="p">(</span><span class="n">dispatch_get_main_queue</span><span class="p">(),</span> <span class="o">^</span><span class="err">{</span>
+        <span class="o">//</span> <span class="err">更新界面</span>
+    <span class="err">}</span><span class="p">);</span>
+<span class="err">}</span><span class="p">);</span>
 </pre></div>
 
 
@@ -251,9 +251,9 @@ MathJax.Hub.Config({
 
 <h3 id="dispatch95apply"><a name="user-content-dispatch95apply" href="#dispatch95apply" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>dispatch_apply</h3>
 <p>执行某段代码n次。</p>
-<div class="codehilite"><pre><span></span>dispatch_apply(5, globalQ, ^(size_t index) {
-    // 执行5次
-});
+<div class="codehilite"><pre><span></span><span class="n">dispatch_apply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">globalQ</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">size_t</span> <span class="k">index</span><span class="p">)</span> <span class="err">{</span>
+    <span class="o">//</span> <span class="err">执行</span><span class="mi">5</span><span class="err">次</span>
+<span class="err">}</span><span class="p">);</span>
 </pre></div>
 
 

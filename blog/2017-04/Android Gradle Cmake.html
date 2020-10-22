@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.lime-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -199,16 +199,16 @@ MathJax.Hub.Config({
 <h1 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加第三方预构建库</h1>
 <p>作为示例，以添加Google Tango的<code>libtango_client_api.so</code>和<code>libtango_support_api.so</code>为例，介绍用法。</p>
 <h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>第三方预构建库的结构</h2>
-<div class="codehilite"><pre><span></span>libtango_client_api
-  |----include
-        |----tango_client_api.h
-  |----lib
-        |----arm64-v8a
-               |----libtango_client_api.so
-        |----armeabi-v7a
-               |----libtango_client_api.so
-        |----x86
-               |----libtango_client_api.so
+<div class="codehilite"><pre><span></span><span class="nv">libtango_client_api</span>
+  <span class="o">|----</span><span class="k">include</span>
+        <span class="o">|----</span><span class="nv">tango_client_api</span>.<span class="nv">h</span>
+  <span class="o">|----</span><span class="nv">lib</span>
+        <span class="o">|----</span><span class="nv">arm64</span><span class="o">-</span><span class="nv">v8a</span>
+               <span class="o">|----</span><span class="nv">libtango_client_api</span>.<span class="nv">so</span>
+        <span class="o">|----</span><span class="nv">armeabi</span><span class="o">-</span><span class="nv">v7a</span>
+               <span class="o">|----</span><span class="nv">libtango_client_api</span>.<span class="nv">so</span>
+        <span class="o">|----</span><span class="nv">x86</span>
+               <span class="o">|----</span><span class="nv">libtango_client_api</span>.<span class="nv">so</span>
 </pre></div>
 
 
@@ -275,9 +275,9 @@ MathJax.Hub.Config({
 <h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>添加库文件加载代码</h2>
 <p>由于已进将依赖关系写入到目标库<code>sense-data-app</code>中，故而只需加载<code>sensedataapp</code>动态库即可。</p>
 <p>在<code>MainActivity.java</code>的<code>MainActivity</code>类中添加如下代码:</p>
-<div class="codehilite"><pre><span></span>static {
-    System.loadLibrary(&quot;sense-data-app&quot;);
-}
+<div class="codehilite"><pre><span></span><span class="k">static</span> <span class="err">{</span>
+    <span class="k">System</span><span class="p">.</span><span class="n">loadLibrary</span><span class="p">(</span><span class="ss">&quot;sense-data-app&quot;</span><span class="p">);</span>
+<span class="err">}</span>
 </pre></div>
 
 

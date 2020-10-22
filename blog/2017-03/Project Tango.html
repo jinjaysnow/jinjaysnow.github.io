@@ -120,7 +120,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.blue-indigo.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-red.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -940,41 +940,41 @@ $$Diagonal \quad FOV = 2*atan(sqrt((width/2fx)^2 + (height/2fy)^2)) = 2 * \arcta
 </pre></div>
 </p>
 <p>定义回调函数<br />
-<div class="codehilite"><pre><span></span>private void setTangoListeners() {
-    final ArrayList&lt;TangoCoordinateFramePair&gt; framePairs = new ArrayList&lt;TangoCoordinateFramePair&gt;();
-    framePairs.add(new TangoCoordinateFramePair(
-        TangoPoseData.COORDINATE_FRAME_START_OF_SERVICE,
-        TangoPoseData.COORDINATE_FRAME_DEVICE));
+<div class="codehilite"><pre><span></span><span class="n">private</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">setTangoListeners</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">final</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">TangoCoordinateFramePair</span><span class="o">&gt;</span><span class="w"> </span><span class="n">framePairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">TangoCoordinateFramePair</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">framePairs</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TangoCoordinateFramePair</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">TangoPoseData</span><span class="p">.</span><span class="n">COORDINATE_FRAME_START_OF_SERVICE</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">TangoPoseData</span><span class="p">.</span><span class="n">COORDINATE_FRAME_DEVICE</span><span class="p">));</span><span class="w"></span>
 
-    // 监听新的Tango数据
-    mTango.connectListener(framePairs, new OnTangoUpdateListener() {
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">监听新的Tango数据</span><span class="w"></span>
+<span class="w">    </span><span class="n">mTango</span><span class="p">.</span><span class="n">connectListener</span><span class="p">(</span><span class="n">framePairs</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OnTangoUpdateListener</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 
-        @Override
-        public void onXyzIjAvailable(TangoXyzIjData arg0) {
-            byte[] buffer = new byte[xyzIj.xyzCount * 3 * 4];
-            FileInputStream fileStream = new FileInputStream(
-                     xyzIj.xyzParcelFileDescriptor.getFileDescriptor());
-            try {
-                fileStream.read(buffer,
-                        xyzIj.xyzParcelFileDescriptorOffset, buffer.length);
-                fileStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            // 不要在毁掉内部处理数据，因为只有处理完成后才能接受新的数据
-        }
+<span class="w">        </span><span class="nv">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">onXyzIjAvailable</span><span class="p">(</span><span class="n">TangoXyzIjData</span><span class="w"> </span><span class="n">arg0</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">byte</span><span class="err">[]</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">byte</span><span class="o">[</span><span class="n">xyzIj.xyzCount * 3 * 4</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fileStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="w"></span>
+<span class="w">                     </span><span class="n">xyzIj</span><span class="p">.</span><span class="n">xyzParcelFileDescriptor</span><span class="p">.</span><span class="n">getFileDescriptor</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">fileStream</span><span class="p">.</span><span class="k">read</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="n">xyzIj</span><span class="p">.</span><span class="n">xyzParcelFileDescriptorOffset</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">.</span><span class="n">length</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">fileStream</span><span class="p">.</span><span class="k">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="n">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="w"></span>
+<span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="n">不要在毁掉内部处理数据</span><span class="err">，</span><span class="n">因为只有处理完成后才能接受新的数据</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
 
-        @Override
-        public void onPoseAvailable(final TangoPoseData pose) {
-            // 处理来自设备相对于服务开始的位姿数据
-        }
+<span class="w">        </span><span class="nv">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">onPoseAvailable</span><span class="p">(</span><span class="n">final</span><span class="w"> </span><span class="n">TangoPoseData</span><span class="w"> </span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="n">处理来自设备相对于服务开始的位姿数据</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="w"></span>
 
-        @Override
-        public void onTangoEvent(final TangoEvent event) {
-            // 处理Tango事件回调
-        }}
+<span class="w">        </span><span class="nv">@Override</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">void</span><span class="w"> </span><span class="n">onTangoEvent</span><span class="p">(</span><span class="n">final</span><span class="w"> </span><span class="n">TangoEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="o">//</span><span class="w"> </span><span class="n">处理Tango事件回调</span><span class="w"></span>
+<span class="w">        </span><span class="err">}}</span><span class="w"></span>
 
-    });
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </p>
   <p style="text-align: right; color: gray;"><br>2018-08-16 15:39:25</p>

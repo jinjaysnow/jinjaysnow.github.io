@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.purple-green.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -196,11 +196,11 @@ CSS解析模块<br />
 在CSS解析模块，我们将解析部分分为两个部分进行，分别是选择器部分和规则部分。对于选择器部分，我们将所有的选择器存在一个字符串中，在后续阶段进行处理；而规则则放置在一个链中，方便我们进行调用。<br />
 选择器处理<br />
 选择器部分，我们将用‘ , ’分隔的一个选择器提取出来，将其中的元素名存储在数组中，并且记录元素的个数。为此，我们定义了如下的数据结构：</p>
-<div class="codehilite"><pre><span></span>typedef struct selectNode {
-    enum cssType type;
-    char   name[10][30];    //选择器元素数组
-    int    nodeNum;         //选择器元素个数
-}selectNode, *pSelectNode;
+<div class="codehilite"><pre><span></span><span class="n">typedef</span> <span class="n">struct</span> <span class="n">selectNode</span> <span class="err">{</span>
+    <span class="n">enum</span> <span class="n">cssType</span> <span class="k">type</span><span class="p">;</span>
+    <span class="nb">char</span>   <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">30</span><span class="p">];</span>    <span class="o">//</span><span class="err">选择器元素数组</span>
+    <span class="nb">int</span>    <span class="n">nodeNum</span><span class="p">;</span>         <span class="o">//</span><span class="err">选择器元素个数</span>
+<span class="err">}</span><span class="n">selectNode</span><span class="p">,</span> <span class="o">*</span><span class="n">pSelectNode</span><span class="p">;</span>
 </pre></div>
 
 
@@ -213,41 +213,41 @@ CSS解析模块<br />
 
 <p>如上所示，所有的多余空格都会被删去。</p>
 <p>然后我们使用正则表达式去匹配得到标签的类和ID。如</p>
-<div class="codehilite"><pre><span></span>&lt;link href=\&quot;[^\&quot;]*\&quot;&gt;   #可以解析css文件名
-class=\&quot;[^\&quot;]*\&quot;         #可以解析类名
+<div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="err">\</span><span class="ss">&quot;[^\&quot;</span><span class="p">]</span><span class="o">*</span><span class="err">\</span><span class="ss">&quot;&gt;   #可以解析css文件名</span>
+<span class="ss">class=\&quot;</span><span class="p">[</span><span class="o">^</span><span class="err">\</span><span class="ss">&quot;]*\&quot;</span>         <span class="o">#</span><span class="err">可以解析类名</span>
 </pre></div>
 
 
 <p>然后我们保存节点的信息。</p>
 <p>DOM节点的结构为：</p>
-<div class="codehilite"><pre><span></span>typedef struct DOMNode {
-    enum TAG        tag;
-    struct DOMNode  *sonNodes[MAXSONNUM];
-    int             sonNum;
-    struct DOMNode  *fatherNode;
-    // 节点属性相关
-    st_style        style;
-    char            ID[20];
-    char            classes[20][20];
-    int             classNum;
-    char *          text; // 如果是文本，需要申请内存
-    // 节点适用的css样式数组
-    DOMCSSES *csses;
-    int inheritStyle[7];
-}DOMTree, *pDOMNode;
+<div class="codehilite"><pre><span></span><span class="n">typedef</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="n">DOMNode</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">enum</span><span class="w"> </span><span class="n">TAG</span><span class="w">        </span><span class="n">tag</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">DOMNode</span><span class="w">  </span><span class="o">*</span><span class="n">sonNodes</span><span class="o">[</span><span class="n">MAXSONNUM</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">int</span><span class="w">             </span><span class="n">sonNum</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">DOMNode</span><span class="w">  </span><span class="o">*</span><span class="n">fatherNode</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">节点属性相关</span><span class="w"></span>
+<span class="w">    </span><span class="n">st_style</span><span class="w">        </span><span class="n">style</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">char</span><span class="w">            </span><span class="n">ID</span><span class="o">[</span><span class="n">20</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">char</span><span class="w">            </span><span class="n">classes</span><span class="o">[</span><span class="n">20</span><span class="o">][</span><span class="n">20</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">int</span><span class="w">             </span><span class="n">classNum</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">char</span><span class="w"> </span><span class="o">*</span><span class="w">          </span><span class="nc">text</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">如果是文本</span><span class="err">，</span><span class="n">需要申请内存</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="n">节点适用的css样式数组</span><span class="w"></span>
+<span class="w">    </span><span class="n">DOMCSSES</span><span class="w"> </span><span class="o">*</span><span class="n">csses</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nc">int</span><span class="w"> </span><span class="n">inheritStyle</span><span class="o">[</span><span class="n">7</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="n">DOMTree</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">pDOMNode</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 
 
 <h3 id="css"><a name="user-content-css" href="#css" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>CSS规则处理</h3>
 <p>在规则处理模块，我们通过’{’和’}’作为起点和终点，对于一组规则进行解析。我们定义了如下数据结构，将每条规则存储在其中。</p>
-<div class="codehilite"><pre><span></span>typedef struct rule
+<div class="codehilite"><pre><span></span><span class="nv">typedef</span> <span class="nv">struct</span> <span class="nv">rule</span>
 {
-    char name[15];      //  存储规则名
-    int namePos;
-    char value[30];     //  存储规则值
-    int valPos;
-    struct rule* next;  //  指向下一条规则
-}rule;
+    <span class="nv">char</span> <span class="nv">name</span>[<span class="mi">15</span>]<span class="c1">;      //  存储规则名</span>
+    <span class="nv">int</span> <span class="nv">namePos</span><span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">value</span>[<span class="mi">30</span>]<span class="c1">;     //  存储规则值</span>
+    <span class="nv">int</span> <span class="nv">valPos</span><span class="c1">;</span>
+    <span class="nv">struct</span> <span class="nv">rule</span><span class="o">*</span> <span class="k">next</span><span class="c1">;  //  指向下一条规则</span>
+}<span class="nv">rule</span><span class="c1">;</span>
 </pre></div>
 
 
@@ -255,29 +255,29 @@ class=\&quot;[^\&quot;]*\&quot;         #可以解析类名
 <p>在CSS规则中，可能会出现规则之中没有用”；”隔开的情况，针对这种情况，我们进行了如下处理：在没有正确的匹配到”；”时，如果匹配到了其他特殊符号，如“：”，“}”，则根据后一条规则的属性名，可以确定”；”的位置，从而对CSS规则进行分割。</p>
 <p>CSS节点生成<br />
 在得到CSS选择器和CSS规则链后，我们对其进行分析，形成统一的数据结构，方便我们进行后续处理。在这个阶段，我们识别出每条规则的属性名和属性值，并存储选择器。为此我们定义了CSS节点数据结构，以方便进行存储。</p>
-<div class="codehilite"><pre><span></span><span class="nt">typedef</span> <span class="nt">struct</span> <span class="nt">cssNode</span> <span class="p">{</span>
-    <span class="err">selectNode</span> <span class="err">*snodes</span><span class="p">;</span> 
-    <span class="err">char</span> <span class="err">display</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">position</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">width</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">height</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">top</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">bottom</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">left</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">right</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">padding</span><span class="cp">[</span><span class="mi">4</span><span class="cp">][</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">border</span><span class="cp">[</span><span class="mi">4</span><span class="cp">][</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">margin</span><span class="cp">[</span><span class="mi">4</span><span class="cp">][</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">color</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">font_size</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">line_height</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">text_align</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">font_style</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">font_weight</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">char</span> <span class="err">line_break</span><span class="cp">[</span><span class="mi">10</span><span class="cp">]</span><span class="p">;</span>
-    <span class="err">struct</span> <span class="err">cssNode</span> <span class="err">*next</span><span class="p">;</span>
-    <span class="err">unsigned</span> <span class="n">defineFlag</span><span class="p">:</span><span class="mi">18</span><span class="p">;</span>
-<span class="p">}</span><span class="nt">cssList</span><span class="o">,</span> <span class="nt">cssNode</span><span class="o">;</span>
+<div class="codehilite"><pre><span></span><span class="nv">typedef</span> <span class="nv">struct</span> <span class="nv">cssNode</span> {
+    <span class="nv">selectNode</span> <span class="o">*</span><span class="nv">snodes</span><span class="c1">; </span>
+    <span class="nv">char</span> <span class="nv">display</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">position</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">width</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">height</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">top</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">bottom</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">left</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">right</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">padding</span>[<span class="mi">4</span>][<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">border</span>[<span class="mi">4</span>][<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">margin</span>[<span class="mi">4</span>][<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">color</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">font_size</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">line_height</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">text_align</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">font_style</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">font_weight</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">char</span> <span class="nv">line_break</span>[<span class="mi">10</span>]<span class="c1">;</span>
+    <span class="nv">struct</span> <span class="nv">cssNode</span> <span class="o">*</span><span class="k">next</span><span class="c1">;</span>
+    <span class="nv">unsigned</span> <span class="nv">defineFlag</span>:<span class="mi">18</span><span class="c1">;</span>
+}<span class="nv">cssList</span>, <span class="nv">cssNode</span><span class="c1">;</span>
 </pre></div>
 
 

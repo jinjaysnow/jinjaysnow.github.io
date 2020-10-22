@@ -120,7 +120,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.purple-blue.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.blue-green.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -272,10 +272,10 @@ MathJax.Hub.Config({
 
 
 <p>输出结果为<br />
-<div class="codehilite"><pre><span></span>First = 0 Second = 0 Fourth = 0
-Third = 1 Second = 1 Fourth = 1
-Third = 2 Second = 2 Fourth = 2
-Third = 3 Second = 3 
+<div class="codehilite"><pre><span></span><span class="k">First</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">Second</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">Fourth</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Third</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">Second</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">Fourth</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Third</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">Second</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">Fourth</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Third</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">Second</span> <span class="o">=</span> <span class="mi">3</span> 
 </pre></div>
 </p>
 <h4 id="while"><a name="user-content-while" href="#while" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>while循环</h4>
@@ -291,9 +291,9 @@ Third = 3 Second = 3
 
 
 <p>输出结果为<br />
-<div class="codehilite"><pre><span></span>first = 3 second = 2
-first = 2 second = 1
-first = 1
+<div class="codehilite"><pre><span></span><span class="k">first</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">second</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">first</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">second</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">first</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </p>
 <h4 id="const"><a name="user-content-const" href="#const" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>const</h4>
@@ -335,18 +335,18 @@ first = 1
 
 <h3 id="c_2"><a name="user-content-c_2" href="#c_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C语言变长参数函数</h3>
 <p>变长参数应用模版：</p>
-<div class="codehilite"><pre><span></span><span class="err">#</span><span class="nx">include</span> <span class="o">&lt;</span><span class="nx">stdarg</span><span class="p">.</span><span class="nx">h</span><span class="o">&gt;</span>
-<span class="kd">function</span> <span class="p">(</span><span class="nx">parmN</span><span class="p">,</span> <span class="p">...)</span>
-<span class="nx">va_list</span> <span class="nx">pvar</span><span class="p">;</span>
-<span class="err">……………………………</span>
-<span class="nx">va_start</span> <span class="p">(</span><span class="nx">pvar</span><span class="p">,</span> <span class="nx">parmN</span><span class="p">);</span>
-<span class="k">while</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="err">……………………</span>
-    <span class="nx">f</span> <span class="o">=</span> <span class="nx">va_arg</span> <span class="p">(</span><span class="nx">pvar</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
-    <span class="err">……………………</span>
-<span class="p">}</span>
-<span class="nx">va_end</span> <span class="p">(</span><span class="nx">pvar</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span>#<span class="k">include</span> <span class="o">&lt;</span><span class="nv">stdarg</span>.<span class="nv">h</span><span class="o">&gt;</span>
+<span class="nv">function</span> <span class="ss">(</span><span class="nv">parmN</span>, ...<span class="ss">)</span>
+<span class="nv">va_list</span> <span class="nv">pvar</span><span class="c1">;</span>
+……………………………
+<span class="nv">va_start</span> <span class="ss">(</span><span class="nv">pvar</span>, <span class="nv">parmN</span><span class="ss">)</span><span class="c1">;</span>
+<span class="k">while</span><span class="ss">()</span>
+{
+    ……………………
+    <span class="nv">f</span> <span class="o">=</span> <span class="nv">va_arg</span> <span class="ss">(</span><span class="nv">pvar</span>, <span class="nv">type</span><span class="ss">)</span><span class="c1">;</span>
+    ……………………
+}
+<span class="nv">va_end</span> <span class="ss">(</span><span class="nv">pvar</span><span class="ss">)</span><span class="c1">;</span>
 </pre></div>
 
 

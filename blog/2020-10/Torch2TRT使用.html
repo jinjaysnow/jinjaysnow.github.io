@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="date" content="2020-10">
+<meta name="keywords" content="Torch2TRT,TensorRT,Pytorch">
+<meta name="description" content="将pytorch网络转为TensorRT网络的torch2trt加速库的简介，使用及更改pytorch代码适配示例，docker中的运行示例。">
+<meta name="author" content="Jin Jay"><style>
+</style><style>.codehilite pre .hll { background-color: #ffffcc }
+.codehilite pre  { background: #f0f3f3; }
+.codehilite pre .c { color: #0099FF; font-style: italic } /* Comment */
+.codehilite pre .err { color: #AA0000; background-color: #FFAAAA } /* Error */
+.codehilite pre .k { color: #006699; font-weight: bold } /* Keyword */
+.codehilite pre .o { color: #555555 } /* Operator */
+.codehilite pre .ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+.codehilite pre .cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+.codehilite pre .cp { color: #009999 } /* Comment.Preproc */
+.codehilite pre .cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+.codehilite pre .c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+.codehilite pre .cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+.codehilite pre .gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+.codehilite pre .ge { font-style: italic } /* Generic.Emph */
+.codehilite pre .gr { color: #FF0000 } /* Generic.Error */
+.codehilite pre .gh { color: #003300; font-weight: bold } /* Generic.Heading */
+.codehilite pre .gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+.codehilite pre .go { color: #AAAAAA } /* Generic.Output */
+.codehilite pre .gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+.codehilite pre .gs { font-weight: bold } /* Generic.Strong */
+.codehilite pre .gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+.codehilite pre .gt { color: #99CC66 } /* Generic.Traceback */
+.codehilite pre .kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+.codehilite pre .kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+.codehilite pre .kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+.codehilite pre .kp { color: #006699 } /* Keyword.Pseudo */
+.codehilite pre .kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+.codehilite pre .kt { color: #007788; font-weight: bold } /* Keyword.Type */
+.codehilite pre .m { color: #FF6600 } /* Literal.Number */
+.codehilite pre .s { color: #CC3300 } /* Literal.String */
+.codehilite pre .na { color: #330099 } /* Name.Attribute */
+.codehilite pre .nb { color: #336666 } /* Name.Builtin */
+.codehilite pre .nc { color: #00AA88; font-weight: bold } /* Name.Class */
+.codehilite pre .no { color: #336600 } /* Name.Constant */
+.codehilite pre .nd { color: #9999FF } /* Name.Decorator */
+.codehilite pre .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite pre .ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+.codehilite pre .nf { color: #CC00FF } /* Name.Function */
+.codehilite pre .nl { color: #9999FF } /* Name.Label */
+.codehilite pre .nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+.codehilite pre .nt { color: #330099; font-weight: bold } /* Name.Tag */
+.codehilite pre .nv { color: #003333 } /* Name.Variable */
+.codehilite pre .ow { color: #000000; font-weight: bold } /* Operator.Word */
+.codehilite pre .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite pre .mb { color: #FF6600 } /* Literal.Number.Bin */
+.codehilite pre .mf { color: #FF6600 } /* Literal.Number.Float */
+.codehilite pre .mh { color: #FF6600 } /* Literal.Number.Hex */
+.codehilite pre .mi { color: #FF6600 } /* Literal.Number.Integer */
+.codehilite pre .mo { color: #FF6600 } /* Literal.Number.Oct */
+.codehilite pre .sa { color: #CC3300 } /* Literal.String.Affix */
+.codehilite pre .sb { color: #CC3300 } /* Literal.String.Backtick */
+.codehilite pre .sc { color: #CC3300 } /* Literal.String.Char */
+.codehilite pre .dl { color: #CC3300 } /* Literal.String.Delimiter */
+.codehilite pre .sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+.codehilite pre .s2 { color: #CC3300 } /* Literal.String.Double */
+.codehilite pre .se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+.codehilite pre .sh { color: #CC3300 } /* Literal.String.Heredoc */
+.codehilite pre .si { color: #AA0000 } /* Literal.String.Interpol */
+.codehilite pre .sx { color: #CC3300 } /* Literal.String.Other */
+.codehilite pre .sr { color: #33AAAA } /* Literal.String.Regex */
+.codehilite pre .s1 { color: #CC3300 } /* Literal.String.Single */
+.codehilite pre .ss { color: #FFCC33 } /* Literal.String.Symbol */
+.codehilite pre .bp { color: #336666 } /* Name.Builtin.Pseudo */
+.codehilite pre .fm { color: #CC00FF } /* Name.Function.Magic */
+.codehilite pre .vc { color: #003333 } /* Name.Variable.Class */
+.codehilite pre .vg { color: #003333 } /* Name.Variable.Global */
+.codehilite pre .vi { color: #003333 } /* Name.Variable.Instance */
+.codehilite pre .vm { color: #003333 } /* Name.Variable.Magic */
+.codehilite pre .il { color: #FF6600 } /* Literal.Number.Integer.Long */</style><script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+    processEscapes: false
+  },
+  TeX: {
+    extensions: ["AMSmath.js", "AMSsymbols.js"],
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
+    },
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false
+});
+</script>
+<title>Torch2TRT使用</title>
+    <meta name="robots" content="all" />
+    <!-- TODO: 移动设备配置 -->
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="../../images/snow.jpg">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JinJay">
+    <link rel="apple-touch-icon-precomposed" href="../../images/snow.jpg">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="../../images/snow.jpg">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- save to local storage -->
+    <link href="../../mdl/icon.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
+    <!-- random generate color -->
+    <link rel="stylesheet" href="../../mdl/material.deep_purple-blue.min.css" />
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
+    <script src="../../mdl/material.min.js"></script>
+  </head>
+  <body>
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+    .waterfall-demo-header-nav .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+    }
+    }
+    </style>
+    <div class="mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-layout--overlay-drawer-button">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- TOC -->
+          <span class="mdl-layout-title">目录</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+            mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp" placeholder="暂不可用" />
+            </div>
+          </div>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-tile mdl-layout--large-screen-only">朝着梦想，一步一步！</span>
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="waterfall-demo-header-nav mdl-navigation">
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io">主页</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/blog/">博客</a>
+            <a class="mdl-navigation__link" href="http://ijinjay.github.io/about.html">关于我</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">目录</span>
+        <nav class="mdl-navigation">
+          <div class="toc">
+<ul>
+<li><a href="#torch2trt">Torch2TRT简介</a><ul>
+<li><a href="#_1">安装</a></li>
+<li><a href="#pytorchtorch2trt">改写Pytorch代码适配torch2trt</a><ul>
+<li><a href="#dwt">DWT</a></li>
+<li><a href="#iwt">IWT</a></li>
+</ul>
+</li>
+<li><a href="#jetsondockertensorrt">在Jetson设备的Docker中运行tensorrt</a></li>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#_2">相关资源链接</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+      </div>
+      <!-- main outer -->
+      <main class="demo-main mdl-layout__content">
+      <!-- grid start -->
+      <div class="demo-container mdl-grid">
+        <!-- placeholder cell -->
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+          <h1 id="torch2trt"><a name="user-content-torch2trt" href="#torch2trt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Torch2TRT简介</h1>
+<p><a href="https://github.com/NVIDIA-AI-IOT/torch2trt">torch2trt</a>可以将Pytorch网络转为TensorRT网络来进行加速。该库的开发人员主要针对NVIDIA嵌入式设备进行开发，支持<a href="https://developer.nvidia.com/embedded/jetson-agx-xavier-developer-kit">Jetson AGX Xavier</a>, Jetson Nano, Jetson TX1, Jetson TX2, Jetson Xavier NX等。目前(2020年)，算力最强为Jetson AGX Xavier，拥有32TOPS的计算力，32G内存和32G板载存储，可以额外添加1T M.2 SSD 升级存储，国内目前单价大概8000元。</p>
+<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>安装</h2>
+<p>Jetson设备上根据Github上的官方教程可以直接安装。参考文末<code>Jetson_zoo</code>安装pytorch并安装对应版本的<code>torchvision</code>(使用<code>git checkout -b v0.5</code>切换到对应的<code>torchvision</code>分支，然后手动编译安装)，最后编译安装<code>torch2trt</code>，建议添加<code>--user</code>选项将库安装到用户目录。</p>
+<div class="codehilite"><pre><span></span>git clone https://github.com/NVIDIA-AI-IOT/torch2trt
+<span class="nb">cd</span> torch2trt
+python3 setup.py install --plugins --user
+</pre></div>
+
+
+<p>台式机及服务器端，由于需要配合TensorRT使用，建议在NVIDIA的官方网站下载对应的Docker镜像，<a href="https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt"><a href="https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt"><a href="https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt">https://ngc.nvidia.com/catalog/containers/nvidia:tensorrt</a></a></a>。Docker虚拟容器需要主机具有相关的驱动，建议保持最新的驱动即可。</p>
+<div class="codehilite"><pre><span></span>docker pull nvcr.io/nvidia/tensorrt:20.09-py3 <span class="c1"># 下载镜像</span>
+docker run --gpus all --name tensorrt -it nvcr.io/nvidia/tensorrt:20.09-py3 /bin/bash <span class="c1"># 运行镜像</span>
+docker start tensorrt <span class="c1"># 在镜像关闭退出后启动镜像</span>
+docker <span class="nb">exec</span> -it tensorrt /bin/bash <span class="c1"># 启动镜像后再次进入镜像，进行交互式界面</span>
+apt update <span class="o">&amp;&amp;</span> apt install vim <span class="c1"># 为了便于在镜像中编辑，可安装vim等库</span>
+</pre></div>
+
+
+<p>安装TensorRT镜像后，需要安装Pytorch及下载torch2trt库。</p>
+<div class="codehilite"><pre><span></span>pip3 install torch torchvision <span class="c1"># 下载并安装pytorch</span>
+git clone https://github.com/NVIDIA-AI-IOT/torch2trt
+</pre></div>
+
+
+<p>Torch2TRT主要面向Jetson设备，要在台式机和服务器上运行，需要做一些小的改动，改动<code>setup.py</code>中下述代码</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">trt_inc_dir</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;/usr/include/aarch64-linux-gnu&quot;</span>
+
+<span class="k">def</span> <span class="nf">trt_lib_dir</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;/usr/lib/aarch64-linux-gnu&quot;</span>
+</pre></div>
+
+
+<p>为 </p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">trt_inc_dir</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;/usr/include/x86_64-linux-gnu&quot;</span>
+
+<span class="k">def</span> <span class="nf">trt_lib_dir</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;/usr/lib/x86_64-linux-gnu&quot;</span>
+</pre></div>
+
+
+<p>即替换TensorRT的相关路径为平台相关路径。同样地，更改<code>build.py</code>中的下述代码:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">cuda_dir</span><span class="o">=</span><span class="s2">&quot;/usr/local/cuda&quot;</span><span class="p">,</span>
+          <span class="n">torch_dir</span><span class="o">=</span><span class="n">imp</span><span class="o">.</span><span class="n">find_module</span><span class="p">(</span><span class="s1">&#39;torch&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+          <span class="n">trt_inc_dir</span><span class="o">=</span><span class="s2">&quot;/usr/include/aarch64-linux-gnu&quot;</span><span class="p">,</span>
+          <span class="n">trt_lib_dir</span><span class="o">=</span><span class="s2">&quot;/usr/lib/aarch64-linux-gnu&quot;</span><span class="p">):</span>
+</pre></div>
+
+
+<p>为</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">cuda_dir</span><span class="o">=</span><span class="s2">&quot;/usr/local/cuda&quot;</span><span class="p">,</span>
+          <span class="n">torch_dir</span><span class="o">=</span><span class="n">imp</span><span class="o">.</span><span class="n">find_module</span><span class="p">(</span><span class="s1">&#39;torch&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+          <span class="n">trt_inc_dir</span><span class="o">=</span><span class="s2">&quot;/usr/include/x86_64-linux-gnu&quot;</span><span class="p">,</span>
+          <span class="n">trt_lib_dir</span><span class="o">=</span><span class="s2">&quot;/usr/lib/x86_64-linux-gnu&quot;</span><span class="p">):</span>
+</pre></div>
+
+
+<p>然后，执行编译安装操作:</p>
+<div class="codehilite"><pre><span></span>python3 setup.py install --plugins --user
+</pre></div>
+
+
+<h2 id="pytorchtorch2trt"><a name="user-content-pytorchtorch2trt" href="#pytorchtorch2trt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>改写Pytorch代码适配torch2trt</h2>
+<p>具体的示例是基于<a href="https://github.com/lpj0/MWCNN">MWCNN</a>网络，改写其中的<code>DWT</code>和<code>IWT</code>模块。</p>
+<h3 id="dwt"><a name="user-content-dwt" href="#dwt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>DWT</h3>
+<p>离散小波变化<code>DWT</code>原始代码为:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">DWT</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DWT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">dwt_init</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">dwt_init</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x01</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x02</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x01</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">x02</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x3</span> <span class="o">=</span> <span class="n">x01</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x4</span> <span class="o">=</span> <span class="n">x02</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">x_LL</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+    <span class="n">x_HL</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+    <span class="n">x_LH</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+    <span class="n">x_HH</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x_LL</span><span class="p">,</span> <span class="n">x_HL</span><span class="p">,</span> <span class="n">x_LH</span><span class="p">,</span> <span class="n">x_HH</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p><code>torch2trt</code>库不能将非<code>torch.nn.Module</code>子类的<code>dwt_init</code>函数翻译为TensorRT网络，故而会出现出错。解决方法较简单，将<code>dwt_init</code>函数整理放入<code>DWT</code>类中即可。修改后代码如下:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">DWT</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DWT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x01</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x02</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">x01</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">x02</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">x3</span> <span class="o">=</span> <span class="n">x01</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">x4</span> <span class="o">=</span> <span class="n">x02</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">x_LL</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+        <span class="n">x_HL</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+        <span class="n">x_LH</span> <span class="o">=</span> <span class="o">-</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+        <span class="n">x_HH</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x_LL</span><span class="p">,</span> <span class="n">x_HL</span><span class="p">,</span> <span class="n">x_LH</span><span class="p">,</span> <span class="n">x_HH</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="iwt"><a name="user-content-iwt" href="#iwt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>IWT</h3>
+<p>小波逆变换<code>IWT</code>的原始代码如下:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">IWT</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IWT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">iwt_init</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">iwt_init</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">in_batch</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">,</span> <span class="n">in_height</span><span class="p">,</span> <span class="n">in_width</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">out_batch</span><span class="p">,</span> <span class="n">out_channel</span><span class="p">,</span> <span class="n">out_height</span><span class="p">,</span> <span class="n">out_width</span> <span class="o">=</span> <span class="n">in_batch</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span>
+        <span class="n">in_channel</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">r</span> <span class="o">*</span> <span class="n">in_height</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span> <span class="n">in_width</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">out_channel</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x3</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">x4</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span> <span class="o">*</span> <span class="mi">3</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">out_batch</span><span class="p">,</span> <span class="n">out_channel</span><span class="p">,</span> <span class="n">out_height</span><span class="p">,</span> <span class="n">out_width</span><span class="p">])</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+
+    <span class="n">h</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+    <span class="n">h</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span>
+    <span class="n">h</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span>
+    <span class="n">h</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+
+    <span class="k">return</span> <span class="n">h</span>
+</pre></div>
+
+
+<p><code>IWT</code>与<code>DWT</code>有类似的问题存在，但是更为难办的问题是<code>torch.zeros</code>这种运行时新建Tensor的操作符不被TensorRT支持，导致无法进行转换，且TensorRT提供的仅有<code>add_constant()</code>这种不允许动态改变值的网络层，无法实现<code>h[:, :, 0::2, 0::2] = x1 - x2 - x3 + x4</code>这种赋值操作。查看所有torch2trt支持的操作，<code>ConvTranspose2D</code>组件可以上采样生成更大尺寸的图像，在相关区域补0，可以解决我们的问题。如下，是修正后的代码:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Padding1</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Padding1</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">Padding2</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Padding2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">Padding3</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Padding3</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">Padding4</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Padding4</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">input_channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">input_channel</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">class</span> <span class="nc">IWT</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_channel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IWT</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding1</span> <span class="o">=</span> <span class="n">Padding1</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">input_channel</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding2</span> <span class="o">=</span> <span class="n">Padding2</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">input_channel</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding3</span> <span class="o">=</span> <span class="n">Padding3</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">input_channel</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">padding4</span> <span class="o">=</span> <span class="n">Padding4</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">input_channel</span> <span class="o">/</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">in_batch</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">,</span> <span class="n">in_height</span><span class="p">,</span> <span class="n">in_width</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+        <span class="n">out_batch</span><span class="p">,</span> <span class="n">out_channel</span><span class="p">,</span> <span class="n">out_height</span><span class="p">,</span> <span class="n">out_width</span> <span class="o">=</span> <span class="n">in_batch</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span>
+            <span class="n">in_channel</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">r</span> <span class="o">*</span> <span class="n">in_height</span><span class="p">,</span> <span class="n">r</span> <span class="o">*</span> <span class="n">in_width</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">out_channel</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x3</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">x4</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="n">out_channel</span> <span class="o">*</span> <span class="mi">3</span><span class="p">:</span><span class="n">out_channel</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">y1</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span>
+        <span class="n">y3</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x3</span> <span class="o">-</span> <span class="n">x4</span>
+        <span class="n">y4</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+
+        <span class="n">t_h1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding1</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
+        <span class="n">t_h2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding2</span><span class="p">(</span><span class="n">y2</span><span class="p">)</span>
+        <span class="n">t_h3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding3</span><span class="p">(</span><span class="n">y3</span><span class="p">)</span>
+        <span class="n">t_h4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding4</span><span class="p">(</span><span class="n">y4</span><span class="p">)</span>
+
+        <span class="n">r</span><span class="o">=</span> <span class="n">t_h1</span> <span class="o">+</span> <span class="n">t_h2</span> <span class="o">+</span> <span class="n">t_h3</span> <span class="o">+</span> <span class="n">t_h4</span>
+        <span class="k">return</span>  <span class="n">r</span>
+</pre></div>
+
+
+<p>通过组合<code>ConvTranspose2D</code>和<code>pad</code>可以实现<code>IWT</code>相关的操作。重新训练网络后，可以实现<code>TensoRT</code>加速。</p>
+<h2 id="jetsondockertensorrt"><a name="user-content-jetsondockertensorrt" href="#jetsondockertensorrt" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>在Jetson设备的Docker中运行tensorrt</h2>
+<p>主机上安装tensorrt的docker支持</p>
+<div class="codehilite"><pre><span></span>sudo apt install nvidia-container-csv-tensorrt
+</pre></div>
+
+
+<p>修改<code>nvidia-docker</code>配置文件<code>/etc/nvidia-container-runtime/host-files-for-container.d/tensorrt.csv</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nv">lib</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">lib</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer_plugin</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">lib</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvonnxparser</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">lib</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvonnxparser_runtime</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">lib</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvparsers</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvcaffe_parser</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvcaffe_parser</span>.<span class="nv">so</span>.<span class="mi">6</span>.<span class="mi">0</span>.<span class="mi">1</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer</span>.<span class="nv">so</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer_plugin</span>.<span class="nv">so</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvinfer_plugin</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvonnxparser</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvonnxparser_runtime</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">sym</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">libnvparsers</span>.<span class="nv">so</span>.<span class="mi">6</span>
+<span class="nv">dir</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">tensorrt</span>
+<span class="nv">dir</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">python3</span>.<span class="mi">6</span><span class="o">/</span><span class="nv">dist</span><span class="o">-</span><span class="nv">packages</span><span class="o">/</span><span class="nv">tensorrt</span>
+<span class="nv">dir</span>, <span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="k">include</span><span class="o">/</span><span class="nv">aarch64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span>
+</pre></div>
+
+
+<p>虚拟机中安装相关库:</p>
+<div class="codehilite"><pre><span></span>apt install python3-opencv python3-matplotlib
+apt-get install -y git python3-pip cmake protobuf-compiler libprotoc-dev libopenblas-dev gfortran libjpeg8-dev libxslt1-dev libfreetype6-dev
+pip3 install -U numpy
+pip3 install torch-xxx.whl --user <span class="c1"># 下载pytorch包安装</span>
+
+git clone -b v0.5.0 https://github.com/pytorch/vision torchvision
+python3 setup.py install —user
+
+apt-get install libprotobuf* protobuf-compiler ninja-build -y
+git clone https://github.com/NVIDIA-AI-IOT/torch2trt
+<span class="nb">cd</span> torch2trt
+python3 setup.py install --plugins --user
+</pre></div>
+
+
+<h2 id="todo"><a name="user-content-todo" href="#todo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>TODO</h2>
+<ol>
+<li>可通过编写相关插件实现<code>IWT</code>功能，需要进一步研究<code>torch2trt</code>源码。</li>
+</ol>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>相关资源链接</h2>
+<ol>
+<li>Jetson_Zoo 汇总了Jetson设备的相关资源链接。<a href="https://elinux.org/Jetson_Zoo"><a href="https://elinux.org/Jetson_Zoo"><a href="https://elinux.org/Jetson_Zoo">https://elinux.org/Jetson_Zoo</a></a></a></li>
+</ol>
+  <p style="text-align: right; color: gray;"><br>2020-10-22 11:42:07</p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          JinJay's blog<a href="https://github.com/ijinjay" target="_blank">@JinJay</a>.
+        </p>
+        <script src="http://s4.cnzz.com/z_stat.php?id=1253269299&amp;web_id=1253269299" language="JavaScript"></script>
+      </footer>
+      </main>
+    </div>
+  </body>
+</html>
+

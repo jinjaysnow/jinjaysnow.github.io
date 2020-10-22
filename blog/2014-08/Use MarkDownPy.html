@@ -119,7 +119,7 @@ MathJax.Hub.Config({
     <link href="../../mdl/icon.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <!-- random generate color -->
-    <link rel="stylesheet" href="../../mdl/material.deep_orange-pink.min.css" />
+    <link rel="stylesheet" href="../../mdl/material.deep_orange-blue.min.css" />
     <!-- template.css -->
     <link rel="stylesheet" type="text/css" href="../../stylesheets/t.css">
     <script src="../../mdl/material.min.js"></script>
@@ -182,12 +182,12 @@ MathJax.Hub.Config({
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
           <h2 id="pygmentize-css"><a name="user-content-pygmentize-css" href="#pygmentize-css" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>pygmentize 产生代码高亮的css文件</h2>
-<div class="codehilite"><pre><span></span>pygmentize -S default -f html &gt; default.css
+<div class="codehilite"><pre><span></span><span class="n">pygmentize</span> <span class="o">-</span><span class="n">S</span> <span class="k">default</span> <span class="o">-</span><span class="n">f</span> <span class="n">html</span> <span class="o">&gt;</span> <span class="k">default</span><span class="p">.</span><span class="n">css</span>
 </pre></div>
 
 
 <h2 id="markdown_py-html"><a name="user-content-markdown_py-html" href="#markdown_py-html" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>markdown_py 产生html文件</h2>
-<div class="codehilite"><pre><span></span>markdown_py/markdown2 \*\*.md &gt; \*\*.html
+<div class="codehilite"><pre><span></span><span class="n">markdown_py</span><span class="o">/</span><span class="n">markdown2</span> <span class="err">\</span><span class="o">*</span><span class="err">\</span><span class="o">*</span><span class="p">.</span><span class="n">md</span> <span class="o">&gt;</span> <span class="err">\</span><span class="o">*</span><span class="err">\</span><span class="o">*</span><span class="p">.</span><span class="n">html</span>
 </pre></div>
 
 
@@ -198,9 +198,9 @@ MathJax.Hub.Config({
 
 
 <h2 id="mako-template_1"><a name="user-content-mako-template_1" href="#mako-template_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>mako Template 使用</h2>
-<div class="codehilite"><pre><span></span><span class="c">% for x in SomeList: // SomeList 不需要用${}括起来</span>
-    <span class="n">print</span> $<span class="p">{</span><span class="n">x</span><span class="p">}</span>
-<span class="c">% endfor</span>
+<div class="codehilite"><pre><span></span><span class="o">%</span> <span class="k">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="nv">SomeList</span>: <span class="o">//</span> <span class="nv">SomeList</span> 不需要用${}括起来
+    <span class="nv">print</span> ${<span class="nv">x</span>}
+<span class="o">%</span> <span class="nv">endfor</span>
 </pre></div>
 
 
